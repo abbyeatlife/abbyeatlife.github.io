@@ -2,58 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://abbyeatlife.github.io/</loc>
     <lastmod>2024-11-02T15:56:47+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/</loc>
+    <loc>https://abbyeatlife.github.io/blog/</loc>
     <lastmod>2024-11-02T15:56:47+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://abbyeatlife.github.io/categories/</loc>
     <lastmod>2024-11-02T15:56:47+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://abbyeatlife.github.io/tags/</loc>
     <lastmod>2024-11-02T15:56:47+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/%E4%B8%8A%E7%8F%AD%E6%97%8F/</loc>
+    <loc>https://abbyeatlife.github.io/tags/%E4%B8%8A%E7%8F%AD%E6%97%8F/</loc>
     <lastmod>2024-11-02T15:56:47+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/%E4%BE%BF%E7%95%B6/</loc>
+    <loc>https://abbyeatlife.github.io/tags/%E4%BE%BF%E7%95%B6/</loc>
     <lastmod>2024-11-02T15:56:47+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/test/</loc>
+    <loc>https://abbyeatlife.github.io/blog/test/</loc>
     <lastmod>2024-11-02T15:56:47+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/%E9%A3%9F%E7%89%A9%E4%BB%8B%E7%B4%B9/</loc>
+    <loc>https://abbyeatlife.github.io/categories/%E9%A3%9F%E7%89%A9%E4%BB%8B%E7%B4%B9/</loc>
     <lastmod>2024-11-02T15:56:47+08:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://abbyeatlife.github.io/about/</loc>
     <lastmod>2019-10-29T13:49:23+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/contact/</loc>
+    <loc>https://abbyeatlife.github.io/contact/</loc>
     <lastmod>2019-10-29T13:49:23+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>https://abbyeatlife.github.io/search/</loc>
     <lastmod>2019-10-29T13:49:23+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/game/</loc>
+    <loc>https://abbyeatlife.github.io/tags/game/</loc>
     <lastmod>2019-10-29T10:07:47+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/go-language/</loc>
+    <loc>https://abbyeatlife.github.io/categories/go-language/</loc>
     <lastmod>2019-10-29T10:07:47+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/post-13/</loc>
+    <loc>https://abbyeatlife.github.io/blog/post-13/</loc>
     <lastmod>2019-10-29T10:07:47+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/html/</loc>
+    <loc>https://abbyeatlife.github.io/tags/html/</loc>
     <lastmod>2019-10-29T10:07:47+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/new/</loc>
+    <loc>https://abbyeatlife.github.io/tags/new/</loc>
     <lastmod>2019-10-29T10:07:47+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/photos/</loc>
+    <loc>https://abbyeatlife.github.io/tags/photos/</loc>
     <lastmod>2019-10-29T10:07:47+06:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/python/</loc>
+    <loc>https://abbyeatlife.github.io/tags/python/</loc>
     <lastmod>2019-10-29T10:07:47+06:00</lastmod>
   </url>
 </urlset>
