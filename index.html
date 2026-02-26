@@ -1,571 +1,913 @@
+
 <!DOCTYPE html>
-<html lang="zh-tw"><head>
-  <meta charset="utf-8">
-  <title>Abby營養師修熄示</title>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abby營養師修熄示 | Abby Eat Life</title>
+    <meta name="description" content="Abby營養師 — 飲食教學、健身指導、Podcast 頻道經營，幫助你找到適合自己的健康之道。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --terracotta-light: #E8B796;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --shadow-lg: 0 8px 40px rgba(61,50,41,0.12);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
 
-  <!-- mobile responsive meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="營養師文章分享">
-  <meta name="author" content="Abby營養師">
-    
-  
-  <meta name="theme-name" content="liva-hugo" />
-  
-  <meta name="generator" content="Hugo 0.136.5">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  <!-- plugins -->
-  
-  <link rel="stylesheet" href="https://abbyeatlife.github.io/plugins/bootstrap/bootstrap.min.css ">
-  
-  <link rel="stylesheet" href="https://abbyeatlife.github.io/plugins/slick/slick.css ">
-  
-  <link rel="stylesheet" href="https://abbyeatlife.github.io/plugins/themify-icons/themify-icons.css ">
-  
-  <link rel="stylesheet" href="https://abbyeatlife.github.io/plugins/venobox/venobox.css ">
-  
+        html { scroll-behavior: smooth; }
 
-  <!-- Main Stylesheet -->
-  
-  <link rel="stylesheet" href="https://abbyeatlife.github.io/scss/style.min.css" media="screen">
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
 
-  <!--Favicon-->
-  <link rel="shortcut icon" href="https://abbyeatlife.github.io/images/favicon.png " type="image/x-icon">
-  <link rel="icon" href="https://abbyeatlife.github.io/images/favicon.png " type="image/x-icon">
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
 
-  <!-- google analitycs -->
-  <script>
-    (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'Your ID', 'auto');
-    ga('send', 'pageview');
-  </script>
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .nav-logo span { color: var(--sage); }
+
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta {
+            background: var(--sage);
+            color: var(--white);
+            font-weight: 500;
+        }
+        .nav-links a.cta:hover { background: var(--bark); }
+
+        /* Mobile menu */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 120px 24px 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            min-height: 85vh;
+        }
+
+        .hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+        .hero-text h1 em {
+            font-style: italic;
+            color: var(--sage);
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-bottom: 28px;
+            font-weight: 300;
+        }
+
+        .hero-text p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 32px;
+            max-width: 440px;
+            line-height: 1.9;
+        }
+
+        .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-primary {
+            background: var(--sage);
+            color: var(--white);
+        }
+        .btn-primary:hover { background: var(--bark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+        .btn-outline {
+            background: transparent;
+            color: var(--bark);
+            border: 1.5px solid var(--sage-light);
+        }
+        .btn-outline:hover { border-color: var(--sage); background: var(--sage-pale); }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        .hero-img-wrapper {
+            width: 380px;
+            height: 460px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--warm);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+        .hero-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-img-wrapper .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            background: linear-gradient(135deg, var(--sage-pale) 0%, var(--warm) 100%);
+        }
+
+        .hero-badge {
+            position: absolute;
+            bottom: -16px;
+            left: -16px;
+            background: var(--white);
+            border-radius: 16px;
+            padding: 14px 20px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .hero-badge .icon {
+            width: 40px;
+            height: 40px;
+            background: var(--terracotta);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .hero-badge .badge-text { font-size: 0.8rem; line-height: 1.4; }
+        .hero-badge .badge-text strong { display: block; color: var(--bark); font-size: 0.9rem; }
+
+        /* ===== SECTION COMMON ===== */
+        section { padding: 80px 24px; }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .section-desc {
+            font-size: 1rem;
+            color: var(--text-light);
+            max-width: 560px;
+            line-height: 1.8;
+        }
+
+        /* ===== PODCAST SECTION ===== */
+        #podcast { background: var(--white); }
+
+        .podcast-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 48px;
+        }
+
+        .podcast-art {
+            background: linear-gradient(145deg, var(--sage-pale) 0%, var(--warm) 100%);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+        .podcast-cover {
+            width: 200px;
+            height: 200px;
+            border-radius: var(--radius);
+            background: var(--sage);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+        .podcast-platforms {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .podcast-platforms a {
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            text-decoration: none;
+            background: var(--white);
+            color: var(--bark);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+        .podcast-platforms a:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+
+        .podcast-episodes { display: flex; flex-direction: column; gap: 16px; }
+        .episode-card {
+            background: var(--cream);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .episode-card:hover { border-color: var(--sage-light); box-shadow: var(--shadow-sm); }
+        .episode-card .ep-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            margin-bottom: 6px;
+        }
+        .episode-card h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--bark);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .episode-card p {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        #about { background: var(--cream); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 48px;
+            align-items: start;
+        }
+
+        .about-content p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.9;
+        }
+
+        .credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+        .credential-tag {
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            background: var(--sage-pale);
+            color: var(--sage);
+            border: 1px solid rgba(139,158,126,0.2);
+        }
+
+        .services-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            box-shadow: var(--shadow-md);
+        }
+        .services-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--bark);
+            margin-bottom: 24px;
+        }
+        .service-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--sage-pale);
+        }
+        .service-item:last-child { border-bottom: none; }
+        .service-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--sage-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .service-item h4 {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--bark);
+            margin-bottom: 2px;
+        }
+        .service-item p {
+            font-size: 0.83rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ===== BLOG SECTION ===== */
+        #blog { background: var(--white); }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .blog-card {
+            background: var(--cream);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.25s ease;
+            border: 1px solid transparent;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--sage-light); }
+
+        .blog-card-img {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, var(--sage-pale), var(--warm));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            overflow: hidden;
+        }
+        .blog-card-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        .blog-card-body { padding: 24px; }
+        .blog-card-body .tag {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+        .blog-card-body h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--bark);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .blog-card-body p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+        .blog-card-body .date {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 12px;
+            opacity: 0.7;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        #contact {
+            background: linear-gradient(170deg, var(--sage-pale) 0%, var(--cream) 100%);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            margin-top: 48px;
+            align-items: start;
+        }
+        .contact-info p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 28px;
+            line-height: 1.8;
+        }
+        .contact-links { display: flex; flex-direction: column; gap: 14px; }
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--bark);
+            padding: 14px 20px;
+            background: var(--white);
+            border-radius: var(--radius);
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .contact-link:hover { box-shadow: var(--shadow-md); transform: translateX(4px); }
+        .contact-link .link-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .contact-link .link-text { font-size: 0.92rem; font-weight: 500; }
+        .contact-link .link-sub { font-size: 0.78rem; color: var(--text-light); font-weight: 400; }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        .social-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--bark);
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .social-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .social-card .social-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .social-card .social-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        .social-card .social-handle {
+            font-size: 0.78rem;
+            color: var(--text-light);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+        footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+        footer a:hover { color: var(--white); }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+                border-top: 1px solid var(--sage-pale);
+            }
+            .menu-toggle { display: block; }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                min-height: auto;
+                padding-top: 100px;
+                text-align: center;
+            }
+            .hero-text h1 { font-size: 2.2rem; }
+            .hero-text p { max-width: 100%; }
+            .hero-buttons { justify-content: center; }
+            .hero-visual { order: -1; }
+            .hero-img-wrapper { width: 260px; height: 320px; }
+            .hero-badge { bottom: -12px; left: 50%; transform: translateX(-50%); }
+
+            .podcast-grid,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .blog-grid { grid-template-columns: 1fr; }
+
+            .social-grid { grid-template-columns: 1fr 1fr; }
+
+            .section-title { font-size: 1.7rem; }
+        }
+    </style>
 </head>
 <body>
-<!-- preloader start -->
-<div class="preloader">
-  
-</div>
-<!-- preloader end -->
-<!-- navigation -->
-<header class="navigation">
-  <div class="container">
-    
-    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
-      <a class="navbar-brand mobile-view" href="https://abbyeatlife.github.io/"><img class="img-fluid"
-          src="https://abbyeatlife.github.io/images/Abbylogo2.png" alt="Abby營養師修熄示"></a>
-      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-        <i class="ti-menu"></i>
-      </button>
 
-      <div class="collapse navbar-collapse text-center" id="navigation">
-        <div class="desktop-view">
-          <ul class="navbar-nav mr-auto">
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://www.facebook.com/abby.eat.life/"><i class="ti-facebook"></i></a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms"><i class="ti-headphone"></i></a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://www.instagram.com/abby.eat.life/"><i class="ti-instagram"></i></a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://www.youtube.com/@abbyeatlife"><i class="ti-youtube"></i></a>
-            </li>
-            
-          </ul>
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="#podcast">Podcast</a>
+            <a href="#about">關於我</a>
+            <a href="#blog">Blog</a>
+            <a href="#contact" class="cta">聯絡我</a>
         </div>
-
-        <a class="navbar-brand mx-auto desktop-view" href="https://abbyeatlife.github.io/"><img class="img-fluid"
-            src="https://abbyeatlife.github.io/images/Abbylogo2.png" alt="Abby營養師修熄示"></a>
-
-        <ul class="navbar-nav">
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="https://abbyeatlife.github.io/about/">Abby營養師</a>
-          </li>
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="https://abbyeatlife.github.io/blog/">Blog</a>
-          </li>
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="https://abbyeatlife.github.io/contact/">聯絡</a>
-          </li>
-          
-          
-        </ul>
-
-        
-        <!-- search -->
-        <div class="search pl-lg-4">
-          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
-          <div class="search-wrapper">
-            <form action="https://abbyeatlife.github.io//search" class="h-100">
-              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
-            </form>
-            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
-          </div>
-        </div>
-        
-
-        
-      </div>
-    </nav>
-  </div>
-</header>
-<!-- /navigation -->
-
-
-<section class="section-sm">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-10 featured-post-slider">
-        
-        
-      </div>
     </div>
-  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>嗨，我是 <em>Abby</em><br>營養師修熄示</h1>
+        <p class="subtitle">營養師 ∙ 健身教練 ∙ Podcaster</p>
+        <p>我專注於飲食教學、健身指導及 Podcast 經營，希望透過知識與實踐，幫助更多人找到適合自己的健康之道。</p>
+        <div class="hero-buttons">
+            <a href="#podcast" class="btn btn-primary">🎙️ 收聽 Podcast</a>
+            <a href="#contact" class="btn btn-outline">合作洽詢</a>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="hero-img-wrapper">
+            <!-- 替換成你的照片：把 placeholder 那行刪掉，換成下面這行 -->
+            <!-- <img src="images/abby01.png" alt="Abby營養師"> -->
+            <div class="placeholder">🌿</div>
+        </div>
+        <div class="hero-badge">
+            <div class="icon">🎙️</div>
+            <div class="badge-text">
+                <strong>Podcast 持續更新中</strong>
+                <span style="color: var(--text-light);">每週分享營養新知</span>
+            </div>
+        </div>
+    </div>
 </section>
 
+<!-- ===== PODCAST ===== -->
+<section id="podcast">
+    <div class="section-inner">
+        <span class="section-label">Podcast</span>
+        <h2 class="section-title">Abby Eat Life Podcast</h2>
+        <p class="section-desc">我最主要的創作平台。在這裡分享營養知識、健康飲食的實用建議，以及我的生活觀察。</p>
 
-
-<section>
-  <div class="container">
-    <div class="row">
-      
-      <div class="col-lg-4 small-post-border">
-        <article class="media">
-          
-          <div class="recent-post-thumb mr-3" style="background-image: url('https://abbyeatlife.github.io/images/post/2501.jpg');"></div>
-          
-          <div class="media-body">
-            <div class="mb-3 post-meta">
-              <span>By Abby營養師</span>
-              
-              <span class="border-bottom border-primary px-2 mx-1"></span>
-              <span>31 Jan 2025</span>
-              
-            </div>
-            <a href="https://abbyeatlife.github.io/blog/test2/" class="h5 d-block mb-3">掌握大腦運作規律,養成積極正面習慣</a>
-            <a href="https://abbyeatlife.github.io/blog/test2/" class="btn btn-outline-primary">read more</a>
-          </div>
-        </article>
-      </div>
-      
-      <div class="col-lg-4 small-post-border">
-        <article class="media">
-          
-          <div class="recent-post-thumb mr-3" style="background-image: url('https://abbyeatlife.github.io/images/post/001.jpg');"></div>
-          
-          <div class="media-body">
-            <div class="mb-3 post-meta">
-              <span>By Abby營養師</span>
-              
-              <span class="border-bottom border-primary px-2 mx-1"></span>
-              <span>02 Nov 2024</span>
-              
-            </div>
-            <a href="https://abbyeatlife.github.io/blog/test/" class="h5 d-block mb-3">測試文章</a>
-            <a href="https://abbyeatlife.github.io/blog/test/" class="btn btn-outline-primary">read more</a>
-          </div>
-        </article>
-      </div>
-      
-      <div class="col-lg-4 small-post-border">
-        <article class="media">
-          
-          <div class="recent-post-thumb mr-3" style="background-image: url('https://abbyeatlife.github.io/images/post/post-3.jpg');"></div>
-          
-          <div class="media-body">
-            <div class="mb-3 post-meta">
-              <span>By Abby營養師</span>
-              
-              <span class="border-bottom border-primary px-2 mx-1"></span>
-              <span>29 Oct 2019</span>
-              
-            </div>
-            <a href="https://abbyeatlife.github.io/blog/post-13/" class="h5 d-block mb-3">How To Use Checklists To Improve Your UX</a>
-            <a href="https://abbyeatlife.github.io/blog/post-13/" class="btn btn-outline-primary">read more</a>
-          </div>
-        </article>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-
-
-<section class="section pb-0">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 mb-5 mb-lg-0">
-        <div class="row">
-          
-          
-          <div class="col-md-6 mb-4">
-            <article class="card">
-              
-              <img src="https://abbyeatlife.github.io/images/post/2501.jpg" class="card-img-top" alt="掌握大腦運作規律,養成積極正面習慣">
-              
-              <div class="card-body px-0">
-                
-                <a href="/categories/%e7%9c%8b%e6%9b%b8%e5%bf%83%e5%be%97"
-                  class="text-primary">看書心得</a>
-                
-                <a href="https://abbyeatlife.github.io/blog/test2/" class="h5 d-block my-3">掌握大腦運作規律,養成積極正面習慣</a>
-                <div class="mb-3 post-meta">
-                  <span>By Abby營養師</span>
-                  
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>31 January 2025</span>
-                  
+        <div class="podcast-grid">
+            <div class="podcast-art fade-in">
+                <div class="podcast-cover">🎧</div>
+                <div class="podcast-platforms">
+                    <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">Firstory</a>
+                    <a href="https://podcasts.apple.com/" target="_blank">Apple Podcasts</a>
+                    <a href="https://open.spotify.com/" target="_blank">Spotify</a>
+                    <!-- 上面的 Apple Podcasts 和 Spotify 連結請替換成你自己的 -->
                 </div>
-                <p class="card-text"><p>習慣養成的重要性 - 從大腦運作機制談起</p>
-<p>我最近讀到一本關於習慣養成的書</p>
-<p>叫做《最強習慣養成 3個月成理71個新觀點 打造更好的自己》</p>
-<p>這本書是一位日本作者所寫</p>
-<p>書中的表達方式我覺得非常淺顯易懂，每個觀點都很簡潔精煉</p>
-<p>其中有一個觀點我感受很深，也受益匪淺，在此分享給你～</p></p>
-                <a href="https://abbyeatlife.github.io/blog/test2/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
-          <div class="col-md-6 mb-4">
-            <article class="card">
-              
-              <img src="https://abbyeatlife.github.io/images/post/001.jpg" class="card-img-top" alt="測試文章">
-              
-              <div class="card-body px-0">
-                
-                <a href="/categories/%e9%a3%9f%e7%89%a9%e4%bb%8b%e7%b4%b9"
-                  class="text-primary">食物介紹</a>
-                
-                <a href="https://abbyeatlife.github.io/blog/test/" class="h5 d-block my-3">測試文章</a>
-                <div class="mb-3 post-meta">
-                  <span>By Abby營養師</span>
-                  
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>02 November 2024</span>
-                  
+            </div>
+
+            <div class="podcast-episodes fade-in">
+                <!-- ====== 最新集數 ====== -->
+                <!-- 複製下面的 episode-card 區塊來新增集數 -->
+
+                <div class="episode-card">
+                    <div class="ep-label">最新一集</div>
+                    <h3>在這裡放你最新一集的標題</h3>
+                    <p>在這裡寫幾句簡介，讓訪客知道這集在聊什麼。</p>
                 </div>
-                <p class="card-text"><p>哈囉</p>
-<p>我是Abby營養師</p>
-<h1 id="標題測試1">標題測試1</h1>
-<h2 id="標題測試2">標題測試2</h2>
-<h6 id="標題測試6">標題測試6</h6>
-<p>我是<strong>內文</strong>測試～<em>斜體</em>長這樣</p>
-<ol>
-<li>學習
-<ol>
-<li>有序內縮
-<ol>
-<li>到底誰需要縮這麼多？</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>模仿</li>
-<li>表演</li>
-</ol>
-<ul>
-<li>無序序列示範
-<ul>
-<li>內縮</li>
-</ul>
-</li>
-<li>示範第二行</li>
-</ul>
-<blockquote>
-<p>引用</p></p>
-                <a href="https://abbyeatlife.github.io/blog/test/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
-          <div class="col-md-6 mb-4">
-            <article class="card">
-              
-              <img src="https://abbyeatlife.github.io/images/post/post-3.jpg" class="card-img-top" alt="How To Use Checklists To Improve Your UX">
-              
-              <div class="card-body px-0">
-                
-                <a href="/categories/go-language"
-                  class="text-primary">Go language</a>
-                
-                <a href="https://abbyeatlife.github.io/blog/post-13/" class="h5 d-block my-3">How To Use Checklists To Improve Your UX</a>
-                <div class="mb-3 post-meta">
-                  <span>By Abby營養師</span>
-                  
-                  <span class="border-bottom border-primary px-2 mx-1"></span>
-                  <span>29 October 2019</span>
-                  
+
+                <div class="episode-card">
+                    <div class="ep-label">精選集數</div>
+                    <h3>在這裡放另一集的標題</h3>
+                    <p>簡短介紹這一集的內容。</p>
                 </div>
-                <p class="card-text"><h1 id="heading-1">Heading 1</h1>
-<h2 id="heading-2">Heading 2</h2>
-<h3 id="heading-3">Heading 3</h3>
-<h4 id="heading-4">Heading 4</h4>
-<h5 id="heading-5">Heading 5</h5>
-<h6 id="heading-6">Heading 6</h6>
-<!-- raw HTML omitted -->
-<h5 id="emphasis">Emphasis</h5>
-<p>Emphasis, aka italics, with <em>asterisks</em> or <em>underscores</em>.</p></p>
-                <a href="https://abbyeatlife.github.io/blog/post-13/" class="btn btn-outline-primary">read more</a>
-              </div>
-            </article>
-          </div>
-          
+
+                <div class="episode-card">
+                    <div class="ep-label">精選集數</div>
+                    <h3>再放一集你覺得很棒的集數</h3>
+                    <p>簡短介紹。</p>
+                </div>
+
+                <!-- ====== 集數結束 ====== -->
+            </div>
         </div>
-      </div>
-      
-      <div class="col-lg-4">
-  <div class="widgets">
-    
-    <div class="widget">
-      
-      <h4 class="widget-title">About Me</h4>
-      
-      <img src="https://abbyeatlife.github.io/images/abby01.png" alt=""
-        class="img-fluid author-thumb-sm d-block mx-auto rounded-circle mb-4">
-      
-      <p><h3 id="嗨我是-abby">嗨！我是 Abby</h3>
-<h4 id="是營養師也是健身教練">是營養師，也是健身教練</h4>
-<p>我曾在學校、醫院、保健食品及運動營養產業任職，現在專注於飲食教學、健身指導及個人 <strong>Podcast</strong> 頻道經營，希望透過知識與實踐，幫助更多人找到適合自己的健康之道。</p>
-<p>身為一個懂營養、愛運動的人，我不斷精進自己，取得健身教練、拳擊、舞蹈指導員等資格，並累積了超過八年的教學經驗。</p>
-<p>這段旅程讓我深刻體會，運動與飲食不只是塑造體態，更能帶來心境上的轉變，讓生活更有活力。</p>
-<h4 id="從上班族到自由工作者">從上班族到自由工作者</h4>
-<p>曾經，我也是一名朝九晚五的上班族，每天穿梭在通勤與打卡的忙碌節奏中。</p></p>
-      <a href="https://abbyeatlife.github.io/about/" class="btn btn-outline-primary">Know More</a>
-      
     </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Category</h4>
-      <ul class="list-unstyled">
-        <li><a
-            href="/categories/go-language/">Go language</a>
-        </li>
-        <li><a
-            href="/categories/%e7%9c%8b%e6%9b%b8%e5%bf%83%e5%be%97/">看書心得</a>
-        </li>
-        <li><a
-            href="/categories/%e9%a3%9f%e7%89%a9%e4%bb%8b%e7%b4%b9/">食物介紹</a>
-        </li>
-      </ul>
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Tag</h4>
-      <ul class="list-inline">
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/game/">Game</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/html/">HTML</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/new/">New</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/photos/">Photos</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/python/">Python</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/%e4%b8%8a%e7%8f%ad%e6%97%8f/">上班族</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/%e4%be%bf%e7%95%b6/">便當</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/%e5%a4%a7%e8%85%a6/">大腦</a></li>
-        <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-            href="/tags/%e7%bf%92%e6%85%a3%e9%a4%8a%e6%88%90/">習慣養成</a></li>
-      </ul>
-    </div>
-    
-    <div class="widget">
-      <h4 class="widget-title">Social</h4>
-      <ul class="list-inline social-links">
-        
-        <li class="list-inline-item"><a href="https://www.facebook.com/abby.eat.life/"><i class="ti-facebook"></i></a></li>
-        
-        <li class="list-inline-item"><a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms"><i class="ti-headphone"></i></a></li>
-        
-        <li class="list-inline-item"><a href="https://www.instagram.com/abby.eat.life/"><i class="ti-instagram"></i></a></li>
-        
-        <li class="list-inline-item"><a href="https://www.youtube.com/@abbyeatlife"><i class="ti-youtube"></i></a></li>
-        
-      </ul>
-    </div>
-    
-    <div class="widget">
-      <img src="https://abbyeatlife.github.io/images/promotion.png" alt="" class="img-fluid">
-    </div>
-  </div>
-</div>
-
-      
-
-      
-      <div class="col-12 mt-5">
-        
-      </div>
-    </div>
-  </div>
 </section>
 
+<!-- ===== ABOUT ===== -->
+<section id="about">
+    <div class="section-inner">
+        <span class="section-label">About</span>
+        <h2 class="section-title">關於 Abby 營養師</h2>
 
+        <div class="about-grid">
+            <div class="about-content fade-in">
+                <p>我曾在學校、醫院、保健食品及運動營養產業任職，現在專注於飲食教學、健身指導及個人 Podcast 頻道經營。</p>
+                <p>身為一個懂營養、愛運動的人，我不斷精進自己，取得健身教練、拳擊、舞蹈指導員等資格，並累積了超過八年的教學經驗。這段旅程讓我深刻體會，運動與飲食不只是塑造體態，更能帶來心境上的轉變。</p>
+                <p>2021 年，疫情讓我開始在家工作，意外發現省下的時間與精力，讓我能更有效安排生活、提升創造力。於是我決定全心投入自媒體經營與專業服務。</p>
 
+                <div class="credentials">
+                    <span class="credential-tag">營養師</span>
+                    <span class="credential-tag">健身教練</span>
+                    <span class="credential-tag">拳擊指導員</span>
+                    <span class="credential-tag">舞蹈指導員</span>
+                    <span class="credential-tag">8年+ 教學經驗</span>
+                </div>
+            </div>
 
-<footer class="text-capitalize">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 text-center mb-5">
-        <a href="https://abbyeatlife.github.io/"><img src="https://abbyeatlife.github.io/images/Abbylogo2.png" alt="Abby營養師修熄示"></a>
-      </div>
-               
-      <div class="col-lg-3 col-sm-6 mb-5">
-        <h6 class="mb-4">Contact Me</h6>
-        <ul class="list-unstyled">
-          
-          <li class="mb-3"><a class="text-dark" href="tel:abbyhung"><i
-                class="ti-mobile mr-3 text-primary"></i>abbyhung</a></li>
-          
-                     
-          <li class="mb-3"><i class="ti-location-pin mr-3 text-primary"></i>Taiwan</li>
-          
-                     
-          <li class="mb-3"><a class="text-dark" href="mailto:abbyeatlifeab@gmail.com"><i
-                class="ti-email mr-3 text-primary"></i>abbyeatlifeab@gmail.com</a>
-          
-          </li>
-        </ul>
-      </div>
-      
-      <div class="col-lg-3 col-sm-6 mb-5">
-        <h6 class="mb-4">Social Contacts</h6>
-        <ul class="list-unstyled">
-          
-          <li class="mb-3"><a class="text-dark" href="https://www.facebook.com/abby.eat.life/">facebook</a></li>
-          
-          <li class="mb-3"><a class="text-dark" href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms">podcast</a></li>
-          
-          <li class="mb-3"><a class="text-dark" href="https://www.instagram.com/abby.eat.life/">instagram</a></li>
-          
-          <li class="mb-3"><a class="text-dark" href="https://www.youtube.com/@abbyeatlife">YouTube</a></li>
-          
-        </ul>
-      </div>
-      <div class="col-lg-3 col-sm-6 mb-5">
-        <h6 class="mb-4">Categories</h6>
-        <ul class="list-unstyled">
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/go-language/">Go language</a>
-          </li>
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/%e7%9c%8b%e6%9b%b8%e5%bf%83%e5%be%97/">看書心得</a>
-          </li>
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/%e9%a3%9f%e7%89%a9%e4%bb%8b%e7%b4%b9/">食物介紹</a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-lg-3 col-sm-6 mb-5">
-        <h6 class="mb-4">Quick Links</h6>
-        <ul class="list-unstyled">
-          
-          <li class="mb-3"><a class="text-dark" href="https://abbyeatlife.github.io/about/">About</a></li>
-          
-        </ul>
-      </div>
-      <div class="col-12 border-top py-4 text-center">
-        | copyright © 2021 <a href="https://themefisher.com/hugo-themes/">Themefisher</a> All Rights Reserved |
-      </div>
+            <div class="services-card fade-in">
+                <h3>我能幫助你的</h3>
+                <div class="service-item">
+                    <div class="service-icon">🥗</div>
+                    <div>
+                        <h4>個人化飲食指導</h4>
+                        <p>找到最適合你的飲食法</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">👥</div>
+                    <div>
+                        <h4>團體減脂線上班</h4>
+                        <p>一起健康超給力</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">💪</div>
+                    <div>
+                        <h4>一對一健身指導</h4>
+                        <p>量身打造訓練計畫</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🏃‍♀️</div>
+                    <div>
+                        <h4>運動團體課程</h4>
+                        <p>運動快樂極大化</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🎤</div>
+                    <div>
+                        <h4>講座 & 寫作</h4>
+                        <p>知識轉為實用</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+</section>
+
+<!-- ===== BLOG ===== -->
+<section id="blog">
+    <div class="section-inner">
+        <span class="section-label">Blog</span>
+        <h2 class="section-title">最新文章</h2>
+        <p class="section-desc">營養師的飲食建議與生活分享。</p>
+
+        <div class="blog-grid">
+            <!-- ====== 文章卡片 ====== -->
+            <!-- 要新增文章？複製下面這整個 blog-card 區塊 -->
+            <!-- href 填入文章頁面的連結，或是用 blog/文章名.html -->
+
+            <a href="blog/test2/index.html" class="blog-card fade-in">
+                <div class="blog-card-img">
+                    <!-- 有圖片的話用這行，沒有就用下面的 emoji -->
+                    <!-- <img src="images/post/2501.jpg" alt="文章配圖"> -->
+                    📖
+                </div>
+                <div class="blog-card-body">
+                    <span class="tag">看書心得</span>
+                    <h3>掌握大腦運作規律，養成積極正面習慣</h3>
+                    <p>習慣養成的重要性——從大腦運作機制談起。分享《最強習慣養成》書中讓我受益匪淺的觀點。</p>
+                    <div class="date">2025 年 1 月 31 日</div>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card fade-in">
+                <div class="blog-card-img">🥑</div>
+                <div class="blog-card-body">
+                    <span class="tag">飲食建議</span>
+                    <h3>在這裡放你的下一篇文章標題</h3>
+                    <p>文章的簡短摘要放在這裡，讓讀者快速了解內容。</p>
+                    <div class="date">2025 年 X 月 X 日</div>
+                </div>
+            </a>
+
+            <a href="#" class="blog-card fade-in">
+                <div class="blog-card-img">🏋️‍♀️</div>
+                <div class="blog-card-body">
+                    <span class="tag">生活分享</span>
+                    <h3>再放一篇文章的標題</h3>
+                    <p>文章摘要。</p>
+                    <div class="date">2025 年 X 月 X 日</div>
+                </div>
+            </a>
+
+            <!-- ====== 文章卡片結束 ====== -->
+        </div>
+    </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+    <div class="section-inner">
+        <span class="section-label">Contact</span>
+        <h2 class="section-title">聯絡我</h2>
+
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <p>如果你對健康飲食、健身訓練或生活調整有任何疑問，或想邀請我合作（Podcast 來賓、講座、業配、專欄），都歡迎跟我聯繫！</p>
+
+                <div class="contact-links">
+                    <a href="mailto:abbyeatlifeab@gmail.com" class="contact-link">
+                        <div class="link-icon" style="background: var(--sage-pale); color: var(--sage);">✉️</div>
+                        <div>
+                            <div class="link-text">Email</div>
+                            <div class="link-sub">abbyeatlifeab@gmail.com</div>
+                        </div>
+                    </a>
+                    <a href="https://www.instagram.com/abby.eat.life/" target="_blank" class="contact-link">
+                        <div class="link-icon" style="background: #fce4ec; color: #e91e63;">📷</div>
+                        <div>
+                            <div class="link-text">Instagram DM</div>
+                            <div class="link-sub">@abby.eat.life</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="social-grid fade-in">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank" class="social-card">
+                    <div class="social-icon">🎙️</div>
+                    <div class="social-name">Podcast</div>
+                    <div class="social-handle">Abby Eat Life</div>
+                </a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank" class="social-card">
+                    <div class="social-icon">📷</div>
+                    <div class="social-name">Instagram</div>
+                    <div class="social-handle">@abby.eat.life</div>
+                </a>
+                <a href="https://www.facebook.com/abby.eat.life/" target="_blank" class="social-card">
+                    <div class="social-icon">👤</div>
+                    <div class="social-name">Facebook</div>
+                    <div class="social-handle">Abby Eat Life</div>
+                </a>
+                <a href="https://www.youtube.com/@abbyeatlife" target="_blank" class="social-card">
+                    <div class="social-icon">▶️</div>
+                    <div class="social-name">YouTube</div>
+                    <div class="social-handle">@abbyeatlife</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
 </footer>
 
+<!-- ===== SCRIPTS ===== -->
 <script>
-  var indexURL = "https://abbyeatlife.github.io/index.json"
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.remove('open');
+        });
+    });
 </script>
 
-<!-- JS Plugins -->
-
-<script src="https://abbyeatlife.github.io/plugins/jQuery/jquery.min.js"></script>
-
-<script src="https://abbyeatlife.github.io/plugins/bootstrap/bootstrap.min.js"></script>
-
-<script src="https://abbyeatlife.github.io/plugins/slick/slick.min.js"></script>
-
-<script src="https://abbyeatlife.github.io/plugins/venobox/venobox.min.js"></script>
-
-<script src="https://abbyeatlife.github.io/plugins/search/fuse.min.js"></script>
-
-<script src="https://abbyeatlife.github.io/plugins/search/mark.js"></script>
-
-<script src="https://abbyeatlife.github.io/plugins/search/search.js"></script>
-
-<!-- Main Script -->
-
-<script src="https://abbyeatlife.github.io/js/script.min.js"></script>
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
-<div id="js-cookie-box" class="cookie-box cookie-box-hide">
-	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
-</div>
-<script>
-	(function ($) {
-		const cookieBox = document.getElementById('js-cookie-box');
-		const cookieButton = document.getElementById('js-cookie-button');
-		if (!Cookies.get('cookie-box')) {
-			cookieBox.classList.remove('cookie-box-hide');
-			cookieButton.onclick = function () {
-				Cookies.set('cookie-box', true, {
-					expires:  2 
-				});
-				cookieBox.classList.add('cookie-box-hide');
-			};
-		}
-	})(jQuery);
-</script>
-
-
-<style>
-.cookie-box {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  text-align: center;
-  z-index: 9999;
-  padding: 1rem 2rem;
-  background: rgb(71, 71, 71);
-  transition: all .75s cubic-bezier(.19, 1, .22, 1);
-  color: #fdfdfd;
-}
-
-.cookie-box-hide {
-  display: none;
-}
-</style>
 </body>
 </html>
