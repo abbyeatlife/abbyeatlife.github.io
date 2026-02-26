@@ -1,329 +1,451 @@
 <!DOCTYPE html>
-<html lang="zh-tw"><head>
-  <meta charset="utf-8">
-  <title>Abby營養師修熄示</title>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>掌握大腦運作規律，養成積極正面習慣 — Abby營養師修熄示</title>
+    <meta name="description" content="從大腦運作機制談習慣養成的重要性，分享《最強習慣養成》書中讓我受益匪淺的觀點。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
 
-  <!-- mobile responsive meta -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="看書心得">
-  <meta name="author" content="Abby營養師">
-    
-  
-  <meta name="theme-name" content="liva-hugo" />
-  
-  <meta name="generator" content="Hugo 0.136.5">
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
-  <!-- plugins -->
-  
-  <link rel="stylesheet" href="https://abbyeatlife.github.io/plugins/bootstrap/bootstrap.min.css ">
-  
-  <link rel="stylesheet" href="https://abbyeatlife.github.io/plugins/slick/slick.css ">
-  
-  <link rel="stylesheet" href="https://abbyeatlife.github.io/plugins/themify-icons/themify-icons.css ">
-  
-  <link rel="stylesheet" href="https://abbyeatlife.github.io/plugins/venobox/venobox.css ">
-  
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
 
-  <!-- Main Stylesheet -->
-  
-  <link rel="stylesheet" href="https://abbyeatlife.github.io/scss/style.min.css" media="screen">
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
 
-  <!--Favicon-->
-  <link rel="shortcut icon" href="https://abbyeatlife.github.io/images/favicon.png " type="image/x-icon">
-  <link rel="icon" href="https://abbyeatlife.github.io/images/favicon.png " type="image/x-icon">
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-  <!-- google analitycs -->
-  <script>
-    (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'Your ID', 'auto');
-    ga('send', 'pageview');
-  </script>
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
 
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta {
+            background: var(--sage);
+            color: var(--white);
+        }
+        .nav-links a.cta:hover { background: var(--bark); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== ARTICLE ===== */
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author {
+            font-weight: 500;
+            color: var(--bark);
+        }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+
+        .article-content h5 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 36px 0 16px;
+        }
+
+        .article-content strong {
+            color: var(--bark);
+            font-weight: 600;
+        }
+
+        .article-content .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 24px 28px;
+            margin: 28px 0;
+        }
+        .article-content .highlight-box p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: var(--bark);
+            font-weight: 500;
+        }
+        .article-content .highlight-box p:last-child { margin-bottom: 0; }
+
+        .article-content .book-ref {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 28px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .article-content .book-ref .book-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .article-content .book-ref p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* ===== ARTICLE FOOTER ===== */
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--bark);
+            margin-bottom: 4px;
+        }
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .author-links {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+        footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+
+            .article-header h1 { font-size: 1.7rem; }
+            .article-content p { font-size: 1rem; }
+
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
 </head>
 <body>
-<!-- preloader start -->
-<div class="preloader">
-  
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../../index.html#blog">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== ARTICLE HEADER ===== -->
+<div class="article-header">
+    <a href="../../index.html#blog" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">看書心得</span>
+    <h1>掌握大腦運作規律，養成積極正面習慣</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2025 年 1 月 31 日</span>
+    </div>
 </div>
-<!-- preloader end -->
-<!-- navigation -->
-<header class="navigation">
-  <div class="container">
-    
-    <nav class="navbar navbar-expand-lg navbar-white bg-transparent border-bottom pl-0">
-      <a class="navbar-brand mobile-view" href="https://abbyeatlife.github.io/"><img class="img-fluid"
-          src="https://abbyeatlife.github.io/images/Abbylogo2.png" alt="Abby營養師修熄示"></a>
-      <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
-        <i class="ti-menu"></i>
-      </button>
 
-      <div class="collapse navbar-collapse text-center" id="navigation">
-        <div class="desktop-view">
-          <ul class="navbar-nav mr-auto">
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://www.facebook.com/abby.eat.life/"><i class="ti-facebook"></i></a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms"><i class="ti-headphone"></i></a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://www.instagram.com/abby.eat.life/"><i class="ti-instagram"></i></a>
-            </li>
-            
-            <li class="nav-item">
-              <a class="nav-link" href="https://www.youtube.com/@abbyeatlife"><i class="ti-youtube"></i></a>
-            </li>
-            
-          </ul>
+<!-- ===== COVER IMAGE ===== -->
+<div class="article-cover">
+    <img src="../../images/post/2501.jpg" alt="掌握大腦運作規律，養成積極正面習慣">
+</div>
+
+<!-- ===== ARTICLE CONTENT ===== -->
+<!-- 
+    ✏️ 編輯指南：
+    - 一般段落用 <p>你的文字</p>
+    - 粗體用 <strong>粗體文字</strong>
+    - 重點引用區塊用 class="highlight-box" 的 div
+    - 書籍推薦用 class="book-ref" 的 div
+-->
+<div class="article-content">
+
+    <h2>習慣養成的重要性 — 從大腦運作機制談起</h2>
+
+    <div class="book-ref">
+        <span class="book-icon">📖</span>
+        <div>
+            <p>我最近讀到一本關於習慣養成的書，叫做<strong>《最強習慣養成 3個月成理71個新觀點 打造更好的自己》</strong>。這本書是一位日本作者所寫，書中的表達方式非常淺顯易懂，每個觀點都很簡潔精煉。</p>
         </div>
-
-        <a class="navbar-brand mx-auto desktop-view" href="https://abbyeatlife.github.io/"><img class="img-fluid"
-            src="https://abbyeatlife.github.io/images/Abbylogo2.png" alt="Abby營養師修熄示"></a>
-
-        <ul class="navbar-nav">
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="https://abbyeatlife.github.io/about/">Abby營養師</a>
-          </li>
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="https://abbyeatlife.github.io/blog/">Blog</a>
-          </li>
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="https://abbyeatlife.github.io/contact/">聯絡</a>
-          </li>
-          
-          
-        </ul>
-
-        
-        <!-- search -->
-        <div class="search pl-lg-4">
-          <button id="searchOpen" class="search-btn"><i class="ti-search"></i></button>
-          <div class="search-wrapper">
-            <form action="https://abbyeatlife.github.io//search" class="h-100">
-              <input class="search-box px-4" id="search-query" name="s" type="search" placeholder="Type & Hit Enter...">
-            </form>
-            <button id="searchClose" class="search-close"><i class="ti-close text-dark"></i></button>
-          </div>
-        </div>
-        
-
-        
-      </div>
-    </nav>
-  </div>
-</header>
-<!-- /navigation -->
-
-<section class="section-sm">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 mx-auto">
-        
-        <a href="/categories/%e7%9c%8b%e6%9b%b8%e5%bf%83%e5%be%97"
-          class="text-primary">看書心得</a>
-        
-        <h2>掌握大腦運作規律,養成積極正面習慣</h2>
-        <div class="mb-3 post-meta">
-          <span>By Abby營養師</span>
-          
-          <span class="border-bottom border-primary px-2 mx-1"></span>
-          <span>31 January 2025</span>
-          
-        </div>
-        
-        <img src="https://abbyeatlife.github.io/images/post/2501.jpg" class="img-fluid w-100 mb-4" alt="掌握大腦運作規律,養成積極正面習慣">
-        
-        <div class="content mb-5">
-          <p>習慣養成的重要性 - 從大腦運作機制談起</p>
-<p>我最近讀到一本關於習慣養成的書</p>
-<p>叫做《最強習慣養成 3個月成理71個新觀點 打造更好的自己》</p>
-<p>這本書是一位日本作者所寫</p>
-<p>書中的表達方式我覺得非常淺顯易懂，每個觀點都很簡潔精煉</p>
-<p>其中有一個觀點我感受很深，也受益匪淺，在此分享給你～</p>
-<p>作者指出：</p>
-<p><strong>我們的大腦會以 0.1 秒的速度感知事物</strong></p>
-<p><strong>接著在 0.4 秒內迅速在腦中檢索相關的記憶和情緒</strong></p>
-<p><strong>最後在0.5秒內做出判斷</strong></p>
-<p>比如看到老闆時，大腦會快速調取過去與老闆相關的負面經驗</p>
-<p>然後很快下定論 &ldquo;又是壞事要來找我&rdquo;</p>
-<p>又比如下雨天，大腦會在 0.4 秒內調取 &ldquo;下雨天很冷很討厭&quot;的記憶</p>
-<p>從而產生負面情緒 &gt; &lt;</p>
-<p>那我們要如何改變這種下意識的負面反應呢?</p>
-<h5 id="關鍵在於改變自己的用語動作和表情">關鍵在於改變自己的用語、動作和表情</h5>
-<p>只要我們時刻保持微笑、平和的表情和語氣</p>
-<p>大腦就無法迅速調取負面記憶</p>
-<p>反而會重新建構一種積極正面的反應</p>
-<p>因為大腦具有輸入輸出的循環機制</p>
-<p>我們的外在表現會反過來影響大腦的運作</p>
-<p>我個人也在嘗試這種方法，比如遇到不如意的事也盡量保持微笑，不去理會他人的負面情緒。</p>
-<p>漸漸地，我發現自己的心情確實變得更加愉悅，對周遭的事物也看得更加積極。</p>
-<p>我相信只要我們持之以恆地改變自己的言行舉止，大腦最終也會隨之重塑，摒棄那些阻礙我們進步的負面想法。</p>
-
-        </div>
-
-        
-        
-      </div>
     </div>
-  </div>
-</section>
 
+    <p>其中有一個觀點我感受很深，也受益匪淺，在此分享給你～</p>
 
+    <p>作者指出：</p>
 
-<footer class="text-capitalize">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 text-center mb-5">
-        <a href="https://abbyeatlife.github.io/"><img src="https://abbyeatlife.github.io/images/Abbylogo2.png" alt="Abby營養師修熄示"></a>
-      </div>
-               
-      <div class="col-lg-3 col-sm-6 mb-5">
-        <h6 class="mb-4">Contact Me</h6>
-        <ul class="list-unstyled">
-          
-          <li class="mb-3"><a class="text-dark" href="tel:abbyhung"><i
-                class="ti-mobile mr-3 text-primary"></i>abbyhung</a></li>
-          
-                     
-          <li class="mb-3"><i class="ti-location-pin mr-3 text-primary"></i>Taiwan</li>
-          
-                     
-          <li class="mb-3"><a class="text-dark" href="mailto:abbyeatlifeab@gmail.com"><i
-                class="ti-email mr-3 text-primary"></i>abbyeatlifeab@gmail.com</a>
-          
-          </li>
-        </ul>
-      </div>
-      
-      <div class="col-lg-3 col-sm-6 mb-5">
-        <h6 class="mb-4">Social Contacts</h6>
-        <ul class="list-unstyled">
-          
-          <li class="mb-3"><a class="text-dark" href="https://www.facebook.com/abby.eat.life/">facebook</a></li>
-          
-          <li class="mb-3"><a class="text-dark" href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms">podcast</a></li>
-          
-          <li class="mb-3"><a class="text-dark" href="https://www.instagram.com/abby.eat.life/">instagram</a></li>
-          
-          <li class="mb-3"><a class="text-dark" href="https://www.youtube.com/@abbyeatlife">YouTube</a></li>
-          
-        </ul>
-      </div>
-      <div class="col-lg-3 col-sm-6 mb-5">
-        <h6 class="mb-4">Categories</h6>
-        <ul class="list-unstyled">
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/go-language/">Go language</a>
-          </li>
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/%e7%9c%8b%e6%9b%b8%e5%bf%83%e5%be%97/">看書心得</a>
-          </li>
-          <li class="mb-3"><a class="text-dark"
-              href="/categories/%e9%a3%9f%e7%89%a9%e4%bb%8b%e7%b4%b9/">食物介紹</a>
-          </li>
-        </ul>
-      </div>
-      <div class="col-lg-3 col-sm-6 mb-5">
-        <h6 class="mb-4">Quick Links</h6>
-        <ul class="list-unstyled">
-          
-          <li class="mb-3"><a class="text-dark" href="https://abbyeatlife.github.io/about/">About</a></li>
-          
-        </ul>
-      </div>
-      <div class="col-12 border-top py-4 text-center">
-        | copyright © 2021 <a href="https://themefisher.com/hugo-themes/">Themefisher</a> All Rights Reserved |
-      </div>
+    <div class="highlight-box">
+        <p><strong>我們的大腦會以 0.1 秒的速度感知事物</strong></p>
+        <p><strong>接著在 0.4 秒內迅速在腦中檢索相關的記憶和情緒</strong></p>
+        <p><strong>最後在 0.5 秒內做出判斷</strong></p>
     </div>
-  </div>
+
+    <p>比如看到老闆時，大腦會快速調取過去與老闆相關的負面經驗，然後很快下定論「又是壞事要來找我」。</p>
+
+    <p>又比如下雨天，大腦會在 0.4 秒內調取「下雨天很冷很討厭」的記憶，從而產生負面情緒 ><</p>
+
+    <p>那我們要如何改變這種下意識的負面反應呢？</p>
+
+    <h5>關鍵在於改變自己的用語、動作和表情</h5>
+
+    <p>只要我們時刻保持微笑、平和的表情和語氣，大腦就無法迅速調取負面記憶，反而會重新建構一種積極正面的反應。</p>
+
+    <p>因為大腦具有輸入輸出的循環機制，我們的外在表現會反過來影響大腦的運作。</p>
+
+    <p>我個人也在嘗試這種方法，比如遇到不如意的事也盡量保持微笑，不去理會他人的負面情緒。</p>
+
+    <p>漸漸地，我發現自己的心情確實變得更加愉悅，對周遭的事物也看得更加積極。</p>
+
+    <p>我相信只要我們持之以恆地改變自己的言行舉止，大腦最終也會隨之重塑，摒棄那些阻礙我們進步的負面想法。</p>
+
+</div>
+
+<!-- ===== ARTICLE FOOTER ===== -->
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <!-- 如果有照片就用 img，沒有就用 emoji -->
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。專注於飲食教學與健身指導，幫助你找到適合自己的健康之道。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
 </footer>
 
 <script>
-  var indexURL = "https://abbyeatlife.github.io/index.json"
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
 </script>
 
-<!-- JS Plugins -->
-
-<script src="https://abbyeatlife.github.io/plugins/jQuery/jquery.min.js"></script>
-
-<script src="https://abbyeatlife.github.io/plugins/bootstrap/bootstrap.min.js"></script>
-
-<script src="https://abbyeatlife.github.io/plugins/slick/slick.min.js"></script>
-
-<script src="https://abbyeatlife.github.io/plugins/venobox/venobox.min.js"></script>
-
-<script src="https://abbyeatlife.github.io/plugins/search/fuse.min.js"></script>
-
-<script src="https://abbyeatlife.github.io/plugins/search/mark.js"></script>
-
-<script src="https://abbyeatlife.github.io/plugins/search/search.js"></script>
-
-<!-- Main Script -->
-
-<script src="https://abbyeatlife.github.io/js/script.min.js"></script>
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.min.js"></script>
-<div id="js-cookie-box" class="cookie-box cookie-box-hide">
-	This site uses cookies. By continuing to use this website, you agree to their use. <span id="js-cookie-button" class="btn btn-sm btn-primary ml-2">I Accept</span>
-</div>
-<script>
-	(function ($) {
-		const cookieBox = document.getElementById('js-cookie-box');
-		const cookieButton = document.getElementById('js-cookie-button');
-		if (!Cookies.get('cookie-box')) {
-			cookieBox.classList.remove('cookie-box-hide');
-			cookieButton.onclick = function () {
-				Cookies.set('cookie-box', true, {
-					expires:  2 
-				});
-				cookieBox.classList.add('cookie-box-hide');
-			};
-		}
-	})(jQuery);
-</script>
-
-
-<style>
-.cookie-box {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  text-align: center;
-  z-index: 9999;
-  padding: 1rem 2rem;
-  background: rgb(71, 71, 71);
-  transition: all .75s cubic-bezier(.19, 1, .22, 1);
-  color: #fdfdfd;
-}
-
-.cookie-box-hide {
-  display: none;
-}
-</style>
 </body>
 </html>
