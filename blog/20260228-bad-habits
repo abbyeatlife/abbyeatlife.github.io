@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>那個我想改掉的壞習慣 — 營養師的真心話</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF6F1;
+      --bg-warm: #F3ECE2;
+      --text: #3A322A;
+      --text-light: #7A6E62;
+      --accent: #C4854C;
+      --accent-soft: #E8C9A0;
+      --accent-deep: #A0663A;
+      --highlight: #FFF8E7;
+      --divider: #DDD3C5;
+      --white: #FFFDF9;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.9;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 65vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(160deg, #F3ECE2 0%, #E8D9C5 40%, #D4BFA5 100%);
+      overflow: hidden;
+      padding: 4rem 2rem;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(196,133,76,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(196,133,76,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-30px) scale(1.05); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      animation: fadeUp 1s ease-out;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-date {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent-deep);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      font-weight: 300;
+      letter-spacing: 0.5px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .scroll-hint span {
+      display: block;
+      width: 2px;
+      height: 30px;
+      background: var(--accent);
+      margin: 0 auto;
+      border-radius: 1px;
+      opacity: 0.5;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* Article */
+    .article-wrapper {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .article-section {
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: sectionFade 0.6s ease-out forwards;
+    }
+
+    .article-section:nth-child(1) { animation-delay: 0.2s; }
+    .article-section:nth-child(2) { animation-delay: 0.35s; }
+    .article-section:nth-child(3) { animation-delay: 0.5s; }
+    .article-section:nth-child(4) { animation-delay: 0.65s; }
+    .article-section:nth-child(5) { animation-delay: 0.8s; }
+    .article-section:nth-child(6) { animation-delay: 0.95s; }
+
+    @keyframes sectionFade {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .article-section p {
+      font-size: 1.05rem;
+      margin-bottom: 1.2rem;
+      color: var(--text);
+      line-height: 2;
+    }
+
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 3rem 0;
+    }
+
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--divider);
+    }
+
+    .section-divider .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent-soft);
+      border-radius: 50%;
+    }
+
+    /* Lead question */
+    .lead-question {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--accent-deep);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Highlight box */
+    .highlight-box {
+      background: var(--highlight);
+      border-left: 3px solid var(--accent);
+      padding: 1.5rem 2rem;
+      border-radius: 0 12px 12px 0;
+      margin: 2rem 0;
+    }
+
+    .highlight-box p {
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight-box p:last-child { margin-bottom: 0; }
+
+    /* Discovery callout */
+    .discovery {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem 2.2rem;
+      margin: 2.5rem 0;
+      box-shadow: 0 4px 20px rgba(160,102,58,0.06);
+      position: relative;
+    }
+
+    .discovery::before {
+      content: '✨';
+      position: absolute;
+      top: -12px;
+      left: 24px;
+      font-size: 1.4rem;
+      background: var(--bg);
+      padding: 0 8px;
+    }
+
+    .discovery p {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: var(--accent-deep);
+      font-weight: 600;
+    }
+
+    /* Tips section */
+    .tips-section {
+      background: linear-gradient(135deg, var(--bg-warm) 0%, var(--bg) 100%);
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin: 2.5rem 0;
+    }
+
+    .tips-section .tip-title {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--accent-deep);
+      margin-bottom: 1.2rem;
+    }
+
+    .tip-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .tip-item:last-child { margin-bottom: 0; }
+
+    .tip-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: var(--accent-soft);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      margin-top: 4px;
+    }
+
+    .tip-item p {
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+
+    /* Closing */
+    .closing {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .closing p {
+      font-family: 'Noto Serif TC', serif;
+      font-size: 1.15rem;
+      color: var(--accent-deep);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .article-footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--divider);
+      margin-top: 2rem;
+    }
+
+    .article-footer p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      letter-spacing: 1px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero { min-height: 50vh; padding: 3rem 1.5rem; }
+      .article-wrapper { padding: 3rem 1.5rem 4rem; }
+      .highlight-box { padding: 1.2rem 1.5rem; }
+      .discovery { padding: 1.5rem 1.8rem; }
+      .tips-section { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-content">
+      <p class="hero-date">2026 · 02 · 28</p>
+      <h1 class="hero-title">那個我想改掉的壞習慣</h1>
+      <p class="hero-subtitle">營養師的真心話 —— 關於深夜進食與一次小小的成功</p>
+    </div>
+    <div class="scroll-hint"><span></span></div>
+  </header>
+
+  <!-- Article -->
+  <main class="article-wrapper">
+
+    <section class="article-section">
+      <p class="lead-question">你有沒有什麼自己知道不太好、想要改掉的壞習慣？</p>
+      <p>我自己就有。雖然是營養師，但工作忙起來有時候比較晚才吃東西。尤其到了晚上，可能是一天終於要結束的關係，意志力特別薄弱，會比較想吃一點療癒的零食。即便已經接近睡眠時間，我還是會做一些犯規的事——而這其實讓身體蠻有負擔的。</p>
+      <p>最近我更重視身體的保養，也許是年紀到了吧，稍微有一點點不舒服，很快就會顯現在外表上，或者反映在身體的感受裡，比方說覺得比較沉重、眼壓高、人腫腫的。這些都會影響每一天的效率，所以我開始正視這個壞習慣，認真想要修正它。</p>
+    </section>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <section class="article-section">
+      <p>其實這個壞習慣我一直放在心上，想改、想改～</p>
+      <p>記得上禮拜，第一次成功在晚上沒有亂吃東西。它並不是一個計劃性的過程，只是我剛好教課回家，雖然有點餓，但想說也很想睡了，好像睡眠更重要，就喝了點水之後去躺著。過程中有一點點忍住飢餓的感覺，但想想自己明明有吃晚餐、也攝取了足夠的蛋白質，不應該會餓才對啊——這恐怕只是原本的生理節奏罷了。</p>
+      <p>結果那天就這樣成功了。</p>
+    </section>
+
+    <section class="article-section">
+      <div class="discovery">
+        <p>隔天早上起來，有一個大發現：覺得自己的眼睛特別大！沒有那種每天起來被莫名的力量壓住的感覺——就是水腫啦。那天身體也很輕盈，第一次感受到原來不要太晚吃，是真的有幫助的，而且還超乎我的想像。</p>
+      </div>
+      <p>我真的很喜歡第一次成功的感覺。</p>
+      <p>後來第二次也不太容易，所以我有喝一點清淡的湯。就這樣一次又一次，只要很難忍受的時候，要嘛我會回想第一次成功的那種美好經驗，要嘛就吃個很清淡的小點心——但比起以前，已經好太多了。</p>
+      <p>直到現在，晚上想吃東西的那種慾望已經大幅下降。身體也比較能夠辨識：那不是真的餓，而是「想吃」；又或者只是習慣，只是排解壓力的不良方式。</p>
+    </section>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <section class="article-section">
+      <p>我想把這個成功經驗分享給你。</p>
+      <p>如果你也跟我一樣，在晚上特別有進食的衝動，可以試著先回想自己一整天是否吃了夠的營養、吃對了營養，再去推測——身體應該是滿足的，這種想吃的衝動只是一種習慣，而不是必要的。</p>
+
+      <div class="highlight-box">
+        <p>當你有了一個成功的經驗，你會得到它帶來的好處，而這個好處會推動你下一次的成功。</p>
+      </div>
+
+      <p>當你真的無法複製的時候，也不用要求自己每次都一百分。像我一樣，吃一些更好的替代品也是不錯的方式。比方說以前你一定要吃鹽酥雞，那就改成燙雞胸肉、豆腐，或是一碗清湯，慢慢讓自己更接近理想的狀態就好。</p>
+    </section>
+
+    <section class="article-section">
+      <div class="tips-section">
+        <p class="tip-title">習慣的修改，並不是暴力地把它拿掉</p>
+        <p style="margin-bottom: 1.2rem; font-size: 1rem; color: var(--text);">而是先覺察自己的真正需求，然後用不同的行動把它打斷——</p>
+        <div class="tip-item">
+          <span class="tip-icon">💧</span>
+          <p>想吃東西的時候，先喝一杯水</p>
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">🧘</span>
+          <p>伸展一下身體，轉移注意力</p>
+        </div>
+        <div class="tip-item">
+          <span class="tip-icon">📖</span>
+          <p>看一些健康資訊來「洗腦」自己</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="article-section">
+      <div class="closing">
+        <p>希望以上的分享，能給你一些啟發 ：）</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="article-footer">
+    <p>— 用心生活，從一個小習慣開始 —</p>
+  </footer>
+
+</body>
+</html>
