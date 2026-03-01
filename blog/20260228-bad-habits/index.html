@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>那個我想改掉的壞習慣 — Abby營養師修熄示</title>
+    <meta name="description" content="營養師也是人——關於深夜進食的壞習慣，以及一次小小成功帶來的改變。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta {
+            background: var(--sage);
+            color: var(--white);
+        }
+        .nav-links a.cta:hover { background: var(--bark); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== ARTICLE ===== */
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author {
+            font-weight: 500;
+            color: var(--bark);
+        }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+
+        .article-content h5 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 36px 0 16px;
+        }
+
+        .article-content strong {
+            color: var(--bark);
+            font-weight: 600;
+        }
+
+        .article-content .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 24px 28px;
+            margin: 28px 0;
+        }
+        .article-content .highlight-box p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: var(--bark);
+            font-weight: 500;
+        }
+        .article-content .highlight-box p:last-child { margin-bottom: 0; }
+
+        .article-content .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 28px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .article-content .discovery-box .discovery-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .article-content .discovery-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .article-content .tips-box {
+            background: var(--sage-pale);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 28px 0;
+        }
+        .article-content .tips-box h5 {
+            margin: 0 0 16px;
+            color: var(--sage);
+        }
+        .article-content .tips-box .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .article-content .tips-box .tip-item:last-child { margin-bottom: 0; }
+        .article-content .tips-box .tip-icon {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+            color: var(--sage-light);
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot {
+            width: 5px;
+            height: 5px;
+            background: var(--sage-light);
+            border-radius: 50%;
+        }
+
+        /* ===== ARTICLE FOOTER ===== */
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--bark);
+            margin-bottom: 4px;
+        }
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .author-links {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+        footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+
+            .article-header h1 { font-size: 1.7rem; }
+            .article-content p { font-size: 1rem; }
+
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../../index.html#blog">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== ARTICLE HEADER ===== -->
+<div class="article-header">
+    <a href="../../index.html#blog" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">生活分享</span>
+    <h1>那個我想改掉的壞習慣</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 2 月 28 日</span>
+    </div>
+</div>
+
+<!-- ===== ARTICLE CONTENT ===== -->
+<div class="article-content">
+
+    <h2>你有沒有什麼自己知道不太好、想要改掉的壞習慣？</h2>
+
+    <p>我自己就有。雖然是營養師，但工作忙起來有時候比較晚才吃東西。尤其到了晚上，可能是一天終於要結束的關係，意志力特別薄弱，會比較想吃一點療癒的零食。即便已經接近睡眠時間，我還是會做一些犯規的事——而這其實讓身體蠻有負擔的。</p>
+
+    <p>最近我更重視身體的保養，也許是年紀到了吧，稍微有一點點不舒服，很快就會顯現在外表上，或者反映在身體的感受裡，比方說覺得比較沉重、眼壓高、人腫腫的。這些都會影響每一天的效率，所以我開始正視這個壞習慣，認真想要修正它。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <p>其實這個壞習慣我一直放在心上，想改、想改～</p>
+
+    <p>記得上禮拜，第一次成功在晚上沒有亂吃東西。它並不是一個計劃性的過程，只是我剛好教課回家，雖然有點餓，但想說也很想睡了，好像睡眠更重要，就喝了點水之後去躺著。過程中有一點點忍住飢餓的感覺，但想想自己明明有吃晚餐、也攝取了足夠的蛋白質，不應該會餓才對啊——這恐怕只是原本的生理節奏罷了。</p>
+
+    <p>結果那天就這樣成功了。</p>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">✨</span>
+        <div>
+            <p>隔天早上起來，有一個大發現：覺得自己的眼睛特別大！沒有那種每天起來被莫名的力量壓住的感覺——就是水腫啦。那天身體也很輕盈，第一次感受到原來不要太晚吃，是真的有幫助的，而且還超乎我的想像。</p>
+        </div>
+    </div>
+
+    <p>我真的很喜歡第一次成功的感覺。</p>
+
+    <p>後來第二次也不太容易，所以我有喝一點清淡的湯。就這樣一次又一次，只要很難忍受的時候，要嘛我會回想第一次成功的那種美好經驗，要嘛就吃個很清淡的小點心——但比起以前，已經好太多了。</p>
+
+    <p>直到現在，晚上想吃東西的那種慾望已經大幅下降。身體也比較能夠辨識：那不是真的餓，而是「想吃」；又或者只是習慣，只是排解壓力的不良方式。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h5>我想把這個成功經驗分享給你</h5>
+
+    <p>如果你也跟我一樣，在晚上特別有進食的衝動，可以試著先回想自己一整天是否吃了夠的營養、吃對了營養，再去推測——身體應該是滿足的，這種想吃的衝動只是一種習慣，而不是必要的。</p>
+
+    <div class="highlight-box">
+        <p><strong>當你有了一個成功的經驗，你會得到它帶來的好處，而這個好處會推動你下一次的成功。</strong></p>
+    </div>
+
+    <p>當你真的無法複製的時候，也不用要求自己每次都一百分。像我一樣，吃一些更好的替代品也是不錯的方式。比方說以前你一定要吃鹽酥雞，那就改成燙雞胸肉、豆腐，或是一碗清湯，慢慢讓自己更接近理想的狀態就好。</p>
+
+    <div class="tips-box">
+        <h5>習慣的修改，並不是暴力地把它拿掉</h5>
+        <p style="margin-bottom: 16px; font-size: 0.95rem;">而是先覺察自己的真正需求，然後用不同的行動把它打斷——</p>
+        <div class="tip-item">
+            <span class="tip-icon">💧</span>
+            <span>想吃東西的時候，先喝一杯水</span>
+        </div>
+        <div class="tip-item">
+            <span class="tip-icon">🧘</span>
+            <span>伸展一下身體，轉移注意力</span>
+        </div>
+        <div class="tip-item">
+            <span class="tip-icon">📖</span>
+            <span>看一些健康資訊來「洗腦」自己</span>
+        </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 40px; font-size: 1.05rem; color: var(--bark); font-weight: 500;">希望以上的分享，能給你一些啟發 ：）</p>
+
+</div>
+
+<!-- ===== ARTICLE FOOTER ===== -->
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
