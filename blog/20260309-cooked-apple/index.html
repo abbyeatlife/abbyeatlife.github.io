@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>煮蘋果：一個被低估的健康吃法 — Abby營養師修熄示</title>
+    <meta name="description" content="冰箱堆了十幾顆蘋果怎麼辦？煮過的蘋果不但更好消化，搭配希臘優格就是一份不到 150 大卡的高級甜點。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta {
+            background: var(--sage);
+            color: var(--white);
+        }
+        .nav-links a.cta:hover { background: var(--bark); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== ARTICLE ===== */
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author {
+            font-weight: 500;
+            color: var(--bark);
+        }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+
+        .article-content h5 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 36px 0 16px;
+        }
+
+        .article-content strong {
+            color: var(--bark);
+            font-weight: 600;
+        }
+
+        .article-content .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 24px 28px;
+            margin: 28px 0;
+        }
+        .article-content .highlight-box p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: var(--bark);
+            font-weight: 500;
+        }
+        .article-content .highlight-box p:last-child { margin-bottom: 0; }
+
+        .article-content .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 28px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .article-content .discovery-box .discovery-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .article-content .discovery-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .article-content .tips-box {
+            background: var(--sage-pale);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 28px 0;
+        }
+        .article-content .tips-box h5 {
+            margin: 0 0 16px;
+            color: var(--sage);
+        }
+        .article-content .tips-box .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .article-content .tips-box .tip-item:last-child { margin-bottom: 0; }
+        .article-content .tips-box .tip-icon {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+            color: var(--sage-light);
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot {
+            width: 5px;
+            height: 5px;
+            background: var(--sage-light);
+            border-radius: 50%;
+        }
+
+        /* ===== ARTICLE FOOTER ===== */
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--bark);
+            margin-bottom: 4px;
+        }
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .author-links {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+        footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+
+            .article-header h1 { font-size: 1.7rem; }
+            .article-content p { font-size: 1rem; }
+
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== ARTICLE HEADER ===== -->
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">生活分享</span>
+    <h1>煮蘋果：一個被低估的健康吃法</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 3 月 9 日</span>
+    </div>
+</div>
+
+<!-- ===== ARTICLE COVER ===== -->
+<div class="article-cover">
+    <img src="../../images/20260309applecook.png" alt="煮蘋果：一個被低估的健康吃法">
+</div>
+
+<!-- ===== ARTICLE CONTENT ===== -->
+<div class="article-content">
+
+    <h2>冰箱裡的十幾顆蘋果</h2>
+
+    <p>最近家裡蘋果買的、送的加起來累積十幾顆在冰箱，我連開的勇氣都沒有⋯。曾經蘋果是我的愛，不過後來發現我直接吃蘋果很容易脹氣，去掉皮會好一點（這其實跟 FODMAPs 高腹敏食物有關，之後再來好好聊這個話題！）。但加上近期天氣冷，吃完其他食物後實在不太想再吃蘋果。</p>
+
+    <p>我很討厭冰箱堆積一堆食物，久了不新鮮又浪費。那天靈機一動問了 ChatGPT 有沒有辦法把蘋果煮來吃？結果得到了一個超有幫助的答案！</p>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">🍎</span>
+        <div>
+            <p>煮蘋果在台灣或許不流行，但在歐美飲食習慣裡相當常見。你可以想像就像蘋果派那樣——將蘋果切丁加一點奶油燉煮，再撒上肉桂，那味道就像是在過聖誕節！</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>我的做法：簡單、少負擔</h2>
+
+    <p>我的做法是盡可能減少多餘的負擔：將兩顆蘋果切丁，鍋中放入約 50cc 的水，幫助導熱、防止乾燒。等蘋果煮軟、開始出汁後，倒掉多餘的水，讓蘋果釋放自己的甜，完全不需要額外加糖。過程中加入一小塊約 10g 的奶油，增加香氣與質地的潤滑。</p>
+
+    <p>整個過程只需 15 分鐘，蘋果呈現淡淡的金褐色，沒有煮到過深的咖啡色。關火後盛起一小碗，撒上肉桂粉拌勻，甜度、香氣與口感完全恰到好處！</p>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">✨</span>
+        <div>
+            <p>後來我還加了一球濃稠的希臘優格，不只增加蛋白質，吃起來根本是一道高級甜點！</p>
+        </div>
+    </div>
+
+    <div class="highlight-box">
+        <p><strong>兩顆蘋果煮出來的份量裝在一個小保鮮盒，大概分三次吃，每次熱量約 80 大卡。搭配 100g 的希臘優格，就是一份熱量不到 150 大卡、含有 6–8 公克蛋白質的健康點心。</strong></p>
+    </div>
+
+    <p>這批蘋果我超有信心全部解決 ✌️</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>煮過的蘋果還有營養嗎？</h2>
+
+    <p>說到蘋果煮過之後，是不是就沒什麼營養了呢？這是蠻自然的聯想，畢竟我們印象中很多天然食材的營養素是怕熱的，像維生素 C、B 群、部分植化素等。加熱的確會讓這些營養打折，但不代表沒有吃的價值。</p>
+
+    <h5>煮後仍保有的好東西</h5>
+
+    <p>煮後的蘋果仍保有<strong>果膠</strong>——它是腸道益生元，也就是腸道好菌的糧食，能維持腸道菌相平衡，同時幫助腸道蠕動、調節血糖與膽固醇。</p>
+
+    <p>而蘋果中怕熱的維生素 C、槲皮素（Quercetin）、兒茶素（Catechins）、綠原酸（Chlorogenic acid）雖然部分會因加熱而流失，但不會完全消失。只要把蘋果煮出的湯汁一起吃，這些成分仍然可以幫助身體抗氧化 💪</p>
+
+    <p>煮熟的蘋果吃起來更甜，主要是因為水分減少、風味濃縮，甜味完全來自蘋果天然的果糖，不含額外添加糖，對身體不造成額外負擔。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="tips-box">
+        <h5>煮蘋果小筆記</h5>
+        <div class="tip-item">
+            <span class="tip-icon">🍏</span>
+            <span>兩顆蘋果切丁，加約 50cc 水幫助導熱，煮軟後倒掉多餘水分</span>
+        </div>
+        <div class="tip-item">
+            <span class="tip-icon">🧈</span>
+            <span>加入約 10g 奶油增香，全程約 15 分鐘，煮至淡金褐色即可</span>
+        </div>
+        <div class="tip-item">
+            <span class="tip-icon">✨</span>
+            <span>關火後撒肉桂粉拌勻，搭配希臘優格就是一份不到 150 大卡的健康甜點</span>
+        </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 40px; font-size: 1.05rem; color: var(--bark); font-weight: 500;">以後再也不用擔心蘋果吃不完——換個方式吃，一樣健康又美味 😋</p>
+
+</div>
+
+<!-- ===== ARTICLE FOOTER ===== -->
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
