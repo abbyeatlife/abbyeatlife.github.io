@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社交耗能：我需要獨處才能恢復能量 — Abby營養師修熄示</title>
+    <meta name="description" content="一整天的社交行程讓我隔天喘不過氣、反胃想吐——原來這就是社交耗能。關於內向型人格的自我覺察與邊界練習。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta {
+            background: var(--sage);
+            color: var(--white);
+        }
+        .nav-links a.cta:hover { background: var(--bark); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== ARTICLE ===== */
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author {
+            font-weight: 500;
+            color: var(--bark);
+        }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+
+        .article-content h5 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 36px 0 16px;
+        }
+
+        .article-content strong {
+            color: var(--bark);
+            font-weight: 600;
+        }
+
+        .article-content .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 24px 28px;
+            margin: 28px 0;
+        }
+        .article-content .highlight-box p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: var(--bark);
+            font-weight: 500;
+        }
+        .article-content .highlight-box p:last-child { margin-bottom: 0; }
+
+        .article-content .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 28px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .article-content .discovery-box .discovery-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .article-content .discovery-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .article-content .tips-box {
+            background: var(--sage-pale);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 28px 0;
+        }
+        .article-content .tips-box h5 {
+            margin: 0 0 16px;
+            color: var(--sage);
+        }
+        .article-content .tips-box .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .article-content .tips-box .tip-item:last-child { margin-bottom: 0; }
+        .article-content .tips-box .tip-icon {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+            color: var(--sage-light);
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot {
+            width: 5px;
+            height: 5px;
+            background: var(--sage-light);
+            border-radius: 50%;
+        }
+
+        /* ===== ARTICLE FOOTER ===== */
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--bark);
+            margin-bottom: 4px;
+        }
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .author-links {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+        footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+
+            .article-header h1 { font-size: 1.7rem; }
+            .article-content p { font-size: 1rem; }
+
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== ARTICLE HEADER ===== -->
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">生活分享</span>
+    <h1>社交耗能：我需要獨處才能恢復能量</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 3 月 10 日</span>
+    </div>
+</div>
+
+<!-- ===== ARTICLE COVER ===== -->
+<div class="article-cover">
+    <img src="../../images/20260310social-hangover.png" alt="社交耗能：我需要獨處才能恢復能量">
+</div>
+
+<!-- ===== ARTICLE CONTENT ===== -->
+<div class="article-content">
+
+    <h2>你是一個需要獨處才能恢復能量的人嗎？</h2>
+
+    <p>我是。</p>
+
+    <p>跟大家一起出去玩很開心，大家都很好相處，東西好吃、行程有趣，但一整天的社交活動還是會讓我非常疲憊。前幾天跟朋友去宜蘭一日遊，一大早就要出門搭火車，這已經打亂了我早晨的例行節奏——悠閒地喝咖啡、如廁、吃早餐、看書、打掃，這些對我來說都是非常重要的儀式。回到家的時候已經超過我平常的就寢時間，那天足足晚了兩個小時才上床睡覺。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>隔天，身體給了我一記重擊</h2>
+
+    <p>隔天我仍然有工作，過馬路時小跑幾步，居然發現自己喘不過氣來，呼吸困難——這對於平時體能很好的我來說實在嚇了一跳。那天教課也心不在焉，整個人有一種揮之不去的無力感，做什麼都使不上勁，胃口也很差，一直有點反胃想吐。完成一整天的課程回到家，甚至有點想哭。</p>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">😳</span>
+        <div>
+            <p>天哪，我到底怎麼了？後來想想，應該是前一天外出的行程徹底打亂了我的節奏。我就是那種非常需要獨處才能恢復能量的類型。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>原來這叫「社交耗能」</h2>
+
+    <p>這大概就是所謂的內向型人格吧。查了一些資料後才了解到，這種現象有個很貼切的名字——「社交耗能」。像我這種偏好獨處的人，一整天的社交行程會讓大腦持續處於高度警覺的狀態。即便當下感覺還好，背景的壓力值其實一直很高。加上那天的生理時鐘被打亂，本身就會讓我感到不安；而活動結束的時間較晚，睡眠時間跟著延後，可能影響了深層睡眠的品質，這也和自律神經的切換有很大的關係。</p>
+
+    <div class="highlight-box">
+        <p><strong>通常早晨起床時，壓力荷爾蒙皮質醇會隨之上升，幫助我們準備好迎接一天的各種挑戰。但在社交了整整一天之後，隔天起床時皮質醇可能無法正常回升——因為前一天已經消耗太多了，沒辦法及時補上，自然就撐不住。</strong></p>
+    </div>
+
+    <p>另外，當副交感神經功能偏低，也就是身體處於極度疲勞或高壓狀態時，消化功能也會受到抑制，這可以解釋為什麼我隔天會覺得反胃想吐。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>工作上的我 vs. 真實的我</h2>
+
+    <p>經過這次的經驗，我再一次確認自己很可能就是個 I 人。雖然我的工作方式讓我看起來活潑外向——需要站在台上帶動、跳來跳去——但那只是工作的樣子，真實的我非常需要屬於自己的時間。老實說，朋友約吃飯或各種活動邀請，我第一個反應往往是：好累。如果可以獨立完成工作，我其實不太想一直跟人交流。不知道你會不會對這一面的我感到意外？</p>
+
+    <h5>學會拿捏自己的邊界</h5>
+
+    <p>以前我不太喜歡拒絕別人，覺得不好意思，或者想說「我明明有空，為什麼要推托？」但隨著人生經驗的累積，加上身體給我的各種反應，我逐漸學會怎麼拿捏自己的邊界。有些邀約，是需要多考慮一下的——這樣才能保護自己，不讓一次活動賠上後續好幾天的恢復時間。</p>
+
+    <div class="tips-box">
+        <h5>給同樣需要獨處充電的你</h5>
+        <div class="tip-item">
+            <span class="tip-icon">🔋</span>
+            <span>認識自己的能量模式——社交後需要多久恢復，提前預留空間</span>
+        </div>
+        <div class="tip-item">
+            <span class="tip-icon">🛡️</span>
+            <span>練習設定邊界——「有空」不等於「有能量」，拒絕不是壞事</span>
+        </div>
+        <div class="tip-item">
+            <span class="tip-icon">🌿</span>
+            <span>保護你的日常節奏——早晨儀式、就寢時間，這些小事其實很重要</span>
+        </div>
+    </div>
+
+    <p>我真的不是不想跟朋友相聚，只是下一次，我可能不會參加整天的行程了。保護自己，也是很重要的事。</p>
+
+    <p style="text-align: center; margin-top: 40px; font-size: 1.05rem; color: var(--bark); font-weight: 500;">你是哪一種人呢？你也是需要獨處才能恢復能量的人嗎？</p>
+
+</div>
+
+<!-- ===== ARTICLE FOOTER ===== -->
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
