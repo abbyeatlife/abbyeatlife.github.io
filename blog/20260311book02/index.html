@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>低醣 vs 低脂，哪個才是真正的減肥關鍵？ — Abby營養師修熄示</title>
+    <meta name="description" content="低醣派和低脂派都有人成功，到底哪個才對？答案可能跟你想的不一樣——真正的關鍵從來不是選哪種飲食法。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta {
+            background: var(--sage);
+            color: var(--white);
+        }
+        .nav-links a.cta:hover { background: var(--bark); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== ARTICLE ===== */
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author {
+            font-weight: 500;
+            color: var(--bark);
+        }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+
+        .article-content h5 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 36px 0 16px;
+        }
+
+        .article-content strong {
+            color: var(--bark);
+            font-weight: 600;
+        }
+
+        .article-content .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 24px 28px;
+            margin: 28px 0;
+        }
+        .article-content .highlight-box p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: var(--bark);
+            font-weight: 500;
+        }
+        .article-content .highlight-box p:last-child { margin-bottom: 0; }
+
+        .article-content .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 28px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .article-content .discovery-box .discovery-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .article-content .discovery-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .article-content .tips-box {
+            background: var(--sage-pale);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 28px 0;
+        }
+        .article-content .tips-box h5 {
+            margin: 0 0 16px;
+            color: var(--sage);
+        }
+        .article-content .tips-box .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .article-content .tips-box .tip-item:last-child { margin-bottom: 0; }
+        .article-content .tips-box .tip-icon {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .pyramid {
+            background: var(--warm);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 28px 0;
+            text-align: center;
+        }
+        .pyramid-title {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .pyramid-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+            gap: 10px;
+        }
+        .pyramid-row:last-child { margin-bottom: 0; }
+        .pyramid-label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--bark);
+            padding: 8px 20px;
+            border-radius: 50px;
+            background: rgba(139,158,126,0.15);
+            flex: 1;
+            max-width: 260px;
+        }
+        .pyramid-label.top { background: rgba(193,127,89,0.18); color: var(--terracotta); font-size: 0.85rem; max-width: 160px; }
+        .pyramid-label.highlight { background: rgba(139,158,126,0.35); font-weight: 700; color: var(--bark); }
+        .pyramid-arrow {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+        .pyramid-note {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin-top: 14px;
+        }
+
+        .teaser-box {
+            background: var(--bark);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 36px 0;
+            color: rgba(255,255,255,0.85);
+        }
+        .teaser-box h5 {
+            color: var(--sage-light);
+            margin: 0 0 12px;
+            font-size: 1rem;
+            letter-spacing: 0.03em;
+        }
+        .teaser-box p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+        .teaser-box strong {
+            color: var(--sage-light);
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+            color: var(--sage-light);
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot {
+            width: 5px;
+            height: 5px;
+            background: var(--sage-light);
+            border-radius: 50%;
+        }
+
+        /* ===== ARTICLE FOOTER ===== */
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--bark);
+            margin-bottom: 4px;
+        }
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .author-links {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+        footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+
+            .article-header h1 { font-size: 1.7rem; }
+            .article-content p { font-size: 1rem; }
+
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== ARTICLE HEADER ===== -->
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">減脂觀念</span>
+    <h1>低醣 vs 低脂，哪個才是真正的減肥關鍵？</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 3 月 11 日</span>
+    </div>
+</div>
+
+<!-- ===== ARTICLE COVER ===== -->
+<div class="article-cover">
+    <img src="../../images/20260311book02.png" alt="低醣 vs 低脂，哪個才是真正的減肥關鍵？">
+</div>
+
+<!-- ===== ARTICLE CONTENT ===== -->
+<div class="article-content">
+
+    <p>記得我剛開始在意自己體態的時候，流行的是低脂飲食——水煮雞胸肉、蔬菜燙熟不加油、各種標榜零脂肪的食品，大家都覺得吃油就會胖。</p>
+
+    <p>後來，生酮、防彈咖啡、低碳飲食曾經掀起一波風潮，高脂肪飲食一度成為新寵。再到近幾年，飲食討論又繼續演化，各種方法輪流登場。</p>
+
+    <p>低脂派有人成功，低醣派也有人成功，到底哪個才是對的？</p>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">🤔</span>
+        <div>
+            <p>如果你開始感到兩難，先深呼吸一下——因為你可能正在掉入一個很常見的減肥陷阱。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>先說結論：低醣和低脂都不是核心</h2>
+
+    <p>這兩種方法之所以都有人成功，背後的真正原因其實是同一件事：<strong>熱量攝取減少了</strong>。</p>
+
+    <p>不是不吃澱粉讓你瘦，是因為不吃澱粉之後，你總熱量吃少了。不是吃油讓你瘦，是因為吃油之後飽足感增加，你自然吃少了。</p>
+
+    <div class="highlight-box">
+        <p><strong>減脂最核心的關鍵，永遠是總熱量控制。</strong>選擇哪種飲食法，是幫助你做到這件事的手段，而不是目的本身。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>飲食金字塔：影響體態的真實順序</h2>
+
+    <p>我喜歡用一個金字塔來說明，由下到上，影響力從大到小：</p>
+
+    <div class="pyramid">
+        <p class="pyramid-title">▼ 影響力由大到小</p>
+        <div class="pyramid-row">
+            <span class="pyramid-label highlight">熱量進出</span>
+        </div>
+        <div class="pyramid-row">
+            <span class="pyramid-arrow">↑</span>
+        </div>
+        <div class="pyramid-row">
+            <span class="pyramid-label">三大營養素比例</span>
+        </div>
+        <div class="pyramid-row">
+            <span class="pyramid-arrow">↑</span>
+        </div>
+        <div class="pyramid-row">
+            <span class="pyramid-label">食物組成</span>
+        </div>
+        <div class="pyramid-row">
+            <span class="pyramid-arrow">↑</span>
+        </div>
+        <div class="pyramid-row">
+            <span class="pyramid-label">進食時間與頻率</span>
+        </div>
+        <div class="pyramid-row">
+            <span class="pyramid-arrow">↑</span>
+        </div>
+        <div class="pyramid-row">
+            <span class="pyramid-label top">補充品</span>
+        </div>
+        <p class="pyramid-note">低醣、低脂屬於第二層，在地基還沒穩之前，裝潢再漂亮也沒用。</p>
+    </div>
+
+    <p>在第一層「熱量進出」還沒搞定之前，把全部精力放在不吃澱粉或選擇特定飲食法，就像蓋房子還沒打好地基就開始裝潢——看起來很努力，但整棟很容易塌。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>三大營養素的比例，是第二步</h2>
+
+    <p>當然重要，只是順序要對。在總熱量控制好的前提下，三大營養素的分配會影響你的成效與感受：</p>
+
+    <div class="tips-box">
+        <h5>三大營養素，你需要知道的事</h5>
+        <div class="tip-item">
+            <span class="tip-icon">💪</span>
+            <span><strong>蛋白質吃夠，肌肉才不會流失。</strong>減脂期蛋白質不夠，身體會拿肌肉當燃料，瘦下來的不是脂肪，代謝反而越來越差。</span>
+        </div>
+        <div class="tip-item">
+            <span class="tip-icon">🍚</span>
+            <span><strong>醣類不是敵人。</strong>大腦和肌肉都需要醣，完全不吃短期有效，但長期難維持，對有在運動訓練的人來說更是關鍵燃料。</span>
+        </div>
+        <div class="tip-item">
+            <span class="tip-icon">🥑</span>
+            <span><strong>脂肪也不是敵人。</strong>脂肪提供飽足感、幫助脂溶性維生素吸收、維持荷爾蒙正常運作，完全不吃的傷害比你想像的大。</span>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>所以我到底該吃哪種飲食法？</h2>
+
+    <p>說真的，<strong>最好的飲食法，是你能長期執行的那一種。</strong></p>
+
+    <p>如果你討厭吃澱粉、不吃澱粉對你來說很自然，那低醣可能適合你。如果你熱愛米飯麵食、叫你不吃比登天還難，那低脂或均衡飲食可能更好執行。</p>
+
+    <p>方法是工具，沒有最好的，只有最適合你的。但前提是，不管走哪條路，都要先把總熱量這件事搞清楚。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>碳水的比例，其實是一門策略</h2>
+
+    <p>近幾年你可能聽過碳循環飲食、321 菜肉飯餐盤，或各種「某幾天高碳、某幾天低碳」的安排方式。</p>
+
+    <p>這些方法表面上看起來不一樣，但本質上都在處理同一件事：<strong>怎麼讓身體在不同狀況下，用最有效率的方式利用能量，同時還能讓你長久走下去。</strong></p>
+
+    <div class="teaser-box">
+        <h5>✦ 下一步聊什麼</h5>
+        <p>吃多少碳水、什麼時候吃、怎麼循環——這是策略層面的討論，不是對錯的問題。之後我會再跟大家深入拆解這些方法，看看哪些情境下哪種策略更適合你。</p>
+    </div>
+
+    <p style="text-align: center; margin-top: 40px; font-size: 1.05rem; color: var(--bark); font-weight: 500;">你目前在用哪種飲食方式呢？有沒有曾經迷失在低醣低脂的選擇題裡？🌿</p>
+
+</div>
+
+<!-- ===== ARTICLE FOOTER ===== -->
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
