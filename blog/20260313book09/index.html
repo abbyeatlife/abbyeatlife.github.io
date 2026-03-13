@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>停滯期對策（下）：動的調整與心理面 — Abby營養師修熄示</title>
+    <meta name="description" content="停滯期不只是吃的問題。運動過量也會讓你卡住、換個運動內容可以重新刺激代謝，還有最常被忽略的隱形阻力：情緒、壓力與作息。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta { background: var(--sage); color: var(--white); }
+        .nav-links a.cta:hover { background: var(--bark); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+        .series-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--sage-pale);
+            border-radius: 50px;
+            padding: 5px 14px;
+            margin-bottom: 16px;
+        }
+        .series-badge .tag { font-size: 0.75rem; font-weight: 600; color: var(--terracotta); letter-spacing: 0.05em; }
+        .series-badge .series-name { font-size: 0.75rem; color: var(--sage); font-weight: 500; }
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author { font-weight: 500; color: var(--bark); }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+        .article-content strong { color: var(--bark); font-weight: 600; }
+
+        /* ===== BOXES ===== */
+        .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .highlight-box p { margin-bottom: 8px; font-size: 1rem; color: var(--bark); font-weight: 500; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 24px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .discovery-box .icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+        .discovery-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+        .teaser-box {
+            background: var(--bark);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 36px 0;
+        }
+        .teaser-box h5 { color: var(--sage-light); margin: 0 0 10px; font-size: 0.9rem; letter-spacing: 0.05em; font-weight: 600; }
+        .teaser-box p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 8px; }
+        .teaser-box p:last-child { margin-bottom: 0; }
+
+        /* ===== 對策編號 ===== */
+        .strategy-block { margin: 40px 0; }
+        .strategy-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+        .strategy-number {
+            width: 40px;
+            height: 40px;
+            background: var(--sage);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        .strategy-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--bark);
+        }
+        .strategy-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        /* ===== 運動過量信號 ===== */
+        .signal-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .signal-item {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            box-shadow: var(--shadow-sm);
+            border-left: 3px solid var(--terracotta);
+        }
+        .signal-icon { font-size: 1.3rem; flex-shrink: 0; line-height: 1.2; }
+        .signal-text { font-size: 0.88rem; color: var(--bark); line-height: 1.6; }
+
+        /* ===== 運動效益 ===== */
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .benefit-item {
+            background: var(--sage-pale);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            font-size: 0.88rem;
+            color: var(--bark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .benefit-item::before {
+            content: '✦';
+            color: var(--sage);
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        /* ===== 睡眠影響圖 ===== */
+        .sleep-impacts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .sleep-impact {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            box-shadow: var(--shadow-sm);
+        }
+        .sleep-impact .si-icon { font-size: 1.2rem; margin-bottom: 6px; }
+        .sleep-impact .si-title { font-size: 0.85rem; font-weight: 700; color: var(--bark); margin-bottom: 4px; }
+        .sleep-impact .si-desc { font-size: 0.78rem; color: var(--text-light); line-height: 1.6; }
+
+        /* ===== 情緒反思問句 ===== */
+        .reflection-box {
+            background: var(--bark);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 28px 0;
+        }
+        .reflection-box .r-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--sage-light);
+            letter-spacing: 0.04em;
+            margin-bottom: 16px;
+        }
+        .reflection-q {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+            line-height: 1.9;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .reflection-q:last-child { border-bottom: none; }
+        .reflection-q::before {
+            content: '—';
+            color: var(--sage-light);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ===== 系列總結 ===== */
+        .series-wrap {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            margin: 36px 0;
+        }
+        .series-wrap-header {
+            background: var(--sage);
+            padding: 16px 24px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.04em;
+        }
+        .series-link-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--sage-light);
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+        .series-link-item:last-child { border-bottom: none; }
+        .series-link-item:hover { background: var(--sage-pale); }
+        .series-num {
+            width: 28px;
+            height: 28px;
+            background: var(--sage-pale);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--sage);
+            flex-shrink: 0;
+        }
+        .series-link-title {
+            font-size: 0.92rem;
+            color: var(--bark);
+            font-weight: 500;
+            flex: 1;
+        }
+        .series-link-tag {
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot { width: 5px; height: 5px; background: var(--sage-light); border-radius: 50%; }
+
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 500; color: var(--bark); margin-bottom: 4px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .author-links { display: flex; gap: 8px; margin-top: 10px; }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+            .article-header h1 { font-size: 1.7rem; }
+            .signal-grid { grid-template-columns: 1fr; }
+            .benefit-grid { grid-template-columns: 1fr; }
+            .sleep-impacts { grid-template-columns: 1fr; }
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <div class="series-badge">
+        <span class="tag">減脂觀念</span>
+        <span class="series-name">停滯期系列 · 第三篇</span>
+    </div>
+    <h1>停滯期對策（下）：動的調整與心理面</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 3 月 13 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260313book09.png" alt="停滯期對策（下）：動的調整與心理面">
+</div>
+
+<div class="article-content">
+
+    <p>停滯期對策的上篇，我們從吃的角度找突破口。這一篇來談另外兩個面向——<strong>怎麼動</strong>，以及最常被忽略的<strong>心理與作息</strong>。</p>
+
+    <p>很多人遇到停滯，直覺反應是「再多運動一點」。但有時候，問題恰好相反。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <!-- 對策四 -->
+    <div class="strategy-block">
+        <div class="strategy-header">
+            <div class="strategy-number">4</div>
+            <div>
+                <div class="strategy-title">運動過量，也會讓你停滯</div>
+                <div class="strategy-subtitle">有時候身體需要的不是更多，是好好休息</div>
+            </div>
+        </div>
+
+        <p>看到體重不動，很多人的第一反應是：「那就多跑半小時吧。」</p>
+
+        <p>但運動本身也是一種壓力——對身體來說，訓練是在製造損傷，然後靠恢復期來變得更強。<strong>當恢復趕不上訓練的速度，身體就會進入「危機模式」</strong>，反而開始抓住能量、降低代謝、囤積脂肪。</p>
+
+        <p>這不是理論，是我帶過的真實案例。</p>
+
+        <div class="discovery-box">
+            <span class="icon">👩‍💼</span>
+            <p>有位職業婦女學員，要上班、帶三個小孩，平均睡眠不到六小時，飲食還受家人影響難以控制。為了彌補，她週末集中兩天做重訓和拳擊——結果隔天體重飆升一公斤，而且幾乎每個月都感冒。高強度運動加在已經超載的生活上，不是幫助，是壓垮。</p>
+        </div>
+
+        <p>你的身體是不是也在發出類似的訊號？</p>
+
+        <div class="signal-grid">
+            <div class="signal-item">
+                <span class="signal-icon">😴</span>
+                <span class="signal-text">運動後恢復很慢，隔天仍覺得疲憊</span>
+            </div>
+            <div class="signal-item">
+                <span class="signal-icon">📉</span>
+                <span class="signal-text">運動表現停滯甚至退步，越練越差</span>
+            </div>
+            <div class="signal-item">
+                <span class="signal-icon">🤧</span>
+                <span class="signal-text">最近容易感冒、免疫力變差</span>
+            </div>
+            <div class="signal-item">
+                <span class="signal-icon">😤</span>
+                <span class="signal-text">情緒比平常更焦躁、對運動失去動力</span>
+            </div>
+            <div class="signal-item">
+                <span class="signal-icon">⚖️</span>
+                <span class="signal-text">運動後隔天體重反而上升</span>
+            </div>
+            <div class="signal-item">
+                <span class="signal-icon">🍔</span>
+                <span class="signal-text">食慾大幅增加，難以控制</span>
+            </div>
+        </div>
+
+        <p>如果這些情況你有好幾個，試試先讓自己休息一週，把高強度訓練換成散步、伸展或瑜伽，觀察身體的反應。<strong>很多人在「少練」之後，體重反而開始動了。</strong></p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <!-- 對策五 -->
+    <div class="strategy-block">
+        <div class="strategy-header">
+            <div class="strategy-number">5</div>
+            <div>
+                <div class="strategy-title">換個運動內容，給身體新的刺激</div>
+                <div class="strategy-subtitle">熱量消耗只是運動最小的好處</div>
+            </div>
+        </div>
+
+        <p>休息之後，如果要重新開始運動，不一定要回到原本的那套菜單。</p>
+
+        <p>很多人談到運動對減脂的幫助，想到的就是：「這個動作可以消耗多少卡？」但我想換個角度說——<strong>熱量消耗，其實是運動帶來的最小好處。</strong></p>
+
+        <p>運動真正的價值在於全面提升身體素質：改善心肺功能、增加肌肉量、調節荷爾蒙、促進胰島素敏感度、釋放腦內啡……這些系統性的改變，才是讓身體變得更容易「維持體態」的根本原因。</p>
+
+        <div class="benefit-grid">
+            <div class="benefit-item">提高心肺功能，增加整體代謝效率</div>
+            <div class="benefit-item">增肌，讓靜止時也消耗更多熱量</div>
+            <div class="benefit-item">改善胰島素敏感度，減少脂肪囤積</div>
+            <div class="benefit-item">調節荷爾蒙，穩定食慾與情緒</div>
+            <div class="benefit-item">釋放腦內啡，減少壓力性進食</div>
+            <div class="benefit-item">改善睡眠品質，讓恢復更完整</div>
+            <div class="benefit-item">增強免疫力，減少因生病中斷計畫</div>
+            <div class="benefit-item">延緩老化，讓體年齡低於實際年齡</div>
+        </div>
+
+        <p>停滯期換個運動內容，不只是為了「消耗更多熱量」，而是給身體一個新的刺激模式，讓它重新做出適應反應。</p>
+
+        <div class="highlight-box">
+            <p>原本只做有氧？試著加入重訓。</p>
+            <p>一直在跑步？換成游泳或騎車。</p>
+            <p>重訓菜單三個月沒變？調整組數、重量或動作順序。</p>
+            <p>身體需要的，是它還沒習慣的事。</p>
+        </div>
+
+        <p>「運動帶來健康，健康就能促成良好體態。」這句話聽起來很抽象，但它的意思是：<strong>把目標從「燃燒熱量」換成「讓身體更健康」，結果反而會更好。</strong></p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <!-- 對策六 -->
+    <div class="strategy-block">
+        <div class="strategy-header">
+            <div class="strategy-number">6</div>
+            <div>
+                <div class="strategy-title">睡眠與作息：被忽略的隱形阻力</div>
+                <div class="strategy-subtitle">飲食和運動都沒問題，但睡不好，體重照樣停住</div>
+            </div>
+        </div>
+
+        <p>我有位學員，減脂進行得很順利，每週都有進展。到了第六週，體重突然停了兩週不動。飲食沒有鬆懈、運動也照常，找不到原因。</p>
+
+        <p>聊過之後才發現：她為了讓孩子搭校車，把起床時間從六點提早到五點半。這個改變讓她壓力很大，早早躺下去卻睡不著，睡眠品質變差。兩週後，她的皮膚還出現了濕疹。</p>
+
+        <p>熱量沒多吃，運動沒少做——但作息變了，體重就停了。</p>
+
+        <p>睡眠不足對體態管理的影響，比大多數人想像的更深：</p>
+
+        <div class="sleep-impacts">
+            <div class="sleep-impact">
+                <div class="si-icon">🍽️</div>
+                <div class="si-title">更容易餓、更難飽</div>
+                <div class="si-desc">睡眠不足讓瘦素下降、飢餓素上升，食慾調控直接失靈，容易不知不覺多吃。</div>
+            </div>
+            <div class="sleep-impact">
+                <div class="si-icon">🍩</div>
+                <div class="si-title">更想吃高糖高脂食物</div>
+                <div class="si-desc">身體疲憊時會渴望快速能量，垃圾食物的吸引力會明顯增加。</div>
+            </div>
+            <div class="sleep-impact">
+                <div class="si-icon">💪</div>
+                <div class="si-title">肌肉修復受阻</div>
+                <div class="si-desc">深度睡眠是肌肉修復的黃金時段，睡不好，訓練效果就打折。</div>
+            </div>
+            <div class="sleep-impact">
+                <div class="si-icon">🔋</div>
+                <div class="si-title">身體進入節能模式</div>
+                <div class="si-desc">睡眠不足時，身體會降低整體能量消耗，更傾向於儲存脂肪。</div>
+            </div>
+        </div>
+
+        <p>如果你在飲食和運動上都很認真，卻遲遲看不到進展——在調整任何其他東西之前，<strong>先認真看待自己的睡眠品質</strong>。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <!-- 對策七 -->
+    <div class="strategy-block">
+        <div class="strategy-header">
+            <div class="strategy-number">7</div>
+            <div>
+                <div class="strategy-title">和自己的情緒對話</div>
+                <div class="strategy-subtitle">有些停滯，根源不在食物，在心裡</div>
+            </div>
+        </div>
+
+        <p>有多少人早上起床的第一件事是滑手機？我自己也是。</p>
+
+        <p>現代生活裡，我們的注意力幾乎是持續被外在佔據的——訊息、社群、新聞，情緒跟著這些東西起伏，卻很少有機會停下來感受自己真正的狀態。</p>
+
+        <p><strong>長期缺乏和自己的連結，壓抑的情緒會以各種方式反映出來——包括飲食上的失控。</strong></p>
+
+        <p>下班只想吃鹹酥雞配劇、假日睡到中午——這些不只是懶，很多時候是一種補償，是在用食物或睡眠填補內心的某個空缺。這樣的補償行為本身沒有對錯，但如果一直這樣下去，身體很難真正進入健康的循環。</p>
+
+        <p>停滯期是個好機會，停下來問問自己：</p>
+
+        <div class="reflection-box">
+            <div class="r-title">▸ 可以問自己的幾個問題</div>
+            <div class="reflection-q">我現在的飲食限制，有沒有給我帶來很大的壓力？這個壓力是否大到讓我開始討厭吃飯這件事？</div>
+            <div class="reflection-q">我最近是不是常常需要用「大吃一頓」來紓壓？如果是，那平日的限制是不是太緊了？</div>
+            <div class="reflection-q">我對體重的焦慮，有沒有讓我更難好好過生活？我花多少時間在擔心這件事？</div>
+            <div class="reflection-q">我有沒有花時間和自己相處、整理自己的狀態？還是每天都被外在的事情塞滿？</div>
+        </div>
+
+        <p>這些問題沒有標準答案，但停下來誠實地想一想，往往比再換一套飲食計畫更有幫助。</p>
+
+        <div class="discovery-box">
+            <span class="icon">🌱</span>
+            <p>當我們不去理解自己的感受和需求，行為很難和內心真正想要的方向一致。體態調整也是一樣——方法對了，心態也需要跟上，才能走得長久。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>停滯期系列，到這裡告一段落</h2>
+
+    <p>三篇下來，從診斷原因到吃的調整、再到動的安排與心理面，停滯期需要處理的面向其實比想像的更多。</p>
+
+    <p>但核心只有一件事：<strong>停滯不是失敗，是身體在告訴你它需要什麼。</strong>聽懂它說的話，再做出對應的調整，才是真正有效的回應方式。</p>
+
+    <div class="series-wrap">
+        <div class="series-wrap-header">✦ 停滯期系列・三篇完整回顧</div>
+        <a href="../20260313book07/" class="series-link-item">
+            <div class="series-num">1</div>
+            <div class="series-link-title">體重停滯了，是停滯期嗎？先搞清楚原因</div>
+            <div class="series-link-tag">診斷篇</div>
+        </a>
+        <a href="../20260313book08/" class="series-link-item">
+            <div class="series-num">2</div>
+            <div class="series-link-title">停滯期對策（上）：從吃的調整開始</div>
+            <div class="series-link-tag">飲食篇</div>
+        </a>
+        <a href="../20260313book09/" class="series-link-item">
+            <div class="series-num">3</div>
+            <div class="series-link-title">停滯期對策（下）：動的調整與心理面</div>
+            <div class="series-link-tag">本篇</div>
+        </a>
+    </div>
+
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健師教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
