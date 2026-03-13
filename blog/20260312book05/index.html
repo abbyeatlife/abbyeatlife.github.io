@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>減脂也可以吃點心？關於零食的真心話 — Abby營養師修熄示</title>
+    <meta name="description" content="點心不是減脂的敵人。問題從來不是能不能吃，而是怎麼選。附具體推薦清單與地雷點心提醒，讓零食變成你減脂計畫的助力。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta { background: var(--sage); color: var(--white); }
+        .nav-links a.cta:hover { background: var(--bark); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author { font-weight: 500; color: var(--bark); }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+        .article-content h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 32px 0 14px;
+        }
+        .article-content strong { color: var(--bark); font-weight: 600; }
+
+        /* ===== BOXES ===== */
+        .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .highlight-box p { margin-bottom: 8px; font-size: 1rem; color: var(--bark); font-weight: 500; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 24px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .discovery-box .icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+        .discovery-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+        .warning-box {
+            background: rgba(193,127,89,0.08);
+            border-left: 4px solid var(--terracotta);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .warning-box p { margin-bottom: 8px; font-size: 0.95rem; color: var(--bark); }
+        .warning-box p:last-child { margin-bottom: 0; }
+
+        .insulin-box {
+            background: var(--bark);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 36px 0;
+        }
+        .insulin-box .q {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--sage-light);
+            margin-bottom: 12px;
+        }
+        .insulin-box p {
+            color: rgba(255,255,255,0.82);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            line-height: 1.9;
+        }
+        .insulin-box p:last-child { margin-bottom: 0; }
+        .insulin-box a {
+            color: var(--sage-light);
+            text-decoration: underline;
+        }
+
+        .teaser-box {
+            background: var(--bark);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 36px 0;
+            color: var(--white);
+        }
+        .teaser-box h5 { color: var(--sage-light); margin: 0 0 10px; font-size: 0.9rem; letter-spacing: 0.05em; }
+        .teaser-box p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 0; }
+
+        /* ===== 熱量密度比較 ===== */
+        .density-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            margin: 24px 0;
+        }
+        .density-card {
+            border-radius: var(--radius);
+            padding: 18px 16px;
+            text-align: center;
+        }
+        .density-card.low { background: var(--sage-pale); border: 1.5px solid var(--sage-light); }
+        .density-card.mid { background: rgba(245,237,227,0.8); border: 1.5px solid rgba(193,127,89,0.25); }
+        .density-card.high { background: rgba(193,127,89,0.08); border: 1.5px solid rgba(193,127,89,0.35); }
+        .density-card .food { font-size: 1.5rem; margin-bottom: 6px; }
+        .density-card .food-name { font-size: 0.88rem; font-weight: 600; color: var(--bark); margin-bottom: 4px; }
+        .density-card .kcal {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .density-card.low .kcal { color: var(--sage); }
+        .density-card.mid .kcal { color: var(--bark-light); }
+        .density-card.high .kcal { color: var(--terracotta); }
+        .density-card .note { font-size: 0.75rem; color: var(--text-light); }
+
+        /* ===== 選擇原則 ===== */
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .principle-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px 16px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .principle-card .p-icon { font-size: 1.8rem; margin-bottom: 10px; }
+        .principle-card .p-title { font-size: 0.9rem; font-weight: 700; color: var(--bark); margin-bottom: 6px; }
+        .principle-card .p-desc { font-size: 0.8rem; color: var(--text-light); line-height: 1.6; }
+
+        /* ===== 推薦清單 ===== */
+        .snack-section { margin: 28px 0; }
+        .snack-section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .snack-section-title .s-icon { font-size: 1.3rem; }
+        .snack-section-title .s-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--white);
+            background: var(--sage);
+            padding: 4px 14px;
+            border-radius: 50px;
+            letter-spacing: 0.04em;
+        }
+
+        .snack-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .snack-item {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+        .snack-emoji { font-size: 1.4rem; flex-shrink: 0; line-height: 1.2; }
+        .snack-info { flex: 1; }
+        .snack-name { font-size: 0.92rem; font-weight: 600; color: var(--bark); margin-bottom: 3px; }
+        .snack-kcal { font-size: 0.78rem; color: var(--terracotta); font-weight: 600; margin-bottom: 3px; }
+        .snack-note { font-size: 0.78rem; color: var(--text-light); line-height: 1.5; }
+
+        /* ===== 地雷清單 ===== */
+        .landmine-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .landmine-item {
+            background: rgba(193,127,89,0.06);
+            border: 1px solid rgba(193,127,89,0.2);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .landmine-emoji { font-size: 1.3rem; flex-shrink: 0; line-height: 1.2; }
+        .landmine-info { flex: 1; }
+        .landmine-name { font-size: 0.92rem; font-weight: 600; color: var(--bark); margin-bottom: 3px; }
+        .landmine-trap { font-size: 0.78rem; color: var(--terracotta); font-weight: 600; margin-bottom: 3px; }
+        .landmine-note { font-size: 0.78rem; color: var(--text-light); line-height: 1.5; }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot { width: 5px; height: 5px; background: var(--sage-light); border-radius: 50%; }
+
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 500; color: var(--bark); margin-bottom: 4px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .author-links { display: flex; gap: 8px; margin-top: 10px; }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+        footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+            .article-header h1 { font-size: 1.7rem; }
+            .density-compare { grid-template-columns: 1fr; }
+            .principles { grid-template-columns: 1fr; }
+            .snack-grid { grid-template-columns: 1fr; }
+            .landmine-grid { grid-template-columns: 1fr; }
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">飲食筆記</span>
+    <h1>減脂也可以吃點心？關於零食的真心話</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 3 月 12 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260312book05.png" alt="減脂也可以吃點心？關於零食的真心話">
+</div>
+
+<div class="article-content">
+
+    <p>開始減脂之後，第一個被你列入黑名單的，大概就是點心。</p>
+
+    <p>餅乾不行、手搖不行、下午茶不行——把所有零食統統禁掉，感覺計畫就成功一半了。</p>
+
+    <p>但實際上呢？禁了點心之後，很多人反而在晚上忍不住大吃一頓，或者某天聚餐直接「破戒」然後自暴自棄。</p>
+
+    <p>點心本身不是問題。<strong>問題是你選的點心，和你禁掉點心之後的反應。</strong></p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>點心壞了計畫？問題其實在這裡</h2>
+
+    <p>我有個學員，她說自己吃得很少——白飯一兩口、肉一小片，幾乎什麼都不敢多吃，但體重就是不動。</p>
+
+    <p>請她開始記錄飲食之後，我發現了問題：早上一個可頌麵包、下午兩片餅乾、晚上一小塊巧克力。她覺得這些「不算吃」，但這些東西的共同特點是——<strong>熱量密度極高</strong>。</p>
+
+    <p>什麼是熱量密度？就是每公克食物含有多少熱量。同樣是「吃地瓜」，蒸地瓜 vs 地瓜球，熱量可以差到三倍：</p>
+
+    <div class="density-compare">
+        <div class="density-card low">
+            <div class="food">🍠</div>
+            <div class="food-name">蒸地瓜（100g）</div>
+            <div class="kcal">120</div>
+            <div class="note">大卡 ｜ 低熱量密度</div>
+        </div>
+        <div class="density-card mid">
+            <div class="food">🍯</div>
+            <div class="food-name">蜜地瓜（100g）</div>
+            <div class="kcal">300</div>
+            <div class="note">大卡 ｜ 中熱量密度</div>
+        </div>
+        <div class="density-card high">
+            <div class="food">🟡</div>
+            <div class="food-name">地瓜球（100g）</div>
+            <div class="kcal">400</div>
+            <div class="note">大卡 ｜ 高熱量密度</div>
+        </div>
+    </div>
+
+    <p>差別在於加工程度——蜜地瓜加了糖，地瓜球加了麵粉和油炸。食物的形態改變了，熱量就跟著疊加上去，但體積卻沒有變大，吃進去的時候很難察覺。</p>
+
+    <div class="highlight-box">
+        <p>點心吃了不怕，<strong>高熱量密度的點心才怕</strong>——體積小、熱量高、吃完不飽，還不知不覺把熱量額度用光了。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>減脂點心的三個選擇原則</h2>
+
+    <div class="principles">
+        <div class="principle-card">
+            <div class="p-icon">📉</div>
+            <div class="p-title">熱量密度低</div>
+            <div class="p-desc">同樣的熱量可以吃到更多份量，飽足感更好，不容易一不小心就超標。</div>
+        </div>
+        <div class="principle-card">
+            <div class="p-icon">💪</div>
+            <div class="p-title">有蛋白質或纖維</div>
+            <div class="p-desc">這兩樣東西消化慢，能撐比較久，不會吃完十分鐘又餓。</div>
+        </div>
+        <div class="principle-card">
+            <div class="p-icon">😌</div>
+            <div class="p-title">吃完真的飽</div>
+            <div class="p-desc">點心的目的是撐過正餐之間，如果吃完還是空虛，換一個。</div>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>具體推薦清單</h2>
+
+    <p>按情境分類，每個選項附上大概的熱量參考：</p>
+
+    <!-- 想吃甜的 -->
+    <div class="snack-section">
+        <div class="snack-section-title">
+            <span class="s-icon">🍬</span>
+            <span class="s-label">想吃甜的</span>
+        </div>
+        <div class="snack-grid">
+            <div class="snack-item">
+                <span class="snack-emoji">🍎</span>
+                <div class="snack-info">
+                    <div class="snack-name">新鮮水果（1 份）</div>
+                    <div class="snack-kcal">約 60 大卡</div>
+                    <div class="snack-note">天然的甜、有膳食纖維、飽足感好。小芭樂、奇異果、小番茄都是好選擇。</div>
+                </div>
+            </div>
+            <div class="snack-item">
+                <span class="snack-emoji">🫙</span>
+                <div class="snack-info">
+                    <div class="snack-name">無糖優格（100–150g）</div>
+                    <div class="snack-kcal">約 60–90 大卡</div>
+                    <div class="snack-note">有蛋白質，可以加水果增加甜度。注意看成分，「低糖」不等於「無糖」。</div>
+                </div>
+            </div>
+            <div class="snack-item">
+                <span class="snack-emoji">🍫</span>
+                <div class="snack-info">
+                    <div class="snack-name">黑巧克力（1–2 格，70% 以上）</div>
+                    <div class="snack-kcal">約 50–80 大卡</div>
+                    <div class="snack-note">少量就有滿足感。可可比例越高，糖分越少、苦味越重，慢慢品嚐。</div>
+                </div>
+            </div>
+            <div class="snack-item">
+                <span class="snack-emoji">🧊</span>
+                <div class="snack-info">
+                    <div class="snack-name">仙草凍 / 蒟蒻凍（1 份）</div>
+                    <div class="snack-kcal">約 20–50 大卡</div>
+                    <div class="snack-note">低熱量密度的好選擇，注意避免加了大量糖漿的版本。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 想吃有飽足感的 -->
+    <div class="snack-section">
+        <div class="snack-section-title">
+            <span class="s-icon">🍚</span>
+            <span class="s-label">想吃有飽足感的</span>
+        </div>
+        <div class="snack-grid">
+            <div class="snack-item">
+                <span class="snack-emoji">🥚</span>
+                <div class="snack-info">
+                    <div class="snack-name">水煮蛋（1–2 顆）</div>
+                    <div class="snack-kcal">約 70–140 大卡</div>
+                    <div class="snack-note">蛋白質紮實，飽足感長。提前水煮冰在冰箱，隨時可以拿。</div>
+                </div>
+            </div>
+            <div class="snack-item">
+                <span class="snack-emoji">🫘</span>
+                <div class="snack-info">
+                    <div class="snack-name">無糖豆漿（250ml）</div>
+                    <div class="snack-kcal">約 100 大卡</div>
+                    <div class="snack-note">植物性蛋白質，有飽足感又方便。選無糖版，含糖豆漿熱量差很多。</div>
+                </div>
+            </div>
+            <div class="snack-item">
+                <span class="snack-emoji">🍠</span>
+                <div class="snack-info">
+                    <div class="snack-name">蒸地瓜（半條，約 100g）</div>
+                    <div class="snack-kcal">約 120 大卡</div>
+                    <div class="snack-note">有膳食纖維、微甜、撐很久。當正餐的澱粉替代也很適合。</div>
+                </div>
+            </div>
+            <div class="snack-item">
+                <span class="snack-emoji">🥛</span>
+                <div class="snack-info">
+                    <div class="snack-name">茅屋起司 / 低脂起司（30g）</div>
+                    <div class="snack-kcal">約 50–80 大卡</div>
+                    <div class="snack-note">蛋白質高，搭配蔬菜條或全麥餅乾，飽足感很好。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 外出方便帶的 -->
+    <div class="snack-section">
+        <div class="snack-section-title">
+            <span class="s-icon">🎒</span>
+            <span class="s-label">外出方便帶的</span>
+        </div>
+        <div class="snack-grid">
+            <div class="snack-item">
+                <span class="snack-emoji">🥜</span>
+                <div class="snack-info">
+                    <div class="snack-name">原味堅果（一小把，約 15g）</div>
+                    <div class="snack-kcal">約 90 大卡</div>
+                    <div class="snack-note">健康脂肪＋少量蛋白質。注意份量，堅果熱量密度高，一把就夠了。</div>
+                </div>
+            </div>
+            <div class="snack-item">
+                <span class="snack-emoji">🍵</span>
+                <div class="snack-info">
+                    <div class="snack-name">無糖茶飲 / 黑咖啡</div>
+                    <div class="snack-kcal">接近 0 大卡</div>
+                    <div class="snack-note">有時候「餓」其實是口渴或無聊。先喝一杯再觀察，常常就過去了。</div>
+                </div>
+            </div>
+            <div class="snack-item">
+                <span class="snack-emoji">🫙</span>
+                <div class="snack-info">
+                    <div class="snack-name">毛豆（半包，約 50g）</div>
+                    <div class="snack-kcal">約 70 大卡</div>
+                    <div class="snack-note">植物性蛋白質的優質來源，超商就買得到，方便又健康。</div>
+                </div>
+            </div>
+            <div class="snack-item">
+                <span class="snack-emoji">🥒</span>
+                <div class="snack-info">
+                    <div class="snack-name">蔬菜條（小黃瓜、紅蘿蔔）</div>
+                    <div class="snack-kcal">約 20–30 大卡</div>
+                    <div class="snack-note">幾乎零負擔，需要咀嚼又有飽足感。可以搭配少量堅果醬增添風味。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 運動後補充 -->
+    <div class="snack-section">
+        <div class="snack-section-title">
+            <span class="s-icon">🏋️</span>
+            <span class="s-label">運動後補充</span>
+        </div>
+        <div class="snack-grid">
+            <div class="snack-item">
+                <span class="snack-emoji">🍌</span>
+                <div class="snack-info">
+                    <div class="snack-name">香蕉（1 根）+ 無糖豆漿</div>
+                    <div class="snack-kcal">約 160 大卡</div>
+                    <div class="snack-note">醣類＋蛋白質的經典搭配，補充肝醣又有助於肌肉修復。</div>
+                </div>
+            </div>
+            <div class="snack-item">
+                <span class="snack-emoji">🥚</span>
+                <div class="snack-info">
+                    <div class="snack-name">水煮蛋 2 顆 + 小番茄一把</div>
+                    <div class="snack-kcal">約 170 大卡</div>
+                    <div class="snack-note">蛋白質補充＋抗氧化蔬果，運動後的黃金一小時內吃效果最好。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>這些點心要小心</h2>
+
+    <p>有幾類點心打著「健康」旗號，但熱量其實不低，是常見的地雷：</p>
+
+    <div class="landmine-grid">
+        <div class="landmine-item">
+            <span class="landmine-emoji">⚠️</span>
+            <div class="landmine-info">
+                <div class="landmine-name">市售能量棒 / 穀物棒</div>
+                <div class="landmine-trap">一條約 180–250 大卡</div>
+                <div class="landmine-note">標榜「高蛋白」或「健康穀物」，但糖分和油脂往往不少。仔細看成分表。</div>
+            </div>
+        </div>
+        <div class="landmine-item">
+            <span class="landmine-emoji">⚠️</span>
+            <div class="landmine-info">
+                <div class="landmine-name">果乾（葡萄乾、芒果乾）</div>
+                <div class="landmine-trap">一小包約 100–150 大卡</div>
+                <div class="landmine-note">水果曬乾後水分不見了，糖分卻濃縮了。一小包等於好幾份水果的糖量。</div>
+            </div>
+        </div>
+        <div class="landmine-item">
+            <span class="landmine-emoji">⚠️</span>
+            <div class="landmine-info">
+                <div class="landmine-name">燕麥餅乾 / 全麥餅乾</div>
+                <div class="landmine-trap">每 100g 約 400–450 大卡</div>
+                <div class="landmine-note">「燕麥」和「全麥」讓人覺得健康，但烘焙過程加了油脂和糖，熱量密度仍然高。</div>
+            </div>
+        </div>
+        <div class="landmine-item">
+            <span class="landmine-emoji">⚠️</span>
+            <div class="landmine-info">
+                <div class="landmine-name">含糖優格 / 調味豆漿</div>
+                <div class="landmine-trap">比無糖版多 50–100 大卡</div>
+                <div class="landmine-note">包裝設計很像，但含糖版的糖分可能超過每日建議量的一半。買之前翻背面看。</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="discovery-box">
+        <span class="icon">🔍</span>
+        <p>判斷一個點心值不值得吃，最快的方式是翻到背面看「每份熱量」和「糖」——不用全部都懂，這兩個數字先看就好。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <!-- 胰島素伏筆 -->
+    <div class="insulin-box">
+        <div class="q">💬 有人會問：吃點心不是讓胰島素一直分泌嗎？</div>
+        <p>這個問題很好。確實有一派觀點認為，減少進食頻率可以降低胰島素分泌次數，對脂肪代謝有幫助——這也是斷食法的核心邏輯之一。</p>
+        <p>但目前的研究顯示，<strong style="color:var(--sage-light)">在總熱量相同的前提下，進食頻率對減脂效果的影響其實有限</strong>。要不要吃點心，更多是個人生活習慣和身體感受的選擇，沒有標準答案。</p>
+        <p>關於斷食和進食頻率的完整討論，我之後會另外寫一篇來聊。現在你只需要知道：點心吃不吃，取決於它有沒有幫助你把整體飲食控制得更好。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>點心是工具，不是獎勵也不是懲罰</h2>
+
+    <p>很多人把點心當成「忍住了就可以吃的獎勵」，或者「破戒了就要罰自己不能吃的懲罰」——這兩種心態都會讓飲食控制變得很累。</p>
+
+    <p>點心的功能很簡單：<strong>幫你撐過正餐之間，避免因為太餓而在下一餐吃過量。</strong>選對了，它是減脂計畫的助力；選錯了，才是阻力。</p>
+
+    <p>下次想吃點心的時候，不用問「我可不可以吃」，改問「我要選哪個」——這個思路的轉換，會讓整件事輕鬆很多。🌿</p>
+
+    <div class="teaser-box">
+        <h5>✦ 下一篇</h5>
+        <p>吃對了、選對了，但在外面吃飯怎麼辦？下一篇來談外食族的實戰策略——超商、便當、餐廳，每個場景的點餐思維。</p>
+    </div>
+
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
