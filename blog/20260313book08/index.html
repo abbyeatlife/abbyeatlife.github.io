@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>停滯期對策（上）：從吃的調整開始 — Abby營養師修熄示</title>
+    <meta name="description" content="體重卡住了，先從飲食找突破口。欺騙餐的真相、醣類吃太少反而更難瘦、換食材刺激代謝——三個方法背後的邏輯，和你想的可能不一樣。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta { background: var(--sage); color: var(--white); }
+        .nav-links a.cta:hover { background: var(--bark); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+        .series-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--sage-pale);
+            border-radius: 50px;
+            padding: 5px 14px;
+            margin-bottom: 16px;
+        }
+        .series-badge .tag { font-size: 0.75rem; font-weight: 600; color: var(--terracotta); letter-spacing: 0.05em; }
+        .series-badge .series-name { font-size: 0.75rem; color: var(--sage); font-weight: 500; }
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author { font-weight: 500; color: var(--bark); }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+        .article-content strong { color: var(--bark); font-weight: 600; }
+
+        /* ===== BOXES ===== */
+        .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .highlight-box p { margin-bottom: 8px; font-size: 1rem; color: var(--bark); font-weight: 500; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 24px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .discovery-box .icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+        .discovery-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+        .warning-box {
+            background: rgba(193,127,89,0.07);
+            border-left: 4px solid var(--terracotta);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .warning-box p { margin-bottom: 8px; font-size: 0.95rem; color: var(--bark); }
+        .warning-box p:last-child { margin-bottom: 0; }
+
+        .teaser-box {
+            background: var(--bark);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 36px 0;
+        }
+        .teaser-box h5 { color: var(--sage-light); margin: 0 0 10px; font-size: 0.9rem; letter-spacing: 0.05em; font-weight: 600; }
+        .teaser-box p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 0; }
+
+        /* ===== 對策編號 ===== */
+        .strategy-block { margin: 40px 0; }
+        .strategy-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+        .strategy-number {
+            width: 40px;
+            height: 40px;
+            background: var(--terracotta);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        .strategy-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--bark);
+        }
+        .strategy-subtitle {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        /* ===== 欺騙餐真相 ===== */
+        .cheat-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .cheat-card {
+            border-radius: var(--radius);
+            padding: 20px 18px;
+        }
+        .cheat-card.myth {
+            background: rgba(193,127,89,0.07);
+            border: 1.5px solid rgba(193,127,89,0.25);
+        }
+        .cheat-card.reality {
+            background: var(--sage-pale);
+            border: 1.5px solid var(--sage-light);
+        }
+        .cheat-card-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+        }
+        .cheat-card.myth .cheat-card-label { color: var(--terracotta); }
+        .cheat-card.reality .cheat-card-label { color: var(--sage); }
+        .cheat-card p {
+            font-size: 0.9rem;
+            line-height: 1.75;
+            color: var(--bark);
+            margin-bottom: 0 !important;
+        }
+
+        /* ===== 醣類功能表 ===== */
+        .carb-roles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .carb-role {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 16px 14px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .carb-role .cr-icon { font-size: 1.5rem; margin-bottom: 8px; }
+        .carb-role .cr-title { font-size: 0.85rem; font-weight: 700; color: var(--bark); margin-bottom: 4px; }
+        .carb-role .cr-desc { font-size: 0.78rem; color: var(--text-light); line-height: 1.5; }
+
+        /* ===== 換食材對照表 ===== */
+        .swap-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin: 20px 0;
+        }
+        .swap-table th {
+            background: var(--sage);
+            color: var(--white);
+            padding: 11px 16px;
+            text-align: left;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        .swap-table th:first-child { border-radius: var(--radius) 0 0 0; }
+        .swap-table th:last-child { border-radius: 0 var(--radius) 0 0; }
+        .swap-table td {
+            padding: 11px 16px;
+            border-bottom: 1px solid var(--sage-light);
+            color: var(--text);
+            line-height: 1.6;
+            vertical-align: top;
+        }
+        .swap-table tr:last-child td { border-bottom: none; }
+        .swap-table tr:nth-child(even) td { background: var(--sage-pale); }
+        .swap-table .arrow { color: var(--sage); font-weight: 700; text-align: center; }
+        .swap-table .benefit { font-size: 0.78rem; color: var(--text-light); }
+
+        /* ===== 放鬆餐熱量示意 ===== */
+        .relax-meal-bar {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-sm);
+        }
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+        .bar-label span:last-child { color: var(--terracotta); font-weight: 600; }
+        .bar-track {
+            height: 12px;
+            background: var(--sage-pale);
+            border-radius: 6px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            background: var(--sage);
+        }
+        .bar-fill.over { background: var(--terracotta); }
+        .bar-note {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot { width: 5px; height: 5px; background: var(--sage-light); border-radius: 50%; }
+
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 500; color: var(--bark); margin-bottom: 4px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .author-links { display: flex; gap: 8px; margin-top: 10px; }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+            .article-header h1 { font-size: 1.7rem; }
+            .cheat-compare { grid-template-columns: 1fr; }
+            .carb-roles { grid-template-columns: 1fr; }
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <div class="series-badge">
+        <span class="tag">飲食筆記</span>
+        <span class="series-name">停滯期系列 · 第二篇</span>
+    </div>
+    <h1>停滯期對策（上）：從吃的調整開始</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 3 月 13 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260313book08.png" alt="停滯期對策（上）：從吃的調整開始">
+</div>
+
+<div class="article-content">
+
+    <p>上一篇我們聊了<a href="../20260313book07/" style="color:var(--sage);font-weight:600;text-decoration:underline;text-underline-offset:3px;">停滯的六大原因</a>——搞清楚自己的停滯屬於哪一種，是找出路的第一步。</p>
+
+    <p>這一篇開始談對策。先從「吃」下手，因為飲食是最容易調整、也最常被誤解的環節。</p>
+
+    <p>有三件事我想特別說清楚：欺騙餐的真相、醣類吃太少反而更難瘦、還有換食材刺激代謝。每一個背後的邏輯，其實都有點反直覺。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <!-- 對策一 -->
+    <div class="strategy-block">
+        <div class="strategy-header">
+            <div class="strategy-number">1</div>
+            <div>
+                <div class="strategy-title">放鬆的一餐——但不是報復性大吃</div>
+                <div class="strategy-subtitle">關於「欺騙餐」，你可能聽過不一樣的版本</div>
+            </div>
+        </div>
+
+        <p>「欺騙餐」這個概念你可能聽過：每週安排一次放鬆的高熱量餐，據說可以「欺騙身體」、重啟代謝、讓體重繼續往下走。</p>
+
+        <p>聽起來很美好。但實際上呢？</p>
+
+        <div class="cheat-compare">
+            <div class="cheat-card myth">
+                <div class="cheat-card-label">✕ 常見的誤解</div>
+                <p>欺騙餐是「給身體的獎勵」，吃越多越高熱量越好，這樣代謝才能被重啟，減脂更有效率。</p>
+            </div>
+            <div class="cheat-card reality">
+                <div class="cheat-card-label">✓ 比較接近現實的樣子</div>
+                <p>放鬆一餐的目的是減輕心理壓力、讓飲食計畫更持久，而不是用來加速代謝——目前研究並不支持這個效果。</p>
+            </div>
+        </div>
+
+        <p>事實上，欺騙餐的研究顯示，非計劃性的欺騙餐很容易出現得越來越頻繁，甚至與飲食失調有一定的相關性。把欺騙餐當成減脂不可或缺的必要策略、非做不可的身體重啟儀式，這種想法本身就是個陷阱——它很容易讓人用「這是為了減脂」來合理化暴食，然後陷入「吃完再補償」的惡性循環。</p>
+
+        <div class="warning-box">
+            <p>我想請你先思考一個問題：<strong>你是因為壓力太大才需要欺騙餐，還是平日的飲食限制本來就太嚴格了？</strong></p>
+            <p>如果你經常需要靠大餐來紓壓，也許該調整的不是欺騙餐的頻率，而是平日飲食的鬆緊度。</p>
+        </div>
+
+        <p>放鬆的一餐是需要的，但方式很重要。比較合理的作法是：</p>
+
+        <div class="relax-meal-bar">
+            <div class="bar-label">
+                <span>減脂日熱量（例：1363 大卡）</span>
+                <span>正常</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:68%"></div></div>
+            <div class="bar-label">
+                <span>放鬆餐當天（吃回 TDEE，例：1700 大卡）</span>
+                <span>+約 300–500 大卡</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill over" style="width:85%"></div></div>
+            <div class="bar-note">放鬆餐的目標是吃回「維持體重的熱量」，而不是無上限大吃。放鬆享受，不是報復。</div>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <!-- 對策二 -->
+    <div class="strategy-block">
+        <div class="strategy-header">
+            <div class="strategy-number">2</div>
+            <div>
+                <div class="strategy-title">醣類，可能不是你的敵人</div>
+                <div class="strategy-subtitle">停滯了就戒澱粉？有時候反而是問題所在</div>
+            </div>
+        </div>
+
+        <p>「老闆，不要飯，菜多一點！」</p>
+        <p>「鐵板麵幫我換成蛋，謝謝！」</p>
+
+        <p>只要體重不動，少吃澱粉就對了——這種默契，連餐廳老闆都懂。</p>
+
+        <p>但我想說一個你可能沒想過的可能性：<strong>停滯的原因，有時候剛好相反——是醣類吃太少了。</strong></p>
+
+        <p>醣類是身體最快速的能量來源，它不只是「讓你胖的東西」，它有非常具體的功能：</p>
+
+        <div class="carb-roles">
+            <div class="carb-role">
+                <div class="cr-icon">⚡</div>
+                <div class="cr-title">運動的燃料</div>
+                <div class="cr-desc">訓練時肌肉最直接使用的能量，醣不夠，運動表現會明顯下滑。</div>
+            </div>
+            <div class="carb-role">
+                <div class="cr-icon">🧠</div>
+                <div class="cr-title">大腦的糧食</div>
+                <div class="cr-desc">大腦幾乎只用葡萄糖運作，醣不足容易疲勞、難以專注。</div>
+            </div>
+            <div class="carb-role">
+                <div class="cr-icon">⚖️</div>
+                <div class="cr-title">荷爾蒙的平衡</div>
+                <div class="cr-desc">長期低醣會影響甲狀腺功能、提升皮質醇，讓代謝更難運作。</div>
+            </div>
+        </div>
+
+        <p>當身體長期察覺到醣類不足，會啟動代謝適應——讓你更累、更想吃、運動效率更差。停滯的根源反而在這裡。</p>
+
+        <div class="highlight-box">
+            <p>「老師，我增加澱粉量，過了兩三天，體重居然開始下降了！」</p>
+            <p>這不是個案。在合理範圍內稍微補回醣類，有時候反而是打破停滯的關鍵。</p>
+        </div>
+
+        <p>這不是叫你毫無節制地吃澱粉。而是如果你已經在執行低醣飲食一段時間，停滯了又感到疲憊、情緒低落——不妨先試試稍微把醣類補回來，觀察一週的反應。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <!-- 對策三 -->
+    <div class="strategy-block">
+        <div class="strategy-header">
+            <div class="strategy-number">3</div>
+            <div>
+                <div class="strategy-title">換個食材吃看看</div>
+                <div class="strategy-subtitle">一成不變的飲食，身體也會進入「不痛不癢」的狀態</div>
+            </div>
+        </div>
+
+        <p>雞胸、豆漿、地瓜、沙拉——這套菜單在減脂初期很有效，重複性高、容易執行，很多人靠它在一兩個月內取得不錯的成果。</p>
+
+        <p>但時間拉長之後，身體慢慢習慣了這套模式，刺激減少，反應也跟著變鈍。這時候，<strong>不是你做錯了什麼，是身體需要一點新的刺激。</strong></p>
+
+        <p>換食材有幾個層面的好處：</p>
+
+        <p><strong>營養更均衡。</strong>每種天然食物都有獨特的微量營養素。長期只吃雞胸，就少了魚類的 Omega-3、牛肉的鐵質、豆腐的植物性蛋白質。換著吃，營養自然更完整。</p>
+
+        <p><strong>腸道菌叢更多元。</strong>飲食多樣性直接影響腸道菌相的豐富度。菌相單一，代謝效率也會受影響；換不同種類的蔬菜、全穀、發酵食品，有助於維持腸道的健康循環。</p>
+
+        <p><strong>打破代謝的慣性。</strong>同樣熱量、不同食材組合，會給身體不同的代謝刺激。有時候光是換個蛋白質來源，就能讓停滯的體重重新動起來。</p>
+
+        <div class="discovery-box">
+            <span class="icon">🔄</span>
+            <p>有位學員把主食從麵條、水餃換成米飯和地瓜，體重就開始動了。原因是她吃麵食容易不知不覺吃多，又容易吸附湯汁、多吃進鹽分——換了食材，問題自然解決。</p>
+        </div>
+
+        <p>換食材不需要大幅度改變，小幅替換就夠了：</p>
+
+        <table class="swap-table">
+            <thead>
+                <tr>
+                    <th>原本的選擇</th>
+                    <th class="arrow">→</th>
+                    <th>可以換成</th>
+                    <th>額外的好處</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>雞胸肉</td>
+                    <td class="arrow">→</td>
+                    <td>鮭魚、鯛魚、蝦</td>
+                    <td class="benefit">Omega-3、碘、不同胺基酸組合</td>
+                </tr>
+                <tr>
+                    <td>白米飯</td>
+                    <td class="arrow">→</td>
+                    <td>糙米、藜麥、燕麥</td>
+                    <td class="benefit">更多膳食纖維、B 群、礦物質</td>
+                </tr>
+                <tr>
+                    <td>雞蛋</td>
+                    <td class="arrow">→</td>
+                    <td>毛豆、豆腐、天貝</td>
+                    <td class="benefit">植物性蛋白質、植化素</td>
+                </tr>
+                <tr>
+                    <td>菠菜、空心菜</td>
+                    <td class="arrow">→</td>
+                    <td>花椰菜、甜椒、紫高麗</td>
+                    <td class="benefit">不同種類的抗氧化物</td>
+                </tr>
+                <tr>
+                    <td>御飯糰＋豆漿</td>
+                    <td class="arrow">→</td>
+                    <td>雞腿地瓜沙拉</td>
+                    <td class="benefit">相同熱量，給身體不同的刺激</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>吃的調整，核心只有一件事</h2>
+
+    <p>這三個對策——放鬆的一餐、補回適量醣類、換食材——背後的邏輯都是一樣的：<strong>給身體一個它沒有預期到的變化，讓它重新做出反應。</strong></p>
+
+    <p>不是越嚴格越好，不是越少吃越有效。停滯期需要的，往往是一點點彈性，而不是更多的壓力。</p>
+
+    <div class="teaser-box">
+        <h5>✦ 停滯期系列・下一篇</h5>
+        <p>吃的調整只是一半。下一篇來談「動的調整與心理面」——運動過量也會讓你停滯、換個運動內容可以重新刺激代謝，以及停滯期最常被忽略的隱形阻力：情緒與壓力。</p>
+    </div>
+
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
