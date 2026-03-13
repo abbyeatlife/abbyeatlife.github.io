@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>外食族減脂實戰：超商、便當店、餐廳都能吃 — Abby營養師修熄示</title>
+    <meta name="description" content="外食不是減脂的天敵，是需要多一點策略的場景。超商、便當店、餐廳三個場景的實戰點餐邏輯，加上七成人都不知道的低估熱量陷阱。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta { background: var(--sage); color: var(--white); }
+        .nav-links a.cta:hover { background: var(--bark); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author { font-weight: 500; color: var(--bark); }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+        .article-content h5 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--bark);
+            margin: 32px 0 14px;
+        }
+        .article-content strong { color: var(--bark); font-weight: 600; }
+
+        /* ===== BOXES ===== */
+        .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .highlight-box p { margin-bottom: 8px; font-size: 1rem; color: var(--bark); font-weight: 500; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 24px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .discovery-box .icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+        .discovery-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+        .teaser-box {
+            background: var(--bark);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 36px 0;
+        }
+        .teaser-box h5 { color: var(--sage-light); margin: 0 0 10px; font-size: 0.9rem; letter-spacing: 0.05em; font-weight: 600; }
+        .teaser-box p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 0; }
+
+        /* ===== 統計數字 ===== */
+        .stat-block {
+            background: var(--bark);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+            margin: 28px 0;
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 600;
+            color: var(--sage-light);
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .stat-number span { font-size: 2rem; }
+        .stat-desc { color: rgba(255,255,255,0.85); line-height: 1.8; font-size: 0.95rem; }
+        .stat-desc strong { color: var(--white); }
+
+        /* ===== 沙拉比較 ===== */
+        .compare-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .compare-card {
+            border-radius: var(--radius);
+            padding: 20px;
+            position: relative;
+        }
+        .compare-card.looks {
+            background: var(--sage-pale);
+            border: 1.5px solid var(--sage-light);
+        }
+        .compare-card.real {
+            background: rgba(193,127,89,0.08);
+            border: 1.5px solid rgba(193,127,89,0.3);
+        }
+        .compare-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 10px;
+        }
+        .compare-card.looks .compare-label { color: var(--sage); }
+        .compare-card.real .compare-label { color: var(--terracotta); }
+        .compare-food { font-size: 0.9rem; color: var(--bark); line-height: 1.8; margin-bottom: 12px; }
+        .compare-kcal {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+        .compare-card.looks .compare-kcal { color: var(--sage); }
+        .compare-card.real .compare-kcal { color: var(--terracotta); }
+        .compare-kcal span { font-size: 0.85rem; font-weight: 400; color: var(--text-light); }
+
+        /* ===== 場景卡片 ===== */
+        .scene-block {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            margin: 28px 0;
+        }
+        .scene-header {
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .scene-header.convenience { background: var(--sage); }
+        .scene-header.bento { background: var(--bark-light); }
+        .scene-header.restaurant { background: var(--terracotta); }
+        .scene-icon { font-size: 1.5rem; }
+        .scene-title { font-size: 1.05rem; font-weight: 700; color: var(--white); }
+        .scene-body { padding: 20px 24px; }
+
+        .do-dont {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .do-list, .dont-list {
+            border-radius: var(--radius);
+            padding: 14px 16px;
+        }
+        .do-list { background: var(--sage-pale); }
+        .dont-list { background: rgba(193,127,89,0.07); }
+        .list-title {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            margin-bottom: 8px;
+        }
+        .do-list .list-title { color: var(--sage); }
+        .dont-list .list-title { color: var(--terracotta); }
+        .list-item {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.8;
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        .list-item::before { flex-shrink: 0; margin-top: 2px; }
+        .do-list .list-item::before { content: '✓'; color: var(--sage); font-weight: 700; }
+        .dont-list .list-item::before { content: '✕'; color: var(--terracotta); font-weight: 700; }
+
+        .scene-tip {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 12px 16px;
+            font-size: 0.88rem;
+            color: var(--bark);
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+        .scene-tip .tip-icon { flex-shrink: 0; }
+
+        /* ===== 便當示範 ===== */
+        .bento-order {
+            background: var(--sage-pale);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+            color: var(--bark);
+            line-height: 1.9;
+        }
+        .bento-order .order-title {
+            font-weight: 700;
+            color: var(--sage);
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 8px;
+        }
+
+        /* ===== 通用原則 ===== */
+        .principles-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+        .principle {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 22px 18px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border-bottom: 3px solid var(--sage);
+        }
+        .principle .p-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--sage-light);
+            margin-bottom: 8px;
+        }
+        .principle .p-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--bark);
+            margin-bottom: 6px;
+        }
+        .principle .p-desc {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot { width: 5px; height: 5px; background: var(--sage-light); border-radius: 50%; }
+
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 500; color: var(--bark); margin-bottom: 4px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .author-links { display: flex; gap: 8px; margin-top: 10px; }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+            .article-header h1 { font-size: 1.7rem; }
+            .stat-block { flex-direction: column; text-align: center; gap: 16px; }
+            .stat-number { font-size: 3rem; }
+            .compare-wrap { grid-template-columns: 1fr; }
+            .do-dont { grid-template-columns: 1fr; }
+            .principles-row { grid-template-columns: 1fr; }
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">飲食筆記</span>
+    <h1>外食族減脂實戰：超商、便當店、餐廳都能吃</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 3 月 13 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260313book06.png" alt="外食族減脂實戰：超商、便當店、餐廳都能吃">
+</div>
+
+<div class="article-content">
+
+    <p>「營養師，我都在外面吃，是不是一定要自己煮才能減脂？」</p>
+
+    <p>這個問題我被問過很多次。每次我都想反問：<strong>難道自己煮的人，就一定瘦得下來嗎？</strong></p>
+
+    <p>自己煮卻油放太多、飯盛太滿，結果一樣超標——這樣的例子也不少。問題的核心從來不是在哪裡吃，而是<strong>吃了什麼、吃了多少</strong>。</p>
+
+    <p>外食的確比自己煮難控制，因為你看不見廚房裡用了多少油、加了多少糖。但只要掌握幾個關鍵判斷，外食照樣可以吃得有策略。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>外食最大的陷阱：看不見的熱量</h2>
+
+    <p>我常用沙拉來舉例。兩盤看起來差不多的沙拉，體積幾乎一樣，但熱量可以差到一倍：</p>
+
+    <div class="compare-wrap">
+        <div class="compare-card looks">
+            <div class="compare-label">▸ 沙拉 A</div>
+            <div class="compare-food">
+                大量生菜<br>
+                雞胸肉切片<br>
+                小番茄、小黃瓜<br>
+                油醋醬少量
+            </div>
+            <div class="compare-kcal">280 <span>大卡</span></div>
+        </div>
+        <div class="compare-card real">
+            <div class="compare-label">▸ 沙拉 B（看起來差不多）</div>
+            <div class="compare-food">
+                生菜稍少<br>
+                酪梨半顆、杏仁一把<br>
+                培根、起司<br>
+                凱薩醬兩大匙
+            </div>
+            <div class="compare-kcal">560 <span>大卡</span></div>
+        </div>
+    </div>
+
+    <p>差別不在份量，在食材的熱量密度——酪梨、堅果、起司、醬料，都是每公克熱量很高的東西，加進去之後體積沒增加多少，熱量卻悄悄翻倍。</p>
+
+    <div class="highlight-box">
+        <p>外食的隱形熱量主要來自兩個地方：<strong>烹調用油</strong>和<strong>醬料調味</strong>。食物本身看起來份量差不多，但這兩樣東西加進去，熱量就完全不同了。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>七成人都低估了自己吃多少</h2>
+
+    <p>這不是在指責任何人——這是有研究支持的現象。</p>
+
+    <div class="stat-block">
+        <div class="stat-number">7<span>成</span></div>
+        <div class="stat-desc">
+            研究發現，將近 <strong>七成的人會低估一餐的熱量</strong>，其中約有四分之一的人，低估幅度甚至高達 500 大卡——也就是說，他們在不知不覺中，多吃了將近一顆漢堡的熱量，卻完全沒有意識到。
+        </div>
+    </div>
+
+    <p>低估的原因很多：對食材不熟悉、看不見廚房裡的油、某些食物吃起來特別愉悅所以低估了量……這些都是正常的人性反應。</p>
+
+    <p>知道這件事不是要讓你焦慮，而是要建立一個合理的警覺：<strong>成效不如預期的時候，先想想是不是有低估的地方，而不是懷疑自己的體質有問題。</strong></p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>三個場景的實戰點餐邏輯</h2>
+
+    <!-- 超商 -->
+    <div class="scene-block">
+        <div class="scene-header convenience">
+            <span class="scene-icon">🏪</span>
+            <span class="scene-title">超商：組合的藝術</span>
+        </div>
+        <div class="scene-body">
+            <p style="font-size:0.95rem; margin-bottom:16px; color:var(--text-light);">超商的優勢是有清楚的營養標示，每樣東西都能查熱量，是外食裡最透明的選擇。問題在於組合——單買一個茶葉蛋沒問題，但加上一個可頌和一杯拿鐵，熱量就飛了。</p>
+
+            <div class="do-dont">
+                <div class="do-list">
+    <div class="list-title">✦ 好的組合</div>
+                    <div class="list-item">茶葉蛋 / 水煮蛋 1–2 顆</div>
+                    <div class="list-item">無糖豆漿或鮮奶</div>
+                    <div class="list-item">地瓜 / 玉米 / 御飯糰（選內餡簡單的）</div>
+                    <div class="list-item">生菜沙拉（醬料另外少放）</div>
+                    <div class="list-item">無糖茶 / 黑咖啡</div>
+                </div>
+                <div class="dont-list">
+    <div class="list-title">✦ 容易踩的地雷</div>
+                    <div class="list-item">可頌、菠蘿麵包等酥皮類</div>
+                    <div class="list-item">調味優格、含糖豆漿</div>
+                    <div class="list-item">炸物（關東煮的炸豆皮、甜不辣）</div>
+                    <div class="list-item">沙拉醬一次全擠</div>
+                    <div class="list-item">含糖飲料（包括果汁）</div>
+                </div>
+            </div>
+
+            <div class="scene-tip">
+                <span class="tip-icon">💡</span>
+                <span>買東西前翻到背面先看「每份熱量」——不用全部都懂，這個數字先看就好。同類型的東西比一比，通常就能選出比較好的那個。</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 便當店 -->
+    <div class="scene-block">
+        <div class="scene-header bento">
+            <span class="scene-icon">🍱</span>
+            <span class="scene-title">便當店：點餐可以客製化</span>
+        </div>
+        <div class="scene-body">
+            <p style="font-size:0.95rem; margin-bottom:16px; color:var(--text-light);">有些便當店老闆是接受客製化的，只要你願意為了自己的減脂計畫多開口問一句——試試看，說不定比你想像的容易。</p>
+
+            <div class="bento-order">
+                <div class="order-title">▸ 實際可以這樣說</div>
+                「老闆，主菜給我雞腿，飯半碗就好，菜可以多給我一些嗎？醬料的話少淋一點，謝謝。」
+            </div>
+
+            <div class="do-dont">
+                <div class="do-list">
+                    <div class="list-title">✦ 選擇方向</div>
+                    <div class="list-item">主菜選雞腿（去皮）、魚類、豆腐</div>
+                    <div class="list-item">飯量減半，菜量補足</div>
+                    <div class="list-item">滷的、蒸的、燙的優先</div>
+                    <div class="list-item">有湯的便當多喝湯、少吃料</div>
+                </div>
+                <div class="dont-list">
+                    <div class="list-title">✦ 盡量避免</div>
+                    <div class="list-item">炸排骨、炸雞腿、香腸</div>
+                    <div class="list-item">飯壓得很紮實（份量會多出很多）</div>
+                    <div class="list-item">淋了大量滷汁或醬料</div>
+                    <div class="list-item">配菜都是炒過的、勾芡的</div>
+                </div>
+            </div>
+
+            <div class="scene-tip">
+                <span class="tip-icon">💡</span>
+                <span>同樣是雞腿便當，炸雞腿約 350 大卡，去皮滷雞腿只有約 180 大卡——主菜的選擇，直接影響整個便當的熱量。</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 餐廳 -->
+    <div class="scene-block">
+        <div class="scene-header restaurant">
+            <span class="scene-icon">🍽️</span>
+            <span class="scene-title">餐廳聚餐：不用當那個掃興的人</span>
+        </div>
+        <div class="scene-body">
+            <p style="font-size:0.95rem; margin-bottom:16px; color:var(--text-light);">聚餐最難的不是食物，是社交壓力。你不需要在朋友面前滴醬不沾、只吃菜，但可以在點餐和吃的順序上做一些小調整。</p>
+
+            <div class="do-dont">
+                <div class="do-list">
+                    <div class="list-title">✦ 可以這樣做</div>
+                    <div class="list-item">先吃蔬菜和蛋白質，再吃主食</div>
+                    <div class="list-item">醬料請店家放旁邊，自己控制份量</div>
+                    <div class="list-item">點菜時選清蒸、水煮、烤的</div>
+                    <div class="list-item">喝水或無糖飲品代替含糖飲料</div>
+                    <div class="list-item">吃慢一點，讓飽足感追上來</div>
+                </div>
+                <div class="dont-list">
+                    <div class="list-title">✦ 常見的失控點</div>
+                    <div class="list-item">邊聊天邊吃、速度太快沒察覺飽</div>
+                    <div class="list-item">麵包籃先吃一大半</div>
+                    <div class="list-item">每道菜都沾滿醬料</div>
+                    <div class="list-item">甜點「大家一起分」結果自己吃了一半</div>
+                </div>
+            </div>
+
+            <div class="scene-tip">
+                <span class="tip-icon">💡</span>
+                <span>聚餐不需要完美控制，這一餐多吃一點沒有關係。重要的是<strong>前後幾天的整體飲食</strong>，而不是單一一餐的得失。</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>任何場景都通用的三個原則</h2>
+
+    <p>不管在哪裡吃，記住這三件事就夠了：</p>
+
+    <div class="principles-row">
+        <div class="principle">
+            <div class="p-num">01</div>
+            <div class="p-title">蛋白質先選</div>
+            <div class="p-desc">先決定主菜是什麼、蛋白質夠不夠，再搭配其他食物。蛋白質選對了，整餐的熱量和飽足感都會比較好控制。</div>
+        </div>
+        <div class="principle">
+            <div class="p-num">02</div>
+            <div class="p-title">醬料放旁邊</div>
+            <div class="p-desc">醬料是外食熱量最難估計的部分。能分開就分開，自己沾著吃——同樣的菜，可能直接省下 100–200 大卡。</div>
+        </div>
+        <div class="principle">
+            <div class="p-num">03</div>
+            <div class="p-title">蔬菜補足量</div>
+            <div class="p-desc">外食最常缺的是蔬菜。點菜時刻意多加一份燙青菜或沙拉，既增加飽足感，也把整體熱量密度拉低。</div>
+        </div>
+    </div>
+
+    <div class="discovery-box">
+        <span class="icon">🌿</span>
+        <p>不需要每一餐都做到完美。外食是練習判斷的機會——每次做一個比上次好一點點的選擇，慢慢累積下來，飲食習慣就會改變。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>外食不是障礙，是練習</h2>
+
+    <p>我帶過很多外食族學員，他們一開始都覺得自己的飲食環境很糟糕。但隨著對食物越來越熟悉，點餐的判斷變快了，不需要每次都查熱量，慢慢養出了屬於自己的一套直覺。</p>
+
+    <p>這種直覺不是天生的，是透過一次又一次的選擇練習出來的。<strong>從今天開始，每次外食就是一次練習的機會。</strong></p>
+
+    <div class="teaser-box">
+        <h5>✦ 飲食筆記系列</h5>
+        <p>這個系列從三大營養素到點心選擇、外食策略，接下來還會聊到停滯期怎麼辦——那是很多人減脂到一半最容易放棄的關卡。</p>
+    </div>
+
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
