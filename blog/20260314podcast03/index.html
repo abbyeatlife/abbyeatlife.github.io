@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>更年期後壞膽固醇為什麼容易上升？從 30 歲開始的血脂保養 — Abby營養師修熄示</title>
+    <meta name="description" content="更年期後雌激素下降，HDL 合成能力跟著減弱，壞膽固醇更容易升高。但真正的準備，應該從 30 歲就開始。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7C9070;
+            --sage-light: #B8C9AF;
+            --sage-pale: #EEF2EB;
+            --cream: #FAF7F2;
+            --warm: #F5EBE4;
+            --bark: #4A3728;
+            --bark-light: #7A6050;
+            --terracotta: #C17A5A;
+            --white: #FFFFFF;
+            --text: #2C2420;
+            --text-light: #6B5B52;
+            --border: #E0D8D0;
+            --shadow-sm: 0 1px 3px rgba(74,55,40,0.06);
+            --shadow-md: 0 4px 20px rgba(74,55,40,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(250,247,242,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(124,144,112,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta { background: var(--sage); color: var(--white); }
+        .nav-links a.cta:hover { background: var(--bark); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+        /* ── Header ── */
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author { font-weight: 500; color: var(--bark); }
+
+        /* ── Cover ── */
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Content ── */
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+        .article-content strong { color: var(--bark); font-weight: 600; }
+
+        /* ── Boxes ── */
+        .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .highlight-box p { margin-bottom: 8px; font-size: 1rem; color: var(--bark); font-weight: 500; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 24px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .discovery-box .icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+        .discovery-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+        .teaser-box {
+            background: var(--bark);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 36px 0;
+        }
+        .teaser-box h5 { color: var(--sage-light); margin: 0 0 10px; font-size: 0.9rem; letter-spacing: 0.05em; font-weight: 600; }
+        .teaser-box p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 0; }
+
+        /* ── Section divider ── */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot { width: 5px; height: 5px; background: var(--sage-light); border-radius: 50%; }
+
+        /* ── Timeline ── */
+        .timeline {
+            position: relative;
+            margin: 28px 0;
+            padding-left: 28px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 6px;
+            bottom: 6px;
+            width: 2px;
+            background: var(--sage-light);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 28px;
+        }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -24px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--sage);
+            border: 2px solid var(--cream);
+            box-shadow: 0 0 0 2px var(--sage-light);
+        }
+        .timeline-item.highlight::before { background: var(--terracotta); box-shadow: 0 0 0 2px #F0C4AE; }
+        .timeline-age {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--sage);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+        .timeline-age.terra { color: var(--terracotta); }
+        .timeline-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--bark);
+            margin-bottom: 6px;
+        }
+        .timeline-desc {
+            font-size: 0.92rem;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* ── HDL vs LDL visual ── */
+        .cholesterol-visual {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin: 24px 0;
+            box-shadow: var(--shadow-sm);
+        }
+        .chol-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .chol-row:last-child { margin-bottom: 0; }
+        .chol-badge {
+            flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.78rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+        .chol-badge.hdl { background: var(--sage-pale); color: var(--sage); }
+        .chol-badge.ldl { background: #FDF0EB; color: var(--terracotta); }
+        .chol-info { flex: 1; }
+        .chol-name { font-size: 0.88rem; font-weight: 700; color: var(--bark); margin-bottom: 2px; }
+        .chol-desc { font-size: 0.82rem; color: var(--text-light); line-height: 1.5; }
+        .chol-bar-wrap { flex-shrink: 0; width: 100px; }
+        .chol-bar {
+            height: 6px;
+            border-radius: 3px;
+            background: var(--border);
+            overflow: hidden;
+            margin-bottom: 4px;
+        }
+        .chol-bar-fill { height: 100%; border-radius: 3px; }
+        .chol-bar-fill.hdl { background: var(--sage); width: 70%; }
+        .chol-bar-fill.ldl { background: var(--terracotta); width: 45%; }
+        .chol-bar-label { font-size: 0.7rem; color: var(--text-light); }
+
+        /* ── Checklist ── */
+        .checklist {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-sm);
+        }
+        .checklist-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--sage);
+            letter-spacing: 0.04em;
+            margin-bottom: 12px;
+        }
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--sage-pale);
+            font-size: 0.92rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .check-item:last-child { border-bottom: none; }
+        .check-item::before {
+            content: '✓';
+            color: var(--sage);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ── Summary card ── */
+        .summary-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            margin: 36px 0;
+            box-shadow: var(--shadow-sm);
+            border-top: 4px solid var(--sage);
+        }
+        .summary-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--bark);
+            margin-bottom: 16px;
+        }
+        .summary-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.7;
+        }
+        .summary-row:last-child { margin-bottom: 0; }
+        .summary-row .tag {
+            flex-shrink: 0;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 2px 10px;
+            border-radius: 50px;
+            height: fit-content;
+            margin-top: 3px;
+        }
+        .summary-row .tag.terra { background: #FDF0EB; color: var(--terracotta); }
+
+        /* ── Series nav ── */
+        .series-nav {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 36px 0;
+        }
+        .series-link {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            box-shadow: var(--shadow-sm);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            transition: border-color 0.2s ease;
+        }
+        .series-link:hover { border-color: var(--sage); }
+        .series-link .direction {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+        .series-link .title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.5;
+        }
+
+        /* ── Footer / Author ── */
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 500; color: var(--bark); margin-bottom: 4px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .author-links { display: flex; gap: 8px; margin-top: 10px; }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+            .article-header h1 { font-size: 1.7rem; }
+            .series-nav { grid-template-columns: 1fr; }
+            .chol-bar-wrap { display: none; }
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">血脂健康・女性專題</span>
+    <h1>更年期後壞膽固醇<br>為什麼容易上升？</h1>
+    <div class="article-meta">
+        <span class="author">Abby 營養師</span>
+        <span>2026 年 3 月 14 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260314podcast03.png" alt="更年期後壞膽固醇為什麼容易上升？">
+</div>
+
+<div class="article-content">
+
+    <p>這一篇是血脂系列的第三篇，主題是女性專屬的血脂議題：<strong>更年期後，為什麼壞膽固醇特別容易升高？</strong></p>
+
+    <p>這不是一個可以靠「更年期之後再來努力」解決的問題。它需要更早準備——而且早的程度，可能比你想的還要早很多。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>先搞清楚：HDL 和 LDL 分別是什麼</h2>
+
+    <p>膽固醇本身不是壞東西，它是身體合成荷爾蒙、維持細胞膜結構的必要原料。問題在於它的<strong>搬運形式</strong>——也就是 HDL 和 LDL 的比例。</p>
+
+    <div class="cholesterol-visual">
+        <div class="chol-row">
+            <div class="chol-badge hdl">HDL<br>好</div>
+            <div class="chol-info">
+                <div class="chol-name">高密度脂蛋白（HDL）</div>
+                <div class="chol-desc">把多餘的膽固醇從血管壁「撿回來」送回肝臟處理。數值越高越好，是保護心血管的朋友。</div>
+            </div>
+            <div class="chol-bar-wrap">
+                <div class="chol-bar"><div class="chol-bar-fill hdl"></div></div>
+                <div class="chol-bar-label">女性 &gt; 50 mg/dL</div>
+            </div>
+        </div>
+        <div class="chol-row">
+            <div class="chol-badge ldl">LDL<br>壞</div>
+            <div class="chol-info">
+                <div class="chol-name">低密度脂蛋白（LDL）</div>
+                <div class="chol-desc">把膽固醇從肝臟送往全身，過多時容易堆積在血管壁，引發發炎與動脈硬化。數值要控制在 100 mg/dL 以下。</div>
+            </div>
+            <div class="chol-bar-wrap">
+                <div class="chol-bar"><div class="chol-bar-fill ldl"></div></div>
+                <div class="chol-bar-label">&lt; 100 mg/dL</div>
+            </div>
+        </div>
+    </div>
+
+    <p>你可能注意到，HDL 的女性標準（&gt; 50）比男性標準（&gt; 40）高——這是因為女性體內的<strong>雌激素</strong>可以促進肝臟合成 HDL，所以女性在生育年齡期間，HDL 通常天生就比男性高一些。</p>
+
+    <p>這聽起來是好事，但它同時意味著：當雌激素在更年期後大幅下降，這個天然優勢也會跟著消失。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>更年期發生了什麼事？</h2>
+
+    <p>更年期（平均 45–55 歲，約抓 50 歲）前後，雌激素快速減退，對血脂的影響是連鎖的：</p>
+
+    <div class="discovery-box">
+        <span class="icon">🔗</span>
+        <p><strong>雌激素下降 → HDL 合成能力減弱 → HDL 降低</strong><br>
+        同時，LDL 的清除效率也會跟著變差，讓壞膽固醇更容易在血管壁堆積。<br>
+        這也是為什麼更年期後，女性心血管疾病的風險會明顯上升——不是突然變得不健康，而是原本由雌激素撐著的保護力，慢慢退場了。</p>
+    </div>
+
+    <p>更年期本身不是病，但它是一個身體重新洗牌的時期。如果在這之前沒有建立好基礎，這個轉折就很容易變成一個斷崖。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>為什麼準備要從 30 歲開始？</h2>
+
+    <p>這是我自己覺得很值得認真想的一件事。</p>
+
+    <p>如果更年期平均是 50 歲，往前推 20 年就是 30 歲。這 20 年，是你用來建立代謝基礎、累積肌肉量、養成飲食習慣的黃金時間。等到更年期才開始想「我要來保養血脂」，很多事情的難度已經翻倍。</p>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-age">20 幾歲</div>
+            <div class="timeline-title">出社會、建立生活節奏</div>
+            <div class="timeline-desc">雌激素保護力全開，血脂通常沒問題，容易忽略這個議題。</div>
+        </div>
+        <div class="timeline-item highlight">
+            <div class="timeline-age terra">30–35 歲 ← 開始準備的時間點</div>
+            <div class="timeline-title">生活節奏相對穩定，代謝開始放緩</div>
+            <div class="timeline-desc">這是建立肌肉量、穩固飲食結構、養成運動習慣的最佳時機。趁代謝還好的時候打好基礎，往後每一年都在存本金。</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-age">40 幾歲</div>
+            <div class="timeline-title">進入更年期前期（Perimenopause）</div>
+            <div class="timeline-desc">荷爾蒙開始波動，體重管理變難，血脂數字可能開始出現變化。這時候有沒有基礎，差別很大。</div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-age">50 歲前後</div>
+            <div class="timeline-title">更年期</div>
+            <div class="timeline-desc">雌激素快速退場，HDL 下降，LDL 上升。如果前面有打好底，這個衝擊會小很多；如果沒有，就容易斷崖式下滑。</div>
+        </div>
+    </div>
+
+    <div class="highlight-box">
+        <p>你不是要在更年期那一刻才開始保養，而是要在更年期的 20 年前，就把讓身體不容易崩塌的那些東西準備好。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>從 30 歲開始，具體可以做什麼？</h2>
+
+    <p>好消息是，能幫助血脂的事情，和整體健康的事情幾乎完全重疊——你不需要為了更年期做一套「特別的計畫」，而是把該做的事情做好、做穩。</p>
+
+    <div class="checklist">
+        <div class="checklist-title">▸ 運動面：重訓是這個階段最值得投資的事</div>
+        <div class="check-item">建立規律的肌力訓練，每週至少 2–3 次</div>
+        <div class="check-item">重點在複合動作（深蹲、硬舉、推拉），對肌肉量的效益最高</div>
+        <div class="check-item">搭配每週 150 分鐘以上的有氧運動，維持心肺功能</div>
+        <div class="check-item">肌肉量在 30 歲後開始自然流失，不練就是在倒退</div>
+    </div>
+
+    <div class="discovery-box">
+        <span class="icon">🏋️</span>
+        <p>肌肉量高的人，肝糖儲存空間大、胰島素敏感性好、基礎代謝率也比較高——這三件事加在一起，就是更年期後血脂比較不容易崩的重要原因之一。重訓不只是讓你變好看，它是在幫你的代謝存老本。</p>
+    </div>
+
+    <div class="checklist">
+        <div class="checklist-title">▸ 飲食面：蛋白質和好脂肪要夠</div>
+        <div class="check-item">每餐優先安排蛋白質，支撐肌肉合成和飽足感</div>
+        <div class="check-item">好的脂肪要吃：堅果、橄欖油、深海魚類，幫助 HDL 維持</div>
+        <div class="check-item">精緻糖和加工食品的比例要控制，不需要完全戒，但不能是主體</div>
+        <div class="check-item">蔬菜和膳食纖維幫助穩定血糖，這件事 30 歲之後更重要</div>
+    </div>
+
+    <div class="checklist">
+        <div class="checklist-title">▸ 生活面：代謝的底色</div>
+        <div class="check-item">睡眠充足，長期睡不好對荷爾蒙和血脂都有實質影響</div>
+        <div class="check-item">找到壓力的出口，慢性壓力會升高皮質醇、影響脂肪代謝</div>
+        <div class="check-item">定期健康檢查，每年追蹤血脂數值的趨勢</div>
+        <div class="check-item">不要等「有問題了」才開始，趨勢比單次數字更有參考價值</div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>整理一下</h2>
+
+    <div class="summary-card">
+        <h4>更年期血脂保養的核心觀念</h4>
+        <div class="summary-row">
+            <span class="tag terra">原因</span>
+            <span>雌激素退場後，HDL 合成能力下降，LDL 清除效率變差，心血管風險明顯上升。這是生理機制，不是個人問題。</span>
+        </div>
+        <div class="summary-row">
+            <span class="tag">時機</span>
+            <span>準備的時間點不是更年期，而是更年期的 20 年前——也就是 30–35 歲。這段時間做的事，直接決定更年期的基礎有多穩。</span>
+        </div>
+        <div class="summary-row">
+            <span class="tag">重點</span>
+            <span>重訓建立肌肉量、飲食結構均衡、睡眠充足、定期追蹤數值。沒有捷徑，但也不複雜——就是把該做的事做穩、做久。</span>
+        </div>
+    </div>
+
+    <p>血脂健康不是更年期之後才需要面對的議題，它是一個從年輕就在累積的過程。今天種下的習慣，20 年後你會感謝自己。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <p style="font-size:0.9rem; color:var(--text-light);">← 回顧這個系列的其他兩篇：</p>
+
+    <div class="series-nav">
+        <a href="../20260314podcast01/index.html" class="series-link">
+            <div class="direction">← 第一篇</div>
+            <div class="title">三酸甘油脂為什麼偏高？你的身體在告訴你什麼</div>
+        </a>
+        <a href="../20260314podcast02/index.html" class="series-link">
+            <div class="direction">← 第二篇</div>
+            <div class="title">三酸甘油脂偏高怎麼改善？飲食與運動的實用對策</div>
+        </a>
+    </div>
+
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
