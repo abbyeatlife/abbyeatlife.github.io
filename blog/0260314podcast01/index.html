@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三酸甘油脂為什麼偏高？你的身體在告訴你什麼 — Abby營養師修熄示</title>
+    <meta name="description" content="健檢報告出現「TG 偏高」，不代表你只是吃太油。造成三酸甘油脂偏高的原因有三大邏輯，搞清楚自己屬於哪一種，才能對症調整。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7C9070;
+            --sage-light: #B8C9AF;
+            --sage-pale: #EEF2EB;
+            --cream: #FAF7F2;
+            --warm: #F5EBE4;
+            --bark: #4A3728;
+            --bark-light: #7A6050;
+            --terracotta: #C17A5A;
+            --white: #FFFFFF;
+            --text: #2C2420;
+            --text-light: #6B5B52;
+            --border: #E0D8D0;
+            --shadow-sm: 0 1px 3px rgba(74,55,40,0.06);
+            --shadow-md: 0 4px 20px rgba(74,55,40,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(250,247,242,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(124,144,112,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta { background: var(--sage); color: var(--white); }
+        .nav-links a.cta:hover { background: var(--bark); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+        /* ── Header ── */
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author { font-weight: 500; color: var(--bark); }
+
+        /* ── Cover ── */
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Content ── */
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+        .article-content strong { color: var(--bark); font-weight: 600; }
+
+        /* ── Boxes ── */
+        .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .highlight-box p { margin-bottom: 8px; font-size: 1rem; color: var(--bark); font-weight: 500; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 24px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .discovery-box .icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+        .discovery-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+        .teaser-box {
+            background: var(--bark);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 36px 0;
+        }
+        .teaser-box h5 { color: var(--sage-light); margin: 0 0 10px; font-size: 0.9rem; letter-spacing: 0.05em; font-weight: 600; }
+        .teaser-box p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 0; }
+
+        /* ── Values grid ── */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 24px 0 28px;
+        }
+        .value-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            box-shadow: var(--shadow-sm);
+        }
+        .value-card .label { font-size: 0.78rem; color: var(--text-light); margin-bottom: 4px; }
+        .value-card .num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--bark);
+            font-weight: 600;
+        }
+        .value-card .unit { font-size: 0.75rem; color: var(--text-light); margin-left: 2px; }
+        .value-card .note { font-size: 0.72rem; color: var(--sage); margin-top: 4px; }
+
+        /* ── Three reasons ── */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 28px 0;
+        }
+        .reason-pill {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 18px 14px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border-top: 3px solid var(--sage-light);
+            transition: border-color 0.2s ease;
+        }
+        .reason-pill:hover { border-top-color: var(--sage); }
+        .reason-pill .r-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--sage-light);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .reason-pill .r-name {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--bark);
+        }
+
+        /* ── Risk group block ── */
+        .risk-block {
+            margin: 32px 0;
+        }
+        .risk-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .risk-number {
+            width: 32px;
+            height: 32px;
+            background: var(--sage);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        .risk-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--bark);
+        }
+
+        /* ── Checklist ── */
+        .checklist {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-sm);
+        }
+        .checklist-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--sage);
+            letter-spacing: 0.04em;
+            margin-bottom: 12px;
+        }
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--sage-pale);
+            font-size: 0.92rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .check-item:last-child { border-bottom: none; }
+        .check-item::before {
+            content: '□';
+            color: var(--sage-light);
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* ── Section divider ── */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot { width: 5px; height: 5px; background: var(--sage-light); border-radius: 50%; }
+
+        /* ── Footer / Author ── */
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 500; color: var(--bark); margin-bottom: 4px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .author-links { display: flex; gap: 8px; margin-top: 10px; }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+            .article-header h1 { font-size: 1.7rem; }
+            .values-grid { grid-template-columns: repeat(2, 1fr); }
+            .reasons-grid { grid-template-columns: repeat(2, 1fr); }
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">血脂健康</span>
+    <h1>三酸甘油脂為什麼偏高？<br>你的身體在告訴你什麼</h1>
+    <div class="article-meta">
+        <span class="author">Abby 營養師</span>
+        <span>2026 年 3 月 14 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260314podcast01.png" alt="三酸甘油脂為什麼偏高？你的身體在告訴你什麼">
+</div>
+
+<div class="article-content">
+
+    <p>健檢報告上的三酸甘油脂（Triglyceride，簡稱 TG）數字偏高，很多人的第一反應是「我是不是吃太油了？」但事實上，<strong>造成 TG 偏高的原因，遠比「吃太油」複雜得多。</strong></p>
+
+    <p>這篇文章，我想幫你建立一個清晰的思考邏輯，讓你下次看到血脂報告，知道怎麼問自己正確的問題。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>先認識三酸甘油脂是什麼</h2>
+
+    <p>在擔心它之前，先理解它存在的原因。TG 是身體非常重要的<strong>能量形式</strong>——你講話、走路、運動，甚至躺著讓心臟跳動、維持體溫，通通都需要能量。TG 就是身體的電源。</p>
+
+    <p>當你攝取的能量超過身體需要，多餘的部分就會轉換成 TG，儲存在脂肪細胞裡——也就是你不太喜歡的「體脂肪」。所以 TG 本身不是壞東西，問題是當它<strong>長期過多</strong>，才會開始引發連鎖反應。</p>
+
+    <p>高血脂通常沒有明顯症狀，很多人是健康檢查抽血才發現。這也是它被稱為「<strong>沉默殺手</strong>」的原因——等到出現症狀，往往已是心血管疾病的前兆。</p>
+
+    <h2>正常參考值</h2>
+
+    <div class="values-grid">
+        <div class="value-card">
+            <div class="label">三酸甘油脂（TG）</div>
+            <div class="num">&lt; 150 <span class="unit">mg/dL</span></div>
+            <div class="note">希望維持在此範圍以下</div>
+        </div>
+        <div class="value-card">
+            <div class="label">總膽固醇</div>
+            <div class="num">&lt; 200 <span class="unit">mg/dL</span></div>
+        </div>
+        <div class="value-card">
+            <div class="label">壞膽固醇 LDL</div>
+            <div class="num">&lt; 100 <span class="unit">mg/dL</span></div>
+        </div>
+        <div class="value-card">
+            <div class="label">好膽固醇 HDL</div>
+            <div class="num">女 &gt; 50 ／ 男 &gt; 40</div>
+            <div class="note">女性標準較高（雌激素影響）</div>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>看到數字偏高，先問自己這三個問題</h2>
+
+    <p>當任何一個健康指標偏高，我習慣用一個思考框架來分析原因——這個邏輯不只適用於 TG，也適用於血糖、血壓、體重等各種指標：</p>
+
+    <div class="reasons-grid">
+        <div class="reason-pill">
+            <div class="r-num">01</div>
+            <div class="r-name">進來的太多？</div>
+        </div>
+        <div class="reason-pill">
+            <div class="r-num">02</div>
+            <div class="r-name">代謝效率不佳？</div>
+        </div>
+        <div class="reason-pill">
+            <div class="r-num">03</div>
+            <div class="r-name">排除不良？</div>
+        </div>
+    </div>
+
+    <div class="risk-block">
+        <div class="risk-header">
+            <div class="risk-number">1</div>
+            <div class="risk-title">進來的太多</div>
+        </div>
+        <p>攝取的能量或特定營養素超過身體所需，超標的部分持續累積。這是最直觀的原因，但不是唯一的原因。</p>
+    </div>
+
+    <div class="risk-block">
+        <div class="risk-header">
+            <div class="risk-number">2</div>
+            <div class="risk-title">代謝效率不佳</div>
+        </div>
+        <p>不是吃太多，而是身體「轉換」的速度變慢了，導致累積。例如有胰島素阻抗的人，血糖不容易被有效利用。</p>
+        <div class="discovery-box">
+            <span class="icon">🚰</span>
+            <p>就像水管卡住了——就算沒有倒太多水進去，還是流得很慢，水位一樣會升高。問題不在於「倒多少」，而是「管子堵了」。</p>
+        </div>
+    </div>
+
+    <div class="risk-block">
+        <div class="risk-header">
+            <div class="risk-number">3</div>
+            <div class="risk-title">排除不良</div>
+        </div>
+        <p>負責排除代謝廢物的器官功能下降，導致某些物質無法有效清除，累積在血液中，數值自然升高。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>TG 偏高，會連帶引發什麼問題？</h2>
+
+    <p>TG 在身體裡搭的「車子」叫做 <strong>VLDL</strong>（超低密度脂蛋白），它的主要工作是把 TG 運送到身體各處。當 TG 過高，VLDL 也跟著偏高，會帶來三個連鎖問題：</p>
+
+    <div class="checklist">
+        <div class="checklist-title">▸ VLDL 過高的三個連鎖反應</div>
+        <div class="check-item">壞膽固醇 LDL 增加——VLDL 後續會轉變成 LDL，更容易堆積在血管壁上，提高心血管疾病風險</div>
+        <div class="check-item">胰島素阻抗惡化——體內脂肪能量堆滿，細胞傾向用脂肪當燃料，對血糖的利用效率變差，胰島素作用受阻</div>
+        <div class="check-item">好膽固醇 HDL 下降——肝臟處理 VLDL 的負擔加重，連帶壓縮合成 HDL 的資源，形成惡性循環</div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>哪些人的 TG 比較容易偏高？</h2>
+
+    <p>同樣的飲食，不同的人可能有截然不同的血脂結果。這幾類族群需要特別留意：</p>
+
+    <div class="risk-block">
+        <div class="risk-header">
+            <div class="risk-number">1</div>
+            <div class="risk-title">有胰島素阻抗、腰圍較粗或長期肥胖的人</div>
+        </div>
+        <p>代謝效率本來就比較差，血糖不容易被有效利用，多餘的能量更容易轉為 TG 囤積。</p>
+    </div>
+
+    <div class="risk-block">
+        <div class="risk-header">
+            <div class="risk-number">2</div>
+            <div class="risk-title">肌肉量低、活動量少的人</div>
+        </div>
+        <p>肌肉是身體重要的「糖倉」，肌肉量不足時，肝糖儲存空間變小，多餘能量更容易轉為 TG。平常活動量少，整體代謝也會跟著偏慢。</p>
+    </div>
+
+    <div class="risk-block">
+        <div class="risk-header">
+            <div class="risk-number">3</div>
+            <div class="risk-title">家族有高三酸甘油脂體質的人</div>
+        </div>
+        <p>代謝脂肪的能力本來就比一般人弱，即使飲食和生活習慣沒有特別差，TG 還是容易偏高。這類人尤其需要從年輕就開始做好保養。</p>
+    </div>
+
+    <div class="risk-block">
+        <div class="risk-header">
+            <div class="risk-number">4</div>
+            <div class="risk-title">飲食結構長期失衡的人</div>
+        </div>
+        <p>即使熱量沒有超標，但飲食大比例是精緻糖、加工品，蛋白質與好的脂肪嚴重不足。身體缺少需要的工具，TG 一樣可能升高。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>「我熱量沒超標，為什麼 TG 還是高？」</h2>
+
+    <p>這是很多人感到困惑的問題。答案在於：<strong>TG 偏高的關鍵，不只是總熱量，更在於你的熱量來源是什麼。</strong></p>
+
+    <p>精緻糖（甜點、手搖飲、麵包、餅乾）攝取過多時，肝臟會優先處理血糖，而不是分解倉庫裡的脂肪——這會讓 TG 的水位持續累積，就算你的總熱量沒有超過。</p>
+
+    <div class="highlight-box">
+        <p>換句話說，「熱量不超標，但飲食結構不對」，TG 還是可能偏高。尤其代謝本來就比較慢、活動量又不高的人，影響更明顯。</p>
+    </div>
+
+    <p>理解了 TG 偏高的原因，下一步才是對症處理。下一篇，我會整理飲食與運動上的具體調整方向，包含哪些食物要減少、運動怎麼安排才有效，以及「代謝靈活度」這個概念為什麼對血脂健康那麼重要。</p>
+
+    <div class="teaser-box">
+        <h5>✦ 血脂系列・下一篇</h5>
+        <p>找到原因之後，接下來才是對策。下一篇從「吃的調整」出發：精緻糖要減到多少、好油脂的選擇邏輯、運動怎麼真正影響 TG——以及為什麼光靠少吃油是不夠的。</p>
+    </div>
+
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
