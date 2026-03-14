@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三酸甘油脂偏高怎麼改善？飲食與運動的實用對策 — Abby營養師修熄示</title>
+    <meta name="description" content="TG 偏高不是只靠少吃油就能解決。從精緻糖的控制、飲食結構的調整，到運動如何真正影響代謝——一篇說清楚。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7C9070;
+            --sage-light: #B8C9AF;
+            --sage-pale: #EEF2EB;
+            --cream: #FAF7F2;
+            --warm: #F5EBE4;
+            --bark: #4A3728;
+            --bark-light: #7A6050;
+            --terracotta: #C17A5A;
+            --white: #FFFFFF;
+            --text: #2C2420;
+            --text-light: #6B5B52;
+            --border: #E0D8D0;
+            --shadow-sm: 0 1px 3px rgba(74,55,40,0.06);
+            --shadow-md: 0 4px 20px rgba(74,55,40,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(250,247,242,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(124,144,112,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta { background: var(--sage); color: var(--white); }
+        .nav-links a.cta:hover { background: var(--bark); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+        /* ── Header ── */
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author { font-weight: 500; color: var(--bark); }
+
+        /* ── Cover ── */
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ── Content ── */
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+        .article-content strong { color: var(--bark); font-weight: 600; }
+
+        /* ── Boxes ── */
+        .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .highlight-box p { margin-bottom: 8px; font-size: 1rem; color: var(--bark); font-weight: 500; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 24px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .discovery-box .icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+        .discovery-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+        .teaser-box {
+            background: var(--bark);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 36px 0;
+        }
+        .teaser-box h5 { color: var(--sage-light); margin: 0 0 10px; font-size: 0.9rem; letter-spacing: 0.05em; font-weight: 600; }
+        .teaser-box p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 0; }
+
+        /* ── Section divider ── */
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot { width: 5px; height: 5px; background: var(--sage-light); border-radius: 50%; }
+
+        /* ── Action blocks ── */
+        .action-block {
+            margin: 36px 0;
+        }
+        .action-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .action-number {
+            width: 36px;
+            height: 36px;
+            background: var(--terracotta);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        .action-number.green { background: var(--sage); }
+        .action-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--bark);
+        }
+
+        /* ── Checklist ── */
+        .checklist {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 20px 0;
+            box-shadow: var(--shadow-sm);
+        }
+        .checklist-title {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--sage);
+            letter-spacing: 0.04em;
+            margin-bottom: 12px;
+        }
+        .checklist-title.terra { color: var(--terracotta); }
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--sage-pale);
+            font-size: 0.92rem;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .check-item:last-child { border-bottom: none; }
+        .check-item::before {
+            content: '□';
+            color: var(--sage-light);
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .check-item.avoid::before { content: '✕'; color: var(--terracotta); }
+        .check-item.good::before  { content: '✓'; color: var(--sage); }
+
+        /* ── Food swap grid ── */
+        .swap-grid {
+            display: grid;
+            grid-template-columns: 1fr 40px 1fr;
+            gap: 10px 0;
+            margin: 24px 0;
+            align-items: center;
+        }
+        .swap-from {
+            background: #FDF0EB;
+            border-radius: var(--radius) 0 0 var(--radius);
+            padding: 14px 16px;
+            font-size: 0.9rem;
+            color: var(--bark-light);
+            border: 1px solid #F0D8CC;
+            border-right: none;
+        }
+        .swap-arrow {
+            background: var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            height: 100%;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .swap-to {
+            background: var(--sage-pale);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 14px 16px;
+            font-size: 0.9rem;
+            color: var(--bark);
+            font-weight: 500;
+            border: 1px solid #C8D8BF;
+            border-left: none;
+        }
+
+        /* ── Summary card ── */
+        .summary-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            margin: 36px 0;
+            box-shadow: var(--shadow-sm);
+            border-top: 4px solid var(--sage);
+        }
+        .summary-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--bark);
+            margin-bottom: 16px;
+        }
+        .summary-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.7;
+        }
+        .summary-row .tag {
+            flex-shrink: 0;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 2px 10px;
+            border-radius: 50px;
+            height: fit-content;
+            margin-top: 3px;
+        }
+        .summary-row .tag.terra { background: #FDF0EB; color: var(--terracotta); }
+
+        /* ── Footer / Author ── */
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 500; color: var(--bark); margin-bottom: 4px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .author-links { display: flex; gap: 8px; margin-top: 10px; }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+            .article-header h1 { font-size: 1.7rem; }
+            .swap-grid { grid-template-columns: 1fr 32px 1fr; }
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">血脂健康</span>
+    <h1>三酸甘油脂偏高怎麼改善？<br>飲食與運動的實用對策</h1>
+    <div class="article-meta">
+        <span class="author">Abby 營養師</span>
+        <span>2026 年 3 月 14 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260314podcast02.png" alt="三酸甘油脂偏高怎麼改善？飲食與運動的實用對策">
+</div>
+
+<div class="article-content">
+
+    <p>上一篇我們聊了三酸甘油脂（TG）偏高的原因——不只是吃太油，而是有三個方向需要思考：進來的太多、代謝效率不佳、排除不良。</p>
+
+    <p>這一篇，我們來談<strong>具體怎麼做</strong>。分成飲食和運動兩大塊，每一個方向都有它背後的邏輯，不是叫你少吃油就結束。</p>
+
+    <div class="highlight-box">
+        <p>先說一個前提：如果你已經努力調整過一段時間，TG 還是持續偏高，請去掛號讓醫生評估。我分享的是生活習慣面的調整方向，不是醫療建議。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>飲食調整</h2>
+
+    <!-- 飲食1 -->
+    <div class="action-block">
+        <div class="action-header">
+            <div class="action-number">1</div>
+            <div class="action-title">降低精緻糖的攝取</div>
+        </div>
+        <p>這是影響 TG 最直接的飲食因素，比「少吃油」更關鍵。當你吃進大量精緻糖，肝臟會優先處理血糖，多餘的糖就會轉換成 TG 儲存起來——就算你的總熱量沒有超標，這個過程一樣會發生。</p>
+
+        <div class="checklist">
+            <div class="checklist-title terra">▸ 這些要減少</div>
+            <div class="check-item avoid">手搖飲、含糖飲料（包含果汁）</div>
+            <div class="check-item avoid">麵包、蛋糕、餅乾、甜點</div>
+            <div class="check-item avoid">泡麵、精製白米飯為主的飲食結構</div>
+            <div class="check-item avoid">加工調味品、醬料中隱藏的糖</div>
+        </div>
+
+        <p>不需要完全戒糖，而是把飲食的<strong>主體</strong>換掉。先把每天最明顯的精緻糖來源找出來，從那裡開始調整。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <!-- 飲食2 -->
+    <div class="action-block">
+        <div class="action-header">
+            <div class="action-number">2</div>
+            <div class="action-title">酒精要認真控制</div>
+        </div>
+        <p>很多人調整飲食的時候忽略了酒精。酒精會直接抑制三酸甘油脂的代謝——它在 TG 的分解路徑上放了一個路障，讓這個過程變慢。</p>
+
+        <div class="discovery-box">
+            <span class="icon">🍺</span>
+            <p>如果你有 TG 偏高的問題，建議認真考慮減少飲酒，甚至暫時完全不喝。酒精對 TG 的影響比很多人想的更直接，而且常常是被忽略的關鍵變數。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <!-- 飲食3 -->
+    <div class="action-block">
+        <div class="action-header">
+            <div class="action-number">3</div>
+            <div class="action-title">把飲食結構調整好</div>
+        </div>
+        <p>TG 偏高的人，飲食上常見的問題不只是「吃太多糖」，而是整體結構失衡——<strong>優質蛋白質和好脂肪嚴重不足</strong>，身體缺少需要的工具，代謝自然跑不順。</p>
+
+        <div class="checklist">
+            <div class="checklist-title">▸ 優先安排這些</div>
+            <div class="check-item good">優質蛋白質：雞胸、魚、豆腐、毛豆、黃豆製品</div>
+            <div class="check-item good">好的脂肪：堅果、酪梨、橄欖油、深海魚類</div>
+            <div class="check-item good">膳食纖維：蔬菜、水果、雜糧、根莖類、豆類</div>
+            <div class="check-item good">主食選擇：糙米、燕麥、地瓜取代精製白飯白麵</div>
+        </div>
+
+        <p>膳食纖維特別值得提一下——它能幫助穩定血糖，減少飯後血糖急速上升的幅度，間接降低肝臟把多餘糖分轉為 TG 的機會。</p>
+
+        <p>實際操作上，與其記一堆規則，不如先建立一個簡單的盤子原則：<strong>每餐一定有蛋白質、有蔬菜</strong>，主食的份量抓好，甜的東西放在最後考慮。</p>
+
+        <div class="swap-grid">
+            <div class="swap-from">排骨便當＋珍奶</div>
+            <div class="swap-arrow">→</div>
+            <div class="swap-to">雞腿飯＋無糖豆漿</div>
+
+            <div class="swap-from">早餐麵包＋拿鐵加糖</div>
+            <div class="swap-arrow">→</div>
+            <div class="swap-to">蛋＋地瓜＋無糖豆漿</div>
+
+            <div class="swap-from">下午茶餅乾點心</div>
+            <div class="swap-arrow">→</div>
+            <div class="swap-to">無調味堅果一把</div>
+
+            <div class="swap-from">夜市炸物＋含糖飲</div>
+            <div class="swap-arrow">→</div>
+            <div class="swap-to">烤肉串＋無糖茶</div>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>運動調整</h2>
+
+    <p>飲食之外，運動對 TG 的影響同樣不可忽視——而且背後的邏輯比「消耗熱量」更有趣。</p>
+
+    <!-- 運動1 -->
+    <div class="action-block">
+        <div class="action-header">
+            <div class="action-number green">1</div>
+            <div class="action-title">每週至少 150 分鐘的規律運動</div>
+        </div>
+        <p>這是基本門檻。有氧和肌力訓練都要有，不是只選一種。</p>
+        <p>有氧運動（快走、游泳、騎車、有氧課程）可以直接促進脂肪燃燒、改善心肺功能；肌力訓練則能增加肌肉量，擴大身體儲存肝糖的空間，讓多餘的能量有更多地方可以去，不用全部轉成 TG 囤著。</p>
+
+        <div class="discovery-box">
+            <span class="icon">💪</span>
+            <p>肌肉是身體重要的「糖倉」。肌肉量越多，肝糖儲備量越大，飯後血糖的緩衝空間也越大——這直接減少了肝臟把多餘糖分轉為 TG 的機會。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <!-- 運動2 -->
+    <div class="action-block">
+        <div class="action-header">
+            <div class="action-number green">2</div>
+            <div class="action-title">有意義的訓練，不只是流汗</div>
+        </div>
+        <p>這一點很多人沒有意識到。並不是「有喘、有流汗」就夠了，訓練的<strong>品質和結構</strong>也很重要。</p>
+        <p>當訓練越來越有功能性、越來越有系統，身體的粒線體效能會提升——粒線體是細胞裡負責燃燒脂肪的「發電廠」，數量增加、功能變強，代表你的身體在需要能量的時候，可以更穩定地抓取脂肪來用，而不是一直依賴血糖。</p>
+
+        <div class="highlight-box">
+            <p>這就是所謂的「代謝靈活度」——身體能夠根據需要，靈活切換燃燒糖還是燃燒脂肪。有長期規律訓練習慣的人，代謝靈活度通常比較高，血脂數字也往往比較穩定。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <!-- 運動3 -->
+    <div class="action-block">
+        <div class="action-header">
+            <div class="action-number green">3</div>
+            <div class="action-title">日常活動量同樣重要</div>
+        </div>
+        <p>一週去健身房三次，但其他時間都坐著不動——這樣的效果會大打折扣。</p>
+        <p>研究一再顯示，<strong>每天的步數和久坐時間</strong>對代謝健康的影響，不亞於正式運動。目標是每天走到一萬步左右，如果辦不到，至少讓自己每坐一個小時就起來動一動。</p>
+
+        <div class="discovery-box">
+            <span class="icon">🚶</span>
+            <p>飯後散步是一個簡單又有效的習慣。飯後血糖正在上升的這段時間，輕度活動可以幫助肌肉吸收血糖，減少轉為 TG 的機會。不需要走很快，飯後 15–30 分鐘的輕鬆散步就有幫助。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>別忘了睡眠和壓力</h2>
+
+    <p>飲食和運動之外，還有一個常被忽略的變數：<strong>睡眠品質和壓力管理</strong>。</p>
+
+    <p>長期睡眠不足和慢性壓力，都會升高皮質醇。皮質醇升高會促進脂肪囤積、影響胰島素敏感性，間接讓 TG 更難降下來。你飲食控制得再好、運動再勤，如果長期睡不夠、壓力又大，效果都會被打折扣。</p>
+
+    <div class="checklist">
+        <div class="checklist-title">▸ 基本生活品質的維持</div>
+        <div class="check-item good">每天睡足 7–8 小時，盡量固定作息時間</div>
+        <div class="check-item good">避免熬夜，尤其是超過凌晨 12 點</div>
+        <div class="check-item good">找到適合自己的壓力出口（運動、散步、獨處時間）</div>
+        <div class="check-item good">不要把改善 TG 本身變成另一個壓力源</div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>整理一下</h2>
+
+    <div class="summary-card">
+        <h4>改善 TG 的方向總整理</h4>
+        <div class="summary-row">
+            <span class="tag terra">飲食</span>
+            <span>降低精緻糖（手搖飲、甜點、麵包）是最優先的一步；酒精要認真控制；把優質蛋白質和好脂肪補回來；主食換成複合澱粉。</span>
+        </div>
+        <div class="summary-row">
+            <span class="tag">運動</span>
+            <span>每週至少 150 分鐘，有氧加肌力都要有；提升訓練品質，不只是流汗；增加日常步數，減少久坐。</span>
+        </div>
+        <div class="summary-row">
+            <span class="tag">生活</span>
+            <span>睡眠足夠、壓力管理，這兩件事會直接影響代謝效率，不能只靠飲食和運動補救。</span>
+        </div>
+    </div>
+
+    <p>最後再說一次：TG 偏高不是只靠「少吃油」就能解決。找到自己偏高的真正原因，才能做出有效的調整。如果已經認真執行了一段時間，數字還是沒有改善，請去諮詢醫生，讓專業的人幫你評估是否有其他代謝層面的因素。</p>
+
+    <div class="teaser-box">
+        <h5>✦ 血脂系列・下一篇</h5>
+        <p>更年期後，為什麼壞膽固醇特別容易上升？雌激素和血脂的關係、更年期前就該開始做的準備，以及這件事為什麼從 30 歲就要開始想——下一篇來聊。</p>
+    </div>
+
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
