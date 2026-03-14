@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>減脂十大問題總覽：被問到爛的問題，一次說清楚 — Abby營養師修熄示</title>
+    <meta name="description" content="斷食有用嗎、吃完很快就餓怎麼辦、年紀大更難瘦、代糖可以嗎……十個最常被問到的減脂問題，每一題都有獨立深入解答。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta { background: var(--sage); color: var(--white); }
+        .nav-links a.cta:hover { background: var(--bark); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author { font-weight: 500; color: var(--bark); }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+        .article-content strong { color: var(--bark); font-weight: 600; }
+
+        .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .highlight-box p { margin-bottom: 8px; font-size: 1rem; color: var(--bark); font-weight: 500; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        /* ===== 十大問題卡片 ===== */
+        .questions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 32px 0;
+        }
+        .q-card {
+            display: flex;
+            align-items: stretch;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            text-decoration: none;
+            overflow: hidden;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+        }
+        .q-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .q-card.disabled {
+            opacity: 0.55;
+            pointer-events: none;
+            cursor: default;
+        }
+        .q-num {
+            width: 56px;
+            background: var(--sage);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+        .q-num.alt { background: var(--bark-light); }
+        .q-body {
+            padding: 16px 20px;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .q-content { flex: 1; }
+        .q-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+        .q-answer {
+            font-size: 0.82rem;
+            color: var(--sage);
+            font-weight: 500;
+        }
+        .q-tag {
+            font-size: 0.72rem;
+            padding: 3px 10px;
+            border-radius: 50px;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 600;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .q-tag.concept { background: var(--sage-pale); color: var(--sage); }
+        .q-tag.notes { background: var(--warm); color: var(--terracotta); }
+        .q-tag.done { background: var(--bark); color: var(--white); }
+        .q-arrow {
+            color: var(--sage-light);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+        .q-card:hover .q-arrow { transform: translateX(4px); color: var(--sage); }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot { width: 5px; height: 5px; background: var(--sage-light); border-radius: 50%; }
+
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px; height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 500; color: var(--bark); margin-bottom: 4px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .author-links { display: flex; gap: 8px; margin-top: 10px; }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+            .article-header h1 { font-size: 1.7rem; }
+            .q-tag { display: none; }
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">減脂觀念</span>
+    <h1>減脂十大問題總覽：被問到爛的問題，一次說清楚</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 3 月 13 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260313book10.png" alt="減脂十大問題總覽">
+</div>
+
+<div class="article-content">
+
+    <p>在超過十年的營養師工作裡，被問過的減脂問題多到可以編一本百科全書。但把這些問題分類整理之後，你會發現大多數都可以追溯到同幾個核心原則。</p>
+
+    <p>這個系列整理了十個最常被問到、也最常被誤解的問題。每一題都有獨立的文章深入討論，這裡先給你一個快速的全貌——讓你找到自己最想看的那一題。</p>
+
+    <div class="highlight-box">
+        <p>與其只是理解單一問題，不如探究問題背後的根源。問題是由基本原則衍生而來的，把注意力放在如何運用這些原則，才能真正解決眼前的困惑。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>十大問題，點進去看完整解答</h2>
+
+    <div class="questions-list">
+
+        <a href="../20260313book11/" class="q-card">
+            <div class="q-num">1</div>
+            <div class="q-body">
+                <div class="q-content">
+                    <div class="q-title">斷食有用嗎？</div>
+                    <div class="q-answer">總量控制好的前提下，是有用的——但不建議當主要手段</div>
+                </div>
+                <span class="q-tag concept">減脂觀念</span>
+                <span class="q-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="../20260313book12/" class="q-card">
+            <div class="q-num">2</div>
+            <div class="q-body">
+                <div class="q-content">
+                    <div class="q-title">吃完飯很快就餓，怎麼辦？</div>
+                    <div class="q-answer">很可能是蛋白質、纖維或油吃不足，也可能是壓力在搗蛋</div>
+                </div>
+                <span class="q-tag notes">飲食筆記</span>
+                <span class="q-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="../20260313book06/" class="q-card">
+            <div class="q-num alt">3</div>
+            <div class="q-body">
+                <div class="q-content">
+                    <div class="q-title">外食族減脂，一定要自己煮嗎？</div>
+                    <div class="q-answer">不用——掌握幾個原則，外食照樣能控制</div>
+                </div>
+                <span class="q-tag done">已發布</span>
+                <span class="q-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="../20260313book13/" class="q-card">
+            <div class="q-num">4</div>
+            <div class="q-body">
+                <div class="q-content">
+                    <div class="q-title">年紀大更難減脂？</div>
+                    <div class="q-answer">有一定的挑戰，但年齡從來不是無法改變的理由</div>
+                </div>
+                <span class="q-tag concept">減脂觀念</span>
+                <span class="q-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="../20260313book14/" class="q-card">
+            <div class="q-num">5</div>
+            <div class="q-body">
+                <div class="q-content">
+                    <div class="q-title">減肥時想吃甜的，可以用代糖嗎？</div>
+                    <div class="q-answer">偶爾解饞、酌量使用，基本上可以——但要留意幾件事</div>
+                </div>
+                <span class="q-tag notes">飲食筆記</span>
+                <span class="q-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="../20260313book15/" class="q-card">
+            <div class="q-num">6</div>
+            <div class="q-body">
+                <div class="q-content">
+                    <div class="q-title">肌肉真的消耗更多熱量嗎？</div>
+                    <div class="q-answer">是的，但關鍵不只是肌肉本身，而是背後的生活方式</div>
+                </div>
+                <span class="q-tag concept">減脂觀念</span>
+                <span class="q-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="../20260313book16/" class="q-card">
+            <div class="q-num">7</div>
+            <div class="q-body">
+                <div class="q-content">
+                    <div class="q-title">減脂要做有氧還是重訓？</div>
+                    <div class="q-answer">都要——兩者相輔相成，缺一不可</div>
+                </div>
+                <span class="q-tag concept">減脂觀念</span>
+                <span class="q-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="../20260313book17/" class="q-card">
+            <div class="q-num">8</div>
+            <div class="q-body">
+                <div class="q-content">
+                    <div class="q-title">運動前後怎麼吃？</div>
+                    <div class="q-answer">整體飲食比時機更重要——沒有你想的那麼複雜</div>
+                </div>
+                <span class="q-tag notes">飲食筆記</span>
+                <span class="q-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="../20260313book18/" class="q-card">
+            <div class="q-num">9</div>
+            <div class="q-body">
+                <div class="q-content">
+                    <div class="q-title">可以吃宵夜嗎？</div>
+                    <div class="q-answer">可以——但先想想為什麼睡前會想吃東西</div>
+                </div>
+                <span class="q-tag notes">飲食筆記</span>
+                <span class="q-arrow">→</span>
+            </div>
+        </a>
+
+        <a href="../20260313book19/" class="q-card">
+            <div class="q-num">10</div>
+            <div class="q-body">
+                <div class="q-content">
+                    <div class="q-title">月經前多吃點，真的不會胖嗎？</div>
+                    <div class="q-answer">短暫多吃無妨，但熱量不會神奇地消失——來弄清楚這個迷思</div>
+                </div>
+                <span class="q-tag concept">減脂觀念</span>
+                <span class="q-arrow">→</span>
+            </div>
+        </a>
+
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <p>這十個問題背後，其實都指向同一件事：<strong>減脂沒有魔法，但它也沒有你想的那麼複雜。</strong>弄清楚原則之後，很多疑惑會自然消失。</p>
+
+    <p>每一篇文章陸續更新中，如果你有特別想先看的，也歡迎到 Instagram 告訴我！</p>
+
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
