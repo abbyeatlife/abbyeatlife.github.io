@@ -95,7 +95,6 @@
         }
         .nav-links a.cta:hover { background: var(--bark); }
 
-        /* Mobile menu */
         .menu-toggle {
             display: none;
             background: none;
@@ -280,7 +279,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 24px;
+            gap: 20px;
         }
         .podcast-cover {
             width: 200px;
@@ -293,6 +292,32 @@
             font-size: 3.5rem;
             box-shadow: var(--shadow-lg);
         }
+
+        /* ===== 立即收聽大按鈕 ===== */
+        .podcast-cta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px 28px;
+            background: var(--bark);
+            color: var(--white);
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            box-shadow: var(--shadow-md);
+            letter-spacing: 0.02em;
+        }
+        .podcast-cta:hover {
+            background: var(--sage);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        .podcast-cta .cta-icon { font-size: 1.2rem; }
+
         .podcast-platforms {
             display: flex;
             gap: 10px;
@@ -300,17 +325,26 @@
             justify-content: center;
         }
         .podcast-platforms a {
-            padding: 8px 18px;
+            padding: 7px 16px;
             border-radius: 50px;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 500;
             text-decoration: none;
             background: var(--white);
-            color: var(--bark);
+            color: var(--bark-light);
             box-shadow: var(--shadow-sm);
             transition: all 0.2s ease;
         }
-        .podcast-platforms a:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+        .podcast-platforms a:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); color: var(--bark); }
+
+        .podcast-platforms-label {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            text-align: center;
+            margin-top: -6px;
+        }
 
         .podcast-episodes { display: flex; flex-direction: column; gap: 16px; }
         .episode-card {
@@ -661,6 +695,55 @@
     </div>
 </section>
 
+<!-- ===== BLOG ===== -->
+<section id="blog">
+    <div class="section-inner">
+        <span class="section-label">Blog</span>
+        <h2 class="section-title">最新文章</h2>
+        <p class="section-desc">營養師的觀念分享與生活隨筆。</p>
+
+        <div class="blog-grid">
+
+            <a href="blog/20260316book19/index.html" class="blog-card fade-in">
+                <div class="blog-card-img">
+                    <img src="images/20260316book19.png" alt="月經前多吃點，真的不會胖嗎？">
+                </div>
+                <div class="blog-card-body">
+                    <span class="tag">減脂觀念</span>
+                    <h3>月經前多吃點，真的不會胖嗎？</h3>
+                    <p>熱量不會神奇地消失——但生理期前後的體重波動，背後有很清楚的荷爾蒙邏輯。</p>
+                    <div class="date">2026 年 3 月 16 日</div>
+                </div>
+            </a>
+
+            <a href="blog/20260316book18/index.html" class="blog-card fade-in">
+                <div class="blog-card-img">
+                    <img src="images/20260316book18.png" alt="可以吃宵夜嗎？">
+                </div>
+                <div class="blog-card-body">
+                    <span class="tag">飲食筆記</span>
+                    <h3>可以吃宵夜嗎？</h3>
+                    <p>可以——但先想想你為什麼睡前會想吃東西。幾點吃比較不重要，為什麼吃才是關鍵。</p>
+                    <div class="date">2026 年 3 月 16 日</div>
+                </div>
+            </a>
+
+            <a href="blog/20260316book17/index.html" class="blog-card fade-in">
+                <div class="blog-card-img">
+                    <img src="images/20260316book17.png" alt="運動前後怎麼吃？">
+                </div>
+                <div class="blog-card-body">
+                    <span class="tag">飲食筆記</span>
+                    <h3>運動前後怎麼吃？</h3>
+                    <p>整體飲食習慣遠比運動前後那一兩口更重要——這個問題被過度放大了。</p>
+                    <div class="date">2026 年 3 月 16 日</div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
 <!-- ===== PODCAST ===== -->
 <section id="podcast">
     <div class="section-inner">
@@ -671,6 +754,15 @@
         <div class="podcast-grid">
             <div class="podcast-art fade-in">
                 <div class="podcast-cover">🎧</div>
+
+                <!-- 立即收聽主按鈕 -->
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank" class="podcast-cta">
+                    <span class="cta-icon">🎙️</span>
+                    立即收聽
+                </a>
+
+                <!-- 各平台小按鈕 -->
+                <div class="podcast-platforms-label">也可以在這裡找到我</div>
                 <div class="podcast-platforms">
                     <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">Firstory</a>
                     <a href="https://podcasts.apple.com/podcast/id1568968919" target="_blank">Apple Podcasts</a>
@@ -709,14 +801,13 @@
 
         <div class="about-grid">
             <div class="about-content fade-in">
-<p>我是 Abby 營養師，愛吃，也愛運動。</p>
-<p>長期投入飲食教學與健身指導，累積十多年的實務經驗。</p>
-<p>我始終相信——<br><strong>身體有它自己的邏輯，健康沒有一體適用的答案。</strong></p>
-<p>運動與飲食，不只是為了改變體態，更是一種理解自己、調整節奏，與身體重新對話的過程。</p>
-
-<p>現在，我透過教學與 Podcast《Abby營養師修熄示》，分享一路上學習與實踐的經驗。</p>
-<p>陪你在健康與體態管理的路上，少一點迷惘、多一點踏實。</p>
-<p>不追求完美，練習與自己的身體好好相處。</p>
+                <p>我是 Abby 營養師，愛吃，也愛運動。</p>
+                <p>長期投入飲食教學與健身指導，累積十多年的實務經驗。</p>
+                <p>我始終相信——<br><strong>身體有它自己的邏輯，健康沒有一體適用的答案。</strong></p>
+                <p>運動與飲食，不只是為了改變體態，更是一種理解自己、調整節奏，與身體重新對話的過程。</p>
+                <p>現在，我透過教學與 Podcast《Abby營養師修熄示》，分享一路上學習與實踐的經驗。</p>
+                <p>陪你在健康與體態管理的路上，少一點迷惘、多一點踏實。</p>
+                <p>不追求完美，練習與自己的身體好好相處。</p>
                 <div class="credentials">
                     <span class="credential-tag">營養師</span>
                     <span class="credential-tag">健身教練</span>
@@ -768,55 +859,6 @@
     </div>
 </section>
 
-<!-- ===== BLOG ===== -->
-<section id="blog">
-    <div class="section-inner">
-        <span class="section-label">Blog</span>
-        <h2 class="section-title">最新文章</h2>
-        <p class="section-desc">營養師的觀念分享與生活隨筆。</p>
-
-        <div class="blog-grid">
-
-            <a href="blog/20260313book07/index.html" class="blog-card fade-in">
-                <div class="blog-card-img">
-                    <img src="images/20260313book07.png" alt="體重停滯了，是停滯期嗎？先搞清楚原因">
-                </div>
-                <div class="blog-card-body">
-                    <span class="tag">減脂觀念</span>
-                    <h3>體重停滯了，是停滯期嗎？先搞清楚原因</h3>
-                    <p>不同的停滯原因，需要完全不同的處理方式。亂槍打鳥只會讓自己更累。</p>
-                    <div class="date">2026 年 3 月 13 日</div>
-                </div>
-            </a>
-
-            <a href="blog/20260303-thesims/index.html" class="blog-card fade-in">
-                <div class="blog-card-img">
-                    <img src="images/20260303thesims.png" alt="好用的身體更重要">
-                </div>
-                <div class="blog-card-body">
-                    <span class="tag">生活分享</span>
-                    <h3>好用的身體更重要</h3>
-                    <p>不再因為自己不夠瘦而感到困擾。現在我更注重的是精神與力量，還有為老化做更完整的準備。</p>
-                    <div class="date">2026 年 3 月 3 日</div>
-                </div>
-            </a>
-
-            <a href="blog/20260314podcast03/index.html" class="blog-card fade-in">
-                <div class="blog-card-img">
-                    <img src="images/20260314podcast03.png" alt="更年期後壞膽固醇為什麼容易上升？">
-                </div>
-                <div class="blog-card-body">
-                    <span class="tag">血脂健康</span>
-                    <h3>更年期後壞膽固醇為什麼容易上升？</h3>
-                    <p>不是突然變得不健康，而是原本由雌激素撐著的保護力，慢慢退場了。</p>
-                    <div class="date">2026 年 3 月 14 日</div>
-                </div>
-            </a>
-
-        </div>
-    </div>
-</section>
-
 <!-- ===== CONTACT ===== -->
 <section id="contact">
     <div class="section-inner">
@@ -828,14 +870,14 @@
                 <p>如果你對健康飲食、健身訓練或生活調整有任何疑問，或想邀請我合作（Podcast 來賓、講座、業配、專欄），都歡迎跟我聯繫！</p>
 
                 <div class="contact-links">
-                    <a href="mailto:abbyeatlifeab@gmail.com" class="contact-link">
+                    <a href="/cdn-cgi/l/email-protection#bedfdcdcc7dbdfcad2d7d8dbdfdcfed9d3dfd7d290ddd1d3" class="contact-link">
                         <div class="link-icon" style="background: var(--sage-pale); color: var(--sage);">✉️</div>
                         <div>
                             <div class="link-text">Email</div>
-                            <div class="link-sub">abbyeatlifeab@gmail.com</div>
+                            <div class="link-sub"><span class="__cf_email__" data-cfemail="056467677c606471696c63606467456268646c692b666a68">[email&#160;protected]</span></div>
                         </div>
                     </a>
-                   <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_s4wctbYxZDJo4-09YnwVWRKBDS2KCX71S7PMfWeSurVgMw/viewform" target="_blank" class="contact-link">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_s4wctbYxZDJo4-09YnwVWRKBDS2KCX71S7PMfWeSurVgMw/viewform" target="_blank" class="contact-link">
                         <div class="link-icon" style="background: var(--sage-pale); color: var(--sage);">📋</div>
                         <div>
                             <div class="link-text">預約諮詢</div>
@@ -877,13 +919,11 @@
 </footer>
 
 <!-- ===== SCRIPTS ===== -->
-<script>
-    // Navbar scroll effect
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     window.addEventListener('scroll', () => {
         document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
     });
 
-    // Fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -892,15 +932,4 @@
         });
     }, { threshold: 0.15 });
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-    // Close mobile menu on link click
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.remove('open');
-        });
-    });
-</script>
-
-</body>
-</html>
+    document.querySelectorAll('.fade-in').forEach(el => observ
