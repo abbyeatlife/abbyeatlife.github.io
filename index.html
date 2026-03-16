@@ -30,7 +30,6 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
 
         body {
@@ -45,9 +44,7 @@
         /* ===== NAVIGATION ===== */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 100;
             background: rgba(253,251,247,0.92);
             backdrop-filter: blur(20px);
@@ -88,11 +85,7 @@
             transition: all 0.2s ease;
         }
         .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
-        .nav-links a.cta {
-            background: var(--sage);
-            color: var(--white);
-            font-weight: 500;
-        }
+        .nav-links a.cta { background: var(--sage); color: var(--white); font-weight: 500; }
         .nav-links a.cta:hover { background: var(--bark); }
 
         .menu-toggle {
@@ -133,10 +126,7 @@
             letter-spacing: -0.02em;
             margin-bottom: 8px;
         }
-        .hero-text h1 em {
-            font-style: italic;
-            color: var(--sage);
-        }
+        .hero-text h1 em { font-style: italic; color: var(--sage); }
 
         .hero-text .subtitle {
             font-size: 1.15rem;
@@ -168,23 +158,12 @@
             cursor: pointer;
             font-family: inherit;
         }
-        .btn-primary {
-            background: var(--sage);
-            color: var(--white);
-        }
+        .btn-primary { background: var(--sage); color: var(--white); }
         .btn-primary:hover { background: var(--bark); transform: translateY(-1px); box-shadow: var(--shadow-md); }
-        .btn-outline {
-            background: transparent;
-            color: var(--bark);
-            border: 1.5px solid var(--sage-light);
-        }
+        .btn-outline { background: transparent; color: var(--bark); border: 1.5px solid var(--sage-light); }
         .btn-outline:hover { border-color: var(--sage); background: var(--sage-pale); }
 
-        .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
+        .hero-visual { position: relative; display: flex; justify-content: center; }
         .hero-img-wrapper {
             width: 380px;
             height: 460px;
@@ -194,20 +173,7 @@
             box-shadow: var(--shadow-lg);
             position: relative;
         }
-        .hero-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .hero-img-wrapper .placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            background: linear-gradient(135deg, var(--sage-pale) 0%, var(--warm) 100%);
-        }
+        .hero-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
 
         .hero-badge {
             position: absolute;
@@ -222,8 +188,7 @@
             gap: 10px;
         }
         .hero-badge .icon {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             background: var(--terracotta);
             border-radius: 10px;
             display: flex;
@@ -259,196 +224,6 @@
             color: var(--text-light);
             max-width: 560px;
             line-height: 1.8;
-        }
-
-        /* ===== PODCAST SECTION ===== */
-        #podcast { background: var(--white); }
-
-        .podcast-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 60px;
-            align-items: center;
-            margin-top: 48px;
-        }
-
-        .podcast-art {
-            background: linear-gradient(145deg, var(--sage-pale) 0%, var(--warm) 100%);
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-        .podcast-cover {
-            width: 200px;
-            height: 200px;
-            border-radius: var(--radius);
-            background: var(--sage);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* ===== 立即收聽大按鈕 ===== */
-        .podcast-cta {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            padding: 15px 28px;
-            background: var(--bark);
-            color: var(--white);
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.25s ease;
-            box-shadow: var(--shadow-md);
-            letter-spacing: 0.02em;
-        }
-        .podcast-cta:hover {
-            background: var(--sage);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-        .podcast-cta .cta-icon { font-size: 1.2rem; }
-
-        .podcast-platforms {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .podcast-platforms a {
-            padding: 7px 16px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            text-decoration: none;
-            background: var(--white);
-            color: var(--bark-light);
-            box-shadow: var(--shadow-sm);
-            transition: all 0.2s ease;
-        }
-        .podcast-platforms a:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); color: var(--bark); }
-
-        .podcast-platforms-label {
-            font-size: 0.72rem;
-            color: var(--text-light);
-            letter-spacing: 0.05em;
-            font-weight: 600;
-            text-align: center;
-            margin-top: -6px;
-        }
-
-        .podcast-episodes { display: flex; flex-direction: column; gap: 16px; }
-        .episode-card {
-            background: var(--cream);
-            border-radius: var(--radius);
-            padding: 24px;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
-        }
-        .episode-card:hover { border-color: var(--sage-light); box-shadow: var(--shadow-sm); }
-        .episode-card .ep-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--terracotta);
-            margin-bottom: 6px;
-        }
-        .episode-card h3 {
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: var(--bark);
-            margin-bottom: 8px;
-            line-height: 1.5;
-        }
-        .episode-card p {
-            font-size: 0.88rem;
-            color: var(--text-light);
-            line-height: 1.7;
-        }
-
-        /* ===== ABOUT SECTION ===== */
-        #about { background: var(--cream); }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-top: 48px;
-            align-items: start;
-        }
-
-        .about-content p {
-            font-size: 1rem;
-            color: var(--text-light);
-            margin-bottom: 20px;
-            line-height: 1.9;
-        }
-
-        .credentials {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 24px;
-        }
-        .credential-tag {
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.82rem;
-            font-weight: 500;
-            background: var(--sage-pale);
-            color: var(--sage);
-            border: 1px solid rgba(139,158,126,0.2);
-        }
-
-        .services-card {
-            background: var(--white);
-            border-radius: var(--radius-lg);
-            padding: 36px;
-            box-shadow: var(--shadow-md);
-        }
-        .services-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--bark);
-            margin-bottom: 24px;
-        }
-        .service-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            padding: 14px 0;
-            border-bottom: 1px solid var(--sage-pale);
-        }
-        .service-item:last-child { border-bottom: none; }
-        .service-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: var(--sage-pale);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-        .service-item h4 {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--bark);
-            margin-bottom: 2px;
-        }
-        .service-item p {
-            font-size: 0.83rem;
-            color: var(--text-light);
-            line-height: 1.6;
         }
 
         /* ===== BLOG SECTION ===== */
@@ -501,22 +276,182 @@
             margin-bottom: 8px;
             line-height: 1.5;
         }
-        .blog-card-body p {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            line-height: 1.7;
-        }
-        .blog-card-body .date {
-            font-size: 0.78rem;
-            color: var(--text-light);
-            margin-top: 12px;
-            opacity: 0.7;
+        .blog-card-body p { font-size: 0.85rem; color: var(--text-light); line-height: 1.7; }
+        .blog-card-body .date { font-size: 0.78rem; color: var(--text-light); margin-top: 12px; opacity: 0.7; }
+
+        .section-cta {
+            text-align: center;
+            margin-top: 36px;
         }
 
-        /* ===== CONTACT SECTION ===== */
-        #contact {
-            background: linear-gradient(170deg, var(--sage-pale) 0%, var(--cream) 100%);
+        /* ===== PODCAST SECTION ===== */
+        #podcast { background: var(--cream); }
+
+        .podcast-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 48px;
         }
+
+        .podcast-art {
+            background: linear-gradient(145deg, var(--sage-pale) 0%, var(--warm) 100%);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+        .podcast-cover {
+            width: 200px;
+            height: 200px;
+            border-radius: var(--radius);
+            background: var(--sage);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ===== 改版：Podcast 平台按鈕 ===== */
+        .podcast-platforms-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-light);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .podcast-platforms {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+        .podcast-platforms a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 20px;
+            border-radius: 50px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .podcast-platforms a:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .podcast-platforms a.platform-firstory {
+            background: var(--sage);
+            color: var(--white);
+        }
+        .podcast-platforms a.platform-apple {
+            background: var(--bark);
+            color: var(--white);
+        }
+        .podcast-platforms a.platform-spotify {
+            background: #1DB954;
+            color: var(--white);
+        }
+
+        .podcast-episodes { display: flex; flex-direction: column; gap: 16px; }
+        .episode-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .episode-card:hover { border-color: var(--sage-light); box-shadow: var(--shadow-sm); }
+        .episode-card .ep-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            margin-bottom: 6px;
+        }
+        .episode-card h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--bark);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .episode-card p { font-size: 0.88rem; color: var(--text-light); line-height: 1.7; }
+
+        /* ===== ABOUT SECTION ===== */
+        #about { background: var(--white); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 48px;
+            align-items: start;
+        }
+
+        .about-content p {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.9;
+        }
+
+        .credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 24px;
+        }
+        .credential-tag {
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            background: var(--sage-pale);
+            color: var(--sage);
+            border: 1px solid rgba(139,158,126,0.2);
+        }
+
+        .services-card {
+            background: var(--cream);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            box-shadow: var(--shadow-md);
+        }
+        .services-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--bark);
+            margin-bottom: 24px;
+        }
+        .service-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--sage-pale);
+        }
+        .service-item:last-child { border-bottom: none; }
+        .service-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--sage-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .service-item h4 { font-size: 0.95rem; font-weight: 500; color: var(--bark); margin-bottom: 2px; }
+        .service-item p { font-size: 0.83rem; color: var(--text-light); line-height: 1.6; }
+
+        /* ===== CONTACT SECTION ===== */
+        #contact { background: linear-gradient(170deg, var(--sage-pale) 0%, var(--cream) 100%); }
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -545,8 +480,7 @@
         }
         .contact-link:hover { box-shadow: var(--shadow-md); transform: translateX(4px); }
         .contact-link .link-icon {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             border-radius: 10px;
             display: flex;
             align-items: center;
@@ -557,11 +491,7 @@
         .contact-link .link-text { font-size: 0.92rem; font-weight: 500; }
         .contact-link .link-sub { font-size: 0.78rem; color: var(--text-light); font-weight: 400; }
 
-        .social-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-        }
+        .social-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
         .social-card {
             background: var(--white);
             border-radius: var(--radius);
@@ -573,19 +503,9 @@
             box-shadow: var(--shadow-sm);
         }
         .social-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-        .social-card .social-icon {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        .social-card .social-name {
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 2px;
-        }
-        .social-card .social-handle {
-            font-size: 0.78rem;
-            color: var(--text-light);
-        }
+        .social-card .social-icon { font-size: 1.8rem; margin-bottom: 10px; }
+        .social-card .social-name { font-size: 0.9rem; font-weight: 500; margin-bottom: 2px; }
+        .social-card .social-handle { font-size: 0.78rem; color: var(--text-light); }
 
         /* ===== FOOTER ===== */
         footer {
@@ -613,9 +533,7 @@
                 display: flex;
                 flex-direction: column;
                 position: absolute;
-                top: 64px;
-                left: 0;
-                right: 0;
+                top: 64px; left: 0; right: 0;
                 background: var(--cream);
                 padding: 16px 24px;
                 box-shadow: var(--shadow-md);
@@ -639,16 +557,15 @@
 
             .podcast-grid,
             .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 36px;
-            }
+            .contact-grid { grid-template-columns: 1fr; gap: 36px; }
 
             .blog-grid { grid-template-columns: 1fr; }
-
             .social-grid { grid-template-columns: 1fr 1fr; }
-
             .section-title { font-size: 1.7rem; }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .blog-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -683,7 +600,7 @@
     </div>
     <div class="hero-visual">
         <div class="hero-img-wrapper">
-           <img src="images/abby01.png" alt="Abby營養師">
+            <img src="images/abby01.png" alt="Abby營養師">
         </div>
         <div class="hero-badge">
             <div class="icon">🎙️</div>
@@ -703,43 +620,45 @@
         <p class="section-desc">營養師的觀念分享與生活隨筆。</p>
 
         <div class="blog-grid">
-
-            <a href="blog/20260316book19/index.html" class="blog-card fade-in">
+            <a href="blog/20260313book07/index.html" class="blog-card fade-in">
                 <div class="blog-card-img">
-                    <img src="images/20260316book19.png" alt="月經前多吃點，真的不會胖嗎？">
+                    <img src="images/20260313book07.png" alt="體重停滯了，是停滯期嗎？先搞清楚原因">
                 </div>
                 <div class="blog-card-body">
                     <span class="tag">減脂觀念</span>
-                    <h3>月經前多吃點，真的不會胖嗎？</h3>
-                    <p>熱量不會神奇地消失——但生理期前後的體重波動，背後有很清楚的荷爾蒙邏輯。</p>
-                    <div class="date">2026 年 3 月 16 日</div>
+                    <h3>體重停滯了，是停滯期嗎？先搞清楚原因</h3>
+                    <p>不同的停滯原因，需要完全不同的處理方式。亂槍打鳥只會讓自己更累。</p>
+                    <div class="date">2026 年 3 月 13 日</div>
                 </div>
             </a>
 
-            <a href="blog/20260316book18/index.html" class="blog-card fade-in">
+            <a href="blog/20260303-thesims/index.html" class="blog-card fade-in">
                 <div class="blog-card-img">
-                    <img src="images/20260316book18.png" alt="可以吃宵夜嗎？">
+                    <img src="images/20260303thesims.png" alt="好用的身體更重要">
                 </div>
                 <div class="blog-card-body">
-                    <span class="tag">飲食筆記</span>
-                    <h3>可以吃宵夜嗎？</h3>
-                    <p>可以——但先想想你為什麼睡前會想吃東西。幾點吃比較不重要，為什麼吃才是關鍵。</p>
-                    <div class="date">2026 年 3 月 16 日</div>
+                    <span class="tag">生活分享</span>
+                    <h3>好用的身體更重要</h3>
+                    <p>不再因為自己不夠瘦而感到困擾。現在我更注重的是精神與力量，還有為老化做更完整的準備。</p>
+                    <div class="date">2026 年 3 月 3 日</div>
                 </div>
             </a>
 
-            <a href="blog/20260316book17/index.html" class="blog-card fade-in">
+            <a href="blog/20260314podcast03/index.html" class="blog-card fade-in">
                 <div class="blog-card-img">
-                    <img src="images/20260316book17.png" alt="運動前後怎麼吃？">
+                    <img src="images/20260314podcast03.png" alt="更年期後壞膽固醇為什麼容易上升？">
                 </div>
                 <div class="blog-card-body">
-                    <span class="tag">飲食筆記</span>
-                    <h3>運動前後怎麼吃？</h3>
-                    <p>整體飲食習慣遠比運動前後那一兩口更重要——這個問題被過度放大了。</p>
-                    <div class="date">2026 年 3 月 16 日</div>
+                    <span class="tag">血脂健康</span>
+                    <h3>更年期後壞膽固醇為什麼容易上升？</h3>
+                    <p>不是突然變得不健康，而是原本由雌激素撐著的保護力，慢慢退場了。</p>
+                    <div class="date">2026 年 3 月 14 日</div>
                 </div>
             </a>
+        </div>
 
+        <div class="section-cta">
+            <a href="blog/index.html" class="btn btn-outline">所有文章 →</a>
         </div>
     </div>
 </section>
@@ -754,19 +673,17 @@
         <div class="podcast-grid">
             <div class="podcast-art fade-in">
                 <div class="podcast-cover">🎧</div>
-
-                <!-- 立即收聽主按鈕 -->
-                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank" class="podcast-cta">
-                    <span class="cta-icon">🎙️</span>
-                    立即收聽
-                </a>
-
-                <!-- 各平台小按鈕 -->
-                <div class="podcast-platforms-label">也可以在這裡找到我</div>
+                <div class="podcast-platforms-label">選擇平台開始收聽 ↓</div>
                 <div class="podcast-platforms">
-                    <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">Firstory</a>
-                    <a href="https://podcasts.apple.com/podcast/id1568968919" target="_blank">Apple Podcasts</a>
-                    <a href="https://open.spotify.com/show/2Wol8iJd66HKlDeeSBm3xU" target="_blank">Spotify</a>
+                    <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank" class="platform-firstory">
+                        🎙️ Firstory 收聽
+                    </a>
+                    <a href="https://podcasts.apple.com/podcast/id1568968919" target="_blank" class="platform-apple">
+                        🍎 Apple Podcasts
+                    </a>
+                    <a href="https://open.spotify.com/show/2Wol8iJd66HKlDeeSBm3xU" target="_blank" class="platform-spotify">
+                        ▶ Spotify
+                    </a>
                 </div>
             </div>
 
@@ -776,13 +693,11 @@
                     <h3>EP-121【年後消腫黃金期：別急著減肥，先校正身體】</h3>
                     <p>過年過節後上升的重量真的是脂肪嗎？</p>
                 </div>
-
                 <div class="episode-card">
                     <div class="ep-label">精選集數</div>
                     <h3>EP-120【一輩子維持同樣的體重，好嗎？】</h3>
                     <p>體重該投資在哪些健康標的？</p>
                 </div>
-
                 <div class="episode-card">
                     <div class="ep-label">精選集數</div>
                     <h3>EP-109【碳循環飲食🔥真能加速燃脂？】</h3>
@@ -821,38 +736,23 @@
                 <h3>我能幫助你的</h3>
                 <div class="service-item">
                     <div class="service-icon">🥗</div>
-                    <div>
-                        <h4>個人化飲食指導</h4>
-                        <p>找到最適合你的飲食法</p>
-                    </div>
+                    <div><h4>個人化飲食指導</h4><p>找到最適合你的飲食法</p></div>
                 </div>
                 <div class="service-item">
                     <div class="service-icon">👥</div>
-                    <div>
-                        <h4>團體減脂線上班</h4>
-                        <p>一起健康超給力</p>
-                    </div>
+                    <div><h4>團體減脂線上班</h4><p>一起健康超給力</p></div>
                 </div>
                 <div class="service-item">
                     <div class="service-icon">💪</div>
-                    <div>
-                        <h4>一對一健身指導</h4>
-                        <p>量身打造飲食計畫</p>
-                    </div>
+                    <div><h4>一對一健身指導</h4><p>量身打造飲食計畫</p></div>
                 </div>
                 <div class="service-item">
                     <div class="service-icon">🏃‍♀️</div>
-                    <div>
-                        <h4>運動團體課程</h4>
-                        <p>運動快樂極大化</p>
-                    </div>
+                    <div><h4>運動團體課程</h4><p>運動快樂極大化</p></div>
                 </div>
                 <div class="service-item">
                     <div class="service-icon">🎤</div>
-                    <div>
-                        <h4>講座 & 寫作</h4>
-                        <p>知識轉為實用</p>
-                    </div>
+                    <div><h4>講座 & 寫作</h4><p>知識轉為實用</p></div>
                 </div>
             </div>
         </div>
@@ -868,13 +768,12 @@
         <div class="contact-grid">
             <div class="contact-info fade-in">
                 <p>如果你對健康飲食、健身訓練或生活調整有任何疑問，或想邀請我合作（Podcast 來賓、講座、業配、專欄），都歡迎跟我聯繫！</p>
-
                 <div class="contact-links">
-                    <a href="/cdn-cgi/l/email-protection#bedfdcdcc7dbdfcad2d7d8dbdfdcfed9d3dfd7d290ddd1d3" class="contact-link">
+                    <a href="mailto:abbyeatlifeab@gmail.com" class="contact-link">
                         <div class="link-icon" style="background: var(--sage-pale); color: var(--sage);">✉️</div>
                         <div>
                             <div class="link-text">Email</div>
-                            <div class="link-sub"><span class="__cf_email__" data-cfemail="056467677c606471696c63606467456268646c692b666a68">[email&#160;protected]</span></div>
+                            <div class="link-sub">abbyeatlifeab@gmail.com</div>
                         </div>
                     </a>
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_s4wctbYxZDJo4-09YnwVWRKBDS2KCX71S7PMfWeSurVgMw/viewform" target="_blank" class="contact-link">
@@ -918,18 +817,24 @@
     <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
 </footer>
 
-<!-- ===== SCRIPTS ===== -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
     window.addEventListener('scroll', () => {
         document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
     });
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('visible');
         });
     }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-    document.querySelectorAll('.fade-in').forEach(el => observ
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.remove('open');
+        });
+    });
+</script>
+
+</body>
+</html>
