@@ -86,11 +86,7 @@
         }
         .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
         .nav-links a.active { color: var(--bark); background: var(--sage-pale); }
-        .nav-links a.cta {
-            background: var(--sage);
-            color: var(--white);
-            font-weight: 500;
-        }
+        .nav-links a.cta { background: var(--sage); color: var(--white); font-weight: 500; }
         .nav-links a.cta:hover { background: var(--bark); }
 
         .menu-toggle {
@@ -116,7 +112,6 @@
             max-width: 1100px;
             margin: 0 auto;
         }
-
         .page-header .section-label {
             display: inline-block;
             font-size: 0.75rem;
@@ -126,7 +121,6 @@
             color: var(--sage);
             margin-bottom: 12px;
         }
-
         .page-header h1 {
             font-family: 'Playfair Display', serif;
             font-size: 2.4rem;
@@ -135,7 +129,6 @@
             letter-spacing: -0.02em;
             margin-bottom: 12px;
         }
-
         .page-header p {
             font-size: 1rem;
             color: var(--text-light);
@@ -152,7 +145,6 @@
             gap: 8px;
             flex-wrap: wrap;
         }
-
         .filter-tab {
             padding: 8px 20px;
             border-radius: 50px;
@@ -179,7 +171,6 @@
             margin: 0 auto;
             padding: 0 24px 80px;
         }
-
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -212,11 +203,7 @@
             font-size: 2.8rem;
             overflow: hidden;
         }
-        .blog-card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .blog-card-img img { width: 100%; height: 100%; object-fit: cover; }
 
         .blog-card-body { padding: 24px; }
         .blog-card-body .tag {
@@ -226,6 +213,11 @@
             color: var(--terracotta);
             letter-spacing: 0.05em;
             margin-bottom: 8px;
+        }
+        /* 多標籤顯示：第一個標籤後面的用淡色區隔 */
+        .blog-card-body .tag + .tag {
+            margin-left: 6px;
+            color: var(--text-light);
         }
         .blog-card-body h3 {
             font-size: 1.08rem;
@@ -257,13 +249,8 @@
             color: var(--text-light);
             display: none;
         }
-        .empty-state .empty-icon {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-        }
-        .empty-state p {
-            font-size: 0.95rem;
-        }
+        .empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .empty-state p { font-size: 0.95rem; }
 
         /* ===== FOOTER ===== */
         footer {
@@ -298,11 +285,9 @@
                 border-top: 1px solid var(--sage-pale);
             }
             .menu-toggle { display: block; }
-
             .page-header h1 { font-size: 1.8rem; }
             .blog-grid { grid-template-columns: 1fr; }
         }
-
         @media (min-width: 769px) and (max-width: 1024px) {
             .blog-grid { grid-template-columns: repeat(2, 1fr); }
         }
@@ -348,18 +333,16 @@
 <div class="blog-section">
     <div class="blog-grid">
 
-        <!-- ====== 文章卡片 ====== -->
         <!--
             📝 新增文章教學：
             1. 複製下面的 blog-card 區塊
-            2. 修改 href 為文章路徑（例如 20260301-new-post/index.html）
-            3. 修改 data-category 為文章分類（要跟 filter-tab 的 data-filter 一致）
-            4. 修改標題、摘要、日期
-            5. 把封面圖放到 ../images/ 資料夾，再更新 <img> 的 src 路徑
-            6. 新文章放在最上面（最新的在前）
+            2. 修改 href 為文章路徑
+            3. data-tags 填入所有標籤，空格分隔（例如 "血脂健康 女性專題"）
+            4. 卡片上的 .tag 顯示主分類即可，次要標籤不一定要顯示
+            5. 新文章放在最上面（最新的在前）
         -->
-                                                 
-        <a href="20260317podcast05/index.html" class="blog-card fade-in" data-category="女性專題">
+
+        <a href="20260317podcast05/index.html" class="blog-card fade-in" data-tags="女性專題">
             <div class="blog-card-img">
                 <img src="../images/20260317podcast05.png" alt="更年期前最值得投資的事：重訓與骨密度保養">
             </div>
@@ -370,20 +353,20 @@
                 <div class="date">2026 年 3 月 17 日</div>
             </div>
         </a>
-                                                        
-        <a href="20260317podcast04/index.html" class="blog-card fade-in" data-category="女性專題">
+
+        <a href="20260317podcast04/index.html" class="blog-card fade-in" data-tags="女性專題">
             <div class="blog-card-img">
                 <img src="../images/20260317podcast04.png" alt="更年期會發生什麼事？">
             </div>
             <div class="blog-card-body">
                 <span class="tag">女性專題</span>
                 <h3>更年期會發生什麼事？</h3>
-                <p>熱潮紅、心悸、關節痛... </p>
+                <p>熱潮紅、心悸、關節痛... 這些不是意志力問題，而是雌激素退場帶來的連鎖反應。</p>
                 <div class="date">2026 年 3 月 17 日</div>
             </div>
         </a>
-                                                     
-        <a href="20260316book19/index.html" class="blog-card fade-in" data-category="減脂觀念">
+
+        <a href="20260316book19/index.html" class="blog-card fade-in" data-tags="減脂觀念">
             <div class="blog-card-img">
                 <img src="../images/20260316book19.png" alt="月經前多吃點，真的不會胖嗎？">
             </div>
@@ -394,8 +377,8 @@
                 <div class="date">2026 年 3 月 16 日</div>
             </div>
         </a>
-                                                            
-        <a href="20260316book18/index.html" class="blog-card fade-in" data-category="飲食筆記">
+
+        <a href="20260316book18/index.html" class="blog-card fade-in" data-tags="飲食筆記">
             <div class="blog-card-img">
                 <img src="../images/20260316book18.png" alt="可以吃宵夜嗎？">
             </div>
@@ -406,8 +389,8 @@
                 <div class="date">2026 年 3 月 16 日</div>
             </div>
         </a>
-                                          
-        <a href="20260316book17/index.html" class="blog-card fade-in" data-category="飲食筆記">
+
+        <a href="20260316book17/index.html" class="blog-card fade-in" data-tags="飲食筆記">
             <div class="blog-card-img">
                 <img src="../images/20260316book17.png" alt="運動前後怎麼吃？">
             </div>
@@ -418,8 +401,8 @@
                 <div class="date">2026 年 3 月 16 日</div>
             </div>
         </a>
-                                    
-        <a href="20260315book16/index.html" class="blog-card fade-in" data-category="減脂觀念">
+
+        <a href="20260315book16/index.html" class="blog-card fade-in" data-tags="減脂觀念">
             <div class="blog-card-img">
                 <img src="../images/20260315book16.png" alt="減脂要做有氧還是重訓？">
             </div>
@@ -430,8 +413,8 @@
                 <div class="date">2026 年 3 月 15 日</div>
             </div>
         </a>
-         
-        <a href="20260315book14/index.html" class="blog-card fade-in" data-category="飲食筆記">
+
+        <a href="20260315book14/index.html" class="blog-card fade-in" data-tags="飲食筆記">
             <div class="blog-card-img">
                 <img src="../images/20260315book14.png" alt="減肥時想吃甜的，可以用代糖嗎？">
             </div>
@@ -442,8 +425,8 @@
                 <div class="date">2026 年 3 月 15 日</div>
             </div>
         </a>
-    
-        <a href="20260315book15/index.html" class="blog-card fade-in" data-category="減脂觀念">
+
+        <a href="20260315book15/index.html" class="blog-card fade-in" data-tags="減脂觀念">
             <div class="blog-card-img">
                 <img src="../images/20260315book15.png" alt="肌肉真的消耗更多熱量嗎？">
             </div>
@@ -454,8 +437,8 @@
                 <div class="date">2026 年 3 月 15 日</div>
             </div>
         </a>
-    
-        <a href="20260315book13/index.html" class="blog-card fade-in" data-category="減脂觀念">
+
+        <a href="20260315book13/index.html" class="blog-card fade-in" data-tags="減脂觀念">
             <div class="blog-card-img">
                 <img src="../images/20260315book13.png" alt="年紀大更難減脂？">
             </div>
@@ -466,8 +449,8 @@
                 <div class="date">2026 年 3 月 15 日</div>
             </div>
         </a>
-              
-        <a href="20260315book12/index.html" class="blog-card fade-in" data-category="飲食筆記">
+
+        <a href="20260315book12/index.html" class="blog-card fade-in" data-tags="飲食筆記">
             <div class="blog-card-img">
                 <img src="../images/20260315book12.png" alt="吃完飯很快就餓，怎麼辦？">
             </div>
@@ -478,8 +461,8 @@
                 <div class="date">2026 年 3 月 15 日</div>
             </div>
         </a>
-              
-        <a href="20260313book11/index.html" class="blog-card fade-in" data-category="減脂觀念">
+
+        <a href="20260313book11/index.html" class="blog-card fade-in" data-tags="減脂觀念">
             <div class="blog-card-img">
                 <img src="../images/20260313book11.png" alt="斷食有用嗎？">
             </div>
@@ -490,8 +473,8 @@
                 <div class="date">2026 年 3 月 13 日</div>
             </div>
         </a>
-              
-        <a href="20260313book10/index.html" class="blog-card fade-in" data-category="減脂觀念">
+
+        <a href="20260313book10/index.html" class="blog-card fade-in" data-tags="減脂觀念">
             <div class="blog-card-img">
                 <img src="../images/20260313book10.png" alt="減脂十大問題">
             </div>
@@ -502,20 +485,21 @@
                 <div class="date">2026 年 3 月 13 日</div>
             </div>
         </a>
-                 
-        <a href="20260314podcast03/index.html" class="blog-card fade-in" data-category="血脂健康">
+
+        <!-- ★ podcast03：同時屬於「血脂健康」和「女性專題」，data-tags 兩個都填 -->
+        <a href="20260314podcast03/index.html" class="blog-card fade-in" data-tags="血脂健康 女性專題">
             <div class="blog-card-img">
                 <img src="../images/20260314podcast03.png" alt="更年期後壞膽固醇為什麼容易上升？">
             </div>
             <div class="blog-card-body">
-                <span class="tag">血脂健康</span>
+                <span class="tag">血脂健康</span><span class="tag">女性專題</span>
                 <h3>更年期後壞膽固醇為什麼容易上升？</h3>
                 <p>當雌激素在更年期後大幅下降，這個天然優勢也會跟著消失。</p>
                 <div class="date">2026 年 3 月 14 日</div>
             </div>
         </a>
-         
-        <a href="20260314podcast02/index.html" class="blog-card fade-in" data-category="血脂健康">
+
+        <a href="20260314podcast02/index.html" class="blog-card fade-in" data-tags="血脂健康">
             <div class="blog-card-img">
                 <img src="../images/20260314podcast02.png" alt="三酸甘油脂偏高怎麼改善？">
             </div>
@@ -526,8 +510,8 @@
                 <div class="date">2026 年 3 月 14 日</div>
             </div>
         </a>
-        
-        <a href="20260314podcast01/index.html" class="blog-card fade-in" data-category="血脂健康">
+
+        <a href="20260314podcast01/index.html" class="blog-card fade-in" data-tags="血脂健康">
             <div class="blog-card-img">
                 <img src="../images/20260314podcast01.png" alt="三酸甘油脂為什麼偏高？你的身體在告訴你什麼">
             </div>
@@ -538,8 +522,8 @@
                 <div class="date">2026 年 3 月 14 日</div>
             </div>
         </a>
-    
-        <a href="20260313book09/index.html" class="blog-card fade-in" data-category="減脂觀念">
+
+        <a href="20260313book09/index.html" class="blog-card fade-in" data-tags="減脂觀念">
             <div class="blog-card-img">
                 <img src="../images/20260313book09.png" alt="停滯期對策（下）：動的調整與心理面">
             </div>
@@ -550,8 +534,8 @@
                 <div class="date">2026 年 3 月 13 日</div>
             </div>
         </a>
-    
-        <a href="20260313book08/index.html" class="blog-card fade-in" data-category="減脂觀念">
+
+        <a href="20260313book08/index.html" class="blog-card fade-in" data-tags="減脂觀念">
             <div class="blog-card-img">
                 <img src="../images/20260313book08.png" alt="停滯期對策（上）：從吃的調整開始">
             </div>
@@ -562,8 +546,8 @@
                 <div class="date">2026 年 3 月 13 日</div>
             </div>
         </a>
-    
-        <a href="20260313book07/index.html" class="blog-card fade-in" data-category="減脂觀念">
+
+        <a href="20260313book07/index.html" class="blog-card fade-in" data-tags="減脂觀念">
             <div class="blog-card-img">
                 <img src="../images/20260313book07.png" alt="體重停滯了，是停滯期嗎？先搞清楚原因">
             </div>
@@ -574,8 +558,8 @@
                 <div class="date">2026 年 3 月 13 日</div>
             </div>
         </a>
-    
-        <a href="20260313book06/index.html" class="blog-card fade-in" data-category="飲食筆記">
+
+        <a href="20260313book06/index.html" class="blog-card fade-in" data-tags="飲食筆記">
             <div class="blog-card-img">
                 <img src="../images/20260313book06.png" alt="外食族減脂實戰：超商、便當店、餐廳都能吃">
             </div>
@@ -586,8 +570,8 @@
                 <div class="date">2026 年 3 月 13 日</div>
             </div>
         </a>
-    
-        <a href="20260312book05/index.html" class="blog-card fade-in" data-category="飲食筆記">
+
+        <a href="20260312book05/index.html" class="blog-card fade-in" data-tags="飲食筆記">
             <div class="blog-card-img">
                 <img src="../images/20260312book05.png" alt="減脂也可以吃點心？關於零食的真心話">
             </div>
@@ -598,21 +582,20 @@
                 <div class="date">2026 年 3 月 12 日</div>
             </div>
         </a>
-        
-        
-<a href="20260312book04/index.html" class="blog-card fade-in" data-category="飲食筆記">
-    <div class="blog-card-img">
-        <img src="../images/20260312book04.png" alt="三大營養素怎麼吃？">
-    </div>
-    <div class="blog-card-body">
-        <span class="tag">飲食筆記</span>
-        <h3>三大營養素怎麼吃？</h3>
-        <p>先把蛋白質的量確立，剩下的熱量再分配給醣和脂肪</p>
-        <div class="date">2026 年 3 月 12 日</div>
-    </div>
-</a>
-        
-        <a href="20260311book03/index.html" class="blog-card fade-in" data-category="減脂觀念">
+
+        <a href="20260312book04/index.html" class="blog-card fade-in" data-tags="飲食筆記">
+            <div class="blog-card-img">
+                <img src="../images/20260312book04.png" alt="三大營養素怎麼吃？">
+            </div>
+            <div class="blog-card-body">
+                <span class="tag">飲食筆記</span>
+                <h3>三大營養素怎麼吃？</h3>
+                <p>先把蛋白質的量確立，剩下的熱量再分配給醣和脂肪</p>
+                <div class="date">2026 年 3 月 12 日</div>
+            </div>
+        </a>
+
+        <a href="20260311book03/index.html" class="blog-card fade-in" data-tags="減脂觀念">
             <div class="blog-card-img">
                 <img src="../images/20260311book03.png" alt="一天到底該吃多少熱量？TDEE 完整計算教學">
             </div>
@@ -623,8 +606,8 @@
                 <div class="date">2026 年 3 月 11 日</div>
             </div>
         </a>
-        
-        <a href="20260311book02/index.html" class="blog-card fade-in" data-category="減脂觀念">
+
+        <a href="20260311book02/index.html" class="blog-card fade-in" data-tags="減脂觀念">
             <div class="blog-card-img">
                 <img src="../images/20260311book02.png" alt="低醣 vs 低脂，哪個才是真正的減肥關鍵？">
             </div>
@@ -635,8 +618,8 @@
                 <div class="date">2026 年 3 月 11 日</div>
             </div>
         </a>
-        
-        <a href="20260311book01/index.html" class="blog-card fade-in" data-category="減脂觀念">
+
+        <a href="20260311book01/index.html" class="blog-card fade-in" data-tags="減脂觀念">
             <div class="blog-card-img">
                 <img src="../images/20260311book01.png" alt="為什麼你一直減不下來？">
             </div>
@@ -647,8 +630,8 @@
                 <div class="date">2026 年 3 月 11 日</div>
             </div>
         </a>
-        
-        <a href="20260310-social-hangover/index.html" class="blog-card fade-in" data-category="生活分享">
+
+        <a href="20260310-social-hangover/index.html" class="blog-card fade-in" data-tags="生活分享">
             <div class="blog-card-img">
                 <img src="../images/20260310social-hangover.png" alt="我需要獨處才能恢復能量">
             </div>
@@ -660,7 +643,7 @@
             </div>
         </a>
 
-        <a href="20260309-cooked-apple/index.html" class="blog-card fade-in" data-category="生活分享">
+        <a href="20260309-cooked-apple/index.html" class="blog-card fade-in" data-tags="生活分享">
             <div class="blog-card-img">
                 <img src="../images/20260309applecook.png" alt="煮蘋果：一個被低估的健康吃法">
             </div>
@@ -672,7 +655,7 @@
             </div>
         </a>
 
-        <a href="20260303-thesims/index.html" class="blog-card fade-in" data-category="生活分享">
+        <a href="20260303-thesims/index.html" class="blog-card fade-in" data-tags="生活分享">
             <div class="blog-card-img">
                 <img src="../images/20260303thesims.png" alt="好用的身體更重要">
             </div>
@@ -684,9 +667,8 @@
             </div>
         </a>
 
-        <a href="20260228-bad-habits/index.html" class="blog-card fade-in" data-category="生活分享">
+        <a href="20260228-bad-habits/index.html" class="blog-card fade-in" data-tags="生活分享">
             <div class="blog-card-img">
-                <!-- ⚠️ 替換下方檔名為實際的封面圖 -->
                 <img src="../images/20260228badhabits.png" alt="那個我想改掉的壞習慣">
             </div>
             <div class="blog-card-body">
@@ -697,9 +679,8 @@
             </div>
         </a>
 
-        <a href="test2/index.html" class="blog-card fade-in" data-category="學習心得">
+        <a href="test2/index.html" class="blog-card fade-in" data-tags="學習心得">
             <div class="blog-card-img">
-                <!-- ⚠️ 替換下方檔名為實際的封面圖 -->
                 <img src="../images/post/2501.jpg" alt="掌握大腦運作規律，養成積極正面習慣">
             </div>
             <div class="blog-card-body">
@@ -710,11 +691,8 @@
             </div>
         </a>
 
-        <!-- ====== 文章卡片結束 ====== -->
-
     </div>
 
-    <!-- 篩選後沒有文章時顯示 -->
     <div class="empty-state" id="emptyState">
         <div class="empty-icon">📝</div>
         <p>這個分類還沒有文章，敬請期待！</p>
@@ -736,9 +714,7 @@
     // Fade-in on scroll
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('visible');
         });
     }, { threshold: 0.15 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
@@ -750,14 +726,17 @@
         });
     });
 
-    // Filter tabs
+    // -------------------------------------------------------
+    // 篩選邏輯：改用 data-tags（空格分隔，支援多標籤）
+    // 原本是 data-category === filter 完全比對
+    // 現在改成 tags 陣列包含 filter 即顯示
+    // -------------------------------------------------------
     const filterTabs = document.querySelectorAll('.filter-tab');
     const blogCards = document.querySelectorAll('.blog-card');
     const emptyState = document.getElementById('emptyState');
 
     filterTabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            // Update active tab
             filterTabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
 
@@ -765,15 +744,12 @@
             let visibleCount = 0;
 
             blogCards.forEach(card => {
-                if (filter === 'all' || card.dataset.category === filter) {
-                    card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    card.style.display = 'none';
-                }
+                const tags = (card.dataset.tags || '').split(' ');
+                const show = filter === 'all' || tags.includes(filter);
+                card.style.display = show ? 'block' : 'none';
+                if (show) visibleCount++;
             });
 
-            // Show empty state if no cards visible
             emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
         });
     });
