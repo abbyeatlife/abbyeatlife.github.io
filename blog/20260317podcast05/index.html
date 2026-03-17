@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>更年期前最值得投資的事：重訓與骨密度保養 — Abby營養師修熄示</title>
+    <meta name="description" content="骨骼是活的器官，肌肉量從 30 歲就開始流失。更年期前的重訓，不只是讓你變好看，而是在幫代謝和骨骼存老本。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7C9070; --sage-light: #B8C9AF; --sage-pale: #EEF2EB;
+            --cream: #FAF7F2; --warm: #F5EBE4; --bark: #4A3728; --bark-light: #7A6050;
+            --terracotta: #C17A5A; --white: #FFFFFF; --text: #2C2420; --text-light: #6B5B52;
+            --border: #E0D8D0; --shadow-sm: 0 1px 3px rgba(74,55,40,0.06);
+            --shadow-md: 0 4px 20px rgba(74,55,40,0.08); --radius: 12px; --radius-lg: 20px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans TC', sans-serif; color: var(--text); background: var(--cream); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,247,242,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(124,144,112,0.12); transition: box-shadow 0.3s ease; }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--bark); text-decoration: none; }
+        .nav-logo span { color: var(--sage); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-light); font-size: 0.9rem; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: all 0.2s ease; }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta { background: var(--sage); color: var(--white); }
+        .nav-links a.cta:hover { background: var(--bark); }
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--bark); margin: 5px 0; border-radius: 2px; }
+
+        .article-header { padding: 100px 24px 40px; max-width: 760px; margin: 0 auto; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--sage); font-size: 0.88rem; font-weight: 500; margin-bottom: 28px; transition: color 0.2s ease; }
+        .back-link:hover { color: var(--bark); }
+        .article-tag { display: inline-block; font-size: 0.75rem; font-weight: 600; color: var(--terracotta); letter-spacing: 0.05em; margin-bottom: 12px; }
+        .article-header h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 600; color: var(--bark); line-height: 1.35; letter-spacing: -0.02em; margin-bottom: 16px; }
+        .article-meta { font-size: 0.88rem; color: var(--text-light); display: flex; align-items: center; gap: 16px; }
+        .article-meta .author { font-weight: 500; color: var(--bark); }
+
+        .article-cover { max-width: 760px; margin: 0 auto 40px; padding: 0 24px; }
+        .article-cover img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+
+        .article-content { max-width: 760px; margin: 0 auto; padding: 0 24px 60px; }
+        .article-content p { font-size: 1.05rem; line-height: 2; color: var(--text); margin-bottom: 20px; }
+        .article-content h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; color: var(--bark); margin: 48px 0 20px; }
+        .article-content strong { color: var(--bark); font-weight: 600; }
+
+        .highlight-box { background: var(--sage-pale); border-left: 4px solid var(--sage); border-radius: 0 var(--radius) var(--radius) 0; padding: 20px 24px; margin: 24px 0; }
+        .highlight-box p { margin-bottom: 8px; font-size: 1rem; color: var(--bark); font-weight: 500; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        .discovery-box { background: var(--warm); border-radius: var(--radius); padding: 20px 24px; margin: 24px 0; display: flex; align-items: flex-start; gap: 14px; }
+        .discovery-box .icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+        .discovery-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+        .teaser-box { background: var(--bark); border-radius: var(--radius-lg); padding: 28px; margin: 36px 0; }
+        .teaser-box h5 { color: var(--sage-light); margin: 0 0 10px; font-size: 0.9rem; letter-spacing: 0.05em; font-weight: 600; }
+        .teaser-box p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 0; }
+
+        .section-divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 40px 0; }
+        .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--sage-light); }
+        .section-divider .dot { width: 5px; height: 5px; background: var(--sage-light); border-radius: 50%; }
+
+        /* Bone cycle */
+        .cycle-visual { background: var(--white); border-radius: var(--radius-lg); padding: 22px; margin: 22px 0; box-shadow: var(--shadow-sm); }
+        .cycle-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: var(--text-light); text-transform: uppercase; margin-bottom: 14px; }
+        .cycle-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .cycle-card { border-radius: var(--radius); padding: 14px 16px; font-size: 0.88rem; }
+        .cycle-card.build { background: var(--sage-pale); border: 1px solid #C8D8BF; }
+        .cycle-card.break { background: #FDF0EB; border: 1px solid #F0C4AE; }
+        .cycle-card .c-title { font-weight: 700; margin-bottom: 5px; font-size: 0.88rem; }
+        .cycle-card.build .c-title { color: var(--sage); }
+        .cycle-card.break .c-title { color: var(--terracotta); }
+        .cycle-card .c-desc { color: var(--text-light); line-height: 1.6; font-size: 0.84rem; }
+        .cycle-note { font-size: 0.82rem; color: var(--text-light); text-align: center; padding-top: 12px; border-top: 1px solid var(--border); margin-top: 12px; }
+
+        /* Benefit blocks */
+        .benefit-block { margin: 28px 0; }
+        .benefit-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+        .benefit-number { width: 32px; height: 32px; background: var(--sage); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; color: var(--white); flex-shrink: 0; }
+        .benefit-title { font-size: 1.05rem; font-weight: 700; color: var(--bark); }
+
+        /* Summary */
+        .summary-card { background: var(--white); border-radius: var(--radius-lg); padding: 26px 30px; margin: 32px 0; box-shadow: var(--shadow-sm); border-top: 4px solid var(--sage); }
+        .summary-card h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--bark); margin-bottom: 14px; }
+        .summary-row { display: flex; gap: 12px; margin-bottom: 10px; font-size: 0.9rem; color: var(--text); line-height: 1.7; }
+        .summary-row:last-child { margin-bottom: 0; }
+        .summary-row .tag { flex-shrink: 0; background: var(--sage-pale); color: var(--sage); font-weight: 600; font-size: 0.75rem; padding: 2px 10px; border-radius: 50px; height: fit-content; margin-top: 3px; }
+
+        /* Series nav */
+        .series-nav { margin: 36px 0; }
+        .series-nav-label { font-size: 0.82rem; color: var(--text-light); margin-bottom: 12px; }
+        .series-link { display: block; background: var(--white); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow-sm); text-decoration: none; border: 1px solid var(--border); transition: border-color 0.2s ease; }
+        .series-link:hover { border-color: var(--sage); }
+        .series-link .direction { font-size: 0.75rem; color: var(--text-light); margin-bottom: 6px; }
+        .series-link .title { font-size: 0.9rem; font-weight: 600; color: var(--bark); line-height: 1.5; }
+
+        .article-footer { max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
+        .article-footer-divider { border: none; border-top: 1px solid var(--sage-light); margin-bottom: 36px; }
+        .author-card { display: flex; align-items: center; gap: 20px; background: var(--white); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); }
+        .author-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--sage-pale); flex-shrink: 0; overflow: hidden; }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 500; color: var(--bark); margin-bottom: 4px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .author-links { display: flex; gap: 8px; margin-top: 10px; }
+        .author-links a { font-size: 0.8rem; padding: 4px 12px; border-radius: 50px; text-decoration: none; background: var(--sage-pale); color: var(--sage); font-weight: 500; transition: all 0.2s ease; }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        footer { background: var(--bark); color: rgba(255,255,255,0.6); text-align: center; padding: 32px 24px; font-size: 0.82rem; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--cream); padding: 16px 24px; box-shadow: var(--shadow-md); }
+            .menu-toggle { display: block; }
+            .article-header h1 { font-size: 1.7rem; }
+            .cycle-row { grid-template-columns: 1fr; }
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">女性專題</span>
+    <h1>更年期前最值得投資的事：<br>重訓與骨密度保養</h1>
+    <div class="article-meta">
+        <span class="author">Abby 營養師</span>
+        <span>2026 年 3 月 17 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260317podcast05.png" alt="更年期前最值得投資的事：重訓與骨密度保養">
+</div>
+
+<div class="article-content">
+
+    <p>上一篇我們談了更年期四個症狀的原理。這篇來談更積極的那一面：在雌激素慢慢退場的過程中，我們能做什麼，讓這個過渡更平緩？</p>
+
+    <p>答案很具體：<strong>累積骨密度、保住肌肉量，而且要提早開始。</strong></p>
+
+    <div class="highlight-box">
+        <p>去年健康檢查，我的骨密度 Z-score 是 +2.9，比同年齡同性別的人高出約 2.9 個標準差，大約前 1%。這讓我更確信：平常給自己做的訓練，真的在支撐骨骼的保養。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>骨骼是活的，一直在拆除與重建</h2>
+
+    <p>骨頭不是靜止的，它每天都在承受力學負荷、產生微小裂縫，然後不斷被修補——這個動態循環維持骨密度的穩定。</p>
+
+    <div class="cycle-visual">
+        <div class="cycle-label">骨骼的動態循環</div>
+        <div class="cycle-row">
+            <div class="cycle-card break">
+                <div class="c-title">破骨細胞：拆除</div>
+                <div class="c-desc">分解舊骨質，將鈣質釋放到血液，供神經傳導、肌肉收縮等使用。</div>
+            </div>
+            <div class="cycle-card build">
+                <div class="c-title">造骨細胞：重建</div>
+                <div class="c-desc">在拆除的部位填補新骨質，維持骨密度與結構強度。</div>
+            </div>
+        </div>
+        <div class="cycle-note">骨骼是身體最大的鈣質銀行，存著全身約 99% 的鈣。拆除與重建的平衡，決定骨密度是否穩定。</div>
+    </div>
+
+    <p>雌激素的角色，是<strong>抑制破骨細胞</strong>——踩住「拆除」那一側，讓速度不要太快。雌激素退場後，這個抑制消失，拆除加速，重建跟不上，骨密度就開始流失。</p>
+
+    <div class="discovery-box">
+        <span class="icon">🏦</span>
+        <p>用銀行來想像：雌激素是幫你管控提款速度的機制。它退場後，提款變頻繁，存款（骨密度）下降更快。所以要趁早把本金存得夠厚。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>為什麼重訓是最值得投資的事？</h2>
+
+    <div class="benefit-block">
+        <div class="benefit-header">
+            <div class="benefit-number">1</div>
+            <div class="benefit-title">直接刺激骨骼與肌肉，替代雌激素的部分功能</div>
+        </div>
+        <p>舉起大重量時，肌纖維產生損傷，這個機械性刺激會召喚衛星細胞（肌肉幹細胞）修復與增長。年輕時雌激素會輔助這個過程；現在雌激素少了，就更需要靠<strong>規律的大重量刺激</strong>直接叫醒它，讓它習慣不需要中間人。</p>
+        <p>同樣地，負重帶給骨骼的力學刺激，也會促進造骨細胞活性，幫助骨質累積——這是光靠補鈣做不到的。</p>
+    </div>
+
+    <div class="benefit-block">
+        <div class="benefit-header">
+            <div class="benefit-number">2</div>
+            <div class="benefit-title">肌肉是最好的代謝器官</div>
+        </div>
+        <p>肌肉量多，帶來的好處是連鎖的：肝糖儲存空間更大、胰島素敏感度更高（降低胰島素阻抗風險）；肌肉本身也會分泌具抗發炎作用的 myokines（肌肉激素）；粒線體密度更高，代謝效率也跟著提升。</p>
+        <p>肌肉量從 30 歲後就會自然流失，進入更年期後加速。刻意的重量訓練可以直接對抗這個趨勢，<strong>任何年紀開始都有效。</strong></p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="summary-card">
+        <h4>更年期前的身體投資清單</h4>
+        <div class="summary-row">
+            <span class="tag">骨骼</span>
+            <span>趁早把骨本存厚。負重訓練是促進造骨細胞最有效的方式，停經後雌激素不會歸零，身體還有可塑性。</span>
+        </div>
+        <div class="summary-row">
+            <span class="tag">肌肉</span>
+            <span>30 歲後自然流失，更年期後加速。刻意的重量訓練可以對抗這個趨勢，任何年紀開始都有效。</span>
+        </div>
+        <div class="summary-row">
+            <span class="tag">時機</span>
+            <span>最好從 35 歲前開始布局。如果現在才看到這篇，也沒關係——只要開始，永遠不嫌晚。</span>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="series-nav">
+        <div class="series-nav-label">← 回顧這個系列的上一篇</div>
+        <a href="../20260317podcast04/index.html" class="series-link">
+            <div class="direction">更年期系列・第一篇</div>
+            <div class="title">更年期會發生什麼事？四個症狀背後的原理</div>
+        </a>
+    </div>
+
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar"><img src="../../images/abby01.png" alt="Abby"></div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+<footer><p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p></footer>
+<script>window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20); });</script>
+</body>
+</html>
