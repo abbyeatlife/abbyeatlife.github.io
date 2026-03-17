@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>更年期會發生什麼事？四個症狀背後的原理 — Abby營養師修熄示</title>
+    <meta name="description" content="熱潮紅、心悸、關節痛、運動耐受度下降——這些不是意志力問題，而是雌激素退場帶來的連鎖反應。搞懂原理，才能不慌不忙地應對。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7C9070; --sage-light: #B8C9AF; --sage-pale: #EEF2EB;
+            --cream: #FAF7F2; --warm: #F5EBE4; --bark: #4A3728; --bark-light: #7A6050;
+            --terracotta: #C17A5A; --white: #FFFFFF; --text: #2C2420; --text-light: #6B5B52;
+            --border: #E0D8D0; --shadow-sm: 0 1px 3px rgba(74,55,40,0.06);
+            --shadow-md: 0 4px 20px rgba(74,55,40,0.08); --radius: 12px; --radius-lg: 20px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans TC', sans-serif; color: var(--text); background: var(--cream); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,247,242,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(124,144,112,0.12); transition: box-shadow 0.3s ease; }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--bark); text-decoration: none; }
+        .nav-logo span { color: var(--sage); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-light); font-size: 0.9rem; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: all 0.2s ease; }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta { background: var(--sage); color: var(--white); }
+        .nav-links a.cta:hover { background: var(--bark); }
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--bark); margin: 5px 0; border-radius: 2px; }
+
+        .article-header { padding: 100px 24px 40px; max-width: 760px; margin: 0 auto; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--sage); font-size: 0.88rem; font-weight: 500; margin-bottom: 28px; transition: color 0.2s ease; }
+        .back-link:hover { color: var(--bark); }
+        .article-tag { display: inline-block; font-size: 0.75rem; font-weight: 600; color: var(--terracotta); letter-spacing: 0.05em; margin-bottom: 12px; }
+        .article-header h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 600; color: var(--bark); line-height: 1.35; letter-spacing: -0.02em; margin-bottom: 16px; }
+        .article-meta { font-size: 0.88rem; color: var(--text-light); display: flex; align-items: center; gap: 16px; }
+        .article-meta .author { font-weight: 500; color: var(--bark); }
+
+        .article-cover { max-width: 760px; margin: 0 auto 40px; padding: 0 24px; }
+        .article-cover img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+
+        .article-content { max-width: 760px; margin: 0 auto; padding: 0 24px 60px; }
+        .article-content p { font-size: 1.05rem; line-height: 2; color: var(--text); margin-bottom: 20px; }
+        .article-content h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; color: var(--bark); margin: 48px 0 20px; }
+        .article-content strong { color: var(--bark); font-weight: 600; }
+
+        .highlight-box { background: var(--sage-pale); border-left: 4px solid var(--sage); border-radius: 0 var(--radius) var(--radius) 0; padding: 20px 24px; margin: 24px 0; }
+        .highlight-box p { margin-bottom: 8px; font-size: 1rem; color: var(--bark); font-weight: 500; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        .discovery-box { background: var(--warm); border-radius: var(--radius); padding: 20px 24px; margin: 24px 0; display: flex; align-items: flex-start; gap: 14px; }
+        .discovery-box .icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+        .discovery-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+        .teaser-box { background: var(--bark); border-radius: var(--radius-lg); padding: 28px; margin: 36px 0; }
+        .teaser-box h5 { color: var(--sage-light); margin: 0 0 10px; font-size: 0.9rem; letter-spacing: 0.05em; font-weight: 600; }
+        .teaser-box p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-bottom: 0; }
+
+        .section-divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 40px 0; }
+        .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--sage-light); }
+        .section-divider .dot { width: 5px; height: 5px; background: var(--sage-light); border-radius: 50%; }
+
+        .symptom-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 28px 0; }
+        .symptom-pill { background: var(--white); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow-sm); border-top: 3px solid var(--terracotta); }
+        .symptom-pill .s-icon { font-size: 1.3rem; margin-bottom: 6px; }
+        .symptom-pill .s-name { font-size: 0.92rem; font-weight: 700; color: var(--bark); margin-bottom: 4px; }
+        .symptom-pill .s-cause { font-size: 0.8rem; color: var(--text-light); line-height: 1.5; }
+
+        .symptom-block { margin: 32px 0; }
+        .symptom-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+        .symptom-number { width: 32px; height: 32px; background: var(--terracotta); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; color: var(--white); flex-shrink: 0; }
+        .symptom-title { font-size: 1.05rem; font-weight: 700; color: var(--bark); }
+
+        .mechanism { background: var(--white); border-radius: var(--radius); padding: 16px 20px; margin: 16px 0; box-shadow: var(--shadow-sm); }
+        .mechanism-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; color: var(--text-light); text-transform: uppercase; margin-bottom: 10px; }
+        .mechanism-chain { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+        .chain-item { background: var(--sage-pale); border-radius: 6px; padding: 5px 11px; font-size: 0.83rem; font-weight: 500; color: var(--bark); }
+        .chain-item.trigger { background: #FDF0EB; color: var(--terracotta); }
+        .chain-arrow { color: var(--sage-light); font-size: 0.85rem; }
+
+        .article-footer { max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
+        .article-footer-divider { border: none; border-top: 1px solid var(--sage-light); margin-bottom: 36px; }
+        .author-card { display: flex; align-items: center; gap: 20px; background: var(--white); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); }
+        .author-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--sage-pale); flex-shrink: 0; overflow: hidden; }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 500; color: var(--bark); margin-bottom: 4px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .author-links { display: flex; gap: 8px; margin-top: 10px; }
+        .author-links a { font-size: 0.8rem; padding: 4px 12px; border-radius: 50px; text-decoration: none; background: var(--sage-pale); color: var(--sage); font-weight: 500; transition: all 0.2s ease; }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        footer { background: var(--bark); color: rgba(255,255,255,0.6); text-align: center; padding: 32px 24px; font-size: 0.82rem; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--cream); padding: 16px 24px; box-shadow: var(--shadow-md); }
+            .menu-toggle { display: block; }
+            .article-header h1 { font-size: 1.7rem; }
+            .symptom-grid { grid-template-columns: 1fr; }
+            .mechanism-chain { flex-direction: column; align-items: flex-start; }
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">生活分享・女性專題</span>
+    <h1>更年期會發生什麼事？<br>四個症狀背後的原理</h1>
+    <div class="article-meta">
+        <span class="author">Abby 營養師</span>
+        <span>2026 年 3 月 17 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260317podcast04.png" alt="更年期會發生什麼事？四個症狀背後的原理">
+</div>
+
+<div class="article-content">
+
+    <p>我有一位學生，五十出頭，正處於更年期過渡期——月經還沒停，但已經亂了，關節常痛，睡到一半熱醒盜汗。她說，想在更年期真正到來之前，先幫自己鋪一條比較平緩的坡道。</p>
+
+    <p>這篇文章，我想把更年期常見症狀背後的原理說清楚。<strong>這些不是意志力問題，而是雌激素退場帶來的連鎖反應。</strong></p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="symptom-grid">
+        <div class="symptom-pill">
+            <div class="s-icon">🌡️</div>
+            <div class="s-name">熱潮紅・夜間盜汗</div>
+            <div class="s-cause">下視丘體溫調節敏感度上升</div>
+        </div>
+        <div class="symptom-pill">
+            <div class="s-icon">💓</div>
+            <div class="s-name">心悸・心跳不穩</div>
+            <div class="s-cause">副交感神經「煞車」力道減弱</div>
+        </div>
+        <div class="symptom-pill">
+            <div class="s-icon">🦴</div>
+            <div class="s-name">關節痛・肌肉酸痛</div>
+            <div class="s-cause">抗發炎能力與膠原蛋白合成下降</div>
+        </div>
+        <div class="symptom-pill">
+            <div class="s-icon">😮‍💨</div>
+            <div class="s-name">運動耐受度下降</div>
+            <div class="s-cause">肌肉量流失、心肺調節能力減弱</div>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="symptom-block">
+        <div class="symptom-header">
+            <div class="symptom-number">1</div>
+            <div class="symptom-title">熱潮紅與夜間盜汗</div>
+        </div>
+        <p>雌激素本來參與體溫調節，調控中心在大腦的<strong>下視丘</strong>。雌激素下降後，下視丘對體溫變化變得異常敏感，原本正常範圍內的微小波動，就會被誤判成「太熱了」，立刻啟動散熱反應：血管擴張、大量出汗。</p>
+        <div class="mechanism">
+            <div class="mechanism-label">機制示意</div>
+            <div class="mechanism-chain">
+                <div class="chain-item trigger">雌激素下降</div>
+                <div class="chain-arrow">→</div>
+                <div class="chain-item">下視丘體溫感應敏感化</div>
+                <div class="chain-arrow">→</div>
+                <div class="chain-item">微小溫差就觸發警報</div>
+                <div class="chain-arrow">→</div>
+                <div class="chain-item trigger">血管擴張・大量出汗</div>
+            </div>
+        </div>
+        <p style="font-size:0.88rem;color:var(--text-light);">※ 確切分子機制仍在研究中，目前認為下視丘神經元活性的改變是主要原因之一。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="symptom-block">
+        <div class="symptom-header">
+            <div class="symptom-number">2</div>
+            <div class="symptom-title">心悸與心跳不穩</div>
+        </div>
+        <p>雌激素能增強<strong>副交感神經</strong>（讓身體放鬆、心跳穩定的「煞車系統」）的活性。雌激素退場後，這個煞車力道減弱，交感神經相對佔優，心臟就更容易出現悸動或不規則的感覺。</p>
+        <div class="discovery-box">
+            <span class="icon">💡</span>
+            <p>心悸不一定是心臟本身出問題，有時只是荷爾蒙波動的影響。但若症狀頻繁或伴隨胸痛、暈眩，請就醫評估。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="symptom-block">
+        <div class="symptom-header">
+            <div class="symptom-number">3</div>
+            <div class="symptom-title">關節痛與肌肉酸痛</div>
+        </div>
+        <p>雌激素對關節健康有兩個作用：<strong>抑制發炎反應</strong>，以及<strong>促進膠原蛋白合成</strong>，維持軟骨、肌腱、韌帶的彈性與含水量。退場後，關節內發炎因子增加，軟組織修復也變慢——不是你的傷變嚴重了，而是整體消炎和修復能力都打了折。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="symptom-block">
+        <div class="symptom-header">
+            <div class="symptom-number">4</div>
+            <div class="symptom-title">運動耐受度下降</div>
+        </div>
+        <p>肌肉量從 30 多歲就開始自然流失，進入更年期後雌激素退場會加速這個趨勢；加上心血管調節能力也跟著下降，做同樣的事情消耗的比例更高，當然更容易累。</p>
+        <div class="highlight-box">
+            <p>這不代表沒救。任何年紀開始訓練都有效果——重點是從自己的狀態出發，慢慢往前走，從 60 分爬到 70、80 分，已經足以保障生活品質。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <p>四個症狀，根源都是同一件事：<strong>雌激素在身體每個環節都有參與，退場時影響的範圍也很廣。</strong>這些是真實的生理反應，不是意志力問題。</p>
+    <p>下一篇來談：為什麼重訓和骨密度保養，是更年期前最值得投資的事。</p>
+
+    <a href="../20260317podcast05/index.html" style="text-decoration:none;">
+    <div class="teaser-box" style="transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+        <h5>✦ 更年期系列・下一篇 →</h5>
+        <p>骨密度怎麼運作、肌肉量流失的速度有多快，以及為什麼重訓可以在雌激素退場後扮演替代角色。</p>
+    </div>
+    </a>
+
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar"><img src="../../images/abby01.png" alt="Abby"></div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+<footer><p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p></footer>
+<script>window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20); });</script>
+</body>
+</html>
