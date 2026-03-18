@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吃慢一點，不只是為了飽足感 — Abby營養師修熄示</title>
+    <meta name="description" content="放慢吃飯速度，不只是讓大腦有時間收到飽足訊號。咀嚼本身就在燃燒熱量，而且你選擇咀嚼的食物，往往決定了你吃進多少熱量。">
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Abby Eat Life">
+    <meta property="og:url" content="https://abbyeatlife.github.io/blog/20260318book20/index.html">
+    <meta property="og:title" content="吃慢一點，不只是為了飽足感">
+    <meta property="og:description" content="放慢吃飯速度，不只是讓大腦有時間收到飽足訊號。咀嚼本身就在燃燒熱量，而且你選擇咀嚼的食物，往往決定了你吃進多少熱量。">
+    <meta property="og:image" content="https://abbyeatlife.github.io/images/20260318book20.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="zh_TW">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #7C9070; --sage-light: #B8C9AF; --sage-pale: #EEF2EB;
+            --cream: #FAF7F2; --warm: #F5EBE4; --bark: #4A3728; --bark-light: #7A6050;
+            --terracotta: #C17A5A; --white: #FFFFFF; --text: #2C2420; --text-light: #6B5B52;
+            --border: #E0D8D0; --shadow-sm: 0 1px 3px rgba(74,55,40,0.06);
+            --shadow-md: 0 4px 20px rgba(74,55,40,0.08); --radius: 12px; --radius-lg: 20px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Noto Sans TC', sans-serif; color: var(--text); background: var(--cream); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,247,242,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(124,144,112,0.12); transition: box-shadow 0.3s ease; }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--bark); text-decoration: none; }
+        .nav-logo span { color: var(--sage); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-light); font-size: 0.9rem; font-weight: 500; padding: 6px 14px; border-radius: 8px; transition: all 0.2s ease; }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta { background: var(--sage); color: var(--white); }
+        .nav-links a.cta:hover { background: var(--bark); }
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--bark); margin: 5px 0; border-radius: 2px; }
+
+        .article-header { padding: 100px 24px 40px; max-width: 760px; margin: 0 auto; }
+        .back-link { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--sage); font-size: 0.88rem; font-weight: 500; margin-bottom: 28px; transition: color 0.2s ease; }
+        .back-link:hover { color: var(--bark); }
+        .article-tag { display: inline-block; font-size: 0.75rem; font-weight: 600; color: var(--terracotta); letter-spacing: 0.05em; margin-bottom: 12px; }
+        .article-header h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 600; color: var(--bark); line-height: 1.35; letter-spacing: -0.02em; margin-bottom: 16px; }
+        .article-meta { font-size: 0.88rem; color: var(--text-light); display: flex; align-items: center; gap: 16px; }
+        .article-meta .author { font-weight: 500; color: var(--bark); }
+
+        .article-cover { max-width: 760px; margin: 0 auto 40px; padding: 0 24px; }
+        .article-cover img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); }
+
+        .article-content { max-width: 760px; margin: 0 auto; padding: 0 24px 60px; }
+        .article-content p { font-size: 1.05rem; line-height: 2; color: var(--text); margin-bottom: 20px; }
+        .article-content h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 600; color: var(--bark); margin: 48px 0 20px; }
+        .article-content strong { color: var(--bark); font-weight: 600; }
+
+        .highlight-box { background: var(--sage-pale); border-left: 4px solid var(--sage); border-radius: 0 var(--radius) var(--radius) 0; padding: 20px 24px; margin: 24px 0; }
+        .highlight-box p { margin-bottom: 8px; font-size: 1rem; color: var(--bark); font-weight: 500; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        .discovery-box { background: var(--warm); border-radius: var(--radius); padding: 20px 24px; margin: 24px 0; display: flex; align-items: flex-start; gap: 14px; }
+        .discovery-box .icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+        .discovery-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+        .section-divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 40px 0; }
+        .section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--sage-light); }
+        .section-divider .dot { width: 5px; height: 5px; background: var(--sage-light); border-radius: 50%; }
+
+        /* Point blocks */
+        .point-block { margin: 32px 0; }
+        .point-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+        .point-number { width: 32px; height: 32px; background: var(--sage); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; color: var(--white); flex-shrink: 0; }
+        .point-title { font-size: 1.05rem; font-weight: 700; color: var(--bark); }
+
+        /* Compare visual */
+        .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+        .compare-card { border-radius: var(--radius); padding: 16px 18px; }
+        .compare-card.low { background: var(--sage-pale); border: 1px solid #C8D8BF; }
+        .compare-card.high { background: #FDF0EB; border: 1px solid #F0C4AE; }
+        .compare-card .c-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+        .compare-card.low .c-label { color: var(--sage); }
+        .compare-card.high .c-label { color: var(--terracotta); }
+        .compare-card .c-items { font-size: 0.88rem; color: var(--bark); line-height: 1.9; }
+
+        /* Summary */
+        .summary-card { background: var(--white); border-radius: var(--radius-lg); padding: 26px 30px; margin: 36px 0; box-shadow: var(--shadow-sm); border-top: 4px solid var(--sage); }
+        .summary-card h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--bark); margin-bottom: 14px; }
+        .summary-row { display: flex; gap: 12px; margin-bottom: 10px; font-size: 0.9rem; color: var(--text); line-height: 1.7; }
+        .summary-row:last-child { margin-bottom: 0; }
+        .summary-row .tag { flex-shrink: 0; background: var(--sage-pale); color: var(--sage); font-weight: 600; font-size: 0.75rem; padding: 2px 10px; border-radius: 50px; height: fit-content; margin-top: 3px; }
+
+        .article-footer { max-width: 760px; margin: 0 auto; padding: 0 24px 80px; }
+        .article-footer-divider { border: none; border-top: 1px solid var(--sage-light); margin-bottom: 36px; }
+        .author-card { display: flex; align-items: center; gap: 20px; background: var(--white); border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); }
+        .author-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--sage-pale); flex-shrink: 0; overflow: hidden; }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 500; color: var(--bark); margin-bottom: 4px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .author-links { display: flex; gap: 8px; margin-top: 10px; }
+        .author-links a { font-size: 0.8rem; padding: 4px 12px; border-radius: 50px; text-decoration: none; background: var(--sage-pale); color: var(--sage); font-weight: 500; transition: all 0.2s ease; }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        footer { background: var(--bark); color: rgba(255,255,255,0.6); text-align: center; padding: 32px 24px; font-size: 0.82rem; }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--cream); padding: 16px 24px; box-shadow: var(--shadow-md); }
+            .menu-toggle { display: block; }
+            .article-header h1 { font-size: 1.7rem; }
+            .compare-grid { grid-template-columns: 1fr; }
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">飲食筆記</span>
+    <h1>吃慢一點，<br>不只是為了飽足感</h1>
+    <div class="article-meta">
+        <span class="author">Abby 營養師</span>
+        <span>2023 年 1 月 3 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260318book20.png" alt="吃慢一點，不只是為了飽足感">
+</div>
+
+<div class="article-content">
+
+    <p>「吃慢一點」這句話，大概是減脂建議裡最常被提到、也最常被忽略的一條。</p>
+
+    <p>大家都知道要吃慢，但真正執行的人不多——因為不知道背後的原因，就很難有動力去改變習慣。這篇想把「吃慢一點」這件事說得更完整一點，讓你知道它值得被認真對待。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>為什麼吃太快容易吃過量？</h2>
+
+    <p>飽足感不是即時的。當你開始吃東西，消化系統需要一點時間才能把訊號傳到大腦，告訴它「夠了，可以停了」。這個過程大約需要 <strong>20 分鐘</strong>。</p>
+
+    <p>如果你在 10 分鐘內就把一餐掃完，大腦根本還沒收到飽的訊號——你感覺到飽的時候，往往已經吃超過了。多吃進去的那些，身體不需要，就會轉成脂肪存起來。</p>
+
+    <div class="highlight-box">
+        <p>每餐吃 20 分鐘以上，才有足夠時間讓消化系統聯絡大腦，讓飽足感如期抵達。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>但「吃慢」的好處，不只這一個</h2>
+
+    <div class="point-block">
+        <div class="point-header">
+            <div class="point-number">1</div>
+            <div class="point-title">咀嚼本身就在消耗熱量</div>
+        </div>
+        <p>身體處理食物是需要消耗能量的，這叫做<strong>攝食產熱效應</strong>（Thermic Effect of Food）。你吃進來的熱量，大約有 10% 會被身體拿去當作消化食物的「處理費」。</p>
+        <p>咀嚼是消化的第一步，咀嚼越充分，後續消化系統的效率越好，整個過程消耗的能量也越完整。所以放慢速度、多嚼幾下，本身就是一種微小但真實的熱量支出。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="point-block">
+        <div class="point-header">
+            <div class="point-number">2</div>
+            <div class="point-title">需要咀嚼的食物，通常熱量密度比較低</div>
+        </div>
+        <p>這個觀察很有趣——食物需不需要費力咀嚼，往往跟它的熱量密度有關。</p>
+        <p>富含膳食纖維的蔬菜、全穀類、原型食物，咬起來有嚼勁、需要花時間；而精製食品、加工食品——白飯、果汁、餃子、手搖飲——往往幾口就吞下去，熱量卻不低。</p>
+
+        <div class="compare-grid">
+            <div class="compare-card low">
+                <div class="c-label">需要咀嚼・熱量密度低</div>
+                <div class="c-items">
+                    花椰菜、地瓜<br>
+                    糙米飯、燕麥<br>
+                    雞胸肉、豆腐<br>
+                    蘋果、芭樂
+                </div>
+            </div>
+            <div class="compare-card high">
+                <div class="c-label">容易吞嚥・熱量密度高</div>
+                <div class="c-items">
+                    白飯、白吐司<br>
+                    果汁、手搖飲<br>
+                    餃子、丸子<br>
+                    蛋糕、餅乾
+                </div>
+            </div>
+        </div>
+
+        <p>同樣是一口，有的 10 大卡、有的 50 大卡。選擇需要咀嚼的食物，不只吃得慢，也自然吃得少。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="point-block">
+        <div class="point-header">
+            <div class="point-number">3</div>
+            <div class="point-title">喝的熱量，你很容易忽略</div>
+        </div>
+        <p>這是很多人低估自己熱量攝取的主要原因之一。</p>
+        <p>喝一杯 500 大卡的酪梨牛奶，和吃一個 500 大卡的雞腿便當，熱量一樣，但你對飽足感的感受完全不同。液體幾乎不需要咀嚼，咕嚕嚕就下去了，飽的感覺稍縱即逝，很快又可以繼續吃其他東西。</p>
+
+        <div class="discovery-box">
+            <span class="icon">💧</span>
+            <p>人很容易忘記把飲料算進當天的熱量裡。含糖飲料、果汁、奶昔、豆漿加糖——這些喝起來像在解渴，但其實是在攝取相當可觀的熱量，而且幾乎沒有飽足感。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="summary-card">
+        <h4>吃慢一點，其實在做三件事</h4>
+        <div class="summary-row">
+            <span class="tag">飽足感</span>
+            <span>給大腦足夠的時間收到「停止進食」的訊號，避免不自覺吃過量。</span>
+        </div>
+        <div class="summary-row">
+            <span class="tag">代謝</span>
+            <span>充分咀嚼啟動攝食產熱效應，消化過程本身就在消耗熱量。</span>
+        </div>
+        <div class="summary-row">
+            <span class="tag">選擇</span>
+            <span>需要咀嚼的食物通常熱量密度更低，吃慢了自然也在做更好的食物選擇。</span>
+        </div>
+    </div>
+
+    <p>不需要把吃飯變成一件很嚴肅的事，只是下次吃飯的時候，試試看把速度放慢一點，多嚼幾下，感受一下食物的味道。習慣養成之後，你會發現同樣的份量，吃得更滿足。</p>
+
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar"><img src="../../images/abby01.png" alt="Abby"></div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer><p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p></footer>
+
+<script>window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20); });</script>
+</body>
+</html>
