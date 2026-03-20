@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你不是嘴饞，是大腦被劫持了 — Abby營養師</title>
+    <meta name="description" content="一位英國醫師吃了30天超加工食品，腦部掃描結果讓所有人震驚。身為營養師的我也沒能完全逃脫——那個「停不下來」的感覺，究竟從哪裡來？">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta { background: var(--sage); color: var(--white); }
+        .nav-links a.cta:hover { background: var(--bark); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+        .series-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--sage-pale);
+            border-radius: 50px;
+            padding: 5px 14px;
+            margin-bottom: 16px;
+        }
+        .series-badge .tag { font-size: 0.75rem; font-weight: 600; color: var(--terracotta); letter-spacing: 0.05em; }
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author { font-weight: 500; color: var(--bark); }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+        .article-content strong { color: var(--bark); font-weight: 600; }
+
+        .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .highlight-box p { margin-bottom: 8px; font-size: 1rem; color: var(--bark); font-weight: 500; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 24px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .discovery-box .icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+        .discovery-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+        .pull-quote {
+            border-left: 4px solid var(--terracotta);
+            background: rgba(193,127,89,0.06);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 28px 0;
+        }
+        .pull-quote p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--bark);
+            line-height: 1.75;
+            margin: 0 !important;
+        }
+
+        .dark-box {
+            background: var(--bark);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            margin: 36px 0;
+        }
+        .dark-box p { color: rgba(253,251,247,0.85); font-size: 0.95rem; margin-bottom: 12px; }
+        .dark-box p:last-child { margin-bottom: 0; }
+        .dark-box strong { color: var(--cream); }
+
+        .video-ref {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--white);
+            border: 1px solid rgba(193,127,89,0.25);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            margin: 24px 0;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
+        }
+        .video-ref:hover { background: var(--warm); border-color: var(--terracotta); }
+        .video-icon {
+            width: 44px; height: 44px;
+            background: var(--terracotta);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .video-icon svg { width: 16px; height: 16px; fill: white; margin-left: 3px; }
+        .video-info strong { display: block; font-size: 0.9rem; color: var(--bark); font-weight: 600; margin-bottom: 3px; }
+        .video-info span { font-size: 0.78rem; color: var(--text-light); }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 24px 0;
+        }
+        .stat-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 18px 12px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            color: var(--terracotta);
+            font-weight: 600;
+            display: block;
+            line-height: 1.1;
+            margin-bottom: 6px;
+        }
+        .stat-label { font-size: 0.72rem; color: var(--text-light); line-height: 1.5; }
+
+        .mechanism-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .mechanism-list li {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            box-shadow: var(--shadow-sm);
+        }
+        .mechanism-num {
+            flex-shrink: 0;
+            width: 28px; height: 28px;
+            background: var(--terracotta);
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+        .mechanism-text strong {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin-bottom: 4px;
+        }
+        .mechanism-text span { font-size: 0.88rem; color: var(--text-light); line-height: 1.7; }
+
+        .tips-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .tips-list .tip {
+            background: var(--sage-pale);
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-size: 0.92rem;
+            color: var(--bark);
+            line-height: 1.7;
+        }
+        .tips-list .tip::before {
+            content: '✦';
+            color: var(--sage);
+            font-size: 0.7rem;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .related-box {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            margin: 36px 0;
+        }
+        .related-box-header {
+            background: var(--sage);
+            padding: 14px 24px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.04em;
+        }
+        .related-box-body {
+            padding: 20px 24px;
+            font-size: 0.92rem;
+            color: var(--text);
+            line-height: 1.9;
+        }
+        .related-box-body a {
+            color: var(--sage);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+        }
+        .section-divider::before,
+        .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--sage-light); }
+        .section-divider .dot { width: 5px; height: 5px; background: var(--sage-light); border-radius: 50%; }
+
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-footer-divider { border: none; border-top: 1px solid var(--sage-light); margin-bottom: 36px; }
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--sage-pale); flex-shrink: 0; overflow: hidden; }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 500; color: var(--bark); margin-bottom: 4px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .author-links { display: flex; gap: 8px; margin-top: 10px; }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+            .article-header h1 { font-size: 1.7rem; }
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <div class="series-badge">
+        <span class="tag">減脂觀念 生活分享</span>
+    </div>
+    <h1>你不是嘴饞<br>是大腦被劫持了</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 3 月 20 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260320life02.png" alt="你不是嘴饞，是大腦被劫持了">
+</div>
+
+<div class="article-content">
+
+    <p>上個月，逛超市的時候發現哈根達斯開心果口味冰淇淋正在特價。那是我最愛的口味，我告訴自己「就這一罐」，買了回家。每天晚餐後吃大概 100 克，差不多一週就吃完了。</p>
+
+    <p>之後再去超市時，看到它還是在特價！</p>
+
+    <p>這讓我內心拉扯了一番，那天最後有忍住，但過幾天……，我還是去帶了第二罐。不過這次我聰明一點，混希臘優格一起吃，減少冰淇淋的用量，😆感覺「比較健康」。</p>
+
+    <p>我是每天在教人如何好好吃飯的營養師。</p>
+
+    <p>但就連我，也沒能完全逃脫那個吸引力。這件事讓我想跟大家聊聊——那個「停不下來」的感覺，不是你貪吃，也不是你意志力不夠，而是有更深層的事情正在你的大腦裡默默地發生。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>一個醫師的實驗，震驚了所有人</h2>
+
+    <p>英國醫師 Dr. Chris van Tulleken 做了一個讓人看完渾身不舒服的實驗：連續 30 天，把自己的飲食改成 80% 都是超加工食品——炸雞、冷凍披薩、洋芋片、加工肉品，佔掉一天飲食的絕大部分。</p>
+
+    <p>這個實驗是 BBC 紀錄片《我們到底餵孩子吃什麼？》的一部分，由英國倫敦大學學院（UCL）肥胖研究專家 Prof. Rachel Batterham 全程監督，有嚴謹的醫學追蹤，包括血液檢測、體組成分析，以及——最關鍵的——<strong>腦部掃描</strong>。</p>
+
+    <a href="https://youtu.be/T4PFt4czJw0" target="_blank" rel="noopener" class="video-ref">
+        <div class="video-icon">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-info">
+            <strong>UK doctor switches to 80% ULTRA-processed food diet for 30 days</strong>
+            <span>BBC News · YouTube（英文）</span>
+        </div>
+    </a>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>30 天後，他的身體和大腦發生了什麼？</h2>
+
+    <p>先說身體的數字，非常有震撼力：</p>
+
+    <div class="stat-grid">
+        <div class="stat-card">
+            <span class="stat-number">+5.4<small style="font-size:0.95rem;font-family:'Noto Sans TC'">kg</small></span>
+            <span class="stat-label">30 天內體重增加</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">+2</span>
+            <span class="stat-label">BMI 上升點數，進入過重範圍</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">+30<small style="font-size:0.95rem;font-family:'Noto Sans TC'">%</small></span>
+            <span class="stat-label">飢餓素（Ghrelin）上升幅度</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">↓</span>
+            <span class="stat-label">飽足感荷爾蒙（PYY）顯著下降</span>
+        </div>
+    </div>
+
+    <p>飢餓素上升 30% 是什麼概念？就是身體發出「我餓了」的訊號頻率和強度大幅提升，同時飽足感荷爾蒙下降，吃了東西也更難感覺到「夠了」，讓人在不知不覺中吃進遠超過需要的熱量。</p>
+
+    <p>這還不是最驚人的部分。</p>
+
+    <div class="pull-quote">
+        <p>「這個飲食把我大腦的獎勵中心，和驅動重複性自動行為的區域連結在一起。吃超加工食品變成了我的大腦自動叫我去做的事——根本不是我真的想要。」</p>
+    </div>
+
+    <p>這是 Dr. van Tulleken 親眼看到自己前後兩次腦部掃描之後說出的話。他補充：「這在醫學上，是你會在成癮者身上看到的變化。」</p>
+
+    <p>僅僅四個星期。一個 42 歲、平時健康的醫師。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>大腦的獎勵迴路，是怎麼被重新連線的？</h2>
+
+    <p>要理解這件事，需要認識兩個東西：<strong>多巴胺</strong>和<strong>習慣迴路</strong>。</p>
+
+    <p>多巴胺是大腦的「動機分子」——不是讓你感覺快樂的物質，而是讓你「想要去做某件事」的驅動力。超加工食品的設計，特定的油脂比例、糖分、鹽分、口感層次，會精準地觸發多巴胺大量釋放，遠超過天然食物所能給予的刺激。</p>
+
+    <p>當這個過程一次又一次重複，大腦開始建立連結：</p>
+
+    <ul class="mechanism-list">
+        <li>
+            <div class="mechanism-num">1</div>
+            <div class="mechanism-text">
+                <strong>預期反應</strong>
+                <span>光是看到包裝、聞到味道，多巴胺就開始分泌，讓你產生渴望——食物還沒進嘴，衝動已經啟動。</span>
+            </div>
+        </li>
+        <li>
+            <div class="mechanism-num">2</div>
+            <div class="mechanism-text">
+                <strong>習慣化</strong>
+                <span>大腦的基底核記住了「這個行為有獎勵」，把它變成自動程序。就像刷牙，不需要思考就會發生。</span>
+            </div>
+        </li>
+        <li>
+            <div class="mechanism-num">3</div>
+            <div class="mechanism-text">
+                <strong>耐受性提升</strong>
+                <span>同樣的食物，刺激感會逐漸下降。你需要吃更多、吃更重口味，才能得到相同的滿足感。</span>
+            </div>
+        </li>
+        <li>
+            <div class="mechanism-num">4</div>
+            <div class="mechanism-text">
+                <strong>自動化行為</strong>
+                <span>如同 Dr. van Tulleken 說的，最終吃這些食品不再是「選擇」，而是大腦自動下達的指令。</span>
+            </div>
+        </li>
+    </ul>
+
+    <p>這不是貪吃，這是神經可塑性在運作——只是方向不是你想要的。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>那我們都逃不掉了嗎？</h2>
+
+    <p>先說一個讓人稍微鬆口氣的事：這個研究的前提是「80% 飲食都是超加工食品」，這是非常極端的條件。現實生活中，大多數人不會到這個比例。</p>
+
+    <p>目前最被廣泛引用的建議，來自巴西學者 Monteiro 提出、WHO 也採用的 <strong>NOVA 食物分類系統</strong>——超加工食品建議佔總飲食熱量不超過 20%。</p>
+
+    <div class="highlight-box">
+        <p>真正的關鍵問題不是「吃了什麼」，而是：</p>
+        <p>你是主動選擇吃，還是被大腦的迴路推著吃？</p>
+    </div>
+
+    <p>我吃哈根達斯，是因為我知道自己在吃什麼，有意識地控制份量，也沒有因此放棄其他飲食品質。但我也很清楚，第二罐之所以會出現在我的購物籃裡，是因為大腦的獎勵記憶在超市走道上悄悄推了我一把。</p>
+
+    <p><strong>覺察這件事本身，就是最大的不同。</strong></p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>可以怎麼做？</h2>
+
+    <p>我不打算給你一張禁止清單，因為那不是重點，也不管用。我想說的是幾個思維上的轉換：</p>
+
+    <div class="tips-list">
+        <div class="tip"><strong>把「意志力」換成「環境設計」。</strong>不要靠每次都在腦內打仗，而是減少戰場出現的機會。超市不要在飢餓時去逛；家裡如果有零食，就不要放在視線容易看到的地方；帶貨美食的帳號，考慮減少接觸。</div>
+        <div class="tip"><strong>準備「允許的替代品」。</strong>與其硬撐，不如準備一個可以接受的選項。我混希臘優格吃冰淇淋，雖然不完美，但多了蛋白質，而且是有意識地做這個選擇。</div>
+        <div class="tip"><strong>如果要吃，就好好吃。</strong>坐下來，用碗盛，不要站在冰箱前偷吃。儀式感讓大腦正式記錄「我吃了這個」，反而比邊看手機邊偷吃吃得少、滿足感更高。</div>
+    </div>
+
+    <div class="discovery-box">
+        <span class="icon">🧠</span>
+        <p>大腦的可塑性是雙向的。它可以被超加工食品重新連線，也可以透過有意識的新習慣慢慢重新校正。這不是一夜之間的事，但覺察永遠是第一步。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="dark-box">
+        <p>Dr. van Tulleken 在實驗結束後說了一句讓我印象很深的話：</p>
+        <p>「如果四週就能對我這個 42 歲的成熟大腦做到這些，那它對正在發育中的孩子的大腦，又在做什麼？」</p>
+        <p><strong>這不是要你恐慌，而是要你清醒。</strong>你可以選擇吃超加工食品，但最好是你在選擇它，而不是它在選擇你。</p>
+    </div>
+
+    <div class="related-box">
+        <div class="related-box-header">✦ 這個系列還有更多</div>
+        <div class="related-box-body">
+            同系列下一篇：<a href="../20260327life03/">為什麼白天都很好，晚上卻守不住？</a>——從皮質醇、飢餓素到決策疲勞，解釋夜間渴望零食的五個科學原因。<br>
+            以及：<a href="../20260403life04/">生活裡的超加工地雷，你踩了幾個？</a>——從調味包到送禮文化，盤點日常意想不到的超加工食品入口。
+        </div>
+    </div>
+
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
