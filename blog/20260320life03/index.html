@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>為什麼白天都很好，晚上卻守不住？ — Abby營養師</title>
+    <meta name="description" content="明明白天食慾很正常，一到晚上就開始躡手躡腳找零食？這不是你的意志力有問題，是皮質醇、飢餓素、情緒和習慣四重夾擊的結果。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta { background: var(--sage); color: var(--white); }
+        .nav-links a.cta:hover { background: var(--bark); }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+        }
+
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+        .series-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--sage-pale);
+            border-radius: 50px;
+            padding: 5px 14px;
+            margin-bottom: 16px;
+        }
+        .series-badge .tag { font-size: 0.75rem; font-weight: 600; color: var(--terracotta); letter-spacing: 0.05em; }
+        .series-badge .series-name { font-size: 0.75rem; color: var(--sage); font-weight: 500; }
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author { font-weight: 500; color: var(--bark); }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+        .article-content strong { color: var(--bark); font-weight: 600; }
+
+        .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .highlight-box p { margin-bottom: 8px; font-size: 1rem; color: var(--bark); font-weight: 500; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+
+        .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            margin: 24px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+        .discovery-box .icon { font-size: 1.6rem; flex-shrink: 0; line-height: 1.2; }
+        .discovery-box p { margin-bottom: 0; font-size: 0.95rem; }
+
+        .warning-box {
+            background: rgba(193,127,89,0.07);
+            border-left: 4px solid var(--terracotta);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+        .warning-box p { margin-bottom: 8px; font-size: 0.95rem; color: var(--bark); }
+        .warning-box p:last-child { margin-bottom: 0; }
+
+        .pull-quote {
+            border-left: 4px solid var(--terracotta);
+            background: rgba(193,127,89,0.06);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 20px 24px;
+            margin: 28px 0;
+        }
+        .pull-quote p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--bark);
+            line-height: 1.75;
+            margin: 0 !important;
+        }
+
+        .dark-box {
+            background: var(--bark);
+            border-radius: var(--radius-lg);
+            padding: 28px 32px;
+            margin: 36px 0;
+        }
+        .dark-box p { color: rgba(253,251,247,0.85); font-size: 0.95rem; margin-bottom: 12px; }
+        .dark-box p:last-child { margin-bottom: 0; }
+        .dark-box strong { color: var(--cream); }
+
+        /* ── 讀者提問框 ── */
+        .reader-q {
+            background: var(--white);
+            border: 1.5px dashed var(--sage-light);
+            border-radius: var(--radius-lg);
+            padding: 20px 22px;
+            margin: 20px 0;
+            position: relative;
+        }
+        .reader-q-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--sage);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .reader-q-label::before { content: '🙋'; font-size: 0.9rem; }
+        .reader-q-question {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .reader-q-answer {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            line-height: 1.75;
+        }
+        .reader-q-answer strong { color: var(--bark-light); font-weight: 600; }
+        .reader-q-teaser {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            color: var(--terracotta);
+            font-weight: 500;
+        }
+
+        /* ── 晝夜時間軸 ── */
+        .day-timeline {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin: 24px 0;
+            box-shadow: var(--shadow-sm);
+        }
+        .day-timeline-title {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text-light);
+            letter-spacing: 0.04em;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .day-phases {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .day-phase {
+            border-radius: var(--radius);
+            padding: 16px 12px;
+            text-align: center;
+        }
+        .day-phase.morning { background: var(--sage-pale); border: 1.5px solid var(--sage-light); }
+        .day-phase.afternoon { background: var(--warm); border: 1.5px solid rgba(193,127,89,0.2); }
+        .day-phase.night { background: rgba(61,50,41,0.06); border: 1.5px solid rgba(61,50,41,0.15); }
+        .phase-time {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+        .phase-title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--bark);
+            margin-bottom: 6px;
+        }
+        .phase-hormone {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        .phase-state {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 50px;
+            display: inline-block;
+        }
+        .morning .phase-state { background: var(--sage); color: white; }
+        .afternoon .phase-state { background: var(--terracotta); color: white; }
+        .night .phase-state { background: var(--bark); color: var(--cream); }
+
+        /* ── 原因卡片 ── */
+        .reason-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .reason-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px 22px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .reason-num {
+            flex-shrink: 0;
+            width: 32px; height: 32px;
+            background: var(--terracotta);
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+        .reason-body {}
+        .reason-body strong {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin-bottom: 6px;
+        }
+        .reason-body p {
+            font-size: 0.9rem !important;
+            color: var(--text-light);
+            line-height: 1.75;
+            margin: 0 !important;
+        }
+        .reason-body .sub-note {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 0.8rem;
+            color: var(--sage);
+            font-weight: 500;
+        }
+
+        /* ── 對策表 ── */
+        .tips-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .tips-list .tip {
+            background: var(--sage-pale);
+            border-radius: var(--radius);
+            padding: 14px 18px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-size: 0.92rem;
+            color: var(--bark);
+            line-height: 1.7;
+        }
+        .tips-list .tip::before {
+            content: '✦';
+            color: var(--sage);
+            font-size: 0.7rem;
+            flex-shrink: 0;
+            margin-top: 5px;
+        }
+
+        .related-box {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            margin: 36px 0;
+        }
+        .related-box-header {
+            background: var(--sage);
+            padding: 14px 24px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.04em;
+        }
+        .related-box-body {
+            padding: 20px 24px;
+            font-size: 0.92rem;
+            color: var(--text);
+            line-height: 1.9;
+        }
+        .related-box-body a {
+            color: var(--sage);
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+        }
+        .section-divider::before,
+        .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--sage-light); }
+        .section-divider .dot { width: 5px; height: 5px; background: var(--sage-light); border-radius: 50%; }
+
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+        .article-footer-divider { border: none; border-top: 1px solid var(--sage-light); margin-bottom: 36px; }
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--sage-pale); flex-shrink: 0; overflow: hidden; }
+        .author-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .author-info h4 { font-size: 1rem; font-weight: 500; color: var(--bark); margin-bottom: 4px; }
+        .author-info p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        .author-links { display: flex; gap: 8px; margin-top: 10px; }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+            .article-header h1 { font-size: 1.7rem; }
+            .day-phases { grid-template-columns: 1fr; }
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <div class="series-badge">
+        <span class="tag">減脂觀念</span>
+        <span class="series-name">超加工食品系列 · 二</span>
+    </div>
+    <h1>為什麼白天都很好，<br>晚上卻守不住？</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 3 月 20 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260320life03.png" alt="為什麼白天都很好，晚上卻守不住？">
+</div>
+
+<div class="article-content">
+
+   <p>我要告訴你營養師也是凡人，也有晚上亂吃零食的時候。</p>
+
+    <p>白天上課、帶訓練、做營養諮詢，其實我的食慾在白天通常都很穩定，甚至都不太有餓的感覺，時間到了也未必會想吃。但天一黑，像是體內有隻愛吃鬼晚上才出來！晚餐根本只是開胃菜，吃完之後就是想再找點什麼吃。然後開始在廚房和冰箱之間躡手躡腳的。</p>
+    
+  <p>你有這種感覺嗎？</p>
+
+    <p>如果有，我想告訴你：這不是你的意志力有問題。這是皮質醇、飢餓素、情緒調節和習慣迴路，在每天晚上對你發動的四重夾擊。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>白天和晚上，你的大腦在不同模式裡</h2>
+
+    <p>要理解為什麼晚上特別難守住，要先認識一個東西：<strong>皮質醇</strong>。</p>
+
+    <p>皮質醇俗稱「壓力荷爾蒙」，但這個名字有點冤枉它——它其實是你的「清醒與執行」荷爾蒙。早上起床後皮質醇濃度最高，幫你保持專注、行動力和對衝動的抑制能力。到了傍晚，它開始快速下降，身體切換到放鬆和修復模式。</p>
+
+    <div class="day-timeline">
+        <div class="day-timeline-title">▸ 皮質醇的一天節律</div>
+        <div class="day-phases">
+            <div class="day-phase morning">
+                <div class="phase-time">早上 ── 下午</div>
+                <div class="phase-title">皮質醇高峰</div>
+                <div class="phase-hormone">專注力強、食慾抑制、執行力高</div>
+                <div class="phase-state">執行模式</div>
+            </div>
+            <div class="day-phase afternoon">
+                <div class="phase-time">傍晚</div>
+                <div class="phase-title">皮質醇下降</div>
+                <div class="phase-hormone">抑制力減弱、對獎勵的敏感度上升</div>
+                <div class="phase-state">過渡期</div>
+            </div>
+            <div class="day-phase night">
+                <div class="phase-time">夜晚</div>
+                <div class="phase-title">皮質醇低點</div>
+                <div class="phase-hormone">獎勵迴路活躍、衝動抑制最弱</div>
+                <div class="phase-state">獎勵模式</div>
+            </div>
+        </div>
+    </div>
+
+    <p>這就是為什麼白天面對同一包餅乾毫無感覺，晚上卻很難抵抗——不是餅乾變好吃了，是你的「煞車系統」能量不足了。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>五個讓你晚上守不住的原因</h2>
+
+    <div class="reason-cards">
+        <div class="reason-card">
+            <div class="reason-num">1</div>
+            <div class="reason-body">
+                <strong>皮質醇下降，獎勵迴路接管</strong>
+                <p>晚上皮質醇濃度低，前額葉皮質對衝動行為的抑制能力跟著下降。大腦的獎勵中心相對活躍，對食物的吸引力感知放大。白天你是理性主導，晚上是本能主導。</p>
+            </div>
+        </div>
+        <div class="reason-card">
+            <div class="reason-num">2</div>
+            <div class="reason-body">
+                <strong>白天吃不夠，晚上身體討債</strong>
+                <p>如果白天總熱量或蛋白質攝取不足，飢餓素（Ghrelin）會在晚上反彈性升高，身體會主動驅使你找東西吃。而且在飢餓狀態下，大腦傾向選擇高糖、高脂、高熱量的食物——因為這些能最快補充能量。</p>
+                <span class="sub-note">→ 值得自問：白天的蛋白質有達標嗎？</span>
+            </div>
+        </div>
+        <div class="reason-card">
+            <div class="reason-num">3</div>
+            <div class="reason-body">
+                <strong>社交耗能後的情緒延遲釋放</strong>
+                <p>白天承接了大量的對外輸出——上課、帶訓練、回訊息、與人互動。這些壓力不會即時爆發，而是延遲到獨處的晚上才釋放。甜食和高脂食物會短暫提升血清素和多巴胺，大腦學會了「晚上不舒服→找食物→好一點」這個迴路。這不是貪吃，是情緒調節的替代策略。</p>
+            </div>
+        </div>
+
+        <div class="reader-q">
+            <div class="reader-q-label">舉手發問</div>
+            <div class="reader-q-question">等等——不是說壓力大、皮質醇高，反而會讓人更想吃東西嗎？這跟你說的不是衝突了？</div>
+            <div class="reader-q-answer">
+                問得很好！兩件事其實都是真的，只是時間尺度不同。這篇說的是每天正常的<strong>晝夜節律</strong>——皮質醇隨時間自然下降，任何人每天都會發生。而「壓力大想吃東西」講的是另一個情境：<strong>長期慢性壓力</strong>導致皮質醇持續偏高，進而影響血糖調節和瘦素，讓食慾長期升高——這是不同的機制，跟今天說的晚上節律是兩回事。
+                <br><br>
+                有趣的是，同樣是壓力，有些人吃更多、有些人反而吃不下——為什麼反應差這麼多？這個問題值得另外一篇好好聊。
+                <span class="reader-q-teaser">→ 這個話題以後再聊 :)</span>
+            </div>
+        </div>
+        <div class="reason-card">
+            <div class="reason-num">4</div>
+            <div class="reason-body">
+                <strong>決策疲勞，煞車系統沒電了</strong>
+                <p>一整天下來做了無數個決定，前額葉皮質的執行功能已經疲憊。到了晚上，對衝動的抑制能力顯著下降。同樣一包零食，白天完全沒感覺，晚上卻很難抵抗——不是零食變了，是你的大腦累了。</p>
+            </div>
+        </div>
+        <div class="reason-card">
+            <div class="reason-num">5</div>
+            <div class="reason-body">
+                <strong>時間本身變成了觸發信號</strong>
+                <p>如果你習慣性地在晚餐後吃點甜的，久了之後大腦會把「晚餐後」這個時間點本身變成觸發渴望的信號——不需要真的餓，時鐘到了就想吃。這就是那種「躡手躡腳」的感覺，像是某個儀式被自動啟動了。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="pull-quote">
+        <p>白天是皮質醇保護你，晚上是生理、情緒、習慣三重夾擊——不是你的意志力在晚上特別差，是戰場本來就不公平。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>那可以怎麼辦？</h2>
+
+    <p>知道原因之後，策略就會清晰很多。與其每晚都跟自己打一場仗，不如從上游調整：</p>
+
+    <div class="tips-list">
+        <div class="tip"><strong>白天確保蛋白質足夠，尤其是午餐。</strong>蛋白質是最能延長飽足感的營養素，白天吃夠了，晚上飢餓素反彈的幅度會小很多。如果你白天常常忙到忘記吃，這是最值得優先處理的事。</div>
+        <div class="tip"><strong>晚餐加一點健康脂肪。</strong>酪梨、堅果、橄欖油——健康脂肪能延長飽足感，讓你撐到睡前不會再有強烈的飢餓感。</div>
+        <div class="tip"><strong>準備「允許的替代品」放在手邊。</strong>與其靠意志力硬撐，不如把想吃的東西換成負擔小一點的版本——希臘優格、少量黑巧克力、水果。滿足了儀式感，又不會讓大腦覺得被剝奪。</div>
+        <div class="tip"><strong>用其他方式消化社交耗能。</strong>洗個澡、做幾個伸展、聽音樂——給情緒一個不是食物的出口。不是每次都要做到，但多一個選項，就少一次自動導向冰箱。</div>
+        <div class="tip"><strong>如果要吃，就坐下來好好吃。</strong>打破「躡手躡腳」的模式——用碗盛、坐在桌前，讓大腦正式記錄這個行為。研究顯示，有儀式感地進食比站著偷吃吃得少，滿足感反而更高。</div>
+    </div>
+
+    <div class="warning-box">
+        <p><strong>一個值得注意的盲點：</strong>很多人以為晚上「忍住不吃」就是成功，但如果白天本來就吃不夠，晚上的渴望是身體在討回應得的熱量。</p>
+        <p>真正的解法不是晚上更用力忍，而是讓白天的飲食更紮實，讓晚上的戰場根本不需要出現。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>我自己現在怎麼做？</h2>
+
+    <p>比起禁止自己晚上不亂吃這件事，我更在意的是：當衝動來的時候，是否能有意識地選擇，而非只是被自動導航帶過去。</p>
+
+    <p>哈根達斯事件裡，我最後選擇混希臘優格一起吃。不是因為這樣就「健康」了，而是因為這個動作讓我多了一秒鐘的意識——知道我在做什麼，最終選擇一個折衷的方式。這跟一直去翻冰箱吃是不一樣的。</p>
+
+    <div class="discovery-box">
+        <span class="icon">🌙</span>
+        <p>晚上那個「躡手躡腳」的感覺，不需要帶著罪惡感。理解它從哪裡來，比每次都跟它對抗更有用。你不需要完美，只需要多一點點的覺察。</p>
+    </div>
+
+    <div class="dark-box">
+        <p>如果你讀完這篇，對「超加工食品如何影響大腦」還有興趣，可以回頭看這個系列的第一篇——</p>
+        <p><strong>大腦被劫持的機制，其實跟晚上守不住的原因高度重疊：</strong>同樣是獎勵迴路、同樣是自動化行為、同樣是「不是你真的想要，是大腦在推你」。</p>
+        <p>知道原理，才能真正不被它牽著走。</p>
+    </div>
+
+    <div class="related-box">
+        <div class="related-box-header">✦ 這個系列還有更多</div>
+        <div class="related-box-body">
+            系列第一篇：<a href="../20260320life02/">你不是嘴饞，是大腦被劫持了</a>——BBC 實驗與大腦獎勵迴路的完整說明。<br>
+            系列第三篇：<a href="../20260320life04/">生活裡的超加工地雷，你踩了幾個？</a>——從調味包到送禮文化，盤點日常意想不到的超加工食品入口。
+        </div>
+    </div>
+
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
