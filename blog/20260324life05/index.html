@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>為什麼有些人吃東西靠意志，有些人自然不想吃？ — Abby營養師</title>
+    <meta name="description" content="從一次 AI 個案討論，意外發現我和學生的食慾竟然完全相反。原來關鍵不是意志力，而是一個叫做 Leptin 的荷爾蒙。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+            --cream:#FDFBF7;--warm:#F5EDE3;--bark:#3D3229;--bark-light:#6B5E52;
+            --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+            --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+            --radius:12px;--radius-lg:20px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+        nav.scrolled{box-shadow:var(--shadow-md)}
+        .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+        .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+        .nav-logo span{color:var(--sage)}
+        .nav-links{display:flex;gap:8px;align-items:center}
+        .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+        .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+        .nav-links a.cta{background:var(--sage);color:var(--white)}
+        .nav-links a.cta:hover{background:var(--bark)}
+        .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+        .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+        .article-header{padding:100px 24px 40px;max-width:760px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+        .back-link:hover{color:var(--bark)}
+        .series-badge{display:inline-flex;align-items:center;gap:8px;background:var(--sage-pale);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+        .series-badge .tag{font-size:0.75rem;font-weight:600;color:var(--terracotta);letter-spacing:0.05em}
+        .article-header h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;color:var(--bark);line-height:1.35;letter-spacing:-0.02em;margin-bottom:16px}
+        .article-meta{font-size:0.88rem;color:var(--text-light);display:flex;align-items:center;gap:16px}
+        .article-meta .author{font-weight:500;color:var(--bark)}
+        .article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
+        .css-cover{width:100%;height:240px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,#5a7a50 0%,#8B9E7E 55%,#a3b896 100%)}
+        .css-cover::before{content:'';position:absolute;top:20px;right:20px;width:90px;height:90px;border:2px solid rgba(255,255,255,0.15);border-radius:50%}
+        .css-cover::after{content:'';position:absolute;top:38px;right:38px;width:54px;height:54px;border:2px solid rgba(255,255,255,0.1);border-radius:50%}
+        .css-cover .cover-cat{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:8px}
+        .css-cover .cover-title{font-family:'Playfair Display',serif;font-size:1.3rem;line-height:1.4;font-weight:600;color:#fff}
+        .article-content{max-width:760px;margin:0 auto;padding:0 24px 60px}
+        .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:20px}
+        .article-content h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;color:var(--bark);margin:48px 0 20px}
+        .article-content h3{font-size:1.05rem;font-weight:600;color:var(--sage);margin:32px 0 14px;letter-spacing:0.02em}
+        .article-content strong{color:var(--bark);font-weight:600}
+        .article-content em{color:var(--terracotta);font-style:normal;font-weight:500}
+        .highlight-box{background:var(--sage-pale);border-left:4px solid var(--sage);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
+        .highlight-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
+        .highlight-box p{margin-bottom:10px;font-size:1rem;color:var(--bark)}
+        .highlight-box p:last-child{margin-bottom:0}
+        .note-box{background:rgba(193,127,89,0.07);border-left:4px solid var(--terracotta);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
+        .note-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--terracotta);margin-bottom:10px}
+        .note-box p{margin-bottom:8px;font-size:0.95rem;color:var(--bark)}
+        .note-box p:last-child{margin-bottom:0}
+        .pull-quote{border-left:4px solid var(--terracotta);background:rgba(193,127,89,0.06);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:28px 0}
+        .pull-quote p{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--bark);line-height:1.75;margin:0!important}
+        .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+        .compare-card{background:var(--white);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);font-size:0.92rem}
+        .compare-card.me{border-top:3px solid var(--sage)}
+        .compare-card.student{border-top:3px solid var(--terracotta)}
+        .compare-card .card-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px}
+        .compare-card.me .card-label{color:var(--sage)}
+        .compare-card.student .card-label{color:var(--terracotta)}
+        .compare-card ul{list-style:none;padding:0}
+        .compare-card ul li{padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.05);line-height:1.6;color:var(--text)}
+        .compare-card ul li:last-child{border-bottom:none}
+        .flow{margin:24px 0;display:flex;flex-direction:column;gap:6px}
+        .flow-step{display:flex;align-items:flex-start;gap:14px}
+        .flow-dot{width:28px;height:28px;border-radius:50%;background:var(--sage);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px}
+        .flow-content{flex:1;background:var(--white);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow-sm)}
+        .flow-content strong{display:block;font-weight:600;color:var(--bark);margin-bottom:4px;font-size:0.95rem}
+        .flow-content span{font-size:0.88rem;color:var(--text-light);line-height:1.7}
+        .flow-arrow{text-align:center;color:var(--sage-light);font-size:16px;margin-left:14px;line-height:1}
+        .section-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:40px 0}
+        .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--sage-light)}
+        .section-divider .dot{width:5px;height:5px;background:var(--sage-light);border-radius:50%}
+        .article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
+        .article-tags .tag{background:var(--sage-pale);color:var(--sage);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
+        .related-articles{max-width:760px;margin:0 auto;padding:0 24px 48px}
+        .related-articles h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--bark);margin-bottom:16px;text-align:center}
+        .related-grid{display:flex;flex-direction:column;gap:8px}
+        .related-card{background:var(--white);border-radius:var(--radius);padding:13px 20px;text-decoration:none;border:1px solid rgba(139,158,126,0.15);transition:all .2s ease;text-align:center}
+        .related-card:hover{background:var(--sage-pale);border-color:var(--sage-light)}
+        .related-card .rc-h{font-size:.9rem;font-weight:500;color:var(--bark-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .related-card:hover .rc-h{color:var(--bark)}
+        .back-to-top{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px auto 0;height:36px;padding:0 18px;background:var(--sage);color:var(--white);border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:.82rem;font-weight:500;transition:background .2s ease;white-space:nowrap}
+        .back-to-top:hover{background:var(--bark)}
+        .back-to-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+        .article-footer{max-width:760px;margin:0 auto;padding:0 24px 80px}
+        .article-footer-divider{border:none;border-top:1px solid var(--sage-light);margin-bottom:36px}
+        .author-card{display:flex;align-items:center;gap:20px;background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)}
+        .author-avatar{width:64px;height:64px;border-radius:50%;background:var(--sage-pale);flex-shrink:0;overflow:hidden}
+        .author-avatar img{width:100%;height:100%;object-fit:cover}
+        .author-info h4{font-size:1rem;font-weight:500;color:var(--bark);margin-bottom:4px}
+        .author-info p{font-size:.85rem;color:var(--text-light);line-height:1.6}
+        .author-links{display:flex;gap:8px;margin-top:10px}
+        .author-links a{font-size:.8rem;padding:4px 12px;border-radius:50px;text-decoration:none;background:var(--sage-pale);color:var(--sage);font-weight:500;transition:all .2s ease}
+        .author-links a:hover{background:var(--sage);color:var(--white)}
+        footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+            .menu-toggle{display:block}
+            .article-header h1{font-size:1.7rem}
+            .compare-grid{grid-template-columns:1fr}
+            .author-card{flex-direction:column;text-align:center}
+            .author-links{justify-content:center}
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <div class="series-badge"><span class="tag">飲食筆記</span></div>
+    <h1>為什麼有些人吃東西靠意志，<br>有些人自然不想吃？</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 3 月</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <div class="css-cover">
+        <div class="cover-cat">飲食筆記</div>
+        <div class="cover-title">為什麼有些人吃東西靠意志，<br>有些人自然不想吃？</div>
+    </div>
+</div>
+
+<div class="article-content">
+
+    <p>最近我在用 AI 協助分析一位學生的飲食記錄和體態進度。討論著討論著，我突然意識到一件有趣的事——</p>
+    <p>我跟這位學生的狀態，幾乎完全相反。</p>
+    <p>她體脂偏高、肌肉量也不少，壓力大的時候常常控制不了食慾，生理期前更明顯，對食物的渴望強烈到讓她覺得自己「意志力很差」。</p>
+    <p>而我呢？平常不太容易感覺餓，運動前不太會特別補充，運動完除非是大量有氧，不然也不會特別想吃東西。多數時候，我是靠著意識提醒自己「該補充蛋白質了」、「碳水要吃夠」——完全是大腦在主導，不是身體催著我去找東西吃。</p>
+    <p>以前我以為這是職業習慣養出來的——天天做飲食指導，理性管理飲食好像是理所當然。但這次跟 AI 討論學生的個案，讓我重新審視飲食失控的根源：</p>
+    <p><em>這或許不只是行為習慣的問題，而是我們在生理機能與代謝設定上，存在著本質上的差異。</em></p>
+    <p>學生那種「壓力一來就失控、怎麼努力都擋不住食慾」的感受，也許不是意志力問題。</p>
+    <p>背後很可能有一個更具體的生理機制在運作——而那個機制，才是真正的關鍵。</p>
+
+    <div class="pull-quote">
+        <p>食慾好不好控制，無關意志力問題？<br>背後的生理機制如何運作？</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>關鍵角色：Leptin（瘦素）</h2>
+
+    <p>要理解這件事，要先認識一個叫做 <em>Leptin（瘦素）</em> 的荷爾蒙。它由脂肪細胞分泌，主要的工作是告訴大腦：「現在能量儲備充足，不用擔心，不需要大量進食。」</p>
+    <p>重點在於：<em>Leptin 的分泌量，直接和體內脂肪細胞的數量與體積掛鉤。</em>脂肪細胞多、體積大，Leptin 分泌就多；脂肪細胞少、體積小，分泌就少。</p>
+    <p>而你的大腦感知的，不是 Leptin 的絕對值，而是<em>相對濃度的變化</em>。這是這整件事最核心的概念。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>同樣是肌肉量多，食慾為什麼差那麼多？</h2>
+
+    <p>我和我的學生，放在一起就是一個很好的對照實驗：</p>
+
+    <div class="compare-grid">
+        <div class="compare-card me">
+            <div class="card-label">我的情況</div>
+            <ul>
+                <li>體脂約 13–14%</li>
+                <li>脂肪細胞少，Leptin 基準值低</li>
+                <li>大腦長期習慣低 Leptin 環境</li>
+                <li>這個低濃度就是大腦的「正常」</li>
+                <li>飢餓警報不容易觸發</li>
+                <li>飲食靠意識主導，不靠身體催</li>
+            </ul>
+        </div>
+        <div class="compare-card student">
+            <div class="card-label">學生的情況</div>
+            <ul>
+                <li>體脂約 29%</li>
+                <li>脂肪細胞多，Leptin 基準值高</li>
+                <li>大腦習慣高 Leptin 環境</li>
+                <li>一開始減脂，Leptin 一下降</li>
+                <li>大腦感受到的落差很大</li>
+                <li>飢餓警報快速啟動、難以抵抗</li>
+            </ul>
+        </div>
+    </div>
+<p>你看出來了嗎？兩個人感受到的飢餓差異，核心不在於<strong>肌肉量的高低</strong>，而在於<strong>體脂基準點（Set Point）</strong>的不同。我們剛好都有比較多的肌肉，但那只是「剛好」；真正決定食慾敏感度的，是脂肪細胞的數量，以及 <strong>Leptin（瘦素）</strong>的基準值落在哪裡。</p>
+
+<div class="highlight-box">
+<div class="box-label">那「肌肉多」與「脂肪多」的本質差異是什麼？</div>
+<p>如果把身體比喻成一台車：</p>
+<ul>
+<li><strong>肌肉量決定的是「油耗」：</strong>肌肉多、基礎代謝高，就像大排氣量的引擎，即使靜止不動也在燒油，讓你擁有更強的熱量消耗能力。</li>
+<li><strong>體脂量決定的是「油錶」：</strong>Leptin 就是你的油錶。我的體脂約 13%，大腦早已習慣這種「低油位」的環境，覺得這就是正常狀態，所以我的飢餓警報器非常平靜。</li>
+</ul>
+<hr>
+<p>但對於體脂 29% 的學生來說，她的油錶習慣指在高位。一旦開始減脂，即便她的體脂降到 26%，Leptin 的絕對濃度其實還是比我高出很多，但對她的大腦來說，這是一個<strong>「大幅度的落差」</strong>，於是立刻亮起<strong>「紅色低油位警報」</strong>，發出難以抵抗的飢餓訊號。</p>
+<p>這也解釋了為什麼：一個體脂長期維持在 15-20%（偏低但穩定）的人，她的食慾通常平靜如水；而一個體脂 29% 正在努力重訓的人，即便她肌肉再發達，她的食慾敏感度依然會處於高度張力。<strong>因為肌肉負責燃燒，而脂肪與大腦則負責『安全感』。</strong></p>
+</div>
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>為什麼體脂高的人更難控制食慾？三個機制</h2>
+
+    <h3>機制一：Leptin 落差觸發大腦警報</h3>
+
+    <div class="flow">
+        <div class="flow-step">
+            <div class="flow-dot">1</div>
+            <div class="flow-content">
+                <strong>開始減脂，製造熱量缺口</strong>
+                <span>脂肪細胞開始縮小，Leptin 濃度下降</span>
+            </div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+            <div class="flow-dot">2</div>
+            <div class="flow-content">
+                <strong>大腦偵測到「偏離習慣水位」</strong>
+              <p><strong>大腦感知的不是 Leptin 的「絕對數值」，而是「偏離基準點的程度」。</strong></p>
+<p>體脂高的人，大腦習慣的「水位」本就在高位，一旦開始減脂，產生的偏差感遠大於低體脂者。加上體脂基數大，同樣減去 5%，瘦素實際掉落的絕對量也更多——<strong>這兩者疊加，讓大腦接收到的變化訊號異常劇烈，進而觸發強大的「補償食慾」。</strong></p>
+<p>這就是為什麼：肌肉負責燃燒熱量，而脂肪與大腦則聯手負責「安全感」。</p>
+</div>
+            </div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+            <div class="flow-dot">3</div>
+            <div class="flow-content">
+                <strong>警報啟動：「能量不夠了！快去吃！」</strong>
+                <span>食慾上升、對食物的渴望增強，這是生理驅動，不是心理軟弱</span>
+            </div>
+        </div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">
+            <div class="flow-dot">4</div>
+            <div class="flow-content">
+                <strong>NEAT（非運動性熱消耗）悄悄下降</strong>
+                <span>走路變慢、坐著不動、連說話都懶洋洋——這些不自覺的小變化，讓熱量消耗在無聲中縮水</span>
+            </div>
+        </div>
+    </div>
+
+    <p>不過這裡有一個更重要的補充，是我在梳理這個話題時才意識到的：體脂長期偏高的人，問題不只是「Leptin 基準值高、落差更大」，而是大腦可能早就對 Leptin 產生了<em>阻抗（Leptin Resistance）</em>。</p>
+
+    <div class="highlight-box">
+        <div class="box-label">什麼是 Leptin 阻抗？</div>
+        <p>長期體脂偏高，脂肪細胞持續分泌大量 Leptin，下視丘的接收器為了保護自己不被過度刺激，會逐漸變得<strong>遲鈍</strong>。</p>
+        <p>結果是：明明血液裡 Leptin 濃度很高，大腦卻感受不到「夠了」的訊號——就像長期置身嘈雜環境的人，對噪音的感知會鈍化一樣。</p>
+        <p>這才是更直接的解釋：<strong>不是 Leptin 不夠，而是訊號送出去了但收不到。</strong>飽足感失靈，食慾自然長期高張，不管吃了多少都還是想吃。</p>
+    </div>
+
+    <p>所以體脂高的人面對的其實是雙重困境：一方面減脂時 Leptin 下降觸發警報，另一方面 Leptin 阻抗讓飽足訊號本來就不靈。兩個機制疊加，食慾控制的難度遠比體脂低的人高得多——這跟意志力強不強，真的沒有太大關係。</p>
+
+    <h3>機制二：壓力讓情況雪上加霜</h3>
+
+    <p>皮質醇（壓力荷爾蒙）會直接壓抑 Leptin 的訊號傳遞效率，讓大腦對能量警報更加敏感。如果這個人本來就長期承受著工作或家庭壓力，她的食慾失控感，會比一般體脂 29% 的人還要更強烈。</p>
+    <p>這就是為什麼壓力大的時候特別想吃——不是意志力突然消失了，是皮質醇在背後推了一把，讓 Leptin 的制衡功能暫時失靈。</p>
+
+    <h3>機制三：黃體期的疊加效應</h3>
+
+    <p>如果這個人又剛好在生理期前（黃體期），體內黃體素上升、代謝微幅提高，加上血清素需求增加，身體對碳水化合物的渴望本來就會增強。這個時候再碰上 Leptin 基準值偏高、皮質醇也偏高，三個因素疊在一起，食慾幾乎是壓不住的。</p>
+
+    <div class="note-box">
+        <div class="box-label">給學生，也給很多人</div>
+        <p>那種「壓力大就想吃、生理期前控制不了自己」的感覺，不是你的性格問題，是生理在說話。</p>
+        <p>當你理解了這個機制，策略就不是「更努力抵抗」，而是「怎麼設計環境和節奏，讓生理訊號不要那麼激烈」。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>那我自己的狀況又說明了什麼？</h2>
+
+    <p>理解了 Leptin 之後，我再回頭看自己，很多事情就說得通了。</p>
+    <p>我的體脂長期偏低，Leptin 基準值本來就低，大腦早就習慣在這個「低警戒」的環境下運作，所以平時根本不容易被飢餓訊號拉著走。我的飲食之所以靠意識在維持，不完全是因為我訓練有素或意志力強，而是我的生理設定，本來就不容易觸發飢餓警報。</p>
+    <p>但這也帶出了一個反向的風險：<em>因為身體很少主動要求補充，我有時候會忘記吃，或者吃不夠。</em>在教很多堂課、又自己重訓的高消耗日，如果沒有刻意提醒自己補充，能量虧損可能已經在發生，身體卻沒有大聲喊出來。</p>
+    <p>低體脂、認知驅動飲食的人，有一個隱性風險叫做 <em>RED-S（相對能量缺乏症候群）</em>——外表看起來正常，但長期能量攝取不足，可能悄悄影響荷爾蒙、骨密度和恢復能力。這值得我自己繼續留意，也提醒一些偏瘦的飲控者們。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>那「瘦瘦針」跟這一切有什麼關係？</h2>
+
+    <p>這篇寫到這裡，我忍不住想到一個近年最熱門的話題——<em>瘦瘦針（Semaglutide）</em>。很多人好奇它為什麼有效，用了之後「自然不想吃」是怎麼一回事。答案其實就藏在 Leptin 阻抗的邏輯裡。</p>
+    <p>瘦瘦針的主要成分是 <em>GLP-1 受體促效劑</em>，它走的是和 Leptin 完全不同的路徑，卻在同一個地方發揮作用——大腦的飽足中樞。可以把兩者的關係想成這樣：</p>
+
+    <div class="highlight-box">
+        <div class="box-label">Leptin vs. GLP-1：兩條通往「我夠了」的路</div>
+        <p><strong>Leptin</strong>——脂肪細胞分泌，反映的是<strong>長期能量儲備</strong>的狀態，告訴大腦「我的脂肪夠用，不需要擔心」。體脂高的人容易產生阻抗，這條路堵住了。</p>
+        <p><strong>GLP-1（瘦瘦針模擬的荷爾蒙）</strong>——腸道在進食後分泌，反映的是<strong>當下飽足感</strong>，告訴大腦「這一餐吃夠了，可以停下來」。它走的是另一條神經路徑，Leptin 阻抗堵不到這裡。</p>
+        <p>所以，<strong>瘦瘦針其實是繞過了 Leptin 阻抗，從另一扇門把飽足訊號送進大腦。</strong>這正是為什麼體脂較高、Leptin 阻抗明顯的人，往往對它的反應最顯著——那扇一直打不開的門，終於從另一側被打開了。</p>
+    </div>
+
+    <p>當然，這也解釋了為什麼停藥後容易復胖，以及它和飲食、運動之間該怎麼搭配——這些問題值得另外花一篇的篇幅好好說清楚。<em>關於 GLP-1 和瘦瘦針的完整討論，我們下次再聊。</em></p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>回到最初的問題</h2>
+
+    <p>為什麼有些人吃東西靠意志，有些人自然不想吃？</p>
+    <p>現在我的答案是：<em>這不是個性使然，而是體脂量決定了 Leptin 的基準值，進而決定了你的大腦對「能量缺口」有多敏感。</em></p>
+    <p>體脂低的人，大腦的飢餓警報閾值本來就高，食慾是安靜的，需要靠意識去啟動進食；體脂高的人，大腦對能量變化極度敏感，飢餓是主動且強烈的，需要靠策略去疏導而不是對抗。</p>
+    <p>兩種狀態都有各自的優勢和風險，重要的是理解自己的身體邏輯，然後用對應的方式去照顧它——而不是用別人的標準來評判自己。</p>
+
+    <div class="pull-quote">
+        <p>食慾的失控，不一定代表不夠自律，<br>而是你的身體，正在用它自己的語言跟你對話。</p>
+    </div>
+
+    <div class="article-tags">
+        <span class="tag">飲食筆記</span>
+        <span class="tag">減脂觀念</span>
+        <span class="tag">Leptin</span>
+        <span class="tag">體脂率</span>
+        <span class="tag">食慾</span>
+        <span class="tag">荷爾蒙</span>
+        <span class="tag">GLP-1</span>
+        <span class="tag">瘦瘦針</span>
+    </div>
+
+</div>
+
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../20260323life04/index.html" class="related-card">
+            <div class="rc-h">生理期前體重跳了一公斤，但腰圍沒變——這是怎麼回事？</div>
+        </a>
+        <a href="../20260320life02/index.html" class="related-card">
+            <div class="rc-h">你不是嘴饞，是大腦被劫持了</div>
+        </a>
+        <a href="../20260320life03/index.html" class="related-card">
+            <div class="rc-h">為什麼白天都很好，晚上卻守不住？</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll',()=>{
+        document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+    });
+</script>
+</body>
+</html>
