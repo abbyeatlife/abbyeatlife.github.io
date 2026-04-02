@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第一堂課｜飲食控制的科學基礎</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+
+  :root {
+    --primary: #2d6a4f;
+    --primary-light: #40916c;
+    --accent: #d4a373;
+    --accent-warm: #e07a5f;
+    --bg: #fafaf5;
+    --card-bg: #ffffff;
+    --text: #2b2b2b;
+    --text-light: #5a5a5a;
+    --border: #e8e4de;
+    --green-light: #d8f3dc;
+    --red-light: #fce4e4;
+    --blue-light: #d0e8f2;
+    --yellow-light: #fff3cd;
+    --shadow: 0 2px 16px rgba(0,0,0,0.06);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 16px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, #2d6a4f 0%, #40916c 50%, #52b788 100%);
+    color: white;
+    padding: 80px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 40px;
+    background: var(--bg);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  }
+  .hero .lesson-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(4px);
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 900;
+    margin-bottom: 12px;
+  }
+  .hero .subtitle {
+    font-size: clamp(16px, 2.5vw, 20px);
+    font-weight: 300;
+    opacity: 0.9;
+  }
+
+  /* ── Container ── */
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  /* ── Section ── */
+  .section {
+    margin-bottom: 48px;
+  }
+  .section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px; height: 36px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 700;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .section h2 {
+    font-size: clamp(22px, 3.5vw, 28px);
+    font-weight: 700;
+    color: var(--primary);
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+  .card p {
+    color: var(--text-light);
+    margin-bottom: 10px;
+  }
+
+  /* ── Golden Sentence ── */
+  .golden {
+    background: linear-gradient(135deg, #fff8e1, #fff3cd);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+    font-size: 18px;
+    font-weight: 500;
+    color: #5a4a2f;
+  }
+  .golden::before {
+    content: '"';
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--accent);
+    margin-right: 4px;
+  }
+
+  /* ── Comparison ── */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  @media (max-width: 560px) {
+    .compare-grid { grid-template-columns: 1fr; }
+  }
+  .compare-item {
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .compare-item.good {
+    background: var(--green-light);
+    border: 2px solid #b7e4c7;
+  }
+  .compare-item.bad {
+    background: var(--red-light);
+    border: 2px solid #f5c6c6;
+  }
+  .compare-item h4 {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .compare-item p {
+    font-size: 14px;
+    color: var(--text-light);
+  }
+
+  /* ── Three-col ── */
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+  }
+  @media (max-width: 600px) {
+    .three-col { grid-template-columns: 1fr; }
+  }
+  .nutrient-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 24px 18px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .nutrient-card .icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+  .nutrient-card h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .nutrient-card .role {
+    font-size: 13px;
+    color: var(--primary-light);
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .nutrient-card p {
+    font-size: 14px;
+    color: var(--text-light);
+    text-align: left;
+  }
+
+  /* ── Energy Bar ── */
+  .energy-bar {
+    display: flex;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 56px;
+    margin: 16px 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+  }
+  .energy-bar > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 8px;
+  }
+  .bar-bmr { background: #3a3a3a; flex: 6.5; }
+  .bar-tef { background: #7eb8da; flex: 1; }
+  .bar-neat { background: #e8a838; flex: 1.8; }
+  .bar-eat { background: #3a6ea5; flex: 0.7; }
+
+  /* ── Table ── */
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 15px;
+  }
+  .info-table th {
+    background: var(--primary);
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+  }
+  .info-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .info-table tr:nth-child(even) td { background: #f9f9f6; }
+
+  /* ── Tag/Badge ── */
+  .tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 2px 4px 2px 0;
+  }
+  .tag-green { background: var(--green-light); color: #1b5e20; }
+  .tag-red { background: var(--red-light); color: #b71c1c; }
+  .tag-blue { background: var(--blue-light); color: #0d47a1; }
+  .tag-yellow { background: var(--yellow-light); color: #5a4a2f; }
+
+  /* ── Pyramid ── */
+  .pyramid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 24px 0;
+    gap: 4px;
+  }
+  .pyramid-level {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    border-radius: 6px;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 15px;
+  }
+  .pyramid-level:nth-child(1) { width: 30%; background: #e8a838; }
+  .pyramid-level:nth-child(2) { width: 45%; background: #d4a373; }
+  .pyramid-level:nth-child(3) { width: 60%; background: #e07a5f; }
+  .pyramid-level:nth-child(4) { width: 78%; background: #40916c; }
+  .pyramid-level:nth-child(5) { width: 100%; background: #2d6a4f; font-size: 18px; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-light);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+  }
+
+  /* ── Utilities ── */
+  .highlight { color: var(--accent-warm); font-weight: 700; }
+  .formula {
+    background: #f0f0eb;
+    border-radius: 10px;
+    padding: 16px 24px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 16px 0;
+    letter-spacing: 1px;
+    color: var(--primary);
+  }
+  ul.clean { list-style: none; padding: 0; }
+  ul.clean li { padding: 6px 0; padding-left: 20px; position: relative; }
+  ul.clean li::before { content: '▸'; position: absolute; left: 0; color: var(--primary-light); }
+  .note {
+    background: #f7f5f0;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--text-light);
+    margin: 12px 0;
+  }
+  .flex-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .badge-icon {
+    font-size: 28px;
+    display: block;
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════ HERO ════════════ -->
+<div class="hero">
+  <div class="lesson-tag">LESSON 01</div>
+  <h1>飲食控制的科學基礎</h1>
+  <p class="subtitle">從「盲目少吃」到「精準養身」的完整觀念建立</p>
+</div>
+
+<div class="container">
+
+<!-- ════════════ 1. 能量平衡 ════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">1</span>
+    <h2>體重為什麼會變？認識能量平衡</h2>
+  </div>
+
+  <div class="card">
+    <h3>核心概念：體重改變 ＝ 能量長期趨勢</h3>
+    <p>能量平衡是熱量進出的動態關係。不是只有「少吃」或「多動」，身體無時無刻都在使用能量。體重的變化取決於長期的能量進出平衡，而非單一餐或單一天的數字。</p>
+    <table class="info-table">
+      <tr><th>能量狀態</th><th>結果</th></tr>
+      <tr><td>消耗 ＞ 攝取</td><td>體重下降</td></tr>
+      <tr><td>消耗 ＝ 攝取</td><td>體重維持</td></tr>
+      <tr><td>消耗 ＜ 攝取</td><td>體重上升</td></tr>
+    </table>
+  </div>
+
+  <div class="golden">熱量決定體重數字，營養素決定鏡中的樣子。</div>
+</div>
+
+<!-- ════════════ 2. 能量消耗組成 ════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">2</span>
+    <h2>能量去哪了？不只是運動</h2>
+  </div>
+
+  <div class="card">
+    <p>每天消耗的熱量由四個部分組成，其中基礎代謝佔最大比例，而日常活動（NEAT）是最容易被忽略卻影響最大的變因。</p>
+
+    <div class="energy-bar">
+      <div class="bar-bmr">基礎代謝 BMR<br>≈65%</div>
+      <div class="bar-tef">食物<br>產熱<br>TEF</div>
+      <div class="bar-neat">日常活動<br>NEAT</div>
+      <div class="bar-eat">運動<br>EAT</div>
+    </div>
+
+    <table class="info-table">
+      <tr><th>組成</th><th>說明</th><th>佔比</th></tr>
+      <tr>
+        <td><strong>基礎代謝 (BMR)</strong></td>
+        <td>維持生命基本運作：呼吸、心跳、體溫調節</td>
+        <td>約 60-70%</td>
+      </tr>
+      <tr>
+        <td><strong>食物產熱 (TEF)</strong></td>
+        <td>消化吸收食物所消耗的能量</td>
+        <td>約 10%</td>
+      </tr>
+      <tr>
+        <td><strong>日常活動 (NEAT)</strong></td>
+        <td>走路、做家事、通勤等非運動活動（<span class="highlight">被忽略的減脂關鍵！</span>）</td>
+        <td>約 15-20%</td>
+      </tr>
+      <tr>
+        <td><strong>運動 (EAT)</strong></td>
+        <td>跑步、重訓等有計劃的運動</td>
+        <td>約 5-10%</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="golden">計算只是起點，動態調整才是終點。</div>
+</div>
+
+<!-- ════════════ 3. TDEE ════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">3</span>
+    <h2>TDEE：量身打造你的數據起點</h2>
+  </div>
+
+  <div class="card">
+    <h3>什麼是 TDEE？</h3>
+    <p><strong>TDEE（Total Daily Energy Expenditure）</strong>是你每天消耗的總熱量，也就是 BMR + TEF + NEAT + EAT 的總和。它是設定飲食計畫的基準線。</p>
+
+    <h3 style="margin-top:20px;">如何創造熱量赤字？</h3>
+    <div class="formula">目標攝取 ＝ TDEE −（300 ～ 500 kcal）</div>
+    <p>赤字設定原則：</p>
+    <ul class="clean">
+      <li><strong>可持續性 ＞ 速度</strong>：不追求快速，追求能長期執行</li>
+      <li><strong>能執行</strong>：符合你的生活型態</li>
+      <li><strong>能恢復</strong>：不影響訓練與日常表現</li>
+      <li><strong>能維持生活品質</strong>：不讓你痛苦、焦慮</li>
+    </ul>
+  </div>
+
+  <div class="golden">今天這個數字，不是判你對錯，是讓我們之後有調整依據。</div>
+</div>
+
+<!-- ════════════ 4. 熱量 vs. 營養素 ════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">4</span>
+    <h2>熱量 vs. 營養素：汽油與機油的關係</h2>
+  </div>
+
+  <div class="card">
+    <div class="compare-grid">
+      <div class="compare-item" style="background:#f5f0e8; border:2px solid #d4a373;">
+        <span class="badge-icon">⛽</span>
+        <h4>熱量 (Calories)</h4>
+        <p>如同汽車的<strong>汽油</strong>，是身體的<strong>動力來源</strong>。熱量決定你的體重數字。</p>
+      </div>
+      <div class="compare-item" style="background:#eef5f0; border:2px solid #40916c;">
+        <span class="badge-icon">🔧</span>
+        <h4>營養素 (Nutrients)</h4>
+        <p>如同汽車的<strong>機油</strong>，負責身體的<strong>維護與調控</strong>。營養素決定你的身體組成與健康。</p>
+      </div>
+    </div>
+    <p>不是只有「數字」影響體重——食物組成與製備方式也會決定代謝與身體組織。蛋白質、纖維、維生素等營養含量不同，對代謝效率、飽足感、荷爾蒙反應都會有差異。</p>
+  </div>
+</div>
+
+<!-- ════════════ 5. 三大營養素 ════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">5</span>
+    <h2>身體的三大建築材料</h2>
+  </div>
+
+  <div class="three-col">
+    <!-- 蛋白質 -->
+    <div class="nutrient-card">
+      <div class="icon">🧱</div>
+      <h4>蛋白質 (Protein)</h4>
+      <div class="role">修復與建造 ｜ 4 kcal/g</div>
+      <p>
+        <strong>關鍵角色：</strong>肌肉、毛髮、免疫細胞的原料。<br><br>
+        <strong>減脂意義：</strong>防止肌肉流失，且消化蛋白質的食物產熱效應 (TEF) 最高。<br><br>
+        <strong>攝取建議：</strong>體重 × 1.6g ～ 2.2g，優先固定 (Fix First)。
+      </p>
+    </div>
+    <!-- 脂肪 -->
+    <div class="nutrient-card">
+      <div class="icon">🛡️</div>
+      <h4>脂肪 (Fat)</h4>
+      <div class="role">保護與調節 ｜ 9 kcal/g</div>
+      <p>
+        <strong>關鍵角色：</strong>賀爾蒙合成、細胞膜建構的原料。<br><br>
+        <strong>減脂意義：</strong>提供飽足感，維持生理機能。缺乏會導致掉髮、皮膚乾燥、經期混亂。<br><br>
+        <strong>攝取建議：</strong>佔總熱量 20%–30%，適量攝取。
+      </p>
+    </div>
+    <!-- 碳水 -->
+    <div class="nutrient-card">
+      <div class="icon">⚡</div>
+      <h4>碳水化合物 (Carb)</h4>
+      <div class="role">能量供給 ｜ 4 kcal/g</div>
+      <p>
+        <strong>關鍵角色：</strong>大腦唯一燃料（葡萄糖）與高強度運動能源。<br><br>
+        <strong>減脂意義：</strong>足夠的碳水能保護肌肉不被分解，支撐運動表現。<br><br>
+        <strong>攝取建議：</strong>扣除蛋白質與脂肪後的剩餘熱量，彈性調整。
+      </p>
+    </div>
+  </div>
+
+  <div class="note">
+    ⚠️ <strong>脂肪的熱量密度最高</strong>（9 kcal/g 是蛋白質和碳水的 2.25 倍），需要精準控制份量。隨便淋一圈沙拉醬，可能就抵消跑步 20 分鐘的熱量。
+  </div>
+</div>
+
+<!-- ════════════ 6. 同樣熱量不同體態 ════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">6</span>
+    <h2>同樣的熱量，不同的體態</h2>
+  </div>
+
+  <div class="card">
+    <p>兩個人同樣 60kg、同樣吃 1800kcal，營養素比例不同，身體組成可能天差地別：</p>
+    <div class="compare-grid">
+      <div class="compare-item bad">
+        <h4>高碳水、低蛋白</h4>
+        <p>肌肉流失 → 肉質鬆軟<br>容易飢餓 → 代謝下降<br><span class="tag tag-red">泡芙人體態</span></p>
+      </div>
+      <div class="compare-item good">
+        <h4>高蛋白、均衡飲食</h4>
+        <p>肌肉保留 → 線條緊實<br>飽足感好 → 代謝穩定<br><span class="tag tag-green">精實體態</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="golden">體重下降不等於減脂。失去肌肉，是你最不想看到的結果。</div>
+</div>
+
+<!-- ════════════ 7. 六大類食物 ════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">7</span>
+    <h2>把計畫放進餐盤：認識六大類食物</h2>
+  </div>
+
+  <div class="card">
+    <h3>營養素是語言，六大類食物是工具</h3>
+    <p>理解了三大營養素之後，我們需要知道從哪些「真正的食物」取得這些營養：</p>
+    <table class="info-table">
+      <tr><th>營養素</th><th>角色比喻</th><th>對應食物類別</th></tr>
+      <tr><td><strong>蛋白質</strong></td><td>鋼筋與磚塊 / Structure</td><td>豆魚蛋肉類 ＆ 乳品類</td></tr>
+      <tr><td><strong>碳水化合物</strong></td><td>電力與汽油 / Energy</td><td>全穀雜糧類 ＆ 水果類</td></tr>
+      <tr><td><strong>脂肪</strong></td><td>潤滑與保護 / Protection</td><td>油脂與堅果種子類</td></tr>
+      <tr><td><strong>微量營養素</strong></td><td>螺絲與墊片 / Screws</td><td>蔬菜類</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ════════════ 8. 食物選擇原則 ════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">8</span>
+    <h2>各類食物的聰明選擇</h2>
+  </div>
+
+  <!-- 豆魚蛋肉 -->
+  <div class="card">
+    <h3>🥩 豆魚蛋肉與乳品：打造肌肉燃料</h3>
+    <p><strong>選擇原則：優先選「原型、低脂」</strong></p>
+    <div class="compare-grid">
+      <div class="compare-item good">
+        <h4>綠燈區 — 首選</h4>
+        <p>豆腐、豆漿、毛豆<br>魚類、雞胸、瘦肉、雞蛋</p>
+      </div>
+      <div class="compare-item bad">
+        <h4>紅燈區 — 少吃</h4>
+        <p>加工肉品（香腸/火腿）<br>油炸類</p>
+      </div>
+    </div>
+    <div class="note">🥛 乳品提醒：鮮乳與無糖優格同時含有碳水與蛋白質，需注意份量。</div>
+  </div>
+
+  <!-- 全穀雜糧 -->
+  <div class="card">
+    <h3>🌾 全穀雜糧與蔬果：精選能量來源</h3>
+    <p><strong>選擇原則：越「醜」、越「粗糙」越好</strong></p>
+    <div class="compare-grid">
+      <div class="compare-item good">
+        <h4>優質澱粉</h4>
+        <p>地瓜、南瓜、糙米<br>燕麥、玉米</p>
+      </div>
+      <div class="compare-item bad">
+        <h4>精緻澱粉</h4>
+        <p>麵包、蛋糕、白吐司<br>（消化快、餓得快）</p>
+      </div>
+    </div>
+    <div class="note">⚠️ <strong>隱藏澱粉陷阱：</strong>紅豆、綠豆、蓮藕、玉米、南瓜、芋頭 — 這些是澱粉，不是菜！吃起來「鬆鬆粉粉」的就是澱粉。</div>
+  </div>
+
+  <!-- 油脂堅果 -->
+  <div class="card">
+    <h3>🥑 油脂與堅果：看不見的熱量刺客</h3>
+    <p><strong>選擇原則：優質來源＋份量控制</strong></p>
+    <p>1 公克油脂 = 9 大卡，是熱量密度最高的營養素。隨便淋一圈沙拉醬，可能抵消跑步 20 分鐘的熱量。</p>
+    <div class="flex-row" style="margin-top:12px;">
+      <span class="tag tag-green">優質來源：橄欖油、酪梨</span>
+      <span class="tag tag-yellow">堅果：每天僅限一小把</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ 9. 飲食金字塔 ════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">9</span>
+    <h2>飲食規劃的邏輯金字塔</h2>
+  </div>
+
+  <div class="card">
+    <p>由下而上，先顧基礎再談細節。每一層都建立在下一層的基礎上，跳過底層直接追求上層是行不通的。</p>
+    <div class="pyramid">
+      <div class="pyramid-level">補充品</div>
+      <div class="pyramid-level">進食時間與頻率</div>
+      <div class="pyramid-level">食物選擇</div>
+      <div class="pyramid-level">營養素比例</div>
+      <div class="pyramid-level">🔥 熱量平衡</div>
+    </div>
+    <p style="text-align:center; margin-top:8px;">⬆️ 由下而上，先顧基礎再談細節</p>
+  </div>
+
+  <div class="golden">補充品僅是加分，無法彌補基礎的缺失。</div>
+</div>
+
+<!-- ════════════ 10. 數字與趨勢 ════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">10</span>
+    <h2>數字只是工具，趨勢才是方向</h2>
+  </div>
+
+  <div class="card">
+    <h3>體重波動是正常的</h3>
+    <p>每天的體重會因為水分、食物殘渣、荷爾蒙而上下浮動，這是完全正常的。真正重要的是<strong>長期趨勢</strong>——用週平均或月平均來觀察方向，而不是糾結於每一天的數字。</p>
+    <ul class="clean">
+      <li>紀錄是為了<strong>覺察</strong>，不是審判</li>
+      <li>今天開始你的紀錄，是為了未來某天不需要再紀錄</li>
+    </ul>
+  </div>
+
+  <div class="golden">開始紀錄吧！紀錄是覺察的開始，不是對自己的審判。</div>
+</div>
+
+<!-- ════════════ 本堂重點回顧 ════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number">✓</span>
+    <h2>本堂課重點回顧</h2>
+  </div>
+  <div class="card" style="background: linear-gradient(135deg, #f0faf4, #eef5f0);">
+    <ol style="padding-left:20px; line-height:2.4;">
+      <li><strong>能量平衡</strong>是體重變化的根本原理</li>
+      <li><strong>TDEE</strong> 是你的專屬數據起點，建議赤字 300–500 kcal</li>
+      <li>能量消耗不只靠運動，<strong>NEAT（日常活動）</strong>影響更大</li>
+      <li>三大營養素各有功能：<strong>蛋白質優先固定 → 脂肪適量 → 碳水彈性調整</strong></li>
+      <li>同樣熱量下，<strong>營養素比例</strong>決定你的體態</li>
+      <li>食物選擇遵循原則：<strong>原型、低脂、粗糙、優質</strong></li>
+      <li>飲食金字塔<strong>由下而上</strong>：先顧熱量平衡，再談細節</li>
+      <li><strong>關注長期趨勢</strong>，不要被每日體重波動綁架</li>
+    </ol>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  飲食控制課程 ｜ 第一堂 ｜ Abby 營養師
+</div>
+
+</body>
+</html>
