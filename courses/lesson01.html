@@ -193,6 +193,123 @@
   .flex-row { display: flex; gap: 12px; flex-wrap: wrap; }
   .badge-icon { font-size: 28px; display: block; margin-bottom: 6px; }
 
+  /* ── Macro Calculator ── */
+  .macro-calc-box {
+    background: linear-gradient(135deg, #fdf8f4, #faf0e8);
+    border: 2px solid var(--primary-light);
+    border-radius: 20px;
+    padding: 28px;
+    margin: 24px 0;
+  }
+  .macro-calc-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .macro-calc-icon { font-size: 36px; flex-shrink: 0; }
+  .macro-calc-header h3 { font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
+  .macro-calc-header p { font-size: 13px; color: var(--text-light); margin: 0; }
+  .macro-input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  @media (max-width: 560px) { .macro-input-grid { grid-template-columns: 1fr; } }
+  .macro-field label { display: block; font-size: 13px; font-weight: 700; color: var(--primary); margin-bottom: 6px; }
+  .macro-field input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    background: white;
+    color: var(--text);
+    transition: border-color 0.2s;
+  }
+  .macro-field input:focus { outline: none; border-color: var(--primary-light); }
+  .macro-hint { display: block; font-size: 11px; color: var(--text-light); margin-top: 4px; }
+  .macro-full { grid-column: 1 / -1; }
+  .macro-radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
+  .macro-radio { cursor: pointer; flex: 1; min-width: 100px; }
+  .macro-radio input { display: none; }
+  .macro-radio-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 8px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    transition: all 0.2s;
+    text-align: center;
+  }
+  .macro-radio-btn strong { font-size: 15px; color: var(--text); }
+  .macro-radio-btn small { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+  .macro-radio input:checked + .macro-radio-btn { border-color: var(--primary); background: var(--primary); }
+  .macro-radio input:checked + .macro-radio-btn strong,
+  .macro-radio input:checked + .macro-radio-btn small { color: white; }
+  .macro-btn {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .macro-btn:hover { background: var(--primary-light); }
+  .macro-results { display: none; margin-top: 24px; }
+  .macro-results.show { display: block; }
+  .macro-result-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 500px) { .macro-result-grid { grid-template-columns: 1fr; } }
+  .macro-result-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px 16px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border-top: 4px solid;
+  }
+  .protein-card { border-color: #e07a5f; }
+  .fat-card     { border-color: #e8a838; }
+  .carb-card    { border-color: #40916c; }
+  .mrc-icon  { font-size: 28px; margin-bottom: 6px; }
+  .mrc-name  { font-size: 13px; color: var(--text-light); margin-bottom: 8px; }
+  .mrc-grams { font-size: 30px; font-weight: 900; color: var(--text); line-height: 1; }
+  .mrc-kcal  { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+  .mrc-pct   { display: inline-block; margin-top: 8px; padding: 2px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; background: #f0f0eb; color: var(--text); }
+  .macro-bar-wrap { margin-bottom: 16px; }
+  .macro-bar { display: flex; height: 20px; border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
+  .mb-protein { background: #e07a5f; transition: width 0.6s ease; }
+  .mb-fat     { background: #e8a838; transition: width 0.6s ease; }
+  .mb-carb    { background: #40916c; transition: width 0.6s ease; }
+  .macro-bar-legend { display: flex; gap: 16px; font-size: 13px; color: var(--text-light); }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; }
+  .macro-summary {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--text-light);
+    border: 1px solid var(--border);
+    line-height: 2;
+  }
+  .macro-summary strong { color: var(--primary); }
+
   /* ── TDEE Calculator ── */
   .calc-box {
     background: linear-gradient(135deg, #f0faf4, #e8f5ee);
@@ -549,6 +666,101 @@
     </div>
   </div>
   <div class="note">⚠️ <strong>脂肪的熱量密度最高</strong>（9 kcal/g 是蛋白質和碳水的 2.25 倍）。隨便淋一圈沙拉醬，可能就抵消跑步 20 分鐘的熱量。</div>
+
+  <!-- ★ 三大營養素分配計算器 ★ -->
+  <div class="macro-calc-box">
+    <div class="macro-calc-header">
+      <span class="macro-calc-icon">🧮</span>
+      <div>
+        <h3>三大營養素分配計算器</h3>
+        <p>輸入你的體重與 TDEE，算出每天該吃多少蛋白質、脂肪、碳水</p>
+      </div>
+    </div>
+
+    <div class="macro-input-grid">
+      <div class="macro-field">
+        <label>體重（公斤）</label>
+        <input type="number" id="macro-weight" placeholder="例：55" min="20" max="200">
+      </div>
+      <div class="macro-field">
+        <label>每日目標熱量（大卡）</label>
+        <input type="number" id="macro-tdee" placeholder="從上方 TDEE 計算機複製" min="800" max="5000">
+        <span class="macro-hint">建議輸入減脂期間的目標攝取量</span>
+      </div>
+      <div class="macro-field macro-full">
+        <label>蛋白質強度</label>
+        <div class="macro-radio-group">
+          <label class="macro-radio">
+            <input type="radio" name="protein-level" value="1.6" checked>
+            <span class="macro-radio-btn">
+              <strong>1.6 g/kg</strong>
+              <small>一般減脂</small>
+            </span>
+          </label>
+          <label class="macro-radio">
+            <input type="radio" name="protein-level" value="1.8">
+            <span class="macro-radio-btn">
+              <strong>1.8 g/kg</strong>
+              <small>積極保肌</small>
+            </span>
+          </label>
+          <label class="macro-radio">
+            <input type="radio" name="protein-level" value="2.0">
+            <span class="macro-radio-btn">
+              <strong>2.0 g/kg</strong>
+              <small>高強度訓練</small>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <button class="macro-btn" onclick="calcMacro()">計算三大營養素分配 🥗</button>
+
+    <div class="macro-results" id="macro-results">
+
+      <!-- 三欄結果 -->
+      <div class="macro-result-grid">
+        <div class="macro-result-card protein-card">
+          <div class="mrc-icon">🧱</div>
+          <div class="mrc-name">蛋白質</div>
+          <div class="mrc-grams" id="m-protein-g">— g</div>
+          <div class="mrc-kcal" id="m-protein-kcal">— 大卡</div>
+          <div class="mrc-pct" id="m-protein-pct">—%</div>
+        </div>
+        <div class="macro-result-card fat-card">
+          <div class="mrc-icon">🛡️</div>
+          <div class="mrc-name">脂肪</div>
+          <div class="mrc-grams" id="m-fat-g">— g</div>
+          <div class="mrc-kcal" id="m-fat-kcal">— 大卡</div>
+          <div class="mrc-pct" id="m-fat-pct">—%</div>
+        </div>
+        <div class="macro-result-card carb-card">
+          <div class="mrc-icon">⚡</div>
+          <div class="mrc-name">碳水化合物</div>
+          <div class="mrc-grams" id="m-carb-g">— g</div>
+          <div class="mrc-kcal" id="m-carb-kcal">— 大卡</div>
+          <div class="mrc-pct" id="m-carb-pct">—%</div>
+        </div>
+      </div>
+
+      <!-- 比例長條圖 -->
+      <div class="macro-bar-wrap">
+        <div class="macro-bar">
+          <div class="mb-protein" id="mb-protein"></div>
+          <div class="mb-fat" id="mb-fat"></div>
+          <div class="mb-carb" id="mb-carb"></div>
+        </div>
+        <div class="macro-bar-legend">
+          <span><span class="dot" style="background:#e07a5f"></span>蛋白質</span>
+          <span><span class="dot" style="background:#e8a838"></span>脂肪</span>
+          <span><span class="dot" style="background:#40916c"></span>碳水</span>
+        </div>
+      </div>
+
+      <div class="macro-summary" id="macro-summary"></div>
+    </div>
+  </div>
 </div>
 
 <!-- 6. 同樣熱量不同體態 -->
@@ -700,7 +912,66 @@
 <div class="footer">飲食控制課程 ｜ 第一堂 ｜ Abby 營養師</div>
 
 <script>
-  let gender = 'female';
+  function calcMacro() {
+    const weight = parseFloat(document.getElementById('macro-weight').value);
+    const tdee   = parseFloat(document.getElementById('macro-tdee').value);
+    const proteinRatio = parseFloat(document.querySelector('input[name="protein-level"]:checked').value);
+
+    if (!weight || !tdee) {
+      alert('請填入體重與每日目標熱量 😊');
+      return;
+    }
+
+    // 蛋白質：體重 × 係數
+    const proteinG    = Math.round(weight * proteinRatio);
+    const proteinKcal = proteinG * 4;
+
+    // 脂肪：佔總熱量 25%
+    const fatKcal = Math.round(tdee * 0.25);
+    const fatG    = Math.round(fatKcal / 9);
+
+    // 碳水：剩餘
+    const carbKcal = tdee - proteinKcal - fatKcal;
+    const carbG    = Math.round(carbKcal / 4);
+
+    // 百分比
+    const proteinPct = Math.round(proteinKcal / tdee * 100);
+    const fatPct     = Math.round(fatKcal / tdee * 100);
+    const carbPct    = 100 - proteinPct - fatPct;
+
+    // 填入結果
+    document.getElementById('m-protein-g').textContent    = proteinG + ' g';
+    document.getElementById('m-protein-kcal').textContent = proteinKcal.toLocaleString() + ' 大卡';
+    document.getElementById('m-protein-pct').textContent  = proteinPct + '%';
+
+    document.getElementById('m-fat-g').textContent    = fatG + ' g';
+    document.getElementById('m-fat-kcal').textContent = fatKcal.toLocaleString() + ' 大卡';
+    document.getElementById('m-fat-pct').textContent  = fatPct + '%';
+
+    document.getElementById('m-carb-g').textContent    = carbG > 0 ? carbG + ' g' : '— g';
+    document.getElementById('m-carb-kcal').textContent = carbKcal > 0 ? carbKcal.toLocaleString() + ' 大卡' : '—';
+    document.getElementById('m-carb-pct').textContent  = carbPct > 0 ? carbPct + '%' : '—%';
+
+    // 長條圖
+    document.getElementById('mb-protein').style.width = proteinPct + '%';
+    document.getElementById('mb-fat').style.width     = fatPct + '%';
+    document.getElementById('mb-carb').style.width    = (carbPct > 0 ? carbPct : 0) + '%';
+
+    // 摘要文字
+    const warn = carbKcal < 0
+      ? '<br>⚠️ 蛋白質熱量已超過目標，建議提高 TDEE 目標或降低蛋白質係數。'
+      : '';
+    document.getElementById('macro-summary').innerHTML =
+      `每天目標 <strong>${tdee.toLocaleString()} 大卡</strong>，建議分配：` +
+      `<strong>蛋白質 ${proteinG}g</strong>（${proteinKcal} 大卡）、` +
+      `<strong>脂肪 ${fatG}g</strong>（${fatKcal} 大卡）、` +
+      `<strong>碳水 ${carbG > 0 ? carbG : 0}g</strong>（${carbKcal > 0 ? carbKcal : 0} 大卡）${warn}`;
+
+    const results = document.getElementById('macro-results');
+    results.classList.add('show');
+    results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
 
   function setGender(g) {
     gender = g;
