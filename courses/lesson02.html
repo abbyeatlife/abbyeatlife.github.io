@@ -35,7 +35,6 @@
     font-size: 16px;
   }
 
-  /* ── Hero ── */
   .hero {
     background: linear-gradient(135deg, #bf6b3f 0%, #d4945a 50%, #e8b87a 100%);
     color: white;
@@ -63,25 +62,11 @@
     letter-spacing: 2px;
     margin-bottom: 20px;
   }
-  .hero h1 {
-    font-size: clamp(28px, 5vw, 42px);
-    font-weight: 900;
-    margin-bottom: 12px;
-  }
-  .hero .subtitle {
-    font-size: clamp(16px, 2.5vw, 20px);
-    font-weight: 300;
-    opacity: 0.9;
-  }
+  .hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 900; margin-bottom: 12px; }
+  .hero .subtitle { font-size: clamp(16px, 2.5vw, 20px); font-weight: 300; opacity: 0.9; }
 
-  /* ── Container ── */
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 20px;
-  }
+  .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
 
-  /* ── Section ── */
   .section { margin-bottom: 48px; }
   .section-number {
     display: inline-flex;
@@ -96,18 +81,9 @@
     margin-right: 12px;
     flex-shrink: 0;
   }
-  .section-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  .section h2 {
-    font-size: clamp(22px, 3.5vw, 28px);
-    font-weight: 700;
-    color: var(--primary);
-  }
+  .section-header { display: flex; align-items: center; margin-bottom: 20px; }
+  .section h2 { font-size: clamp(22px, 3.5vw, 28px); font-weight: 700; color: var(--primary); }
 
-  /* ── Cards ── */
   .card {
     background: var(--card-bg);
     border-radius: 16px;
@@ -116,14 +92,9 @@
     box-shadow: var(--shadow);
     border: 1px solid var(--border);
   }
-  .card h3 {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 12px;
-  }
+  .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
   .card p { color: var(--text-light); margin-bottom: 10px; }
 
-  /* ── Golden Sentence ── */
   .golden {
     background: linear-gradient(135deg, #f0faf4, #d8f3dc);
     border-left: 4px solid var(--accent);
@@ -134,52 +105,23 @@
     font-weight: 500;
     color: #2b4a3a;
   }
-  .golden::before {
-    content: '"';
-    font-size: 32px;
-    font-weight: 900;
-    color: var(--accent);
-    margin-right: 4px;
-  }
+  .golden::before { content: '"'; font-size: 32px; font-weight: 900; color: var(--accent); margin-right: 4px; }
 
-  /* ── Hand Guide ── */
-  .hand-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin: 16px 0;
-  }
-  @media (max-width: 500px) {
-    .hand-grid { grid-template-columns: 1fr; }
-  }
-  .hand-item {
-    border-radius: 14px;
-    padding: 20px;
-    text-align: center;
-  }
+  .hand-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  @media (max-width: 500px) { .hand-grid { grid-template-columns: 1fr; } }
+  .hand-item { border-radius: 14px; padding: 20px; text-align: center; }
   .hand-item .hand-emoji { font-size: 40px; margin-bottom: 8px; display: block; }
   .hand-item h4 { font-size: 17px; margin-bottom: 6px; }
   .hand-item p { font-size: 14px; color: var(--text-light); }
 
-  /* ── Compare ── */
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin: 16px 0;
-  }
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
   @media (max-width: 560px) { .compare-grid { grid-template-columns: 1fr; } }
-  .compare-item {
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-  }
+  .compare-item { border-radius: 12px; padding: 20px; text-align: center; }
   .compare-item.good { background: var(--green-light); border: 2px solid #b7e4c7; }
   .compare-item.bad { background: var(--red-light); border: 2px solid #f5c6c6; }
   .compare-item h4 { font-size: 18px; margin-bottom: 8px; }
   .compare-item p { font-size: 14px; color: var(--text-light); }
 
-  /* ── Food Cards ── */
   .food-section {
     background: var(--card-bg);
     border-radius: 16px;
@@ -189,125 +131,93 @@
     border-left: 5px solid;
   }
   .food-section h3 { font-size: 22px; font-weight: 700; margin-bottom: 14px; }
-  .food-section .serving {
-    background: #f7f5f0;
-    border-radius: 10px;
-    padding: 14px 18px;
-    margin: 12px 0;
-    font-size: 15px;
-  }
+  .food-section .serving { background: #f7f5f0; border-radius: 10px; padding: 14px 18px; margin: 12px 0; font-size: 15px; }
   .food-section .serving strong { color: var(--primary); }
-  .food-section .tip {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin-top: 12px;
-    padding: 12px 16px;
-    border-radius: 10px;
-    font-size: 14px;
-  }
+  .food-section .tip { display: flex; align-items: flex-start; gap: 8px; margin-top: 12px; padding: 12px 16px; border-radius: 10px; font-size: 14px; }
   .tip-warn { background: #fff8e1; border: 1px solid #ffe082; }
   .tip-good { background: #e8f5e9; border: 1px solid #a5d6a7; }
   .tip-danger { background: #fce4e4; border: 1px solid #ef9a9a; }
 
-  /* ── Table ── */
-  .info-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 16px 0;
-    font-size: 14px;
-  }
-  .info-table th {
-    background: var(--primary);
-    color: white;
-    padding: 10px 12px;
-    text-align: center;
-    font-weight: 500;
-    font-size: 13px;
-  }
-  .info-table td {
-    padding: 10px 12px;
-    border-bottom: 1px solid var(--border);
-    text-align: center;
-  }
+  .info-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  .info-table th { background: var(--primary); color: white; padding: 10px 12px; text-align: center; font-weight: 500; font-size: 13px; }
+  .info-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); text-align: center; }
   .info-table tr:nth-child(even) td { background: #f9f9f6; }
   .info-table .highlight-row td { background: #fff8e1; font-weight: 500; }
 
-  /* ── Tags ── */
-  .tag {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 500;
-    margin: 2px 4px 2px 0;
-  }
+  .tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 500; margin: 2px 4px 2px 0; }
   .tag-green { background: var(--green-light); color: #1b5e20; }
   .tag-red { background: var(--red-light); color: #b71c1c; }
   .tag-yellow { background: var(--yellow-light); color: #5a4a2f; }
 
-  /* ── Bento Box ── */
-  .bento-box {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin: 16px 0;
-    border: 3px solid var(--accent-light);
-    border-radius: 16px;
-    padding: 20px;
-    background: #f8faf8;
-  }
-  .bento-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 500;
-  }
-  .bento-item .dot {
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
+  .bento-box { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 16px 0; border: 3px solid var(--accent-light); border-radius: 16px; padding: 20px; background: #f8faf8; }
+  .bento-item { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 10px; font-size: 15px; font-weight: 500; }
+  .bento-item .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
 
-  /* ── Utilities ── */
   ul.clean { list-style: none; padding: 0; }
   ul.clean li { padding: 6px 0; padding-left: 20px; position: relative; }
   ul.clean li::before { content: '▸'; position: absolute; left: 0; color: var(--primary); }
-  .note {
-    background: #f7f5f0;
-    border-radius: 10px;
-    padding: 16px 20px;
-    font-size: 14px;
-    color: var(--text-light);
-    margin: 12px 0;
-  }
+  .note { background: #f7f5f0; border-radius: 10px; padding: 16px 20px; font-size: 14px; color: var(--text-light); margin: 12px 0; }
   .highlight { color: #e07a5f; font-weight: 700; }
-  .formula {
-    background: #f0f0eb;
-    border-radius: 10px;
-    padding: 16px 24px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 700;
-    margin: 16px 0;
-    color: var(--primary);
+  .formula { background: #f0f0eb; border-radius: 10px; padding: 16px 24px; text-align: center; font-size: 18px; font-weight: 700; margin: 16px 0; color: var(--primary); }
+  .footer { text-align: center; padding: 40px 20px; color: var(--text-light); font-size: 13px; border-top: 1px solid var(--border); margin-top: 40px; }
+
+  /* ── 圖片比較區塊 ── */
+  .img-compare {
+    margin: 20px 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
   }
-  .footer {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--text-light);
+  .img-compare img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .img-compare .img-caption {
+    background: #f7f5f0;
+    padding: 10px 16px;
     font-size: 13px;
-    border-top: 1px solid var(--border);
-    margin-top: 40px;
+    color: var(--text-light);
+    text-align: center;
   }
+
+  /* ── 蛋白質優先順序視覺條 ── */
+  .protein-priority {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 16px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .pp-item {
+    flex: 1;
+    padding: 12px 8px;
+    text-align: center;
+    color: white;
+    position: relative;
+  }
+  .pp-item:not(:last-child)::after {
+    content: '▶';
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: white;
+    z-index: 1;
+  }
+  .pp-1 { background: #2d6a4f; }
+  .pp-2 { background: #40916c; }
+  .pp-3 { background: #52b788; }
+  .pp-4 { background: #74c69d; }
 </style>
 </head>
 <body>
 
-<!-- ════════════ HERO ════════════ -->
 <div class="hero">
   <div class="lesson-tag">LESSON 02</div>
   <h1>食物代換與份量指南</h1>
@@ -316,13 +226,12 @@
 
 <div class="container">
 
-<!-- ════════════ 1. 核心觀念 ════════════ -->
+<!-- 1. 核心觀念 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">1</span>
     <h2>胖的是「總熱量」，不是碳水本身</h2>
   </div>
-
   <div class="card">
     <p>許多人以為碳水化合物是肥胖的元凶，但真正讓你變胖的是<strong>總熱量攝取超過消耗</strong>，跟吃的是碳水還是脂肪無關。</p>
     <div class="compare-grid">
@@ -337,7 +246,6 @@
     </div>
     <div class="formula">消耗 ＞ 攝取 → 體重下降（與碳水無關）</div>
   </div>
-
   <div class="card">
     <h3>不吃澱粉能快速瘦身嗎？</h3>
     <ul class="clean">
@@ -346,19 +254,17 @@
       <li>結論：減肥不是「去除澱粉」，而是<strong>調整份量與選擇品質</strong></li>
     </ul>
   </div>
-
   <div class="golden">胖的是「總熱量」，不是碳水本身。學會選對食物、控制份量才是關鍵。</div>
 </div>
 
-<!-- ════════════ 2. 你的雙手 ════════════ -->
+<!-- 2. 雙手測量 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">2</span>
     <h2>隨身攜帶的測量器：你的雙手</h2>
   </div>
-
   <div class="card">
-    <p>不需要帶食物秤出門，你的手就是最方便的份量估算工具。把「算得出來」變成「吃得出來」：</p>
+    <p>不需要帶食物秤出門，你的手就是最方便的份量估算工具：</p>
     <div class="hand-grid">
       <div class="hand-item" style="background: var(--green-light);">
         <span class="hand-emoji">✊</span>
@@ -384,22 +290,17 @@
   </div>
 </div>
 
-<!-- ════════════ 3. 食物代換表 ════════════ -->
+<!-- 3. 食物代換表 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">3</span>
     <h2>食物代換表：六大類一覽</h2>
   </div>
-
   <div class="card" style="overflow-x:auto;">
     <p>每一「份」食物的營養素含量標準，是你規劃飲食的基本工具：</p>
     <table class="info-table">
       <tr>
-        <th>食物六大類</th>
-        <th>醣類 (g)</th>
-        <th>蛋白質 (g)</th>
-        <th>脂肪 (g)</th>
-        <th>熱量 (kcal)</th>
+        <th>食物六大類</th><th>醣類 (g)</th><th>蛋白質 (g)</th><th>脂肪 (g)</th><th>熱量 (kcal)</th>
       </tr>
       <tr><td><strong>全穀雜糧類</strong></td><td>15</td><td>2</td><td>+</td><td>70</td></tr>
       <tr><td>豆魚蛋肉類（低脂）</td><td>+</td><td>7</td><td>3</td><td>55</td></tr>
@@ -416,205 +317,167 @@
   </div>
 </div>
 
-<!-- ════════════ 4. 六大類詳解 ════════════ -->
+<!-- 4. 六大類詳解 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">4</span>
     <h2>六大類食物份量詳解</h2>
   </div>
 
-  <!-- 1. 全穀雜糧 -->
+  <!-- 全穀雜糧 -->
   <div class="food-section" style="border-color: #e8a838;">
     <h3>1. 全穀雜糧類</h3>
     <div class="serving">
       <strong>1 份 ≈</strong> 熟飯 1/4 碗 ＝ 薄吐司 1 片 ＝ 市場饅頭 1/4 個 ＝ 玉米食指長
     </div>
-    <p><strong>其他等量換算：</strong>粥、麵、冬粉、米粉、通心粉、地瓜、芋頭、南瓜 → 半碗；綠豆（熟）/五穀粉 2 湯匙；燕麥片 3 湯匙。</p>
+    <p><strong>其他等量換算：</strong>粥、麵、冬粉、米粉、地瓜、芋頭、南瓜 → 半碗；燕麥片 3 湯匙；綠豆（熟）2 湯匙。</p>
     <div class="tip tip-warn">
       <span>⚠️</span>
-      <div><strong>陷阱區：它們是澱粉，不是蔬菜！</strong><br>玉米、南瓜、地瓜、芋頭、蓮藕、紅豆、綠豆 — 吃起來「鬆鬆粉粉」的就是澱粉，要算進全穀雜糧類。</div>
+      <div><strong>陷阱區：它們是澱粉，不是蔬菜！</strong><br>玉米、南瓜、地瓜、芋頭、蓮藕、紅豆、綠豆 — 吃起來「鬆鬆粉粉」的就是澱粉。</div>
     </div>
   </div>
 
-  <!-- 2. 豆魚蛋肉 -->
+  <!-- ★ 豆魚蛋肉 ★ -->
   <div class="food-section" style="border-color: #e07a5f;">
     <h3>2. 豆魚蛋肉類</h3>
-    <p><strong>優先順序：豆 ＞ 魚 ＞ 蛋 ＞ 肉</strong>（1 份 ≈ 7g 蛋白質）</p>
-    <div class="serving">
-      <strong>1 份 ≈</strong> 肉/魚/海鮮 生重 35g（熟重 30g / 一兩）＝ 可用手掌或 2 湯匙估算
-    </div>
-    <p><strong>等量換算：</strong>雞蛋 1 顆 ＝ 豆漿 240c.c. ＝ 傳統豆腐 2 小格 ＝ 嫩豆腐半盒 ＝ 牡蠣/蛤蜊 3 湯匙 ＝ 豆包 2/3 個 ＝ 黑豆干 1/3 塊。</p>
 
+    <!-- 優先順序視覺條 -->
+    <div class="protein-priority">
+      <div class="pp-item pp-1">🫘 豆</div>
+      <div class="pp-item pp-2">🐟 魚</div>
+      <div class="pp-item pp-3">🥚 蛋</div>
+      <div class="pp-item pp-4">🥩 肉</div>
+    </div>
+    <p style="font-size:13px; color:var(--text-light); margin-bottom:12px; text-align:center;">優先順序由左到右，每份約 7g 蛋白質</p>
+
+    <div class="serving">
+      <strong>1 份 ≈</strong> 肉/魚/海鮮 生重 35g（熟重 30g / 一兩）＝ 手掌或 2 湯匙估算
+    </div>
+    <p><strong>等量換算：</strong>雞蛋 1 顆 ＝ 豆漿 240c.c. ＝ 傳統豆腐 2 小格 ＝ 嫩豆腐半盒 ＝ 牡蠣/蛤蜊 3 湯匙。</p>
+
+    <!-- 圖片 1：牛排 vs 魚肉熱量對比 -->
+    <div class="img-compare">
+      <img src="images/calorie-density-01.jpg" alt="餐點熱量密度比較：牛排 vs 魚肉">
+      <div class="img-caption">同樣是一份蛋白質，選擇不同，熱量差距超過一倍</div>
+    </div>
+
+    <!-- 低脂 vs 高脂比較 -->
     <div class="compare-grid" style="margin-top:16px;">
       <div class="compare-item good">
-        <h4>低脂首選</h4>
-        <p>雞胸肉、魚肉、蝦<br>豆腐、蛋白<br>100g ≈ 150 kcal<br><span class="tag tag-green">同熱量吃更多</span></p>
+        <h4>低脂首選 ✅</h4>
+        <p>雞胸肉、魚肉、蝦<br>豆腐、蛋白<br>100g ≈ 120–150 kcal<br><span class="tag tag-green">同熱量吃更多</span></p>
       </div>
       <div class="compare-item bad">
-        <h4>注意高脂</h4>
-        <p>五花肉、培根、香腸<br>加工肉品<br>100g ≈ 200-250 kcal<br><span class="tag tag-red">隱藏脂肪</span></p>
+        <h4>注意高脂 ⚠️</h4>
+        <p>五花肉、培根、香腸<br>加工肉品<br>100g ≈ 200–250 kcal<br><span class="tag tag-red">隱藏脂肪</span></p>
       </div>
     </div>
 
-    <div class="tip tip-good">
+    <!-- 圖片 2：天然食物 vs 加工食物分類 -->
+    <div class="img-compare" style="margin-top:16px;">
+      <img src="images/calorie-density-02.jpg" alt="天然蛋白質食物 vs 加工高脂食物比較">
+      <div class="img-caption">左側：熱量高、油多、加工 → 吃了不耐餓　右側：天然、蛋白質高 → 吃了更飽足</div>
+    </div>
+
+    <div class="tip tip-good" style="margin-top:16px;">
       <span>💡</span>
       <div><strong>蛋白質每日需求 (g/kg 體重)：</strong><br>
-        維持一般健康：1.0–1.2 ｜ 增肌/運動族群：1.6–2.0 ｜ 減脂/避免掉肌肉：1.6–2.2<br>
-        盡量避免單一來源，質與量都重要，分配得宜事半功倍。
+        維持一般健康：1.0–1.2 ｜ 增肌/運動族群：1.6–2.0 ｜ 減脂/避免掉肌肉：1.6–2.2
       </div>
     </div>
   </div>
 
-  <!-- 3. 蔬菜 -->
+  <!-- 蔬菜 -->
   <div class="food-section" style="border-color: #52b788;">
     <h3>3. 蔬菜類</h3>
-    <p><strong>穩定血糖與增加飽足感的關鍵</strong></p>
-    <div class="serving">
-      <strong>1 份 ≈</strong> 生重 100 公克 ＝ 煮熟約半碗（1 碟）＝ 生菜沙拉一份很多
-    </div>
-    <p>蔬菜本身熱量極低（1 份約 25 kcal），但要注意<strong>烹調方式</strong>會大幅改變熱量：</p>
-    <div class="formula" style="font-size:16px;">
-      燙青菜 (25 kcal) ＋ 2 湯匙油 (240 kcal) ＝ 炒青菜 (265 kcal)
-    </div>
+    <div class="serving"><strong>1 份 ≈</strong> 生重 100 公克 ＝ 煮熟約半碗（1 碟）</div>
+    <div class="formula" style="font-size:16px;">燙青菜 (25 kcal) ＋ 2 湯匙油 (240 kcal) ＝ 炒青菜 (265 kcal)</div>
     <div class="tip tip-warn">
       <span>⚠️</span>
       <div>同一道菜，燙的 vs. 炒的，熱量可以差到 <strong>10 倍</strong>！關鍵在油量。</div>
     </div>
   </div>
 
-  <!-- 4. 水果 -->
+  <!-- 水果 -->
   <div class="food-section" style="border-color: #66bb6a;">
     <h3>4. 水果類</h3>
-    <p><strong>是「有營養的碳水」，不是吃到飽</strong></p>
-    <div class="serving">
-      <strong>1 份 ≈</strong> 切塊 8 分滿碗（拳頭大）≈ 蘋果 1 個 ＝ 柳丁 1 個 ＝ 香蕉半根 ＝ 葡萄約 13 顆
-    </div>
-    <ul class="clean">
-      <li>水果的甜味來自天然果糖，但含量不等於精緻糖</li>
-      <li>水果還有纖維、維生素、礦物質、植化素</li>
-      <li>天然糖分 vs. 添加糖分：營養價值完全不同</li>
-    </ul>
+    <div class="serving"><strong>1 份 ≈</strong> 切塊 8 分滿碗（拳頭大）≈ 蘋果 1 個 ＝ 柳丁 1 個 ＝ 香蕉半根 ＝ 葡萄約 13 顆</div>
     <div class="tip tip-danger">
       <span>🛑</span>
-      <div><strong>果汁 ＝ 濃縮糖分（無纖維）</strong><br>
-        一杯果汁往往包含 3-4 份水果的糖分，卻沒有飽足感。也不建議選果乾。盡量吃原型水果。
-      </div>
+      <div><strong>果汁 ＝ 濃縮糖分（無纖維）</strong><br>一杯果汁往往包含 3-4 份水果的糖分，卻沒有飽足感。盡量吃原型水果。</div>
     </div>
   </div>
 
-  <!-- 5. 乳品 -->
+  <!-- 乳品 -->
   <div class="food-section" style="border-color: #7eb8da;">
     <h3>5. 乳品類</h3>
-    <div class="serving">
-      <strong>1 份 ≈</strong> 鮮奶 1 杯 (240ml) ＝ 低脂起司 2 片 ＝ 優格 180g (無糖) ＝ 優酪乳 200g
-    </div>
-    <p>飲食指南列出「乳品類」的目的在於補足鈣質，但牛奶不是鈣的唯一來源。</p>
+    <div class="serving"><strong>1 份 ≈</strong> 鮮奶 1 杯 (240ml) ＝ 低脂起司 2 片 ＝ 優格 180g (無糖) ＝ 優酪乳 200g</div>
     <div class="tip tip-warn">
       <span>⚠️</span>
-      <div><strong>小心隱藏熱量：</strong><br>
-        拿鐵 (Latte) ＝ 以牛奶為主，要算乳品份量<br>
-        優格碗 (Yogurt Bowl) ＝ 加糖加堅果，熱量容易爆表<br>
-        選擇<strong>低脂、無糖</strong>為原則
-      </div>
+      <div><strong>小心隱藏熱量：</strong>拿鐵要算乳品份量；優格碗加糖加堅果熱量容易爆表。選低脂無糖為原則。</div>
     </div>
-    <div class="note">
-      <strong>不喝牛奶也能補鈣：</strong>無乳糖牛奶、優格、小魚乾、沙丁魚、深綠色蔬菜（芥藍、地瓜葉）、豆腐、豆干、芝麻、杏仁。
-    </div>
+    <div class="note"><strong>不喝牛奶也能補鈣：</strong>小魚乾、沙丁魚、芥藍、地瓜葉、豆腐、豆干、芝麻、杏仁。</div>
   </div>
 
-  <!-- 6. 油脂堅果 -->
+  <!-- 油脂堅果 -->
   <div class="food-section" style="border-color: #e8a838;">
     <h3>6. 油脂與堅果種子類</h3>
-    <p><strong>熱量密度最高的營養素</strong></p>
-    <div class="serving">
-      <strong>1 份 ≈</strong> 油脂 5g ＝ 1/3 湯匙（1 茶匙）＝ 45 kcal
-    </div>
-    <p><strong>等量換算：</strong>瓜子/開心果/核桃 1 湯匙 ＝ 帶殼花生 2 湯匙（約 10 粒）＝ 杏仁粉/花生粉 1 湯匙 ＝ 沙茶醬/芝麻醬/美乃滋 半湯匙。</p>
-    <div class="formula" style="font-size:16px;">
-      1 湯匙油 ＝ 半碗飯的熱量 ≈ 135 kcal
-    </div>
+    <div class="serving"><strong>1 份 ≈</strong> 油脂 5g ＝ 1/3 湯匙（1 茶匙）＝ 45 kcal</div>
+    <div class="formula" style="font-size:16px;">1 湯匙油 ＝ 半碗飯的熱量 ≈ 135 kcal</div>
     <div class="tip tip-warn">
       <span>⚠️</span>
-      <div><strong>沙拉醬 + 堅果 ＝ 熱量炸彈</strong>。再健康的食物，吃太多也會胖。<br>
-        堅果建議每天 1 小把（約 20-30g）就夠了，含好油、蛋白質、維生素 E。
-      </div>
+      <div><strong>沙拉醬 + 堅果 ＝ 熱量炸彈。</strong>堅果建議每天 1 小把（約 20-30g）就夠了。</div>
     </div>
   </div>
 </div>
 
-<!-- ════════════ 5. 烹調與熱量密度 ════════════ -->
+<!-- 5. 烹調與熱量密度 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">5</span>
     <h2>烹調方式決定熱量</h2>
   </div>
-
   <div class="card">
     <p>份量控制之後，還要看「烹調油」和「醬料」。同樣的食材，不同的烹調方式，熱量天差地別：</p>
     <div class="compare-grid">
       <div class="compare-item good">
         <h4>清蒸 / 水煮 / 烤</h4>
-        <p>魚肉 120-150 kcal/100g<br>白切雞 ≈ 150 kcal/100g<br>整份餐 400-500 kcal<br><span class="tag tag-green">低熱量密度</span></p>
+        <p>魚肉 120-150 kcal/100g<br>整份餐 400-500 kcal<br><span class="tag tag-green">低熱量密度</span></p>
       </div>
       <div class="compare-item bad">
         <h4>快炒 / 油炸 / 醬烤</h4>
-        <p>牛排 280-300 kcal/100g<br>烤肉串 200-250 kcal/100g<br>醬料＋油 → 熱量翻倍<br><span class="tag tag-red">高熱量密度</span></p>
+        <p>醬料＋油 → 熱量翻倍<br>一碗炒飯吸附 2-3 湯匙油<br><span class="tag tag-red">高熱量密度</span></p>
       </div>
     </div>
-    <div class="note">
-      一碗炒飯/炒麵 ≈ 吸附 2-3 湯匙油，熱量比白飯多出一倍以上。外觀不一定油膩，但實際熱量很高。
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>餐點的熱量密度比較</h3>
-    <div class="compare-grid">
-      <div class="compare-item bad">
-        <h4>三明治（麵包精緻澱粉＋醬）</h4>
-        <p>吃完不耐餓<br>400-500 kcal</p>
-      </div>
-      <div class="compare-item good">
-        <h4>輕便當（魚＋蔬菜＋半碗飯）</h4>
-        <p>吃完更有飽足感<br>350-450 kcal</p>
-      </div>
-    </div>
-    <p style="margin-top:12px;">選擇天然、蛋白質高的食物 → 吃了更飽足；熱量高、油多、加工的食物 → 吃了不耐餓。</p>
   </div>
 </div>
 
-<!-- ════════════ 6. GI值 ════════════ -->
+<!-- 6. GI值 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">6</span>
     <h2>升糖指數 (GI 值) 與減脂</h2>
   </div>
-
   <div class="card">
-    <p>食物進入口腔後，會開始影響血糖上升速度。當血糖升得太快、能量超過身體當下需求，就容易<strong>轉存為脂肪</strong>。</p>
-    <p>低 GI 飲食的好處：延長飽足感、減少血糖震盪、降低嘴饞。高 GI 食物多為精緻澱粉、糖量高、熱量高。</p>
-
+    <p>低 GI 飲食的好處：延長飽足感、減少血糖震盪、降低嘴饞。</p>
     <h3 style="margin-top:20px;">低 GI 的實踐方法</h3>
     <ul class="clean">
       <li><strong>天然食物優先：</strong>白米 → 糙米</li>
       <li><strong>加纖維降 GI：</strong>每餐先吃蔬菜 & 蛋白質</li>
       <li><strong>烹調方式影響 GI：</strong>高溫久煮、過軟食物升糖快</li>
-      <li><strong>營養均衡搭配：</strong>碳水搭配蛋白質與纖維</li>
       <li><strong>細嚼慢嚥：</strong>咀嚼能延緩血糖上升，幫助大腦感知飽足感</li>
     </ul>
   </div>
-
   <div class="golden">低熱量、高飽足感、低升糖 — 高纖維、低升糖、蛋白質足夠，能拉長飽足感。</div>
 </div>
 
-<!-- ════════════ 7. 代換練習 ════════════ -->
+<!-- 7. 代換練習 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">7</span>
     <h2>練習代換：你不是不能吃，是做選擇</h2>
   </div>
-
   <div class="card">
-    <p>飲食控制不是吃固定菜單，而是<strong>學會代換</strong>。面對想吃的食物，你永遠有聰明的替代方案：</p>
     <table class="info-table">
       <tr><th>想吃的東西</th><th>Trade-off 策略</th></tr>
       <tr><td>想喝拿鐵？</td><td>午餐少吃半碗飯</td></tr>
@@ -623,78 +486,28 @@
       <tr><td>朋友聚餐大餐？</td><td>前後兩餐吃清淡一些</td></tr>
     </table>
   </div>
-
   <div class="golden">飲食控制不是吃固定菜單，而是學會代換。</div>
 </div>
 
-<!-- ════════════ 8. 實戰便當 ════════════ -->
+<!-- 8. 便當 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">8</span>
     <h2>實戰演練：便當大改造</h2>
   </div>
-
   <div class="card">
     <p>一個理想的減脂便當，應該包含這四個要素：</p>
     <div class="bento-box">
-      <div class="bento-item">
-        <div class="dot" style="background:#e07a5f;"></div>
-        <span><strong>低脂蛋白質</strong>（烤雞/蒸魚）</span>
-      </div>
-      <div class="bento-item">
-        <div class="dot" style="background:#52b788;"></div>
-        <span><strong>增加蔬菜體積</strong>（至少半個便當）</span>
-      </div>
-      <div class="bento-item">
-        <div class="dot" style="background:#e8a838;"></div>
-        <span><strong>控制澱粉</strong>（半碗飯）</span>
-      </div>
-      <div class="bento-item">
-        <div class="dot" style="background:#7eb8da;"></div>
-        <span><strong>醬料減半</strong>（少油少鹽）</span>
-      </div>
+      <div class="bento-item"><div class="dot" style="background:#e07a5f;"></div><span><strong>低脂蛋白質</strong>（烤雞/蒸魚）</span></div>
+      <div class="bento-item"><div class="dot" style="background:#52b788;"></div><span><strong>增加蔬菜體積</strong>（至少半個便當）</span></div>
+      <div class="bento-item"><div class="dot" style="background:#e8a838;"></div><span><strong>控制澱粉</strong>（半碗飯）</span></div>
+      <div class="bento-item"><div class="dot" style="background:#7eb8da;"></div><span><strong>醬料減半</strong>（少油少鹽）</span></div>
     </div>
   </div>
-
   <div class="golden">減脂不是少吃，是吃對結構。</div>
 </div>
 
-<!-- ════════════ 9. 隨身攻略 ════════════ -->
-<div class="section">
-  <div class="section-header">
-    <span class="section-number">9</span>
-    <h2>你的隨身飲食攻略</h2>
-  </div>
-
-  <div class="card" style="background: linear-gradient(135deg, #fdf8f4, #faf0e8);">
-    <div class="hand-grid">
-      <div class="hand-item" style="background: var(--green-light);">
-        <span class="hand-emoji">✊</span>
-        <h4>蔬菜 & 水果</h4>
-        <p>每餐至少 1 拳蔬菜<br>水果每天 2 拳為限</p>
-      </div>
-      <div class="hand-item" style="background: var(--pink-light);">
-        <span class="hand-emoji">🖐️</span>
-        <h4>豆魚蛋肉</h4>
-        <p>每餐 1 掌心<br>優先順序：豆＞魚＞蛋＞肉</p>
-      </div>
-      <div class="hand-item" style="background: var(--blue-light);">
-        <span class="hand-emoji">🫲</span>
-        <h4>全穀雜糧</h4>
-        <p>每餐半碗～1碗<br>選粗糧優於精緻</p>
-      </div>
-      <div class="hand-item" style="background: var(--yellow-light);">
-        <span class="hand-emoji">👍</span>
-        <h4>油脂 & 堅果</h4>
-        <p>烹調用油控制<br>堅果每天 1 拇指把</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="golden">避免只看數字，學會看食物。</div>
-</div>
-
-<!-- ════════════ 本堂重點回顧 ════════════ -->
+<!-- 重點回顧 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">✓</span>
@@ -717,9 +530,7 @@
 
 </div><!-- /container -->
 
-<div class="footer">
-  飲食控制課程 ｜ 第二堂 ｜ Abby 營養師
-</div>
+<div class="footer">飲食控制課程 ｜ 第二堂 ｜ Abby 營養師</div>
 
 </body>
 </html>
