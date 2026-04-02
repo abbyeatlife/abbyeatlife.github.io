@@ -34,7 +34,6 @@
     font-size: 16px;
   }
 
-  /* ── Hero ── */
   .hero {
     background: linear-gradient(135deg, #2d6a4f 0%, #40916c 50%, #52b788 100%);
     color: white;
@@ -62,28 +61,12 @@
     letter-spacing: 2px;
     margin-bottom: 20px;
   }
-  .hero h1 {
-    font-size: clamp(28px, 5vw, 42px);
-    font-weight: 900;
-    margin-bottom: 12px;
-  }
-  .hero .subtitle {
-    font-size: clamp(16px, 2.5vw, 20px);
-    font-weight: 300;
-    opacity: 0.9;
-  }
+  .hero h1 { font-size: clamp(28px, 5vw, 42px); font-weight: 900; margin-bottom: 12px; }
+  .hero .subtitle { font-size: clamp(16px, 2.5vw, 20px); font-weight: 300; opacity: 0.9; }
 
-  /* ── Container ── */
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 20px;
-  }
+  .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
 
-  /* ── Section ── */
-  .section {
-    margin-bottom: 48px;
-  }
+  .section { margin-bottom: 48px; }
   .section-number {
     display: inline-flex;
     align-items: center;
@@ -97,18 +80,9 @@
     margin-right: 12px;
     flex-shrink: 0;
   }
-  .section-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  .section h2 {
-    font-size: clamp(22px, 3.5vw, 28px);
-    font-weight: 700;
-    color: var(--primary);
-  }
+  .section-header { display: flex; align-items: center; margin-bottom: 20px; }
+  .section h2 { font-size: clamp(22px, 3.5vw, 28px); font-weight: 700; color: var(--primary); }
 
-  /* ── Cards ── */
   .card {
     background: var(--card-bg);
     border-radius: 16px;
@@ -117,18 +91,9 @@
     box-shadow: var(--shadow);
     border: 1px solid var(--border);
   }
-  .card h3 {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--text);
-  }
-  .card p {
-    color: var(--text-light);
-    margin-bottom: 10px;
-  }
+  .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--text); }
+  .card p { color: var(--text-light); margin-bottom: 10px; }
 
-  /* ── Golden Sentence ── */
   .golden {
     background: linear-gradient(135deg, #fff8e1, #fff3cd);
     border-left: 4px solid var(--accent);
@@ -139,56 +104,18 @@
     font-weight: 500;
     color: #5a4a2f;
   }
-  .golden::before {
-    content: '"';
-    font-size: 32px;
-    font-weight: 900;
-    color: var(--accent);
-    margin-right: 4px;
-  }
+  .golden::before { content: '"'; font-size: 32px; font-weight: 900; color: var(--accent); margin-right: 4px; }
 
-  /* ── Comparison ── */
-  .compare-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin: 16px 0;
-  }
-  @media (max-width: 560px) {
-    .compare-grid { grid-template-columns: 1fr; }
-  }
-  .compare-item {
-    border-radius: 12px;
-    padding: 20px;
-    text-align: center;
-  }
-  .compare-item.good {
-    background: var(--green-light);
-    border: 2px solid #b7e4c7;
-  }
-  .compare-item.bad {
-    background: var(--red-light);
-    border: 2px solid #f5c6c6;
-  }
-  .compare-item h4 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-  .compare-item p {
-    font-size: 14px;
-    color: var(--text-light);
-  }
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  @media (max-width: 560px) { .compare-grid { grid-template-columns: 1fr; } }
+  .compare-item { border-radius: 12px; padding: 20px; text-align: center; }
+  .compare-item.good { background: var(--green-light); border: 2px solid #b7e4c7; }
+  .compare-item.bad { background: var(--red-light); border: 2px solid #f5c6c6; }
+  .compare-item h4 { font-size: 18px; margin-bottom: 8px; }
+  .compare-item p { font-size: 14px; color: var(--text-light); }
 
-  /* ── Three-col ── */
-  .three-col {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin: 16px 0;
-  }
-  @media (max-width: 600px) {
-    .three-col { grid-template-columns: 1fr; }
-  }
+  .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 16px 0; }
+  @media (max-width: 600px) { .three-col { grid-template-columns: 1fr; } }
   .nutrient-card {
     background: var(--card-bg);
     border-radius: 14px;
@@ -197,28 +124,11 @@
     box-shadow: var(--shadow);
     border: 1px solid var(--border);
   }
-  .nutrient-card .icon {
-    font-size: 40px;
-    margin-bottom: 10px;
-  }
-  .nutrient-card h4 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .nutrient-card .role {
-    font-size: 13px;
-    color: var(--primary-light);
-    font-weight: 500;
-    margin-bottom: 8px;
-  }
-  .nutrient-card p {
-    font-size: 14px;
-    color: var(--text-light);
-    text-align: left;
-  }
+  .nutrient-card .icon { font-size: 40px; margin-bottom: 10px; }
+  .nutrient-card h4 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .nutrient-card .role { font-size: 13px; color: var(--primary-light); font-weight: 500; margin-bottom: 8px; }
+  .nutrient-card p { font-size: 14px; color: var(--text-light); text-align: left; }
 
-  /* ── Energy Bar ── */
   .energy-bar {
     display: flex;
     border-radius: 12px;
@@ -229,70 +139,27 @@
     font-weight: 500;
     color: white;
   }
-  .energy-bar > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 0 8px;
-  }
+  .energy-bar > div { display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 8px; }
   .bar-bmr { background: #3a3a3a; flex: 6.5; }
   .bar-tef { background: #7eb8da; flex: 1; }
   .bar-neat { background: #e8a838; flex: 1.8; }
   .bar-eat { background: #3a6ea5; flex: 0.7; }
 
-  /* ── Table ── */
-  .info-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 16px 0;
-    font-size: 15px;
-  }
-  .info-table th {
-    background: var(--primary);
-    color: white;
-    padding: 12px 16px;
-    text-align: left;
-    font-weight: 500;
-  }
-  .info-table td {
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
-  }
+  .info-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+  .info-table th { background: var(--primary); color: white; padding: 12px 16px; text-align: left; font-weight: 500; }
+  .info-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); }
   .info-table tr:nth-child(even) td { background: #f9f9f6; }
 
-  /* ── Tag/Badge ── */
-  .tag {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 500;
-    margin: 2px 4px 2px 0;
-  }
+  .tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 500; margin: 2px 4px 2px 0; }
   .tag-green { background: var(--green-light); color: #1b5e20; }
   .tag-red { background: var(--red-light); color: #b71c1c; }
-  .tag-blue { background: var(--blue-light); color: #0d47a1; }
   .tag-yellow { background: var(--yellow-light); color: #5a4a2f; }
 
-  /* ── Pyramid ── */
-  .pyramid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 24px 0;
-    gap: 4px;
-  }
+  .pyramid { display: flex; flex-direction: column; align-items: center; margin: 24px 0; gap: 4px; }
   .pyramid-level {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 700;
-    border-radius: 6px;
-    padding: 10px 0;
-    text-align: center;
-    font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 700; border-radius: 6px;
+    padding: 10px 0; text-align: center; font-size: 15px;
   }
   .pyramid-level:nth-child(1) { width: 30%; background: #e8a838; }
   .pyramid-level:nth-child(2) { width: 45%; background: #d4a373; }
@@ -300,17 +167,6 @@
   .pyramid-level:nth-child(4) { width: 78%; background: #40916c; }
   .pyramid-level:nth-child(5) { width: 100%; background: #2d6a4f; font-size: 18px; }
 
-  /* ── Footer ── */
-  .footer {
-    text-align: center;
-    padding: 40px 20px;
-    color: var(--text-light);
-    font-size: 13px;
-    border-top: 1px solid var(--border);
-    margin-top: 40px;
-  }
-
-  /* ── Utilities ── */
   .highlight { color: var(--accent-warm); font-weight: 700; }
   .formula {
     background: #f0f0eb;
@@ -334,21 +190,165 @@
     color: var(--text-light);
     margin: 12px 0;
   }
-  .flex-row {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+  .flex-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .badge-icon { font-size: 28px; display: block; margin-bottom: 6px; }
+
+  /* ── TDEE Calculator ── */
+  .calc-box {
+    background: linear-gradient(135deg, #f0faf4, #e8f5ee);
+    border: 2px solid var(--primary-light);
+    border-radius: 20px;
+    padding: 32px 28px;
+    margin: 24px 0;
   }
-  .badge-icon {
-    font-size: 28px;
-    display: block;
+  .calc-box h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary);
     margin-bottom: 6px;
+  }
+  .calc-box .calc-subtitle {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 24px;
+  }
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 500px) { .calc-grid { grid-template-columns: 1fr; } }
+  .calc-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  .calc-field input,
+  .calc-field select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    background: white;
+    color: var(--text);
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .calc-field input:focus,
+  .calc-field select:focus {
+    outline: none;
+    border-color: var(--primary-light);
+  }
+  .calc-gender {
+    display: flex;
+    gap: 10px;
+    grid-column: 1 / -1;
+  }
+  .gender-btn {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-light);
+  }
+  .gender-btn.active {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+  }
+  .calc-full { grid-column: 1 / -1; }
+  .calc-btn {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .calc-btn:hover { background: var(--primary-light); }
+  .calc-results {
+    margin-top: 24px;
+    display: none;
+  }
+  .calc-results.show { display: block; }
+  .result-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 500px) { .result-main { grid-template-columns: 1fr; } }
+  .result-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .result-card .r-label { font-size: 13px; color: var(--text-light); margin-bottom: 6px; }
+  .result-card .r-value { font-size: 36px; font-weight: 900; color: var(--primary); line-height: 1; }
+  .result-card .r-unit { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+  .deficit-table {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .deficit-table h4 { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 14px; }
+  .deficit-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .deficit-row:last-child { border-bottom: none; }
+  .deficit-row .d-label { color: var(--text-light); }
+  .deficit-row .d-value { font-weight: 700; color: var(--primary); font-size: 16px; }
+  .calc-note {
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--text-light);
+    background: var(--yellow-light);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-light);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
   }
 </style>
 </head>
 <body>
 
-<!-- ════════════ HERO ════════════ -->
 <div class="hero">
   <div class="lesson-tag">LESSON 01</div>
   <h1>飲食控制的科學基礎</h1>
@@ -357,16 +357,15 @@
 
 <div class="container">
 
-<!-- ════════════ 1. 能量平衡 ════════════ -->
+<!-- 1. 能量平衡 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">1</span>
     <h2>體重為什麼會變？認識能量平衡</h2>
   </div>
-
   <div class="card">
     <h3>核心概念：體重改變 ＝ 能量長期趨勢</h3>
-    <p>能量平衡是熱量進出的動態關係。不是只有「少吃」或「多動」，身體無時無刻都在使用能量。體重的變化取決於長期的能量進出平衡，而非單一餐或單一天的數字。</p>
+    <p>能量平衡是熱量進出的動態關係。體重的變化取決於長期的能量進出平衡，而非單一餐或單一天的數字。</p>
     <table class="info-table">
       <tr><th>能量狀態</th><th>結果</th></tr>
       <tr><td>消耗 ＞ 攝取</td><td>體重下降</td></tr>
@@ -374,78 +373,45 @@
       <tr><td>消耗 ＜ 攝取</td><td>體重上升</td></tr>
     </table>
   </div>
-
   <div class="golden">熱量決定體重數字，營養素決定鏡中的樣子。</div>
 </div>
 
-<!-- ════════════ 2. 能量消耗組成 ════════════ -->
+<!-- 2. 能量消耗 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">2</span>
     <h2>能量去哪了？不只是運動</h2>
   </div>
-
   <div class="card">
-    <p>每天消耗的熱量由四個部分組成，其中基礎代謝佔最大比例，而日常活動（NEAT）是最容易被忽略卻影響最大的變因。</p>
-
+    <p>每天消耗的熱量由四個部分組成，其中基礎代謝佔最大比例，日常活動（NEAT）是最容易被忽略卻影響最大的變因。</p>
     <div class="energy-bar">
       <div class="bar-bmr">基礎代謝 BMR<br>≈65%</div>
       <div class="bar-tef">食物<br>產熱<br>TEF</div>
       <div class="bar-neat">日常活動<br>NEAT</div>
       <div class="bar-eat">運動<br>EAT</div>
     </div>
-
     <table class="info-table">
       <tr><th>組成</th><th>說明</th><th>佔比</th></tr>
-      <tr>
-        <td><strong>基礎代謝 (BMR)</strong></td>
-        <td>維持生命基本運作：呼吸、心跳、體溫調節</td>
-        <td>約 60-70%</td>
-      </tr>
-      <tr>
-        <td><strong>食物產熱 (TEF)</strong></td>
-        <td>消化吸收食物所消耗的能量</td>
-        <td>約 10%</td>
-      </tr>
-      <tr>
-        <td><strong>日常活動 (NEAT)</strong></td>
-        <td>走路、做家事、通勤等非運動活動（<span class="highlight">被忽略的減脂關鍵！</span>）</td>
-        <td>約 15-20%</td>
-      </tr>
-      <tr>
-        <td><strong>運動 (EAT)</strong></td>
-        <td>跑步、重訓等有計劃的運動</td>
-        <td>約 5-10%</td>
-      </tr>
+      <tr><td><strong>基礎代謝 (BMR)</strong></td><td>維持生命基本運作：呼吸、心跳、體溫調節</td><td>約 60-70%</td></tr>
+      <tr><td><strong>食物產熱 (TEF)</strong></td><td>消化吸收食物所消耗的能量</td><td>約 10%</td></tr>
+      <tr><td><strong>日常活動 (NEAT)</strong></td><td>走路、做家事、通勤等非運動活動（<span class="highlight">被忽略的減脂關鍵！</span>）</td><td>約 15-20%</td></tr>
+      <tr><td><strong>運動 (EAT)</strong></td><td>跑步、重訓等有計劃的運動</td><td>約 5-10%</td></tr>
     </table>
   </div>
-
   <div class="golden">計算只是起點，動態調整才是終點。</div>
 </div>
 
-<!-- ════════════ 3. TDEE ════════════ -->
+<!-- 3. TDEE -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">3</span>
     <h2>TDEE：量身打造你的數據起點</h2>
   </div>
-
   <div class="card">
     <h3>什麼是 TDEE？</h3>
     <p><strong>TDEE（Total Daily Energy Expenditure）</strong>是你每天消耗的總熱量，也就是 BMR + TEF + NEAT + EAT 的總和。它是設定飲食計畫的基準線。</p>
-
     <h3 style="margin-top:20px;">如何創造熱量赤字？</h3>
     <div class="formula">目標攝取 ＝ TDEE −（300 ～ 500 kcal）</div>
-
-    <a href="https://abbyeatlife.github.io/blog/20260311book03/index.html" 
-   target="_blank"
-   style="display:inline-block; margin-top:16px; padding:12px 28px; 
-          background:#2d6a4f; color:white; border-radius:24px; 
-          text-decoration:none; font-weight:700; font-size:15px;">
-  🧮 前往 TDEE 計算機 →
-</a>
-    
-    <p>赤字設定原則：</p>
     <ul class="clean">
       <li><strong>可持續性 ＞ 速度</strong>：不追求快速，追求能長期執行</li>
       <li><strong>能執行</strong>：符合你的生活型態</li>
@@ -454,16 +420,91 @@
     </ul>
   </div>
 
+  <!-- ★ TDEE 計算機 ★ -->
+  <div class="calc-box">
+    <h3>🌿 直接算算你的 TDEE</h3>
+    <p class="calc-subtitle">帶入你的數字，馬上算出每日熱量建議</p>
+
+    <div class="calc-grid">
+      <!-- 性別 -->
+      <div class="calc-field calc-full">
+        <label>性別</label>
+        <div class="calc-gender">
+          <button class="gender-btn active" id="btn-female" onclick="setGender('female')">👩 女性</button>
+          <button class="gender-btn" id="btn-male" onclick="setGender('male')">👨 男性</button>
+        </div>
+      </div>
+      <!-- 年齡 -->
+      <div class="calc-field">
+        <label>年齡（歲）</label>
+        <input type="number" id="age" placeholder="例：30" min="10" max="100">
+      </div>
+      <!-- 身高 -->
+      <div class="calc-field">
+        <label>身高（公分）</label>
+        <input type="number" id="height" placeholder="例：160" min="100" max="250">
+      </div>
+      <!-- 體重 -->
+      <div class="calc-field">
+        <label>體重（公斤）</label>
+        <input type="number" id="weight" placeholder="例：55" min="20" max="300">
+      </div>
+      <!-- 活動量 -->
+      <div class="calc-field">
+        <label>活動程度</label>
+        <select id="activity">
+          <option value="1.2">久坐（幾乎不運動）</option>
+          <option value="1.375" selected>輕度活動（每週 1–3 小時）</option>
+          <option value="1.55">中度活動（每週 4–6 小時）</option>
+          <option value="1.725">高度活動（每週 7–9 小時）</option>
+          <option value="1.9">超高度活動（每週 10 小時以上）</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calcTDEE()">計算我的 TDEE 🔢</button>
+
+    <div class="calc-results" id="calc-results">
+      <div class="result-main">
+        <div class="result-card">
+          <div class="r-label">基礎代謝率 BMR</div>
+          <div class="r-value" id="res-bmr">—</div>
+          <div class="r-unit">大卡 / 天</div>
+        </div>
+        <div class="result-card">
+          <div class="r-label">每日總消耗 TDEE</div>
+          <div class="r-value" id="res-tdee">—</div>
+          <div class="r-unit">大卡 / 天（維持體重）</div>
+        </div>
+      </div>
+      <div class="deficit-table">
+        <h4>減脂期間建議攝取量</h4>
+        <div class="deficit-row">
+          <span class="d-label">和緩減脂（−15%）</span>
+          <span class="d-value" id="res-mild">—</span>
+        </div>
+        <div class="deficit-row">
+          <span class="d-label">中速減脂（−20%）</span>
+          <span class="d-value" id="res-mid">—</span>
+        </div>
+        <div class="deficit-row">
+          <span class="d-label">較快減脂（−25%）</span>
+          <span class="d-value" id="res-fast">—</span>
+        </div>
+      </div>
+      <p class="calc-note">⚠️ TDEE 是估算值，不是精確數字。執行兩到三週後觀察實際體態反應，再視情況微調，才是最務實的做法。</p>
+    </div>
+  </div>
+
   <div class="golden">今天這個數字，不是判你對錯，是讓我們之後有調整依據。</div>
 </div>
 
-<!-- ════════════ 4. 熱量 vs. 營養素 ════════════ -->
+<!-- 4. 熱量 vs. 營養素 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">4</span>
     <h2>熱量 vs. 營養素：汽油與機油的關係</h2>
   </div>
-
   <div class="card">
     <div class="compare-grid">
       <div class="compare-item" style="background:#f5f0e8; border:2px solid #d4a373;">
@@ -477,65 +518,45 @@
         <p>如同汽車的<strong>機油</strong>，負責身體的<strong>維護與調控</strong>。營養素決定你的身體組成與健康。</p>
       </div>
     </div>
-    <p>不是只有「數字」影響體重——食物組成與製備方式也會決定代謝與身體組織。蛋白質、纖維、維生素等營養含量不同，對代謝效率、飽足感、荷爾蒙反應都會有差異。</p>
+    <p>蛋白質、纖維、維生素等營養含量不同，對代謝效率、飽足感、荷爾蒙反應都會有差異。</p>
   </div>
 </div>
 
-<!-- ════════════ 5. 三大營養素 ════════════ -->
+<!-- 5. 三大營養素 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">5</span>
     <h2>身體的三大建築材料</h2>
   </div>
-
   <div class="three-col">
-    <!-- 蛋白質 -->
     <div class="nutrient-card">
       <div class="icon">🧱</div>
       <h4>蛋白質 (Protein)</h4>
       <div class="role">修復與建造 ｜ 4 kcal/g</div>
-      <p>
-        <strong>關鍵角色：</strong>肌肉、毛髮、免疫細胞的原料。<br><br>
-        <strong>減脂意義：</strong>防止肌肉流失，且消化蛋白質的食物產熱效應 (TEF) 最高。<br><br>
-        <strong>攝取建議：</strong>體重 × 1.6g ～ 2.2g，優先固定 (Fix First)。
-      </p>
+      <p><strong>關鍵角色：</strong>肌肉、毛髮、免疫細胞的原料。<br><br><strong>減脂意義：</strong>防止肌肉流失，TEF 最高。<br><br><strong>攝取建議：</strong>體重 × 1.6g ～ 2.2g，優先固定。</p>
     </div>
-    <!-- 脂肪 -->
     <div class="nutrient-card">
       <div class="icon">🛡️</div>
       <h4>脂肪 (Fat)</h4>
       <div class="role">保護與調節 ｜ 9 kcal/g</div>
-      <p>
-        <strong>關鍵角色：</strong>賀爾蒙合成、細胞膜建構的原料。<br><br>
-        <strong>減脂意義：</strong>提供飽足感，維持生理機能。缺乏會導致掉髮、皮膚乾燥、經期混亂。<br><br>
-        <strong>攝取建議：</strong>佔總熱量 20%–30%，適量攝取。
-      </p>
+      <p><strong>關鍵角色：</strong>賀爾蒙合成、細胞膜建構的原料。<br><br><strong>減脂意義：</strong>提供飽足感，維持生理機能。缺乏會導致掉髮、皮膚乾燥、經期混亂。<br><br><strong>攝取建議：</strong>佔總熱量 20%–30%，適量攝取。</p>
     </div>
-    <!-- 碳水 -->
     <div class="nutrient-card">
       <div class="icon">⚡</div>
       <h4>碳水化合物 (Carb)</h4>
       <div class="role">能量供給 ｜ 4 kcal/g</div>
-      <p>
-        <strong>關鍵角色：</strong>大腦唯一燃料（葡萄糖）與高強度運動能源。<br><br>
-        <strong>減脂意義：</strong>足夠的碳水能保護肌肉不被分解，支撐運動表現。<br><br>
-        <strong>攝取建議：</strong>扣除蛋白質與脂肪後的剩餘熱量，彈性調整。
-      </p>
+      <p><strong>關鍵角色：</strong>大腦唯一燃料（葡萄糖）與高強度運動能源。<br><br><strong>減脂意義：</strong>足夠的碳水能保護肌肉不被分解。<br><br><strong>攝取建議：</strong>扣除蛋白質與脂肪後的剩餘熱量，彈性調整。</p>
     </div>
   </div>
-
-  <div class="note">
-    ⚠️ <strong>脂肪的熱量密度最高</strong>（9 kcal/g 是蛋白質和碳水的 2.25 倍），需要精準控制份量。隨便淋一圈沙拉醬，可能就抵消跑步 20 分鐘的熱量。
-  </div>
+  <div class="note">⚠️ <strong>脂肪的熱量密度最高</strong>（9 kcal/g 是蛋白質和碳水的 2.25 倍）。隨便淋一圈沙拉醬，可能就抵消跑步 20 分鐘的熱量。</div>
 </div>
 
-<!-- ════════════ 6. 同樣熱量不同體態 ════════════ -->
+<!-- 6. 同樣熱量不同體態 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">6</span>
     <h2>同樣的熱量，不同的體態</h2>
   </div>
-
   <div class="card">
     <p>兩個人同樣 60kg、同樣吃 1800kcal，營養素比例不同，身體組成可能天差地別：</p>
     <div class="compare-grid">
@@ -549,20 +570,17 @@
       </div>
     </div>
   </div>
-
   <div class="golden">體重下降不等於減脂。失去肌肉，是你最不想看到的結果。</div>
 </div>
 
-<!-- ════════════ 7. 六大類食物 ════════════ -->
+<!-- 7. 六大類食物 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">7</span>
     <h2>把計畫放進餐盤：認識六大類食物</h2>
   </div>
-
   <div class="card">
     <h3>營養素是語言，六大類食物是工具</h3>
-    <p>理解了三大營養素之後，我們需要知道從哪些「真正的食物」取得這些營養：</p>
     <table class="info-table">
       <tr><th>營養素</th><th>角色比喻</th><th>對應食物類別</th></tr>
       <tr><td><strong>蛋白質</strong></td><td>鋼筋與磚塊 / Structure</td><td>豆魚蛋肉類 ＆ 乳品類</td></tr>
@@ -573,14 +591,12 @@
   </div>
 </div>
 
-<!-- ════════════ 8. 食物選擇原則 ════════════ -->
+<!-- 8. 食物選擇原則 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">8</span>
     <h2>各類食物的聰明選擇</h2>
   </div>
-
-  <!-- 豆魚蛋肉 -->
   <div class="card">
     <h3>🥩 豆魚蛋肉與乳品：打造肌肉燃料</h3>
     <p><strong>選擇原則：優先選「原型、低脂」</strong></p>
@@ -596,8 +612,6 @@
     </div>
     <div class="note">🥛 乳品提醒：鮮乳與無糖優格同時含有碳水與蛋白質，需注意份量。</div>
   </div>
-
-  <!-- 全穀雜糧 -->
   <div class="card">
     <h3>🌾 全穀雜糧與蔬果：精選能量來源</h3>
     <p><strong>選擇原則：越「醜」、越「粗糙」越好</strong></p>
@@ -611,14 +625,12 @@
         <p>麵包、蛋糕、白吐司<br>（消化快、餓得快）</p>
       </div>
     </div>
-    <div class="note">⚠️ <strong>隱藏澱粉陷阱：</strong>紅豆、綠豆、蓮藕、玉米、南瓜、芋頭 — 這些是澱粉，不是菜！吃起來「鬆鬆粉粉」的就是澱粉。</div>
+    <div class="note">⚠️ <strong>隱藏澱粉陷阱：</strong>紅豆、綠豆、蓮藕、玉米、南瓜、芋頭 — 這些是澱粉，不是菜！</div>
   </div>
-
-  <!-- 油脂堅果 -->
   <div class="card">
     <h3>🥑 油脂與堅果：看不見的熱量刺客</h3>
     <p><strong>選擇原則：優質來源＋份量控制</strong></p>
-    <p>1 公克油脂 = 9 大卡，是熱量密度最高的營養素。隨便淋一圈沙拉醬，可能抵消跑步 20 分鐘的熱量。</p>
+    <p>1 公克油脂 = 9 大卡，是熱量密度最高的營養素。</p>
     <div class="flex-row" style="margin-top:12px;">
       <span class="tag tag-green">優質來源：橄欖油、酪梨</span>
       <span class="tag tag-yellow">堅果：每天僅限一小把</span>
@@ -626,15 +638,14 @@
   </div>
 </div>
 
-<!-- ════════════ 9. 飲食金字塔 ════════════ -->
+<!-- 9. 飲食金字塔 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">9</span>
     <h2>飲食規劃的邏輯金字塔</h2>
   </div>
-
   <div class="card">
-    <p>由下而上，先顧基礎再談細節。每一層都建立在下一層的基礎上，跳過底層直接追求上層是行不通的。</p>
+    <p>由下而上，先顧基礎再談細節：</p>
     <div class="pyramid">
       <div class="pyramid-level">補充品</div>
       <div class="pyramid-level">進食時間與頻率</div>
@@ -644,30 +655,27 @@
     </div>
     <p style="text-align:center; margin-top:8px;">⬆️ 由下而上，先顧基礎再談細節</p>
   </div>
-
   <div class="golden">補充品僅是加分，無法彌補基礎的缺失。</div>
 </div>
 
-<!-- ════════════ 10. 數字與趨勢 ════════════ -->
+<!-- 10. 數字與趨勢 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">10</span>
     <h2>數字只是工具，趨勢才是方向</h2>
   </div>
-
   <div class="card">
     <h3>體重波動是正常的</h3>
-    <p>每天的體重會因為水分、食物殘渣、荷爾蒙而上下浮動，這是完全正常的。真正重要的是<strong>長期趨勢</strong>——用週平均或月平均來觀察方向，而不是糾結於每一天的數字。</p>
+    <p>每天的體重會因為水分、食物殘渣、荷爾蒙而上下浮動，這是完全正常的。真正重要的是<strong>長期趨勢</strong>——用週平均或月平均來觀察方向。</p>
     <ul class="clean">
       <li>紀錄是為了<strong>覺察</strong>，不是審判</li>
       <li>今天開始你的紀錄，是為了未來某天不需要再紀錄</li>
     </ul>
   </div>
-
   <div class="golden">開始紀錄吧！紀錄是覺察的開始，不是對自己的審判。</div>
 </div>
 
-<!-- ════════════ 本堂重點回顧 ════════════ -->
+<!-- 重點回顧 -->
 <div class="section">
   <div class="section-header">
     <span class="section-number">✓</span>
@@ -689,9 +697,52 @@
 
 </div><!-- /container -->
 
-<div class="footer">
-  飲食控制課程 ｜ 第一堂 ｜ Abby 營養師
-</div>
+<div class="footer">飲食控制課程 ｜ 第一堂 ｜ Abby 營養師</div>
+
+<script>
+  let gender = 'female';
+
+  function setGender(g) {
+    gender = g;
+    document.getElementById('btn-female').classList.toggle('active', g === 'female');
+    document.getElementById('btn-male').classList.toggle('active', g === 'male');
+  }
+
+  function calcTDEE() {
+    const age    = parseFloat(document.getElementById('age').value);
+    const height = parseFloat(document.getElementById('height').value);
+    const weight = parseFloat(document.getElementById('weight').value);
+    const act    = parseFloat(document.getElementById('activity').value);
+
+    if (!age || !height || !weight) {
+      alert('請填入年齡、身高、體重 😊');
+      return;
+    }
+
+    // Mifflin-St Jeor
+    let bmr;
+    if (gender === 'female') {
+      bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+    } else {
+      bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+    }
+
+    const tdee  = bmr * act;
+    const mild  = tdee * 0.85;
+    const mid   = tdee * 0.80;
+    const fast  = tdee * 0.75;
+
+    document.getElementById('res-bmr').textContent  = Math.round(bmr).toLocaleString();
+    document.getElementById('res-tdee').textContent = Math.round(tdee).toLocaleString();
+    document.getElementById('res-mild').textContent = Math.round(mild).toLocaleString() + ' 大卡';
+    document.getElementById('res-mid').textContent  = Math.round(mid).toLocaleString()  + ' 大卡';
+    document.getElementById('res-fast').textContent = Math.round(fast).toLocaleString() + ' 大卡';
+
+    const results = document.getElementById('calc-results');
+    results.classList.add('show');
+    results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+</script>
 
 </body>
 </html>
