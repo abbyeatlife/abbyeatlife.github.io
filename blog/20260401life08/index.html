@@ -42,39 +42,45 @@
         .article-meta{font-size:0.88rem;color:var(--text-light);display:flex;align-items:center;gap:16px}
         .article-meta .author{font-weight:500;color:var(--bark)}
         .article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
-
-        /* CSS Cover Style E — Sage 淡綠 */
         .css-cover{width:100%;height:240px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,#D4DFD0 0%,#C5D4BE 45%,#B8C9AD 100%)}
         .css-cover::before{content:'';position:absolute;top:-30px;right:-30px;width:160px;height:160px;border:2px solid rgba(255,255,255,0.25);border-radius:50%}
         .css-cover::after{content:'';position:absolute;top:10px;right:10px;width:80px;height:80px;border:1px solid rgba(255,255,255,0.15);border-radius:50%}
         .css-cover .cover-cat{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(61,50,41,0.5);margin-bottom:8px}
         .css-cover .cover-title{font-family:'Playfair Display',serif;font-size:1.3rem;line-height:1.4;font-weight:600;color:var(--bark)}
-
         .article-content{max-width:760px;margin:0 auto;padding:0 24px 60px}
         .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:20px}
         .article-content h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;color:var(--bark);margin:48px 0 20px}
         .article-content h3{font-size:1.05rem;font-weight:600;color:var(--sage);margin:32px 0 14px;letter-spacing:0.02em}
         .article-content strong{color:var(--bark);font-weight:600}
         .article-content em{color:var(--terracotta);font-style:normal;font-weight:500}
-
         .highlight-box{background:var(--sage-pale);border-left:4px solid var(--sage);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
         .highlight-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
         .highlight-box p{margin-bottom:10px;font-size:1rem;color:var(--bark)}
         .highlight-box p:last-child{margin-bottom:0}
-
         .note-box{background:rgba(193,127,89,0.07);border-left:4px solid var(--terracotta);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
         .note-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--terracotta);margin-bottom:10px}
         .note-box p{margin-bottom:8px;font-size:0.95rem;color:var(--bark)}
         .note-box p:last-child{margin-bottom:0}
-
         .pull-quote{border-left:4px solid var(--terracotta);background:rgba(193,127,89,0.06);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:28px 0}
         .pull-quote p{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--bark);line-height:1.75;margin:0!important}
-
         .key-point{background:var(--bark);color:var(--white);border-radius:var(--radius);padding:22px 26px;margin:28px 0}
         .key-point p{color:rgba(255,255,255,0.92);font-size:1rem;margin-bottom:0;line-height:1.9}
         .key-point strong{color:var(--sage-light)}
 
-        /* FODMAP & 脹氣成因表格 */
+        /* 蔬菜建議量資訊卡 */
+        .info-card{background:var(--white);border:1px solid rgba(139,158,126,0.25);border-radius:var(--radius);padding:20px 24px;margin:24px 0;box-shadow:var(--shadow-sm)}
+        .info-card .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:14px}
+        .info-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+        .info-card-item{background:var(--sage-pale);border-radius:8px;padding:12px 14px}
+        .info-card-item .item-label{font-size:0.72rem;color:var(--text-light);margin-bottom:4px}
+        .info-card-item .item-value{font-size:1.05rem;font-weight:700;color:var(--bark)}
+        .info-card-item .item-note{font-size:0.78rem;color:var(--bark-light);margin-top:3px}
+        .info-card p{font-size:0.92rem;color:var(--bark-light);margin-bottom:8px;line-height:1.75}
+        .info-card p:last-child{margin-bottom:0}
+
+        /* 研究引用小字 */
+        .science-note{font-size:0.8rem;color:var(--text-light);border-top:1px solid rgba(139,158,126,0.2);margin-top:16px;padding-top:12px;line-height:1.75;font-style:italic}
+
         .table-wrap{margin:28px 0;overflow-x:auto}
         .table-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:12px}
         table{width:100%;border-collapse:collapse;font-size:0.9rem}
@@ -85,14 +91,11 @@
         tbody td{padding:9px 14px;border-bottom:1px solid rgba(139,158,126,0.15);vertical-align:top;line-height:1.65;color:var(--text)}
         .tag-high{display:inline-block;background:rgba(193,127,89,0.12);color:var(--terracotta);font-size:0.7rem;padding:2px 8px;border-radius:50px;font-weight:600}
         .tag-low{display:inline-block;background:var(--sage-pale);color:var(--sage);font-size:0.7rem;padding:2px 8px;border-radius:50px;font-weight:600}
-
         .section-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:40px 0}
         .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--sage-light)}
         .section-divider .dot{width:5px;height:5px;background:var(--sage-light);border-radius:50%}
-
         .article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
         .article-tags .tag{background:var(--sage-pale);color:var(--sage);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
-
         .related-articles{max-width:760px;margin:0 auto;padding:0 24px 48px}
         .related-articles h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--bark);margin-bottom:16px;text-align:center}
         .related-grid{display:flex;flex-direction:column;gap:8px}
@@ -103,7 +106,6 @@
         .back-to-top{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px auto 0;height:36px;padding:0 18px;background:var(--sage);color:var(--white);border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:.82rem;font-weight:500;transition:background .2s ease;white-space:nowrap}
         .back-to-top:hover{background:var(--bark)}
         .back-to-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-
         .article-footer{max-width:760px;margin:0 auto;padding:0 24px 80px}
         .article-footer-divider{border:none;border-top:1px solid var(--sage-light);margin-bottom:36px}
         .author-card{display:flex;align-items:center;gap:20px;background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)}
@@ -114,9 +116,7 @@
         .author-links{display:flex;gap:8px;margin-top:10px}
         .author-links a{font-size:.8rem;padding:4px 12px;border-radius:50px;text-decoration:none;background:var(--sage-pale);color:var(--sage);font-weight:500;transition:all .2s ease}
         .author-links a:hover{background:var(--sage);color:var(--white)}
-
         footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
-
         @media(max-width:768px){
             .nav-links{display:none}
             .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
@@ -125,6 +125,7 @@
             .author-card{flex-direction:column;text-align:center}
             .author-links{justify-content:center}
             tbody td,thead th{padding:7px 10px;font-size:0.82rem}
+            .info-card-grid{grid-template-columns:1fr}
         }
     </style>
 </head>
@@ -173,6 +174,25 @@
     <p>只要蔬菜稍微吃多一點，我就很容易脹氣，嚴重的時候肚子鼓脹一整天，需要頻繁跑廁所。這對日常生活來說是很大的困擾，尤其還要上課、帶學員，根本無法接受這種狀態。</p>
 
     <p>這是矛盾嗎？或許表面上看起來是。但在我了解自己的身體之後，我知道這不是做不到「健康標準」，而是找到了最適合我腸道的方式。</p>
+
+    <div class="info-card">
+        <div class="box-label">📊 蔬菜建議量 & 膳食纖維不只從蔬菜來</div>
+        <div class="info-card-grid">
+            <div class="info-card-item">
+                <div class="item-label">衛福部每日蔬菜建議量</div>
+                <div class="item-value">3–5 份</div>
+                <div class="item-note">約 300–500g／天，每份約 100g</div>
+            </div>
+            <div class="info-card-item">
+                <div class="item-label">每日膳食纖維建議攝取量</div>
+                <div class="item-value">25–35g</div>
+                <div class="item-note">成人每日參考值</div>
+            </div>
+        </div>
+        <p>📌 <strong>蔬菜不是唯一的膳食纖維來源。</strong>纖維廣泛存在於全榖雜糧（地瓜、南瓜、糙米、燕麥）、豆類（毛豆、黑豆、納豆）、水果與堅果之中。</p>
+        <p>以我自己為例：正餐常以地瓜、南瓜為主食，蛋白質有一部分來自毛豆、黑豆、納豆等植物性食物，加上每天的蔬菜，整體一天的膳食纖維其實相當充足——即使單餐蔬菜量沒有達到「標準份數」。</p>
+        <p>評估纖維攝取是否足夠，要看<strong>整體飲食組合</strong>，不是只盯著蔬菜這一格。</p>
+    </div>
 
     <div class="section-divider"><span class="dot"></span></div>
 
@@ -341,9 +361,13 @@
         </table>
     </div>
 
-    <p>更重要的是，目前科學界對「健康的腸道菌相長什麼樣子」並沒有統一的標準。研究顯示，即使兩個完全健康的人，腸道菌相的組成可能有高達九成的差異——這代表沒有一個放諸四海皆準的「好菌樣本」。</p>
+    <p>更重要的是，目前科學界對「健康的腸道菌相長什麼樣子」並沒有統一的標準。即使是健康個體之間，腸道菌相的組成也存在相當顯著的差異，且大部分的差異至今仍無法完全解釋。也就是說，根本不存在一個放諸四海皆準的「好菌樣本」。</p>
 
     <p>把「脹氣」這個非常普遍的症狀，一口咬定是「腸道菌不健康」，進而推銷益生菌產品——恐怕是行銷邏輯，不是科學邏輯。</p>
+
+    <div class="science-note">
+        📖 參考來源：Human Microbiome Project Consortium (2012). Structure, function and diversity of the healthy human microbiome. <em>Nature</em>, 486, 207–214. ／ Deschasaux-Tanguy M. et al. (2023). The global human gut microbiome: genes, lifestyles, and diet. <em>Trends in Molecular Medicine</em>, 29(10), 789–801.
+    </div>
 
     <div class="pull-quote">
         <p>我的脹氣觸發點明確、可預測、可控制。<br>這反而是腸道功能正常的表現——<br>它在告訴我「這個食物我現在處理不來」，<br>這是保護訊號，不是壞掉的訊號。</p>
@@ -377,7 +401,7 @@
 
     <p><strong>選擇對你腸道友善的替代品。</strong>不是每種蔬菜都高 FODMAP，葉菜類、瓜類、部分菇類通常耐受度更好，一樣可以吃到豐富的纖維和微量營養素。</p>
 
-    <p><strong>同時評估整體健康表現。</strong>光看脹氣這一件事不夠，排便狀況、體力、體組成、健檢數據，才是更完整的腸道健康圖像。</p>
+    <p><strong>從整體飲食評估纖維攝取。</strong>蔬菜不是唯一的纖維來源，如果你的主食有地瓜、南瓜，蛋白質來源有毛豆、黑豆、納豆，整體纖維其實可以很充足，不必執著於單靠蔬菜達標。</p>
 
     <p><strong>不需要強迫自己吃到「建議量」。</strong>健康飲食的建議是群體統計值，不是每個人的最佳解。整體狀態良好、吃到讓自己舒服的分量，才是真正的健康飲食。</p>
 
@@ -397,6 +421,7 @@
         <span class="tag">脹氣</span>
         <span class="tag">腸道健康</span>
         <span class="tag">蔬菜</span>
+        <span class="tag">膳食纖維</span>
         <span class="tag">益生菌</span>
         <span class="tag">個體差異</span>
     </div>
