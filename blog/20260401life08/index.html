@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>叫別人多吃菜，但我自己沒吃那麼多——營養師的誠實告白 — Abby營養師</title>
+    <meta name="description" content="身為健康推廣者，我常說要多吃蔬菜，但我自己吃多了反而容易脹氣、腸躁，這不是矛盾，是我認識自己身體之後的選擇。關於FODMAP、脹氣原因、與腸道健康的事。">
+    <meta property="og:title" content="叫別人多吃菜，但我自己沒吃那麼多——營養師的腸道誠實告白">
+    <meta property="og:description" content="脹氣不等於腸道菌不健康。認識FODMAP，找到真正適合自己的飲食方式。">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+            --cream:#FDFBF7;--warm:#F5EDE3;--bark:#3D3229;--bark-light:#6B5E52;
+            --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+            --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+            --radius:12px;--radius-lg:20px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+        nav.scrolled{box-shadow:var(--shadow-md)}
+        .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+        .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+        .nav-logo span{color:var(--sage)}
+        .nav-links{display:flex;gap:8px;align-items:center}
+        .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+        .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+        .nav-links a.cta{background:var(--sage);color:var(--white)}
+        .nav-links a.cta:hover{background:var(--bark)}
+        .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+        .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+        .article-header{padding:100px 24px 40px;max-width:760px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+        .back-link:hover{color:var(--bark)}
+        .series-badge{display:inline-flex;align-items:center;gap:8px;background:var(--sage-pale);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+        .series-badge .tag{font-size:0.75rem;font-weight:600;color:var(--terracotta);letter-spacing:0.05em}
+        .article-header h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;color:var(--bark);line-height:1.35;letter-spacing:-0.02em;margin-bottom:16px}
+        .article-meta{font-size:0.88rem;color:var(--text-light);display:flex;align-items:center;gap:16px}
+        .article-meta .author{font-weight:500;color:var(--bark)}
+        .article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
+
+        /* CSS Cover Style E — Sage 淡綠 */
+        .css-cover{width:100%;height:240px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,#D4DFD0 0%,#C5D4BE 45%,#B8C9AD 100%)}
+        .css-cover::before{content:'';position:absolute;top:-30px;right:-30px;width:160px;height:160px;border:2px solid rgba(255,255,255,0.25);border-radius:50%}
+        .css-cover::after{content:'';position:absolute;top:10px;right:10px;width:80px;height:80px;border:1px solid rgba(255,255,255,0.15);border-radius:50%}
+        .css-cover .cover-cat{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(61,50,41,0.5);margin-bottom:8px}
+        .css-cover .cover-title{font-family:'Playfair Display',serif;font-size:1.3rem;line-height:1.4;font-weight:600;color:var(--bark)}
+
+        .article-content{max-width:760px;margin:0 auto;padding:0 24px 60px}
+        .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:20px}
+        .article-content h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;color:var(--bark);margin:48px 0 20px}
+        .article-content h3{font-size:1.05rem;font-weight:600;color:var(--sage);margin:32px 0 14px;letter-spacing:0.02em}
+        .article-content strong{color:var(--bark);font-weight:600}
+        .article-content em{color:var(--terracotta);font-style:normal;font-weight:500}
+
+        .highlight-box{background:var(--sage-pale);border-left:4px solid var(--sage);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
+        .highlight-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
+        .highlight-box p{margin-bottom:10px;font-size:1rem;color:var(--bark)}
+        .highlight-box p:last-child{margin-bottom:0}
+
+        .note-box{background:rgba(193,127,89,0.07);border-left:4px solid var(--terracotta);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
+        .note-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--terracotta);margin-bottom:10px}
+        .note-box p{margin-bottom:8px;font-size:0.95rem;color:var(--bark)}
+        .note-box p:last-child{margin-bottom:0}
+
+        .pull-quote{border-left:4px solid var(--terracotta);background:rgba(193,127,89,0.06);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:28px 0}
+        .pull-quote p{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--bark);line-height:1.75;margin:0!important}
+
+        .key-point{background:var(--bark);color:var(--white);border-radius:var(--radius);padding:22px 26px;margin:28px 0}
+        .key-point p{color:rgba(255,255,255,0.92);font-size:1rem;margin-bottom:0;line-height:1.9}
+        .key-point strong{color:var(--sage-light)}
+
+        /* FODMAP & 脹氣成因表格 */
+        .table-wrap{margin:28px 0;overflow-x:auto}
+        .table-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:12px}
+        table{width:100%;border-collapse:collapse;font-size:0.9rem}
+        thead tr{background:var(--bark);color:var(--white)}
+        thead th{padding:10px 14px;text-align:left;font-weight:500;font-size:0.8rem;letter-spacing:0.05em}
+        tbody tr:nth-child(even){background:rgba(139,158,126,0.06)}
+        tbody tr:hover{background:rgba(139,158,126,0.12)}
+        tbody td{padding:9px 14px;border-bottom:1px solid rgba(139,158,126,0.15);vertical-align:top;line-height:1.65;color:var(--text)}
+        .tag-high{display:inline-block;background:rgba(193,127,89,0.12);color:var(--terracotta);font-size:0.7rem;padding:2px 8px;border-radius:50px;font-weight:600}
+        .tag-low{display:inline-block;background:var(--sage-pale);color:var(--sage);font-size:0.7rem;padding:2px 8px;border-radius:50px;font-weight:600}
+
+        .section-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:40px 0}
+        .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--sage-light)}
+        .section-divider .dot{width:5px;height:5px;background:var(--sage-light);border-radius:50%}
+
+        .article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
+        .article-tags .tag{background:var(--sage-pale);color:var(--sage);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
+
+        .related-articles{max-width:760px;margin:0 auto;padding:0 24px 48px}
+        .related-articles h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--bark);margin-bottom:16px;text-align:center}
+        .related-grid{display:flex;flex-direction:column;gap:8px}
+        .related-card{background:var(--white);border-radius:var(--radius);padding:13px 20px;text-decoration:none;border:1px solid rgba(139,158,126,0.15);transition:all .2s ease;text-align:center}
+        .related-card:hover{background:var(--sage-pale);border-color:var(--sage-light)}
+        .related-card .rc-h{font-size:.9rem;font-weight:500;color:var(--bark-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .related-card:hover .rc-h{color:var(--bark)}
+        .back-to-top{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px auto 0;height:36px;padding:0 18px;background:var(--sage);color:var(--white);border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:.82rem;font-weight:500;transition:background .2s ease;white-space:nowrap}
+        .back-to-top:hover{background:var(--bark)}
+        .back-to-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+        .article-footer{max-width:760px;margin:0 auto;padding:0 24px 80px}
+        .article-footer-divider{border:none;border-top:1px solid var(--sage-light);margin-bottom:36px}
+        .author-card{display:flex;align-items:center;gap:20px;background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)}
+        .author-avatar{width:64px;height:64px;border-radius:50%;background:var(--sage-pale);flex-shrink:0;overflow:hidden}
+        .author-avatar img{width:100%;height:100%;object-fit:cover}
+        .author-info h4{font-size:1rem;font-weight:500;color:var(--bark);margin-bottom:4px}
+        .author-info p{font-size:.85rem;color:var(--text-light);line-height:1.6}
+        .author-links{display:flex;gap:8px;margin-top:10px}
+        .author-links a{font-size:.8rem;padding:4px 12px;border-radius:50px;text-decoration:none;background:var(--sage-pale);color:var(--sage);font-weight:500;transition:all .2s ease}
+        .author-links a:hover{background:var(--sage);color:var(--white)}
+
+        footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+            .menu-toggle{display:block}
+            .article-header h1{font-size:1.7rem}
+            .author-card{flex-direction:column;text-align:center}
+            .author-links{justify-content:center}
+            tbody td,thead th{padding:7px 10px;font-size:0.82rem}
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <div class="series-badge"><span class="tag">飲食筆記</span></div>
+    <h1>叫別人多吃菜，但我自己沒吃那麼多——營養師的腸道誠實告白</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 4 月 1 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <div class="css-cover">
+        <div class="cover-cat">飲食筆記</div>
+        <div class="cover-title">叫別人多吃菜，但我自己沒吃那麼多<br>——營養師的腸道誠實告白</div>
+    </div>
+</div>
+
+<div class="article-content">
+
+    <p>我常在課堂上、在諮詢裡跟大家說：記得多吃蔬菜，蔬菜的纖維、微量營養素、植化素，對健康確實有很多好處。</p>
+
+    <p>但如果你問我自己每天吃多少菜——說出來有點尷尬。我一餐吃 100 克左右，大概是半份燙青菜的量，是不是比你想像中還少呢？</p>
+
+    <p>菜菜吃不多的原因是：我吃多了，會不舒服。</p>
+
+    <p>只要蔬菜稍微吃多一點，我就很容易脹氣，嚴重的時候肚子鼓脹一整天，需要頻繁跑廁所。這對日常生活來說是很大的困擾，尤其還要上課、帶學員，根本無法接受這種狀態。</p>
+
+    <p>這是矛盾嗎？或許表面上看起來是。但在我了解自己的身體之後，我知道這不是做不到「健康標準」，而是找到了最適合我腸道的方式。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>原來是 FODMAP 的問題</h2>
+
+    <p>讓我脹氣的蔬菜有個共同特徵——它們都是高 FODMAP 食物。</p>
+
+    <p>FODMAP 是一類容易在腸道發酵的碳水化合物的統稱，全名是 Fermentable Oligosaccharides, Disaccharides, Monosaccharides and Polyols（可發酵的寡糖、雙糖、單糖與多元醇）。對腸道比較敏感的人來說，這類食物進入腸道後被細菌快速發酵、產生大量氣體，就會引起脹氣、腹痛、腸躁等症狀。</p>
+
+    <p>像是綠花椰菜、高麗菜、洋蔥，除非煮得很軟爛，不然這些我基本上都不太碰，吃了之後經常會脹氣一整天。</p>
+
+    <p>低 FODMAP 的蔬菜我反而沒問題，像是地瓜葉、菠菜、大白菜、節瓜、木耳、金針菇，都是我的日常選擇，吃起來腸胃很平穩。</p>
+
+    <p>以下是常見蔬菜的 FODMAP 參考，讓大家有個基本概念：</p>
+
+    <div class="table-wrap">
+        <div class="table-label">常見蔬菜 FODMAP 概覽</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>食物</th>
+                    <th>FODMAP 程度</th>
+                    <th>主要觸發成分</th>
+                    <th>備註</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>洋蔥、大蒜</td>
+                    <td><span class="tag-high">高</span></td>
+                    <td>果聚糖（Fructan）</td>
+                    <td>最常見的脹氣觸發來源</td>
+                </tr>
+                <tr>
+                    <td>高麗菜、白花椰菜</td>
+                    <td><span class="tag-high">高</span></td>
+                    <td>果聚糖、GOS</td>
+                    <td>十字花科整體較易產氣</td>
+                </tr>
+                <tr>
+                    <td>綠花椰菜（大量）</td>
+                    <td><span class="tag-high">高</span></td>
+                    <td>果聚糖</td>
+                    <td>少量（75g 以下）影響較小</td>
+                </tr>
+                <tr>
+                    <td>蘑菇</td>
+                    <td><span class="tag-high">高</span></td>
+                    <td>多元醇（Polyols）</td>
+                    <td>不同菇類差異大</td>
+                </tr>
+                <tr>
+                    <td>豌豆、蠶豆</td>
+                    <td><span class="tag-high">高</span></td>
+                    <td>GOS、果聚糖</td>
+                    <td>豆類整體需留意</td>
+                </tr>
+                <tr>
+                    <td>地瓜葉、菠菜</td>
+                    <td><span class="tag-low">低</span></td>
+                    <td>—</td>
+                    <td>葉菜類多為低 FODMAP</td>
+                </tr>
+                <tr>
+                    <td>大白菜</td>
+                    <td><span class="tag-low">低</span></td>
+                    <td>—</td>
+                    <td>溫和易消化</td>
+                </tr>
+                <tr>
+                    <td>節瓜（櫛瓜）</td>
+                    <td><span class="tag-low">低</span></td>
+                    <td>—</td>
+                    <td>瓜類多為好選擇</td>
+                </tr>
+                <tr>
+                    <td>木耳</td>
+                    <td><span class="tag-low">低</span></td>
+                    <td>—</td>
+                    <td>水溶性纖維、腸道友善</td>
+                </tr>
+                <tr>
+                    <td>金針菇</td>
+                    <td><span class="tag-low">低</span></td>
+                    <td>—</td>
+                    <td>菌類多醣，較不產氣</td>
+                </tr>
+                <tr>
+                    <td>紅蘿蔔</td>
+                    <td><span class="tag-low">低</span></td>
+                    <td>—</td>
+                    <td>普遍耐受性佳</td>
+                </tr>
+                <tr>
+                    <td>番茄（少量）</td>
+                    <td><span class="tag-low">低</span></td>
+                    <td>—</td>
+                    <td>大量時果糖偏高需留意</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="note-box">
+        <div class="box-label">注意</div>
+        <p>FODMAP 的耐受度因人而異，同一種食物的影響也跟攝取量有關。以上僅供參考，建議觀察自己吃完後的實際反應。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>「脹氣＝腸道菌不健康」——這說法也許太粗暴了</h2>
+
+    <p>你可能聽過：常常脹氣，代表你的腸道菌不夠好，要趕快補充益生菌。</p>
+
+    <p>但我個人認為：這個邏輯太簡化了，也是很多保健品業者慣用的行銷框架。</p>
+
+    <p>造成脹氣的原因非常多，把它全部歸因到「菌不夠好」，是不夠科學的。以下整理幾個常見成因：</p>
+
+    <div class="table-wrap">
+        <div class="table-label">脹氣的可能成因</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>成因類型</th>
+                    <th>說明</th>
+                    <th>常見情境</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>食物發酵產氣</strong></td>
+                    <td>高 FODMAP 食物被腸道細菌發酵，釋放大量氣體</td>
+                    <td>吃洋蔥、高麗菜後不適</td>
+                </tr>
+                <tr>
+                    <td><strong>腸道神經敏感度高</strong></td>
+                    <td>腸道對正常刺激反應過度，即使氣體量不多也感覺脹</td>
+                    <td>腸躁症（IBS）常見</td>
+                </tr>
+                <tr>
+                    <td><strong>腸道蠕動異常</strong></td>
+                    <td>蠕動過慢（便秘型）或過快（腹瀉型）都可能導致脹氣</td>
+                    <td>壓力大、作息不規律時</td>
+                </tr>
+                <tr>
+                    <td><strong>吞入過多空氣</strong></td>
+                    <td>吃飯太快、喝氣泡飲料、嚼口香糖</td>
+                    <td>進食習慣相關</td>
+                </tr>
+                <tr>
+                    <td><strong>特定食物不耐</strong></td>
+                    <td>乳糖不耐、果糖吸收不良等酵素缺乏問題</td>
+                    <td>喝牛奶後腹瀉脹氣</td>
+                </tr>
+                <tr>
+                    <td><strong>壓力與腸腦軸</strong></td>
+                    <td>情緒壓力透過神經系統影響腸道蠕動與敏感度</td>
+                    <td>焦慮、緊張時腸胃不適</td>
+                </tr>
+                <tr>
+                    <td><strong>腸道菌相失衡</strong></td>
+                    <td>確實存在，但通常是多種因素之一，不是脹氣的唯一解釋</td>
+                    <td>抗生素使用後、飲食長期不均</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>更重要的是，目前科學界對「健康的腸道菌相長什麼樣子」並沒有統一的標準。研究顯示，即使兩個完全健康的人，腸道菌相的組成可能有高達九成的差異——這代表沒有一個放諸四海皆準的「好菌樣本」。</p>
+
+    <p>把「脹氣」這個非常普遍的症狀，一口咬定是「腸道菌不健康」，進而推銷益生菌產品——恐怕是行銷邏輯，不是科學邏輯。</p>
+
+    <div class="pull-quote">
+        <p>我的脹氣觸發點明確、可預測、可控制。<br>這反而是腸道功能正常的表現——<br>它在告訴我「這個食物我現在處理不來」，<br>這是保護訊號，不是壞掉的訊號。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>那我的腸道到底健不健康？</h2>
+
+    <p>這是我當時也問自己的問題。後來我改用整體表現來評估，而不是只看有沒有脹氣這件事：</p>
+
+    <div class="highlight-box">
+        <div class="box-label">我的腸道健康自我檢核</div>
+        <p>✓ 避開觸發食物後，排便規律、形狀正常</p>
+        <p>✓ 每天吃優格、偶爾喝味噌湯，益生菌來源穩定</p>
+        <p>✓ 木耳、金針菇、地瓜（含抗性澱粉）——益生元也有照顧到</p>
+        <p>✓ 體組成數字長期穩定，代表吸收功能沒有問題</p>
+        <p>✓ 運動表現正常，不容易疲勞</p>
+        <p>✓ 不容易生病，健康檢查數字正常</p>
+    </div>
+
+    <p>綜合這些來看，我的腸道其實沒有像業者說的那樣「不健康」。我只是對特定高 FODMAP 食物敏感，腸道神經可能比較敏銳——這是個體差異，不是病。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>給同樣吃菜容易不舒服的你</h2>
+
+    <p>如果你也有類似的狀況，吃多了蔬菜就脹氣、腸躁，可以從這幾個方向來思考：</p>
+
+    <p><strong>先找出你的觸發食物。</strong>觀察哪幾種蔬菜吃完比較容易不舒服，試著暫時減少或避開，看看症狀有沒有改善。FODMAP 的概念可以幫你更有系統地找出規律。</p>
+
+    <p><strong>選擇對你腸道友善的替代品。</strong>不是每種蔬菜都高 FODMAP，葉菜類、瓜類、部分菇類通常耐受度更好，一樣可以吃到豐富的纖維和微量營養素。</p>
+
+    <p><strong>同時評估整體健康表現。</strong>光看脹氣這一件事不夠，排便狀況、體力、體組成、健檢數據，才是更完整的腸道健康圖像。</p>
+
+    <p><strong>不需要強迫自己吃到「建議量」。</strong>健康飲食的建議是群體統計值，不是每個人的最佳解。整體狀態良好、吃到讓自己舒服的分量，才是真正的健康飲食。</p>
+
+    <div class="key-point">
+        <p>身為一個健康推廣者，我覺得最重要的不是只推著大家照著標準走，而是<strong>幫助大家認識自己的身體，找到真正適合自己的方式</strong>。我的蔬菜吃法也許不一定符合衛教建議的份量——但它讓我舒服、身體運作也一切順利。</p>
+    </div>
+
+    <div class="note-box">
+        <div class="box-label">提醒</div>
+        <p>如果你有長期腹瀉、血便、不明原因體重下降等狀況，還是要認真就醫檢查。這篇文章的討論範圍，不包含這些需要進一步評估的情況。</p>
+    </div>
+
+    <div class="article-tags">
+        <span class="tag">飲食筆記</span>
+        <span class="tag">FODMAP</span>
+        <span class="tag">腸躁</span>
+        <span class="tag">脹氣</span>
+        <span class="tag">腸道健康</span>
+        <span class="tag">蔬菜</span>
+        <span class="tag">益生菌</span>
+        <span class="tag">個體差異</span>
+    </div>
+
+</div>
+
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../20260324life06/index.html" class="related-card">
+            <div class="rc-h">Leptin：你的身體其實一直在跟大腦說話</div>
+        </a>
+        <a href="../20260320life02/index.html" class="related-card">
+            <div class="rc-h">你不是嘴饞，是大腦被劫持了</div>
+        </a>
+        <a href="../20260320life03/index.html" class="related-card">
+            <div class="rc-h">為什麼白天都很好，晚上卻守不住？</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享在教學與生活中不斷修正後的觀察，也在過程中留下學習的軌跡。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll',()=>{
+        document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+    });
+</script>
+</body>
+</html>
