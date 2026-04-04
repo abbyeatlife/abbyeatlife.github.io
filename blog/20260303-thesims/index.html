@@ -378,6 +378,28 @@
             .author-card { flex-direction: column; text-align: center; }
             .author-links { justify-content: center; }
         }
+    /* ── 相關文章 + 回頂部 ── */
+        .related-articles { max-width: 760px; margin: 0 auto; padding: 0 24px 48px; }
+        .related-articles h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--bark); margin-bottom: 16px; text-align: center; }
+        .related-grid { display: flex; flex-direction: column; gap: 8px; }
+        .related-card { background: var(--white); border-radius: var(--radius); padding: 13px 20px; text-decoration: none; border: 1px solid rgba(139,158,126,0.15); transition: all 0.2s ease; text-align: center; }
+        .related-card:hover { background: var(--sage-pale); border-color: var(--sage-light); }
+        .related-card .rc-h { font-size: 0.9rem; font-weight: 500; color: var(--bark-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .related-card:hover .rc-h { color: var(--bark); }
+        .back-to-top { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 12px auto 0; height: 36px; padding: 0 18px; background: var(--sage); color: var(--white); border: none; border-radius: 8px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; font-size: 0.82rem; font-weight: 500; transition: background 0.2s ease; white-space: nowrap; }
+        .back-to-top:hover { background: var(--bark); }
+        .back-to-top svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    /* ── 相關文章 + 回頂部 ── */
+        .related-articles { max-width: 760px; margin: 0 auto; padding: 0 24px 48px; }
+        .related-articles h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--bark); margin-bottom: 16px; text-align: center; }
+        .related-grid { display: flex; flex-direction: column; gap: 8px; }
+        .related-card { background: var(--white); border-radius: var(--radius); padding: 13px 20px; text-decoration: none; border: 1px solid rgba(139,158,126,0.15); transition: all 0.2s ease; text-align: center; }
+        .related-card:hover { background: var(--sage-pale); border-color: var(--sage-light); }
+        .related-card .rc-h { font-size: 0.9rem; font-weight: 500; color: var(--bark-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .related-card:hover .rc-h { color: var(--bark); }
+        .back-to-top { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 12px auto 0; height: 36px; padding: 0 18px; background: var(--sage); color: var(--white); border: none; border-radius: 8px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; font-size: 0.82rem; font-weight: 500; transition: background 0.2s ease; white-space: nowrap; }
+        .back-to-top:hover { background: var(--bark); }
+        .back-to-top svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
     </style>
 </head>
 <body>
@@ -469,6 +491,26 @@
 </div>
 
 <!-- ===== ARTICLE FOOTER ===== -->
+<!-- 相關文章 + 回頂部 -->
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../20260320life02/index.html" class="related-card">
+            <div class="rc-h">你不是嘴饞，是大腦被劫持了</div>
+        </a>
+        <a href="../20260320life03/index.html" class="related-card">
+            <div class="rc-h">為什麼白天都很好，晚上卻守不住？</div>
+        </a>
+        <a href="../20260323life05/index.html" class="related-card">
+            <div class="rc-h">生理期前體重跳了一公斤，但腰圍沒變</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
 <div class="article-footer">
     <hr class="article-footer-divider">
     <div class="author-card">
