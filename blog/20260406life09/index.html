@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情緒是資本，在乎是支出 — Abby營養師</title>
+    <meta name="description" content="心理能量是最稀缺的貨幣。調整工作行程、捨棄一些課程之後，我重新審視了自己對教學互動的需求，以及能量流動的意義。">
+    <meta property="og:title" content="情緒是資本，在乎是支出">
+    <meta property="og:description" content="心力一旦枯竭，你將失去感知快樂和創造財富的能力。定期為生活做個健康檢查，是必要的。">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+            --cream:#FDFBF7;--warm:#F5EDE3;--bark:#3D3229;--bark-light:#6B5E52;
+            --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+            --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+            --radius:12px;--radius-lg:20px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+        nav.scrolled{box-shadow:var(--shadow-md)}
+        .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+        .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+        .nav-logo span{color:var(--sage)}
+        .nav-links{display:flex;gap:8px;align-items:center}
+        .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+        .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+        .nav-links a.cta{background:var(--sage);color:var(--white)}
+        .nav-links a.cta:hover{background:var(--bark)}
+        .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+        .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+        .article-header{padding:100px 24px 40px;max-width:760px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+        .back-link:hover{color:var(--bark)}
+        .series-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(193,127,89,0.1);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+        .series-badge .tag{font-size:0.75rem;font-weight:600;color:var(--terracotta);letter-spacing:0.05em}
+        .article-header h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;color:var(--bark);line-height:1.35;letter-spacing:-0.02em;margin-bottom:16px}
+        .article-meta{font-size:0.88rem;color:var(--text-light);display:flex;align-items:center;gap:16px}
+        .article-meta .author{font-weight:500;color:var(--bark)}
+        .article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
+
+        /* Style B — Terracotta 生活分享 */
+        .css-cover{width:100%;height:240px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,#D9A882 0%,#C17F59 50%,#A8693F 100%)}
+        .css-cover::before{content:'';position:absolute;top:-40px;left:-40px;width:180px;height:180px;border:2px solid rgba(255,255,255,0.2);border-radius:50%}
+        .css-cover::after{content:'';position:absolute;bottom:20px;right:20px;width:60px;height:60px;border:1px solid rgba(255,255,255,0.15);border-radius:50%}
+        .css-cover .cover-cat{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:8px}
+        .css-cover .cover-title{font-family:'Playfair Display',serif;font-size:1.3rem;line-height:1.4;font-weight:600;color:var(--white)}
+
+        .article-content{max-width:760px;margin:0 auto;padding:0 24px 60px}
+        .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:20px}
+        .article-content h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;color:var(--bark);margin:48px 0 20px}
+        .article-content strong{color:var(--bark);font-weight:600}
+        .article-content em{color:var(--terracotta);font-style:normal;font-weight:500}
+
+        .quote-block{border-left:4px solid var(--terracotta);background:rgba(193,127,89,0.07);border-radius:0 var(--radius) var(--radius) 0;padding:24px 28px;margin:28px 0}
+        .quote-block p{font-family:'Playfair Display',serif;font-size:1.08rem;font-style:italic;color:var(--bark);line-height:1.9;margin-bottom:10px}
+        .quote-block p:last-child{margin-bottom:0}
+
+        .pull-quote{border-left:4px solid var(--sage);background:var(--sage-pale);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:28px 0}
+        .pull-quote p{font-size:1.02rem;color:var(--bark);line-height:1.9;margin:0}
+
+        .key-point{background:var(--bark);color:var(--white);border-radius:var(--radius);padding:22px 26px;margin:32px 0}
+        .key-point p{color:rgba(255,255,255,0.92);font-size:1rem;margin-bottom:0;line-height:1.9}
+        .key-point strong{color:var(--sage-light)}
+
+        .section-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:40px 0}
+        .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:rgba(193,127,89,0.25)}
+        .section-divider .dot{width:5px;height:5px;background:var(--terracotta);border-radius:50%;opacity:0.5}
+
+        .article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
+        .article-tags .tag{background:rgba(193,127,89,0.1);color:var(--terracotta);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
+
+        .related-articles{max-width:760px;margin:0 auto;padding:0 24px 48px}
+        .related-articles h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--bark);margin-bottom:16px;text-align:center}
+        .related-grid{display:flex;flex-direction:column;gap:8px}
+        .related-card{background:var(--white);border-radius:var(--radius);padding:13px 20px;text-decoration:none;border:1px solid rgba(139,158,126,0.15);transition:all .2s ease;text-align:center}
+        .related-card:hover{background:var(--sage-pale);border-color:var(--sage-light)}
+        .related-card .rc-h{font-size:.9rem;font-weight:500;color:var(--bark-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .related-card:hover .rc-h{color:var(--bark)}
+        .back-to-top{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px auto 0;height:36px;padding:0 18px;background:var(--sage);color:var(--white);border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:.82rem;font-weight:500;transition:background .2s ease;white-space:nowrap}
+        .back-to-top:hover{background:var(--bark)}
+        .back-to-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+        .article-footer{max-width:760px;margin:0 auto;padding:0 24px 80px}
+        .article-footer-divider{border:none;border-top:1px solid var(--sage-light);margin-bottom:36px}
+        .author-card{display:flex;align-items:center;gap:20px;background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)}
+        .author-avatar{width:64px;height:64px;border-radius:50%;background:var(--sage-pale);flex-shrink:0;overflow:hidden}
+        .author-avatar img{width:100%;height:100%;object-fit:cover}
+        .author-info h4{font-size:1rem;font-weight:500;color:var(--bark);margin-bottom:4px}
+        .author-info p{font-size:.85rem;color:var(--text-light);line-height:1.6}
+        .author-links{display:flex;gap:8px;margin-top:10px}
+        .author-links a{font-size:.8rem;padding:4px 12px;border-radius:50px;text-decoration:none;background:var(--sage-pale);color:var(--sage);font-weight:500;transition:all .2s ease}
+        .author-links a:hover{background:var(--sage);color:var(--white)}
+
+        footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+            .menu-toggle{display:block}
+            .article-header h1{font-size:1.7rem}
+            .author-card{flex-direction:column;text-align:center}
+            .author-links{justify-content:center}
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="../../index.html#podcast">Podcast</a>
+            <a href="../../index.html#about">關於我</a>
+            <a href="../index.html">Blog</a>
+            <a href="../../index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <div class="series-badge"><span class="tag">生活分享</span></div>
+    <h1>情緒是資本，在乎是支出</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 4 月 6 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <div class="css-cover">
+        <div class="cover-cat">生活分享</div>
+        <div class="cover-title">情緒是資本，在乎是支出</div>
+    </div>
+</div>
+
+<div class="article-content">
+
+    <p>這幾天聽到一段對我很有幫助的話：</p>
+
+    <div class="quote-block">
+        <p>情緒就是你的資本，而在乎就是你的支出。</p>
+        <p>你的心理能量，是你核心最稀缺的貨幣。</p>
+        <p>這比銀行裡的存款還要重要——因為錢沒了還可以再賺，但心力一旦枯竭，你將失去感知快樂和創造財富的能力。</p>
+    </div>
+
+    <p>聽到這段話的時候，我想到最近自己做的一個決定。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <p>最近我調整了工作行程，不外乎是需要捨棄一些課程。</p>
+
+    <p>做這一行也有一段時間了。身為一個教學者，表面上看起來只是在輸出，但實際上，我也在不斷察覺接收者的狀態、調整這個能量的循環。</p>
+
+    <p>我漸漸發現，面對某些場域，我的熱情和教學態度會被干擾而遞減。說得更精確一點——這個循環沒辦法構成能量的流動。</p>
+
+    <p>教學這件事，本來就是一來一回的。當你不斷輸出，至少需要察覺到對方的某種回應——好的或壞的都好，至少可以判讀，知道下一步該怎麼做。如果氣氛不對，點到為止；如果有共鳴，就繼續延續這個好的循環。</p>
+
+    <p>但如果面對的是一灘死水般的氛圍，就好像在空蕩蕩的洞穴裡吶喊，怎樣都不會有回音。這會讓我越來越累。</p>
+
+    <p>當然，我也知道沉默不一定等於沒有在接收。有些人就是不擅長表達，但或許回家之後，某句話已經悄悄在他們心裡落地了。感覺不到回音，不代表洞穴是空的——這件事我是明白的。</p>
+
+    <p>只是我也慢慢學會承認：我對互動的需求本來就比較高，這是我的特質，不是別人的問題。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <p>說了這麼多，我想說的是：我了解到自己在教學的時候，非常看重這種一來一往的互動。當我察覺到怎麼說都無法得知對方的狀況，那對我來說是一種內耗。</p>
+
+    <p>以前我可能會說服自己——是不是我太敏感了？但經過這麼多年，我發現並不是每一件事都需要付出這麼大的在乎。這不是在擺姿態，而是察覺到自己的有限，所以要定期去分配這些能量。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <p>回到工作安排上。</p>
+
+    <p>最近捨棄掉一些課程，對學生當然是抱歉。有些人每週固定來上課，我很感謝他們一直以來的陪伴。</p>
+
+    <p>只是在教學現場，能量的流動很微妙——當整體的氛圍長期處於一種沉默的狀態，即使是再喜歡教學的人，也很難不感到疲憊。這不是在責怪任何人，每個人表達的方式本來就不同，而我需要的那種流動感，也許只是剛好在這個時空裡對不上頻率。</p>
+
+    <p>想要為生活做點轉換，也許我們的緣分就到這裡了。但我也相信，真正需要的人，終究會去想辦法得到。如果這份緣分有延續的可能，以後一定還會遇到的。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <p>寫這篇，只是想把最近的心情整理一下。</p>
+
+    <p>當內心有些干擾和困惑，創造力和思辨力都會受影響——定期為自己的生活做個健康檢查，我覺得是必要的。</p>
+
+    <div class="key-point">
+        <p>現在的新安排讓我重新獲得了新鮮感。<strong>我很期待接下來的生活。</strong></p>
+    </div>
+
+    <div class="article-tags">
+        <span class="tag">生活分享</span>
+        <span class="tag">心理能量</span>
+        <span class="tag">工作調整</span>
+        <span class="tag">內耗</span>
+        <span class="tag">邊界設定</span>
+    </div>
+
+</div>
+
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../20260319life01/index.html" class="related-card">
+            <div class="rc-h">那是因為你命好</div>
+        </a>
+        <a href="../20260328life07/index.html" class="related-card">
+            <div class="rc-h">生理期不想動，但我還是去了</div>
+        </a>
+        <a href="../20260310-social-hangover/index.html" class="related-card">
+            <div class="rc-h">社交耗能：我需要獨處才能恢復能量</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll',()=>{
+        document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+    });
+</script>
+</body>
+</html>
