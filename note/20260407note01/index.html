@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>焦慮就想咬東西，怎麼辦？— Abby的Note</title>
+  <meta name="description" content="學生問我：另外半個肉桂捲可以晚點吃嗎？從這句話聊到焦慮、大腦、和習慣怎麼改變。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+      --cream:#FDFBF7;--bark:#3D3229;--bark-light:#6B5E52;
+      --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+      --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+      --radius:12px;--radius-lg:20px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+    nav.scrolled{box-shadow:var(--shadow-md)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+    .nav-logo span{color:var(--sage)}
+    .nav-links{display:flex;gap:8px;align-items:center}
+    .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+    .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+    .nav-links a.cta{background:var(--sage);color:var(--white)}
+    .nav-links a.cta:hover{background:var(--bark)}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+    .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+
+    /* ── HEADER ── */
+    .article-header{padding:100px 24px 32px;max-width:680px;margin:0 auto}
+    .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+    .back-link:hover{color:var(--bark)}
+    .note-badge{display:inline-flex;align-items:center;background:var(--sage-pale);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+    .note-badge .tag{font-size:0.75rem;font-weight:600;color:var(--sage);letter-spacing:0.05em}
+    .article-header h1{font-family:'Playfair Display',serif;font-size:2rem;font-weight:600;color:var(--bark);line-height:1.4;letter-spacing:-0.02em;margin-bottom:12px}
+    .article-meta{font-size:0.85rem;color:var(--text-light)}
+
+    /* ── ARTICLE BODY ── */
+    .article-content{max-width:680px;margin:0 auto;padding:32px 24px 60px}
+    .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:24px}
+    .article-content p:last-child{margin-bottom:0}
+    .article-content strong{color:var(--bark);font-weight:700}
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav{max-width:680px;margin:0 auto;padding:0 24px 80px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--sage-light);padding-top:28px}
+    .btn-back{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--text-light);font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;border:1px solid var(--sage-light);background:var(--white);transition:all 0.2s ease}
+    .btn-back:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top{display:inline-flex;align-items:center;gap:6px;background:none;border:none;cursor:pointer;color:var(--text-light);font-family:'Noto Sans TC',sans-serif;font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;border:1px solid var(--sage-light);background:var(--white);transition:all 0.2s ease}
+    .btn-top:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+    /* ── FOOTER ── */
+    footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+      .menu-toggle{display:block}
+      .article-header h1{font-size:1.6rem}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../../index.html#podcast">Podcast</a>
+      <a href="../../index.html#about">關於我</a>
+      <a href="../../blog/index.html">Blog</a>
+      <a href="../../qa/index.html">Q&amp;A</a>
+      <a href="../index.html">Note</a>
+      <a href="../../index.html#contact" class="cta">聯絡我</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HEADER ── -->
+<div class="article-header">
+  <a href="../index.html" class="back-link">← 回到 Note</a>
+  <div class="note-badge"><span class="tag">Note</span></div>
+  <h1>焦慮就想咬東西，怎麼辦？</h1>
+  <div class="article-meta">2026 年 4 月 7 日</div>
+</div>
+
+<!-- ── ARTICLE ── -->
+<div class="article-content">
+
+  <p>今天隨機抽查學生的飲控進度，沒想到這幾天從原本卡關的 68–69 公斤，持續三天降到 67.2 公斤。</p>
+
+  <p>對照她這幾天的飲食記錄，吃的內容沒問題，看得出來吃得比較清淡，也提早結束晚餐。三天裡只出現一次麵包，原本她每天都要吃甜點，這算是很明顯的改變。我趕緊給她正面回饋，跟她說這幾天的飲食模式身體買單、很值得重複執行。</p>
+
+  <p>不過有一天的點心是肉桂捲配拿鐵，加起來大概 600–700 大卡，放在一個點心的位置實在不太划算。建議她可以把拿鐵改成小杯或美式，肉桂捲先吃半個就好。</p>
+
+  <p>話才說完，學生立刻問：「那另外半個可以晚點吃嗎？因為我工作忙起來很焦慮，都會想要咬東西。」</p>
+
+  <p>這其實是很常見的狀況——焦慮的時候大腦會去找熟悉的慰藉，甜食又快又直接。問題不是肉桂捲本身不能吃，而是在焦慮狀態下把整個將近 500 大卡的甜食一口氣吃掉，瞬間的高糖高熱量會不斷強化這個行為迴路，讓大腦越來越習慣用吃來解壓。</p>
+
+  <p>我跟她說，這是習慣改變的適應期，<strong>大腦跟肌肉一樣是可以被鍛鍊的</strong>。壓力大的時候可以先找吃以外的事情排解；如果真的很想吃，可以從減量開始，不用一次戒掉。再發生的時候，也可以試著換成新鮮水果——一顆蘋果、兩顆奇異果、一杯小番茄都好。水果水分和纖維含量高，飽足感不差，熱量密度又低，可以幫助自己撐過那個癮頭最強的瞬間。</p>
+
+  <p>只要一週成功一兩次，新的行為就會慢慢建立起來，舊習慣自然就會被蓋過去。</p>
+
+</div>
+
+<!-- ── BOTTOM NAV ── -->
+<div class="bottom-nav">
+  <a href="../index.html" class="btn-back">← 回到 Note</a>
+  <button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    回頂部
+  </button>
+</div>
+
+<footer>
+  <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
