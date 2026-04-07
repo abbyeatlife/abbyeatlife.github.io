@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第三堂課｜數字告訴我什麼？解讀你的生理指標</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap');
+
+  :root {
+    --primary: #4a7fa5;
+    --primary-light: #6a9fc0;
+    --primary-dark: #2d5f80;
+    --accent: #e07a5f;
+    --accent2: #52b788;
+    --bg: #f4f8fb;
+    --card-bg: #ffffff;
+    --text: #1e2d3d;
+    --text-light: #5a7080;
+    --border: #dce8f0;
+    --shadow: 0 2px 20px rgba(74,127,165,0.10);
+    --green:  #52b788;
+    --yellow: #e8a838;
+    --orange: #e07a5f;
+    --red:    #c0392b;
+    --blue:   #4a7fa5;
+    --gray:   #8ca0b0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 16px;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: linear-gradient(135deg, #2d5f80 0%, #4a7fa5 55%, #6ab0d4 100%);
+    color: white;
+    padding: 80px 24px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 44px;
+    background: var(--bg);
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  }
+  .hero .lesson-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(6px);
+    padding: 6px 22px;
+    border-radius: 20px;
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .hero h1 { font-size: clamp(26px, 5vw, 40px); font-weight: 900; margin-bottom: 10px; }
+  .hero .subtitle { font-size: clamp(14px, 2.5vw, 18px); font-weight: 300; opacity: 0.88; }
+
+  /* ── Layout ── */
+  .container { max-width: 860px; margin: 0 auto; padding: 40px 20px 60px; }
+
+  /* ── Section Headers ── */
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-title .st-icon {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .section-title h2 { font-size: clamp(20px, 3vw, 26px); font-weight: 700; color: var(--primary-dark); }
+  .section-title p { font-size: 13px; color: var(--text-light); margin-top: 2px; }
+
+  /* ── Input Card ── */
+  .input-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 28px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .input-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .input-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 600px) { .input-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 380px) { .input-grid { grid-template-columns: 1fr; } }
+  .input-grid.two-col { grid-template-columns: 1fr 1fr; }
+  .input-grid.four-col { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 640px) { .input-grid.four-col { grid-template-columns: 1fr 1fr; } }
+
+  .field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .field input, .field select {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    background: #f8fbfd;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .field input:focus, .field select:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(74,127,165,0.12);
+    background: white;
+  }
+  .field .unit {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 3px;
+  }
+
+  /* Gender toggle */
+  .gender-toggle { display: flex; gap: 8px; }
+  .gender-btn {
+    flex: 1;
+    padding: 9px 8px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    background: #f8fbfd;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-light);
+  }
+  .gender-btn.active {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+  }
+
+  /* ── Analyse Button ── */
+  .analyse-btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    margin: 24px 0 0;
+    letter-spacing: 1px;
+  }
+  .analyse-btn:hover { opacity: 0.92; }
+  .analyse-btn:active { transform: scale(0.99); }
+
+  /* ── Results ── */
+  .results-section { display: none; margin-top: 36px; }
+  .results-section.show { display: block; }
+
+  /* Summary bar */
+  .summary-bar {
+    background: white;
+    border-radius: 18px;
+    padding: 24px 28px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .summary-bar .sb-title { font-size: 16px; font-weight: 700; color: var(--primary-dark); flex: 1; min-width: 120px; }
+  .summary-counts { display: flex; gap: 12px; flex-wrap: wrap; }
+  .sc-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .sc-normal  { background: #e8f8f0; color: #1a7a4a; }
+  .sc-warning { background: #fff4e0; color: #b07a10; }
+  .sc-danger  { background: #fde8e8; color: #a02020; }
+  .sc-low     { background: #e8f0ff; color: #3050a0; }
+
+  /* Indicator card */
+  .indicator-group { margin-bottom: 32px; }
+  .indicator-group-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-left: 4px;
+  }
+  .indicator-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .indicator-cards { grid-template-columns: 1fr; } }
+
+  .ind-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--gray);
+    transition: transform 0.15s;
+  }
+  .ind-card:hover { transform: translateY(-2px); }
+  .ind-card.status-normal  { border-left-color: var(--green); }
+  .ind-card.status-warning { border-left-color: var(--yellow); }
+  .ind-card.status-danger  { border-left-color: var(--red); }
+  .ind-card.status-low     { border-left-color: var(--blue); }
+  .ind-card.status-empty   { border-left-color: var(--gray); opacity: 0.6; }
+
+  .ind-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .ind-name { font-size: 13px; font-weight: 700; color: var(--text-light); }
+  .ind-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .badge-normal  { background: #e8f8f0; color: #1a7a4a; }
+  .badge-warning { background: #fff4e0; color: #b07a10; }
+  .badge-danger  { background: #fde8e8; color: #a02020; }
+  .badge-low     { background: #e8f0ff; color: #3050a0; }
+  .badge-empty   { background: #f0f0f0; color: #888; }
+
+  .ind-value { font-size: 32px; font-weight: 900; color: var(--text); line-height: 1; margin-bottom: 4px; }
+  .ind-unit  { font-size: 12px; color: var(--text-light); margin-bottom: 12px; }
+
+  /* Range bar */
+  .range-bar-wrap { margin-bottom: 10px; }
+  .range-bar {
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(to right, #6ab0d4 0%, #52b788 25%, #52b788 55%, #e8a838 70%, #e07a5f 85%, #c0392b 100%);
+    position: relative;
+    margin-bottom: 4px;
+  }
+  .range-marker {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--text);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    transition: left 0.5s cubic-bezier(.34,1.56,.64,1);
+  }
+  .range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-light);
+  }
+
+  .ind-desc { font-size: 12px; color: var(--text-light); line-height: 1.6; }
+  .ind-desc strong { color: var(--text); }
+
+  /* ── Reference Table ── */
+  .ref-section { margin-top: 40px; }
+  .ref-table-wrap { overflow-x: auto; }
+  .ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .ref-table th {
+    background: var(--primary);
+    color: white;
+    padding: 11px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .ref-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .ref-table tr:last-child td { border-bottom: none; }
+  .ref-table tr:nth-child(even) td { background: #f7fbfd; }
+  .ref-table .ref-name { font-weight: 700; color: var(--primary-dark); }
+
+  .range-chip {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 1px 2px;
+  }
+  .chip-low    { background: #e8f0ff; color: #3050a0; }
+  .chip-normal { background: #e8f8f0; color: #1a7a4a; }
+  .chip-warn   { background: #fff4e0; color: #b07a10; }
+  .chip-danger { background: #fde8e8; color: #a02020; }
+
+  .footer {
+    text-align: center;
+    padding: 36px 20px;
+    color: var(--text-light);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+  .disclaimer {
+    background: #f0f5fa;
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 28px;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="lesson-tag">LESSON 03</div>
+  <h1>數字告訴我什麼？</h1>
+  <p class="subtitle">解讀你的生理指標——體態、血糖、血壓、血脂全覽</p>
+</div>
+
+<div class="container">
+
+  <!-- 輸入區塊 -->
+  <div class="section-title" style="margin-bottom:24px;">
+    <div class="st-icon" style="background:#e8f2fa;">📋</div>
+    <div>
+      <h2>輸入你的數值</h2>
+      <p>填入基本資料與健檢報告數字，馬上看到每項指標的落點</p>
+    </div>
+  </div>
+
+  <!-- 基本資料 -->
+  <div class="input-card">
+    <h3>👤 基本資料</h3>
+    <div class="input-grid">
+      <div class="field" style="grid-column:1/-1;">
+        <label>性別</label>
+        <div class="gender-toggle">
+          <button class="gender-btn active" id="btn-f" onclick="setGender('female')">♀ 女性</button>
+          <button class="gender-btn" id="btn-m" onclick="setGender('male')">♂ 男性</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>年齡（歲）</label>
+        <input type="number" id="age" placeholder="30" min="10" max="100">
+      </div>
+      <div class="field">
+        <label>身高（cm）</label>
+        <input type="number" id="height" placeholder="160" min="100" max="250">
+      </div>
+      <div class="field">
+        <label>體重（kg）</label>
+        <input type="number" id="weight" placeholder="55" min="20" max="300" step="0.1">
+      </div>
+    </div>
+  </div>
+
+  <!-- InBody 體態指標 -->
+  <div class="input-card">
+    <h3>⚖️ InBody 體態指標</h3>
+    <div class="input-grid two-col">
+      <div class="field">
+        <label>體脂率（%）</label>
+        <input type="number" id="fat-pct" placeholder="25.0" min="1" max="70" step="0.1">
+        <span class="unit">從 InBody 報告讀取</span>
+      </div>
+      <div class="field">
+        <label>骨骼肌量（kg）</label>
+        <input type="number" id="muscle" placeholder="22.5" min="5" max="80" step="0.1">
+        <span class="unit">SMM（Skeletal Muscle Mass）</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 血液指標 -->
+  <div class="input-card">
+    <h3>🩸 血液指標（健檢報告）</h3>
+    <div class="input-grid">
+      <div class="field">
+        <label>空腹血糖（mg/dL）</label>
+        <input type="number" id="glucose" placeholder="95" min="40" max="500">
+      </div>
+      <div class="field">
+        <label>收縮壓（mmHg）</label>
+        <input type="number" id="sbp" placeholder="115" min="60" max="250">
+      </div>
+      <div class="field">
+        <label>舒張壓（mmHg）</label>
+        <input type="number" id="dbp" placeholder="75" min="40" max="160">
+      </div>
+      <div class="field">
+        <label>總膽固醇 TC（mg/dL）</label>
+        <input type="number" id="tc" placeholder="190" min="50" max="500">
+      </div>
+      <div class="field">
+        <label>三酸甘油脂 TG（mg/dL）</label>
+        <input type="number" id="tg" placeholder="100" min="10" max="2000">
+      </div>
+      <div class="field">
+        <label>低密度膽固醇 LDL（mg/dL）</label>
+        <input type="number" id="ldl" placeholder="110" min="20" max="400">
+      </div>
+      <div class="field">
+        <label>高密度膽固醇 HDL（mg/dL）</label>
+        <input type="number" id="hdl" placeholder="60" min="10" max="150">
+      </div>
+    </div>
+  </div>
+
+  <button class="analyse-btn" onclick="analyse()">🔍 解讀我的生理指標</button>
+
+  <!-- 結果區塊 -->
+  <div class="results-section" id="results">
+
+    <!-- 整體小結 -->
+    <div class="section-title" style="margin-top:8px;">
+      <div class="st-icon" style="background:#e8f2fa;">📊</div>
+      <div><h2>整體小結</h2></div>
+    </div>
+
+    <div class="summary-bar">
+      <div class="sb-title" id="summary-title">你的指標總覽</div>
+      <div class="summary-counts" id="summary-counts"></div>
+    </div>
+
+    <!-- 體態指標結果 -->
+    <div class="indicator-group">
+      <div class="indicator-group-title">體態指標</div>
+      <div class="indicator-cards" id="cards-body"></div>
+    </div>
+
+    <!-- 血液指標結果 -->
+    <div class="indicator-group">
+      <div class="indicator-group-title">血液指標</div>
+      <div class="indicator-cards" id="cards-blood"></div>
+    </div>
+
+    <div class="disclaimer">
+      ⚠️ 以上判讀結果依據一般臨床參考範圍，僅供課程教學討論使用。每個人的身體狀況、病史、用藥情形都不同，如對自身健康數值有疑慮，建議諮詢醫師或營養師進行個別評估。
+    </div>
+  </div>
+
+  <!-- 參考範圍對照表 -->
+  <div class="ref-section">
+    <div class="section-title">
+      <div class="st-icon" style="background:#e8f2fa;">📖</div>
+      <div>
+        <h2>各項指標參考範圍</h2>
+        <p>教學參考用——上課時可對照說明</p>
+      </div>
+    </div>
+    <div class="ref-table-wrap">
+      <table class="ref-table">
+        <tr>
+          <th style="width:18%">指標</th>
+          <th style="width:32%">定義與說明</th>
+          <th style="width:50%">參考範圍</th>
+        </tr>
+        <tr>
+          <td class="ref-name">BMI</td>
+          <td>體重與身高的比值，用來快速評估體重是否在健康範圍。無法區分脂肪與肌肉，需搭配體脂率判讀。</td>
+          <td>
+            <span class="range-chip chip-low">過輕 &lt;18.5</span>
+            <span class="range-chip chip-normal">正常 18.5–24</span>
+            <span class="range-chip chip-warn">過重 24–27</span>
+            <span class="range-chip chip-danger">肥胖 ≥27</span>
+            <div style="font-size:11px;color:#888;margin-top:4px;">依台灣衛福部標準</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="ref-name">體脂率</td>
+          <td>脂肪佔體重的比例。同樣體重下，體脂率高代表肌肉量較少，代謝效率較低。</td>
+          <td>
+            <div style="font-size:12px;margin-bottom:4px;"><strong>女性：</strong>
+              <span class="range-chip chip-low">偏低 &lt;18%</span>
+              <span class="range-chip chip-normal">標準 18–28%</span>
+              <span class="range-chip chip-warn">偏高 28–35%</span>
+              <span class="range-chip chip-danger">過高 &gt;35%</span>
+            </div>
+            <div style="font-size:12px;"><strong>男性：</strong>
+              <span class="range-chip chip-low">偏低 &lt;10%</span>
+              <span class="range-chip chip-normal">標準 10–20%</span>
+              <span class="range-chip chip-warn">偏高 20–25%</span>
+              <span class="range-chip chip-danger">過高 &gt;25%</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="ref-name">骨骼肌量</td>
+          <td>附著在骨骼上的肌肉量，是代謝率的主要決定因素。肌肉量越高，基礎代謝越高，越容易維持體態。</td>
+          <td>
+            <div style="font-size:12px;margin-bottom:4px;"><strong>女性（參考）：</strong>
+              <span class="range-chip chip-warn">偏低 &lt;18kg</span>
+              <span class="range-chip chip-normal">適中 18–26kg</span>
+              <span class="range-chip chip-low">偏高 &gt;26kg</span>
+            </div>
+            <div style="font-size:12px;"><strong>男性（參考）：</strong>
+              <span class="range-chip chip-warn">偏低 &lt;28kg</span>
+              <span class="range-chip chip-normal">適中 28–38kg</span>
+              <span class="range-chip chip-low">偏高 &gt;38kg</span>
+            </div>
+            <div style="font-size:11px;color:#888;margin-top:4px;">實際標準依身高體型調整，InBody 報告內有個人化建議範圍</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="ref-name">空腹血糖</td>
+          <td>禁食 8 小時後的血糖值。長期偏高代表胰島素調控能力下降，是第二型糖尿病的前期警訊。</td>
+          <td>
+            <span class="range-chip chip-normal">正常 &lt;100 mg/dL</span>
+            <span class="range-chip chip-warn">前期 100–125 mg/dL</span>
+            <span class="range-chip chip-danger">糖尿病 ≥126 mg/dL</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="ref-name">血壓</td>
+          <td>收縮壓（心臟收縮時）/ 舒張壓（心臟放鬆時）。長期偏高增加心血管疾病、腦中風風險。</td>
+          <td>
+            <span class="range-chip chip-normal">正常 &lt;120/80</span>
+            <span class="range-chip chip-warn">偏高 120–139/80–89</span>
+            <span class="range-chip chip-danger">高血壓 ≥140/90</span>
+            <span class="range-chip chip-low">偏低 &lt;90/60</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="ref-name">總膽固醇 TC</td>
+          <td>血液中所有膽固醇的總量，需搭配 LDL、HDL 分項判讀，數字高不代表一定不好。</td>
+          <td>
+            <span class="range-chip chip-normal">理想 &lt;200 mg/dL</span>
+            <span class="range-chip chip-warn">邊界 200–239 mg/dL</span>
+            <span class="range-chip chip-danger">偏高 ≥240 mg/dL</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="ref-name">三酸甘油脂 TG</td>
+          <td>血液中的脂肪，主要受精緻醣類、酒精攝取影響。過高與心血管疾病、脂肪肝有關。</td>
+          <td>
+            <span class="range-chip chip-normal">正常 &lt;150 mg/dL</span>
+            <span class="range-chip chip-warn">偏高 150–199 mg/dL</span>
+            <span class="range-chip chip-danger">高 200–499 mg/dL</span>
+            <span class="range-chip chip-danger">極高 ≥500 mg/dL</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="ref-name">壞膽固醇 LDL</td>
+          <td>低密度脂蛋白，過高會堆積在血管壁造成粥狀動脈硬化，是心血管風險的主要指標。</td>
+          <td>
+            <span class="range-chip chip-normal">理想 &lt;100 mg/dL</span>
+            <span class="range-chip chip-normal">尚可 100–129 mg/dL</span>
+            <span class="range-chip chip-warn">邊界 130–159 mg/dL</span>
+            <span class="range-chip chip-danger">偏高 ≥160 mg/dL</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="ref-name">好膽固醇 HDL</td>
+          <td>高密度脂蛋白，負責將多餘膽固醇運回肝臟分解。越高越好，偏低是心血管疾病的風險因子。</td>
+          <td>
+            <div style="font-size:12px;margin-bottom:4px;"><strong>女性：</strong>
+              <span class="range-chip chip-danger">偏低 &lt;50 mg/dL</span>
+              <span class="range-chip chip-normal">正常 ≥50 mg/dL</span>
+            </div>
+            <div style="font-size:12px;"><strong>男性：</strong>
+              <span class="range-chip chip-danger">偏低 &lt;40 mg/dL</span>
+              <span class="range-chip chip-normal">正常 ≥40 mg/dL</span>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">飲食控制課程 ｜ 第三堂 ｜ Abby 營養師</div>
+
+<script>
+let gender = 'female';
+
+function setGender(g) {
+  gender = g;
+  document.getElementById('btn-f').classList.toggle('active', g === 'female');
+  document.getElementById('btn-m').classList.toggle('active', g === 'male');
+}
+
+// 取得輸入值（允許空白）
+function val(id) {
+  const v = parseFloat(document.getElementById(id).value);
+  return isNaN(v) ? null : v;
+}
+
+// 狀態對應
+const STATUS = {
+  normal:  { label: '正常',   cls: 'normal',  badge: 'badge-normal',  card: 'status-normal'  },
+  warning: { label: '需注意', cls: 'warning', badge: 'badge-warning', card: 'status-warning' },
+  danger:  { label: '偏高',   cls: 'danger',  badge: 'badge-danger',  card: 'status-danger'  },
+  low:     { label: '偏低',   cls: 'low',     badge: 'badge-low',     card: 'status-low'     },
+  empty:   { label: '未填入', cls: 'empty',   badge: 'badge-empty',   card: 'status-empty'   },
+};
+
+// 計算指標落點百分比（0–100）用於 range bar
+function pctPos(value, low, warnLow, warnHigh, high) {
+  if (value <= low)      return 5;
+  if (value >= high)     return 95;
+  if (value <= warnLow)  return 5  + (value - low)      / (warnLow - low)      * 20;
+  if (value <= warnHigh) return 25 + (value - warnLow)  / (warnHigh - warnLow) * 50;
+  return                        75 + (value - warnHigh) / (high - warnHigh)    * 20;
+}
+
+function makeCard(name, valueStr, unit, status, pct, rangeLabels, desc) {
+  const s = STATUS[status];
+  const markerStyle = pct !== null ? `left:${pct}%` : 'left:50%; opacity:0';
+  return `
+    <div class="ind-card ${s.card}">
+      <div class="ind-header">
+        <span class="ind-name">${name}</span>
+        <span class="ind-badge ${s.badge}">${s.label}</span>
+      </div>
+      <div class="ind-value">${valueStr}</div>
+      <div class="ind-unit">${unit}</div>
+      ${pct !== null ? `
+      <div class="range-bar-wrap">
+        <div class="range-bar"><div class="range-marker" style="${markerStyle}"></div></div>
+        <div class="range-labels">
+          ${rangeLabels.map(l => `<span>${l}</span>`).join('')}
+        </div>
+      </div>` : ''}
+      <div class="ind-desc">${desc}</div>
+    </div>`;
+}
+
+function analyse() {
+  const height  = val('height');
+  const weight  = val('weight');
+  const age     = val('age');
+  const fatPct  = val('fat-pct');
+  const muscle  = val('muscle');
+  const glucose = val('glucose');
+  const sbp     = val('sbp');
+  const dbp     = val('dbp');
+  const tc      = val('tc');
+  const tg      = val('tg');
+  const ldl     = val('ldl');
+  const hdl     = val('hdl');
+
+  if (!height || !weight) {
+    alert('請至少填入身高與體重 😊');
+    return;
+  }
+
+  let counts = { normal: 0, warning: 0, danger: 0, low: 0, empty: 0 };
+  let bodyCards = '';
+  let bloodCards = '';
+
+  // ── BMI ──
+  const bmi = weight / ((height / 100) ** 2);
+  const bmiVal = bmi.toFixed(1);
+  let bmiStatus, bmiPct, bmiDesc;
+  if (bmi < 18.5) {
+    bmiStatus = 'low';
+    bmiPct = pctPos(bmi, 14, 18.5, 24, 32);
+    bmiDesc = '體重偏輕，可能有肌肉量不足的風險。建議增加<strong>優質蛋白質</strong>攝取並配合阻力訓練。';
+  } else if (bmi < 24) {
+    bmiStatus = 'normal';
+    bmiPct = pctPos(bmi, 14, 18.5, 24, 32);
+    bmiDesc = '體重落在健康範圍。記得 BMI 無法區分脂肪與肌肉，建議搭配<strong>體脂率</strong>一起判讀。';
+  } else if (bmi < 27) {
+    bmiStatus = 'warning';
+    bmiPct = pctPos(bmi, 14, 18.5, 24, 32);
+    bmiDesc = '體重略高於標準。建議檢視<strong>飲食熱量</strong>與活動量，並確認是否為肌肉量較高所致。';
+  } else {
+    bmiStatus = 'danger';
+    bmiPct = pctPos(bmi, 14, 18.5, 24, 32);
+    bmiDesc = '體重超標，建議積極調整<strong>飲食結構</strong>與生活習慣，並定期追蹤體脂率變化。';
+  }
+  counts[bmiStatus]++;
+  bodyCards += makeCard('BMI 身體質量指數', bmiVal, 'kg/m²', bmiStatus, bmiPct,
+    ['過輕', '正常', '過重', '肥胖'], bmiDesc);
+
+  // ── 體脂率 ──
+  if (fatPct !== null) {
+    let fpStatus, fpPct, fpDesc;
+    if (gender === 'female') {
+      if (fatPct < 18)      { fpStatus = 'low';     fpDesc = '體脂率偏低，可能影響<strong>荷爾蒙分泌</strong>與經期規律，建議適度增加健康脂肪攝取。'; }
+      else if (fatPct < 28) { fpStatus = 'normal';  fpDesc = '體脂率在女性健康範圍內，維持目前的<strong>飲食與運動習慣</strong>即可。'; }
+      else if (fatPct < 35) { fpStatus = 'warning'; fpDesc = '體脂率偏高，建議增加<strong>蛋白質攝取</strong>並搭配阻力訓練，以提高肌肉比例來改善體組成。'; }
+      else                  { fpStatus = 'danger';  fpDesc = '體脂率過高，建議積極進行<strong>體態管理</strong>，包括熱量控制、增加蛋白質與規律訓練。'; }
+      fpPct = pctPos(fatPct, 12, 18, 28, 40);
+    } else {
+      if (fatPct < 10)      { fpStatus = 'low';     fpDesc = '體脂率偏低，長期過低可能影響<strong>免疫功能與荷爾蒙</strong>，需注意整體營養攝取是否足夠。'; }
+      else if (fatPct < 20) { fpStatus = 'normal';  fpDesc = '體脂率在男性健康範圍內，維持目前習慣，持續追蹤即可。'; }
+      else if (fatPct < 25) { fpStatus = 'warning'; fpDesc = '體脂率略高，建議調整<strong>飲食結構</strong>，增加蛋白質並減少精緻碳水與加工食品。'; }
+      else                  { fpStatus = 'danger';  fpDesc = '體脂率過高，建議積極進行<strong>飲食調整</strong>與增加運動量，重點放在保留肌肉的同時減少體脂。'; }
+      fpPct = pctPos(fatPct, 5, 10, 20, 32);
+    }
+    counts[fpStatus]++;
+    bodyCards += makeCard('體脂率', fatPct.toFixed(1), '%', fpStatus, fpPct,
+      ['偏低', '標準', '偏高', '過高'], fpDesc);
+  } else {
+    counts.empty++;
+    bodyCards += makeCard('體脂率', '—', '% （未填入）', 'empty', null, [], '請從 InBody 報告填入體脂率數值。');
+  }
+
+  // ── 骨骼肌量 ──
+  if (muscle !== null) {
+    let mStatus, mPct, mDesc;
+    if (gender === 'female') {
+      if (muscle < 18)      { mStatus = 'warning'; mDesc = '骨骼肌量偏低，代謝率可能較低。建議<strong>增加蛋白質攝取</strong>（體重 × 1.6g 以上）並加入阻力訓練。'; }
+      else if (muscle < 26) { mStatus = 'normal';  mDesc = '骨骼肌量在正常範圍，維持<strong>足夠蛋白質</strong>與規律訓練即可持續保持。'; }
+      else                  { mStatus = 'low';     mDesc = '骨骼肌量較高，代謝率佳。這是體態管理的優勢，繼續維持<strong>訓練習慣</strong>。'; }
+      mPct = pctPos(muscle, 12, 18, 26, 34);
+    } else {
+      if (muscle < 28)      { mStatus = 'warning'; mDesc = '骨骼肌量偏低，建議增加<strong>蛋白質攝取</strong>並加強阻力訓練，提升肌肉量有助於改善基礎代謝。'; }
+      else if (muscle < 38) { mStatus = 'normal';  mDesc = '骨骼肌量在正常範圍，維持現有的<strong>飲食與訓練計畫</strong>即可持續進步。'; }
+      else                  { mStatus = 'low';     mDesc = '骨骼肌量較高，代謝優勢明顯。繼續保持<strong>高蛋白飲食</strong>與規律重訓。'; }
+      mPct = pctPos(muscle, 18, 28, 38, 50);
+    }
+    counts[mStatus]++;
+    bodyCards += makeCard('骨骼肌量 SMM', muscle.toFixed(1), 'kg', mStatus, mPct,
+      ['偏低', '適中', '偏高'], mDesc);
+  } else {
+    counts.empty++;
+    bodyCards += makeCard('骨骼肌量 SMM', '—', 'kg（未填入）', 'empty', null, [], '請從 InBody 報告填入骨骼肌量（SMM）數值。');
+  }
+
+  // ── 空腹血糖 ──
+  if (glucose !== null) {
+    let gStatus, gPct, gDesc;
+    if (glucose < 70)       { gStatus = 'low';     gDesc = '血糖偏低，可能有低血糖風險。注意<strong>用餐規律</strong>，避免長時間空腹，並觀察是否有頭暈、手抖等症狀。'; }
+    else if (glucose < 100) { gStatus = 'normal';  gDesc = '空腹血糖正常，胰島素調控功能良好。維持<strong>低 GI 飲食</strong>與規律運動，有助於長期維持血糖穩定。'; }
+    else if (glucose < 126) { gStatus = 'warning'; gDesc = '血糖處於糖尿病前期範圍，建議調整<strong>飲食結構</strong>（減少精緻糖與澱粉）並增加運動量，並定期追蹤。'; }
+    else                    { gStatus = 'danger';  gDesc = '血糖偏高，達糖尿病診斷標準，建議盡快<strong>諮詢醫師</strong>，並進行飲食與生活習慣的全面調整。'; }
+    gPct = pctPos(glucose, 60, 100, 126, 180);
+    counts[gStatus]++;
+    bloodCards += makeCard('空腹血糖', glucose.toString(), 'mg/dL', gStatus, gPct,
+      ['偏低', '正常', '前期', '糖尿病'], gDesc);
+  } else {
+    counts.empty++;
+    bloodCards += makeCard('空腹血糖', '—', 'mg/dL（未填入）', 'empty', null, [], '');
+  }
+
+  // ── 血壓 ──
+  if (sbp !== null && dbp !== null) {
+    let bpStatus, bpPct, bpDesc;
+    const isHighSbp = sbp >= 140, isHighDbp = dbp >= 90;
+    const isBorderSbp = sbp >= 120 && sbp < 140, isBorderDbp = dbp >= 80 && dbp < 90;
+    const isLow = sbp < 90 || dbp < 60;
+    if (isLow)                               { bpStatus = 'low';     bpDesc = '血壓偏低，需注意是否有頭暈、疲倦等症狀。建議<strong>補充足夠水分</strong>與鈉，並避免突然起身。'; }
+    else if (isHighSbp || isHighDbp)         { bpStatus = 'danger';  bpDesc = '血壓達高血壓標準，建議<strong>諮詢醫師</strong>評估是否需要用藥，同時進行<strong>低鈉飲食</strong>、減重與規律有氧運動。'; }
+    else if (isBorderSbp || isBorderDbp)     { bpStatus = 'warning'; bpDesc = '血壓略高，建議<strong>減少鈉攝取</strong>（每天 2,300mg 以下）、增加蔬果與鉀的攝取，並定期追蹤。'; }
+    else                                     { bpStatus = 'normal';  bpDesc = '血壓正常，心血管風險較低。維持<strong>均衡飲食</strong>、規律運動與正常體重，有助於長期穩定血壓。'; }
+    bpPct = pctPos(sbp, 80, 120, 140, 180);
+    counts[bpStatus]++;
+    bloodCards += makeCard('血壓', `${sbp}/${dbp}`, 'mmHg（收縮壓/舒張壓）', bpStatus, bpPct,
+      ['偏低', '正常', '偏高', '高血壓'], bpDesc);
+  } else {
+    counts.empty++;
+    bloodCards += makeCard('血壓', '—', 'mmHg（未填入）', 'empty', null, [], '');
+  }
+
+  // ── TC ──
+  if (tc !== null) {
+    let tStatus, tPct, tDesc;
+    if (tc < 200)       { tStatus = 'normal';  tDesc = '總膽固醇在理想範圍。記得總膽固醇需搭配 <strong>LDL 和 HDL</strong> 分項判讀才更完整。'; }
+    else if (tc < 240)  { tStatus = 'warning'; tDesc = '總膽固醇偏高，建議減少<strong>飽和脂肪</strong>（紅肉、加工肉品、全脂乳品）攝取，增加蔬菜、燕麥和魚油的比例。'; }
+    else                { tStatus = 'danger';  tDesc = '總膽固醇明顯偏高，建議<strong>諮詢醫師</strong>進行進一步評估，並積極調整飲食與生活習慣。'; }
+    tPct = pctPos(tc, 120, 200, 240, 300);
+    counts[tStatus]++;
+    bloodCards += makeCard('總膽固醇 TC', tc.toString(), 'mg/dL', tStatus, tPct,
+      ['', '理想', '邊界', '偏高'], tDesc);
+  } else {
+    counts.empty++;
+    bloodCards += makeCard('總膽固醇 TC', '—', 'mg/dL（未填入）', 'empty', null, [], '');
+  }
+
+  // ── TG ──
+  if (tg !== null) {
+    let tgStatus, tgPct, tgDesc;
+    if (tg < 150)       { tgStatus = 'normal';  tgDesc = '三酸甘油脂正常。維持目前飲食習慣，減少<strong>精緻糖與酒精</strong>是維持此數值的關鍵。'; }
+    else if (tg < 200)  { tgStatus = 'warning'; tgDesc = '三酸甘油脂略高，建議減少<strong>精緻澱粉、含糖飲料、酒精</strong>的攝取，並增加 Omega-3 豐富的食物（如鮭魚、鯖魚）。'; }
+    else if (tg < 500)  { tgStatus = 'danger';  tgDesc = '三酸甘油脂明顯偏高，與脂肪肝、胰臟炎風險相關。建議積極<strong>調整飲食</strong>並諮詢醫師。'; }
+    else                { tgStatus = 'danger';  tgDesc = '三酸甘油脂極高，有急性胰臟炎風險，<strong>建議立即就醫</strong>評估。'; }
+    tgPct = pctPos(tg, 50, 150, 200, 400);
+    counts[tgStatus]++;
+    bloodCards += makeCard('三酸甘油脂 TG', tg.toString(), 'mg/dL', tgStatus, tgPct,
+      ['', '正常', '偏高', '過高'], tgDesc);
+  } else {
+    counts.empty++;
+    bloodCards += makeCard('三酸甘油脂 TG', '—', 'mg/dL（未填入）', 'empty', null, [], '');
+  }
+
+  // ── LDL ──
+  if (ldl !== null) {
+    let lStatus, lPct, lDesc;
+    if (ldl < 100)      { lStatus = 'normal';  lDesc = 'LDL 在理想範圍，心血管風險較低。維持<strong>低飽和脂肪飲食</strong>與規律有氧運動可持續保持。'; }
+    else if (ldl < 130) { lStatus = 'normal';  lDesc = 'LDL 尚可，一般族群可接受。有家族心血管病史者建議進一步<strong>諮詢醫師</strong>設定個人目標。'; }
+    else if (ldl < 160) { lStatus = 'warning'; lDesc = 'LDL 進入邊界偏高，建議減少<strong>飽和脂肪與反式脂肪</strong>攝取，增加可溶性纖維（燕麥、豆類）與植物固醇。'; }
+    else                { lStatus = 'danger';  lDesc = 'LDL 明顯偏高，是心血管疾病的重要風險因子，建議<strong>諮詢醫師</strong>評估是否需要藥物介入。'; }
+    lPct = pctPos(ldl, 50, 100, 160, 220);
+    counts[lStatus]++;
+    bloodCards += makeCard('壞膽固醇 LDL', ldl.toString(), 'mg/dL', lStatus, lPct,
+      ['', '理想', '邊界', '偏高'], lDesc);
+  } else {
+    counts.empty++;
+    bloodCards += makeCard('壞膽固醇 LDL', '—', 'mg/dL（未填入）', 'empty', null, [], '');
+  }
+
+  // ── HDL ──
+  if (hdl !== null) {
+    const hdlLow = gender === 'female' ? 50 : 40;
+    let hStatus, hPct, hDesc;
+    if (hdl < hdlLow)   { hStatus = 'danger';  hDesc = `HDL 偏低（女性建議 ≥50、男性 ≥40），是心血管疾病的風險因子。建議<strong>規律有氧運動</strong>、戒菸，並增加健康脂肪（橄欖油、堅果）的攝取。`; }
+    else if (hdl < 60)  { hStatus = 'normal';  hDesc = 'HDL 在正常範圍，維持<strong>規律運動</strong>與均衡飲食有助於提升 HDL 水平。'; }
+    else                { hStatus = 'normal';  hDesc = 'HDL 水平很好，高 HDL 有助於清除血管中多餘的膽固醇，是<strong>心血管保護因子</strong>。繼續保持！'; }
+    hPct = pctPos(hdl, 20, hdlLow, 60, 90);
+    counts[hStatus]++;
+    bloodCards += makeCard('好膽固醇 HDL', hdl.toString(), 'mg/dL（越高越好）', hStatus, hPct,
+      ['偏低', '正常', '良好'], hDesc);
+  } else {
+    counts.empty++;
+    bloodCards += makeCard('好膽固醇 HDL', '—', 'mg/dL（未填入）', 'empty', null, [], '');
+  }
+
+  // ── 填入結果 ──
+  document.getElementById('cards-body').innerHTML  = bodyCards;
+  document.getElementById('cards-blood').innerHTML = bloodCards;
+
+  // 小結
+  const total = counts.normal + counts.warning + counts.danger + counts.low;
+  let summaryTitle = '';
+  if (counts.danger > 0)       summaryTitle = `有 ${counts.danger} 項指標需要特別關注`;
+  else if (counts.warning > 0) summaryTitle = `整體不錯，有 ${counts.warning} 項建議留意`;
+  else if (total > 0)          summaryTitle = '所有已填項目均在正常範圍，繼續保持！';
+  else                         summaryTitle = '請填入更多數值以取得完整評估';
+
+  document.getElementById('summary-title').textContent = summaryTitle;
+
+  let countsHtml = '';
+  if (counts.normal  > 0) countsHtml += `<div class="sc-item sc-normal">✓ 正常 ${counts.normal} 項</div>`;
+  if (counts.low     > 0) countsHtml += `<div class="sc-item sc-low">↓ 偏低 ${counts.low} 項</div>`;
+  if (counts.warning > 0) countsHtml += `<div class="sc-item sc-warning">⚠ 需注意 ${counts.warning} 項</div>`;
+  if (counts.danger  > 0) countsHtml += `<div class="sc-item sc-danger">! 偏高 ${counts.danger} 項</div>`;
+  document.getElementById('summary-counts').innerHTML = countsHtml;
+
+  // 顯示結果
+  const resultsEl = document.getElementById('results');
+  resultsEl.classList.add('show');
+  resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>
