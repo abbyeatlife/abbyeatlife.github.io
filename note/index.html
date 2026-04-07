@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Note — Abby Eat Life</title>
+  <meta name="description" content="來自教學現場的隨筆觀察，沒有完整文章的篇幅，只是想記下來的那些。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+      --cream:#FDFBF7;--bark:#3D3229;--bark-light:#6B5E52;
+      --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+      --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+      --radius:12px;--radius-lg:20px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+    nav.scrolled{box-shadow:var(--shadow-md)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+    .nav-logo span{color:var(--sage)}
+    .nav-links{display:flex;gap:8px;align-items:center}
+    .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+    .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+    .nav-links a.active{color:var(--bark);font-weight:700}
+    .nav-links a.cta{background:var(--sage);color:var(--white)}
+    .nav-links a.cta:hover{background:var(--bark)}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+    .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+
+    /* ── PAGE HEADER ── */
+    .page-header{padding:100px 24px 48px;max-width:680px;margin:0 auto}
+    .page-header h1{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:600;color:var(--bark);margin-bottom:12px;letter-spacing:-0.02em}
+    .page-header p{font-size:1rem;color:var(--text-light);line-height:1.75;max-width:480px}
+
+    /* ── NOTE LIST ── */
+    .note-list{max-width:680px;margin:0 auto;padding:0 24px 80px;display:flex;flex-direction:column;gap:1px}
+
+    .note-card{
+      display:block;text-decoration:none;
+      padding:28px 0;
+      border-bottom:1px solid rgba(139,158,126,0.15);
+      transition:all 0.2s ease;
+      position:relative;
+    }
+    .note-card:first-child{border-top:1px solid rgba(139,158,126,0.15)}
+    .note-card:hover .note-title{color:var(--sage)}
+    .note-card:hover .note-arrow{opacity:1;transform:translateX(0)}
+
+    .note-date{font-size:0.78rem;color:var(--text-light);letter-spacing:0.06em;margin-bottom:8px}
+    .note-title{
+      font-family:'Playfair Display',serif;
+      font-size:1.25rem;font-weight:600;
+      color:var(--bark);line-height:1.4;
+      margin-bottom:8px;
+      transition:color 0.2s ease;
+    }
+    .note-preview{font-size:0.92rem;color:var(--text-light);line-height:1.75;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .note-arrow{
+      position:absolute;right:0;top:50%;transform:translateY(-50%) translateX(-4px);
+      opacity:0;transition:all 0.2s ease;
+      color:var(--sage);font-size:1.1rem;
+    }
+
+    /* ── FOOTER ── */
+    footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+      .menu-toggle{display:block}
+      .page-header h1{font-size:2rem}
+      .note-arrow{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">Abby<span>.</span></a>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../index.html#podcast">Podcast</a>
+      <a href="../index.html#about">關於我</a>
+      <a href="../blog/index.html">Blog</a>
+      <a href="../qa/index.html">Q&amp;A</a>
+      <a href="index.html" class="active">Note</a>
+      <a href="../index.html#contact" class="cta">聯絡我</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── PAGE HEADER ── -->
+<div class="page-header">
+  <h1>Note</h1>
+  <p>來自教學現場的隨筆觀察。沒有完整文章的篇幅，只是想記下來的那些。</p>
+</div>
+
+<!-- ── NOTE LIST ── -->
+<div class="note-list">
+
+  <a href="20260407note01/index.html" class="note-card">
+    <div class="note-date">2026 年 4 月 7 日</div>
+    <div class="note-title">焦慮就想咬東西，怎麼辦？</div>
+    <div class="note-preview">學生問我：另外半個肉桂捲可以晚點吃嗎？從這句話聊到焦慮、大腦，和習慣怎麼改變。</div>
+    <span class="note-arrow">→</span>
+  </a>
+
+  <!-- 之後新增的 Note 往這裡加，格式同上 -->
+
+</div>
+
+<footer>
+  <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
