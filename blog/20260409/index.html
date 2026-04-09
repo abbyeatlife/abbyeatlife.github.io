@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>減肥一定有飢餓感嗎？ — Abby營養師</title>
+    <meta name="description" content="飢餓感跟減脂雖然常常一起出現，但它們之間沒有絕對的因果關係。學會分辨飢餓感與食慾，才是體重管理的關鍵。">
+    <meta property="og:title" content="減肥一定有飢餓感嗎？">
+    <meta property="og:description" content="有飢餓感 ≠ 正在燃燒脂肪。真正需要區分的，是「飢餓感」和「食慾」。">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+            --cream:#FDFBF7;--warm:#F5EDE3;--bark:#3D3229;--bark-light:#6B5E52;
+            --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+            --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+            --radius:12px;--radius-lg:20px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+        nav.scrolled{box-shadow:var(--shadow-md)}
+        .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+        .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+        .nav-logo span{color:var(--sage)}
+        .nav-links{display:flex;gap:8px;align-items:center}
+        .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+        .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+        .nav-links a.cta{background:var(--sage);color:var(--white)}
+        .nav-links a.cta:hover{background:var(--bark)}
+        .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+        .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+        .article-header{padding:100px 24px 40px;max-width:760px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+        .back-link:hover{color:var(--bark)}
+        .series-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(139,158,126,0.12);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+        .series-badge .tag{font-size:0.75rem;font-weight:600;color:var(--sage);letter-spacing:0.05em}
+        .article-header h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;color:var(--bark);line-height:1.35;letter-spacing:-0.02em;margin-bottom:16px}
+        .article-meta{font-size:0.88rem;color:var(--text-light);display:flex;align-items:center;gap:16px}
+        .article-meta .author{font-weight:500;color:var(--bark)}
+        .article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
+
+        /* Style A — Sage 營養知識 */
+        .css-cover{width:100%;height:240px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,#A8BF9B 0%,#8B9E7E 50%,#6E8461 100%)}
+        .css-cover::before{content:'';position:absolute;top:-40px;left:-40px;width:180px;height:180px;border:2px solid rgba(255,255,255,0.2);border-radius:50%}
+        .css-cover::after{content:'';position:absolute;bottom:20px;right:20px;width:60px;height:60px;border:1px solid rgba(255,255,255,0.15);border-radius:50%}
+        .css-cover .cover-cat{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:8px}
+        .css-cover .cover-title{font-family:'Playfair Display',serif;font-size:1.3rem;line-height:1.4;font-weight:600;color:var(--white)}
+
+        .article-content{max-width:760px;margin:0 auto;padding:0 24px 60px}
+        .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:20px}
+        .article-content h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:var(--bark);margin:48px 0 20px}
+        .article-content strong{color:var(--bark);font-weight:600}
+        .article-content em{color:var(--sage);font-style:normal;font-weight:500}
+
+        .pull-quote{border-left:4px solid var(--sage);background:var(--sage-pale);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:28px 0}
+        .pull-quote p{font-size:1.02rem;color:var(--bark);line-height:1.9;margin:0}
+
+        .key-point{background:var(--bark);color:var(--white);border-radius:var(--radius);padding:22px 26px;margin:32px 0}
+        .key-point p{color:rgba(255,255,255,0.92);font-size:1rem;margin-bottom:0;line-height:1.9}
+        .key-point strong{color:var(--sage-light)}
+
+        .info-list{background:var(--white);border-radius:var(--radius);padding:24px 28px;margin:24px 0;border:1px solid rgba(139,158,126,0.2)}
+        .info-list p{font-size:1rem;font-weight:600;color:var(--bark);margin-bottom:12px}
+        .info-list ul{list-style:none;padding:0}
+        .info-list ul li{font-size:1rem;color:var(--text);padding:6px 0 6px 20px;position:relative;line-height:1.8;border-bottom:1px solid rgba(139,158,126,0.1)}
+        .info-list ul li:last-child{border-bottom:none}
+        .info-list ul li::before{content:'—';position:absolute;left:0;color:var(--sage);font-weight:600}
+
+        /* Flow diagram */
+        .flow-diagram{background:var(--white);border-radius:var(--radius-lg);padding:28px 24px;margin:32px 0;border:1px solid rgba(139,158,126,0.2);text-align:center}
+        .flow-diagram .flow-title{font-size:0.8rem;font-weight:600;letter-spacing:0.08em;color:var(--text-light);text-transform:uppercase;margin-bottom:20px}
+        .flow-step{display:inline-block;background:var(--sage-pale);border:1.5px solid var(--sage-light);border-radius:10px;padding:10px 20px;font-size:0.95rem;color:var(--bark);font-weight:500;min-width:180px}
+        .flow-arrow{display:block;text-align:center;color:var(--sage);font-size:1.3rem;margin:8px 0;line-height:1}
+        .flow-branch{display:flex;align-items:flex-start;justify-content:center;gap:24px;margin-top:4px}
+        .flow-branch-item{flex:1;max-width:200px;text-align:center}
+        .flow-branch-label{font-size:0.8rem;color:var(--text-light);margin-bottom:6px}
+        .flow-step.yes{background:rgba(139,158,126,0.15);border-color:var(--sage)}
+        .flow-step.no{background:rgba(193,127,89,0.1);border-color:rgba(193,127,89,0.3)}
+        .flow-step.result-yes{background:var(--sage);border-color:var(--sage);color:var(--white)}
+        .flow-step.result-no{background:rgba(193,127,89,0.12);border-color:rgba(193,127,89,0.3);color:var(--bark-light)}
+        .flow-connector{display:flex;align-items:center;justify-content:center;gap:0;margin:0 0 4px}
+        .flow-connector::before,.flow-connector::after{content:'';flex:1;max-width:80px;height:1px;background:rgba(139,158,126,0.4)}
+        .flow-connector span{font-size:0.75rem;color:var(--text-light);padding:0 8px}
+
+        .section-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:40px 0}
+        .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:rgba(139,158,126,0.25)}
+        .section-divider .dot{width:5px;height:5px;background:var(--sage);border-radius:50%;opacity:0.5}
+
+        .article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
+        .article-tags .tag{background:rgba(139,158,126,0.12);color:var(--sage);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
+
+        .related-articles{max-width:760px;margin:0 auto;padding:0 24px 48px}
+        .related-articles h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--bark);margin-bottom:16px;text-align:center}
+        .related-grid{display:flex;flex-direction:column;gap:8px}
+        .related-card{background:var(--white);border-radius:var(--radius);padding:13px 20px;text-decoration:none;border:1px solid rgba(139,158,126,0.15);transition:all .2s ease;text-align:center}
+        .related-card:hover{background:var(--sage-pale);border-color:var(--sage-light)}
+        .related-card .rc-h{font-size:.9rem;font-weight:500;color:var(--bark-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .related-card:hover .rc-h{color:var(--bark)}
+        .back-to-top{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px auto 0;height:36px;padding:0 18px;background:var(--sage);color:var(--white);border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:.82rem;font-weight:500;transition:background .2s ease;white-space:nowrap}
+        .back-to-top:hover{background:var(--bark)}
+        .back-to-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+        .article-footer{max-width:760px;margin:0 auto;padding:0 24px 80px}
+        .article-footer-divider{border:none;border-top:1px solid var(--sage-light);margin-bottom:36px}
+        .author-card{display:flex;align-items:center;gap:20px;background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)}
+        .author-avatar{width:64px;height:64px;border-radius:50%;background:var(--sage-pale);flex-shrink:0;overflow:hidden}
+        .author-avatar img{width:100%;height:100%;object-fit:cover}
+        .author-info h4{font-size:1rem;font-weight:500;color:var(--bark);margin-bottom:4px}
+        .author-info p{font-size:.85rem;color:var(--text-light);line-height:1.6}
+        .author-links{display:flex;gap:8px;margin-top:10px}
+        .author-links a{font-size:.8rem;padding:4px 12px;border-radius:50px;text-decoration:none;background:var(--sage-pale);color:var(--sage);font-weight:500;transition:all .2s ease}
+        .author-links a:hover{background:var(--sage);color:var(--white)}
+
+        footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+            .menu-toggle{display:block}
+            .article-header h1{font-size:1.7rem}
+            .author-card{flex-direction:column;text-align:center}
+            .author-links{justify-content:center}
+            .flow-branch{flex-direction:column;align-items:center}
+            .flow-branch-item{max-width:100%}
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="/index.html#podcast">Podcast</a>
+            <a href="/index.html#about">關於我</a>
+            <a href="/blog/index.html">Blog</a>
+            <a href="/qa/index.html">Q&amp;A</a>
+            <a href="/note/index.html">Note</a>
+            <a href="/index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <div class="series-badge"><span class="tag">減脂觀念</span></div>
+    <h1>減肥一定有飢餓感嗎？</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 4 月 9 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <div class="css-cover">
+        <div class="cover-cat">減脂觀念</div>
+        <div class="cover-title">減肥一定有飢餓感嗎？</div>
+    </div>
+</div>
+
+<div class="article-content">
+
+    <p>減肥不能餓肚子？有飢餓感才是在燃脂？😶 到底要餓、還是不餓才對？</p>
+
+    <p>先說結論——「飢餓感」跟「減脂」雖然常常一起出現，但它們之間<strong>沒有絕對的因果關係</strong>。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>飢餓感是怎麼來的？</h2>
+
+    <p>減脂過程中熱量攝取減少，身體會出現一連串反應：</p>
+
+    <div class="info-list">
+        <ul>
+            <li>血糖下降</li>
+            <li>胃排空、產生腸鳴</li>
+            <li>腸胃分泌<strong>飢餓素（Ghrelin）</strong></li>
+        </ul>
+    </div>
+
+    <p>這些訊號傳到大腦，自然就會感覺到餓。</p>
+
+    <p>但「感覺到餓」只代表<strong>身體發出了進食訊號</strong>，這個訊號不等於你正在燃燒脂肪。</p>
+
+    <p>身體接收到能量短缺的訊號之後，它會做的事可能是——調整荷爾蒙水平、挪用儲存的能量，甚至不知不覺地減少日常活動量來彌補缺口。脂肪分解只是其中一個選項，不是唯一結果。</p>
+
+    <div class="key-point">
+        <p>📌 <strong>有飢餓感 ≠ 正在燃燒脂肪。</strong></p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <p>那「減肥不能餓肚子」這句話是錯的嗎？也不完全是。這句話的用意，通常是在<strong>預防過度飢餓引發暴食</strong>——餓太久、餓太兇，反而讓人一次吃回來，得不償失。</p>
+
+    <p>所以問題不在「餓不餓」，而在<strong>飢餓的程度有沒有被好好管理</strong>。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>真正需要區分的：「飢餓感」和「食慾」</h2>
+
+    <p>不餓也吃，是非常常見的事。</p>
+
+    <p><strong>飢餓感</strong>，是身體能量真的短缺，發出的生理訊號。<strong>食慾</strong>，是想吃的慾望，來源可能是：</p>
+
+    <div class="info-list">
+        <ul>
+            <li>壓力、悲傷、寂寞想宣洩</li>
+            <li>無聊、打發時間</li>
+            <li>看到、聞到、想到食物的誘惑</li>
+            <li>純粹的習慣——時間到了就吃</li>
+        </ul>
+    </div>
+
+    <p>這些情境下的進食，跟身體真正需要能量是兩回事。<strong>混淆這兩者，是體脂悄悄上升的主因之一。</strong></p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>下次感覺到餓，試試這個流程</h2>
+
+    <div class="flow-diagram">
+        <div class="flow-title">飢餓感判斷流程</div>
+        <div class="flow-step">感覺想吃東西</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">先喝 200～300cc 的水，等 10 分鐘</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">還是很餓？</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-connector"><span></span></div>
+        <div class="flow-branch">
+            <div class="flow-branch-item">
+                <div class="flow-branch-label">是</div>
+                <div class="flow-step result-yes">真飢餓<br>好好吃飯 🍚</div>
+            </div>
+            <div class="flow-branch-item">
+                <div class="flow-branch-label">否</div>
+                <div class="flow-step result-no">食慾或習慣<br>找出來源再處理</div>
+            </div>
+        </div>
+    </div>
+
+    <p>這個流程不是要你忍耐，而是幫你<strong>在「想吃」和「真的餓」之間，多一秒鐘的清醒</strong>。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="pull-quote">
+        <p>當你開始練習分辨這兩件事，你會發現自己一天之中，有多少次「其實不餓，但就是想吃」。不用批判自己，那個<strong>瞬間的覺察</strong>，就是改變真正開始的地方。</p>
+    </div>
+
+    <p>減脂從來不是跟飢餓感對抗，而是<strong>重新認識自己身體在說什麼</strong>。🙌</p>
+
+    <p>當然，這一切背後還有更複雜的荷爾蒙機制——比如為什麼有些人就是比別人更容易有飢餓感？那是另一個故事了，之後再聊。</p>
+
+    <div class="article-tags">
+        <span class="tag">飢餓感</span>
+        <span class="tag">食慾</span>
+        <span class="tag">減脂</span>
+        <span class="tag">飢餓素</span>
+        <span class="tag">熱量赤字</span>
+        <span class="tag">飲食心理</span>
+    </div>
+
+</div>
+
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../test2/index.html" class="related-card">
+            <div class="rc-h">掌握大腦運作規律，養成積極正面習慣</div>
+        </a>
+        <a href="../20260324life06/index.html" class="related-card">
+            <div class="rc-h">瘦素：你的身體其實有自己的體重設定點</div>
+        </a>
+        <a href="../20260315book12/index.html" class="related-card">
+            <div class="rc-h">吃完飯很快就餓，怎麼辦？</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll',()=>{
+        document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+    });
+</script>
+</body>
+</html>
