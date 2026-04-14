@@ -119,6 +119,17 @@ h1 { font-size: 18px; font-weight: 500; margin-bottom: 3px; }
 </head>
 <body>
 
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:0.5px solid var(--border);">
+  <div>
+    <div style="font-size:11px;color:var(--bark-light);margin-bottom:3px;letter-spacing:0.04em;">Abby Eat Life</div>
+    <div style="font-size:15px;font-weight:500;">Abby 營養師製作</div>
+  </div>
+  <a href="https://abbyeatlife.github.io" target="_blank"
+    style="font-size:12px;color:var(--sage);text-decoration:none;border:0.5px solid var(--sage);padding:6px 12px;border-radius:var(--radius-md);white-space:nowrap;">
+    更多文章 →
+  </a>
+</div>
+
 <h1>這餐吃了什麼？<span class="db-badge">離線版</span></h1>
 <p class="subtitle">輸入食物名稱（支援自動補全）與克數，計算這餐的熱量與三大營養素</p>
 
@@ -232,7 +243,7 @@ const DB = [
   {name:'杏仁',         aliases:['almond','杏仁果'],                   cal:579, pro:21, fat:50, carb:22},
   {name:'芝麻',         aliases:['白芝麻','黑芝麻'],                   cal:573, pro:18, fat:50, carb:23},
   {name:'酪梨',         aliases:['牛油果','avocado'],                  cal:160, pro:2,  fat:15, carb:9},
-  {name:'綜合堅果',     aliases:['堅果','混合堅果','nuts'],             cal:607, pro:16, fat:54, carb:22},
+  {name:'綜合堅果',     aliases:['堅果','混合堅果','nuts'],            cal:607, pro:16, fat:54, carb:22},
 
   // 乳製品
   {name:'全脂牛奶',     aliases:['牛奶','鮮奶','全脂奶'],              cal:61,  pro:3,  fat:3,  carb:5},
@@ -531,5 +542,11 @@ function calculate() {
 
 renderSections();
 </script>
+
+<div style="margin-top:2.5rem;padding-top:1rem;border-top:0.5px solid rgba(61,50,41,0.12);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+  <span style="font-size:11px;color:#6B5A4E;">© Abby Eat Life｜數值僅供教學示範，不作為醫療建議</span>
+  <a href="https://abbyeatlife.github.io" target="_blank"
+    style="font-size:11px;color:#8B9E7E;text-decoration:none;">abbyeatlife.github.io</a>
+</div>
 </body>
 </html>
