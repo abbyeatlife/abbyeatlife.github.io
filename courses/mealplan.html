@@ -133,6 +133,33 @@ h1 { font-size: 18px; font-weight: 500; margin-bottom: 3px; }
 <h1>這餐吃了什麼？<span class="db-badge">離線版</span></h1>
 <p class="subtitle">輸入食物名稱（支援自動補全）與克數，計算這餐的熱量與三大營養素</p>
 
+<details style="margin-bottom:1rem;border:0.5px solid rgba(61,50,41,0.15);border-radius:8px;overflow:hidden;">
+  <summary style="padding:10px 14px;cursor:pointer;font-size:13px;font-weight:500;color:#6B5A4E;list-style:none;display:flex;align-items:center;gap:6px;background:rgba(61,50,41,0.03);">
+    <span style="font-size:12px;">▸</span> 不知道幾克？點這裡參考
+  </summary>
+  <div style="padding:12px 16px;font-size:12px;color:#6B5A4E;line-height:1.9;border-top:0.5px solid rgba(61,50,41,0.1);">
+    <p style="margin-bottom:8px;">克數是需要累積一點經驗的，多看標示、偶爾秤一下，慢慢就有概念了。以下幾個常見參考點：</p>
+    <p style="font-weight:500;color:#3D3229;margin-bottom:4px;">蛋白質類</p>
+    <ul style="padding-left:1.2em;margin-bottom:10px;">
+      <li>水煮蛋一顆約 55–60g，半顆約 30g</li>
+      <li>超商雞胸肉一片約 100–150g</li>
+      <li>生魚片一片約 20–30g</li>
+    </ul>
+    <p style="font-weight:500;color:#3D3229;margin-bottom:4px;">主食類</p>
+    <ul style="padding-left:1.2em;margin-bottom:10px;">
+      <li>一碗白飯約 200–250g</li>
+      <li>握壽司兩坨米飯約 50–60g</li>
+    </ul>
+    <p style="font-weight:500;color:#3D3229;margin-bottom:4px;">外食整體估算</p>
+    <ul style="padding-left:1.2em;margin-bottom:4px;">
+      <li>一般便當總重約 500–800g（乾式，含飯菜）</li>
+      <li>燴飯、炒麵因為醬汁水分多，重量會偏高但熱量不一定更高</li>
+      <li>7-11、全家便當盒上都有標示總重，可以直接對照</li>
+    </ul>
+    <p style="margin-top:8px;color:#8B9E7E;">不需要每次都精確，抓個大概範圍就夠用了。</p>
+  </div>
+</details>
+
 <div id="sections-container"></div>
 <button class="calc-btn" onclick="calculate()">計算這餐的營養 →</button>
 <div id="result-area"></div>
@@ -231,7 +258,7 @@ const DB = [
   {name:'藍莓',         aliases:['blueberry'],                         cal:57,  pro:1,  fat:0,  carb:14},
   {name:'水蜜桃',       aliases:['桃子','peach'],                      cal:39,  pro:1,  fat:0,  carb:10},
   {name:'小番茄',       aliases:['小蕃茄','聖女番茄','小番茄','cherry tomato'], cal:18, pro:1, fat:0, carb:4},
-  {name:'綜合水果',     aliases:['水果拼盤','mixed fruit','什錦水果'],  cal:55, pro:1, fat:0, carb:14},
+  {name:'綜合水果',     aliases:['水果拼盤','mixed fruit','什錦水果'],          cal:55,  pro:1,  fat:0,  carb:14},
 
   // 油脂類
   {name:'烹調油',       aliases:['食用油','沙拉油','葵花油','玄米油','油'],  cal:884, pro:0, fat:100, carb:0},
@@ -244,7 +271,7 @@ const DB = [
   {name:'杏仁',         aliases:['almond','杏仁果'],                   cal:579, pro:21, fat:50, carb:22},
   {name:'芝麻',         aliases:['白芝麻','黑芝麻'],                   cal:573, pro:18, fat:50, carb:23},
   {name:'酪梨',         aliases:['牛油果','avocado'],                  cal:160, pro:2,  fat:15, carb:9},
-  {name:'綜合堅果',     aliases:['堅果','混合堅果','nuts'],            cal:607, pro:16, fat:54, carb:22},
+  {name:'綜合堅果',     aliases:['堅果','混合堅果','nuts'],                  cal:607, pro:16, fat:54, carb:22},
 
   // 乳製品
   {name:'全脂牛奶',     aliases:['牛奶','鮮奶','全脂奶'],              cal:61,  pro:3,  fat:3,  carb:5},
@@ -278,6 +305,7 @@ const DB = [
   {name:'便當白飯',     aliases:['便當飯'],                            cal:183, pro:3,  fat:0,  carb:40},
   {name:'滷蛋',         aliases:['滷雞蛋'],                            cal:155, pro:13, fat:10, carb:3},
   {name:'甜麵包',       aliases:['菠蘿麵包','奶酥麵包','紅豆麵包','克林姆麵包'], cal:320, pro:8, fat:10, carb:52},
+  {name:'無糖拿鐵',     aliases:['拿鐵','latte','黑咖啡拿鐵'],               cal:40,  pro:3,  fat:2,  carb:3},
 ];
 
 // ── Build search index ──────────────────────────────────
@@ -536,7 +564,7 @@ function calculate() {
         <tbody>${rows}</tbody>
       </table>
     </div>
-    <p class="result-note">數值來自內建資料庫（離線版），每 100g 估算值按輸入克數換算。資料庫收錄 ${DB.length} 種食物。僅供教學示範用途。</p>
+    <p class="result-note">資料庫由 Abby 手動維護，數值為常見食物的估算參考，不涵蓋特定品牌或商品。飲食管理不需要精算每一卡，這個工具的出發點是幫你認識食物、了解吃進去的是什麼，而不是讓數字來管理你。</p>
   </div>`;
 
   resultArea.scrollIntoView({behavior:'smooth', block:'nearest'});
