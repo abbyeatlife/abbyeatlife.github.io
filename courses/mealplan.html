@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>這餐吃了什麼？熱量與三大營養素計算（離線版）</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --sage: #8B9E7E;
+  --terra: #C17F59;
+  --cream: #FDFBF7;
+  --bark: #3D3229;
+  --bark-light: #6B5A4E;
+  --border: rgba(61,50,41,0.12);
+  --border-med: rgba(61,50,41,0.22);
+  --bg-secondary: rgba(61,50,41,0.05);
+  --cal: #D85A30;
+  --pro: #3B6D11;
+  --fat: #BA7517;
+  --carb: #185FA5;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+html { background: var(--cream); color: var(--bark); font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif; font-size: 14px; }
+body { max-width: 700px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+
+h1 { font-size: 18px; font-weight: 500; margin-bottom: 3px; }
+.subtitle { font-size: 12px; color: var(--bark-light); margin-bottom: 1.5rem; }
+
+.section-card { background: #fff; border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1rem 1.25rem; margin-bottom: 10px; }
+.section-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.section-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.section-title { font-weight: 500; font-size: 14px; }
+.section-hint { font-size: 11px; color: var(--bark-light); margin-left: auto; }
+.food-rows { display: flex; flex-direction: column; gap: 8px; }
+
+.food-row { display: flex; align-items: flex-start; gap: 8px; position: relative; }
+.input-wrap { flex: 1; min-width: 0; position: relative; }
+.food-name-input {
+  width: 100%; font-size: 13px; padding: 6px 10px;
+  border: 0.5px solid var(--border-med); border-radius: var(--radius-md);
+  background: var(--cream); color: var(--bark); height: 34px; font-family: inherit;
+}
+.food-name-input:focus { outline: none; border-color: var(--sage); }
+.food-name-input.not-found { border-color: #E8A87C; background: #FFF8F4; }
+.food-name-input.found { border-color: var(--sage); }
+
+.autocomplete-list {
+  position: absolute; top: 36px; left: 0; right: 0; z-index: 100;
+  background: #fff; border: 0.5px solid var(--border-med); border-radius: var(--radius-md);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08); max-height: 200px; overflow-y: auto;
+}
+.autocomplete-item {
+  padding: 7px 12px; cursor: pointer; font-size: 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px;
+}
+.autocomplete-item:hover, .autocomplete-item.active { background: var(--bg-secondary); }
+.autocomplete-item .food-label { color: var(--bark); }
+.autocomplete-item .food-meta { color: var(--bark-light); font-size: 11px; white-space: nowrap; }
+
+.g-input {
+  width: 68px; font-size: 13px; padding: 6px 8px;
+  border: 0.5px solid var(--border-med); border-radius: var(--radius-md);
+  background: var(--cream); color: var(--bark); height: 34px; text-align: right; font-family: inherit;
+}
+.g-input:focus { outline: none; border-color: var(--sage); }
+.unit-label { font-size: 12px; color: var(--bark-light); line-height: 34px; flex-shrink: 0; }
+.del-btn { background: none; border: none; cursor: pointer; color: var(--bark-light); font-size: 17px; line-height: 34px; padding: 0 4px; opacity: 0.4; flex-shrink: 0; }
+.del-btn:hover { opacity: 1; color: var(--cal); }
+.not-found-hint { font-size: 11px; color: #BA7517; margin-top: 3px; padding-left: 2px; }
+
+.add-btn {
+  font-size: 12px; color: var(--bark-light); background: none;
+  border: 0.5px dashed var(--border-med); border-radius: var(--radius-md);
+  padding: 5px 12px; cursor: pointer; margin-top: 4px; font-family: inherit;
+}
+.add-btn:hover { background: var(--bg-secondary); }
+
+.calc-btn {
+  width: 100%; padding: 11px; background: var(--bark); color: var(--cream);
+  border: none; border-radius: var(--radius-md); font-size: 14px; font-weight: 500;
+  cursor: pointer; margin: 8px 0 20px; font-family: inherit; letter-spacing: 0.02em;
+}
+.calc-btn:hover { background: var(--bark-light); }
+.calc-btn:active { transform: scale(0.99); }
+
+.result-wrap { background: var(--bg-secondary); border-radius: var(--radius-lg); padding: 1.25rem; }
+.metric-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-bottom: 1rem; }
+.metric { background: #fff; border-radius: var(--radius-md); padding: 10px; text-align: center; border: 0.5px solid var(--border); }
+.metric-label { font-size: 11px; color: var(--bark-light); margin-bottom: 4px; }
+.metric-val { font-size: 21px; font-weight: 500; }
+.metric-unit { font-size: 11px; color: var(--bark-light); }
+
+.macro-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; font-size: 12px; }
+.macro-label { width: 62px; color: var(--bark-light); flex-shrink: 0; }
+.macro-track { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.macro-fill { height: 100%; border-radius: 4px; transition: width .5s ease; }
+.macro-num { width: 44px; text-align: right; font-variant-numeric: tabular-nums; font-weight: 500; }
+
+.breakdown-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 4px; }
+.breakdown-table th { text-align: left; padding: 5px 8px; border-bottom: 0.5px solid var(--border); color: var(--bark-light); font-weight: 500; }
+.breakdown-table td { padding: 5px 8px; border-bottom: 0.5px solid var(--border); }
+.breakdown-table tr:last-child td { border-bottom: none; }
+.result-note { font-size: 11px; color: var(--bark-light); margin-top: 12px; line-height: 1.7; }
+.error-msg { color: var(--cal); font-size: 12px; padding: 8px 12px; background: #FFF0EB; border-radius: var(--radius-md); margin-bottom: 8px; }
+
+.cal-c { color: var(--cal); }
+.pro-c { color: var(--pro); }
+.fat-c { color: var(--fat); }
+.carb-c { color: var(--carb); }
+
+.db-badge { display: inline-block; font-size: 10px; background: #EAF3DE; color: #3B6D11; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
+
+@media (max-width: 480px) {
+  .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .section-hint { display: none; }
+}
+</style>
+</head>
+<body>
+
+<h1>這餐吃了什麼？<span class="db-badge">離線版</span></h1>
+<p class="subtitle">輸入食物名稱（支援自動補全）與克數，計算這餐的熱量與三大營養素</p>
+
+<div id="sections-container"></div>
+<button class="calc-btn" onclick="calculate()">計算這餐的營養 →</button>
+<div id="result-area"></div>
+
+<script>
+// ── 食物資料庫 per 100g ──────────────────────────────────
+// { name, aliases[], cal, pro, fat, carb }
+const DB = [
+  // 主食類
+  {name:'白飯',        aliases:['米飯','飯'],                          cal:183, pro:3,  fat:0,  carb:40},
+  {name:'糙米飯',      aliases:['糙米'],                               cal:165, pro:4,  fat:1,  carb:35},
+  {name:'白粥',        aliases:['稀飯','粥'],                          cal:65,  pro:1,  fat:0,  carb:14},
+  {name:'白吐司',      aliases:['吐司','土司','白麵包'],               cal:265, pro:9,  fat:4,  carb:49},
+  {name:'全麥吐司',    aliases:['全麥麵包','全麥'],                    cal:247, pro:10, fat:3,  carb:45},
+  {name:'白麵條（熟）',aliases:['麵條','熟麵','烏龍麵'],               cal:138, pro:4,  fat:1,  carb:28},
+  {name:'義大利麵（熟）',aliases:['義麵','pasta'],                    cal:158, pro:6,  fat:1,  carb:31},
+  {name:'冬粉（熟）',  aliases:['冬粉'],                               cal:84,  pro:0,  fat:0,  carb:21},
+  {name:'米粉（熟）',  aliases:['米粉'],                               cal:109, pro:2,  fat:0,  carb:25},
+  {name:'地瓜',        aliases:['番薯','甘薯','地瓜（蒸）'],           cal:114, pro:2,  fat:0,  carb:27},
+  {name:'馬鈴薯',      aliases:['洋芋','土豆','馬鈴薯（蒸）'],        cal:81,  pro:2,  fat:0,  carb:19},
+  {name:'南瓜',        aliases:['金瓜'],                               cal:41,  pro:1,  fat:0,  carb:10},
+  {name:'玉米',        aliases:['玉米（熟）','甜玉米'],                cal:96,  pro:3,  fat:1,  carb:21},
+  {name:'饅頭',        aliases:['白饅頭'],                             cal:236, pro:8,  fat:1,  carb:49},
+  {name:'水餃皮',      aliases:['餃子皮'],                             cal:274, pro:8,  fat:1,  carb:57},
+  {name:'燕麥片',      aliases:['大燕麥片','即食燕麥'],               cal:389, pro:17, fat:7,  carb:66},
+
+  // 豆魚蛋肉類
+  {name:'雞胸肉（去皮）',aliases:['雞胸','雞胸肉'],                   cal:113, pro:24, fat:2,  carb:0},
+  {name:'雞腿肉（去皮）',aliases:['雞腿','去皮雞腿'],                 cal:153, pro:21, fat:7,  carb:0},
+  {name:'雞腿肉（帶皮）',aliases:['帶皮雞腿'],                        cal:215, pro:19, fat:15, carb:0},
+  {name:'雞里肌',       aliases:['雞柳','小雞胸'],                    cal:107, pro:23, fat:1,  carb:0},
+  {name:'雞翅',         aliases:['雞翅膀','二節翅'],                   cal:222, pro:18, fat:16, carb:0},
+  {name:'豬里肌肉',     aliases:['里肌','豬里肌'],                    cal:143, pro:21, fat:6,  carb:0},
+  {name:'豬五花肉',     aliases:['五花肉','三層肉'],                   cal:395, pro:14, fat:37, carb:0},
+  {name:'豬梅花肉',     aliases:['梅花肉','豬肩肉'],                   cal:215, pro:18, fat:16, carb:0},
+  {name:'豬後腿肉',     aliases:['瘦豬肉','豬腿肉'],                   cal:135, pro:21, fat:5,  carb:0},
+  {name:'豬絞肉',       aliases:['絞肉','豬肉末'],                     cal:260, pro:17, fat:21, carb:0},
+  {name:'豬小里肌',     aliases:['豬菲力'],                            cal:119, pro:22, fat:3,  carb:0},
+  {name:'牛腱',         aliases:['牛腱子','牛腱肉'],                   cal:148, pro:22, fat:6,  carb:0},
+  {name:'牛菲力',       aliases:['嫩腰','牛里肌'],                     cal:158, pro:22, fat:7,  carb:0},
+  {name:'牛肋眼',       aliases:['霜降牛','肋眼牛排'],                 cal:290, pro:17, fat:24, carb:0},
+  {name:'牛絞肉',       aliases:['牛肉末','漢堡肉'],                   cal:215, pro:20, fat:15, carb:0},
+  {name:'牛五花',       aliases:['牛肋條','火鍋牛肉片'],              cal:294, pro:17, fat:25, carb:0},
+  {name:'鮭魚',         aliases:['salmon','三文魚'],                   cal:208, pro:20, fat:13, carb:0},
+  {name:'鯖魚',         aliases:['青花魚','鯖'],                       cal:205, pro:19, fat:13, carb:0},
+  {name:'鱸魚',         aliases:['海鱸','七星鱸'],                     cal:105, pro:19, fat:3,  carb:0},
+  {name:'虱目魚',       aliases:['麻虱目'],                            cal:148, pro:20, fat:7,  carb:0},
+  {name:'吳郭魚',       aliases:['台灣鯛','吳郭'],                     cal:96,  pro:20, fat:2,  carb:0},
+  {name:'蝦子',         aliases:['白蝦','草蝦','蝦仁'],               cal:99,  pro:21, fat:1,  carb:0},
+  {name:'花枝',         aliases:['墨魚','烏賊'],                       cal:92,  pro:16, fat:1,  carb:3},
+  {name:'雞蛋',         aliases:['蛋','全蛋'],                         cal:147, pro:13, fat:10, carb:1},
+  {name:'水煮蛋',       aliases:['白煮蛋'],                            cal:147, pro:13, fat:10, carb:1},
+  {name:'荷包蛋',       aliases:['煎蛋','太陽蛋'],                     cal:196, pro:13, fat:15, carb:1},
+  {name:'豆腐（板豆腐）',aliases:['豆腐','板豆腐'],                   cal:76,  pro:8,  fat:4,  carb:2},
+  {name:'嫩豆腐',       aliases:['軟豆腐','絹豆腐'],                   cal:55,  pro:5,  fat:3,  carb:2},
+  {name:'豆干',         aliases:['豆乾','五香豆干'],                   cal:160, pro:16, fat:9,  carb:4},
+  {name:'毛豆',         aliases:['枝豆','毛豆仁'],                     cal:147, pro:13, fat:7,  carb:10},
+  {name:'黑豆',         aliases:['黑豆（熟）'],                        cal:132, pro:9,  fat:5,  carb:14},
+  {name:'納豆',         aliases:['日式納豆'],                          cal:200, pro:17, fat:10, carb:12},
+
+  // 蔬菜類
+  {name:'蔬菜（混合）', aliases:['蔬菜','青菜','炒青菜'],              cal:30,  pro:2,  fat:0,  carb:5},
+  {name:'高麗菜',       aliases:['甘藍','包菜'],                       cal:25,  pro:1,  fat:0,  carb:5},
+  {name:'菠菜',         aliases:['菠薐草'],                            cal:23,  pro:3,  fat:0,  carb:4},
+  {name:'地瓜葉',       aliases:['番薯葉','甘藷葉'],                   cal:35,  pro:3,  fat:0,  carb:6},
+  {name:'空心菜',       aliases:['蕹菜','通菜'],                       cal:24,  pro:2,  fat:0,  carb:4},
+  {name:'青花菜',       aliases:['綠花椰','花椰菜（綠）','broccoli'],  cal:34,  pro:3,  fat:0,  carb:7},
+  {name:'花椰菜',       aliases:['白花椰','cauliflower'],              cal:25,  pro:2,  fat:0,  carb:5},
+  {name:'番茄',         aliases:['西紅柿','牛番茄'],                   cal:18,  pro:1,  fat:0,  carb:4},
+  {name:'小黃瓜',       aliases:['黃瓜','胡瓜'],                       cal:15,  pro:1,  fat:0,  carb:3},
+  {name:'紅蘿蔔',       aliases:['胡蘿蔔','紅蘿蔔'],                   cal:41,  pro:1,  fat:0,  carb:10},
+  {name:'洋蔥',         aliases:['蔥頭'],                              cal:40,  pro:1,  fat:0,  carb:9},
+  {name:'香菇',         aliases:['冬菇','鮮香菇'],                     cal:34,  pro:2,  fat:0,  carb:6},
+  {name:'金針菇',       aliases:['金菇'],                              cal:37,  pro:3,  fat:0,  carb:7},
+  {name:'杏鮑菇',       aliases:['杏鮑'],                              cal:35,  pro:2,  fat:0,  carb:7},
+  {name:'木耳',         aliases:['黑木耳','白木耳'],                   cal:25,  pro:1,  fat:0,  carb:6},
+  {name:'茄子',         aliases:['矮瓜'],                              cal:25,  pro:1,  fat:0,  carb:6},
+  {name:'苦瓜',         aliases:['涼瓜'],                              cal:19,  pro:1,  fat:0,  carb:4},
+  {name:'豆芽菜',       aliases:['綠豆芽','黃豆芽'],                   cal:30,  pro:3,  fat:0,  carb:4},
+  {name:'玉米筍',       aliases:['小玉米','迷你玉米'],                 cal:35,  pro:2,  fat:0,  carb:7},
+  {name:'秋葵',         aliases:['okra'],                              cal:33,  pro:2,  fat:0,  carb:7},
+  {name:'蒜頭',         aliases:['大蒜'],                              cal:149, pro:6,  fat:1,  carb:33},
+
+  // 水果類
+  {name:'蘋果',         aliases:['apple'],                             cal:52,  pro:0,  fat:0,  carb:14},
+  {name:'香蕉',         aliases:['banana'],                            cal:89,  pro:1,  fat:0,  carb:23},
+  {name:'芭樂',         aliases:['番石榴','guava'],                    cal:38,  pro:1,  fat:0,  carb:9},
+  {name:'橘子',         aliases:['柳丁','橙子','柑橘'],               cal:47,  pro:1,  fat:0,  carb:12},
+  {name:'葡萄',         aliases:['grape'],                             cal:69,  pro:1,  fat:0,  carb:18},
+  {name:'西瓜',         aliases:['watermelon'],                        cal:30,  pro:1,  fat:0,  carb:8},
+  {name:'鳳梨',         aliases:['菠蘿','pineapple'],                  cal:50,  pro:1,  fat:0,  carb:13},
+  {name:'芒果',         aliases:['mango'],                             cal:60,  pro:1,  fat:0,  carb:15},
+  {name:'木瓜',         aliases:['papaya'],                            cal:43,  pro:1,  fat:0,  carb:11},
+  {name:'奇異果',       aliases:['kiwi','奇異果'],                     cal:61,  pro:1,  fat:1,  carb:15},
+  {name:'草莓',         aliases:['strawberry'],                        cal:32,  pro:1,  fat:0,  carb:8},
+  {name:'藍莓',         aliases:['blueberry'],                         cal:57,  pro:1,  fat:0,  carb:14},
+  {name:'水蜜桃',       aliases:['桃子','peach'],                      cal:39,  pro:1,  fat:0,  carb:10},
+  {name:'小番茄',       aliases:['小蕃茄','聖女番茄','小番茄','cherry tomato'], cal:18, pro:1, fat:0, carb:4},
+
+  // 油脂類
+  {name:'烹調油',       aliases:['食用油','沙拉油','葵花油','玄米油','油'],  cal:884, pro:0, fat:100, carb:0},
+  {name:'橄欖油',       aliases:['olive oil'],                         cal:884, pro:0,  fat:100, carb:0},
+  {name:'奶油',         aliases:['butter','牛油'],                     cal:717, pro:1,  fat:81, carb:1},
+  {name:'花生醬',       aliases:['peanut butter'],                     cal:598, pro:25, fat:51, carb:20},
+  {name:'花生',         aliases:['土豆仁','花生米'],                   cal:567, pro:26, fat:49, carb:16},
+  {name:'腰果',         aliases:['cashew'],                            cal:553, pro:18, fat:44, carb:30},
+  {name:'核桃',         aliases:['walnut'],                            cal:654, pro:15, fat:65, carb:14},
+  {name:'杏仁',         aliases:['almond','杏仁果'],                   cal:579, pro:21, fat:50, carb:22},
+  {name:'芝麻',         aliases:['白芝麻','黑芝麻'],                   cal:573, pro:18, fat:50, carb:23},
+  {name:'酪梨',         aliases:['牛油果','avocado'],                  cal:160, pro:2,  fat:15, carb:9},
+
+  // 乳製品
+  {name:'全脂牛奶',     aliases:['牛奶','鮮奶','全脂奶'],              cal:61,  pro:3,  fat:3,  carb:5},
+  {name:'脫脂牛奶',     aliases:['脫脂奶'],                            cal:35,  pro:3,  fat:0,  carb:5},
+  {name:'無糖優格',     aliases:['希臘優格','原味優格'],               cal:59,  pro:10, fat:1,  carb:4},
+  {name:'全脂優格',     aliases:['原味全脂優格'],                      cal:61,  pro:3,  fat:3,  carb:5},
+  {name:'起司片',       aliases:['乳酪片','cheese'],                   cal:337, pro:25, fat:26, carb:2},
+  {name:'帕瑪森起司',   aliases:['parmesan'],                          cal:431, pro:38, fat:29, carb:4},
+
+  // 點心 & 加工食品
+  {name:'蛋糕',         aliases:['海綿蛋糕','戚風蛋糕'],               cal:297, pro:5,  fat:11, carb:45},
+  {name:'巧克力蛋糕',   aliases:['chocolate cake'],                    cal:371, pro:5,  fat:18, carb:50},
+  {name:'黑巧克力',     aliases:['巧克力','dark chocolate'],           cal:546, pro:5,  fat:31, carb:60},
+  {name:'牛奶巧克力',   aliases:['milk chocolate'],                    cal:535, pro:8,  fat:30, carb:59},
+  {name:'餅乾',         aliases:['cookie','曲奇'],                     cal:480, pro:6,  fat:22, carb:65},
+  {name:'洋芋片',       aliases:['薯片','potato chips'],               cal:536, pro:7,  fat:35, carb:53},
+  {name:'冰淇淋',       aliases:['ice cream','霜淇淋'],                cal:207, pro:4,  fat:11, carb:24},
+  {name:'珍珠奶茶',     aliases:['手搖飲','珍奶'],                     cal:140, pro:2,  fat:3,  carb:27},
+  {name:'可樂',         aliases:['coca cola','碳酸飲料'],              cal:42,  pro:0,  fat:0,  carb:11},
+  {name:'柳橙汁',       aliases:['柳丁汁','orange juice'],             cal:45,  pro:1,  fat:0,  carb:11},
+  {name:'白糖',         aliases:['砂糖','糖'],                         cal:387, pro:0,  fat:0,  carb:100},
+  {name:'蜂蜜',         aliases:['honey'],                             cal:304, pro:0,  fat:0,  carb:82},
+  {name:'豬血糕',       aliases:['豬血'],                              cal:166, pro:9,  fat:2,  carb:30},
+  {name:'甜不辣',       aliases:['關東煮甜不辣'],                      cal:140, pro:10, fat:4,  carb:17},
+  {name:'貢丸',         aliases:['豬肉貢丸'],                          cal:240, pro:13, fat:17, carb:8},
+  {name:'熱狗',         aliases:['香腸（熱狗）'],                      cal:290, pro:12, fat:25, carb:5},
+  {name:'台式香腸',     aliases:['香腸'],                              cal:345, pro:16, fat:28, carb:7},
+  {name:'培根',         aliases:['bacon'],                             cal:417, pro:12, fat:42, carb:1},
+  {name:'水餃',         aliases:['水餃（熟）'],                        cal:200, pro:9,  fat:7,  carb:26},
+  {name:'鍋貼',         aliases:['煎餃'],                              cal:230, pro:8,  fat:9,  carb:30},
+  {name:'便當白飯',     aliases:['便當飯'],                            cal:183, pro:3,  fat:0,  carb:40},
+  {name:'滷蛋',         aliases:['滷雞蛋'],                            cal:155, pro:13, fat:10, carb:3},
+];
+
+// ── Build search index ──────────────────────────────────
+const SEARCH_IDX = [];
+DB.forEach((item, i) => {
+  SEARCH_IDX.push({text: item.name.toLowerCase(), idx: i, label: item.name});
+  (item.aliases||[]).forEach(a => SEARCH_IDX.push({text: a.toLowerCase(), idx: i, label: item.name}));
+});
+
+function search(q) {
+  if (!q || q.length < 1) return [];
+  const lq = q.toLowerCase();
+  const seen = new Set();
+  const results = [];
+  // Exact prefix match first
+  SEARCH_IDX.forEach(e => {
+    if (e.text.startsWith(lq) && !seen.has(e.idx)) {
+      seen.add(e.idx); results.push(e.idx);
+    }
+  });
+  // Then contains match
+  SEARCH_IDX.forEach(e => {
+    if (e.text.includes(lq) && !seen.has(e.idx)) {
+      seen.add(e.idx); results.push(e.idx);
+    }
+  });
+  return results.slice(0, 8).map(i => DB[i]);
+}
+
+function lookupExact(name) {
+  const lname = name.toLowerCase().trim();
+  for (let item of DB) {
+    if (item.name.toLowerCase() === lname) return item;
+    if ((item.aliases||[]).some(a => a.toLowerCase() === lname)) return item;
+  }
+  return null;
+}
+
+// ── Sections config ─────────────────────────────────────
+const SECTIONS = [
+  {id:'grain',   label:'主食類',     dot:'#EF9F27', hint:'白飯、麵條、地瓜…',         rows:[{name:'白飯',g:200}]},
+  {id:'protein', label:'豆魚蛋肉類', dot:'#F0997B', hint:'雞胸、豆腐、蛋、魚…',       rows:[{name:'雞胸肉（去皮）',g:60},{name:'毛豆',g:60}]},
+  {id:'fat',     label:'油脂類',     dot:'#FAC775', hint:'烹調油、堅果、酪梨…',        rows:[{name:'烹調油',g:10}]},
+  {id:'veg',     label:'蔬菜類',     dot:'#97C459', hint:'各式蔬菜、菇類…',            rows:[{name:'蔬菜（混合）',g:100}]},
+  {id:'fruit',   label:'水果類',     dot:'#85B7EB', hint:'蘋果、香蕉、芭樂…',          rows:[]},
+  {id:'snack',   label:'點心／其他', dot:'#F5C4B3', hint:'蛋糕、餅乾、飲料…',          rows:[]},
+];
+
+let rowCounter = 0;
+
+function renderSections() {
+  const c = document.getElementById('sections-container');
+  c.innerHTML = '';
+  SECTIONS.forEach(sec => {
+    const card = document.createElement('div');
+    card.className = 'section-card';
+    card.innerHTML = `
+      <div class="section-header">
+        <div class="section-dot" style="background:${sec.dot}"></div>
+        <span class="section-title">${sec.label}</span>
+        <span class="section-hint">${sec.hint}</span>
+      </div>
+      <div class="food-rows" id="rows-${sec.id}"></div>
+      <button class="add-btn" onclick="addRow('${sec.id}')">+ 新增食物</button>`;
+    c.appendChild(card);
+    sec.rows.forEach(r => addRowWithValue(sec.id, r.name, r.g));
+  });
+}
+
+function addRow(secId, name='', g='') {
+  addRowWithValue(secId, name, g);
+}
+
+function addRowWithValue(secId, name, g) {
+  const id = 'r' + (++rowCounter);
+  const container = document.getElementById('rows-' + secId);
+  const div = document.createElement('div');
+  div.className = 'food-row';
+  div.id = id;
+  div.innerHTML = `
+    <div class="input-wrap">
+      <input class="food-name-input" type="text" placeholder="食物名稱（輸入可搜尋）" value="${name}" autocomplete="off"
+        oninput="onNameInput(this, '${id}')"
+        onblur="onNameBlur(this)"
+        onkeydown="onNameKey(event, this, '${id}')">
+      <div class="autocomplete-list" id="ac-${id}" style="display:none"></div>
+      ${name && !lookupExact(name) ? `<div class="not-found-hint" id="hint-${id}">找不到「${name}」，請換個關鍵字</div>` : `<div class="not-found-hint" id="hint-${id}" style="display:none"></div>`}
+    </div>
+    <input class="g-input" type="number" min="1" max="3000" step="1" value="${g}" placeholder="0" id="g-${id}">
+    <span class="unit-label">g</span>
+    <button class="del-btn" onclick="document.getElementById('${id}').remove()">×</button>`;
+  container.appendChild(div);
+  if (name) validateName(div.querySelector('.food-name-input'), id);
+}
+
+let acActive = -1;
+
+function onNameInput(el, rowId) {
+  const q = el.value.trim();
+  const results = search(q);
+  const ac = document.getElementById('ac-' + rowId);
+  acActive = -1;
+  if (!q || results.length === 0) { ac.style.display = 'none'; return; }
+  ac.innerHTML = results.map((item, i) =>
+    `<div class="autocomplete-item" data-idx="${i}" onmousedown="selectItem(event,'${rowId}','${item.name}')"
+      ontouchstart="selectItem(event,'${rowId}','${item.name}')">
+      <span class="food-label">${item.name}</span>
+      <span class="food-meta">${item.cal} kcal／蛋白${item.pro}g／脂${item.fat}g</span>
+    </div>`).join('');
+  ac.style.display = 'block';
+  validateName(el, rowId);
+}
+
+function onNameKey(e, el, rowId) {
+  const ac = document.getElementById('ac-' + rowId);
+  if (ac.style.display === 'none') return;
+  const items = ac.querySelectorAll('.autocomplete-item');
+  if (e.key === 'ArrowDown') { e.preventDefault(); acActive = Math.min(acActive+1, items.length-1); highlightAc(items); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); acActive = Math.max(acActive-1, -1); highlightAc(items); }
+  else if (e.key === 'Enter' && acActive >= 0) { e.preventDefault(); items[acActive].dispatchEvent(new MouseEvent('mousedown')); }
+  else if (e.key === 'Escape') { ac.style.display = 'none'; }
+}
+
+function highlightAc(items) {
+  items.forEach((el, i) => el.classList.toggle('active', i === acActive));
+  if (acActive >= 0) items[acActive].scrollIntoView({block:'nearest'});
+}
+
+function selectItem(e, rowId, name) {
+  e.preventDefault();
+  const row = document.getElementById(rowId);
+  const input = row.querySelector('.food-name-input');
+  input.value = name;
+  document.getElementById('ac-' + rowId).style.display = 'none';
+  validateName(input, rowId);
+  const gInput = row.querySelector('.g-input');
+  if (!gInput.value) gInput.focus();
+  else input.focus();
+}
+
+function onNameBlur(el) {
+  setTimeout(() => {
+    const ac = el.parentElement.querySelector('.autocomplete-list');
+    if (ac) ac.style.display = 'none';
+  }, 200);
+}
+
+function validateName(el, rowId) {
+  const val = el.value.trim();
+  const hint = document.getElementById('hint-' + rowId);
+  if (!val) { el.classList.remove('found','not-found'); if(hint) hint.style.display='none'; return; }
+  const found = lookupExact(val);
+  el.classList.toggle('found', !!found);
+  el.classList.toggle('not-found', !found);
+  if (hint) {
+    if (found) { hint.style.display = 'none'; }
+    else { hint.textContent = `找不到「${val}」，請換個關鍵字`; hint.style.display = 'block'; }
+  }
+}
+
+// ── Calculate ────────────────────────────────────────────
+function calculate() {
+  const resultArea = document.getElementById('result-area');
+  const allRows = document.querySelectorAll('.food-row');
+  const items = [];
+  const notFound = [];
+
+  allRows.forEach(row => {
+    const nameEl = row.querySelector('.food-name-input');
+    const gEl = row.querySelector('.g-input');
+    if (!nameEl || !gEl) return;
+    const name = nameEl.value.trim();
+    const g = parseFloat(gEl.value);
+    if (!name || !g || g <= 0) return;
+    const food = lookupExact(name);
+    if (!food) { notFound.push(name); return; }
+    const sec = row.closest('.section-card');
+    const secLabel = sec ? sec.querySelector('.section-title').textContent : '';
+    const ratio = g / 100;
+    items.push({
+      name: food.name, section: secLabel, g,
+      cal: Math.round(food.cal * ratio),
+      pro: Math.round(food.pro * ratio * 10) / 10,
+      fat: Math.round(food.fat * ratio * 10) / 10,
+      carb: Math.round(food.carb * ratio * 10) / 10,
+    });
+  });
+
+  if (items.length === 0 && notFound.length === 0) {
+    resultArea.innerHTML = '<div class="error-msg">請先輸入至少一種食物和克數</div>';
+    return;
+  }
+
+  const warnHtml = notFound.length > 0
+    ? `<div class="error-msg">以下食物不在資料庫中，已略過：${notFound.map(n=>`「${n}」`).join('、')}。請換個關鍵字或用自動補全選取。</div>`
+    : '';
+
+  if (items.length === 0) { resultArea.innerHTML = warnHtml; return; }
+
+  const total = {
+    cal:  Math.round(items.reduce((s,i)=>s+i.cal,  0)),
+    pro:  Math.round(items.reduce((s,i)=>s+i.pro,  0) * 10) / 10,
+    fat:  Math.round(items.reduce((s,i)=>s+i.fat,  0) * 10) / 10,
+    carb: Math.round(items.reduce((s,i)=>s+i.carb, 0) * 10) / 10,
+  };
+
+  const macroKcal = total.pro*4 + total.fat*9 + total.carb*4;
+  const pPct = macroKcal > 0 ? Math.round(total.pro*4/macroKcal*100) : 0;
+  const fPct = macroKcal > 0 ? Math.round(total.fat*9/macroKcal*100) : 0;
+  const cPct = 100 - pPct - fPct;
+
+  const rows = items.map(i => `<tr>
+    <td>${i.name}</td>
+    <td style="color:var(--bark-light);font-size:11px">${i.section}</td>
+    <td style="text-align:right">${i.g}g</td>
+    <td style="text-align:right" class="cal-c">${i.cal}</td>
+    <td style="text-align:right" class="pro-c">${i.pro}</td>
+    <td style="text-align:right" class="fat-c">${i.fat}</td>
+    <td style="text-align:right" class="carb-c">${i.carb}</td>
+  </tr>`).join('');
+
+  resultArea.innerHTML = warnHtml + `
+  <div class="result-wrap">
+    <div class="metric-grid">
+      <div class="metric"><div class="metric-label">熱量</div><div class="metric-val cal-c">${total.cal}</div><div class="metric-unit">kcal</div></div>
+      <div class="metric"><div class="metric-label">蛋白質</div><div class="metric-val pro-c">${total.pro}</div><div class="metric-unit">g</div></div>
+      <div class="metric"><div class="metric-label">脂肪</div><div class="metric-val fat-c">${total.fat}</div><div class="metric-unit">g</div></div>
+      <div class="metric"><div class="metric-label">碳水化合物</div><div class="metric-val carb-c">${total.carb}</div><div class="metric-unit">g</div></div>
+    </div>
+    <div style="margin-bottom:1rem">
+      <div class="macro-bar-row">
+        <span class="macro-label">蛋白質 ${pPct}%</span>
+        <div class="macro-track"><div class="macro-fill" style="width:${pPct}%;background:#3B6D11"></div></div>
+        <span class="macro-num pro-c">${total.pro}g</span>
+      </div>
+      <div class="macro-bar-row">
+        <span class="macro-label">脂肪 ${fPct}%</span>
+        <div class="macro-track"><div class="macro-fill" style="width:${fPct}%;background:#BA7517"></div></div>
+        <span class="macro-num fat-c">${total.fat}g</span>
+      </div>
+      <div class="macro-bar-row">
+        <span class="macro-label">碳水 ${cPct}%</span>
+        <div class="macro-track"><div class="macro-fill" style="width:${cPct}%;background:#185FA5"></div></div>
+        <span class="macro-num carb-c">${total.carb}g</span>
+      </div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="breakdown-table">
+        <thead><tr>
+          <th>食物</th><th>類別</th><th style="text-align:right">重量</th>
+          <th style="text-align:right" class="cal-c">熱量</th>
+          <th style="text-align:right" class="pro-c">蛋白質</th>
+          <th style="text-align:right" class="fat-c">脂肪</th>
+          <th style="text-align:right" class="carb-c">碳水</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <p class="result-note">數值來自內建資料庫（離線版），每 100g 估算值按輸入克數換算。資料庫收錄 ${DB.length} 種食物。僅供教學示範用途。</p>
+  </div>`;
+
+  resultArea.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+renderSections();
+</script>
+</body>
+</html>
