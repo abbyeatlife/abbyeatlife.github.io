@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>火鍋，真的是外食安全牌嗎？— Abby營養師</title>
+    <meta name="description" content="火鍋看似健康，燙一燙就好，但一餐將近1,500大卡的紀錄告訴你，熱量其實藏在你最想不到的地方。">
+    <meta property="og:title" content="火鍋，真的是外食安全牌嗎？">
+    <meta property="og:description" content="用營養師的眼睛記錄一頓吃到飽火鍋，揭開熱量藏在哪裡，以及為什麼壓低澱粉並不夠。">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+            --cream:#FDFBF7;--warm:#F5EDE3;--bark:#3D3229;--bark-light:#6B5E52;
+            --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+            --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+            --radius:12px;--radius-lg:20px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+        nav.scrolled{box-shadow:var(--shadow-md)}
+        .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+        .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+        .nav-logo span{color:var(--sage)}
+        .nav-links{display:flex;gap:8px;align-items:center}
+        .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+        .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+        .nav-links a.cta{background:var(--sage);color:var(--white)}
+        .nav-links a.cta:hover{background:var(--bark)}
+        .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+        .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+        .article-header{padding:100px 24px 40px;max-width:760px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+        .back-link:hover{color:var(--bark)}
+        .series-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(139,158,126,0.15);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+        .series-badge .tag{font-size:0.75rem;font-weight:600;color:var(--sage);letter-spacing:0.05em}
+        .article-header h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;color:var(--bark);line-height:1.35;letter-spacing:-0.02em;margin-bottom:16px}
+        .article-meta{font-size:0.88rem;color:var(--text-light);display:flex;align-items:center;gap:16px}
+        .article-meta .author{font-weight:500;color:var(--bark)}
+        .article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
+
+        /* Style A — Sage 飲食筆記／減脂觀念 */
+        .css-cover{width:100%;height:240px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,#A8BF9A 0%,#8B9E7E 50%,#6E8260 100%)}
+        .css-cover::before{content:'';position:absolute;top:-40px;left:-40px;width:180px;height:180px;border:2px solid rgba(255,255,255,0.2);border-radius:50%}
+        .css-cover::after{content:'';position:absolute;bottom:20px;right:20px;width:60px;height:60px;border:1px solid rgba(255,255,255,0.15);border-radius:50%}
+        .css-cover .cover-cat{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:8px}
+        .css-cover .cover-title{font-family:'Playfair Display',serif;font-size:1.3rem;line-height:1.4;font-weight:600;color:var(--white)}
+
+        .article-content{max-width:760px;margin:0 auto;padding:0 24px 60px}
+        .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:20px}
+        .article-content h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:var(--bark);margin:48px 0 20px}
+        .article-content strong{color:var(--bark);font-weight:600}
+        .article-content em{color:var(--sage);font-style:normal;font-weight:500}
+
+        /* 表格樣式 */
+        .table-wrapper{overflow-x:auto;margin:28px 0;border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+        table{width:100%;border-collapse:collapse;font-size:0.9rem;background:var(--white)}
+        thead tr{background:var(--sage);color:var(--white)}
+        thead th{padding:12px 16px;text-align:left;font-weight:600;font-size:0.82rem;letter-spacing:0.04em;white-space:nowrap}
+        tbody tr{border-bottom:1px solid rgba(139,158,126,0.15)}
+        tbody tr:last-child{border-bottom:none}
+        tbody tr.subtotal{background:rgba(139,158,126,0.08);font-weight:600}
+        tbody tr.total-row{background:var(--bark);color:var(--white);font-weight:700}
+        tbody tr.total-row td{color:var(--white)}
+        tbody td{padding:10px 16px;vertical-align:middle;white-space:nowrap}
+        tbody tr:hover:not(.total-row){background:var(--sage-pale)}
+        .td-cat{color:var(--sage);font-weight:600;font-size:0.8rem}
+
+        /* 小火鍋簡化表格 */
+        .simple-table{width:100%;border-collapse:collapse;font-size:0.92rem;background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+        .simple-table thead tr{background:var(--sage);color:var(--white)}
+        .simple-table thead th{padding:11px 18px;text-align:left;font-weight:600;font-size:0.82rem;letter-spacing:0.04em}
+        .simple-table tbody tr{border-bottom:1px solid rgba(139,158,126,0.15)}
+        .simple-table tbody tr:last-child{border-bottom:none;background:var(--bark);font-weight:700}
+        .simple-table tbody tr:last-child td{color:var(--white)}
+        .simple-table tbody td{padding:10px 18px}
+        .simple-table tbody tr:hover:not(:last-child){background:var(--sage-pale)}
+
+        .pull-quote{border-left:4px solid var(--sage);background:var(--sage-pale);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:28px 0}
+        .pull-quote p{font-size:1.02rem;color:var(--bark);line-height:1.9;margin:0}
+
+        .key-point{background:var(--bark);color:var(--white);border-radius:var(--radius);padding:22px 26px;margin:32px 0}
+        .key-point p{color:rgba(255,255,255,0.92);font-size:1rem;margin-bottom:0;line-height:1.9}
+        .key-point strong{color:var(--sage-light)}
+
+        .highlight-box{background:rgba(139,158,126,0.1);border:1px solid rgba(139,158,126,0.3);border-radius:var(--radius);padding:20px 24px;margin:28px 0}
+        .highlight-box p{font-size:0.98rem;color:var(--bark);line-height:1.9;margin:0}
+
+        .section-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:40px 0}
+        .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:rgba(139,158,126,0.3)}
+        .section-divider .dot{width:5px;height:5px;background:var(--sage);border-radius:50%;opacity:0.6}
+
+        .article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
+        .article-tags .tag{background:rgba(139,158,126,0.12);color:var(--sage);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
+
+        .related-articles{max-width:760px;margin:0 auto;padding:0 24px 48px}
+        .related-articles h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--bark);margin-bottom:16px;text-align:center}
+        .related-grid{display:flex;flex-direction:column;gap:8px}
+        .related-card{background:var(--white);border-radius:var(--radius);padding:13px 20px;text-decoration:none;border:1px solid rgba(139,158,126,0.15);transition:all .2s ease;text-align:center}
+        .related-card:hover{background:var(--sage-pale);border-color:var(--sage-light)}
+        .related-card .rc-h{font-size:.9rem;font-weight:500;color:var(--bark-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .related-card:hover .rc-h{color:var(--bark)}
+        .back-to-top{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px auto 0;height:36px;padding:0 18px;background:var(--sage);color:var(--white);border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:.82rem;font-weight:500;transition:background .2s ease;white-space:nowrap}
+        .back-to-top:hover{background:var(--bark)}
+        .back-to-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+        .article-footer{max-width:760px;margin:0 auto;padding:0 24px 80px}
+        .article-footer-divider{border:none;border-top:1px solid var(--sage-light);margin-bottom:36px}
+        .author-card{display:flex;align-items:center;gap:20px;background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)}
+        .author-avatar{width:64px;height:64px;border-radius:50%;background:var(--sage-pale);flex-shrink:0;overflow:hidden}
+        .author-avatar img{width:100%;height:100%;object-fit:cover}
+        .author-info h4{font-size:1rem;font-weight:500;color:var(--bark);margin-bottom:4px}
+        .author-info p{font-size:.85rem;color:var(--text-light);line-height:1.6}
+        .author-links{display:flex;gap:8px;margin-top:10px}
+        .author-links a{font-size:.8rem;padding:4px 12px;border-radius:50px;text-decoration:none;background:var(--sage-pale);color:var(--sage);font-weight:500;transition:all .2s ease}
+        .author-links a:hover{background:var(--sage);color:var(--white)}
+
+        footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+            .menu-toggle{display:block}
+            .article-header h1{font-size:1.7rem}
+            .author-card{flex-direction:column;text-align:center}
+            .author-links{justify-content:center}
+            tbody td, thead th{padding:8px 10px;font-size:0.8rem}
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="/index.html#podcast">Podcast</a>
+            <a href="/index.html#about">關於我</a>
+            <a href="/blog/index.html">Blog</a>
+            <a href="/qa/index.html">Q&amp;A</a>
+            <a href="/note/index.html">Note</a>
+            <a href="/index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <div class="series-badge"><span class="tag">飲食筆記</span></div>
+    <h1>火鍋，真的是外食安全牌嗎？</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 4 月 15 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <div class="css-cover">
+        <div class="cover-cat">飲食筆記 · 減脂觀念</div>
+        <div class="cover-title">火鍋，真的是外食安全牌嗎？</div>
+    </div>
+</div>
+
+<div class="article-content">
+
+    <p>火鍋好像一直是大家聚餐的首選——看起來健康，把菜跟肉丟進去燙一燙，不油不炸，感覺怎麼吃都不會出錯。</p>
+
+    <p>但火鍋要吃得低熱量，其實是需要技巧的。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <p>今天我去了一間吃到飽的火鍋店，用營養師的眼睛粗估了自己每樣食材的份量，結果一算：<strong>這一餐將近 1,500 大卡。</strong></p>
+
+    <p>而且這還是保守估算——研究顯示人們普遍會低估自己的飲食攝取量，更何況是吃到飽的場合。</p>
+
+    <p>如果換成一般人的拿法——加工火鍋料、沾醬、含糖飲料通通來——<strong>一餐落在 2,000 到 2,500 大卡也是自然。</strong></p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>我這一餐吃了什麼？</h2>
+
+    <p>我刻意壓低了澱粉，飯和麵只吃了一兩口，但「一兩口」換算下來大概也是 50g 左右了：</p>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>品項</th>
+                    <th>份量</th>
+                    <th>熱量</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>飯</td><td>50g</td><td>65 kcal</td></tr>
+                <tr><td>麵</td><td>50g</td><td>69 kcal</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>這兩樣加起來才 134 大卡，看起來很少——但問題根本不在澱粉。</p>
+
+    <p>仔細看這一餐的完整內容：</p>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>類別</th>
+                    <th>品項</th>
+                    <th>份量</th>
+                    <th>脂肪 (g)</th>
+                    <th>碳水 (g)</th>
+                    <th>蛋白質 (g)</th>
+                    <th>熱量 (kcal)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="td-cat" rowspan="3">澱粉類</td>
+                    <td>飯</td><td>50g</td><td>0.11</td><td>14.21</td><td>1.18</td><td>65</td>
+                </tr>
+                <tr>
+                    <td>麵</td><td>50g</td><td>1.03</td><td>12.50</td><td>2.25</td><td>69</td>
+                </tr>
+                <tr>
+                    <td>芋頭</td><td>25g</td><td>0.12</td><td>4.57</td><td>0.55</td><td>20</td>
+                </tr>
+                <tr>
+                    <td class="td-cat" rowspan="7">蛋白質類</td>
+                    <td>A5 和牛</td><td>80g</td><td>29.68</td><td>—</td><td>17.44</td><td>342</td>
+                </tr>
+                <tr>
+                    <td>蛤蜊</td><td>20小個</td><td>1.75</td><td>4.63</td><td>22.99</td><td>133</td>
+                </tr>
+                <tr>
+                    <td>板腱牛排</td><td>50g</td><td>4.53</td><td>—</td><td>13.18</td><td>97</td>
+                </tr>
+                <tr>
+                    <td>骨頭湯</td><td>200g</td><td>3.59</td><td>0.85</td><td>11.14</td><td>81</td>
+                </tr>
+                <tr>
+                    <td>魚</td><td>80g</td><td>0.74</td><td>—</td><td>14.21</td><td>67</td>
+                </tr>
+                <tr>
+                    <td>草蝦</td><td>50g</td><td>0.59</td><td>0.25</td><td>11.01</td><td>52</td>
+                </tr>
+                <tr>
+                    <td>豆腐</td><td>30g</td><td>1.20</td><td>1.40</td><td>2.28</td><td>24</td>
+                </tr>
+                <tr>
+                    <td class="td-cat">蛋白質類</td>
+                    <td>雞佛</td><td>30g</td><td>0.84</td><td>—</td><td>3.18</td><td>21</td>
+                </tr>
+                <tr>
+                    <td class="td-cat">蔬菜類</td>
+                    <td>蔬菜</td><td>150g</td><td>0.33</td><td>8.46</td><td>2.06</td><td>38</td>
+                </tr>
+                <tr>
+                    <td class="td-cat" rowspan="4">點心／其他</td>
+                    <td>蛋糕</td><td>50g</td><td>6.35</td><td>22.11</td><td>3.43</td><td>155</td>
+                </tr>
+                <tr>
+                    <td>冰淇淋</td><td>1份 (66g)</td><td>7.07</td><td>16.11</td><td>2.33</td><td>133</td>
+                </tr>
+                <tr>
+                    <td>焦糖布丁</td><td>50g</td><td>2.11</td><td>11.41</td><td>2.42</td><td>73</td>
+                </tr>
+                <tr>
+                    <td>蔬菜天婦羅</td><td>1塊</td><td>3.1</td><td>7</td><td>1</td><td>60</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="3"><strong>總計</strong></td>
+                    <td><strong>~61</strong></td>
+                    <td><strong>~97</strong></td>
+                    <td><strong>~110</strong></td>
+                    <td><strong>~1,430</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>熱量到底藏在哪裡？</h2>
+
+    <p>壓低澱粉是很多人去吃到飽或聚餐時的第一反應，但這往往是一個鬆懈的開始。</p>
+
+    <p>因為當你以為自己「已經在控制了」，注意力就從真正的問題上移開了。</p>
+
+    <p>看一下這一餐的脂肪分布就很清楚：<strong>光是 A5 和牛一樣食材，脂肪就將近 30g</strong>，佔這一餐總脂肪的將近一半。再加上甜點三樣（蛋糕＋冰淇淋＋布丁），又貢獻了超過 15g 的脂肪和將近 360 大卡。</p>
+
+    <div class="pull-quote">
+        <p>火鍋的熱量不是來自烹調方式，而是來自<strong>食材本身的油脂</strong>，以及在「燙青菜很健康」的心理掩護下，<strong>無意識疊加的份量</strong>。</p>
+    </div>
+
+    <p>這一餐我沒有吃加工火鍋料、沒有沾沙茶醬、沒有含糖飲料——就已經是這個數字了。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>那如果只是吃小火鍋呢？</h2>
+
+    <p>很多人會說：「我不去吃到飽，我都吃外面那種一鍋兩百塊的小火鍋，這樣總沒問題了吧？」</p>
+
+    <p>我來估算給你看：</p>
+
+    <div class="table-wrapper">
+        <table class="simple-table">
+            <thead>
+                <tr>
+                    <th>品項</th>
+                    <th>熱量估算</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>湯底（半鍋，豬骨或麻辣）</td><td>100–200 kcal</td></tr>
+                <tr><td>肉片（豬／牛，約 100g）</td><td>200–300 kcal</td></tr>
+                <tr><td>加工火鍋料（貢丸、魚餃、甜不辣各1）</td><td>150–250 kcal</td></tr>
+                <tr><td>蔬菜</td><td>30–50 kcal</td></tr>
+                <tr><td>白飯或冬粉</td><td>150–200 kcal</td></tr>
+                <tr><td>沾醬（沙茶＋蛋黃）</td><td>100–150 kcal</td></tr>
+                <tr><td><strong>合計</strong></td><td><strong>約 730–1,150 kcal</strong></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>平均一鍋，<strong>800 大卡以上是很合理的估算</strong>。</p>
+
+    <p>除非你刻意選清湯、不沾醬、以天然食材為主、選低脂肉品、控制飯量、克制甜點——否則小火鍋同樣可以悄悄破壞你的飲食計劃。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <div class="key-point">
+        <p>火鍋本身沒有問題，問題是它的形式讓人很難意識到自己吃了多少。我這一餐已經算是相當收斂了，但仍然佔了我 TDEE 的一半以上。如果當天的目標是減脂，這個數字<strong>早就超額了</strong>。</p>
+    </div>
+
+    <p>下次拿火鍋當安全牌之前，或許可以先問自己：<strong>我真的知道我拿了什麼嗎？</strong></p>
+
+    <div class="article-tags">
+        <span class="tag">飲食筆記</span>
+        <span class="tag">減脂觀念</span>
+        <span class="tag">熱量計算</span>
+        <span class="tag">外食攻略</span>
+        <span class="tag">火鍋</span>
+    </div>
+
+</div>
+
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../20260311book03/index.html" class="related-card">
+            <div class="rc-h">一天到底該吃多少熱量？TDEE 完整計算教學</div>
+        </a>
+        <a href="../20260311book02/index.html" class="related-card">
+            <div class="rc-h">低醣 vs 低脂，哪個才是真正的減肥關鍵？</div>
+        </a>
+        <a href="../20260312book05/index.html" class="related-card">
+            <div class="rc-h">減脂也可以吃點心？關於零食的真心話</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll',()=>{
+        document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+    });
+</script>
+</body>
+</html>
