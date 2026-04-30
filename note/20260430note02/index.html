@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>氣炸鍋會PM2.5、很可怕！？— Abby 營養師</title>
+  <meta name="description" content="學生媽媽說「氣炸鍋PPM很高很危險」，我回去查了資料，發現問題不在氣炸鍋，而是... ">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+      --cream:#FDFBF7;--bark:#3D3229;--bark-light:#6B5E52;
+      --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+      --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+      --radius:12px;--radius-lg:20px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+    nav.scrolled{box-shadow:var(--shadow-md)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+    .nav-logo span{color:var(--sage)}
+    .nav-links{display:flex;gap:8px;align-items:center}
+    .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+    .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+    .nav-links a.cta{background:var(--sage);color:var(--white)}
+    .nav-links a.cta:hover{background:var(--bark)}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+    .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+
+    /* ── HEADER ── */
+    .article-header{padding:100px 24px 16px;max-width:680px;margin:0 auto}
+    .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:20px;transition:color 0.2s ease}
+    .back-link:hover{color:var(--bark)}
+    .tag-row{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+    .life-badge{display:inline-flex;align-items:center;background:var(--sage-pale);border-radius:50px;padding:4px 12px}
+    .life-badge .tag{font-size:0.75rem;font-weight:600;color:var(--sage);letter-spacing:0.05em}
+    .article-header h1{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:600;color:var(--bark);line-height:1.4;letter-spacing:-0.02em;margin-bottom:10px}
+    .article-meta{font-size:0.85rem;color:var(--text-light)}
+
+    /* ── ARTICLE BODY ── */
+    .article-content{max-width:680px;margin:0 auto;padding:28px 24px 60px}
+    .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:24px}
+    .article-content p:last-child{margin-bottom:0}
+    .article-content strong{color:var(--bark);font-weight:700}
+    .article-content h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:600;color:var(--bark);margin:40px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--sage-pale)}
+    .article-content h2:first-of-type{margin-top:8px}
+
+    /* ── TABLE ── */
+    .table-wrap{overflow-x:auto;margin:8px 0 28px;border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+    table{width:100%;border-collapse:collapse;font-size:0.92rem;background:var(--white)}
+    thead tr{background:var(--sage);color:var(--white)}
+    thead th{padding:11px 16px;text-align:left;font-weight:600;font-size:0.85rem;letter-spacing:0.03em}
+    tbody tr{border-bottom:1px solid var(--sage-pale)}
+    tbody tr:last-child{border-bottom:none}
+    tbody td{padding:10px 16px;color:var(--text)}
+    tbody tr:nth-child(even){background:rgba(239,243,235,0.5)}
+    .highlight-row{background:rgba(193,127,89,0.08) !important}
+    .highlight-row td{color:var(--bark);font-weight:500}
+    .low-val{color:var(--sage);font-weight:700}
+    .high-val{color:var(--terracotta);font-weight:600}
+
+    /* ── CALLOUT ── */
+    .callout{background:var(--sage-pale);border-left:4px solid var(--sage);border-radius:0 var(--radius) var(--radius) 0;padding:18px 22px;margin:8px 0 28px;font-size:0.97rem;line-height:1.9}
+    .callout strong{color:var(--bark)}
+
+    /* ── SOURCE NOTE ── */
+    .source-note{font-size:0.8rem;color:var(--text-light);margin-top:-16px;margin-bottom:28px;font-style:italic}
+
+    /* ── DIVIDER ── */
+    .section-divider{border:none;border-top:1px solid var(--sage-light);margin:36px 0}
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav{max-width:680px;margin:0 auto;padding:28px 24px 80px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--sage-light)}
+    .btn-back{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--text-light);font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;border:1px solid var(--sage-light);background:var(--white);transition:all 0.2s ease}
+    .btn-back:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top{display:inline-flex;align-items:center;gap:6px;cursor:pointer;color:var(--text-light);font-family:'Noto Sans TC',sans-serif;font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;border:1px solid var(--sage-light);background:var(--white);transition:all 0.2s ease}
+    .btn-top:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+    /* ── FOOTER ── */
+    footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+      .menu-toggle{display:block}
+      .article-cover{height:220px}
+      .article-header h1{font-size:1.55rem}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../../index.html#podcast">Podcast</a>
+      <a href="../../index.html#about">關於我</a>
+      <a href="../../blog/index.html">Blog</a>
+      <a href="../../qa/index.html">Q&amp;A</a>
+      <a href="../../index.html#contact" class="cta">聯絡我</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HEADER ── -->
+<div class="article-header">
+  <a href="../../blog/index.html" class="back-link">← 回到 Blog</a>
+  <div class="tag-row">
+    <div class="life-badge"><span class="tag">Life</span></div>
+    <div class="life-badge"><span class="tag">空氣品質</span></div>
+  </div>
+  <h1>氣炸鍋會PM2.5、很可怕！？</h1>
+  <div class="article-meta">2026 年 4 月 30 日</div>
+</div>
+
+<!-- ── ARTICLE ── -->
+<div class="article-content">
+
+  <p>最近我習慣將雞蛋整顆丟進氣炸烤箱，180度、10分鐘，就能出爐那種蛋黃尚未全熟、帶有膏狀大約七分熟的蛋。我把這件事分享給學生媽媽，她聽了第一個反應是：「氣炸鍋的 ppm 很高！聽說使用時，空氣清淨機都會有危險的警告。」</p>
+
+  <p>我當下不知道怎麼回答，畢竟自己也不是空氣品質專家。不過我確實知道使用氣炸鍋時需要開抽油煙機，但轉念一想，我在烤蛋的時候根本沒用油，也幾乎沒什麼味道產生，於是我回去查了資料確認。</p>
+
+  <p>其實每次聽到這種「比較驚恐、令人擔心」的標題時，我心裡都會先懷疑：<strong>這是真的嗎？有沒有條件或情境的差異？</strong>我習慣先確認背景資訊，再來思考這件事跟自己有什麼關係，如果有影響又能怎麼預防。這是我一貫的思考路線，不然每聽到一件事就擔心一次，人生也太累了。</p>
+
+  <p>以下純粹根據這個主題，分享一下我的想法脈絡與資料搜集，我並不是空氣品質專家，如有錯誤請包涵。</p>
+
+  <hr class="section-divider">
+
+  <h2>首先，了解一下什麼叫做 PPM？</h2>
+
+  <p>PPM 是一種濃度單位，全名是「parts per million（百萬分之一）」，用來描述空氣中某種物質的比例有多高。日常對話中說的「氣炸鍋 PPM 很高」，通常是在說空氣中懸浮微粒的濃度，也就是跟我們常聽到的 PM2.5 相關。</p>
+
+  <h2>PM2.5 是什麼？</h2>
+
+  <p>PM2.5 指的是空氣中直徑小於等於 2.5 微米的細小懸浮微粒。2.5 微米有多小？<strong>大約是人類頭髮直徑的 28 分之一</strong>，肉眼根本看不見。</p>
+
+  <p>正因為它太小了，所以具有很強的穿透力，可以穿透肺部氣泡，<strong>直接進入血管中，隨著血液循環到全身</strong>。PM2.5 最常由燃燒行為產生，來源包括燃煤電廠、車輛排放、工業廢氣等。在台灣，燒香、燒紙錢也是 PM2.5 的重要來源之一；室內的話，煮飯炒菜、瓦斯烹調、停車場廢氣、影印碳粉、祭祀薰香煙霧都是常見來源。</p>
+
+  <p>長期吸入 PM2.5，可能提高心臟病、肺癌、慢性阻塞性肺疾病（COPD）、中風、第二型糖尿病、失智症等風險，也與不良的妊娠結果有關。</p>
+
+  <h2>PM2.5 到什麼濃度才算危險？</h2>
+
+  <p>這是最關鍵的問題。光說「有 PM2.5」不夠，要看濃度達到多少。以下是各單位的標準比較：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>單位／機構</th>
+          <th>24 小時平均標準</th>
+          <th>年平均標準</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>WHO（世界衛生組織）</td>
+          <td><span class="low-val">15 μg/m³</span></td>
+          <td>5 μg/m³</td>
+        </tr>
+        <tr>
+          <td>台灣環境部現行標準</td>
+          <td>35 μg/m³</td>
+          <td>15 μg/m³</td>
+        </tr>
+        <tr>
+          <td>台灣室內空氣品質標準</td>
+          <td>35 μg/m³</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>美國 EPA</td>
+          <td>35 μg/m³</td>
+          <td>12 μg/m³</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    💡 台灣現行法規標準是 24 小時均值 35 μg/m³，但 WHO 建議的更嚴格標準是 15 μg/m³。值得注意的是，國衛院認為台灣現行標準仍然會對身體產生影響，長遠目標應該繼續往下調整。意思是：「沒超過法規標準」和「絕對安全」，中間還是有段距離的。
+  </div>
+
+  <h2>回到我自己用氣炸鍋烤蛋這件事</h2>
+
+  <p>我的情境是：<strong>整顆雞蛋、無油、無調味</strong>，直接放進氣炸烤箱加熱。</p>
+
+  <p>2024 年，英國伯明罕大學發表了一項研究（刊載於期刊《Indoor Air》），比較了五種常見烹飪方式產生的 PM2.5 峰值濃度：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>烹飪方式</th>
+          <th>PM2.5 峰值濃度（μg/m³）</th>
+          <th>相對比較</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row">
+          <td>乾煎（Pan frying）</td>
+          <td><span class="high-val">92.9</span></td>
+          <td>最高</td>
+        </tr>
+        <tr>
+          <td>中式大火炒（Stir frying）</td>
+          <td>26.7</td>
+          <td>次高</td>
+        </tr>
+        <tr>
+          <td>油炸（Deep frying）</td>
+          <td>7.7</td>
+          <td>中等</td>
+        </tr>
+        <tr>
+          <td>水煮（Boiling）</td>
+          <td>0.7</td>
+          <td>極低</td>
+        </tr>
+        <tr>
+          <td><strong>氣炸（Air frying）</strong></td>
+          <td><span class="low-val">0.6</span></td>
+          <td><strong>最低，與水煮相當</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="source-note">資料來源：Pfrang et al. (2024). 'Impact of Cooking Methods on Indoor Air Quality.' Indoor Air, University of Birmingham.</p>
+
+  <p>氣炸鍋烹飪雞胸肉的 PM2.5 峰值只有 0.6 μg/m³，跟煮開水幾乎一樣低，<strong>遠低於 WHO 建議的 24 小時均值 15 μg/m³</strong>。我烤的是沒有任何油脂的雞蛋，產生的微粒只會更少。</p>
+
+  <p>研究人員的結論是：從乾煎或中式炒法改為使用氣炸鍋，能大幅降低室內空氣污染物的暴露量。</p>
+
+  <div class="callout">
+    ⚠️ 不過有一個重要但書：如果使用氣炸鍋時<strong>完全沒有通風</strong>，密閉空間中最高濃度可能達到 147 μg/m³；但只要開啟抽油煙機，平均最高濃度就能降到 18 μg/m³ 左右。所以問題不是「氣炸鍋」這個設備本身，而是你用它來做什麼、<strong>有沒有加油、有沒有開窗通風</strong>。
+  </div>
+
+  <hr class="section-divider">
+
+  <h2>最後，想說的是</h2>
+
+  <p>中式大火爆炒的油煙？大家習以為常。燒香拜拜？是文化傳統，不太有人想去量數值。室內點香薰蠟燭？療癒，不算污染。</p>
+
+  <p>但換成氣炸鍋，一看到空氣品質儀表跳動就嚇到了。可能很大程度上，因為氣炸鍋是相對新型的設備，容易被量測、被討論，然後媒體報導了什麼，你就怕什麼；沒被報導的，你以為它不存在。</p>
+
+  <p>我的意思不是說氣炸鍋完全沒問題，而是<strong>我們的注意力需要校準</strong>。先搞清楚數字的定義跟來源，再判斷是否需要擔心。</p>
+
+  <p>氣炸無油料理，在通風的環境下，比中式炒菜更無害。這件事不是幫氣炸鍋說話，是<strong>數字自己說話</strong>。</p>
+
+</div>
+
+<!-- ── BOTTOM NAV ── -->
+<div class="bottom-nav">
+  <a href="../../blog/index.html" class="btn-back">← 回到 Blog</a>
+  <button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    回頂部
+  </button>
+</div>
+
+<footer>
+  <p>© 2026 Abby Eat Life — Abby 營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
