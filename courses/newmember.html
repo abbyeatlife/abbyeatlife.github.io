@@ -3,1110 +3,487 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>初次面談｜認識你的身體與目標</title>
+<title>初次對焦｜Abby Eat Life</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital@0;1&display=swap');
 
   :root {
-    --primary: #2d6a4f;
-    --primary-light: #40916c;
-    --accent: #d4a373;
-    --accent-warm: #e07a5f;
-    --bg: #fafaf5;
-    --card-bg: #ffffff;
-    --text: #2b2b2b;
-    --text-light: #5a5a5a;
-    --border: #e8e4de;
-    --green-light: #d8f3dc;
-    --shadow: 0 2px 16px rgba(0,0,0,0.06);
-    --shadow-md: 0 4px 24px rgba(0,0,0,0.10);
+    --sage: #8B9E7E;
+    --sage-dark: #5a7050;
+    --terracotta: #C17F59;
+    --cream: #FDFBF7;
+    --bark: #3D3229;
+    --bark-light: #6b5a4e;
+    --border: #e2ddd8;
+    --card: #ffffff;
+    --shadow: 0 1px 12px rgba(61,50,41,0.07);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: 'Noto Sans TC', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.8;
-    font-size: 16px;
-  }
-
-  /* ── Hero ── */
-  .hero {
-    background: linear-gradient(135deg, #2d6a4f 0%, #40916c 55%, #74c69d 100%);
-    color: white;
-    padding: 72px 24px 56px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 300px; height: 300px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 50%;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -2px; left: 0; right: 0;
-    height: 44px;
-    background: var(--bg);
-    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
-  }
-  .hero .tag {
-    display: inline-block;
-    background: rgba(255,255,255,0.18);
-    backdrop-filter: blur(4px);
-    padding: 5px 20px;
-    border-radius: 20px;
-    font-size: 13px;
-    letter-spacing: 2px;
-    margin-bottom: 18px;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 5vw, 40px);
-    font-weight: 700;
-    margin-bottom: 10px;
-    line-height: 1.3;
-  }
-  .hero .subtitle {
+    background: var(--cream);
+    color: var(--bark);
+    line-height: 1.7;
     font-size: 15px;
-    font-weight: 300;
-    opacity: 0.85;
-    max-width: 480px;
-    margin: 0 auto;
+    min-height: 100vh;
   }
 
-  /* ── Layout ── */
-  .container { max-width: 760px; margin: 0 auto; padding: 40px 20px 60px; }
-
-  /* ── Section ── */
-  .section { margin-bottom: 40px; }
-  .section-header {
+  /* ── Top bar ── */
+  .topbar {
+    background: var(--sage-dark);
+    color: white;
+    padding: 14px 24px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid var(--green-light);
+    justify-content: space-between;
   }
-  .section-icon {
-    width: 40px; height: 40px;
-    background: var(--primary);
-    color: white;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
+  .topbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+    opacity: 0.95;
   }
-  .section h2 {
-    font-size: clamp(18px, 3vw, 22px);
-    font-weight: 700;
-    color: var(--primary);
-  }
-  .section-sub {
+  .topbar-date {
     font-size: 13px;
-    color: var(--text-light);
-    margin-top: 2px;
+    opacity: 0.75;
+  }
+
+  /* ── Main layout ── */
+  .page { max-width: 680px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  /* ── Section title ── */
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
   }
 
   /* ── Card ── */
   .card {
-    background: var(--card-bg);
-    border-radius: 18px;
-    padding: 28px;
+    background: var(--card);
+    border-radius: 14px;
+    padding: 24px;
     box-shadow: var(--shadow);
     border: 1px solid var(--border);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
 
-  /* ── Input Fields ── */
-  .field { margin-bottom: 20px; }
-  .field:last-child { margin-bottom: 0; }
-  .field label {
-    display: block;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 7px;
-    letter-spacing: 0.4px;
-  }
-  .field label .hint {
-    font-weight: 400;
-    color: var(--text-light);
-    font-size: 12px;
-    margin-left: 6px;
-  }
-  .field input[type="text"],
-  .field input[type="number"],
-  .field textarea,
-  .field select {
-    width: 100%;
-    padding: 11px 16px;
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
-    font-size: 15px;
-    font-family: inherit;
-    background: white;
-    color: var(--text);
-    transition: border-color 0.2s, box-shadow 0.2s;
-    -webkit-appearance: none;
-    appearance: none;
-    resize: vertical;
-  }
-  .field input:focus,
-  .field textarea:focus,
-  .field select:focus {
-    outline: none;
-    border-color: var(--primary-light);
-    box-shadow: 0 0 0 3px rgba(64,145,108,0.12);
-  }
-  .field textarea { min-height: 90px; line-height: 1.7; }
-
-  /* ── Two col grid ── */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .two-col { grid-template-columns: 1fr; } }
-  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
-  @media (max-width: 520px) { .three-col { grid-template-columns: 1fr; } }
-
-  /* ── Metric cards (body data) ── */
-  .metric-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 16px; }
-  @media (max-width: 520px) { .metric-row { grid-template-columns: 1fr 1fr; } }
-  .metric-card {
-    background: linear-gradient(135deg, #f6fbf8, #eef7f2);
-    border: 1.5px solid #c3e6d0;
-    border-radius: 14px;
-    padding: 16px 14px;
-    text-align: center;
-  }
-  .metric-card .mc-label {
-    font-size: 12px;
-    color: var(--text-light);
-    font-weight: 500;
-    margin-bottom: 8px;
-    display: block;
-  }
-  .metric-card input {
-    width: 100%;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    padding: 8px 10px;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--primary);
-    text-align: center;
-    font-family: inherit;
-    background: white;
-    transition: border-color 0.2s;
-  }
-  .metric-card input:focus {
-    outline: none;
-    border-color: var(--primary-light);
-  }
-  .metric-card .mc-unit {
-    font-size: 12px;
-    color: var(--text-light);
-    margin-top: 5px;
-    display: block;
-  }
-
-  /* ── Weight history visual ── */
-  .weight-track {
+  /* ── Name / Age row ── */
+  .name-row {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    margin-bottom: 8px;
+    grid-template-columns: 2fr 1fr;
+    gap: 14px;
   }
-  @media (max-width: 520px) { .weight-track { grid-template-columns: 1fr 1fr; } }
+
+  /* ── Metrics grid ── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 480px) {
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .name-row { grid-template-columns: 1fr 1fr; }
+  }
+
+  .metric-box {
+    background: #f8f6f2;
+    border-radius: 10px;
+    padding: 14px 12px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .metric-box.highlight {
+    background: linear-gradient(135deg, #f0f5ed, #e8f0e4);
+    border-color: #c3d9b8;
+  }
+  .metric-box label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--sage);
+    margin-bottom: 7px;
+    text-transform: uppercase;
+  }
+  .metric-box input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--bark);
+    text-align: center;
+    font-family: inherit;
+    outline: none;
+    padding: 0;
+  }
+  .metric-box input::placeholder { color: #ccc; font-weight: 400; font-size: 18px; }
+  .metric-box input[readonly] { color: var(--sage-dark); font-size: 20px; }
+  .metric-box .unit {
+    font-size: 11px;
+    color: var(--bark-light);
+    margin-top: 3px;
+    opacity: 0.7;
+  }
+
+  /* ── Weight row ── */
+  .weight-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  @media (max-width: 480px) { .weight-row { grid-template-columns: repeat(3, 1fr); } }
+
   .wt-box {
-    background: white;
-    border-radius: 14px;
-    padding: 16px 12px;
+    border-radius: 10px;
+    padding: 12px 10px;
     text-align: center;
     border: 1.5px solid var(--border);
-    box-shadow: var(--shadow);
+    background: white;
     position: relative;
-    overflow: hidden;
   }
   .wt-box::before {
     content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
+    display: block;
+    width: 32px;
+    height: 3px;
+    border-radius: 2px;
+    margin: 0 auto 8px;
   }
-  .wt-box.current::before { background: var(--primary); }
-  .wt-box.maintain::before { background: var(--accent); }
-  .wt-box.lightest::before { background: #74c69d; }
-  .wt-box.target::before { background: var(--accent-warm); }
-  .wt-box .wt-label { font-size: 12px; color: var(--text-light); margin-bottom: 8px; font-weight: 500; }
+  .wt-box.now::before   { background: var(--terracotta); }
+  .wt-box.best::before  { background: var(--sage); }
+  .wt-box.goal::before  { background: var(--sage-dark); }
+  .wt-box label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--bark-light);
+    margin-bottom: 6px;
+  }
   .wt-box input {
     width: 100%;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    padding: 7px 6px;
-    font-size: 22px;
-    font-weight: 900;
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    font-weight: 700;
     text-align: center;
     font-family: inherit;
-    background: #fafafa;
-    transition: border-color 0.2s;
+    outline: none;
+    padding: 0;
   }
-  .wt-box.current input { color: var(--primary); }
-  .wt-box.maintain input { color: #a07040; }
-  .wt-box.lightest input { color: #2d6a4f; }
-  .wt-box.target input { color: var(--accent-warm); }
-  .wt-box input:focus { outline: none; border-color: var(--primary-light); }
-  .wt-box .wt-unit { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+  .wt-box.now input   { color: var(--terracotta); }
+  .wt-box.best input  { color: var(--sage-dark); }
+  .wt-box.goal input  { color: var(--bark); }
+  .wt-box input::placeholder { color: #ddd; font-weight: 400; font-size: 18px; }
+  .wt-box .unit { font-size: 11px; color: var(--bark-light); opacity: 0.6; margin-top: 2px; }
 
-  /* ── Checkbox chips ── */
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-  .chip-label { cursor: pointer; }
-  .chip-label input { display: none; }
-  .chip-btn {
-    display: inline-block;
-    padding: 7px 16px;
-    border: 1.5px solid var(--border);
-    border-radius: 20px;
-    font-size: 14px;
-    font-family: inherit;
-    background: white;
-    color: var(--text-light);
-    transition: all 0.18s;
-    user-select: none;
-  }
-  .chip-label input:checked + .chip-btn {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: white;
-    font-weight: 500;
-  }
-
-  /* ── Radio pills ── */
-  .radio-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-  .pill-label { cursor: pointer; }
-  .pill-label input { display: none; }
-  .pill-btn {
-    display: flex; flex-direction: column; align-items: center;
-    padding: 10px 20px;
-    border: 1.5px solid var(--border);
-    border-radius: 14px;
-    font-size: 14px;
-    font-family: inherit;
-    background: white;
-    color: var(--text-light);
-    transition: all 0.18s;
-    min-width: 80px;
-    text-align: center;
-  }
-  .pill-btn small { font-size: 11px; margin-top: 2px; }
-  .pill-label input:checked + .pill-btn {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: white;
-  }
-
-  /* ── Scale (1-10) ── */
-  .scale-wrap { margin-top: 6px; }
-  .scale-row {
-    display: flex; gap: 6px; flex-wrap: wrap;
-  }
-  .scale-item { cursor: pointer; }
-  .scale-item input { display: none; }
-  .scale-dot {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    border: 1.5px solid var(--border);
-    background: white;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 700;
-    color: var(--text-light);
-    transition: all 0.18s;
-    cursor: pointer;
-  }
-  .scale-item input:checked + .scale-dot {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: white;
-  }
-  .scale-labels {
-    display: flex;
-    justify-content: space-between;
+  /* ── Field ── */
+  .field { margin-bottom: 16px; }
+  .field:last-child { margin-bottom: 0; }
+  .field label {
+    display: block;
     font-size: 12px;
-    color: var(--text-light);
-    margin-top: 6px;
-    padding: 0 4px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--sage-dark);
+    margin-bottom: 6px;
   }
-
-  /* ── Highlight quote ── */
-  .golden {
-    background: linear-gradient(135deg, #fff8e1, #fff3cd);
-    border-left: 4px solid var(--accent);
-    border-radius: 0 12px 12px 0;
-    padding: 16px 22px;
-    margin: 20px 0 0;
+  .field input[type="text"],
+  .field input[type="number"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 9px;
     font-size: 15px;
-    font-weight: 500;
-    color: #5a4a2f;
-    font-style: italic;
-  }
-
-  /* ── Progress bar at top ── */
-  .progress-bar {
+    font-family: inherit;
     background: white;
-    border-bottom: 1px solid var(--border);
-    padding: 14px 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    color: var(--bark);
+    outline: none;
+    transition: border-color 0.18s;
   }
-  .progress-label { font-size: 13px; color: var(--text-light); white-space: nowrap; }
-  .progress-track {
-    flex: 1;
-    height: 6px;
-    background: var(--border);
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
-    border-radius: 3px;
-    width: 0%;
-    transition: width 0.4s ease;
-  }
-  .progress-pct { font-size: 13px; font-weight: 700; color: var(--primary); width: 36px; text-align: right; }
+  .field input:focus { border-color: var(--sage); }
 
-  /* ── Summary panel ── */
-  .summary-panel {
-    display: none;
-    background: linear-gradient(135deg, #f0faf4, #e8f5ee);
-    border: 2px solid var(--primary-light);
-    border-radius: 20px;
-    padding: 32px 28px;
-    margin-top: 32px;
-  }
-  .summary-panel.show { display: block; }
-  .summary-panel h3 {
-    font-size: 20px; font-weight: 700;
-    color: var(--primary); margin-bottom: 20px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .summary-grid { grid-template-columns: 1fr; } }
-  .summary-item {
-    background: white;
-    border-radius: 12px;
+  /* ── Notepad textarea ── */
+  .notepad {
+    width: 100%;
     padding: 16px;
-    border: 1px solid var(--border);
-  }
-  .summary-item .si-label { font-size: 12px; color: var(--text-light); margin-bottom: 6px; font-weight: 500; }
-  .summary-item .si-value { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.6; }
-  .summary-notes {
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
     background: white;
-    border-radius: 12px;
-    padding: 20px;
-    margin-top: 16px;
-    border: 1px solid var(--border);
+    color: var(--bark);
+    outline: none;
+    resize: vertical;
+    min-height: 120px;
+    line-height: 1.8;
+    transition: border-color 0.18s;
   }
-  .summary-notes h4 { font-size: 14px; color: var(--primary); font-weight: 700; margin-bottom: 10px; }
-  .summary-notes p { font-size: 14px; color: var(--text); line-height: 1.8; white-space: pre-wrap; }
+  .notepad:focus { border-color: var(--sage); }
+  .notepad.large { min-height: 160px; }
 
-  /* ── Save Button ── */
+  /* ── Chief complaint ── */
+  .chief-box {
+    background: linear-gradient(135deg, #fdf8f3, #faf4ee);
+    border: 1.5px solid #e8d5c0;
+    border-radius: 12px;
+    padding: 18px;
+  }
+  .chief-box label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--terracotta);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .chief-box input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--bark);
+    outline: none;
+    line-height: 1.6;
+  }
+  .chief-box input::placeholder { color: #cbb89a; }
+
+  /* ── Spacer ── */
+  .spacer { height: 8px; }
+
+  /* ── Save button ── */
+  .save-wrap { margin-top: 28px; }
   .save-btn {
     display: block;
     width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, #e07a5f, #c1694f);
+    padding: 15px;
+    background: var(--sage-dark);
     color: white;
     border: none;
-    border-radius: 14px;
-    font-size: 17px;
+    border-radius: 12px;
+    font-size: 15px;
     font-weight: 700;
     font-family: inherit;
     cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 12px;
-    box-shadow: 0 4px 16px rgba(224,122,95,0.3);
     letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 4px 14px rgba(90,112,80,0.25);
   }
-  .save-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(224,122,95,0.4); }
-  .save-btn:disabled { background: #ccc; box-shadow: none; transform: none; cursor: not-allowed; }
+  .save-btn:hover { background: var(--sage); }
+  .save-btn:active { transform: scale(0.99); }
+  .save-btn:disabled { background: #b0b0a8; box-shadow: none; cursor: not-allowed; }
+
   .save-status {
     text-align: center;
-    margin-top: 12px;
-    font-size: 14px;
-    font-weight: 500;
-    min-height: 24px;
-  }
-  .save-status.success { color: var(--primary); }
-  .save-status.error { color: var(--accent-warm); }
-
-  /* ── CTA Button ── */
-  .cta-btn {
-    display: block;
-    width: 100%;
-    padding: 16px;
-    background: linear-gradient(135deg, var(--primary), var(--primary-light));
-    color: white;
-    border: none;
-    border-radius: 14px;
-    font-size: 17px;
-    font-weight: 700;
-    font-family: inherit;
-    cursor: pointer;
-    transition: all 0.2s;
-    margin-top: 32px;
-    box-shadow: 0 4px 16px rgba(45,106,79,0.3);
-    letter-spacing: 0.5px;
-  }
-  .cta-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(45,106,79,0.4); }
-  .cta-btn:active { transform: translateY(0); }
-
-  /* ── Note box ── */
-  .note {
-    background: #f7f5f0;
-    border-radius: 10px;
-    padding: 14px 18px;
+    margin-top: 10px;
     font-size: 13px;
-    color: var(--text-light);
-    margin-top: 12px;
+    font-weight: 500;
+    min-height: 20px;
   }
+  .save-status.ok  { color: var(--sage-dark); }
+  .save-status.err { color: var(--terracotta); }
 
-  /* ── Divider ── */
-  .divider { height: 1px; background: var(--border); margin: 8px 0 20px; }
-
+  /* ── Footer ── */
   .footer {
     text-align: center;
-    padding: 32px 20px;
-    color: var(--text-light);
-    font-size: 13px;
-    border-top: 1px solid var(--border);
+    padding: 24px 0 0;
+    font-size: 12px;
+    color: var(--bark-light);
+    opacity: 0.5;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
   }
 </style>
 </head>
 <body>
 
-<!-- Progress bar -->
-<div class="progress-bar">
-  <span class="progress-label">填寫進度</span>
-  <div class="progress-track"><div class="progress-fill" id="prog-fill"></div></div>
-  <span class="progress-pct" id="prog-pct">0%</span>
+<div class="topbar">
+  <span class="topbar-brand">Abby Eat Life｜初次對焦</span>
+  <span class="topbar-date" id="today-date"></span>
 </div>
 
-<!-- Hero -->
-<div class="hero">
-  <div class="tag">初次面談問卷</div>
-  <h1>認識你的身體<br>與改變的目標</h1>
-  <p class="subtitle">花幾分鐘填寫，讓我們的第一次對話更有效率</p>
-</div>
-
-<div class="container">
+<div class="page">
 
   <!-- ① 基本資料 -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon">👤</div>
-      <div>
-        <h2>基本資料</h2>
-        <div class="section-sub">姓名、年齡、讓我記住你</div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="two-col">
-        <div class="field">
-          <label>姓名 <span class="hint">你希望怎麼稱呼</span></label>
-          <input type="text" id="name" placeholder="例：Jessie">
-        </div>
-        <div class="field">
-          <label>年齡</label>
-          <input type="number" id="age" placeholder="例：42" min="10" max="99">
-        </div>
+  <div class="section-title">基本資料</div>
+  <div class="card">
+    <div class="name-row">
+      <div class="field">
+        <label>姓名</label>
+        <input type="text" id="name" placeholder="學員姓名">
       </div>
       <div class="field">
-        <label>職業 / 生活型態 <span class="hint">幫助了解你的日常節奏</span></label>
-        <input type="text" id="job" placeholder="例：百貨業排班制、需要久站、帶小孩">
+        <label>年齡</label>
+        <input type="number" id="age" placeholder="歲" min="10" max="99">
       </div>
     </div>
   </div>
 
   <!-- ② 體態數據 -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon">📊</div>
-      <div>
-        <h2>體態數據</h2>
-        <div class="section-sub">數字是我們的起點，不是評分標準</div>
+  <div class="section-title">體態數據</div>
+  <div class="card">
+    <div class="metrics-grid" style="margin-bottom:14px;">
+      <div class="metric-box">
+        <label>身高</label>
+        <input type="number" id="height" placeholder="162" step="0.5">
+        <div class="unit">cm</div>
+      </div>
+      <div class="metric-box">
+        <label>體重</label>
+        <input type="number" id="weight" placeholder="52" step="0.1">
+        <div class="unit">kg</div>
+      </div>
+      <div class="metric-box highlight">
+        <label>BMI</label>
+        <input type="text" id="bmi" placeholder="—" readonly>
+        <div class="unit">自動</div>
+      </div>
+      <div class="metric-box">
+        <label>體脂率</label>
+        <input type="number" id="bf" placeholder="24" step="0.1">
+        <div class="unit">%</div>
+      </div>
+      <div class="metric-box">
+        <label>腰圍</label>
+        <input type="number" id="waist" placeholder="70" step="0.5">
+        <div class="unit">cm</div>
+      </div>
+      <div class="metric-box">
+        <label>其他</label>
+        <input type="text" id="other-metric" placeholder="自填" style="font-size:14px;">
+        <div class="unit">骨骼肌/內臟脂等</div>
       </div>
     </div>
-    <div class="card">
-      <div class="field">
-        <label>基本數值</label>
-      </div>
-      <div class="metric-row">
-        <div class="metric-card">
-          <span class="mc-label">身高</span>
-          <input type="number" id="height" placeholder="162">
-          <span class="mc-unit">公分</span>
-        </div>
-        <div class="metric-card">
-          <span class="mc-label">目前體重</span>
-          <input type="number" id="weight-now" placeholder="52" step="0.1">
-          <span class="mc-unit">公斤</span>
-        </div>
-        <div class="metric-card">
-          <span class="mc-label">體脂率</span>
-          <input type="number" id="bf" placeholder="24" step="0.1">
-          <span class="mc-unit">%</span>
-        </div>
-        <div class="metric-card">
-          <span class="mc-label">腰圍</span>
-          <input type="number" id="waist" placeholder="70" step="0.5">
-          <span class="mc-unit">公分</span>
-        </div>
-        <div class="metric-card">
-          <span class="mc-label">其他數值</span>
-          <input type="text" id="muscle" placeholder="自填" style="font-size:14px;">
-          <span class="mc-unit">骨骼肌/內臟脂肪等</span>
-        </div>
-        <div class="metric-card">
-          <span class="mc-label">BMI（自動）</span>
-          <input type="text" id="bmi-display" placeholder="—" readonly style="background:#f0f0eb; color:var(--primary-light); cursor:default;">
-          <span class="mc-unit">kg/m²</span>
-        </div>
-      </div>
 
-      <div class="divider"></div>
-
-      <div class="field">
-        <label>體重歷程</label>
+    <div class="weight-row">
+      <div class="wt-box now">
+        <label>目前</label>
+        <input type="number" id="wt-now" placeholder="52" step="0.1">
+        <div class="unit">kg</div>
       </div>
-      <div class="weight-track">
-        <div class="wt-box current">
-          <div class="wt-label">🔴 目前</div>
-          <input type="number" id="wt-current" placeholder="52" step="0.1">
-          <div class="wt-unit">kg</div>
-        </div>
-        <div class="wt-box maintain">
-          <div class="wt-label">🟡 長期維持</div>
-          <input type="number" id="wt-maintain" placeholder="48" step="0.1">
-          <div class="wt-unit">kg</div>
-        </div>
-        <div class="wt-box lightest">
-          <div class="wt-label">🟢 最輕過</div>
-          <input type="number" id="wt-lightest" placeholder="46" step="0.1">
-          <div class="wt-unit">kg</div>
-        </div>
-        <div class="wt-box target">
-          <div class="wt-label">🎯 目標</div>
-          <input type="number" id="wt-target" placeholder="47" step="0.1">
-          <div class="wt-unit">kg</div>
-        </div>
+      <div class="wt-box best">
+        <label>最輕/維持</label>
+        <input type="number" id="wt-best" placeholder="46" step="0.1">
+        <div class="unit">kg</div>
       </div>
-      <div class="note">💡 「目標體重」不需要是最輕的那個數字，我們一起討論什麼對你才是合理的目標。</div>
-
-      <div class="divider"></div>
-
-      <div class="field">
-        <label>健檢數值 <span class="hint">若有健檢報告可填寫，沒有跳過</span></label>
-      </div>
-      <div class="metric-row" style="grid-template-columns: repeat(3,1fr);">
-        <div class="metric-card">
-          <span class="mc-label">空腹血糖</span>
-          <input type="number" id="lab-glucose" placeholder="—" step="1">
-          <span class="mc-unit">mg/dL（正常 &lt;100）</span>
-        </div>
-        <div class="metric-card">
-          <span class="mc-label">收縮壓 / 舒張壓</span>
-          <input type="text" id="lab-bp" placeholder="例：120/80" style="font-size:15px;">
-          <span class="mc-unit">mmHg</span>
-        </div>
-        <div class="metric-card">
-          <span class="mc-label">總膽固醇</span>
-          <input type="number" id="lab-tc" placeholder="—" step="1">
-          <span class="mc-unit">mg/dL（正常 &lt;200）</span>
-        </div>
-        <div class="metric-card">
-          <span class="mc-label">三酸甘油酯</span>
-          <input type="number" id="lab-tg" placeholder="—" step="1">
-          <span class="mc-unit">mg/dL（正常 &lt;150）</span>
-        </div>
-        <div class="metric-card">
-          <span class="mc-label">HDL 好膽固醇</span>
-          <input type="number" id="lab-hdl" placeholder="—" step="1">
-          <span class="mc-unit">mg/dL（女性 &gt;50）</span>
-        </div>
-        <div class="metric-card">
-          <span class="mc-label">LDL 壞膽固醇</span>
-          <input type="number" id="lab-ldl" placeholder="—" step="1">
-          <span class="mc-unit">mg/dL（正常 &lt;130）</span>
-        </div>
-      </div>
-      <div class="field" style="margin-top:16px;">
-        <label>其他健檢異常項目 <span class="hint">如尿酸、肝指數、腎功能等</span></label>
-        <input type="text" id="lab-other" placeholder="例：尿酸 7.2、GOT/GPT 偏高">
+      <div class="wt-box goal">
+        <label>目標</label>
+        <input type="number" id="wt-goal" placeholder="48" step="0.1">
+        <div class="unit">kg</div>
       </div>
     </div>
   </div>
 
-  <!-- ③ 目前飲食與運動 -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon">🥗</div>
-      <div>
-        <h2>目前的飲食與運動習慣</h2>
-        <div class="section-sub">你現在怎麼吃、怎麼動</div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="field">
-        <label>每天大概幾餐？用餐規律嗎？</label>
-        <input type="text" id="meals" placeholder="例：三餐，有時中餐來不及吃">
-      </div>
-      <div class="field">
-        <label>飲食偏好或習慣 <span class="hint">可多選</span></label>
-        <div class="chips">
-          <label class="chip-label"><input type="checkbox" data-group="diet-habits" value="清淡"><span class="chip-btn">飲食偏清淡</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="diet-habits" value="外食為主"><span class="chip-btn">外食為主</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="diet-habits" value="自煮為主"><span class="chip-btn">自煮為主</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="diet-habits" value="蛋白質有意識攝取"><span class="chip-btn">有意識吃蛋白質</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="diet-habits" value="堅果油脂"><span class="chip-btn">有加堅果油脂</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="diet-habits" value="低碳"><span class="chip-btn">低碳或減澱粉</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="diet-habits" value="甜食偏好"><span class="chip-btn">喜歡甜食</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="diet-habits" value="宵夜習慣"><span class="chip-btn">有宵夜習慣</span></label>
-        </div>
-      </div>
-      <div class="field">
-        <label>試過哪些飲食法？ <span class="hint">可多選</span></label>
-        <div class="chips">
-          <label class="chip-label"><input type="checkbox" data-group="diet-methods" value="間歇斷食"><span class="chip-btn">間歇斷食</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="diet-methods" value="生酮飲食"><span class="chip-btn">生酮飲食</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="diet-methods" value="低卡節食"><span class="chip-btn">低卡節食</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="diet-methods" value="高蛋白飲食"><span class="chip-btn">高蛋白飲食</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="diet-methods" value="地中海飲食"><span class="chip-btn">地中海飲食</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="diet-methods" value="代餐"><span class="chip-btn">代餐產品</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="diet-methods" value="無特殊飲食法"><span class="chip-btn">沒有特別嘗試</span></label>
-        </div>
-      </div>
-      <div class="field">
-        <label>補充說明（飲食法的心得、失敗原因等）</label>
-        <textarea id="diet-note" placeholder="例：間歇斷食做了三個月，剛開始有效，後來復胖…"></textarea>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="field">
-        <label>目前的運動習慣</label>
-        <div class="chips">
-          <label class="chip-label"><input type="checkbox" data-group="exercise" value="重訓"><span class="chip-btn">重訓 / 啞鈴</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="exercise" value="有氧"><span class="chip-btn">有氧運動</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="exercise" value="瑜珈伸展"><span class="chip-btn">瑜珈 / 伸展</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="exercise" value="步行"><span class="chip-btn">步行</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="exercise" value="幾乎不運動"><span class="chip-btn">幾乎不運動</span></label>
-        </div>
-      </div>
-      <div class="field">
-        <label>每週幾天、每次多久？</label>
-        <input type="text" id="exercise-freq" placeholder="例：每週 3–4 天，每次 45 分鐘">
-      </div>
+  <!-- ③ 主訴 -->
+  <div class="section-title">主訴</div>
+  <div class="card">
+    <div class="chief-box">
+      <label>今天來找我，最想解決的一件事</label>
+      <input type="text" id="chief" placeholder="一句話說出核心困擾…">
     </div>
   </div>
 
-  <!-- ④ 健康狀況 -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon">🩺</div>
-      <div>
-        <h2>健康狀況</h2>
-        <div class="section-sub">有助於設計更安全的計畫</div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="field">
-        <label>有無以下健康狀況？ <span class="hint">可多選</span></label>
-        <div class="chips">
-          <label class="chip-label"><input type="checkbox" data-group="health" value="甲狀腺問題"><span class="chip-btn">甲狀腺問題</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="health" value="多囊卵巢"><span class="chip-btn">多囊卵巢 PCOS</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="health" value="胰島素阻抗"><span class="chip-btn">胰島素阻抗</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="health" value="高血脂"><span class="chip-btn">高血脂</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="health" value="高血壓"><span class="chip-btn">高血壓</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="health" value="消化問題"><span class="chip-btn">消化問題</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="health" value="睡眠問題"><span class="chip-btn">睡眠問題</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="health" value="無"><span class="chip-btn">以上皆無</span></label>
-        </div>
-      </div>
-      <div class="field">
-        <label>月經週期規律嗎？有更年期相關症狀嗎？</label>
-        <div class="radio-pills">
-          <label class="pill-label"><input type="radio" name="period" value="規律"><span class="pill-btn">規律</span></label>
-          <label class="pill-label"><input type="radio" name="period" value="不規律"><span class="pill-btn">不規律</span></label>
-          <label class="pill-label"><input type="radio" name="period" value="有更年期症狀"><span class="pill-btn">有更年期症狀<small>熱潮紅、睡眠變差等</small></span></label>
-          <label class="pill-label"><input type="radio" name="period" value="已停經"><span class="pill-btn">已停經</span></label>
-        </div>
-      </div>
-      <div class="field">
-        <label>睡眠品質 & 壓力程度</label>
-        <div class="two-col">
-          <div>
-            <label style="font-size:12px; color:var(--text-light); font-weight:400; margin-bottom:6px; display:block;">每晚睡幾小時？</label>
-            <input type="number" id="sleep" placeholder="例：6.5" min="2" max="12" step="0.5">
-          </div>
-          <div>
-            <label style="font-size:12px; color:var(--text-light); font-weight:400; margin-bottom:6px; display:block;">睡眠品質（1–5）</label>
-            <select id="sleep-quality">
-              <option value="">選擇</option>
-              <option value="5">⭐⭐⭐⭐⭐ 很好</option>
-              <option value="4">⭐⭐⭐⭐ 還不錯</option>
-              <option value="3">⭐⭐⭐ 普通</option>
-              <option value="2">⭐⭐ 偏差</option>
-              <option value="1">⭐ 很差</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <label>日常壓力程度 <span class="hint">1＝很輕鬆　10＝非常大</span></label>
-        <div class="scale-wrap">
-          <div class="scale-row" id="stress-scale">
-            <!-- generated by JS -->
-          </div>
-          <div class="scale-labels">
-            <span>輕鬆</span>
-            <span>非常大</span>
-          </div>
-        </div>
-      </div>
-      <div class="field">
-        <label>其他補充（服藥、特殊狀況等）</label>
-        <textarea id="health-note" placeholder="例：長期服用甲狀腺藥物、最近健檢血脂偏高…"></textarea>
-      </div>
-    </div>
+  <!-- ④ 面談筆記 -->
+  <div class="section-title">面談筆記</div>
+  <div class="card">
+    <textarea class="notepad large" id="notes" placeholder="自由記錄——飲食習慣、運動狀況、壓力來源…"></textarea>
   </div>
 
-  <!-- ⑤ 目標與動力 -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon">🎯</div>
-      <div>
-        <h2>目標與改變動力</h2>
-        <div class="section-sub">這是最重要的一塊，請誠實回答</div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="field">
-        <label>找營養師的主要原因是？ <span class="hint">可多選</span></label>
-        <div class="chips">
-          <label class="chip-label"><input type="checkbox" data-group="reasons" value="體重停滯突破不了"><span class="chip-btn">體重停滯</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="reasons" value="體態鬆弛想改善線條"><span class="chip-btn">改善體態線條</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="reasons" value="不知道哪裡出問題"><span class="chip-btn">找不到問題點</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="reasons" value="荷爾蒙變化體重上升"><span class="chip-btn">荷爾蒙/年齡因素</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="reasons" value="想建立正確觀念"><span class="chip-btn">建立正確觀念</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="reasons" value="需要有人陪我執行"><span class="chip-btn">需要陪伴執行</span></label>
-          <label class="chip-label"><input type="checkbox" data-group="reasons" value="健康數值想改善"><span class="chip-btn">改善健康數值</span></label>
-        </div>
-      </div>
-      <div class="field">
-        <label>你最想改變的一件事是什麼？</label>
-        <textarea id="main-goal" placeholder="例：穿回以前的褲子、不想再看著腰圍越來越大…" style="min-height:80px;"></textarea>
-      </div>
-      <div class="field">
-        <label>是什麼讓你決定現在採取行動？<span class="hint">你的動力來源</span></label>
-        <textarea id="motivation" placeholder="例：今年健檢報告嚇到了、一直以來很自律但現在失控的感覺讓我很焦慮…" style="min-height:80px;"></textarea>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="field">
-        <label>你有多願意改變目前的飲食習慣？ <span class="hint">1＝很難改　10＝完全配合</span></label>
-        <div class="scale-wrap">
-          <div class="scale-row" id="change-scale"></div>
-          <div class="scale-labels"><span>很難改</span><span>完全配合</span></div>
-        </div>
-      </div>
-
-      <div class="field">
-        <label>你有沒有特別的顧慮或擔心的事情？</label>
-        <textarea id="concerns" placeholder="例：擔心太複雜執行不了、怕影響到家人的飲食、預算有限…" style="min-height:80px;"></textarea>
-      </div>
-    </div>
-    <div class="golden">謝謝你願意花時間填寫這些，這代表你已經踏出最難的第一步了。</div>
+  <!-- ⑤ 初步評估 -->
+  <div class="section-title">初步評估</div>
+  <div class="card">
+    <textarea class="notepad" id="assessment" placeholder="問題點在哪？可能的方向是什麼？"></textarea>
   </div>
 
-  <!-- ⑥ Abby 備忘 -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon">📝</div>
-      <div>
-        <h2>Abby 面談備忘</h2>
-        <div class="section-sub">這部分僅供 Abby 記錄，學生不需填寫</div>
-      </div>
-    </div>
-    <div class="card" style="background: linear-gradient(135deg, #fffbf5, #fff8ee); border-color: #f0d9b5;">
-      <div class="field">
-        <label style="color: #a07040;">面談日期</label>
-        <input type="text" id="session-date" placeholder="例：2026/05/14">
-      </div>
-      <div class="field">
-        <label style="color: #a07040;">初步評估與觀察</label>
-        <textarea id="coach-note" placeholder="例：更年期前期機率高，蛋白質可能不足，重訓需要更系統化…" style="min-height:100px;"></textarea>
-      </div>
-      <div class="field">
-        <label style="color: #a07040;">面談後行動計畫</label>
-        <textarea id="action-plan" placeholder="例：第一週先記錄飲食，下次帶 InBody 報告討論…" style="min-height:80px;"></textarea>
-      </div>
-    </div>
+  <!-- ⑥ 行動計畫 -->
+  <div class="section-title">行動計畫</div>
+  <div class="card">
+    <textarea class="notepad" id="action" placeholder="第一步做什麼？下次何時見？"></textarea>
   </div>
 
-  <!-- Generate Summary -->
-  <button class="cta-btn" onclick="generateSummary()">✨ 整理本次面談摘要</button>
-
-  <!-- Summary Panel -->
-  <div class="summary-panel" id="summary-panel">
-    <h3>📋 面談摘要</h3>
-    <div class="summary-grid" id="summary-grid"></div>
-    <div class="summary-notes" id="summary-notes-wrap" style="display:none;">
-      <h4>重點記錄</h4>
-      <p id="summary-notes-text"></p>
-    </div>
-    <button class="save-btn" id="save-btn" onclick="saveToSheets()" style="margin-top:24px;">💾 儲存到 Google Sheets</button>
+  <!-- 儲存 -->
+  <div class="save-wrap">
+    <button class="save-btn" id="save-btn" onclick="saveToSheets()">儲存到 Google Sheets</button>
     <div class="save-status" id="save-status"></div>
   </div>
 
-</div><!-- /container -->
+  <div class="footer">Abby Eat Life — 學員初次對焦記錄</div>
 
-<div class="footer">初次面談問卷 ｜ Abby Eat Life 營養指導</div>
+</div><!-- /page -->
 
 <script>
-  // ── Build scale buttons ──
-  function buildScale(containerId, name) {
-    const el = document.getElementById(containerId);
-    for (let i = 1; i <= 10; i++) {
-      el.innerHTML += `
-        <label class="scale-item">
-          <input type="radio" name="${name}" value="${i}">
-          <span class="scale-dot">${i}</span>
-        </label>`;
-    }
-  }
-  buildScale('stress-scale', 'stress');
-  buildScale('change-scale', 'change-willingness');
-
-  // ── BMI auto calc ──
-  function updateBMI() {
-    const h = parseFloat(document.getElementById('height').value);
-    const w = parseFloat(document.getElementById('weight-now').value);
-    if (h && w) {
-      const bmi = (w / ((h/100) ** 2)).toFixed(1);
-      document.getElementById('bmi-display').value = bmi;
-    }
-  }
-  document.getElementById('height').addEventListener('input', updateBMI);
-  document.getElementById('weight-now').addEventListener('input', updateBMI);
-
-  // ── Sync weight-now → wt-current ──
-  document.getElementById('weight-now').addEventListener('input', function() {
-    document.getElementById('wt-current').value = this.value;
-  });
-  document.getElementById('wt-current').addEventListener('input', function() {
-    document.getElementById('weight-now').value = this.value;
-  });
-
-  // ── Progress bar ──
-  const tracked = ['name','age','height','weight-now','wt-target','diet-note','exercise-freq','main-goal','motivation'];
-  function updateProgress() {
-    const filled = tracked.filter(id => {
-      const el = document.getElementById(id);
-      return el && el.value.trim() !== '';
-    }).length;
-    const pct = Math.round(filled / tracked.length * 100);
-    document.getElementById('prog-fill').style.width = pct + '%';
-    document.getElementById('prog-pct').textContent = pct + '%';
-  }
-  tracked.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.addEventListener('input', updateProgress);
-  });
-
-  // ── Get checked values ──
-  function getChecked(name) {
-    return [...document.querySelectorAll(`input[name="${name}"]:checked`)]
-      .map(el => el.value).join('、');
-  }
-  function getCheckedByGroup(groupName) {
-    return [...document.querySelectorAll(`input[data-group="${groupName}"]:checked`)]
-      .map(el => el.value).join('、');
-  }
-
-  // ── Generate Summary ──
-  function generateSummary() {
-    const name         = document.getElementById('name').value || '（未填）';
-    const age          = document.getElementById('age').value;
-    const job          = document.getElementById('job').value;
-    const height       = document.getElementById('height').value;
-    const weightNow    = document.getElementById('weight-now').value;
-    const bf           = document.getElementById('bf').value;
-    const waist        = document.getElementById('waist').value;
-    const muscle       = document.getElementById('muscle').value;
-    const bmi          = document.getElementById('bmi-display').value;
-    const wtMaintain   = document.getElementById('wt-maintain').value;
-    const wtLightest   = document.getElementById('wt-lightest').value;
-    const wtTarget     = document.getElementById('wt-target').value;
-    const meals        = document.getElementById('meals').value;
-    const exFreq       = document.getElementById('exercise-freq').value;
-    const sleep        = document.getElementById('sleep').value;
-    const sleepQ       = document.getElementById('sleep-quality').value;
-    const mainGoal     = document.getElementById('main-goal').value;
-    const motivation   = document.getElementById('motivation').value;
-    const concerns     = document.getElementById('concerns').value;
-    const dietNote     = document.getElementById('diet-note').value;
-    const healthNote   = document.getElementById('health-note').value;
-    const coachNote    = document.getElementById('coach-note').value;
-    const actionPlan   = document.getElementById('action-plan').value;
-    const sessionDate  = document.getElementById('session-date').value;
-    const labGlucose   = document.getElementById('lab-glucose').value;
-    const labBP        = document.getElementById('lab-bp').value;
-    const labTC        = document.getElementById('lab-tc').value;
-    const labTG        = document.getElementById('lab-tg').value;
-    const labHDL       = document.getElementById('lab-hdl').value;
-    const labLDL       = document.getElementById('lab-ldl').value;
-    const labOther     = document.getElementById('lab-other').value;
-
-    const dietHabits   = getCheckedByGroup('diet-habits');
-    const dietMethods  = getCheckedByGroup('diet-methods');
-    const exercise     = getCheckedByGroup('exercise');
-    const health       = getCheckedByGroup('health');
-    const period       = getChecked('period');
-    const stress       = getChecked('stress');
-    const changeWill   = getChecked('change-willingness');
-    const reasons      = getCheckedByGroup('reasons');
-
-    const labSummary = [
-      labGlucose ? `血糖 ${labGlucose}` : '',
-      labBP      ? `血壓 ${labBP}` : '',
-      labTC      ? `總膽固醇 ${labTC}` : '',
-      labTG      ? `三酸甘油酯 ${labTG}` : '',
-      labHDL     ? `HDL ${labHDL}` : '',
-      labLDL     ? `LDL ${labLDL}` : '',
-      labOther   ? labOther : '',
-    ].filter(Boolean).join('　');
-
-    const items = [
-      { label: '學員', value: `${name}${age ? '　' + age + '歲' : ''}${job ? '　' + job : ''}` },
-      { label: '面談日期', value: sessionDate || '—' },
-      { label: '身體數據', value: `${height ? height+'cm　' : ''}${weightNow ? weightNow+'kg　' : ''}BMI ${bmi || '—'}　體脂 ${bf || '—'}%　腰圍 ${waist || '—'}cm${muscle ? '　'+muscle : ''}` },
-      { label: '體重歷程', value: `長期維持 ${wtMaintain||'—'}kg　最輕 ${wtLightest||'—'}kg　目標 ${wtTarget||'—'}kg` },
-      { label: '健檢數值', value: labSummary || '未填寫' },
-      { label: '飲食習慣', value: dietHabits || '—' },
-      { label: '試過的飲食法', value: dietMethods || '—' },
-      { label: '運動習慣', value: (exercise ? exercise + (exFreq ? '　' + exFreq : '') : '—') },
-      { label: '健康狀況', value: (health || '—') + (period ? '　月經：' + period : '') },
-      { label: '睡眠 / 壓力', value: `睡眠 ${sleep||'—'}hrs　品質 ${sleepQ||'—'}/5　壓力 ${stress||'—'}/10` },
-      { label: '找營養師的原因', value: reasons || '—' },
-      { label: '改變意願', value: changeWill ? changeWill + '/10' : '—' },
-    ];
-
-    const grid = document.getElementById('summary-grid');
-    grid.innerHTML = items.map(i => `
-      <div class="summary-item">
-        <div class="si-label">${i.label}</div>
-        <div class="si-value">${i.value}</div>
-      </div>`).join('');
-
-    const notesWrap = document.getElementById('summary-notes-wrap');
-    const noteLines = [
-      mainGoal   ? `【最想改變的事】${mainGoal}` : '',
-      motivation ? `【改變動力】${motivation}` : '',
-      concerns   ? `【顧慮】${concerns}` : '',
-      dietNote   ? `【飲食補充】${dietNote}` : '',
-      healthNote ? `【健康補充】${healthNote}` : '',
-      coachNote  ? `【Abby 觀察】${coachNote}` : '',
-      actionPlan ? `【行動計畫】${actionPlan}` : '',
-    ].filter(Boolean).join('\n\n');
-
-    if (noteLines) {
-      document.getElementById('summary-notes-text').textContent = noteLines;
-      notesWrap.style.display = 'block';
-    } else {
-      notesWrap.style.display = 'none';
-    }
-
-    const panel = document.getElementById('summary-panel');
-    panel.classList.add('show');
-    panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  // ── Save to Google Sheets ──
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxe-a1kQmmGKDiMCL6srfeSPlFcmEQAkHAShznesWrfADZxfVNSU5D9Dv_iB7l_KvrSrw/exec';
 
+  // ── Today's date ──
+  const today = new Date();
+  document.getElementById('today-date').textContent =
+    today.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' });
+
+  // ── BMI auto calc ──
+  function calcBMI() {
+    const h = parseFloat(document.getElementById('height').value);
+    const w = parseFloat(document.getElementById('weight').value);
+    if (h && w) {
+      document.getElementById('bmi').value = (w / (h/100) ** 2).toFixed(1);
+      // sync weight to wt-now
+      if (!document.getElementById('wt-now').value) {
+        document.getElementById('wt-now').value = w;
+      }
+    } else {
+      document.getElementById('bmi').value = '';
+    }
+  }
+  document.getElementById('height').addEventListener('input', calcBMI);
+  document.getElementById('weight').addEventListener('input', calcBMI);
+
+  // ── Save ──
   function saveToSheets() {
     const btn    = document.getElementById('save-btn');
     const status = document.getElementById('save-status');
+    const name   = document.getElementById('name').value.trim();
 
-    const name        = document.getElementById('name').value;
-    const age         = document.getElementById('age').value;
-    const job         = document.getElementById('job').value;
-    const height      = document.getElementById('height').value;
-    const weightNow   = document.getElementById('weight-now').value;
-    const bf          = document.getElementById('bf').value;
-    const waist       = document.getElementById('waist').value;
-    const muscle      = document.getElementById('muscle').value;
-    const labGlucose  = document.getElementById('lab-glucose').value;
-    const labBP       = document.getElementById('lab-bp').value;
-    const labTC       = document.getElementById('lab-tc').value;
-    const labTG       = document.getElementById('lab-tg').value;
-    const labHDL      = document.getElementById('lab-hdl').value;
-    const labLDL      = document.getElementById('lab-ldl').value;
-    const labOther    = document.getElementById('lab-other').value;
-    const bmi         = document.getElementById('bmi-display').value;
-    const wtMaintain  = document.getElementById('wt-maintain').value;
-    const wtLightest  = document.getElementById('wt-lightest').value;
-    const wtTarget    = document.getElementById('wt-target').value;
-    const meals       = document.getElementById('meals').value;
-    const exFreq      = document.getElementById('exercise-freq').value;
-    const sleep       = document.getElementById('sleep').value;
-    const sleepQ      = document.getElementById('sleep-quality').value;
-    const mainGoal    = document.getElementById('main-goal').value;
-    const motivation  = document.getElementById('motivation').value;
-    const concerns    = document.getElementById('concerns').value;
-    const dietNote    = document.getElementById('diet-note').value;
-    const healthNote  = document.getElementById('health-note').value;
-    const coachNote   = document.getElementById('coach-note').value;
-    const actionPlan  = document.getElementById('action-plan').value;
-    const sessionDate = document.getElementById('session-date').value;
-
-    const dietHabits  = getCheckedByGroup('diet-habits');
-    const dietMethods = getCheckedByGroup('diet-methods');
-    const exercise    = getCheckedByGroup('exercise');
-    const health      = getCheckedByGroup('health');
-    const period      = getChecked('period');
-    const stress      = getChecked('stress');
-    const changeWill  = getChecked('change-willingness');
-    const reasons     = getCheckedByGroup('reasons');
+    if (!name) {
+      status.textContent = '請填入學員姓名再儲存';
+      status.className = 'save-status err';
+      return;
+    }
 
     const payload = {
-      '面談日期': sessionDate || new Date().toLocaleDateString('zh-TW'),
-      '姓名': name, '年齡': age, '職業': job,
-      '身高': height, '體重': weightNow, '體脂': bf,
-      '腰圍': waist, '其他數值': muscle, 'BMI': bmi,
-      '長期維持體重': wtMaintain, '最輕體重': wtLightest, '目標體重': wtTarget,
-      '空腹血糖': labGlucose, '血壓': labBP, '總膽固醇': labTC,
-      '三酸甘油酯': labTG, 'HDL': labHDL, 'LDL': labLDL, '其他健檢': labOther,
-      '用餐習慣': meals, '飲食偏好': dietHabits, '試過飲食法': dietMethods,
-      '飲食補充': dietNote, '運動種類': exercise, '運動頻率': exFreq,
-      '健康狀況': health, '月經狀況': period,
-      '睡眠時數': sleep, '睡眠品質': sleepQ, '壓力指數': stress,
-      '找營養師原因': reasons, '最想改變的事': mainGoal,
-      '改變動力': motivation, '改變意願': changeWill,
-      '顧慮': concerns, '健康補充': healthNote,
-      'Abby觀察': coachNote, '行動計畫': actionPlan
+      '日期':     today.toLocaleDateString('zh-TW'),
+      '姓名':     name,
+      '年齡':     document.getElementById('age').value,
+      '身高':     document.getElementById('height').value,
+      '體重':     document.getElementById('weight').value,
+      'BMI':      document.getElementById('bmi').value,
+      '體脂率':   document.getElementById('bf').value,
+      '腰圍':     document.getElementById('waist').value,
+      '其他數值': document.getElementById('other-metric').value,
+      '目前體重': document.getElementById('wt-now').value,
+      '最輕維持': document.getElementById('wt-best').value,
+      '目標體重': document.getElementById('wt-goal').value,
+      '主訴':     document.getElementById('chief').value,
+      '面談筆記': document.getElementById('notes').value,
+      '初步評估': document.getElementById('assessment').value,
+      '行動計畫': document.getElementById('action').value,
     };
 
     btn.disabled = true;
@@ -1114,28 +491,22 @@
     status.textContent = '';
     status.className = 'save-status';
 
-    fetch(SHEET_URL, {
-      method: 'POST',
-      body: JSON.stringify(payload)
-    })
-    .then(r => r.json())
-    .then(data => {
-      if (data.status === 'success') {
-        btn.textContent = '✅ 已儲存！';
-        status.textContent = '資料已成功寫入 Google Sheets 🎉';
-        status.className = 'save-status success';
-      } else {
-        throw new Error('failed');
-      }
-    })
-    .catch(() => {
-      btn.disabled = false;
-      btn.textContent = '💾 儲存到 Google Sheets';
-      status.textContent = '⚠️ 儲存失敗，請再試一次';
-      status.className = 'save-status error';
-    });
+    fetch(SHEET_URL, { method: 'POST', body: JSON.stringify(payload) })
+      .then(r => r.json())
+      .then(data => {
+        if (data.status === 'success') {
+          btn.textContent = '✓ 已儲存';
+          status.textContent = name + ' 的記錄已寫入 Google Sheets';
+          status.className = 'save-status ok';
+        } else { throw new Error(); }
+      })
+      .catch(() => {
+        btn.disabled = false;
+        btn.textContent = '儲存到 Google Sheets';
+        status.textContent = '儲存失敗，請再試一次';
+        status.className = 'save-status err';
+      });
   }
 </script>
-
 </body>
 </html>
