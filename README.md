@@ -127,6 +127,10 @@
 | courses/lesson01.html| 飲食控制的科學基礎 |
 | courses/lesson02.html| 食物代換與份量指南 |
 | courses/lesson03.html| 數字告訴我什麼？ |
+| courses/mealplan.html| 這餐吃了什麼？ |
+| courses/tracker.html| 學生數據趨勢追蹤|
+| courses/newmember.html| 初次對焦 |
+| courses/Studentradarmap.html| 體態管理認知雷達 |
 
 ---
 
