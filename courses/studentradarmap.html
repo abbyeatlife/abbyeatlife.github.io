@@ -151,7 +151,7 @@ input[type=range] { width:100%; cursor:pointer; height:5px; }
 <div id="panel-overview" class="panel active">
   <div class="radar-area">
     <div class="area-label">五大認知維度</div>
-    <canvas id="canvas-overview" width="460" height="460"></canvas>
+    <div id="canvas-overview" style="width:100%;max-width:460px;"></div>
     <div class="radar-caption">↑ 示意圖：理論強、環境覺察弱的學員輪廓</div>
   </div>
   <div class="detail-area">
@@ -168,7 +168,7 @@ input[type=range] { width:100%; cursor:pointer; height:5px; }
 <div id="panel-assess" class="panel">
   <div class="radar-area">
     <div class="area-label">即時預覽</div>
-    <canvas id="canvas-assess" width="440" height="440"></canvas>
+    <div id="canvas-assess" style="width:100%;max-width:440px;"></div>
     <div id="assess-profile-card" class="profile-card"></div>
   </div>
   <div class="detail-area">
@@ -211,93 +211,108 @@ let savedProfiles = [
   { name:'小雅（範例）', scores:{ theory:3, practice:6, environment:7, strategy:5, noise:2 }, color:'#C17F59' },
 ];
 
-/* ── polar helper ── */
+/* ── polar helper (kept for legacy, drawRadar has its own) ── */
 function polar(angle, r, cx, cy) {
   const rad = angle * Math.PI / 180;
   return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
 }
 
-/* ── draw radar ── */
-function drawRadar(canvasId, sc, color, size) {
-  const canvas = document.getElementById(canvasId);
-  if (!canvas) return;
-  canvas.width = size; canvas.height = size;
-  const ctx = canvas.getContext('2d');
-  // reserve ~20% on each side for labels
-  const cx = size/2, cy = size/2, maxR = size * 0.30, levels = 5;
-  ctx.clearRect(0, 0, size, size);
+/* ── draw radar (SVG) ── */
+function drawRadar(containerId, sc, color, _size) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
 
-  // grid rings
-  for (let lv = 1; lv <= levels; lv++) {
-    const r = maxR * lv / levels;
-    ctx.beginPath();
-    DIMS.forEach((d, i) => {
-      const p = polar(d.angle, r, cx, cy);
-      i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
-    });
-    ctx.closePath();
-    ctx.strokeStyle = '#D4CFC9';
-    ctx.lineWidth = 1;
-    ctx.stroke();
-    if (lv % 2 === 0) { ctx.fillStyle = 'rgba(0,0,0,0.02)'; ctx.fill(); }
+  // viewBox: 0 0 500 500, centre at 250,250
+  // polygon area radius = 140, label zone = 140..210
+  const VB = 500, cx = 250, cy = 250, maxR = 140, levels = 5;
+
+  function polar(angle, r) {
+    const rad = angle * Math.PI / 180;
+    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
   }
 
-  // axis lines
+  // ── grid polygons
+  let gridSVG = '';
+  for (let lv = levels; lv >= 1; lv--) {
+    const r = maxR * lv / levels;
+    const pts = DIMS.map(d => { const p = polar(d.angle, r); return `${p.x},${p.y}`; }).join(' ');
+    const fill = lv % 2 === 0 ? 'rgba(0,0,0,0.025)' : 'none';
+    gridSVG += `<polygon points="${pts}" fill="${fill}" stroke="#D4CFC9" stroke-width="1"/>`;
+  }
+
+  // ── axis lines
+  let axisSVG = '';
   DIMS.forEach(d => {
-    const p = polar(d.angle, maxR, cx, cy);
-    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(p.x, p.y);
-    ctx.strokeStyle = '#D4CFC9'; ctx.lineWidth = 1; ctx.stroke();
+    const p = polar(d.angle, maxR);
+    axisSVG += `<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="#D4CFC9" stroke-width="1"/>`;
   });
 
-  // score level labels
-  const labelSize = Math.max(10, Math.round(size * 0.028));
+  // ── grid number labels (along top axis, slight offset)
+  let numSVG = '';
   [2,4,6,8,10].forEach(v => {
-    const p = polar(-90, maxR * v / 10, cx, cy);
-    ctx.fillStyle = '#B0A898';
-    ctx.font = `${labelSize}px Noto Sans TC`;
-    ctx.textAlign = 'left';
-    ctx.fillText(v, p.x + 3, p.y);
+    const p = polar(-90, maxR * v / 10);
+    numSVG += `<text x="${p.x+5}" y="${p.y+4}" font-size="11" fill="#B0A898" font-family="Noto Sans TC">${v}</text>`;
   });
 
-  // data polygon
-  ctx.beginPath();
-  DIMS.forEach((d, i) => {
+  // ── data polygon
+  const dataPts = DIMS.map(d => {
     const val = sc[d.id] || 0;
-    const p = polar(d.angle, maxR * val / 10, cx, cy);
-    i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
-  });
-  ctx.closePath();
-  ctx.fillStyle = color + '33'; ctx.fill();
-  ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.stroke();
+    const p = polar(d.angle, maxR * val / 10);
+    return `${p.x},${p.y}`;
+  }).join(' ');
+  const dataSVG = `<polygon points="${dataPts}" fill="${color}33" stroke="${color}" stroke-width="2.5" stroke-linejoin="round"/>`;
 
-  // dots
+  // ── dots
+  let dotsSVG = '';
   DIMS.forEach(d => {
     const val = sc[d.id] || 0;
-    const p = polar(d.angle, maxR * val / 10, cx, cy);
-    ctx.beginPath(); ctx.arc(p.x, p.y, Math.max(4, size*0.013), 0, Math.PI*2);
-    ctx.fillStyle = color; ctx.fill();
-    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+    const p = polar(d.angle, maxR * val / 10);
+    dotsSVG += `<circle cx="${p.x}" cy="${p.y}" r="5.5" fill="${color}" stroke="white" stroke-width="2"/>`;
   });
 
-  // labels — pushed further out with size-relative offset
-  const nameSize = Math.max(13, Math.round(size * 0.038));
-  const subSize  = Math.max(11, Math.round(size * 0.028));
-  const labelGap = maxR + size * 0.14;   // bigger gap so text won't overlap
-
+  // ── labels — each axis gets a foreignObject so text wraps naturally
+  let labelSVG = '';
   DIMS.forEach(d => {
-    const p = polar(d.angle, labelGap, cx, cy);
-    let anchor = 'center';
-    if (p.x > cx + 8) anchor = 'left';
-    else if (p.x < cx - 8) anchor = 'right';
-    ctx.textAlign = anchor;
-    ctx.font = `bold ${nameSize}px Noto Sans TC`;
-    ctx.fillStyle = d.color;
-    ctx.fillText(d.label, p.x, p.y);
-    ctx.font = `${subSize}px Noto Sans TC`;
-    ctx.fillStyle = '#9A8E86';
-    ctx.fillText(d.sub, p.x, p.y + nameSize + 2);
+    const labelR = maxR + 58;   // distance from centre to label anchor
+    const p = polar(d.angle, labelR);
+
+    // box width/height for foreignObject
+    const bw = 110, bh = 54;
+    // align: left-aligned for right side, right-aligned for left side, centre for top/bottom
+    let textAlign = 'center';
+    if (p.x > cx + 20) textAlign = 'left';
+    else if (p.x < cx - 20) textAlign = 'right';
+
+    // offset the box so the anchor point is in the correct spot
+    let bx = p.x - bw / 2;
+    if (textAlign === 'left')  bx = p.x - 4;
+    if (textAlign === 'right') bx = p.x - bw + 4;
+    const by = p.y - bh / 2;
+
+    labelSVG += `
+      <foreignObject x="${bx}" y="${by}" width="${bw}" height="${bh}">
+        <div xmlns="http://www.w3.org/1999/xhtml"
+          style="font-family:'Noto Sans TC',sans-serif;text-align:${textAlign};line-height:1.3;">
+          <div style="font-weight:700;font-size:14px;color:${d.color};">${d.label}</div>
+          <div style="font-size:11px;color:#9A8E86;margin-top:2px;">${d.sub}</div>
+        </div>
+      </foreignObject>`;
   });
+
+  container.innerHTML = `
+    <svg viewBox="0 0 ${VB} ${VB}" xmlns="http://www.w3.org/2000/svg"
+      style="width:100%;height:auto;display:block;overflow:visible;">
+      ${gridSVG}
+      ${axisSVG}
+      ${numSVG}
+      ${dataSVG}
+      ${dotsSVG}
+      ${labelSVG}
+    </svg>`;
 }
+
+/* ── compare: tile radar uses inline SVG div ── */
+function tileRadarId(idx) { return 'canvas-tile-' + idx; }
 
 /* ── profile shape ── */
 function getShape(sc) {
@@ -369,6 +384,10 @@ function setScore(id, val) {
   updateAssess();
 }
 
+function drawOverview() {
+  drawRadar('canvas-overview', { theory:8, practice:6, environment:4, strategy:5, noise:7 }, '#3D3229', 460);
+}
+
 function updateAssess() {
   drawRadar('canvas-assess', scores, '#3D3229', 440);
   const shape = getShape(scores);
@@ -419,12 +438,12 @@ function renderCompare() {
         <span class="tile-avg">${avg}</span>
       </div>
       <div class="tile-body">
-        <canvas id="canvas-tile-${idx}" width="280" height="280" style="display:block;margin:0 auto 10px"></canvas>
+        <div id="canvas-tile-${idx}" style="width:100%;max-width:300px;margin:0 auto 10px;"></div>
         ${bars}
         <div class="tile-shape" style="background:${shape.color}18;color:${shape.color}">${shape.label} — ${shape.desc}</div>
       </div>`;
     grid.appendChild(tile);
-    setTimeout(() => drawRadar('canvas-tile-' + idx, p.scores, p.color, 280), 50);
+    setTimeout(() => drawRadar('canvas-tile-' + idx, p.scores, p.color, 300), 50);
   });
 }
 
@@ -437,12 +456,8 @@ function switchTab(id) {
   if (id === 'overview') setTimeout(drawOverview, 50);
   if (id === 'assess') setTimeout(updateAssess, 50);
   if (id === 'compare') { renderCompare(); setTimeout(() => {
-    savedProfiles.forEach((_,i) => drawRadar('canvas-tile-'+i, savedProfiles[i].scores, savedProfiles[i].color, 280));
+    savedProfiles.forEach((_,i) => drawRadar('canvas-tile-'+i, savedProfiles[i].scores, savedProfiles[i].color, 300));
   }, 80); }
-}
-
-function drawOverview() {
-  drawRadar('canvas-overview', { theory:8, practice:6, environment:4, strategy:5, noise:7 }, '#3D3229', 460);
 }
 
 /* ── init ── */
