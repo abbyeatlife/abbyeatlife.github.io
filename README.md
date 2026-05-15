@@ -130,7 +130,7 @@
 | courses/mealplan.html| 這餐吃了什麼？ |
 | courses/tracker.html| 學生數據趨勢追蹤|
 | courses/newmember.html| 初次對焦 |
-| courses/Studentradarmap.html| 體態管理認知雷達 |
+| courses/studentradarmap.html| 體態管理認知雷達 |
 
 ---
 
