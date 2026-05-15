@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>學員知識地圖 — Abby Eat Life</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sage:#8B9E7E; --sage-light:#C2D1B3; --sage-pale:#EFF3EB;
+  --cream:#FDFBF7; --bark:#3D3229; --bark-light:#6B5E52;
+  --terracotta:#C17F59; --white:#FFFFFF;
+  --text:#2C2521; --text-light:#7A6E66;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans TC',sans-serif; background:var(--cream); color:var(--text); }
+
+/* ── Header ── */
+.header {
+  background:var(--bark); color:var(--white);
+  padding:24px 32px; border-bottom:3px solid var(--sage);
+}
+.header-label { font-size:10px; letter-spacing:4px; color:var(--sage); font-weight:600; margin-bottom:6px; }
+.header h1 { font-family:'Playfair Display',serif; font-size:clamp(20px,3.5vw,30px); font-weight:600; }
+
+/* ── Tabs ── */
+.tabs { display:flex; gap:8px; padding:16px 32px; background:var(--bark); border-bottom:1px solid rgba(255,255,255,0.1); }
+.tab {
+  padding:7px 18px; border-radius:20px; border:none; cursor:pointer;
+  font-family:'Noto Sans TC',sans-serif; font-size:13px; font-weight:500;
+  background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.6);
+  transition:all 0.2s;
+}
+.tab.active { background:var(--sage); color:var(--white); font-weight:700; }
+
+/* ── Panels ── */
+.panel { display:none; }
+.panel.active { display:flex; flex-wrap:wrap; min-height:calc(100vh - 130px); }
+
+/* ── Radar canvas area ── */
+.radar-area {
+  flex:1 1 340px; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; padding:32px 16px;
+  background:#FAF8F4; border-right:1px solid #E8E2D9;
+}
+.radar-area .area-label {
+  font-size:11px; letter-spacing:3px; color:var(--sage); font-weight:600; margin-bottom:16px;
+}
+.radar-caption { font-size:12px; color:var(--text-light); margin-top:8px; text-align:center; }
+
+/* ── Detail / Slider area ── */
+.detail-area { flex:1 1 320px; padding:28px 24px; overflow-y:auto; }
+
+/* ── Dimension cards (overview) ── */
+.dim-card {
+  border:1.5px solid #E8E2D9; border-radius:12px; padding:14px 16px;
+  margin-bottom:12px; cursor:pointer; background:var(--white); transition:all 0.2s;
+}
+.dim-card.open { border-color:var(--card-color,var(--sage)); background:var(--card-bg,var(--sage-pale)); }
+.dim-card-header { display:flex; align-items:center; gap:10px; }
+.dim-icon { font-size:18px; }
+.dim-name { font-weight:700; font-size:15px; }
+.dim-sub { font-size:11px; color:var(--text-light); margin-left:6px; }
+.dim-body { display:none; margin-top:12px; padding-top:12px; border-top:1px solid rgba(0,0,0,0.07); }
+.dim-card.open .dim-body { display:block; }
+.dim-desc { font-size:13px; color:var(--text); line-height:1.8; margin-bottom:12px; }
+.dim-range { display:flex; gap:8px; }
+.dim-range-item {
+  flex:1; border-radius:8px; padding:8px 10px; font-size:12px; line-height:1.6;
+}
+.dim-range-item .range-label { font-weight:600; font-size:11px; margin-bottom:3px; }
+
+/* ── Sliders (assess) ── */
+.student-name-wrap { margin-bottom:20px; }
+.field-label { font-size:11px; letter-spacing:2px; color:var(--sage); font-weight:600; margin-bottom:6px; display:block; }
+.student-name-input {
+  width:100%; padding:9px 12px; border-radius:8px;
+  border:1.5px solid #D4CFC9; font-family:'Noto Sans TC',sans-serif;
+  font-size:14px; background:#FAF8F4; color:var(--bark); outline:none;
+}
+.slider-row { margin-bottom:20px; }
+.slider-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; }
+.slider-name { font-size:14px; font-weight:700; }
+.slider-score { font-size:22px; font-weight:700; }
+.slider-hints { display:flex; justify-content:space-between; font-size:11px; color:var(--text-light); margin-bottom:5px; }
+input[type=range] { width:100%; cursor:pointer; height:4px; }
+.save-btn {
+  width:100%; padding:12px; border-radius:10px; border:none;
+  background:var(--bark); color:var(--white); font-family:'Noto Sans TC',sans-serif;
+  font-size:14px; font-weight:700; cursor:pointer; margin-top:8px; letter-spacing:1px;
+  transition:background 0.2s;
+}
+.save-btn:hover { background:#5A4A3D; }
+
+/* Profile summary card */
+.profile-card {
+  background:var(--white); border-radius:12px; padding:16px 20px;
+  border:2px solid var(--sage); text-align:center; margin-top:16px;
+}
+.profile-label { font-size:10px; letter-spacing:2px; color:var(--sage); font-weight:600; }
+.profile-shape { font-family:'Playfair Display',serif; font-size:19px; color:var(--bark); margin:4px 0; }
+.profile-desc { font-size:12px; color:var(--text-light); line-height:1.5; }
+.profile-avg { font-size:22px; font-weight:700; color:var(--sage); margin-top:8px; }
+
+/* ── Compare grid ── */
+.compare-area { padding:28px 32px; flex:1; width:100%; }
+.compare-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:20px; }
+.profile-tile { background:var(--white); border-radius:16px; overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+.tile-header { padding:12px 16px; display:flex; justify-content:space-between; align-items:center; }
+.tile-name { font-weight:700; font-size:15px; color:var(--white); }
+.tile-avg { font-size:20px; font-weight:700; color:var(--white); }
+.tile-body { padding:12px 16px 16px; }
+.bar-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+.bar-label { font-size:11px; width:64px; flex-shrink:0; }
+.bar-track { flex:1; height:6px; background:#F0EDE8; border-radius:3px; overflow:hidden; }
+.bar-fill { height:100%; border-radius:3px; transition:width 0.5s; }
+.bar-val { font-size:12px; font-weight:700; width:18px; text-align:right; }
+.tile-shape { margin-top:10px; padding:8px 10px; border-radius:8px; font-size:12px; font-weight:600; }
+.empty-state { text-align:center; color:var(--text-light); padding:60px 20px; font-size:14px; line-height:2; }
+
+/* Noise note */
+.noise-note {
+  margin-top:8px; padding:14px 16px; border-radius:12px;
+  border:1.5px dashed rgba(139,58,58,0.4); background:rgba(139,58,58,0.04);
+  font-size:13px; color:var(--text); line-height:1.8;
+}
+.noise-title { font-weight:700; color:#8B3A3A; margin-bottom:4px; }
+
+@media(max-width:640px){
+  .tabs { padding:12px 16px; flex-wrap:wrap; }
+  .radar-area,.detail-area { flex:1 1 100%; border-right:none; }
+  .radar-area { border-bottom:1px solid #E8E2D9; }
+  .compare-area { padding:20px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-label">ABBY EAT LIFE — 學員知識地圖</div>
+  <h1>體態管理認知雷達</h1>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('overview')">🗺 全貌說明</button>
+  <button class="tab" onclick="switchTab('assess')">✏️ 學員評估</button>
+  <button class="tab" onclick="switchTab('compare')">📊 比較檔案</button>
+</div>
+
+<!-- ── OVERVIEW ── -->
+<div id="panel-overview" class="panel active">
+  <div class="radar-area">
+    <div class="area-label">五大認知維度</div>
+    <canvas id="canvas-overview" width="320" height="320"></canvas>
+    <div class="radar-caption">↑ 示意圖：理論強、環境覺察弱的學員輪廓</div>
+  </div>
+  <div class="detail-area">
+    <div style="font-size:11px;letter-spacing:3px;color:var(--sage);font-weight:600;margin-bottom:16px;">維度說明</div>
+    <div id="dim-cards"></div>
+    <div class="noise-note">
+      <div class="noise-title">⚡ 噪音辨識</div>
+      是唯一不直接幫助你前進、但缺少它就會被帶跑的維度。市場上充斥偽裝成學理、做法、甚至情境對策的商業說法。這個維度越低，你繞路的機率越高。
+    </div>
+  </div>
+</div>
+
+<!-- ── ASSESS ── -->
+<div id="panel-assess" class="panel">
+  <div class="radar-area">
+    <div class="area-label">即時預覽</div>
+    <canvas id="canvas-assess" width="300" height="300"></canvas>
+    <div id="assess-profile-card" class="profile-card" style="width:270px;"></div>
+  </div>
+  <div class="detail-area">
+    <div class="student-name-wrap">
+      <label class="field-label">學員姓名</label>
+      <input class="student-name-input" id="student-name" type="text" value="新學員" oninput="updateAssess()">
+    </div>
+    <div class="field-label">各維度評分（1–10）</div>
+    <div id="slider-rows"></div>
+    <button class="save-btn" onclick="saveProfile()">儲存為學員檔案</button>
+  </div>
+</div>
+
+<!-- ── COMPARE ── -->
+<div id="panel-compare" class="panel">
+  <div class="compare-area">
+    <div style="font-size:11px;letter-spacing:3px;color:var(--sage);font-weight:600;margin-bottom:20px;" id="compare-count">學員檔案比較</div>
+    <div class="compare-grid" id="compare-grid"></div>
+  </div>
+</div>
+
+<script>
+const DIMS = [
+  { id:'theory',  label:'學理理解', sub:'科學原理與機制', color:'#4A6741', bg:'#EAF0E8', icon:'◈', angle:-90,
+    desc:'對飲食、代謝、荷爾蒙等生理機制的理解程度', low:'靠直覺與感覺行動', high:'理解背後的科學邏輯' },
+  { id:'practice',label:'工具掌握', sub:'方法與做法',   color:'#C17F59', bg:'#F5EDE3', icon:'◉', angle:-18,
+    desc:'能否運用熱量計算、食物分類、份量估計等具體工具', low:'不知道從何下手', high:'熟練運用各種飲食工具' },
+  { id:'environment',label:'環境掌握', sub:'現實條件評估', color:'#7B6B9A', bg:'#EDE8F5', icon:'◎', angle:54,
+    desc:'對自己生活環境限制的覺察與評估能力', low:'沒意識到環境阻力', high:'清楚知道自己的現實條件' },
+  { id:'strategy', label:'情境應變', sub:'彈性執行能力', color:'#4A7A9B', bg:'#E3EDF5', icon:'◆', angle:126,
+    desc:'面對各種生活情境時能否找到可執行的彈性方案', low:'只有標準解，沒有備案', high:'任何情境都能找到出路' },
+  { id:'noise',   label:'噪音辨識', sub:'市場資訊過濾', color:'#8B3A3A', bg:'#F5E8E8', icon:'⚡', angle:198,
+    desc:'識破市場迷思、偽科學與商業包裝說法的能力', low:'容易被捷徑吸引', high:'能快速辨識可信資訊' },
+];
+
+const PROFILE_COLORS = ['#4A6741','#C17F59','#7B6B9A','#4A7A9B','#8B3A3A','#5A8A7A'];
+let scores = { theory:5, practice:5, environment:5, strategy:5, noise:5 };
+let savedProfiles = [
+  { name:'小明（範例）', scores:{ theory:7, practice:4, environment:2, strategy:2, noise:3 }, color:'#4A6741' },
+  { name:'小雅（範例）', scores:{ theory:3, practice:6, environment:7, strategy:5, noise:2 }, color:'#C17F59' },
+];
+
+/* ── polar helper ── */
+function polar(angle, r, cx, cy) {
+  const rad = angle * Math.PI / 180;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+}
+
+/* ── draw radar ── */
+function drawRadar(canvasId, sc, color, size) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  canvas.width = size; canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  const cx = size/2, cy = size/2, maxR = size * 0.36, levels = 5;
+  ctx.clearRect(0, 0, size, size);
+
+  // grid rings
+  for (let lv = 1; lv <= levels; lv++) {
+    const r = maxR * lv / levels;
+    ctx.beginPath();
+    DIMS.forEach((d, i) => {
+      const p = polar(d.angle, r, cx, cy);
+      i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+    });
+    ctx.closePath();
+    ctx.strokeStyle = '#D4CFC9';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    if (lv % 2 === 0) { ctx.fillStyle = 'rgba(0,0,0,0.02)'; ctx.fill(); }
+  }
+
+  // axis lines
+  DIMS.forEach(d => {
+    const p = polar(d.angle, maxR, cx, cy);
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(p.x, p.y);
+    ctx.strokeStyle = '#D4CFC9'; ctx.lineWidth = 1; ctx.stroke();
+  });
+
+  // score level labels
+  [2,4,6,8,10].forEach(v => {
+    const p = polar(-90, maxR * v / 10, cx, cy);
+    ctx.fillStyle = '#B0A898'; ctx.font = '9px Noto Sans TC';
+    ctx.fillText(v, p.x + 3, p.y);
+  });
+
+  // data polygon
+  ctx.beginPath();
+  DIMS.forEach((d, i) => {
+    const val = sc[d.id] || 0;
+    const p = polar(d.angle, maxR * val / 10, cx, cy);
+    i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+  });
+  ctx.closePath();
+  ctx.fillStyle = color + '33'; ctx.fill();
+  ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.stroke();
+
+  // dots
+  DIMS.forEach(d => {
+    const val = sc[d.id] || 0;
+    const p = polar(d.angle, maxR * val / 10, cx, cy);
+    ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, Math.PI*2);
+    ctx.fillStyle = color; ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+  });
+
+  // labels
+  DIMS.forEach(d => {
+    const labelR = maxR + 30;
+    const p = polar(d.angle, labelR, cx, cy);
+    let anchor = 'center';
+    if (p.x > cx + 10) anchor = 'left';
+    else if (p.x < cx - 10) anchor = 'right';
+    ctx.textAlign = anchor;
+    ctx.font = 'bold 12px Noto Sans TC';
+    ctx.fillStyle = d.color;
+    ctx.fillText(d.label, p.x, p.y);
+    ctx.font = '9px Noto Sans TC';
+    ctx.fillStyle = '#B0A898';
+    ctx.fillText(d.sub, p.x, p.y + 13);
+  });
+}
+
+/* ── profile shape ── */
+function getShape(sc) {
+  const vals = DIMS.map(d => sc[d.id]);
+  const max = Math.max(...vals), min = Math.min(...vals);
+  if (max - min <= 2) return { label:'均衡型', color:DIMS[0].color, desc:'各維度發展平均，整體推進效果好' };
+  const weakest = DIMS[vals.indexOf(min)];
+  return { label: weakest.label + '缺口型', color: weakest.color, desc: weakest.label + '是主要突破口' };
+}
+
+function getAvg(sc) {
+  return (Object.values(sc).reduce((a,b)=>a+b,0)/5).toFixed(1);
+}
+
+/* ── build overview dim cards ── */
+function buildDimCards() {
+  const el = document.getElementById('dim-cards');
+  el.innerHTML = '';
+  DIMS.forEach(d => {
+    const card = document.createElement('div');
+    card.className = 'dim-card';
+    card.style.setProperty('--card-color', d.color);
+    card.style.setProperty('--card-bg', d.bg);
+    card.innerHTML = `
+      <div class="dim-card-header">
+        <span class="dim-icon" style="color:${d.color}">${d.icon}</span>
+        <span class="dim-name" style="color:${d.color}">${d.label}</span>
+        <span class="dim-sub">${d.sub}</span>
+      </div>
+      <div class="dim-body">
+        <div class="dim-desc">${d.desc}</div>
+        <div class="dim-range">
+          <div class="dim-range-item" style="background:#F5F2EC;">
+            <div class="range-label" style="color:var(--terracotta)">低分</div>${d.low}
+          </div>
+          <div class="dim-range-item" style="background:${d.bg};">
+            <div class="range-label" style="color:${d.color}">高分</div>${d.high}
+          </div>
+        </div>
+      </div>`;
+    card.onclick = () => { card.classList.toggle('open'); };
+    el.appendChild(card);
+  });
+}
+
+/* ── build sliders ── */
+function buildSliders() {
+  const el = document.getElementById('slider-rows');
+  el.innerHTML = '';
+  DIMS.forEach(d => {
+    const row = document.createElement('div');
+    row.className = 'slider-row';
+    row.innerHTML = `
+      <div class="slider-header">
+        <span class="slider-name" style="color:${d.color}">${d.icon} ${d.label}</span>
+        <span class="slider-score" style="color:${d.color}" id="score-${d.id}">${scores[d.id]}</span>
+      </div>
+      <div class="slider-hints"><span>${d.low}</span><span>${d.high}</span></div>
+      <input type="range" min="1" max="10" value="${scores[d.id]}"
+        style="accent-color:${d.color}"
+        oninput="setScore('${d.id}', this.value)">`;
+    el.appendChild(row);
+  });
+}
+
+function setScore(id, val) {
+  scores[id] = Number(val);
+  document.getElementById('score-' + id).textContent = val;
+  updateAssess();
+}
+
+function updateAssess() {
+  drawRadar('canvas-assess', scores, '#3D3229', 300);
+  const shape = getShape(scores);
+  const avg = getAvg(scores);
+  document.getElementById('assess-profile-card').innerHTML = `
+    <div class="profile-label">輪廓判讀</div>
+    <div class="profile-shape" style="color:${shape.color}">${shape.label}</div>
+    <div class="profile-desc">${shape.desc}</div>
+    <div class="profile-avg" style="color:${shape.color}">平均 ${avg} / 10</div>`;
+}
+
+/* ── save profile ── */
+function saveProfile() {
+  const name = document.getElementById('student-name').value || '未命名';
+  savedProfiles.push({
+    name,
+    scores: { ...scores },
+    color: PROFILE_COLORS[savedProfiles.length % PROFILE_COLORS.length]
+  });
+  renderCompare();
+  alert('已儲存「' + name + '」的檔案！');
+}
+
+/* ── compare tab ── */
+function renderCompare() {
+  const grid = document.getElementById('compare-grid');
+  const count = document.getElementById('compare-count');
+  count.textContent = '學員檔案比較（' + savedProfiles.length + ' 份）';
+  if (savedProfiles.length === 0) {
+    grid.innerHTML = '<div class="empty-state">尚未有任何學員檔案。<br>請先到「學員評估」頁面建立。</div>';
+    return;
+  }
+  grid.innerHTML = '';
+  savedProfiles.forEach((p, idx) => {
+    const shape = getShape(p.scores);
+    const avg = getAvg(p.scores);
+    const tile = document.createElement('div');
+    tile.className = 'profile-tile';
+    const bars = DIMS.map(d => `
+      <div class="bar-row">
+        <span class="bar-label" style="color:${d.color}">${d.label}</span>
+        <div class="bar-track"><div class="bar-fill" style="width:${p.scores[d.id]*10}%;background:${d.color}"></div></div>
+        <span class="bar-val" style="color:${d.color}">${p.scores[d.id]}</span>
+      </div>`).join('');
+    tile.innerHTML = `
+      <div class="tile-header" style="background:${p.color}">
+        <span class="tile-name">${p.name}</span>
+        <span class="tile-avg">${avg}</span>
+      </div>
+      <div class="tile-body">
+        <canvas id="canvas-tile-${idx}" width="220" height="220" style="display:block;margin:0 auto 10px"></canvas>
+        ${bars}
+        <div class="tile-shape" style="background:${shape.color}18;color:${shape.color}">${shape.label} — ${shape.desc}</div>
+      </div>`;
+    grid.appendChild(tile);
+    setTimeout(() => drawRadar('canvas-tile-' + idx, p.scores, p.color, 220), 50);
+  });
+}
+
+/* ── tab switching ── */
+function switchTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.target.classList.add('active');
+  if (id === 'overview') setTimeout(drawOverview, 50);
+  if (id === 'assess') setTimeout(updateAssess, 50);
+  if (id === 'compare') { renderCompare(); setTimeout(() => {
+    savedProfiles.forEach((_,i) => drawRadar('canvas-tile-'+i, savedProfiles[i].scores, savedProfiles[i].color, 220));
+  }, 80); }
+}
+
+function drawOverview() {
+  drawRadar('canvas-overview', { theory:8, practice:6, environment:4, strategy:5, noise:7 }, '#3D3229', 320);
+}
+
+/* ── init ── */
+buildDimCards();
+buildSliders();
+drawOverview();
+updateAssess();
+renderCompare();
+</script>
+</body>
+</html>
