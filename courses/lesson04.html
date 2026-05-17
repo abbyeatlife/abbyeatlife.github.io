@@ -533,7 +533,7 @@
     <div class="controls">
       <div class="control-group">
         <label>選擇食物</label>
-        <select id="protein-food" onchange="calcProtein()">
+        <select id="protein-food" onchange="updateProteinWeight(); calcProtein()">
           <optgroup label="低脂 (55kcal/份)">
             <option value="chicken_breast">雞胸肉 (生30g/份)</option>
             <option value="egg_white">蛋白 (生85g=2個/份)</option>
@@ -560,8 +560,8 @@
         </select>
       </div>
       <div class="control-group">
-        <label>目標蛋白質 (g)</label>
-        <input type="number" id="protein-target" value="21" min="1" max="200" onchange="calcProtein()">
+        <label>重量 (g)</label>
+        <input type="number" id="protein-weight" value="30" min="1" max="2000" onchange="calcProtein()">
       </div>
     </div>
     <div class="result-panel" id="protein-result"></div>
@@ -611,8 +611,8 @@
         </select>
       </div>
       <div class="control-group">
-        <label>份數</label>
-        <input type="number" id="veg-portions" value="2" min="0.5" max="20" step="0.5" onchange="calcVeg()">
+        <label>重量 (g)</label>
+        <input type="number" id="veg-weight" value="100" min="1" max="2000" onchange="calcVeg()">
       </div>
     </div>
     <div class="result-panel" id="veg-result"></div>
@@ -676,7 +676,7 @@
     <div class="controls">
       <div class="control-group">
         <label>選擇乳品</label>
-        <select id="dairy-food" onchange="calcDairy()">
+        <select id="dairy-food" onchange="updateDairyWeight(); calcDairy()">
           <optgroup label="全脂 (150kcal/份)">
             <option value="whole_milk">全脂鮮奶 (240cc=1杯/份)</option>
             <option value="whole_powder">全脂奶粉 (35g=4湯匙/份)</option>
@@ -694,8 +694,8 @@
         </select>
       </div>
       <div class="control-group">
-        <label>份數</label>
-        <input type="number" id="dairy-portions" value="1" min="0.5" max="10" step="0.5" onchange="calcDairy()">
+        <label>重量 (g / mL)</label>
+        <input type="number" id="dairy-weight" value="240" min="1" max="2000" onchange="calcDairy()">
       </div>
     </div>
     <div class="result-panel" id="dairy-result"></div>
@@ -715,7 +715,7 @@
     <div class="controls">
       <div class="control-group">
         <label>選擇食物</label>
-        <select id="fat-food" onchange="calcFat()">
+        <select id="fat-food" onchange="updateFatWeight(); calcFat()">
           <optgroup label="烹調用油">
             <option value="veg_oil">植物油 (5g=⅓湯匙/份)</option>
             <option value="lard">豬油 (5g=⅓湯匙/份)</option>
@@ -736,8 +736,8 @@
         </select>
       </div>
       <div class="control-group">
-        <label>份數</label>
-        <input type="number" id="fat-portions" value="1" min="0.5" max="20" step="0.5" onchange="calcFat()">
+        <label>重量 (g)</label>
+        <input type="number" id="fat-weight" value="5" min="1" max="500" onchange="calcFat()">
       </div>
     </div>
     <div class="result-panel" id="fat-result"></div>
@@ -866,12 +866,17 @@ function calcGrain() {
   window._grainCurrent = { name: d.name, amount: weight+'g', carb, prot, fat:0, cal, category:'grain' };
 }
 
+function updateProteinWeight() {
+  const key = document.getElementById('protein-food').value;
+  document.getElementById('protein-weight').value = proteinData[key].per1;
+}
+
 function calcProtein() {
   const key = document.getElementById('protein-food').value;
-  const targetProt = parseFloat(document.getElementById('protein-target').value)||7;
+  const weight = parseFloat(document.getElementById('protein-weight').value)||0;
   const d = proteinData[key];
-  const portions = targetProt / d.prot;
-  const weight = +(portions * d.per1).toFixed(0);
+  const portions = weight / d.per1;
+  const prot = +(portions * d.prot).toFixed(1);
   const fat = +(portions * d.fat).toFixed(1);
   const cal = +(portions * d.cal).toFixed(0);
   const badge = d.level === '低脂'
@@ -880,52 +885,54 @@ function calcProtein() {
     ? '<span class="fat-badge fat-mid">中脂</span>'
     : '<span class="fat-badge fat-high">高脂</span>';
   document.getElementById('protein-result').innerHTML = `
-    ${ri('蛋白質', targetProt, 'g')}
+    ${ri('蛋白質', prot, 'g')}
     ${ri('脂肪', fat, 'g')}
     ${ri('熱量', cal, 'kcal')}
     <div class="result-portions">
       <strong>${d.name}</strong> ${badge}<br>
-      需要 <strong>${weight}${d.unit}</strong><br>
-      = <strong>${+portions.toFixed(2)} 份</strong>豆魚蛋肉類
+      ${weight}g = <strong>${+portions.toFixed(2)} 份</strong><br>
+      <small>（1份=${d.per1}${d.unit}）</small>
     </div>
   `;
-  window._proteinCurrent = { name: d.name, amount: weight+d.unit, carb:0, prot:targetProt, fat, cal, category:'protein' };
-  // update compare table
+  window._proteinCurrent = { name: d.name, amount: weight+'g', carb:0, prot, fat, cal, category:'protein' };
   const tbody = document.getElementById('protein-compare-body');
   if (tbody) {
     const rows = Object.values(proteinData).map(p => {
-      const port = targetProt / p.prot;
+      const port = prot / p.prot;
       const w = +(port * p.per1).toFixed(0);
       const f = +(port * p.fat).toFixed(1);
       const c = +(port * p.cal).toFixed(0);
-      const badge = p.level === '低脂'
+      const fb = p.level === '低脂'
         ? `<span class="fat-badge fat-low">低脂</span>`
         : p.level === '中脂'
         ? `<span class="fat-badge fat-mid">中脂</span>`
         : `<span class="fat-badge fat-high">高脂</span>`;
-      return `<tr><td>${p.name}</td><td>${w}${p.unit}</td><td>${f}g</td><td>${c} kcal</td><td>${badge}</td></tr>`;
+      return `<tr><td>${p.name}</td><td>${w}${p.unit}</td><td>${f}g</td><td>${c} kcal</td><td>${fb}</td></tr>`;
     });
     tbody.innerHTML = rows.join('');
+    const th = document.querySelector('#protein-compare thead tr th:nth-child(2)');
+    if (th) th.textContent = `達${prot}g蛋白質需要`;
   }
 }
 
 function calcVeg() {
-  const portions = parseFloat(document.getElementById('veg-portions').value)||1;
+  const weight = parseFloat(document.getElementById('veg-weight').value)||0;
+  const portions = weight / 100;
   const carb = +(portions * 5).toFixed(1);
   const prot = +(portions * 1).toFixed(1);
   const cal = +(portions * 25).toFixed(0);
-  const rawG = +(portions * 100).toFixed(0);
+  const fname = document.getElementById('veg-food').selectedOptions[0].text.split('(')[0].trim();
   document.getElementById('veg-result').innerHTML = `
     ${ri('醣類', carb, 'g')}
     ${ri('蛋白質', prot, 'g')}
     ${ri('熱量', cal, 'kcal')}
     <div class="result-portions">
-      <strong>${portions} 份</strong> 蔬菜<br>
-      生重約 <strong>${rawG}g</strong><br>
-      熟約 <strong>${portions} 碟</strong>
+      <strong>${fname}</strong> ${weight}g<br>
+      = <strong>${+portions.toFixed(2)} 份</strong>蔬菜<br>
+      <small>熟約 ${+portions.toFixed(1)} 碟（半碗）</small>
     </div>
   `;
-  window._vegCurrent = { name: '蔬菜', amount: rawG+'g生重', carb, prot, fat:0, cal, category:'veg' };
+  window._vegCurrent = { name: fname, amount: weight+'g', carb, prot, fat:0, cal, category:'veg' };
 }
 
 function calcFruit() {
@@ -948,10 +955,16 @@ function calcFruit() {
   window._fruitCurrent = { name: fname, amount: weight+'g', carb, prot:0, fat:0, cal, category:'fruit' };
 }
 
+function updateDairyWeight() {
+  const key = document.getElementById('dairy-food').value;
+  document.getElementById('dairy-weight').value = dairyData[key].per1;
+}
+
 function calcDairy() {
   const key = document.getElementById('dairy-food').value;
-  const portions = parseFloat(document.getElementById('dairy-portions').value)||1;
+  const weight = parseFloat(document.getElementById('dairy-weight').value)||0;
   const d = dairyData[key];
+  const portions = weight / d.per1;
   const prot = +(portions * d.prot).toFixed(1);
   const fat = +(portions * d.fat).toFixed(1);
   const carb = +(portions * d.carb).toFixed(1);
@@ -962,26 +975,33 @@ function calcDairy() {
     ${ri('脂肪', fat, 'g')}
     ${ri('熱量', cal, 'kcal')}
     <div class="result-portions">
-      <strong>${d.name}</strong> （${d.level}）<br>
-      ${portions} 份 = ${+(portions * d.per1).toFixed(0)}${d.unit}
+      <strong>${d.name}</strong>（${d.level}）<br>
+      ${weight}${d.unit} = <strong>${+portions.toFixed(2)} 份</strong><br>
+      <small>（1份=${d.per1}${d.unit}）</small>
     </div>
   `;
-  window._dairyCurrent = { name: d.name, amount: +(portions*d.per1).toFixed(0)+d.unit, carb, prot, fat, cal, category:'dairy' };
+  window._dairyCurrent = { name: d.name, amount: weight+d.unit, carb, prot, fat, cal, category:'dairy' };
+}
+
+function updateFatWeight() {
+  const key = document.getElementById('fat-food').value;
+  document.getElementById('fat-weight').value = fatData[key].per1;
 }
 
 function calcFat() {
   const key = document.getElementById('fat-food').value;
-  const portions = parseFloat(document.getElementById('fat-portions').value)||1;
+  const weight = parseFloat(document.getElementById('fat-weight').value)||0;
   const d = fatData[key];
+  const portions = weight / d.per1;
   const fat = +(portions * d.fat).toFixed(1);
   const cal = +(portions * d.cal).toFixed(0);
-  const weight = +(portions * d.per1).toFixed(1);
   document.getElementById('fat-result').innerHTML = `
     ${ri('脂肪', fat, 'g')}
     ${ri('熱量', cal, 'kcal')}
     <div class="result-portions">
       <strong>${d.name}</strong><br>
-      ${portions} 份 = <strong>${weight}${d.unit}</strong>
+      ${weight}${d.unit} = <strong>${+portions.toFixed(2)} 份</strong><br>
+      <small>（1份=${d.per1}${d.unit}）</small>
     </div>
   `;
   window._fatCurrent = { name: d.name, amount: weight+d.unit, carb:0, prot:0, fat, cal, category:'fat' };
