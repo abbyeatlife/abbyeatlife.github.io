@@ -458,7 +458,60 @@
     flex: 1;
     min-width: 200px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    cursor: zoom-in;
+    transition: transform 0.15s, box-shadow 0.15s;
   }
+  .img-row img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(30,22,18,0.88);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    cursor: zoom-out;
+    backdrop-filter: blur(4px);
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img {
+    max-width: 92vw;
+    max-height: 88vh;
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    cursor: default;
+    animation: lbIn 0.2s ease;
+  }
+  @keyframes lbIn {
+    from { opacity: 0; transform: scale(0.93); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  .lightbox-close {
+    position: fixed;
+    top: 18px;
+    right: 22px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    font-size: 1.6rem;
+    line-height: 1;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+  .lightbox-close:hover { background: rgba(255,255,255,0.3); }
 
   @media (max-width: 600px) {
     header { padding: 16px; }
@@ -470,6 +523,12 @@
 </style>
 </head>
 <body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
+</div>
 
 <header>
   <h1>食物代換表</h1>
@@ -1159,6 +1218,21 @@ function toggleCompare(id) {
   el.classList.toggle('show');
 }
 
+// ===== LIGHTBOX =====
+function openLightbox(src, alt) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-img').alt = alt;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+});
+
 // ===== INIT =====
 calcGrain();
 calcProtein();
@@ -1166,6 +1240,11 @@ calcVeg();
 calcFruit();
 calcDairy();
 calcFat();
+
+// Bind lightbox to all img-zone images
+document.querySelectorAll('.img-row img').forEach(img => {
+  img.addEventListener('click', () => openLightbox(img.src, img.alt));
+});
 </script>
 </body>
 </html>
