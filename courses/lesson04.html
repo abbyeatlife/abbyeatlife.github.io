@@ -422,6 +422,44 @@
   .tab-section { display: none; }
   .tab-section.active { display: block; }
 
+  /* IMAGE ZONE */
+  .img-zone {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1.5px dashed #d8cfc8;
+  }
+  .img-zone-label {
+    font-size: 0.72rem;
+    color: #b0a090;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .img-zone-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e0d8d0;
+  }
+  .img-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .img-row img {
+    max-width: 100%;
+    max-height: 320px;
+    border-radius: 10px;
+    object-fit: contain;
+    background: #f5f0ea;
+    flex: 1;
+    min-width: 200px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+
   @media (max-width: 600px) {
     header { padding: 16px; }
     main { padding: 20px 12px 60px; }
@@ -516,6 +554,14 @@
         </tbody>
       </table>
     </div>
+    <div class="img-zone">
+      <div class="img-zone-label">參考圖片</div>
+      <div class="img-row">
+        <!-- 把圖片檔放在同一個資料夾，修改 src 的檔名即可 -->
+        <img src="主食類-份量代換大表.jpg" alt="全榖根莖類份量參考">
+        <img src="全榖根莖01.jpg" alt="全榖根莖類代換量">
+      </div>
+    </div>
   </div>
 </div>
 
@@ -573,6 +619,13 @@
         <tbody id="protein-compare-body"></tbody>
       </table>
     </div>
+    <div class="img-zone">
+      <div class="img-zone-label">參考圖片</div>
+      <div class="img-row">
+        <img src="豆魚蛋肉類-份量代換大表.jpg" alt="豆魚蛋肉類份量參考">
+        <img src="蛋白質02.jpg" alt="豆魚蛋肉代換量">
+      </div>
+    </div>
   </div>
 </div>
 
@@ -617,6 +670,12 @@
     </div>
     <div class="result-panel" id="veg-result"></div>
     <button class="add-meal-btn" onclick="addToMeal('veg')">＋ 加入今日餐盤</button>
+    <div class="img-zone">
+      <div class="img-zone-label">參考圖片</div>
+      <div class="img-row">
+        <img src="蔬菜類.jpg" alt="蔬菜類份量參考">
+      </div>
+    </div>
   </div>
 </div>
 
@@ -659,6 +718,12 @@
     </div>
     <div class="result-panel" id="fruit-result"></div>
     <button class="add-meal-btn" onclick="addToMeal('fruit')">＋ 加入今日餐盤</button>
+    <div class="img-zone">
+      <div class="img-zone-label">參考圖片</div>
+      <div class="img-row">
+        <img src="水果.jpg" alt="水果類份量參考">
+      </div>
+    </div>
   </div>
 </div>
 
@@ -700,6 +765,12 @@
     </div>
     <div class="result-panel" id="dairy-result"></div>
     <button class="add-meal-btn" onclick="addToMeal('dairy')">＋ 加入今日餐盤</button>
+    <div class="img-zone">
+      <div class="img-zone-label">參考圖片</div>
+      <div class="img-row">
+        <img src="低脂奶類.jpg" alt="乳品類代換量">
+      </div>
+    </div>
   </div>
 </div>
 
@@ -742,6 +813,12 @@
     </div>
     <div class="result-panel" id="fat-result"></div>
     <button class="add-meal-btn" onclick="addToMeal('fat')">＋ 加入今日餐盤</button>
+    <div class="img-zone">
+      <div class="img-zone-label">參考圖片</div>
+      <div class="img-row">
+        <img src="油脂02.jpg" alt="油脂類代換量">
+      </div>
+    </div>
   </div>
 </div>
 
