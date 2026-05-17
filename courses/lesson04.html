@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>食物代換表｜教學工具</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #8B9E7E;
+    --sage-light: #b8cba8;
+    --sage-pale: #e8f0e4;
+    --terra: #C17F59;
+    --terra-light: #e8b48a;
+    --cream: #FDFBF7;
+    --bark: #3D3229;
+    --bark-light: #6b5a4e;
+    --sand: #f5ede3;
+    --blue: #5b8fb9;
+    --blue-pale: #ddeeff;
+    --purple: #8a6fa0;
+    --purple-pale: #ede8f5;
+    --green-dark: #4a7a5e;
+    --shadow: 0 4px 20px rgba(61,50,41,0.10);
+    --radius: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--cream);
+    color: var(--bark);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--bark);
+    color: var(--cream);
+    padding: 24px 32px 20px;
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
+  }
+  header span {
+    font-size: 0.8rem;
+    color: var(--sage-light);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  /* TABS */
+  .tab-bar {
+    display: flex;
+    gap: 0;
+    padding: 0 32px;
+    background: var(--bark-light);
+    overflow-x: auto;
+  }
+  .tab-btn {
+    padding: 12px 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(253,251,247,0.6);
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    letter-spacing: 0.03em;
+  }
+  .tab-btn:hover { color: var(--cream); }
+  .tab-btn.active {
+    color: var(--cream);
+    border-bottom-color: var(--terra-light);
+  }
+
+  /* MAIN LAYOUT */
+  main { max-width: 900px; margin: 0 auto; padding: 32px 20px 60px; }
+
+  /* SECTION CARD */
+  .section-card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px;
+    margin-bottom: 28px;
+    border-left: 5px solid var(--sage);
+  }
+  .section-card.protein { border-left-color: var(--terra); }
+  .section-card.fat { border-left-color: #c0a030; }
+  .section-card.veg { border-left-color: var(--green-dark); }
+  .section-card.fruit { border-left-color: #e07070; }
+  .section-card.dairy { border-left-color: var(--blue); }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .badge {
+    font-size: 0.7rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 500;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--sage-pale);
+    color: var(--sage);
+    letter-spacing: 0.03em;
+  }
+  .section-card.protein .badge { background: #faeae0; color: var(--terra); }
+  .section-card.fat .badge { background: #fef9e0; color: #9a7010; }
+  .section-card.veg .badge { background: #e0f0e8; color: var(--green-dark); }
+  .section-card.fruit .badge { background: #fde8e8; color: #c05050; }
+  .section-card.dairy .badge { background: var(--blue-pale); color: var(--blue); }
+
+  .section-desc {
+    font-size: 0.78rem;
+    color: var(--bark-light);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  /* CONTROLS ROW */
+  .controls {
+    display: flex;
+    gap: 14px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 160px;
+    flex: 1;
+  }
+  .control-group label {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--bark-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  select, input[type=number] {
+    padding: 10px 14px;
+    border: 1.5px solid #e0d8d0;
+    border-radius: 10px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.9rem;
+    background: var(--cream);
+    color: var(--bark);
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  select:focus, input[type=number]:focus {
+    outline: none;
+    border-color: var(--sage);
+  }
+  .section-card.protein select:focus { border-color: var(--terra); }
+  .section-card.fat select:focus { border-color: #c0a030; }
+  .section-card.fruit select:focus { border-color: #e07070; }
+  .section-card.dairy select:focus { border-color: var(--blue); }
+
+  /* RESULT PANEL */
+  .result-panel {
+    background: var(--sage-pale);
+    border-radius: 12px;
+    padding: 18px 20px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .section-card.protein .result-panel { background: #fdf0e8; }
+  .section-card.fat .result-panel { background: #fefbe0; }
+  .section-card.veg .result-panel { background: #e8f5ec; }
+  .section-card.fruit .result-panel { background: #fde8e8; }
+  .section-card.dairy .result-panel { background: var(--blue-pale); }
+
+  .result-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    padding: 12px 18px;
+    min-width: 90px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+  }
+  .result-item:hover { transform: translateY(-2px); }
+  .result-label {
+    font-size: 0.68rem;
+    color: var(--bark-light);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .result-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--sage);
+    line-height: 1.1;
+  }
+  .section-card.protein .result-value { color: var(--terra); }
+  .section-card.fat .result-value { color: #9a7010; }
+  .section-card.veg .result-value { color: var(--green-dark); }
+  .section-card.fruit .result-value { color: #c05050; }
+  .section-card.dairy .result-value { color: var(--blue); }
+  .result-unit {
+    font-size: 0.7rem;
+    color: var(--bark-light);
+    font-weight: 400;
+  }
+  .result-portions {
+    font-size: 0.82rem;
+    color: var(--bark-light);
+    margin-left: auto;
+    align-self: center;
+    padding: 8px 14px;
+    background: white;
+    border-radius: 8px;
+    line-height: 1.5;
+  }
+  .result-portions strong { color: var(--bark); }
+
+  /* FAT LEVEL BADGE */
+  .fat-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-top: 6px;
+  }
+  .fat-low { background: #d4f0e0; color: #2a6a40; }
+  .fat-mid { background: #fef0c0; color: #8a6000; }
+  .fat-high { background: #fdd8d8; color: #8a2020; }
+
+  /* COMPARISON TABLE */
+  .compare-btn {
+    margin-top: 16px;
+    background: none;
+    border: 1.5px solid currentColor;
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--sage);
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .section-card.protein .compare-btn { color: var(--terra); }
+  .compare-btn:hover { background: rgba(139,158,126,0.1); }
+  .section-card.protein .compare-btn:hover { background: rgba(193,127,89,0.1); }
+
+  .compare-table {
+    margin-top: 16px;
+    display: none;
+    overflow-x: auto;
+  }
+  .compare-table.show { display: block; }
+  .compare-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+  .compare-table th {
+    background: var(--bark);
+    color: var(--cream);
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  .compare-table th:first-child { border-radius: 8px 0 0 0; }
+  .compare-table th:last-child { border-radius: 0 8px 0 0; }
+  .compare-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #f0ebe5;
+    color: var(--bark);
+  }
+  .compare-table tr:nth-child(even) td { background: #faf8f5; }
+  .compare-table tr:hover td { background: var(--sage-pale); }
+
+  /* MEAL BUILDER */
+  .meal-builder {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px;
+    margin-bottom: 28px;
+    border-top: 4px solid var(--bark);
+  }
+  .meal-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+  }
+  .meal-desc { font-size: 0.78rem; color: var(--bark-light); margin-bottom: 20px; }
+
+  .meal-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .meal-item-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--cream);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+  }
+  .meal-item-row .food-name { font-weight: 600; flex: 1; min-width: 120px; }
+  .meal-item-row .food-amount { color: var(--bark-light); font-size: 0.78rem; }
+  .meal-macros { display: flex; gap: 10px; font-size: 0.75rem; }
+  .m-carb { color: #6b8e3a; font-weight: 600; }
+  .m-prot { color: #b06030; font-weight: 600; }
+  .m-fat { color: #a07020; font-weight: 600; }
+  .m-cal { color: var(--bark); font-weight: 600; }
+  .remove-btn {
+    background: #fdd;
+    border: none;
+    border-radius: 6px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #c04040;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+  .remove-btn:hover { background: #f8b0b0; }
+
+  .meal-total {
+    background: var(--bark);
+    color: var(--cream);
+    border-radius: 12px;
+    padding: 16px 20px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .meal-total-item { display: flex; flex-direction: column; align-items: center; }
+  .meal-total-label { font-size: 0.65rem; opacity: 0.6; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+  .meal-total-value { font-size: 1.3rem; font-weight: 700; }
+  .meal-total-unit { font-size: 0.65rem; opacity: 0.6; }
+  .clear-btn {
+    margin-left: auto;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--cream);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.75rem;
+    transition: background 0.2s;
+  }
+  .clear-btn:hover { background: rgba(255,255,255,0.25); }
+
+  .add-meal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--sage);
+    color: white;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    margin-top: 14px;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .add-meal-btn:hover { background: var(--green-dark); }
+  .add-meal-btn:active { transform: scale(0.97); }
+  .section-card.protein .add-meal-btn { background: var(--terra); }
+  .section-card.protein .add-meal-btn:hover { background: #a06040; }
+
+  /* REFERENCE NUMBERS */
+  .ref-strip {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    font-size: 0.72rem;
+    color: var(--bark-light);
+    margin-bottom: 14px;
+    padding: 8px 12px;
+    background: var(--sand);
+    border-radius: 8px;
+  }
+  .ref-strip span { display: flex; align-items: center; gap: 4px; }
+  .ref-strip strong { color: var(--bark); }
+
+  /* HIDDEN */
+  .tab-section { display: none; }
+  .tab-section.active { display: block; }
+
+  @media (max-width: 600px) {
+    header { padding: 16px; }
+    main { padding: 20px 12px 60px; }
+    .controls { gap: 10px; }
+    .control-group { min-width: 130px; }
+    .tab-btn { padding: 10px 14px; font-size: 0.78rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>食物代換表</h1>
+  <span>互動教學工具 — Abby Eat Life</span>
+</header>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('grain')">🌾 全榖根莖類</button>
+  <button class="tab-btn" onclick="switchTab('protein')">🥩 豆魚蛋肉類</button>
+  <button class="tab-btn" onclick="switchTab('veg')">🥦 蔬菜類</button>
+  <button class="tab-btn" onclick="switchTab('fruit')">🍊 水果類</button>
+  <button class="tab-btn" onclick="switchTab('dairy')">🥛 乳品類</button>
+  <button class="tab-btn" onclick="switchTab('fat')">🥑 油脂類</button>
+  <button class="tab-btn" onclick="switchTab('meal')">🍽️ 組合一餐</button>
+</div>
+
+<main>
+
+<!-- ========== GRAIN ========== -->
+<div id="tab-grain" class="tab-section active">
+  <div class="section-card">
+    <div class="section-title">全榖根莖類 <span class="badge">1份 = 70 kcal</span></div>
+    <div class="section-desc">每份含：蛋白質 2g · 醣類 15g · 脂肪 微量<br>用來控制醣類攝取的核心食物類別</div>
+    <div class="ref-strip">
+      <span>1份 <strong>醣 15g</strong></span>
+      <span>1份 <strong>蛋白質 2g</strong></span>
+      <span>1份 <strong>70 kcal</strong></span>
+    </div>
+    <div class="controls">
+      <div class="control-group">
+        <label>選擇食物</label>
+        <select id="grain-food" onchange="calcGrain()">
+          <optgroup label="米類">
+            <option value="rice">白飯 (50g=¼碗)</option>
+            <option value="congee">粥/稀飯 (125g=½碗)</option>
+            <option value="ricecake">白年糕 (30g)</option>
+            <option value="taro_cake">芋頭糕 (60g)</option>
+          </optgroup>
+          <optgroup label="麵食類">
+            <option value="oats">燕麥片 (20g)</option>
+            <option value="noodle">麵條/熟 (60g=½碗)</option>
+            <option value="toast">薄吐司 (25g=1片)</option>
+            <option value="ramen_dry">拉麵/生 (25g)</option>
+            <option value="dumpling_skin">餃子皮 (30g=3張)</option>
+            <option value="crackers">蘇打餅乾 (20g≈3片)</option>
+          </optgroup>
+          <optgroup label="根莖類">
+            <option value="potato">馬鈴薯 (90g=½碗)</option>
+            <option value="yam">山藥 (100g=½碗)</option>
+            <option value="pumpkin">南瓜 (110g=½碗)</option>
+            <option value="sweet_potato">地瓜 (55g=½碗)</option>
+            <option value="taro">芋頭 (55g=½碗)</option>
+          </optgroup>
+          <optgroup label="其他">
+            <option value="corn">玉米粒 (65g=5湯匙)</option>
+            <option value="barley">薏仁/生 (20g)</option>
+            <option value="mung_bean">綠豆/生 (20g)</option>
+            <option value="red_bean">紅豆/生 (20g)</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>重量 (g)</label>
+        <input type="number" id="grain-weight" value="100" min="1" max="1000" onchange="calcGrain()">
+      </div>
+    </div>
+    <div class="result-panel" id="grain-result"></div>
+    <button class="compare-btn" onclick="toggleCompare('grain-compare')">📊 查看同類食物比較</button>
+    <button class="add-meal-btn" onclick="addToMeal('grain')">＋ 加入今日餐盤</button>
+    <div class="compare-table" id="grain-compare">
+      <table>
+        <thead><tr><th>食物</th><th>1份重量</th><th>醣類</th><th>蛋白質</th><th>熱量</th></tr></thead>
+        <tbody>
+          <tr><td>白飯</td><td>50g (¼碗)</td><td>15g</td><td>2g</td><td>70 kcal</td></tr>
+          <tr><td>粥/稀飯</td><td>125g (½碗)</td><td>15g</td><td>2g</td><td>70 kcal</td></tr>
+          <tr><td>薄吐司</td><td>25g (1片)</td><td>15g</td><td>2g</td><td>70 kcal</td></tr>
+          <tr><td>燕麥片</td><td>20g (3湯匙)</td><td>15g</td><td>2g</td><td>70 kcal</td></tr>
+          <tr><td>地瓜</td><td>55g (½碗)</td><td>15g</td><td>2g</td><td>70 kcal</td></tr>
+          <tr><td>馬鈴薯</td><td>90g (½碗)</td><td>15g</td><td>2g</td><td>70 kcal</td></tr>
+          <tr><td>南瓜</td><td>110g (½碗)</td><td>15g</td><td>2g</td><td>70 kcal</td></tr>
+          <tr><td>玉米粒</td><td>65g (5湯匙)</td><td>15g</td><td>2g</td><td>70 kcal</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PROTEIN ========== -->
+<div id="tab-protein" class="tab-section">
+  <div class="section-card protein">
+    <div class="section-title">豆魚蛋肉類 <span class="badge">1份蛋白質 = 7g</span></div>
+    <div class="section-desc">每份均含 <strong>蛋白質 7g</strong>，但脂肪含量依種類差異影響熱量。低脂55kcal · 中脂75kcal · 高脂120kcal↑</div>
+    <div class="ref-strip">
+      <span>低脂 <strong>55 kcal/份</strong></span>
+      <span>中脂 <strong>75 kcal/份</strong></span>
+      <span>高脂 <strong>120 kcal/份</strong></span>
+      <span>每份蛋白質 <strong>7g</strong></span>
+    </div>
+    <div class="controls">
+      <div class="control-group">
+        <label>選擇食物</label>
+        <select id="protein-food" onchange="calcProtein()">
+          <optgroup label="低脂 (55kcal/份)">
+            <option value="chicken_breast">雞胸肉 (生30g/份)</option>
+            <option value="egg_white">蛋白 (生85g=2個/份)</option>
+            <option value="shrimp">蝦仁 (生30g/份)</option>
+            <option value="clam">蛤蜊/牡蠣 (生60g/份)</option>
+            <option value="squid">花枝 (生40g/份)</option>
+            <option value="tofu_firm">豆漿 (260mL=1杯/份)</option>
+            <option value="pig_lean">豬里肌 (生35g/份)</option>
+          </optgroup>
+          <optgroup label="中脂 (75kcal/份)">
+            <option value="egg">雞蛋 (55g=1顆/份)</option>
+            <option value="tofu_trad">傳統豆腐 (80g=2小格/份)</option>
+            <option value="tofu_soft">嫩豆腐 (140g=半盒/份)</option>
+            <option value="tofu_dry">五香豆干 (35g=2/3片/份)</option>
+            <option value="salmon">鮭魚 (生35g/份)</option>
+            <option value="pork_rib">豬小排 (生35g/份)</option>
+            <option value="beef">牛排 (生35g/份)</option>
+          </optgroup>
+          <optgroup label="高脂 (120kcal/份)">
+            <option value="pork_belly">五花肉 (生50g/份)</option>
+            <option value="sausage">香腸 (生40g≈1條/份)</option>
+            <option value="saury">秋刀魚 (生35g/份)</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>目標蛋白質 (g)</label>
+        <input type="number" id="protein-target" value="21" min="1" max="200" onchange="calcProtein()">
+      </div>
+    </div>
+    <div class="result-panel" id="protein-result"></div>
+    <button class="compare-btn" onclick="toggleCompare('protein-compare')">📊 同樣蛋白質，各食物比較</button>
+    <button class="add-meal-btn" onclick="addToMeal('protein')">＋ 加入今日餐盤</button>
+    <div class="compare-table" id="protein-compare">
+      <table>
+        <thead><tr><th>食物</th><th>達21g蛋白質需要</th><th>脂肪</th><th>熱量</th><th>脂肪等級</th></tr></thead>
+        <tbody id="protein-compare-body"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ========== VEG ========== -->
+<div id="tab-veg" class="tab-section">
+  <div class="section-card veg">
+    <div class="section-title">蔬菜類 <span class="badge">1份 = 25 kcal</span></div>
+    <div class="section-desc">每份含：蛋白質 1g · 醣類 5g · 生重 100g = 熟半碗<br>幾乎不影響熱量，但有助於飽足感和微量營養素</div>
+    <div class="ref-strip">
+      <span>每份生重 <strong>100g</strong></span>
+      <span>熟重約 <strong>½碗（1碟）</strong></span>
+      <span>1份 <strong>25 kcal</strong></span>
+    </div>
+    <div class="controls">
+      <div class="control-group">
+        <label>選擇蔬菜</label>
+        <select id="veg-food" onchange="calcVeg()">
+          <optgroup label="葉菜類">
+            <option value="leafy">青江菜 / 菠菜 / 空心菜 (100g生=½碗熟)</option>
+            <option value="cabbage">高麗菜 / 大白菜 (100g=½碗)</option>
+            <option value="broccoli">青花菜 (100g=½碗)</option>
+            <option value="purple_cabbage">紫高麗菜(生) (100g=4兩手捧)</option>
+          </optgroup>
+          <optgroup label="瓜類蔬菜">
+            <option value="bitter_gourd">苦瓜 (100g=½碗)</option>
+            <option value="zucchini">胡瓜/絲瓜 (100g=½碗)</option>
+            <option value="cucumber">小黃瓜(生) (100g=4兩手捧)</option>
+          </optgroup>
+          <optgroup label="菇類">
+            <option value="mushroom">香菇 / 金針菇 / 洋菇 (100g=½碗)</option>
+          </optgroup>
+          <optgroup label="其他">
+            <option value="eggplant">茄子 / 蘿蔔 / 大番茄 (100g=½碗)</option>
+            <option value="bamboo">竹筍 (100g=½碗)</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>份數</label>
+        <input type="number" id="veg-portions" value="2" min="0.5" max="20" step="0.5" onchange="calcVeg()">
+      </div>
+    </div>
+    <div class="result-panel" id="veg-result"></div>
+    <button class="add-meal-btn" onclick="addToMeal('veg')">＋ 加入今日餐盤</button>
+  </div>
+</div>
+
+<!-- ========== FRUIT ========== -->
+<div id="tab-fruit" class="tab-section">
+  <div class="section-card fruit">
+    <div class="section-title">水果類 <span class="badge">1份 = 60 kcal</span></div>
+    <div class="section-desc">每份含：醣類 15g · 熱量 60 kcal<br>份量為 8分滿碗（拳頭大）</div>
+    <div class="ref-strip">
+      <span>每份 <strong>醣 15g</strong></span>
+      <span>每份 <strong>60 kcal</strong></span>
+      <span>份量 <strong>8分滿碗</strong></span>
+      <span style="color:#c05050">⚠ 不建議選果汁、果乾</span>
+    </div>
+    <div class="controls">
+      <div class="control-group">
+        <label>選擇水果</label>
+        <select id="fruit-food" onchange="calcFruit()">
+          <option value="apple" data-g="115">蘋果 (115g=1個)</option>
+          <option value="banana" data-g="70">香蕉 (70g=大½根)</option>
+          <option value="kiwi" data-g="115">奇異果 (115g≈1.5個)</option>
+          <option value="grape" data-g="105">葡萄 (105g≈13顆)</option>
+          <option value="tomato_s" data-g="175">小番茄 (175g≈13顆)</option>
+          <option value="guava" data-g="160">芭樂 (160g)</option>
+          <option value="watermelon" data-g="250">紅西瓜 (250g)</option>
+          <option value="orange" data-g="150">柳丁 (130g=1個)</option>
+          <option value="mango" data-g="150">愛文芒果 (150g)</option>
+          <option value="pineapple" data-g="130">鳳梨 (130g)</option>
+          <option value="pear" data-g="150">水梨 (150g)</option>
+          <option value="longan" data-g="90">龍眼 (90g)</option>
+          <option value="strawberry" data-g="160">草莓 (160g)</option>
+          <option value="papaya" data-g="120">木瓜 (120g)</option>
+          <option value="durian" data-g="35">榴槤 (35g≈2平匙)</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>重量 (g)</label>
+        <input type="number" id="fruit-weight" value="115" min="1" max="2000" onchange="calcFruit()">
+      </div>
+    </div>
+    <div class="result-panel" id="fruit-result"></div>
+    <button class="add-meal-btn" onclick="addToMeal('fruit')">＋ 加入今日餐盤</button>
+  </div>
+</div>
+
+<!-- ========== DAIRY ========== -->
+<div id="tab-dairy" class="tab-section">
+  <div class="section-card dairy">
+    <div class="section-title">乳品類 <span class="badge">1份蛋白質 = 8g</span></div>
+    <div class="section-desc">每份含：蛋白質 8g · 醣類 12g<br>全脂150kcal · 低脂120kcal · 脫脂80kcal</div>
+    <div class="ref-strip">
+      <span>全脂 <strong>150 kcal</strong></span>
+      <span>低脂 <strong>120 kcal</strong></span>
+      <span>脫脂 <strong>80 kcal</strong></span>
+      <span>每份 <strong>蛋白質 8g</strong></span>
+    </div>
+    <div class="controls">
+      <div class="control-group">
+        <label>選擇乳品</label>
+        <select id="dairy-food" onchange="calcDairy()">
+          <optgroup label="全脂 (150kcal/份)">
+            <option value="whole_milk">全脂鮮奶 (240cc=1杯/份)</option>
+            <option value="whole_powder">全脂奶粉 (35g=4湯匙/份)</option>
+          </optgroup>
+          <optgroup label="低脂 (120kcal/份)">
+            <option value="low_milk">低脂鮮奶 (240cc=1杯/份)</option>
+            <option value="low_powder">低脂奶粉 (25g=3湯匙/份)</option>
+            <option value="low_cheese">低脂起士 (40g=2片/份)</option>
+          </optgroup>
+          <optgroup label="脫脂 (80kcal/份)">
+            <option value="skim_milk">脫脂鮮奶 (240cc=1杯/份)</option>
+            <option value="skim_powder">脫脂奶粉 (25g=3湯匙/份)</option>
+            <option value="yogurt">優格 (180g=1杯/份)</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>份數</label>
+        <input type="number" id="dairy-portions" value="1" min="0.5" max="10" step="0.5" onchange="calcDairy()">
+      </div>
+    </div>
+    <div class="result-panel" id="dairy-result"></div>
+    <button class="add-meal-btn" onclick="addToMeal('dairy')">＋ 加入今日餐盤</button>
+  </div>
+</div>
+
+<!-- ========== FAT ========== -->
+<div id="tab-fat" class="tab-section">
+  <div class="section-card fat">
+    <div class="section-title">油脂與堅果種子類 <span class="badge">1份 = 45 kcal</span></div>
+    <div class="section-desc">每份含：脂肪 5g · 熱量 45 kcal<br>烹調用油、堅果和醬料都算在這個類別</div>
+    <div class="ref-strip">
+      <span>每份 <strong>脂肪 5g</strong></span>
+      <span>每份 <strong>45 kcal</strong></span>
+    </div>
+    <div class="controls">
+      <div class="control-group">
+        <label>選擇食物</label>
+        <select id="fat-food" onchange="calcFat()">
+          <optgroup label="烹調用油">
+            <option value="veg_oil">植物油 (5g=⅓湯匙/份)</option>
+            <option value="lard">豬油 (5g=⅓湯匙/份)</option>
+          </optgroup>
+          <optgroup label="堅果類">
+            <option value="almond">杏仁果 (7g=½湯匙/份)</option>
+            <option value="walnut">生核桃 (7g=1湯匙/份)</option>
+            <option value="cashew">腰果 (8g=1湯匙/份)</option>
+            <option value="pumpkin_seed">南瓜子 (10g=1½湯匙/份)</option>
+            <option value="sunflower">葵花子 (12g=2湯匙/份)</option>
+            <option value="peanut">帶殼花生 (8g=2湯匙/份)</option>
+          </optgroup>
+          <optgroup label="醬料類">
+            <option value="peanut_butter">花生醬 (7g=1湯匙/份)</option>
+            <option value="sesame_paste">芝麻醬 (7g=½湯匙/份)</option>
+            <option value="mayo">沙拉醬/美乃滋 (7g=½湯匙/份)</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="control-group">
+        <label>份數</label>
+        <input type="number" id="fat-portions" value="1" min="0.5" max="20" step="0.5" onchange="calcFat()">
+      </div>
+    </div>
+    <div class="result-panel" id="fat-result"></div>
+    <button class="add-meal-btn" onclick="addToMeal('fat')">＋ 加入今日餐盤</button>
+  </div>
+</div>
+
+<!-- ========== MEAL BUILDER ========== -->
+<div id="tab-meal" class="tab-section">
+  <div class="meal-builder">
+    <div class="meal-title">🍽️ 今日餐盤</div>
+    <div class="meal-desc">從各類別加入食物，即時計算這一餐的總營養</div>
+    <div class="meal-items" id="meal-items">
+      <div style="color:#aaa;font-size:0.85rem;padding:12px;">還沒有食物，請到各類別點「加入今日餐盤」</div>
+    </div>
+    <div class="meal-total" id="meal-total">
+      <div class="meal-total-item"><div class="meal-total-label">醣類</div><div class="meal-total-value" id="t-carb">0</div><div class="meal-total-unit">g</div></div>
+      <div class="meal-total-item"><div class="meal-total-label">蛋白質</div><div class="meal-total-value" id="t-prot">0</div><div class="meal-total-unit">g</div></div>
+      <div class="meal-total-item"><div class="meal-total-label">脂肪</div><div class="meal-total-value" id="t-fat">0</div><div class="meal-total-unit">g</div></div>
+      <div class="meal-total-item"><div class="meal-total-label">總熱量</div><div class="meal-total-value" id="t-cal">0</div><div class="meal-total-unit">kcal</div></div>
+      <button class="clear-btn" onclick="clearMeal()">清空</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+// ===== DATA =====
+const grainData = {
+  rice:         { name:'白飯', per1:50, unit:'g(¼碗)', carb:15, prot:2, fat:0, cal:70 },
+  congee:       { name:'粥/稀飯', per1:125, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
+  ricecake:     { name:'白年糕', per1:30, unit:'g', carb:15, prot:2, fat:0, cal:70 },
+  taro_cake:    { name:'芋頭糕', per1:60, unit:'g', carb:15, prot:2, fat:0, cal:70 },
+  oats:         { name:'燕麥片', per1:20, unit:'g(3湯匙)', carb:15, prot:2, fat:0, cal:70 },
+  noodle:       { name:'麵條(熟)', per1:60, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
+  toast:        { name:'薄吐司', per1:25, unit:'g(1片)', carb:15, prot:2, fat:0, cal:70 },
+  ramen_dry:    { name:'拉麵(生)', per1:25, unit:'g', carb:15, prot:2, fat:0, cal:70 },
+  dumpling_skin:{ name:'餃子皮', per1:30, unit:'g(3張)', carb:15, prot:2, fat:0, cal:70 },
+  crackers:     { name:'蘇打餅乾', per1:20, unit:'g(3片)', carb:15, prot:2, fat:0, cal:70 },
+  potato:       { name:'馬鈴薯', per1:90, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
+  yam:          { name:'山藥', per1:100, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
+  pumpkin:      { name:'南瓜', per1:110, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
+  sweet_potato: { name:'地瓜', per1:55, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
+  taro:         { name:'芋頭', per1:55, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
+  corn:         { name:'玉米粒', per1:65, unit:'g(5湯匙)', carb:15, prot:2, fat:0, cal:70 },
+  barley:       { name:'薏仁(生)', per1:20, unit:'g', carb:15, prot:2, fat:0, cal:70 },
+  mung_bean:    { name:'綠豆(生)', per1:20, unit:'g', carb:15, prot:2, fat:0, cal:70 },
+  red_bean:     { name:'紅豆(生)', per1:20, unit:'g', carb:15, prot:2, fat:0, cal:70 },
+};
+
+const proteinData = {
+  chicken_breast:{ name:'雞胸肉', per1:30, unit:'g生重', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
+  egg_white:     { name:'蛋白', per1:85, unit:'g(2個)', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
+  shrimp:        { name:'蝦仁', per1:30, unit:'g生重', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
+  clam:          { name:'蛤蜊/牡蠣', per1:60, unit:'g', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
+  squid:         { name:'花枝', per1:40, unit:'g', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
+  tofu_firm:     { name:'豆漿', per1:260, unit:'mL(1杯)', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
+  pig_lean:      { name:'豬里肌', per1:35, unit:'g生重', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
+  egg:           { name:'雞蛋', per1:55, unit:'g(1顆)', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
+  tofu_trad:     { name:'傳統豆腐', per1:80, unit:'g(2小格)', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
+  tofu_soft:     { name:'嫩豆腐', per1:140, unit:'g(半盒)', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
+  tofu_dry:      { name:'五香豆干', per1:35, unit:'g(2/3片)', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
+  salmon:        { name:'鮭魚', per1:35, unit:'g生重', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
+  pork_rib:      { name:'豬小排', per1:35, unit:'g生重', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
+  beef:          { name:'牛排', per1:35, unit:'g生重', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
+  pork_belly:    { name:'五花肉', per1:50, unit:'g生重', prot:7, fat:10, carb:0, cal:120, level:'高脂' },
+  sausage:       { name:'香腸', per1:40, unit:'g(約1條)', prot:7, fat:10, carb:0, cal:120, level:'高脂' },
+  saury:         { name:'秋刀魚', per1:35, unit:'g生重', prot:7, fat:10, carb:0, cal:120, level:'高脂' },
+};
+
+const fruitData = {
+  apple:150, banana:70, kiwi:115, grape:105, tomato_s:175, guava:160,
+  watermelon:250, orange:150, mango:150, pineapple:130, pear:150,
+  longan:90, strawberry:160, papaya:120, durian:35,
+};
+
+const dairyData = {
+  whole_milk:  { name:'全脂鮮奶', per1:240, unit:'mL', prot:8, fat:8, carb:12, cal:150, level:'全脂' },
+  whole_powder:{ name:'全脂奶粉', per1:35, unit:'g(4湯匙)', prot:8, fat:8, carb:12, cal:150, level:'全脂' },
+  low_milk:    { name:'低脂鮮奶', per1:240, unit:'mL', prot:8, fat:4, carb:12, cal:120, level:'低脂' },
+  low_powder:  { name:'低脂奶粉', per1:25, unit:'g(3湯匙)', prot:8, fat:4, carb:12, cal:120, level:'低脂' },
+  low_cheese:  { name:'低脂起士', per1:40, unit:'g(2片)', prot:8, fat:4, carb:12, cal:120, level:'低脂' },
+  skim_milk:   { name:'脫脂鮮奶', per1:240, unit:'mL', prot:8, fat:0, carb:12, cal:80, level:'脫脂' },
+  skim_powder: { name:'脫脂奶粉', per1:25, unit:'g(3湯匙)', prot:8, fat:0, carb:12, cal:80, level:'脫脂' },
+  yogurt:      { name:'優格', per1:180, unit:'g(1杯)', prot:8, fat:0, carb:12, cal:80, level:'脫脂' },
+};
+
+const fatData = {
+  veg_oil:       { name:'植物油', per1:5, unit:'g(⅓湯匙)', fat:5, cal:45 },
+  lard:          { name:'豬油', per1:5, unit:'g(⅓湯匙)', fat:5, cal:45 },
+  almond:        { name:'杏仁果', per1:7, unit:'g(½湯匙)', fat:5, cal:45 },
+  walnut:        { name:'生核桃', per1:7, unit:'g(1湯匙)', fat:5, cal:45 },
+  cashew:        { name:'腰果', per1:8, unit:'g(1湯匙)', fat:5, cal:45 },
+  pumpkin_seed:  { name:'南瓜子', per1:10, unit:'g(1½湯匙)', fat:5, cal:45 },
+  sunflower:     { name:'葵花子', per1:12, unit:'g(2湯匙)', fat:5, cal:45 },
+  peanut:        { name:'帶殼花生', per1:8, unit:'g(2湯匙)', fat:5, cal:45 },
+  peanut_butter: { name:'花生醬', per1:7, unit:'g(1湯匙)', fat:5, cal:45 },
+  sesame_paste:  { name:'芝麻醬', per1:7, unit:'g(½湯匙)', fat:5, cal:45 },
+  mayo:          { name:'沙拉醬/美乃滋', per1:7, unit:'g(½湯匙)', fat:5, cal:45 },
+};
+
+// ===== MEAL STATE =====
+let mealItems = [];
+let mealIdCounter = 0;
+
+// ===== CALC FUNCTIONS =====
+function calcGrain() {
+  const key = document.getElementById('grain-food').value;
+  const weight = parseFloat(document.getElementById('grain-weight').value)||0;
+  const d = grainData[key];
+  const portions = weight / d.per1;
+  const carb = +(portions * d.carb).toFixed(1);
+  const prot = +(portions * d.prot).toFixed(1);
+  const cal = +(portions * d.cal).toFixed(0);
+  document.getElementById('grain-result').innerHTML = `
+    ${ri('醣類', carb, 'g')}
+    ${ri('蛋白質', prot, 'g')}
+    ${ri('熱量', cal, 'kcal')}
+    <div class="result-portions">
+      <strong>${d.name}</strong> ${weight}g<br>
+      = <strong>${+portions.toFixed(2)} 份</strong>全榖根莖類<br>
+      <small>（1份=${d.per1}${d.unit}）</small>
+    </div>
+  `;
+  window._grainCurrent = { name: d.name, amount: weight+'g', carb, prot, fat:0, cal, category:'grain' };
+}
+
+function calcProtein() {
+  const key = document.getElementById('protein-food').value;
+  const targetProt = parseFloat(document.getElementById('protein-target').value)||7;
+  const d = proteinData[key];
+  const portions = targetProt / d.prot;
+  const weight = +(portions * d.per1).toFixed(0);
+  const fat = +(portions * d.fat).toFixed(1);
+  const cal = +(portions * d.cal).toFixed(0);
+  const badge = d.level === '低脂'
+    ? '<span class="fat-badge fat-low">低脂</span>'
+    : d.level === '中脂'
+    ? '<span class="fat-badge fat-mid">中脂</span>'
+    : '<span class="fat-badge fat-high">高脂</span>';
+  document.getElementById('protein-result').innerHTML = `
+    ${ri('蛋白質', targetProt, 'g')}
+    ${ri('脂肪', fat, 'g')}
+    ${ri('熱量', cal, 'kcal')}
+    <div class="result-portions">
+      <strong>${d.name}</strong> ${badge}<br>
+      需要 <strong>${weight}${d.unit}</strong><br>
+      = <strong>${+portions.toFixed(2)} 份</strong>豆魚蛋肉類
+    </div>
+  `;
+  window._proteinCurrent = { name: d.name, amount: weight+d.unit, carb:0, prot:targetProt, fat, cal, category:'protein' };
+  // update compare table
+  const tbody = document.getElementById('protein-compare-body');
+  if (tbody) {
+    const rows = Object.values(proteinData).map(p => {
+      const port = targetProt / p.prot;
+      const w = +(port * p.per1).toFixed(0);
+      const f = +(port * p.fat).toFixed(1);
+      const c = +(port * p.cal).toFixed(0);
+      const badge = p.level === '低脂'
+        ? `<span class="fat-badge fat-low">低脂</span>`
+        : p.level === '中脂'
+        ? `<span class="fat-badge fat-mid">中脂</span>`
+        : `<span class="fat-badge fat-high">高脂</span>`;
+      return `<tr><td>${p.name}</td><td>${w}${p.unit}</td><td>${f}g</td><td>${c} kcal</td><td>${badge}</td></tr>`;
+    });
+    tbody.innerHTML = rows.join('');
+  }
+}
+
+function calcVeg() {
+  const portions = parseFloat(document.getElementById('veg-portions').value)||1;
+  const carb = +(portions * 5).toFixed(1);
+  const prot = +(portions * 1).toFixed(1);
+  const cal = +(portions * 25).toFixed(0);
+  const rawG = +(portions * 100).toFixed(0);
+  document.getElementById('veg-result').innerHTML = `
+    ${ri('醣類', carb, 'g')}
+    ${ri('蛋白質', prot, 'g')}
+    ${ri('熱量', cal, 'kcal')}
+    <div class="result-portions">
+      <strong>${portions} 份</strong> 蔬菜<br>
+      生重約 <strong>${rawG}g</strong><br>
+      熟約 <strong>${portions} 碟</strong>
+    </div>
+  `;
+  window._vegCurrent = { name: '蔬菜', amount: rawG+'g生重', carb, prot, fat:0, cal, category:'veg' };
+}
+
+function calcFruit() {
+  const key = document.getElementById('fruit-food').value;
+  const weight = parseFloat(document.getElementById('fruit-weight').value)||100;
+  const per1 = parseInt(document.getElementById('fruit-food').selectedOptions[0].dataset.g)||115;
+  const portions = weight / per1;
+  const carb = +(portions * 15).toFixed(1);
+  const cal = +(portions * 60).toFixed(0);
+  const fname = document.getElementById('fruit-food').selectedOptions[0].text.split('(')[0].trim();
+  document.getElementById('fruit-result').innerHTML = `
+    ${ri('醣類', carb, 'g')}
+    ${ri('熱量', cal, 'kcal')}
+    <div class="result-portions">
+      <strong>${fname}</strong> ${weight}g<br>
+      = <strong>${+portions.toFixed(2)} 份</strong>水果類<br>
+      <small>（1份=${per1}g）</small>
+    </div>
+  `;
+  window._fruitCurrent = { name: fname, amount: weight+'g', carb, prot:0, fat:0, cal, category:'fruit' };
+}
+
+function calcDairy() {
+  const key = document.getElementById('dairy-food').value;
+  const portions = parseFloat(document.getElementById('dairy-portions').value)||1;
+  const d = dairyData[key];
+  const prot = +(portions * d.prot).toFixed(1);
+  const fat = +(portions * d.fat).toFixed(1);
+  const carb = +(portions * d.carb).toFixed(1);
+  const cal = +(portions * d.cal).toFixed(0);
+  document.getElementById('dairy-result').innerHTML = `
+    ${ri('蛋白質', prot, 'g')}
+    ${ri('醣類', carb, 'g')}
+    ${ri('脂肪', fat, 'g')}
+    ${ri('熱量', cal, 'kcal')}
+    <div class="result-portions">
+      <strong>${d.name}</strong> （${d.level}）<br>
+      ${portions} 份 = ${+(portions * d.per1).toFixed(0)}${d.unit}
+    </div>
+  `;
+  window._dairyCurrent = { name: d.name, amount: +(portions*d.per1).toFixed(0)+d.unit, carb, prot, fat, cal, category:'dairy' };
+}
+
+function calcFat() {
+  const key = document.getElementById('fat-food').value;
+  const portions = parseFloat(document.getElementById('fat-portions').value)||1;
+  const d = fatData[key];
+  const fat = +(portions * d.fat).toFixed(1);
+  const cal = +(portions * d.cal).toFixed(0);
+  const weight = +(portions * d.per1).toFixed(1);
+  document.getElementById('fat-result').innerHTML = `
+    ${ri('脂肪', fat, 'g')}
+    ${ri('熱量', cal, 'kcal')}
+    <div class="result-portions">
+      <strong>${d.name}</strong><br>
+      ${portions} 份 = <strong>${weight}${d.unit}</strong>
+    </div>
+  `;
+  window._fatCurrent = { name: d.name, amount: weight+d.unit, carb:0, prot:0, fat, cal, category:'fat' };
+}
+
+function ri(label, value, unit) {
+  return `<div class="result-item"><div class="result-label">${label}</div><div class="result-value">${value}</div><div class="result-unit">${unit}</div></div>`;
+}
+
+// ===== MEAL =====
+function addToMeal(category) {
+  const map = {
+    grain: '_grainCurrent',
+    protein: '_proteinCurrent',
+    veg: '_vegCurrent',
+    fruit: '_fruitCurrent',
+    dairy: '_dairyCurrent',
+    fat: '_fatCurrent',
+  };
+  const item = window[map[category]];
+  if (!item) return;
+  item.id = ++mealIdCounter;
+  mealItems.push({...item});
+  renderMeal();
+  switchTab('meal');
+}
+
+function renderMeal() {
+  const container = document.getElementById('meal-items');
+  if (mealItems.length === 0) {
+    container.innerHTML = '<div style="color:#aaa;font-size:0.85rem;padding:12px;">還沒有食物，請到各類別點「加入今日餐盤」</div>';
+  } else {
+    container.innerHTML = mealItems.map(item => `
+      <div class="meal-item-row">
+        <div class="food-name">${item.name}</div>
+        <div class="food-amount">${item.amount}</div>
+        <div class="meal-macros">
+          <span class="m-carb">醣 ${item.carb}g</span>
+          <span class="m-prot">蛋 ${item.prot}g</span>
+          <span class="m-fat">脂 ${item.fat}g</span>
+          <span class="m-cal">${item.cal} kcal</span>
+        </div>
+        <button class="remove-btn" onclick="removeMealItem(${item.id})">✕</button>
+      </div>
+    `).join('');
+  }
+  const totals = mealItems.reduce((acc, i) => {
+    acc.carb += i.carb; acc.prot += i.prot; acc.fat += i.fat; acc.cal += i.cal;
+    return acc;
+  }, { carb:0, prot:0, fat:0, cal:0 });
+  document.getElementById('t-carb').textContent = totals.carb.toFixed(1);
+  document.getElementById('t-prot').textContent = totals.prot.toFixed(1);
+  document.getElementById('t-fat').textContent = totals.fat.toFixed(1);
+  document.getElementById('t-cal').textContent = totals.cal.toFixed(0);
+}
+
+function removeMealItem(id) {
+  mealItems = mealItems.filter(i => i.id !== id);
+  renderMeal();
+}
+
+function clearMeal() {
+  mealItems = [];
+  renderMeal();
+}
+
+// ===== UI HELPERS =====
+function switchTab(tab) {
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  const idx = ['grain','protein','veg','fruit','dairy','fat','meal'].indexOf(tab);
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+}
+
+function toggleCompare(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('show');
+}
+
+// ===== INIT =====
+calcGrain();
+calcProtein();
+calcVeg();
+calcFruit();
+calcDairy();
+calcFat();
+</script>
+</body>
+</html>
