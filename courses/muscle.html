@@ -105,7 +105,14 @@ h1 { font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 0.5rem; l
         <p>增加骨骼肌 3–4 kg，相同體重下腰圍縮小、手臂與腿部更有型</p>
       </div>
     </div>
+     
+  <img src="images/20260514潔西.jpg" 
+     onclick="openImg(this)"
+     style="width:100%; border-radius:10px; margin-top:1.25rem; cursor:zoom-in;">
+
   </div>
+
+ 
 
   <!-- S2 -->
   <div class="slide" id="s1">
@@ -331,6 +338,14 @@ h1 { font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 0.5rem; l
 
 </div><!-- end deck -->
 
+  </div><!-- end deck -->
+
+<div id="lightbox" onclick="this.style.display='none'"
+     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); 
+            z-index:999; align-items:center; justify-content:center; cursor:zoom-out;">
+  <img id="lightbox-img" style="max-width:92%; max-height:92vh; border-radius:10px;">
+</div>
+
 <script>
 const total = 6;
 let cur = 0;
@@ -359,6 +374,16 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') go(1);
   if (e.key === 'ArrowLeft') go(-1);
 });
+
+function openImg(el) {
+  document.getElementById('lightbox-img').src = el.src;
+  document.getElementById('lightbox').style.display = 'flex';
+}
 </script>
+</body>
+</html>
+</body>
+</html>
+</div>
 </body>
 </html>
