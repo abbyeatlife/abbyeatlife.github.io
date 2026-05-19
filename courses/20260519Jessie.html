@@ -235,6 +235,10 @@ h1 { font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 0.5rem; l
     <div class="hl">
       <p>蛋白質已經夠了，不用再特別增加。<br>熱量缺口優先用<strong>脂肪</strong>來補，密度高、不增加份量感、符合妳現有的飲食風格。</p>
     </div>
+
+    <img src="images/Fat01.jpg" 
+     onclick="openImg(this)"
+     style="width:100%; border-radius:10px; margin-top:1.25rem; cursor:zoom-in;">
   </div>
 
 </div><!-- end deck -->
@@ -278,6 +282,47 @@ function openImg(el) {
   document.getElementById('lightbox-img').src = el.src;
   document.getElementById('lightbox').style.display = 'flex';
 }
+
+  <div id="lightbox" onclick="this.style.display='none'"
+     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); 
+            z-index:999; align-items:center; justify-content:center; cursor:zoom-out;">
+  <img id="lightbox-img" style="max-width:92%; max-height:92vh; border-radius:10px;">
+</div>
+
+<script>
+const total = 6;
+let cur = 0;
+const dotsEl = document.getElementById('dots');
+const ctr = document.getElementById('ctr');
+
+for (let i = 0; i < total; i++) {
+  const d = document.createElement('button');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+}
+
+function goTo(n) {
+  document.getElementById('s' + cur).classList.remove('active');
+  dotsEl.children[cur].classList.remove('active');
+  cur = ((n % total) + total) % total;
+  document.getElementById('s' + cur).classList.add('active');
+  dotsEl.children[cur].classList.add('active');
+  ctr.textContent = (cur + 1) + ' / ' + total;
+}
+function go(d) { goTo(cur + d); }
+
+ctr.textContent = '1 / ' + total;
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') go(1);
+  if (e.key === 'ArrowLeft') go(-1);
+});
+
+function openImg(el) {
+  document.getElementById('lightbox-img').src = el.src;
+  document.getElementById('lightbox').style.display = 'flex';
+}
+
 </script>
 </body>
 </html>
