@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>潔西 · 肌肉成長與訓練規劃</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, 'Noto Sans TC', sans-serif; background: #F7F5F2; color: #1a1a1a; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 2rem 1rem; }
+.deck { width: 100%; max-width: 720px; }
+.nav-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+.nav-btn { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 8px 18px; font-size: 14px; cursor: pointer; color: #333; transition: background 0.15s; }
+.nav-btn:hover { background: #f0ede8; }
+.nav-dots { display: flex; gap: 7px; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: #ccc; cursor: pointer; border: none; padding: 0; transition: background 0.2s; }
+.dot.active { background: #1D9E75; }
+.slide { display: none; background: #fff; border-radius: 16px; border: 1px solid #e8e4de; padding: 2rem 2.25rem 2.5rem; min-height: 480px; }
+.slide.active { display: block; animation: up 0.22s ease; }
+@keyframes up { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+.slide-label { font-size: 11px; color: #999; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+h1 { font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 0.5rem; line-height: 1.3; }
+.subtitle { font-size: 15px; color: #666; margin-bottom: 1.75rem; line-height: 1.65; }
+.card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.25rem; }
+.card { background: #F7F5F2; border: 1px solid #e8e4de; border-radius: 12px; padding: 1rem 1.1rem; }
+.card .c-label { font-size: 12px; color: #888; margin-bottom: 6px; }
+.card .c-val { font-size: 16px; font-weight: 600; color: #1a1a1a; line-height: 1.35; }
+.card .c-sub { font-size: 12px; color: #888; margin-top: 2px; }
+.hl { background: #F0FBF6; border-left: 3px solid #1D9E75; border-radius: 0 10px 10px 0; padding: 1rem 1.2rem; margin-bottom: 1.25rem; }
+.hl p { font-size: 14px; color: #1a1a1a; line-height: 1.75; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+.mini-card { background: #F7F5F2; border: 1px solid #e8e4de; border-radius: 10px; padding: 0.9rem 1rem; }
+.mini-card h4 { font-size: 12px; font-weight: 600; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+.mini-card p, .mini-card li { font-size: 13px; color: #333; line-height: 1.65; }
+.mini-card ul { padding-left: 14px; }
+.divider { border: none; border-top: 1px solid #ede9e4; margin: 1.35rem 0; }
+.step-list { list-style: none; }
+.step-list li { display: flex; gap: 13px; align-items: flex-start; margin-bottom: 1.1rem; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; background: #E1F5EE; color: #0B6E50; font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.step-text { font-size: 14px; color: #1a1a1a; line-height: 1.7; }
+.step-text strong { font-weight: 600; }
+.rpe-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.bar-wrap { display: flex; gap: 3px; width: 80px; flex-shrink: 0; }
+.bar-cell { flex: 1; height: 7px; border-radius: 4px; background: #e0dbd4; }
+.bar-green { background: #1D9E75; }
+.bar-amber { background: #EF9F27; }
+.bar-coral { background: #D85A30; }
+.rpe-label { font-size: 12px; font-weight: 600; color: #555; width: 60px; flex-shrink: 0; }
+.rpe-desc { font-size: 13px; color: #333; line-height: 1.5; }
+.tag { display: inline-block; font-size: 12px; padding: 3px 10px; border-radius: 6px; margin-right: 6px; font-weight: 500; }
+.tg { background: #E1F5EE; color: #0B6E50; }
+.ta { background: #FEF3DC; color: #8A5000; }
+.tb { background: #EAF1FA; color: #1A5A8A; }
+.timeline { display: flex; border-radius: 10px; overflow: hidden; margin-bottom: 1.25rem; }
+.tl-cell { flex: 1; padding: 10px 6px; text-align: center; }
+.tl-label { font-size: 11px; font-weight: 600; }
+.tl-sub { font-size: 11px; margin-top: 3px; }
+.summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.5rem; }
+.sum-card { background: #F0FBF6; border-radius: 10px; padding: 1rem; text-align: center; }
+.sum-val { font-size: 22px; font-weight: 700; color: #0B6E50; }
+.sum-label { font-size: 12px; color: #666; margin-top: 4px; }
+.counter-row { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 13px; color: #999; }
+</style>
+</head>
+<body>
+<div class="deck">
+  <div class="nav-bar">
+    <button class="nav-btn" onclick="go(-1)">← 上一頁</button>
+    <div class="nav-dots" id="dots"></div>
+    <button class="nav-btn" onclick="go(1)">下一頁 →</button>
+  </div>
+  <div class="counter-row" id="ctr" style="margin-bottom:1rem;"></div>
+
+  <!-- S1 -->
+  <div class="slide active" id="s0">
+    <div class="slide-label">第一頁 · 現況解讀</div>
+    <h1>妳的問題不是脂肪太多，<br>而是肌肉撐不住</h1>
+    <div class="subtitle">InBody 數字告訴我們真相：體脂在正常範圍，真正的缺口是肌肉量。</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="c-label">體脂率</div>
+        <div class="c-val">24.4%</div>
+        <div class="c-sub">正常範圍內</div>
+      </div>
+      <div class="card">
+        <div class="c-label">InBody 建議增加</div>
+        <div class="c-val" style="color:#0B6E50;">+3.9 kg</div>
+        <div class="c-sub">骨骼肌</div>
+      </div>
+      <div class="card">
+        <div class="c-label">腰圍</div>
+        <div class="c-val">70.8 cm</div>
+        <div class="c-sub">肌肉不足→視覺鬆弛</div>
+      </div>
+    </div>
+    <div class="hl">
+      <p>身體線條由<strong>肌肉的飽滿度</strong>決定，不是脂肪的多寡。相同體脂率，肌肉多的人看起來更緊實有型。<br>目標不是「再瘦一點」，而是讓肌肉把身形撐起來。</p>
+    </div>
+    <div class="two-col">
+      <div class="mini-card">
+        <h4>現在的狀況</h4>
+        <p>體重正常、脂肪正常，但肌肉不夠 → 視覺上鬆，腰部沒有線條感</p>
+      </div>
+      <div class="mini-card">
+        <h4>目標狀況</h4>
+        <p>增加骨骼肌 3–4 kg，相同體重下腰圍縮小、手臂與腿部更有型</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2 -->
+  <div class="slide" id="s1">
+    <div class="slide-label">第二頁 · 學理基礎</div>
+    <h1>肌肉為什麼會長大？</h1>
+    <div class="subtitle">給予夠大的刺激，身體才會啟動適應，這是肌肥大的核心機制。</div>
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>機械張力（Mechanical tension）</strong><br>舉重時肌肉纖維承受拉扯力，這是最主要的生長信號。重量越接近你的能力上限，信號越強。</div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>代謝壓力（Metabolic stress）</strong><br>訓練末端那種「燒灼感」，乳酸堆積促進生長激素分泌，進一步加強肌肥大效果。</div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>肌肉損傷（Muscle damage）</strong><br>訓練後的輕微酸痛，是肌肉纖維微撕裂修復的過程，修復後比原來更粗更強。</div>
+      </li>
+    </ul>
+    <hr class="divider">
+    <div class="hl">
+      <p><strong>關鍵概念：漸進式超負荷（Progressive overload）</strong><br>肌肉只有在超過現有能力的刺激下才會生長。做同樣的重量、同樣的次數，身體習慣了就停止適應。每隔幾週需要增加重量、次數或組數。</p>
+    </div>
+    <div class="two-col">
+      <div class="mini-card">
+        <h4>有氧（跑步、有氧課）</h4>
+        <p>改善心肺功能，不直接增加肌肉量</p>
+      </div>
+      <div class="mini-card">
+        <h4>重量訓練</h4>
+        <p style="color:#0B6E50; font-weight:500;">直接提供機械張力，刺激肌肥大</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3 -->
+  <div class="slide" id="s2">
+    <div class="slide-label">第三頁 · 強度規劃</div>
+    <h1>要練多重？用 RPE 找到對的強度</h1>
+    <div class="subtitle">不用計算 1RM，用「自覺費力程度」來判斷，更直觀也更安全。</div>
+
+    <div style="margin-bottom:1.5rem;">
+      <div class="rpe-row">
+        <div class="bar-wrap"><div class="bar-cell bar-green"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div><div class="bar-cell"></div></div>
+        <div class="rpe-label">RPE 5–6</div>
+        <div class="rpe-desc">感覺很輕鬆，可以輕鬆說話 → <span style="color:#8A5000;">刺激不足，肌肉不會生長</span></div>
+      </div>
+      <div class="rpe-row">
+        <div class="bar-wrap"><div class="bar-cell bar-green"></div><div class="bar-cell bar-green"></div><div class="bar-cell bar-green"></div><div class="bar-cell"></div><div class="bar-cell"></div></div>
+        <div class="rpe-label">RPE 7–8</div>
+        <div class="rpe-desc">稍微喘，最後 2–3 下有些吃力 → <span style="color:#0B6E50;font-weight:600;">初學者最佳目標區間</span></div>
+      </div>
+      <div class="rpe-row">
+        <div class="bar-wrap"><div class="bar-cell bar-coral"></div><div class="bar-cell bar-coral"></div><div class="bar-cell bar-coral"></div><div class="bar-cell bar-coral"></div><div class="bar-cell bar-coral"></div></div>
+        <div class="rpe-label">RPE 9–10</div>
+        <div class="rpe-desc">接近力竭，幾乎做不完 → 初學者暫時不需要，受傷風險較高</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="hl">
+      <p>實作口訣：<strong>做完最後一下，還剩 1–2 下的餘力</strong>，這就是對的強度。<br>感覺太輕鬆 → 下次增加重量 5–10%。做不完 → 重量稍微降低。</p>
+    </div>
+
+    <div class="two-col" style="margin-top:1rem;">
+      <div class="mini-card">
+        <h4>組數與次數建議</h4>
+        <ul>
+          <li>每個動作 3 組</li>
+          <li>每組 8–15 下</li>
+          <li>組間休息 60–90 秒</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>初學者注意事項</h4>
+        <ul>
+          <li>動作品質優先再加重</li>
+          <li>感受目標肌肉收縮</li>
+          <li>記錄每次使用的重量</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4 -->
+  <div class="slide" id="s3">
+    <div class="slide-label">第四頁 · 頻率規劃</div>
+    <h1>一週要練幾天？</h1>
+    <div class="subtitle">頻率不是越多越好，恢復才是肌肉真正生長的地方。</div>
+
+    <div style="margin-bottom:1.5rem;">
+      <div style="font-size:13px; color:#888; margin-bottom:10px; font-weight:500;">每塊肌群每週刺激次數</div>
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+        <span class="tag ta">1次/週</span>
+        <span style="font-size:13px; color:#333;">有效，但進步較慢，適合完全初學</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+        <span class="tag tg">2次/週</span>
+        <span style="font-size:13px; color:#333;">研究顯示是肌肥大最佳頻率，效率最高 ✓</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+        <span class="tag tb">3次/週</span>
+        <span style="font-size:13px; color:#333;">適合進階者，初學者容易累積疲勞</span>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div style="font-size:14px; font-weight:600; color:#1a1a1a; margin-bottom:12px;">建議週課表（2–3天）</div>
+    <ul class="step-list">
+      <li>
+        <div class="step-num" style="background:#E1F5EE; color:#0B6E50;">A</div>
+        <div class="step-text"><strong>下半身 + 核心</strong>｜深蹲、臀推、腿推、腹肌<br><span style="font-size:12px;color:#888;">大肌群優先，燃脂效率高，改善臀腿線條</span></div>
+      </li>
+      <li>
+        <div class="step-num" style="background:#FEF3DC; color:#8A5000;">B</div>
+        <div class="step-text"><strong>上半身 + 肩背</strong>｜划船、肩推、二頭、三頭<br><span style="font-size:12px;color:#888;">改善手臂與背部線條，肩膀撐開後視覺腰更細</span></div>
+      </li>
+      <li>
+        <div class="step-num" style="background:#EAF1FA; color:#1A5A8A;">C</div>
+        <div class="step-text"><strong>全身綜合或弱點加強</strong>｜複合式動作<br><span style="font-size:12px;color:#888;">每週第三天視體力決定，不強求</span></div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- S5 -->
+  <div class="slide" id="s4">
+    <div class="slide-label">第五頁 · 超補償概念</div>
+    <h1>肌肉不在健身房長大，<br>在休息時長大</h1>
+    <div class="subtitle">了解超補償曲線，就知道為什麼訓練後的恢復和訓練本身同樣重要。</div>
+
+    <div class="timeline" style="margin-bottom:1.35rem;">
+      <div class="tl-cell" style="background:#FAECE7;">
+        <div class="tl-label" style="color:#993C1D;">訓練中</div>
+        <div class="tl-sub" style="color:#993C1D;">能力暫時下降</div>
+      </div>
+      <div class="tl-cell" style="background:#FEF3DC;">
+        <div class="tl-label" style="color:#8A5000;">0–24 hr</div>
+        <div class="tl-sub" style="color:#8A5000;">修復進行中</div>
+      </div>
+      <div class="tl-cell" style="background:#E1F5EE;">
+        <div class="tl-label" style="color:#0B6E50;">48–72 hr</div>
+        <div class="tl-sub" style="color:#0B6E50;">超補償高點 ↑↑</div>
+      </div>
+      <div class="tl-cell" style="background:#EDE9E4;">
+        <div class="tl-label" style="color:#666;">72hr 之後</div>
+        <div class="tl-sub" style="color:#666;">回到基準線</div>
+      </div>
+    </div>
+
+    <div class="hl">
+      <p>最佳再次訓練時機：在「超補償高點」再刺激一次，能力才會累積向上。<br>太早練 → 沒充分恢復；太晚練 → 超補償效果消退。<strong>每週 2 次</strong>剛好對應這個節奏。</p>
+    </div>
+
+    <div class="two-col" style="margin-top:1rem;">
+      <div class="mini-card">
+        <h4>影響恢復的因素</h4>
+        <ul>
+          <li>睡眠（最重要）</li>
+          <li>蛋白質攝取是否足夠</li>
+          <li>整體熱量是否足夠</li>
+          <li>壓力水準（皮質醇）</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>潔西目前的狀況</h4>
+        <ul>
+          <li>睡眠品質 3/5 ⚠️</li>
+          <li>壓力 8/10 ⚠️</li>
+          <li>熱量目前偏低 ⚠️</li>
+          <li>這三項是最大阻力</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6 -->
+  <div class="slide" id="s5">
+    <div class="slide-label">第六頁 · 行動計畫</div>
+    <h1>接下來，從這裡開始</h1>
+    <div class="subtitle">不需要全部到位，找到最小可執行單位，先動起來。</div>
+
+    <div class="summary-grid">
+      <div class="sum-card">
+        <div class="sum-val">2–3</div>
+        <div class="sum-label">重訓天 / 週</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-val">3 組</div>
+        <div class="sum-label">每個動作</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-val">RPE 7–8</div>
+        <div class="sum-label">目標強度</div>
+      </div>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>飲食：把熱量補回來</strong><br>目前平均 1,350 kcal，目標拉到 1,700–1,900 kcal。加堅果、酪梨、全蛋，不改變吃法只增加份量。</div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>重訓：先建立動作模式</strong><br>深蹲、臀推、划船三個動作學紮實，每週練 2 次，記錄重量，每 2–3 週嘗試增加。</div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>恢復：睡眠是最有效的補充品</strong><br>在能力範圍內提升睡眠品質，優先於任何訓練技巧。</div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text"><strong>追蹤：量腰圍，不只看體重</strong><br>每月量腰圍一次，InBody 每 2–3 個月測一次，用數字確認方向。</div>
+      </li>
+    </ul>
+
+    <div class="hl" style="margin-top:0.5rem;">
+      <p>三個月目標：骨骼肌 +1–2 kg，腰圍 −2–3 cm，整體感受更緊實有型。<br>這完全可以做到，而且不需要吃更少，只需要更聰明地練。</p>
+    </div>
+  </div>
+
+</div><!-- end deck -->
+
+<script>
+const total = 6;
+let cur = 0;
+const dotsEl = document.getElementById('dots');
+const ctr = document.getElementById('ctr');
+
+for (let i = 0; i < total; i++) {
+  const d = document.createElement('button');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+}
+
+function goTo(n) {
+  document.getElementById('s' + cur).classList.remove('active');
+  dotsEl.children[cur].classList.remove('active');
+  cur = ((n % total) + total) % total;
+  document.getElementById('s' + cur).classList.add('active');
+  dotsEl.children[cur].classList.add('active');
+  ctr.textContent = (cur + 1) + ' / ' + total;
+}
+function go(d) { goTo(cur + d); }
+
+ctr.textContent = '1 / ' + total;
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') go(1);
+  if (e.key === 'ArrowLeft') go(-1);
+});
+</script>
+</body>
+</html>
