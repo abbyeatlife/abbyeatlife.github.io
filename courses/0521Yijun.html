@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>苡焄 × 第3堂課</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #8B9E7E;
+    --sage-dark: #6B7E5E;
+    --sage-pale: #D6E4CF;
+    --terracotta: #C17F59;
+    --terra-pale: #F0D9C8;
+    --cream: #FDFBF7;
+    --bark: #3D3229;
+    --bark-light: #6B5A4E;
+    --white: #FFFFFF;
+    --gray: #7A7A7A;
+    --light-gray: #F4F1ED;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Noto Sans TC', sans-serif;
+    color: var(--bark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(253,251,247,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(139,158,126,0.2);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--sage-dark);
+    letter-spacing: 0.05em;
+  }
+
+  .nav-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .nav-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--sage-pale);
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+  }
+
+  .nav-dot.active { background: var(--sage); transform: scale(1.3); }
+
+  /* ── SECTIONS ── */
+  section {
+    min-height: 100vh;
+    padding: 80px 0 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    width: 100%;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    background: var(--bark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(139,158,126,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  #hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(193,127,89,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(139,158,126,0.2);
+    border: 1px solid rgba(139,158,126,0.4);
+    color: var(--sage-pale);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--terra-pale);
+  }
+
+  .hero-sub {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(253,251,247,0.6);
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hero-stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: rgba(253,251,247,0.4);
+    text-transform: uppercase;
+  }
+
+  .hero-stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--sage-pale);
+  }
+
+  .hero-stat-unit {
+    font-size: 0.75rem;
+    color: rgba(253,251,247,0.5);
+    margin-left: 2px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-eyebrow {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 600;
+    color: var(--bark);
+    line-height: 1.3;
+    margin-bottom: 0.7rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.92rem;
+    color: var(--bark-light);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 2.8rem;
+    max-width: 560px;
+  }
+
+  /* ── DATA SECTION ── */
+  #data { background: var(--cream); }
+
+  .data-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .data-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 1.8rem;
+    border: 1px solid rgba(139,158,126,0.15);
+    box-shadow: 0 4px 24px rgba(61,50,41,0.06);
+  }
+
+  .data-card-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 1.2rem;
+  }
+
+  .data-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--light-gray);
+    font-size: 0.88rem;
+  }
+
+  .data-row:last-child { border-bottom: none; }
+
+  .data-date { color: var(--gray); font-weight: 300; }
+
+  .data-val { font-weight: 500; color: var(--bark); }
+
+  .data-delta-down { color: var(--sage-dark); font-size: 0.78rem; margin-left: 6px; }
+  .data-delta-up { color: var(--terracotta); font-size: 0.78rem; margin-left: 6px; }
+
+  .data-badge {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .badge-warn { background: var(--terra-pale); color: var(--terracotta); }
+  .badge-period { background: #fde8e8; color: #b85555; }
+
+  .insight-bar {
+    background: var(--bark);
+    border-radius: 12px;
+    padding: 1.4rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .insight-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+  }
+
+  .insight-text {
+    font-size: 0.88rem;
+    color: var(--sage-pale);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .insight-text strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  /* ── SIGNALS SECTION ── */
+  #signals { background: var(--light-gray); }
+
+  .signal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  .signal-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 1.6rem;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 16px rgba(61,50,41,0.05);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .signal-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--sage);
+  }
+
+  .signal-card.terra::before { background: var(--terracotta); }
+
+  .signal-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(61,50,41,0.1);
+  }
+
+  .signal-q {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .signal-card.terra .signal-q { color: var(--terracotta); }
+
+  .signal-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--bark);
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .signal-body {
+    font-size: 0.85rem;
+    color: var(--bark-light);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .signal-highlight {
+    background: var(--sage-pale);
+    border-radius: 6px;
+    padding: 0.7rem 0.9rem;
+    margin-top: 0.9rem;
+    font-size: 0.82rem;
+    color: var(--sage-dark);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .signal-card.terra .signal-highlight {
+    background: var(--terra-pale);
+    color: #9B5F3A;
+  }
+
+  /* ── BRAIN SECTION ── */
+  #brain { background: var(--cream); }
+
+  .brain-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .brain-concept {
+    background: var(--bark);
+    border-radius: 20px;
+    padding: 2.2rem;
+    color: var(--white);
+  }
+
+  .brain-concept-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1rem;
+  }
+
+  .brain-concept-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 1.2rem;
+    color: var(--white);
+  }
+
+  .brain-concept-body {
+    font-size: 0.85rem;
+    color: rgba(253,251,247,0.7);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 1.4rem;
+  }
+
+  .brain-chip {
+    display: inline-block;
+    background: rgba(139,158,126,0.2);
+    border: 1px solid rgba(139,158,126,0.3);
+    color: var(--sage-pale);
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin: 3px 3px 0 0;
+  }
+
+  .brain-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .brain-step {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .brain-step-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--sage-pale);
+    color: var(--sage-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .brain-step-content {}
+
+  .brain-step-title {
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--bark);
+    margin-bottom: 0.3rem;
+  }
+
+  .brain-step-desc {
+    font-size: 0.83rem;
+    color: var(--bark-light);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ── MOOD SECTION ── */
+  #mood { background: var(--light-gray); }
+
+  .mood-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mood-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 1.6rem;
+    box-shadow: 0 2px 16px rgba(61,50,41,0.05);
+  }
+
+  .mood-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .mood-icon-wrap {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .mood-card-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--bark);
+  }
+
+  .mood-why {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+
+  .mood-why-text {
+    font-size: 0.84rem;
+    color: var(--bark);
+    font-weight: 500;
+    margin-bottom: 0.7rem;
+  }
+
+  .mood-how-text {
+    font-size: 0.82rem;
+    color: var(--bark-light);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .mood-footer {
+    background: var(--bark);
+    border-radius: 14px;
+    padding: 1.4rem 1.8rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .mood-footer-item {}
+
+  .mood-footer-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
+
+  .mood-footer-label {
+    font-size: 0.8rem;
+    color: var(--white);
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+
+  .mood-footer-desc {
+    font-size: 0.72rem;
+    color: rgba(253,251,247,0.5);
+    line-height: 1.4;
+    font-weight: 300;
+  }
+
+  /* ── NEXT STEPS ── */
+  #next { background: var(--cream); }
+
+  .next-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .next-item {
+    display: flex;
+    gap: 1.4rem;
+    align-items: flex-start;
+    background: var(--white);
+    border-radius: 14px;
+    padding: 1.5rem 1.8rem;
+    border: 1px solid rgba(139,158,126,0.12);
+    box-shadow: 0 2px 12px rgba(61,50,41,0.04);
+    transition: all 0.25s;
+  }
+
+  .next-item:hover {
+    border-color: var(--sage);
+    transform: translateX(4px);
+  }
+
+  .next-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--sage-pale);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 36px;
+  }
+
+  .next-content {}
+
+  .next-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--bark);
+    margin-bottom: 0.35rem;
+  }
+
+  .next-desc {
+    font-size: 0.83rem;
+    color: var(--bark-light);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .closing {
+    margin-top: 2.5rem;
+    text-align: center;
+    padding: 2.5rem;
+    background: var(--bark);
+    border-radius: 20px;
+    color: var(--white);
+  }
+
+  .closing-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--sage-pale);
+    margin-bottom: 0.6rem;
+    line-height: 1.5;
+  }
+
+  .closing-sub {
+    font-size: 0.82rem;
+    color: rgba(253,251,247,0.45);
+    font-weight: 300;
+  }
+
+  /* ── NOTES ── */
+  .notes-section {
+    margin-top: 2.5rem;
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2rem 2rem 1.6rem;
+    border: 1px solid rgba(139,158,126,0.2);
+    box-shadow: 0 4px 24px rgba(61,50,41,0.06);
+  }
+
+  .notes-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .notes-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--bark);
+    margin-bottom: 0.3rem;
+  }
+
+  .notes-subtitle {
+    font-size: 0.82rem;
+    color: var(--gray);
+    font-weight: 300;
+  }
+
+  .notes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .notes-block {}
+
+  .notes-block-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .notes-textarea {
+    width: 100%;
+    min-height: 96px;
+    border: 1.5px solid var(--sage-pale);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.88rem;
+    color: var(--bark);
+    background: var(--cream);
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+    line-height: 1.65;
+  }
+
+  .notes-textarea:focus {
+    border-color: var(--sage);
+    background: var(--white);
+  }
+
+  .notes-textarea::placeholder {
+    color: #B8B0A8;
+    font-weight: 300;
+  }
+
+  .notes-save-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .notes-copy-btn {
+    background: var(--sage);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    padding: 0.55rem 1.2rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-weight: 500;
+  }
+
+  .notes-copy-btn:hover { background: var(--sage-dark); }
+
+  .notes-copy-hint {
+    font-size: 0.78rem;
+    color: var(--sage-dark);
+    font-weight: 300;
+  }
+
+  @media (max-width: 680px) {
+    .notes-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* staggered children */
+  .stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .stagger.visible > *:nth-child(1) { opacity:1; transform:translateY(0); transition-delay: 0.05s; }
+  .stagger.visible > *:nth-child(2) { opacity:1; transform:translateY(0); transition-delay: 0.15s; }
+  .stagger.visible > *:nth-child(3) { opacity:1; transform:translateY(0); transition-delay: 0.25s; }
+  .stagger.visible > *:nth-child(4) { opacity:1; transform:translateY(0); transition-delay: 0.35s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .data-grid, .signal-grid, .brain-layout, .mood-grid { grid-template-columns: 1fr; }
+    .mood-footer { grid-template-columns: 1fr; }
+    .hero-meta { flex-wrap: wrap; gap: 1.5rem; }
+    nav { padding: 0 1.2rem; }
+    .container { padding: 0 1.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">Abby Eat Life</span>
+  <div class="nav-dots">
+    <button class="nav-dot active" onclick="scrollTo('#hero')"></button>
+    <button class="nav-dot" onclick="scrollTo('#data')"></button>
+    <button class="nav-dot" onclick="scrollTo('#signals')"></button>
+    <button class="nav-dot" onclick="scrollTo('#brain')"></button>
+    <button class="nav-dot" onclick="scrollTo('#mood')"></button>
+    <button class="nav-dot" onclick="scrollTo('#next')"></button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-tag">苡焄 × 第3堂課</div>
+    <h1 class="hero-title">
+      不是檢討，<br><em>是讀懂自己</em>
+    </h1>
+    <p class="hero-sub">
+      身體一直在說話。<br>
+      練習聽懂它在說什麼。
+    </p>
+    <div class="hero-meta">
+      <div class="hero-stat">
+        <span class="hero-stat-label">體重變化</span>
+        <span class="hero-stat-value">65.0 → 66.4<span class="hero-stat-unit">kg</span></span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-label">觀察期間</span>
+        <span class="hero-stat-value">4/7 → 5/7</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-label">今日主題</span>
+        <span class="hero-stat-value" style="font-size:1.1rem;line-height:1.4">身體訊號<br>腦的可塑性</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA -->
+<section id="data">
+  <div class="container">
+    <p class="section-eyebrow fade-in">數據回顧</p>
+    <h2 class="section-title fade-in">這段時間發生了什麼？</h2>
+    <p class="section-subtitle fade-in">體重有起伏，背後有原因——感冒、旅行、甜食、生理期，都在數字裡。</p>
+
+    <div class="data-grid stagger">
+      <div class="data-card">
+        <div class="data-card-label">體重紀錄 kg</div>
+        <div class="data-row"><span class="data-date">4/7</span><span class="data-val">66.1</span><span></span></div>
+        <div class="data-row"><span class="data-date">4/9</span><span class="data-val">64.6 <span class="data-delta-down">▼1.5</span></span></div>
+        <div class="data-row"><span class="data-date">4/11</span><span class="data-val">65.7 <span class="data-delta-up">▲1.1</span></span><span class="data-badge badge-warn">單日大波動</span></div>
+        <div class="data-row"><span class="data-date">4/13</span><span class="data-val">64.7 <span class="data-delta-down">▼1.0</span></span></div>
+        <div class="data-row"><span class="data-date">4/14</span><span class="data-val">65.2 <span class="data-delta-up">▲0.5</span></span><span class="data-badge badge-period">月經第一天</span></div>
+        <div class="data-row"><span class="data-date">4/21</span><span class="data-val">65.0 <span class="data-delta-down">▼0.2</span></span></div>
+        <div class="data-row"><span class="data-date">5/7</span><span class="data-val">65.7 / 66.4 <span class="data-delta-up">↑</span></span><span class="data-badge badge-warn">旅行後</span></div>
+      </div>
+
+      <div class="data-card">
+        <div class="data-card-label">這段期間的情境</div>
+        <div class="data-row"><span class="data-date">感冒期</span><span class="data-val" style="font-size:0.83rem;color:var(--bark-light)">完全沒食慾，幾乎不吃</span></div>
+        <div class="data-row"><span class="data-date">旅行</span><span class="data-val" style="font-size:0.83rem;color:var(--bark-light)">一天兩個冰淇淋、蜂蜜蛋糕多塊</span></div>
+        <div class="data-row"><span class="data-date">口渴感</span><span class="data-val" style="font-size:0.83rem;color:var(--bark-light)">喝到 1600ml 仍持續口渴</span></div>
+        <div class="data-row"><span class="data-date">停職</span><span class="data-val" style="font-size:0.83rem;color:var(--bark-light)">休息第一個月，作息調整中</span></div>
+        <div class="data-row"><span class="data-date">腰圍</span><span class="data-val" style="font-size:0.83rem;color:var(--gray)">旅行中未量測</span></div>
+
+        <div style="margin-top:1rem; padding: 0.9rem; background: var(--light-gray); border-radius: 8px;">
+          <div style="font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gray); margin-bottom:0.4rem;">重要觀察</div>
+          <div style="font-size:0.83rem; color:var(--bark-light); line-height:1.65; font-weight:300;">
+            飲食模式幾乎完全被<strong style="color:var(--bark); font-weight:500;">情境驅動</strong>——感冒就不吃，出遊就全開。這不是意志力問題，是還沒有建立「自我調節」的迴路。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight-bar fade-in">
+      <span class="insight-icon">💡</span>
+      <span class="insight-text">
+        體重從 65.0 → 66.4 背後有感冒脫水補水、大量甜食、可能的生理週期影響。<strong>數字背後的模式才是關鍵。</strong>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- BODY SIGNALS -->
+<section id="signals">
+  <div class="container">
+    <p class="section-eyebrow fade-in">你的身體在說話</p>
+    <h2 class="section-title fade-in">兩個問題</h2>
+    <p class="section-subtitle fade-in">主動關心身體的反應是很好的開始。</p>
+
+    <div class="signal-grid stagger">
+      <div class="signal-card terra">
+        <div class="signal-q">問題 01</div>
+        <div class="signal-title">吃太多甜食對身體的影響？</div>
+        <div class="signal-body">
+          甜食讓人停不下來，背後有兩條機制同時在跑：
+          <br><br>
+          <strong style="color:var(--bark);">① 多巴胺獎勵迴路</strong><br>
+          糖分觸發大腦釋放多巴胺——多巴胺不是讓你「滿足」，而是讓你「想要更多」。吃完第一個冰淇淋，大腦不是被安撫，是被啟動。這是<strong>成癮機制</strong>的底層邏輯，不是意志力的問題。
+          <br><br>
+          <strong style="color:var(--bark);">② 壓力 × 療癒食物</strong><br>
+          甜食、高脂食物在壓力下特別有吸引力，因為它們能短暫壓制皮質醇（壓力荷爾蒙）的感受，讓人有「被安慰」的感覺。工作是壓力事件，加上生活改變等環境刺激——大腦非常自然地會去找「快速獎勵」。
+        </div>
+        <div class="signal-highlight">
+          🔑 不是嘴饞，不是沒自制力——是壓力啟動了多巴胺獎勵迴路，甜食是這個迴路最容易取得的滿足物。
+        </div>
+      </div>
+
+      <div class="signal-card">
+        <div class="signal-q">問題 02</div>
+        <div class="signal-title">為什麼一直很渴喝了還是渴？</div>
+        <div class="signal-body">
+          幾個可能同時發生的原因：
+          <br><br>
+          <strong style="color:var(--bark);">① 高糖飲食</strong> — 血糖升高，身體需要大量水稀釋，是最直接的原因。甜食通常也高鈉，雙重加劇口渴。
+          <br><br>
+          <strong style="color:var(--bark);">② 電解質失衡</strong> — 天氣熱、出汗，加上飲食不穩定（感冒幾乎不吃 → 大吃），可能導致電解質失衡。純喝水補不回來，身體會一直發出渴的訊號。
+          <br><br>
+          <strong style="color:var(--bark);">③ 睡眠品質差</strong> — 睡眠不足會讓抗利尿激素分泌異常，旅行睡眠通常不規律，也會加劇口渴感。
+          <br><br>
+          <strong style="color:var(--bark);">④ 情緒性口渴</strong> — 當人感到焦慮或壓力時，大腦會把心裡的焦慮，誤以為是口渴，讓人忍不住想喝點東西。這不一定是身體缺水，而是心理需要被安慰。
+        </div>
+        <div class="signal-highlight">
+          🔑 你注意到了這個訊號——這很重要。旅行結束、飲食恢復後如果口渴持續，值得再觀察一次。
+        </div>
+      </div>
+
+      <div class="signal-card terra" style="grid-column: 1 / -1;">
+        <div class="signal-q">更大的問題</div>
+        <div class="signal-title">感冒完全不吃 vs 旅行完全放開——這兩種都是「讓環境決定我吃什麼」</div>
+        <div class="signal-body">
+          不是飲食控制出了問題，而是「自己」還沒有進入這個決定的過程。大部分人不是不想照顧身體，是<strong style="color:var(--bark);">從來沒有人教過怎麼在情境裡聽見自己的需求</strong>。
+        </div>
+        <div class="signal-highlight">
+          今天的練習：把旅行中的狀態回顧一次——吃了什麼、之後感覺怎樣、有沒有注意到什麼？不是評判，是練習「吃了 → 身體反應」的連結意識。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BRAIN PLASTICITY -->
+<section id="brain">
+  <div class="container">
+    <p class="section-eyebrow fade-in">神經科學視角</p>
+    <h2 class="section-title fade-in">大腦是可以被重新訓練的</h2>
+    <p class="section-subtitle fade-in">「我就是這種人」不是事實，是還沒啟動的迴路。</p>
+
+    <div class="brain-layout stagger">
+      <div class="brain-concept">
+        <div class="brain-concept-label">腦的可塑性 Neuroplasticity</div>
+        <div class="brain-concept-title">你重複做什麼，大腦就強化那條路</div>
+        <div class="brain-concept-body">
+          大腦會強化被重複使用的神經迴路，不管是好習慣還是壞習慣，大腦本身不評判——它只是讓熟悉的路越走越順。
+          <br><br>
+          「環境給什麼就吃什麼」是一條已經很順暢的迴路，不是你的錯，是大腦在做它最擅長的事：讓自動化發生。
+          <br><br>
+          但這也代表：只要開始在自動反應之前插入一個<strong style="color:var(--white);">微小的意識停頓</strong>，新的迴路就開始形成了。
+        </div>
+        <div>
+          <span class="brain-chip">情緒喚起時學習最快</span>
+          <span class="brain-chip">重複即強化</span>
+          <span class="brain-chip">微小行動勝過完美計畫</span>
+        </div>
+      </div>
+
+      <div class="brain-steps">
+        <div style="font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gray); margin-bottom:0.5rem;">現在能做的三件小事</div>
+
+        <div class="brain-step">
+          <div class="brain-step-num">1</div>
+          <div class="brain-step-content">
+            <div class="brain-step-title">吃之前停頓三秒</div>
+            <div class="brain-step-desc">不是要阻止你吃，是讓「意識」進入這個決定。問自己：我現在是真餓，還是環境讓我想吃？知道答案就好，不需要改變行為。</div>
+          </div>
+        </div>
+
+        <div class="brain-step">
+          <div class="brain-step-num">2</div>
+          <div class="brain-step-content">
+            <div class="brain-step-title">吃完記一個感受就好</div>
+            <div class="brain-step-desc">不是記卡路里，是記感覺——「吃完很飽很撐」、「吃完精神好」、「吃完想繼續吃」。這個連結意識是重塑的起點。</div>
+          </div>
+        </div>
+
+        <div class="brain-step">
+          <div class="brain-step-num">3</div>
+          <div class="brain-step-content">
+            <div class="brain-step-title">停職期間是最好的時機</div>
+            <div class="brain-step-desc">神經科學研究顯示情緒流動的時刻學習效率最高。你現在正在重整生活節奏——大腦此刻其實比平常更容易接受新的迴路。</div>
+          </div>
+        </div>
+
+        <div style="background: var(--sage-pale); border-radius: 10px; padding: 1rem 1.2rem; margin-top: 0.4rem;">
+          <div style="font-size:0.82rem; color:var(--sage-dark); font-weight:500; line-height:1.6;">
+            「你現在覺得很難控制，不代表你永遠這樣。大腦是可以重新訓練的——而且你現在這個階段，其實是很好的時機。」
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOOD & FOOD -->
+<section id="mood">
+  <div class="container">
+    <p class="section-eyebrow fade-in">飲食 × 心情</p>
+    <h2 class="section-title fade-in">吃什麼讓心情好？</h2>
+    <p class="section-subtitle fade-in">食物的影響是輔助，不是特效藥——但吃對了，整個人的狀態會穩一點。</p>
+
+    <div class="mood-grid stagger">
+      <div class="mood-card">
+        <div class="mood-card-header">
+          <div class="mood-icon-wrap" style="background:var(--terra-pale);">📉</div>
+          <div class="mood-card-title">血糖穩定優先</div>
+        </div>
+        <div class="mood-why">為什麼</div>
+        <div class="mood-why-text">血糖起伏 = 情緒起伏</div>
+        <div class="mood-how-text">避免精緻糖、空腹吃甜食；每餐配蛋白質＋纖維讓血糖緩升，情緒跟著穩定。</div>
+      </div>
+
+      <div class="mood-card">
+        <div class="mood-card-header">
+          <div class="mood-icon-wrap" style="background:#D6EAD6;">🐟</div>
+          <div class="mood-card-title">Omega-3 脂肪酸</div>
+        </div>
+        <div class="mood-why">為什麼</div>
+        <div class="mood-why-text">抗發炎，情緒調節有實證</div>
+        <div class="mood-how-text">深海魚（鮭魚、鯖魚）每週 2–3 次，或核桃每天一小把。</div>
+      </div>
+
+      <div class="mood-card">
+        <div class="mood-card-header">
+          <div class="mood-icon-wrap" style="background:#EAE6D6;">🥚</div>
+          <div class="mood-card-title">色胺酸來源</div>
+        </div>
+        <div class="mood-why">為什麼</div>
+        <div class="mood-why-text">血清素的前驅物</div>
+        <div class="mood-how-text">雞蛋、香蕉、豆腐、南瓜籽，搭配少量碳水更容易進入大腦。</div>
+      </div>
+
+      <div class="mood-card">
+        <div class="mood-card-header">
+          <div class="mood-icon-wrap" style="background:var(--sage-pale);">🥗</div>
+          <div class="mood-card-title">腸道照顧</div>
+        </div>
+        <div class="mood-why">為什麼</div>
+        <div class="mood-why-text">腸腦軸——腸道直接影響大腦</div>
+        <div class="mood-how-text">優格、泡菜等發酵食品＋大量蔬菜纖維，養好腸道菌相。</div>
+      </div>
+    </div>
+
+    <div class="mood-footer fade-in">
+      <div class="mood-footer-item">
+        <div class="mood-footer-icon">🌅</div>
+        <div class="mood-footer-label">固定起床時間</div>
+        <div class="mood-footer-desc">不需要早，但要固定。作息崩掉是情緒最大的殺手</div>
+      </div>
+      <div class="mood-footer-item">
+        <div class="mood-footer-icon">🚶</div>
+        <div class="mood-footer-label">外出散步或輕運動</div>
+        <div class="mood-footer-desc">不需要高強度，出門走走、伸展、瑜伽都算。動起來就有用</div>
+      </div>
+      <div class="mood-footer-item">
+        <div class="mood-footer-icon">🎯</div>
+        <div class="mood-footer-label">給自己一個小任務</div>
+        <div class="mood-footer-desc">每天完成一件小事，維持目的感與成就感</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section id="next">
+  <div class="container">
+    <p class="section-eyebrow fade-in">接下來</p>
+    <h2 class="section-title fade-in">這週只需要做一件事</h2>
+    <p class="section-subtitle fade-in">不需要完美，只需要開始。</p>
+
+    <div class="next-grid stagger">
+      <div class="next-item">
+        <div class="next-num">1</div>
+        <div class="next-content">
+          <div class="next-title">吃完記一個感受</div>
+          <div class="next-desc">不是記食物，是記感覺。「很飽」、「吃完想繼續吃」、「精神好」——傳到 Line 給自己的聊天室或語音備忘錄，一句話就夠。這是建立「吃了 → 身體反應」連結意識的第一步。</div>
+        </div>
+      </div>
+
+      <div class="next-item">
+        <div class="next-num">2</div>
+        <div class="next-content">
+          <div class="next-title">觀察一次「情境讓我吃」的時刻</div>
+          <div class="next-desc">不需要阻止自己，只是注意到：是真餓？還是因為在那個情境、有人拿出來、習慣？知道就好，不需要改變任何行為。</div>
+        </div>
+      </div>
+
+      <div class="next-item">
+        <div class="next-num">3</div>
+        <div class="next-content">
+          <div class="next-title">每天出門走一走</div>
+          <div class="next-desc">不需要運動，散步就夠。出門這個動作本身會打破「停在家裡」的慣性迴路，對情緒、血清素、睡眠都有幫助。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTES AREA -->
+    <div class="notes-section fade-in">
+      <div class="notes-header">
+        <div class="notes-title">📝 今天的計畫</div>
+        <div class="notes-subtitle">一起寫下來，這週想試試看什麼？</div>
+      </div>
+
+      <div class="notes-grid">
+        <div class="notes-block">
+          <div class="notes-block-label">我想觀察的事</div>
+          <textarea class="notes-textarea" placeholder="例如：吃完感覺怎樣、什麼時候特別想吃甜的……"></textarea>
+        </div>
+        <div class="notes-block">
+          <div class="notes-block-label">這週想試一件小事</div>
+          <textarea class="notes-textarea" placeholder="例如：吃完記一個感受、每天出門走 10 分鐘……"></textarea>
+        </div>
+        <div class="notes-block" style="grid-column: 1 / -1;">
+          <div class="notes-block-label">今天上課的收穫 / 想記住的一句話</div>
+          <textarea class="notes-textarea" style="min-height:80px;" placeholder="寫下今天最有感的一件事……"></textarea>
+        </div>
+      </div>
+
+      <div class="notes-save-row">
+        <button class="notes-copy-btn" onclick="copyNotes()">複製筆記內容</button>
+        <span class="notes-copy-hint" id="copyHint"></span>
+      </div>
+    </div>
+
+    <div class="closing fade-in">
+      <div class="closing-quote">"大腦是可以重新訓練的——<br>而你現在這個階段，是很好的時機。"</div>
+      <div class="closing-sub">這一個月是充電，不是放棄 🌿</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function copyNotes() {
+    const areas = document.querySelectorAll('.notes-textarea');
+    const labels = document.querySelectorAll('.notes-block-label');
+    let text = '📝 今天的計畫\n\n';
+    areas.forEach((a, i) => {
+      const label = labels[i] ? labels[i].textContent.trim() : '';
+      text += `【${label}】\n${a.value || '（未填寫）'}\n\n`;
+    });
+    navigator.clipboard.writeText(text).then(() => {
+      const hint = document.getElementById('copyHint');
+      hint.textContent = '✓ 已複製！可以貼到 Line 或備忘錄';
+      setTimeout(() => hint.textContent = '', 3000);
+    });
+  }
+
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(el => {
+      if (el.isIntersecting) {
+        el.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in, .stagger').forEach(el => observer.observe(el));
+
+  // Nav dot active state
+  const sections = document.querySelectorAll('section');
+  const dots = document.querySelectorAll('.nav-dot');
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const idx = Array.from(sections).indexOf(entry.target);
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => sectionObserver.observe(s));
+
+  function scrollTo(id) {
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
