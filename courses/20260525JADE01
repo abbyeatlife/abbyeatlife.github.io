@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jade 初次課程｜Abby Eat Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sage: #8B9E7E;
+  --terra: #C17F59;
+  --cream: #FDFBF7;
+  --bark: #3D3229;
+  --sage-light: #e8ede5;
+  --terra-light: #f5e6db;
+  --bg: #FDFBF7;
+  --bg-secondary: #f3f0ea;
+  --border: rgba(61,50,41,0.12);
+  --border-md: rgba(61,50,41,0.22);
+  --text: #2a2218;
+  --text-secondary: #6b5e52;
+  --text-tertiary: #a0948a;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.page-header {
+  background: var(--bark);
+  color: var(--cream);
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.page-header .sub {
+  font-size: 13px;
+  opacity: 0.65;
+  margin-top: 2px;
+}
+.header-dot {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--sage);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 500; color: #fff;
+  flex-shrink: 0;
+}
+
+.layout { display: flex; min-height: calc(100vh - 72px); }
+
+.sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  background: #fff;
+  border-right: 0.5px solid var(--border);
+  padding: 1.25rem 0;
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 72px);
+  overflow-y: auto;
+}
+.sidebar-group { margin-bottom: 0.5rem; }
+.sidebar-group-label {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  padding: 0.5rem 1.25rem 0.25rem;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+.sidebar-btn {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%; padding: 8px 1.25rem;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 13px; color: var(--text-secondary);
+  text-align: left; transition: all 0.15s;
+}
+.sidebar-btn:hover { background: var(--bg-secondary); color: var(--text); }
+.sidebar-btn.active {
+  background: var(--sage-light);
+  color: var(--sage);
+  font-weight: 500;
+}
+.sidebar-btn .badge {
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 500; flex-shrink: 0;
+}
+.badge-a { background: var(--sage-light); color: var(--sage); }
+.badge-b { background: var(--terra-light); color: var(--terra); }
+.sidebar-btn.active .badge-a { background: var(--sage); color: #fff; }
+.sidebar-btn.active .badge-b { background: var(--terra); color: #fff; }
+
+.main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 780px;
+}
+
+.section { display: none; }
+.section.visible { display: block; }
+
+.section-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 0.5px solid var(--border);
+}
+.section-badge {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 500; flex-shrink: 0;
+}
+.section-title {
+  font-size: 17px; font-weight: 500;
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+}
+
+.card {
+  background: #fff;
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.3rem;
+  margin-bottom: 1rem;
+}
+.card-label {
+  font-size: 12px; color: var(--text-tertiary);
+  margin-bottom: 10px; letter-spacing: 0.03em;
+  font-weight: 500; text-transform: uppercase;
+}
+
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+
+.metric-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1rem;
+}
+.metric-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+.metric-value { font-size: 22px; font-weight: 500; color: var(--text); }
+.metric-note { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+
+.chart-wrap { position: relative; width: 100%; height: 200px; margin: 0.75rem 0; }
+
+.tag {
+  display: inline-block; font-size: 11px; padding: 3px 10px;
+  border-radius: 10px; margin: 2px;
+}
+.tag-ok { background: var(--sage-light); color: #5a7a4e; }
+.tag-warn { background: #fef3e2; color: #a06010; }
+.tag-alert { background: #fdecea; color: #a03030; }
+
+.progress-row { margin-bottom: 1rem; }
+.progress-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; }
+.progress-label span:first-child { color: var(--text-secondary); }
+.progress-label span:last-child { color: var(--text); font-weight: 500; }
+.progress-bar-bg { height: 8px; background: var(--bg-secondary); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 4px; }
+.progress-note { font-size: 11px; color: var(--text-tertiary); margin-top: 3px; }
+
+.info-row {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 10px 0; border-bottom: 0.5px solid var(--border);
+  font-size: 14px;
+}
+.info-row:last-child { border-bottom: none; }
+.info-icon { color: var(--text-tertiary); flex-shrink: 0; padding-top: 2px; font-size: 16px; }
+.info-text { color: var(--text); line-height: 1.65; }
+.info-text strong { font-weight: 500; }
+
+.compare-table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+.compare-table th {
+  background: var(--bg-secondary);
+  font-weight: 500; padding: 8px 12px; text-align: left;
+  color: var(--text-secondary); font-size: 12px;
+  border-bottom: 0.5px solid var(--border);
+}
+.compare-table td {
+  padding: 9px 12px; border-bottom: 0.5px solid var(--border);
+  color: var(--text); vertical-align: top; line-height: 1.5;
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.hl-red { color: #c0392b; font-weight: 500; }
+.hl-green { color: #27ae60; font-weight: 500; }
+
+.tip-box {
+  background: var(--sage-light);
+  border-left: 3px solid var(--sage);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 10px 14px; font-size: 13px;
+  color: var(--text); line-height: 1.65;
+  margin-top: 0.75rem;
+}
+.warn-box {
+  background: var(--terra-light);
+  border-left: 3px solid var(--terra);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 10px 14px; font-size: 13px;
+  color: var(--text); line-height: 1.65;
+  margin-top: 0.75rem;
+}
+
+.week-goal {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 0; border-bottom: 0.5px solid var(--border);
+  font-size: 14px;
+}
+.week-goal:last-child { border-bottom: none; }
+.goal-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--sage-light); color: var(--sage);
+  font-size: 12px; font-weight: 500; flex-shrink: 0; margin-top: 1px;
+}
+.goal-text { color: var(--text); line-height: 1.55; }
+.goal-sub { color: var(--text-secondary); font-size: 12px; margin-top: 2px; }
+
+.food-chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 10px; border-radius: 12px; font-size: 12px; margin: 3px;
+}
+.chip-warn { background: #fef3e2; color: #a06010; }
+.chip-bad { background: #fdecea; color: #a03030; }
+.chip-ok { background: var(--sage-light); color: #5a7a4e; }
+
+.divider { height: 0.5px; background: var(--border); margin: 1.25rem 0; }
+
+@media (max-width: 640px) {
+  .layout { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 0.5px solid var(--border); display: flex; flex-wrap: wrap; padding: 0.5rem; gap: 4px; }
+  .sidebar-group { margin: 0; }
+  .sidebar-group-label { display: none; }
+  .sidebar-btn { border-radius: 20px; padding: 6px 12px; }
+  .sidebar-btn.active { background: var(--sage); color: #fff; }
+  .main { padding: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="header-dot">J</div>
+  <div>
+    <h1>Jade 初次課程</h1>
+    <div class="sub">2026.05.25 ｜ Abby Eat Life 營養coaching</div>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" role="navigation" aria-label="課程模組">
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">基礎內容</div>
+      <button class="sidebar-btn active" onclick="show('a1', this)">
+        <span class="badge badge-a">A1</span> 現況盤點
+      </button>
+      <button class="sidebar-btn" onclick="show('a2', this)">
+        <span class="badge badge-a">A2</span> 合理速度
+      </button>
+      <button class="sidebar-btn" onclick="show('a3', this)">
+        <span class="badge badge-a">A3</span> 熱量目標
+      </button>
+      <button class="sidebar-btn" onclick="show('a4', this)">
+        <span class="badge badge-a">A4</span> 紀錄方式
+      </button>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">針對性內容</div>
+      <button class="sidebar-btn" onclick="show('b1', this)">
+        <span class="badge badge-b">B1</span> 水腫成因
+      </button>
+      <button class="sidebar-btn" onclick="show('b2', this)">
+        <span class="badge badge-b">B2</span> 蛋白質策略
+      </button>
+      <button class="sidebar-btn" onclick="show('b3', this)">
+        <span class="badge badge-b">B3</span> 外食陷阱
+      </button>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <!-- A1 -->
+    <div class="section visible" id="sec-a1">
+      <div class="section-header">
+        <div class="section-badge badge-a">A1</div>
+        <div class="section-title">你現在在哪裡？——現況盤點</div>
+      </div>
+
+      <div class="grid-4">
+        <div class="metric-card">
+          <div class="metric-label">週平均體重</div>
+          <div class="metric-value">74.1 kg</div>
+          <div class="metric-note">5/19–5/24</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">週內波動</div>
+          <div class="metric-value">2.0 kg</div>
+          <div class="metric-note">73.2 → 75.2</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">目標體重</div>
+          <div class="metric-value">65 kg</div>
+          <div class="metric-note">差距約 9 kg</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">估算每日熱量</div>
+          <div class="metric-value">1,600–1,800</div>
+          <div class="metric-note">kcal（含外食隱藏油脂）</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">這週體重曲線</div>
+        <div class="chart-wrap">
+          <canvas id="weightChart" role="img" aria-label="Jade 5月19日至24日體重折線圖，週末因高鈉飲食升至75.2公斤">週間體重：74, 73.2, 73.4, 73.9, 75.2, 74.6</canvas>
+        </div>
+        <div class="warn-box">週六（5/23）麻辣鍋底＋深夜吃，體重跳至 75.2 kg → 鈉攝取與進食時間是主因，不代表真正長了脂肪</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">三大營養素落點（5天均值估算）</div>
+        <div style="margin-top: 10px;">
+          <div class="progress-row">
+            <div class="progress-label"><span>蛋白質</span><span>65–80 g（目標 95 g）</span></div>
+            <div class="progress-bar-bg"><div class="progress-fill" style="width:72%; background:var(--sage);"></div></div>
+            <div class="progress-note">明顯不足，是本階段首要改善項目</div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-label"><span>碳水化合物</span><span>130–160 g</span></div>
+            <div class="progress-bar-bg"><div class="progress-fill" style="width:55%; background:#8AAFC4;"></div></div>
+            <div class="progress-note">量適中，品質有提升空間（精製 vs 複合碳水）</div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-label"><span>脂肪</span><span>45–60 g（外食低估風險）</span></div>
+            <div class="progress-bar-bg"><div class="progress-fill" style="width:65%; background:var(--terra);"></div></div>
+            <div class="progress-note">實際可能更高，外食炸物油脂難估</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">目前飲食的亮點 vs 可優化處</div>
+        <div style="margin-top: 8px; margin-bottom: 8px;">
+          <span class="tag tag-ok">✓ 每天有水煮蛋</span>
+          <span class="tag tag-ok">✓ 飯量有控制</span>
+          <span class="tag tag-ok">✓ 有蔬菜意識</span>
+        </div>
+        <div>
+          <span class="tag tag-warn">△ 蛋白質不足</span>
+          <span class="tag tag-warn">△ 高鈉頻率高</span>
+          <span class="tag tag-alert">✗ 進食時間不穩</span>
+          <span class="tag tag-alert">✗ 外食油脂難估</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2 -->
+    <div class="section" id="sec-a2">
+      <div class="section-header">
+        <div class="section-badge badge-a">A2</div>
+        <div class="section-title">合理的減重速度是多少？</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="metric-card">
+          <div class="metric-label">安全減重速度</div>
+          <div class="metric-value">0.5–1%</div>
+          <div class="metric-note">體重/週，即每週約 0.4–0.7 kg</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">Jade 的合理預期</div>
+          <div class="metric-value">10–16 週</div>
+          <div class="metric-note">抵達 65 kg 區間</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">預估體重下降時程</div>
+        <div class="chart-wrap">
+          <canvas id="progressChart" role="img" aria-label="Jade體重下降預估折線圖，從74公斤在12-16週內降至65公斤左右">預估10-16週可達65kg目標</canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">為什麼不能更快？</div>
+        <div class="info-row">
+          <div class="info-icon">⚠</div>
+          <div class="info-text"><strong>肌肉流失風險</strong>：每週超過 1% 體重，身體開始分解肌肉當能量，代謝率下降</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">⚠</div>
+          <div class="info-text"><strong>代謝適應</strong>：過度熱量赤字會讓身體進入「節能模式」，後期越來越難瘦</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">⚠</div>
+          <div class="info-text"><strong>反彈風險</strong>：過快減重多為水分＋肌肉，停止後極易回彈</div>
+        </div>
+        <div class="tip-box">體重的波動是正常的！每週看「平均值」比每天看數字更有意義。</div>
+      </div>
+    </div>
+
+    <!-- A3 -->
+    <div class="section" id="sec-a3">
+      <div class="section-header">
+        <div class="section-badge badge-a">A3</div>
+        <div class="section-title">減重期該吃多少？</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">TDEE 估算結果（課堂填寫）</div>
+        <div style="margin-top:12px; display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:center; gap:12px; font-size:14px;">
+            <span style="color:var(--text-secondary); min-width:140px;">🧮 BMR（基礎代謝）</span>
+            <input type="number" id="bmr" placeholder="填入數字" oninput="calcTDEE()" style="width:120px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+            <span style="color:var(--text-tertiary); font-size:13px;">kcal</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:14px;">
+            <span style="color:var(--text-secondary); min-width:140px;">⚡ 活動係數</span>
+            <select id="activity" onchange="calcTDEE()" style="width:180px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+              <option value="1.2">1.2 久坐少動</option>
+              <option value="1.375">1.375 輕度活動</option>
+              <option value="1.55" selected>1.55 中度活動</option>
+              <option value="1.725">1.725 高度活動</option>
+            </select>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:14px;">
+            <span style="color:var(--text-secondary); min-width:140px;">🔥 TDEE</span>
+            <div id="tdee-display" style="font-size:20px; font-weight:500; color:var(--text); min-width:80px;">——</div>
+            <span style="color:var(--text-tertiary); font-size:13px;">kcal／天</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:14px;">
+            <span style="color:var(--text-secondary); min-width:140px;">🎯 減重目標熱量</span>
+            <div id="target-display" style="font-size:20px; font-weight:500; color:var(--sage); min-width:80px;">——</div>
+            <span style="color:var(--text-tertiary); font-size:13px;">kcal（赤字 400–500）</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">三大營養素目標（填入每日克數）</div>
+        <div style="margin-top:12px; display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+              <span style="font-size:14px; color:var(--text-secondary); min-width:100px;">🥩 蛋白質</span>
+              <input type="number" id="prot-g" placeholder="克數" oninput="calcMacros()" style="width:90px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+              <span style="font-size:13px; color:var(--text-tertiary);">g　= <span id="prot-kcal" style="color:var(--sage); font-weight:500;">——</span> kcal</span>
+            </div>
+            <div class="progress-bar-bg"><div id="prot-bar" class="progress-fill" style="width:0%; background:var(--sage); transition:width 0.4s;"></div></div>
+            <div style="font-size:11px; color:var(--text-tertiary); margin-top:3px;">約佔總熱量 22–25%　目前僅達 65–80 g，需提升</div>
+          </div>
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+              <span style="font-size:14px; color:var(--text-secondary); min-width:100px;">🫒 脂肪</span>
+              <input type="number" id="fat-g" placeholder="克數" oninput="calcMacros()" style="width:90px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+              <span style="font-size:13px; color:var(--text-tertiary);">g　= <span id="fat-kcal" style="color:var(--terra); font-weight:500;">——</span> kcal</span>
+            </div>
+            <div class="progress-bar-bg"><div id="fat-bar" class="progress-fill" style="width:0%; background:var(--terra); transition:width 0.4s;"></div></div>
+            <div style="font-size:11px; color:var(--text-tertiary); margin-top:3px;">約佔總熱量 25–30%　維持荷爾蒙與飽足感的下限</div>
+          </div>
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+              <span style="font-size:14px; color:var(--text-secondary); min-width:100px;">🍚 碳水化合物</span>
+              <input type="number" id="carb-g" placeholder="克數" oninput="calcMacros()" style="width:90px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+              <span style="font-size:13px; color:var(--text-tertiary);">g　= <span id="carb-kcal" style="color:#5a88a8; font-weight:500;">——</span> kcal</span>
+            </div>
+            <div class="progress-bar-bg"><div id="carb-bar" class="progress-fill" style="width:0%; background:#8AAFC4; transition:width 0.4s;"></div></div>
+            <div style="font-size:11px; color:var(--text-tertiary); margin-top:3px;">填滿剩餘熱量　優先選複合碳水（飯、地瓜、燕麥）</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; padding-top:8px; border-top:0.5px solid var(--border); font-size:13px;">
+            <span style="color:var(--text-secondary);">合計熱量：</span>
+            <span id="total-kcal" style="font-weight:500; font-size:16px; color:var(--text);">——</span>
+            <span style="color:var(--text-tertiary);">kcal</span>
+          </div>
+        </div>
+        <div class="tip-box">設定順序：<strong>蛋白質優先 → 脂肪下限 → 碳水填滿</strong>，這樣的飲食結構最能同時保肌肉＋減脂肪</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">每餐熱量分配（填入比例，自動計算）</div>
+        <div style="margin-top:12px;">
+          <div style="font-size:12px; color:var(--text-tertiary); margin-bottom:12px;">根據上方填入的目標熱量自動換算，比例總和建議為 100%</div>
+          <div id="meal-rows" style="display:flex; flex-direction:column; gap:12px;">
+            <div class="meal-row" style="display:grid; grid-template-columns:90px 80px 1fr 1fr; align-items:center; gap:10px; font-size:13px;">
+              <span style="color:var(--text-secondary);">🌅 早餐</span>
+              <div style="display:flex; align-items:center; gap:4px;">
+                <input type="number" class="pct-input" value="22" min="0" max="100" oninput="calcMeals()" style="width:52px; padding:5px 8px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:13px; background:var(--bg); color:var(--text);">
+                <span style="color:var(--text-tertiary);">%</span>
+              </div>
+              <span class="meal-kcal" style="font-weight:500; color:var(--text);">——</span>
+              <span class="meal-prot" style="color:var(--text-secondary); font-size:12px;">蛋白質 ——</span>
+            </div>
+            <div class="meal-row" style="display:grid; grid-template-columns:90px 80px 1fr 1fr; align-items:center; gap:10px; font-size:13px;">
+              <span style="color:var(--text-secondary);">☀️ 午餐</span>
+              <div style="display:flex; align-items:center; gap:4px;">
+                <input type="number" class="pct-input" value="33" min="0" max="100" oninput="calcMeals()" style="width:52px; padding:5px 8px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:13px; background:var(--bg); color:var(--text);">
+                <span style="color:var(--text-tertiary);">%</span>
+              </div>
+              <span class="meal-kcal" style="font-weight:500; color:var(--text);">——</span>
+              <span class="meal-prot" style="color:var(--text-secondary); font-size:12px;">蛋白質 ——</span>
+            </div>
+            <div class="meal-row" style="display:grid; grid-template-columns:90px 80px 1fr 1fr; align-items:center; gap:10px; font-size:13px;">
+              <span style="color:var(--text-secondary);">☕ 下午點心</span>
+              <div style="display:flex; align-items:center; gap:4px;">
+                <input type="number" class="pct-input" value="12" min="0" max="100" oninput="calcMeals()" style="width:52px; padding:5px 8px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:13px; background:var(--bg); color:var(--text);">
+                <span style="color:var(--text-tertiary);">%</span>
+              </div>
+              <span class="meal-kcal" style="font-weight:500; color:var(--text);">——</span>
+              <span class="meal-prot" style="color:var(--text-secondary); font-size:12px;">蛋白質 ——</span>
+            </div>
+            <div class="meal-row" style="display:grid; grid-template-columns:90px 80px 1fr 1fr; align-items:center; gap:10px; font-size:13px;">
+              <span style="color:var(--text-secondary);">🌙 晚餐</span>
+              <div style="display:flex; align-items:center; gap:4px;">
+                <input type="number" class="pct-input" value="33" min="0" max="100" oninput="calcMeals()" style="width:52px; padding:5px 8px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:13px; background:var(--bg); color:var(--text);">
+                <span style="color:var(--text-tertiary);">%</span>
+              </div>
+              <span class="meal-kcal" style="font-weight:500; color:var(--text);">——</span>
+              <span class="meal-prot" style="color:var(--text-secondary); font-size:12px;">蛋白質 ——</span>
+            </div>
+          </div>
+          <div style="display:flex; justify-content:flex-end; margin-top:10px; font-size:12px; color:var(--text-tertiary);">
+            比例合計：<span id="pct-total" style="margin-left:4px; font-weight:500;">22+33+12+33 = 100</span>%
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- A4 -->
+    <div class="section" id="sec-a4">
+      <div class="section-header">
+        <div class="section-badge badge-a">A4</div>
+        <div class="section-title">下次怎麼記錄？</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">目前紀錄做得很好的地方</div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--sage);">✓</div>
+          <div class="info-text">有記時間點，看得出進食節律</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--sage);">✓</div>
+          <div class="info-text">食物描述具體（有品牌、有數量）</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--sage);">✓</div>
+          <div class="info-text">每天都有記錄，連續性佳</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">下次要補充的資訊</div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">+</div>
+          <div class="info-text"><strong>份量估算</strong>：便當的菜有幾樣？炒菜大概幾匙油？</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">+</div>
+          <div class="info-text"><strong>烹調方式</strong>：炒、炸、滷、水煮——影響熱量差很多</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">+</div>
+          <div class="info-text"><strong>飲水量</strong>：每天喝多少水，有助於追蹤水腫來源</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">表格 vs APP，哪個適合你？</div>
+        <table class="compare-table" style="margin-top:8px;">
+          <thead>
+            <tr><th style="width:28%;">方式</th><th style="width:30%;">優點</th><th style="width:27%;">缺點</th><th style="width:15%;">適合誰</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:500;">手寫表格</td>
+              <td>直覺、快、學起來就是你的</td>
+              <td>需耐心學習</td>
+              <td>有彈性、培養飲食直覺</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">APP（卡路里）</td>
+              <td>熱量自動計算、有圖表</td>
+              <td>食品庫不完整、誤導</td>
+              <td>想要立即有數字</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">照片記錄</td>
+              <td>最快、不用文字</td>
+              <td>份量不好估、長期學習差</td>
+              <td>容易忘記紀錄</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="tip-box">本週先用原本的文字紀錄方式，加上「份量估算」欄位試試看，下次再一起決定要不要導入 APP。</div>
+      </div>
+    </div>
+
+    <!-- B1 -->
+    <div class="section" id="sec-b1">
+      <div class="section-header">
+        <div class="section-badge badge-b">B1</div>
+        <div class="section-title">為什麼你這麼容易水腫？</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">水腫的三個主要成因</div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">🧂</div>
+          <div class="info-text"><strong>高鈉攝取</strong>：鈉會讓身體留住更多水分（1 g 鈉 ≈ 留住 400–500 ml 水）</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">🔥</div>
+          <div class="info-text"><strong>慢性輕度發炎</strong>：促炎飲食讓身體長期處於低度發炎，造成水腫＋脹氣</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">🥩</div>
+          <div class="info-text"><strong>蛋白質不足</strong>：白蛋白不足 → 血液滲透壓下降 → 水分滲入組織 → 水腫</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">從 Jade 的飲食推測：高鈉食物出現頻率</div>
+        <div style="margin-top:10px; line-height:2.2;">
+          <span class="food-chip chip-bad">✗ 鹹酥雞（幾乎每天）</span>
+          <span class="food-chip chip-bad">✗ 麻辣鍋底</span>
+          <span class="food-chip chip-bad">✗ 摩斯雞塊</span>
+          <span class="food-chip chip-warn">△ 便當醬汁</span>
+          <span class="food-chip chip-warn">△ 炸魚塊</span>
+          <span class="food-chip chip-warn">△ 蕎麥冷麵醬</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">潛在慢性發炎的飲食線索</div>
+        <div class="info-row">
+          <div class="info-icon" style="color:#c0392b;">⚠</div>
+          <div class="info-text"><strong>高 Omega-6 / 低 Omega-3</strong>：炸物（鹹酥雞、雞塊、炸魚）幾乎每天出現，使用的大豆油、棕櫚油富含 Omega-6，促炎傾向上升；五天內幾乎無 Omega-3 來源（無鮭魚、無堅果、無亞麻仁）</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:#c0392b;">⚠</div>
+          <div class="info-text"><strong>腸道健康可能受影響</strong>：蔬菜種類有限、纖維量不穩定，加上高油高鈉外食頻率高，可能影響腸道菌相平衡，造成脹氣與代謝效率下降</div>
+        </div>
+        <div class="warn-box">以上是根據飲食型態的推測方向，不是診斷。改善炸物頻率＋增加蔬菜多樣性，是最直接的切入點。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">可以馬上做的事</div>
+        <div class="week-goal">
+          <div class="goal-num">1</div>
+          <div class="goal-text">醬汁另外放或減量
+            <div class="goal-sub">便當醬汁是最容易減鈉的步驟，請店家少醬或自己先把醬汁倒掉一半</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">2</div>
+          <div class="goal-text">每週加入一次深海魚
+            <div class="goal-sub">鮭魚、鯖魚、秋刀魚，補充 Omega-3，平衡發炎反應</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">3</div>
+          <div class="goal-text">增加飲水量至 2,000 ml
+            <div class="goal-sub">足夠的水分反而幫助身體排鈉，減少水腫</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B2 -->
+    <div class="section" id="sec-b2">
+      <div class="section-header">
+        <div class="section-badge badge-b">B2</div>
+        <div class="section-title">蛋白質不足怎麼吃？選錯熱量翻倍</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="metric-card">
+          <div class="metric-label">目前平均攝取</div>
+          <div class="metric-value" style="color:var(--terra);">65–80 g</div>
+          <div class="metric-note">每天</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">建議目標</div>
+          <div class="metric-value" style="color:var(--sage);">90–100 g</div>
+          <div class="metric-note">每天（體重 × 1.3）</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">同樣補蛋白質，熱量差多少？</div>
+        <table class="compare-table" style="margin-top:8px;">
+          <thead>
+            <tr><th style="width:35%;">食物</th><th style="width:15%;">份量</th><th style="width:15%;">蛋白質</th><th style="width:18%;">熱量</th><th style="width:17%;"></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>雞胸肉（水煮）</td><td>100g</td><td>23 g</td>
+              <td class="hl-green">115 kcal</td><td><span class="tag tag-ok">推薦</span></td>
+            </tr>
+            <tr>
+              <td>雞腿排（帶皮炸）</td><td>100g</td><td>20 g</td>
+              <td class="hl-red">320 kcal</td><td><span class="tag tag-alert">2.8倍</span></td>
+            </tr>
+            <tr>
+              <td>嫩豆腐</td><td>150g</td><td>12 g</td>
+              <td class="hl-green">90 kcal</td><td><span class="tag tag-ok">推薦</span></td>
+            </tr>
+            <tr>
+              <td>油豆腐</td><td>150g</td><td>12 g</td>
+              <td class="hl-red">240 kcal</td><td><span class="tag tag-warn">2.7倍</span></td>
+            </tr>
+            <tr>
+              <td>水煮蛋</td><td>1顆</td><td>6 g</td>
+              <td class="hl-green">75 kcal</td><td><span class="tag tag-ok">推薦</span></td>
+            </tr>
+            <tr>
+              <td>魚卵（鱈魚）</td><td>50g</td><td>7 g</td>
+              <td class="hl-red">180 kcal</td><td><span class="tag tag-warn">注意</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Jade 的每餐蛋白質建議來源</div>
+        <div class="info-row">
+          <div class="info-icon">🌅</div>
+          <div class="info-text"><strong>早餐</strong>：2顆水煮蛋 + 無糖豆漿 400 ml → 約 26 g</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">☀️</div>
+          <div class="info-text"><strong>午餐</strong>：便當選雞胸 / 豬里肌 / 魚排（滷或烤）→ 約 30–35 g</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">☕</div>
+          <div class="info-text"><strong>下午</strong>：希臘優格 1 杯 or 毛豆 1 小碗 → 約 12–15 g</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🌙</div>
+          <div class="info-text"><strong>晚餐</strong>：雞胸肉片 / 豆腐 / 蛤蜊湯 → 約 20–25 g</div>
+        </div>
+        <div class="tip-box">你已經有水煮蛋的習慣了！只需要把午晚餐的蛋白質「升級」一下，就能達標。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">減脂期推薦蛋白質食物一覽（每 100g）</div>
+        <div style="margin-top:6px; margin-bottom:10px; font-size:12px; color:var(--text-tertiary);">以每 100g 可食部位計算，★ 為 CP 值高（高蛋白低熱量）首選</div>
+        <div style="overflow-x:auto;">
+        <table class="compare-table" style="min-width:480px;">
+          <thead>
+            <tr>
+              <th style="width:20%;">類別</th>
+              <th style="width:30%;">食物</th>
+              <th style="width:18%;">蛋白質</th>
+              <th style="width:18%;">熱量</th>
+              <th style="width:14%;">備註</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="5" style="color:var(--text-secondary); font-size:12px; vertical-align:top; padding-top:10px;">禽肉</td>
+              <td>雞胸肉（水煮）★</td><td class="hl-green">23 g</td><td class="hl-green">115 kcal</td><td><span class="tag tag-ok">首選</span></td></tr>
+            <tr><td>雞里肌（水煮）★</td><td class="hl-green">24 g</td><td class="hl-green">109 kcal</td><td><span class="tag tag-ok">首選</span></td></tr>
+            <tr><td>雞腿（去皮烤）</td><td>20 g</td><td>160 kcal</td><td>—</td></tr>
+            <tr><td>雞腿（帶皮炸）</td><td>18 g</td><td>280 kcal</td><td><span class="tag tag-warn">避免</span></td></tr>
+            <tr><td>火雞胸肉</td><td class="hl-green">22 g</td><td class="hl-green">104 kcal</td><td><span class="tag tag-ok">首選</span></td></tr>
+            <tr><td rowspan="4" style="color:var(--text-secondary); font-size:12px; vertical-align:top; padding-top:10px;">豬肉</td>
+              <td>豬里肌（烤）★</td><td class="hl-green">22 g</td><td class="hl-green">139 kcal</td><td><span class="tag tag-ok">推薦</span></td></tr>
+            <tr><td>豬小里肌</td><td>21 g</td><td>143 kcal</td><td>—</td></tr>
+            <tr><td>豬梅花（滷）</td><td>18 g</td><td>230 kcal</td><td><span class="tag tag-warn">適量</span></td></tr>
+            <tr><td>豬五花</td><td>14 g</td><td>393 kcal</td><td><span class="tag tag-alert">少量</span></td></tr>
+            <tr><td rowspan="4" style="color:var(--text-secondary); font-size:12px; vertical-align:top; padding-top:10px;">海鮮</td>
+              <td>鮭魚（烤）</td><td>22 g</td><td>180 kcal</td><td>富含 Omega-3</td></tr>
+            <tr><td>鯖魚（烤）</td><td>20 g</td><td>205 kcal</td><td>富含 Omega-3</td></tr>
+            <tr><td>蝦（水煮）★</td><td class="hl-green">22 g</td><td class="hl-green">99 kcal</td><td><span class="tag tag-ok">首選</span></td></tr>
+            <tr><td>吳郭魚／鱸魚（蒸）★</td><td class="hl-green">20 g</td><td class="hl-green">105 kcal</td><td><span class="tag tag-ok">推薦</span></td></tr>
+            <tr><td rowspan="4" style="color:var(--text-secondary); font-size:12px; vertical-align:top; padding-top:10px;">蛋豆類</td>
+              <td>雞蛋（水煮，約1.5顆）</td><td>13 g</td><td>155 kcal</td><td>—</td></tr>
+            <tr><td>嫩豆腐 ★</td><td class="hl-green">8 g</td><td class="hl-green">60 kcal</td><td><span class="tag tag-ok">低卡</span></td></tr>
+            <tr><td>板豆腐</td><td>8 g</td><td>76 kcal</td><td>—</td></tr>
+            <tr><td>毛豆（去莢）★</td><td class="hl-green">11 g</td><td class="hl-green">122 kcal</td><td><span class="tag tag-ok">推薦</span></td></tr>
+            <tr><td rowspan="3" style="color:var(--text-secondary); font-size:12px; vertical-align:top; padding-top:10px;">乳製品</td>
+              <td>希臘優格（無糖）★</td><td class="hl-green">10 g</td><td class="hl-green">65 kcal</td><td><span class="tag tag-ok">首選</span></td></tr>
+            <tr><td>低脂茅屋起司</td><td class="hl-green">11 g</td><td class="hl-green">72 kcal</td><td><span class="tag tag-ok">推薦</span></td></tr>
+            <tr><td>無糖豆漿（100ml）</td><td>3.5 g</td><td>35 kcal</td><td>每天 400ml 補充</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <div class="warn-box" style="margin-top:10px;">油炸、醬燒、紅燒等烹調方式會讓熱量大幅提升。同樣一塊雞腿，水煮 vs 炸排骨可以差 2–3 倍熱量。</div>
+      </div>
+    </div>
+
+    <!-- B3 -->
+    <div class="section" id="sec-b3">
+      <div class="section-header">
+        <div class="section-badge badge-b">B3</div>
+        <div class="section-title">外食潛在熱量：你以為吃少，其實沒有</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">外食熱量黑洞——你看不見的那些</div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">💧</div>
+          <div class="info-text"><strong>炒菜用油</strong>：一般便當炒青菜用 1–2 湯匙油 = 120–240 kcal，但你以為是健康蔬菜</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">🍯</div>
+          <div class="info-text"><strong>醬汁</strong>：便當醬汁、薑燒醬、照燒醬通常含糖 + 油，1份額外加 100–200 kcal</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">🍳</div>
+          <div class="info-text"><strong>裹粉炸物</strong>：鹹酥雞、炸魚塊的麵衣本身就吸油，比你想像的熱量高 30–50%</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Jade 飲食中的具體例子拆解</div>
+        <table class="compare-table" style="margin-top:8px;">
+          <thead>
+            <tr><th style="width:35%;">你點的</th><th style="width:20%;">你以為</th><th style="width:22%;">實際約</th><th style="width:23%;">多的在哪</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>排骨便當（飯少）</td>
+              <td>600 kcal</td>
+              <td class="hl-red">750–850 kcal</td>
+              <td>排骨裹粉炸＋炒菜油</td>
+            </tr>
+            <tr>
+              <td>鹹酥雞 5 塊</td>
+              <td>200 kcal</td>
+              <td class="hl-red">300–350 kcal</td>
+              <td>麵衣吸油</td>
+            </tr>
+            <tr>
+              <td>薑燒豬肉包</td>
+              <td>350 kcal</td>
+              <td class="hl-red">420–480 kcal</td>
+              <td>薑燒醬含糖油</td>
+            </tr>
+            <tr>
+              <td>麻辣鍋底</td>
+              <td>低卡</td>
+              <td class="hl-red">300–500 kcal</td>
+              <td>麻辣油＋牛油底</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <div class="card-label">3個點餐技巧，馬上降低外食熱量</div>
+        <div class="week-goal">
+          <div class="goal-num">1</div>
+          <div class="goal-text">選「滷／烤／蒸」取代「炸」
+            <div class="goal-sub">同樣的肉，烤雞腿 vs 炸雞腿差 150–200 kcal，一餐就省下來了</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">2</div>
+          <div class="goal-text">醬汁另外放或減半
+            <div class="goal-sub">直接請店家「醬汁少放」，或自己先倒掉一半，簡單有效</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">3</div>
+          <div class="goal-text">炸物限量：一餐最多一樣
+            <div class="goal-sub">不用完全不吃，但鹹酥雞＋炸魚塊同時出現就超標了。選一樣吃，另一樣換成燙青菜或豆腐</div>
+          </div>
+        </div>
+        <div class="tip-box"><strong>下週可以馬上執行的一件事</strong>：便當請店家「醬汁另外附」，自己控制用量。</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('visible');
+  btn.classList.add('active');
+}
+
+function calcTDEE() {
+  const bmr = parseFloat(document.getElementById('bmr').value);
+  const act = parseFloat(document.getElementById('activity').value);
+  if (!bmr || isNaN(bmr)) {
+    document.getElementById('tdee-display').textContent = '——';
+    document.getElementById('target-display').textContent = '——';
+    return;
+  }
+  const tdee = Math.round(bmr * act);
+  const target = Math.round(tdee - 450);
+  document.getElementById('tdee-display').textContent = tdee.toLocaleString();
+  document.getElementById('target-display').textContent = target.toLocaleString();
+  calcMeals();
+}
+
+function calcMacros() {
+  const p = parseFloat(document.getElementById('prot-g').value) || 0;
+  const f = parseFloat(document.getElementById('fat-g').value) || 0;
+  const c = parseFloat(document.getElementById('carb-g').value) || 0;
+  const pKcal = Math.round(p * 4);
+  const fKcal = Math.round(f * 9);
+  const cKcal = Math.round(c * 4);
+  const total = pKcal + fKcal + cKcal;
+  document.getElementById('prot-kcal').textContent = p ? pKcal : '——';
+  document.getElementById('fat-kcal').textContent = f ? fKcal : '——';
+  document.getElementById('carb-kcal').textContent = c ? cKcal : '——';
+  document.getElementById('total-kcal').textContent = total ? total.toLocaleString() : '——';
+  if (total > 0) {
+    document.getElementById('prot-bar').style.width = Math.min(100, Math.round(pKcal/total*100)) + '%';
+    document.getElementById('fat-bar').style.width = Math.min(100, Math.round(fKcal/total*100)) + '%';
+    document.getElementById('carb-bar').style.width = Math.min(100, Math.round(cKcal/total*100)) + '%';
+  }
+  calcMeals();
+}
+
+function calcMeals() {
+  const protG = parseFloat(document.getElementById('prot-g').value) || 0;
+  const fatG = parseFloat(document.getElementById('fat-g').value) || 0;
+  const carbG = parseFloat(document.getElementById('carb-g').value) || 0;
+  const totalKcal = Math.round(protG*4 + fatG*9 + carbG*4);
+  const rows = document.querySelectorAll('.meal-row');
+  const pctInputs = document.querySelectorAll('.pct-input');
+  let totalPct = 0;
+  pctInputs.forEach(i => totalPct += (parseFloat(i.value) || 0));
+  document.getElementById('pct-total').textContent = Array.from(pctInputs).map(i => i.value||0).join('+') + ' = ' + totalPct;
+  rows.forEach((row, i) => {
+    const pct = parseFloat(pctInputs[i].value) || 0;
+    const mealKcal = totalKcal ? Math.round(totalKcal * pct / 100) : 0;
+    const mealProt = protG ? Math.round(protG * pct / 100) : 0;
+    row.querySelector('.meal-kcal').textContent = mealKcal ? mealKcal + ' kcal' : '——';
+    row.querySelector('.meal-prot').textContent = mealProt ? '蛋白質 ' + mealProt + ' g' : '蛋白質 ——';
+  });
+}
+
+const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const gridColor = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)';
+const textColor = isDark ? '#aaa' : '#6b5e52';
+
+new Chart(document.getElementById('weightChart'), {
+  type: 'line',
+  data: {
+    labels: ['5/19 二','5/20 三','5/21 四','5/22 五','5/23 六','5/24 日'],
+    datasets: [{
+      label: '體重 (kg)',
+      data: [74, 73.2, 73.4, 73.9, 75.2, 74.6],
+      borderColor: '#8B9E7E',
+      backgroundColor: 'rgba(139,158,126,0.08)',
+      pointBackgroundColor: '#8B9E7E',
+      pointRadius: 5,
+      tension: 0.3,
+      fill: true,
+    },{
+      label: '週均 74.1 kg',
+      data: [74.1,74.1,74.1,74.1,74.1,74.1],
+      borderColor: '#C17F59',
+      borderDash: [5,4],
+      pointRadius: 0,
+      borderWidth: 1.5,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + ' kg' }}
+    },
+    scales: {
+      x: { ticks: { color: textColor, font: { size: 11 }, autoSkip: false }, grid: { color: gridColor } },
+      y: { min: 72, max: 76, ticks: { color: textColor, font: { size: 11 }, callback: v => v + ' kg' }, grid: { color: gridColor } }
+    }
+  }
+});
+
+new Chart(document.getElementById('progressChart'), {
+  type: 'line',
+  data: {
+    labels: ['現在','第2週','第4週','第6週','第8週','第10週','第12週','第14週','第16週'],
+    datasets: [{
+      label: '預估體重',
+      data: [74.1, 73.4, 72.7, 72.0, 71.2, 70.4, 69.5, 68.0, 66.5],
+      borderColor: '#8B9E7E',
+      backgroundColor: 'rgba(139,158,126,0.08)',
+      pointBackgroundColor: '#8B9E7E',
+      pointRadius: 4,
+      tension: 0.3, fill: true,
+    },{
+      label: '目標 65 kg',
+      data: [65,65,65,65,65,65,65,65,65],
+      borderColor: '#C17F59',
+      borderDash: [5,4],
+      pointRadius: 0,
+      borderWidth: 1.5,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + ' kg' }}
+    },
+    scales: {
+      x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
+      y: { min: 63, max: 76, ticks: { color: textColor, font: { size: 11 }, callback: v => v + ' kg' }, grid: { color: gridColor } }
+    }
+  }
+});
+</script>
+</body>
+</html>
