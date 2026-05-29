@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>玄米油好不好？我選油時腦子裡跑的那個流程 — Abby營養師</title>
+    <meta name="description" content="與其直接告訴你哪個油最好，我更想分享我在評估一種油時，腦子裡會跑哪些步驟——從必需脂肪酸、飽和脂肪限量、Omega-6比例，到你怎麼用它。">
+    <meta property="og:title" content="玄米油好不好？我選油時腦子裡跑的那個流程">
+    <meta property="og:description" content="與其直接告訴你哪個油最好，我更想分享我在評估一種油時，腦子裡會跑哪些步驟——從必需脂肪酸、飽和脂肪限量、Omega-6比例，到你怎麼用它。">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+            --cream:#FDFBF7;--warm:#F5EDE3;--bark:#3D3229;--bark-light:#6B5E52;
+            --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+            --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+            --radius:12px;--radius-lg:20px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+        nav.scrolled{box-shadow:var(--shadow-md)}
+        .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+        .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+        .nav-logo span{color:var(--sage)}
+        .nav-links{display:flex;gap:8px;align-items:center}
+        .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+        .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+        .nav-links a.cta{background:var(--sage);color:var(--white)}
+        .nav-links a.cta:hover{background:var(--bark)}
+        .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+        .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+
+        .article-header{padding:100px 24px 40px;max-width:760px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+        .back-link:hover{color:var(--bark)}
+        .series-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(139,158,126,0.15);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+        .series-badge .tag{font-size:0.75rem;font-weight:600;color:var(--sage);letter-spacing:0.05em}
+        .article-header h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;color:var(--bark);line-height:1.35;letter-spacing:-0.02em;margin-bottom:16px}
+        .article-meta{font-size:0.88rem;color:var(--text-light);display:flex;align-items:center;gap:16px}
+        .article-meta .author{font-weight:500;color:var(--bark)}
+
+        .article-content{max-width:760px;margin:0 auto;padding:0 24px 60px}
+        .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:20px}
+        .article-content h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:var(--bark);margin:48px 0 20px}
+        .article-content strong{color:var(--bark);font-weight:600}
+        .article-content em{color:#9B2B2B;font-style:normal;font-weight:500}
+
+        .article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
+        .article-cover img{width:100%;height:auto;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:block}
+
+        /* 步驟指示器 */
+        .step-label{display:inline-flex;align-items:center;gap:8px;margin-bottom:10px}
+        .step-num{width:28px;height:28px;border-radius:50%;background:var(--sage);color:var(--white);font-size:0.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .step-text{font-size:0.82rem;font-weight:600;color:var(--sage);letter-spacing:0.05em;text-transform:uppercase}
+
+        /* 表格 */
+        .table-wrapper{overflow-x:auto;margin:28px 0;border-radius:var(--radius);box-shadow:var(--shadow-sm)}
+        table{width:100%;border-collapse:collapse;font-size:0.9rem;background:var(--white)}
+        thead tr{background:var(--sage);color:var(--white)}
+        thead th{padding:12px 16px;text-align:left;font-weight:600;font-size:0.82rem;letter-spacing:0.04em;white-space:nowrap}
+        tbody tr{border-bottom:1px solid rgba(139,158,126,0.15)}
+        tbody tr:last-child{border-bottom:none}
+        tbody td{padding:10px 16px;vertical-align:middle;line-height:1.7}
+        tbody tr:hover{background:var(--sage-pale)}
+        .oil-name{font-weight:600;color:var(--bark)}
+        .tag-high{display:inline-block;font-size:11px;padding:2px 8px;border-radius:50px;background:rgba(193,127,89,0.15);color:var(--terracotta);font-weight:600}
+        .tag-low{display:inline-block;font-size:11px;padding:2px 8px;border-radius:50px;background:rgba(139,158,126,0.15);color:var(--sage);font-weight:600}
+        .tag-cold{display:inline-block;font-size:11px;padding:2px 8px;border-radius:50px;background:rgba(107,94,82,0.12);color:var(--bark-light);font-weight:600}
+
+        /* 油脂點列 */
+        .fat-list{list-style:none;padding:0;margin:16px 0 28px;display:flex;flex-direction:column;gap:14px}
+        .fat-list li{display:flex;gap:14px;align-items:flex-start;font-size:1rem;line-height:1.75}
+        .fat-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:8px}
+        .dot-sat{background:#C17F59}
+        .dot-mono{background:#8B9E7E}
+        .dot-poly{background:#6B9EC4}
+        .fat-list li .ft{font-weight:600;color:var(--bark)}
+
+        /* 飽和脂肪補充方塊 */
+        .detail-box{background:var(--white);border-radius:var(--radius);padding:20px 24px;margin:20px 0 28px;border:1px solid rgba(139,158,126,0.2);box-shadow:var(--shadow-sm)}
+        .detail-box .detail-title{font-size:0.85rem;font-weight:700;color:var(--sage);letter-spacing:0.06em;margin-bottom:12px}
+        .detail-box ul{padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+        .detail-box ul li{font-size:0.93rem;color:var(--text);line-height:1.75;padding-left:16px;position:relative}
+        .detail-box ul li::before{content:'·';position:absolute;left:0;color:var(--sage);font-weight:700}
+
+        .pull-quote{border-left:4px solid var(--sage);background:var(--sage-pale);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:28px 0}
+        .pull-quote p{font-size:1.02rem;color:var(--bark);line-height:1.9;margin:0}
+
+        .key-point{background:var(--bark);color:var(--white);border-radius:var(--radius);padding:22px 26px;margin:32px 0}
+        .key-point p{color:rgba(255,255,255,0.92);font-size:1rem;margin-bottom:0;line-height:1.9}
+        .key-point strong{color:#F5C97A}
+
+        .warning-box{background:rgba(193,127,89,0.08);border:1px solid rgba(193,127,89,0.25);border-radius:var(--radius);padding:20px 24px;margin:28px 0}
+        .warning-box p{font-size:0.95rem;color:var(--bark);line-height:1.9;margin:0}
+        .warning-box strong{color:var(--terracotta)}
+
+        .section-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:40px 0}
+        .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:rgba(139,158,126,0.3)}
+        .section-divider .dot{width:5px;height:5px;background:var(--sage);border-radius:50%;opacity:0.6}
+
+        .source-note{font-size:0.8rem;color:var(--text-light);margin-top:8px;line-height:1.7}
+
+        /* 警語框 */
+        .reminder-box{background:var(--warm);border-radius:var(--radius-lg);padding:28px 30px;margin:40px 0 0;border:1px solid rgba(193,127,89,0.2)}
+        .reminder-box .reminder-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--bark);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+        .reminder-box p{font-size:0.97rem;color:var(--bark-light);line-height:2;margin:0}
+        .reminder-box strong{color:var(--bark)}
+
+        .article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
+        .article-tags .tag{background:rgba(139,158,126,0.12);color:var(--sage);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
+
+        .related-articles{max-width:760px;margin:0 auto;padding:0 24px 48px}
+        .related-articles h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--bark);margin-bottom:16px;text-align:center}
+        .related-grid{display:flex;flex-direction:column;gap:8px}
+        .related-card{background:var(--white);border-radius:var(--radius);padding:13px 20px;text-decoration:none;border:1px solid rgba(139,158,126,0.15);transition:all .2s ease;text-align:center}
+        .related-card:hover{background:var(--sage-pale);border-color:var(--sage-light)}
+        .related-card .rc-h{font-size:.9rem;font-weight:500;color:var(--bark-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .related-card:hover .rc-h{color:var(--bark)}
+        .back-to-top{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px auto 0;height:36px;padding:0 18px;background:var(--sage);color:var(--white);border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:.82rem;font-weight:500;transition:background .2s ease;white-space:nowrap}
+        .back-to-top:hover{background:var(--bark)}
+        .back-to-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+        .article-footer{max-width:760px;margin:0 auto;padding:0 24px 80px}
+        .article-footer-divider{border:none;border-top:1px solid var(--sage-light);margin-bottom:36px}
+        .author-card{display:flex;align-items:center;gap:20px;background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)}
+        .author-avatar{width:64px;height:64px;border-radius:50%;background:var(--sage-pale);flex-shrink:0;overflow:hidden}
+        .author-avatar img{width:100%;height:100%;object-fit:cover}
+        .author-info h4{font-size:1rem;font-weight:500;color:var(--bark);margin-bottom:4px}
+        .author-info p{font-size:.85rem;color:var(--text-light);line-height:1.6}
+        .author-links{display:flex;gap:8px;margin-top:10px}
+        .author-links a{font-size:.8rem;padding:4px 12px;border-radius:50px;text-decoration:none;background:var(--sage-pale);color:var(--sage);font-weight:500;transition:all .2s ease}
+        .author-links a:hover{background:var(--sage);color:var(--white)}
+
+        footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+            .menu-toggle{display:block}
+            .article-header h1{font-size:1.7rem}
+            .author-card{flex-direction:column;text-align:center}
+            .author-links{justify-content:center}
+            tbody td,thead th{padding:8px 10px;font-size:0.8rem}
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="/index.html#podcast">Podcast</a>
+            <a href="/index.html#about">關於我</a>
+            <a href="/blog/index.html">Blog</a>
+            <a href="/qa/index.html">Q&amp;A</a>
+            <a href="/note/index.html">Note</a>
+            <a href="/index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <div class="series-badge"><span class="tag">飲食筆記</span></div>
+    <h1>玄米油好不好？我選油時腦子裡跑的那個流程</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 5 月 29 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <img src="../../images/20260529.png" alt="玄米油選油思考流程">
+</div>
+
+<div class="article-content">
+
+    <p>這週有個學生突然問我：「老師，玄米油是不是一個好的油？」</p>
+
+    <p>說真的，這種問題很難直接回答好還是不好，因為我心裡第一個想的是——你說的「好」，是指哪一種好？是高溫烹調很穩定？還是你希望它有某些對健康有益的成分？方向不同，答案也不一樣。</p>
+
+    <p>所以我今天不直接回答玄米油好不好，而是跟大家分享，我自己在評估一種油的時候，腦子裡大概會跑哪些步驟。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>第一步：人體需要哪些油脂？</h2>
+
+    <p>我第一個會想的，是人體自己沒辦法合成、或合成效率極差的脂肪酸，也就是<strong>必需脂肪酸</strong>。</p>
+
+    <p>Omega-3 就是其中一類。植物來源的 <em>ALA（次亞麻油酸）</em> 是人體的必需脂肪酸，身體無法自行合成，必須從食物攝取。但問題是，人體把 ALA 轉換成 EPA、DHA 的效率非常低，大約只有 5–15%，所以 EPA 和 DHA 也需要靠飲食直接補充。這就是為什麼大家說要吃魚、要補魚油，底層原因就在這裡。</p>
+
+    <div class="pull-quote">
+        <p>必需脂肪酸在身體裡其實扮演三個角色：<strong>細胞膜的建材</strong>、<strong>訊號物質的原料</strong>、以及<strong>腦和眼睛的結構成分</strong>。</p>
+        <p style="margin-top:14px">細胞膜不是硬殼，而是有彈性、會呼吸的結構，讓養分進來、廢物出去，這層膜的主要成分就是脂肪酸。Omega-3 特別重要的原因是它讓細胞膜保持「流動性」，使細胞上的接收器（受體）能好好運作，包括胰島素受體——這也是為什麼 Omega-3 不足跟胰島素阻抗有關聯。</p>
+        <p style="margin-top:14px">身體的發炎、消炎、血管收縮或舒張、免疫反應的強弱，則是靠「前列腺素、白三烯素」這類訊號物質在調控，而這些訊號物質的原料，就是 Omega-3 和 Omega-6。另外，DHA 在腦組織和視網膜的含量特別高，是神經細胞膜不可缺少的成分。</p>
+        <p style="margin-top:14px">所以油脂的角色不只是熱量，更是<strong>結構</strong>和<strong>調控原料</strong>。不過它確實是所有營養素裡熱量密度最高的——蛋白質和碳水每公克 4 大卡，油脂每公克 <strong>9 大卡</strong>。這不是在說「吃油會胖」，而是提醒攝取量要留意，不是越多越好。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>第二步：哪一種脂肪要控制？</h2>
+
+    <p>接下來我會問自己：哪種脂肪需要限量？</p>
+
+    <p>答案是<strong>飽和脂肪</strong>。</p>
+
+    <p>飽和脂肪主要來自動物性油脂（豬油、牛油、奶油），以及棕櫚油和椰子油。建議每天的飽和脂肪攝取量，不要超過總熱量的 10%。原因是：飽和脂肪攝取過多，可能提高血液中 LDL（低密度脂蛋白，俗稱「壞膽固醇」）的濃度。</p>
+
+    <p>補充一下 LDL 的機制——LDL 本身不壞，它的工作是把膽固醇從肝臟運送到全身細胞。但當 LDL 濃度長期過高，多餘的 LDL 粒子會滲入血管壁，被氧化後引發免疫反應，白血球跑來吞噬它，慢慢形成動脈粥狀硬化斑塊，心血管疾病的風險也隨之上升。</p>
+
+    <div class="detail-box">
+        <div class="detail-title">📌 飽和脂肪底下還分好幾種</div>
+        <ul>
+            <li><strong>月桂酸</strong>（椰子油為主）、<strong>棕櫚酸</strong>（棕櫚油）→ 升高 LDL 的效果比較明顯</li>
+            <li><strong>硬脂酸</strong>（牛油、可可脂）→ 在肝臟會轉換成 Omega-9 油酸，對 LDL 的影響相對中性</li>
+            <li><strong>短鏈飽和脂肪酸</strong>（奶油中有少量）→ 代謝路徑又不同</li>
+        </ul>
+        <p style="font-size:0.9rem;color:var(--text-light);margin-top:12px;margin-bottom:0;line-height:1.75">所以「飽和脂肪都一樣壞」是過度簡化，但實際飲食中很難精準分類，整體限量是比較務實的建議。</p>
+    </div>
+
+    <div class="warning-box">
+        <p>⚠️ <strong>關於「大量吃飽和脂肪也很健康」的說法</strong><br>
+        這類飲食有個前提：必須同時嚴格限制精緻糖，且長期有紀律地執行，身體才能適應出處理飽和脂肪的代謝模式。即使 LDL 升高，升高的也是顆粒較大、不容易氧化鑽進血管壁的那種，心血管風險相對可控。<br><br>
+        常見的誤解是：週間執行，週末大放縱——這樣反而對身體傷害更大，不是適合一般人直接套用的方式。</p>
+    </div>
+
+    <p>另外要注意的是：如果你少吃飽和脂肪，但替代的是精緻碳水（白麵包、糖），心血管風險不一定會下降，有時反而更糟。替代成<strong>不飽和脂肪酸</strong>，風險才會真的降低。地中海飲食的研究就是很好的例子——保護心血管的是<strong>整體飲食型態</strong>，而不是斤斤計較單一油脂。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>第三步：Omega-6 到底能不能吃？</h2>
+
+    <p>常聽到有人說「Omega-6 不好、會發炎」，但這樣說其實也是過度簡化，讓我來解釋細節。</p>
+
+    <p>Omega-6 和 Omega-3 在體內會<strong>競爭同一組酵素</strong>來代謝。這組酵素代謝後，會產生兩個方向截然不同的訊號物質：Omega-6 這條路偏向<em>促發炎</em>訊號；Omega-3 這條路偏向<em>幫助發炎消退、收尾</em>的訊號。</p>
+
+    <p>發炎本身不是壞事——有外敵入侵、有組織受傷，發炎反應負責清除威脅、修復組織。但發炎需要有個結束，消炎收尾的原料就是由 Omega-3 走完這條路來提供的。兩套系統正常運作，身體才健康。</p>
+
+    <p>問題是，當 <strong>Omega-6 大量過剩</strong>，這組酵素幾乎都被它佔走，Omega-3 沒有機會轉換，消炎收尾的原料就不夠用。</p>
+
+    <p>而生活裡每天都有很多小小的發炎觸發事件在背景跑著——血糖波動、睡眠不足、腸道菌相失衡、壓力、空氣污染、加工食品……正常情況下身體自己就消掉了。但<strong>當消炎的原料長期不足，這些小訊號沒有被好好收尾，就會慢慢累積成低度的慢性發炎</strong>。</p>
+
+    <p>慢性發炎不像急性發炎那樣紅腫熱痛，你感覺不太到，但它在背景一直燒著，長期下來跟胰島素阻抗、心血管疾病、代謝症候群都有關聯，有時候反映出來就是體重莫名卡關、身體狀態一直不太對、容易疲勞這類感覺。</p>
+
+    <div class="key-point">
+        <p><strong>Omega-6 不是壞東西，Omega-3 也不是神，問題是比例。</strong><br>
+        理想的 Omega-6：Omega-3 大約是 <strong>4:1</strong>，但現代飲食很容易達到 15:1 甚至更高。如果你以外食為主，在家自己用的油，就可以往 <strong>Omega-9 或 Omega-3 較多</strong>的方向選，去補那個缺口——橄欖油、玄米油、苦茶油、酪梨油都在這個名單裡。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>第四步：你怎麼用它？</h2>
+
+    <p>選好油之後，使用方式也很重要。每種油都有<strong>發煙點</strong>——也就是它開始冒煙、開始裂解的溫度。一旦超過這個溫度，油脂就可能氧化並產生有害物質。問題不是油本身不好，是<strong>使用方式錯了</strong>。</p>
+
+    <ul class="fat-list">
+        <li>
+            <span class="fat-dot dot-sat"></span>
+            <div>喜歡<span class="ft">大火快炒、偶爾煎東西</span> → 選發煙點 <strong>200°C 以上</strong>的油</div>
+        </li>
+        <li>
+            <span class="fat-dot dot-mono"></span>
+            <div>平常都是<span class="ft">汆燙、涼拌、輕炒</span> → 150–180°C 的油就夠了</div>
+        </li>
+    </ul>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>那玄米油到底怎麼樣？</h2>
+
+    <p>繞了一圈，回來講玄米油。</p>
+
+    <p>玄米油由約 <strong>47% 單元不飽和脂肪酸（Omega-9）</strong>和約 <strong>33% 多元不飽和脂肪酸（Omega-6）</strong>組成，飽和脂肪比例約 20%，整體脂肪酸組成相當均衡。精製玄米油的發煙點約 <strong>254°C</strong>，應付一般家庭煎、炒，甚至炸都沒有問題。</p>
+
+    <p>它還有一個特別的成分：<em>γ-穀維素（gamma-oryzanol）</em>。研究顯示它具有抗氧化、抗發炎的活性，也有助於調節血脂，算是玄米油的一個加分項。目前相關研究持續累積中，不用神化它，但也絕對不是壞油。</p>
+
+    <div class="pull-quote">
+        <p>整體來說，玄米油是廚房裡相當實用的選擇——脂肪酸組成均衡、耐高溫、有特別的活性成分。不是最完美的油，但絕對不是不好的油。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>怎麼選比較實際？</h2>
+
+    <p>與其找一瓶「最好的油」，我建議家裡準備<strong>兩種</strong>：</p>
+
+    <ul class="fat-list">
+        <li>
+            <span class="fat-dot dot-sat"></span>
+            <div><span class="ft">一瓶耐高溫</span>，用來炒、煎、炸 → 玄米油、酪梨油、精製橄欖油</div>
+        </li>
+        <li>
+            <span class="fat-dot dot-mono"></span>
+            <div><span class="ft">一瓶涼拌低溫</span>用，保留更多活性成分 → 初榨橄欖油、苦茶油</div>
+        </li>
+    </ul>
+
+    <p>另外記得：<strong>油開封後不要放太久，建議三個月內用完。</strong> 放太久油脂會自行氧化，產生油耗味，這個細節很多人忽略。</p>
+
+    <p>如果不確定某瓶油的成分，直接問 AI：「這瓶油的脂肪酸比例是什麼？」「初榨和精製橄欖油有什麼差？」讓資訊幫你做決定就好，不用硬背。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>常見食用油比較</h2>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>油品</th>
+                    <th>飽和脂肪</th>
+                    <th>Omega-9（單元不飽和）</th>
+                    <th>Omega-6</th>
+                    <th>Omega-3</th>
+                    <th>發煙點（精製）</th>
+                    <th>建議用途</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="oil-name">酪梨油</span></td>
+                    <td>約 12%</td>
+                    <td>約 70%</td>
+                    <td>約 13%</td>
+                    <td>約 1%</td>
+                    <td>約 270°C <span class="tag-high">極耐高溫</span></td>
+                    <td>煎炒炸</td>
+                </tr>
+                <tr>
+                    <td><span class="oil-name">玄米油</span></td>
+                    <td>約 20%</td>
+                    <td>約 47%</td>
+                    <td>約 33%</td>
+                    <td>約 1%</td>
+                    <td>約 254°C <span class="tag-high">耐高溫</span></td>
+                    <td>煎炒</td>
+                </tr>
+                <tr>
+                    <td><span class="oil-name">精製橄欖油</span></td>
+                    <td>約 14%</td>
+                    <td>約 73%</td>
+                    <td>約 10%</td>
+                    <td>約 1%</td>
+                    <td>約 220°C</td>
+                    <td>中高溫炒</td>
+                </tr>
+                <tr>
+                    <td><span class="oil-name">苦茶油</span></td>
+                    <td>約 10%</td>
+                    <td>約 78%</td>
+                    <td>約 10%</td>
+                    <td>約 1%</td>
+                    <td>約 210°C</td>
+                    <td>中溫炒、涼拌</td>
+                </tr>
+                <tr>
+                    <td><span class="oil-name">初榨橄欖油</span></td>
+                    <td>約 14%</td>
+                    <td>約 73%</td>
+                    <td>約 10%</td>
+                    <td>約 1%</td>
+                    <td>約 160–190°C <span class="tag-cold">不宜高溫</span></td>
+                    <td>涼拌、低溫</td>
+                </tr>
+                <tr>
+                    <td><span class="oil-name">芥花油</span></td>
+                    <td>約 7%</td>
+                    <td>約 63%</td>
+                    <td>約 19%</td>
+                    <td>約 9%</td>
+                    <td>約 200°C</td>
+                    <td>中高溫炒</td>
+                </tr>
+                <tr>
+                    <td><span class="oil-name">大豆油</span></td>
+                    <td>約 15%</td>
+                    <td>約 23%</td>
+                    <td>約 54%</td>
+                    <td>約 7%</td>
+                    <td>約 230°C（精製）</td>
+                    <td>一般炒菜</td>
+                </tr>
+                <tr>
+                    <td><span class="oil-name">葵花油</span></td>
+                    <td>約 11%</td>
+                    <td>約 20%</td>
+                    <td>約 66%</td>
+                    <td>約 1%</td>
+                    <td>約 225°C（精製）</td>
+                    <td>一般炒菜</td>
+                </tr>
+                <tr>
+                    <td><span class="oil-name">椰子油</span></td>
+                    <td>約 87%</td>
+                    <td>約 6%</td>
+                    <td>約 2%</td>
+                    <td>&lt;1%</td>
+                    <td>約 175°C（初榨）</td>
+                    <td>少量使用</td>
+                </tr>
+                <tr>
+                    <td><span class="oil-name">豬油</span></td>
+                    <td>約 40%</td>
+                    <td>約 45%</td>
+                    <td>約 11%</td>
+                    <td>約 1%</td>
+                    <td>約 190°C</td>
+                    <td>少量調味</td>
+                </tr>
+                <tr>
+                    <td><span class="oil-name">亞麻仁油</span></td>
+                    <td>約 9%</td>
+                    <td>約 18%</td>
+                    <td>約 16%</td>
+                    <td>約 55%</td>
+                    <td>約 107°C <span class="tag-cold">不可加熱</span></td>
+                    <td>僅涼拌</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <p class="source-note">📌 表中數據為各油品約略平均值，實際比例因品牌、品種、精製程度略有差異，供參考。<br>📌 Omega-3 和 Omega-6 都是必需脂肪酸，但現代飲食中 Omega-6 普遍過剩，選油時可有意識地補足 Omega-3 或以 Omega-9 為主的油品。</p>
+
+    <div class="reminder-box">
+        <div class="reminder-title">💬 最後想說一件事</div>
+        <p>能認真思考自己吃進什麼油，這件事本身就很值得肯定。但<strong>健康這張成績單，飲食只是其中一科</strong>。活動量、睡眠品質、壓力狀態，每一科都在影響你的代謝結果，而且它們是互相牽動的。<br><br>
+        有時候覺得「我飲食已經很努力了，為什麼還是沒有效果？」——不妨停下來看看其他幾科的分數。你可能在飲食這科拿了 A，但久坐或長期高壓悄悄把分數扣掉了。<br><br>
+        飲食學分拿好了，記得也去看看其他科目喔。</p>
+    </div>
+
+    <div class="article-tags">
+        <span class="tag">飲食筆記</span>
+        <span class="tag">油脂</span>
+        <span class="tag">玄米油</span>
+        <span class="tag">Omega-3</span>
+        <span class="tag">減脂觀念</span>
+        <span class="tag">心血管健康</span>
+    </div>
+
+</div>
+
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../20260421avocado/index.html" class="related-card">
+            <div class="rc-h">台灣酪梨 vs 進口酪梨，熱量差三倍？酪梨的油是好油嗎？</div>
+        </a>
+        <a href="../20260410qa04/index.html" class="related-card">
+            <div class="rc-h">每天吃好幾顆蛋，膽固醇會超標嗎？</div>
+        </a>
+        <a href="../20260311book02/index.html" class="related-card">
+            <div class="rc-h">低醣 vs 低脂，哪個才是真正的減肥關鍵？</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby02.jpg" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll',()=>{
+        document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+    });
+</script>
+</body>
+</html>
