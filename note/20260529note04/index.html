@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>「現在還過得去」，就沒問題了嗎？ — Abby 營養師</title>
+  <meta name="description" content="一段診所偶聽到的對話，讓我想到那些在一知半解下覺得「現在還過得去」的人們。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+      --cream:#FDFBF7;--bark:#3D3229;--bark-light:#6B5E52;
+      --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+      --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+      --radius:12px;--radius-lg:20px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+    nav.scrolled{box-shadow:var(--shadow-md)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+    .nav-logo span{color:var(--sage)}
+    .nav-links{display:flex;gap:8px;align-items:center}
+    .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+    .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+    .nav-links a.cta{background:var(--sage);color:var(--white)}
+    .nav-links a.cta:hover{background:var(--bark)}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+    .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+
+    /* ── HEADER ── */
+    .article-header{padding:100px 24px 16px;max-width:680px;margin:0 auto}
+    .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:20px;transition:color 0.2s ease}
+    .back-link:hover{color:var(--bark)}
+    .tag-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+    .life-badge{display:inline-flex;align-items:center;background:var(--sage-pale);border-radius:50px;padding:4px 12px}
+    .life-badge .tag{font-size:0.75rem;font-weight:600;color:var(--sage);letter-spacing:0.05em}
+    .article-header h1{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:600;color:var(--bark);line-height:1.4;letter-spacing:-0.02em;margin-bottom:10px}
+    .article-meta{font-size:0.85rem;color:var(--text-light)}
+
+    /* ── ARTICLE BODY ── */
+    .article-content{max-width:680px;margin:0 auto;padding:28px 24px 60px}
+    .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:24px}
+    .article-content p:last-child{margin-bottom:0}
+    .article-content strong{color:var(--bark);font-weight:700}
+    .article-content h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:600;color:var(--bark);margin:40px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--sage-pale)}
+    .article-content h2:first-of-type{margin-top:8px}
+
+    /* ── DIALOGUE BLOCK ── */
+    .dialogue-block{background:var(--white);border:1px solid var(--sage-light);border-radius:var(--radius);padding:24px 28px;margin:8px 0 32px;box-shadow:var(--shadow-sm)}
+    .dialogue-line{display:flex;gap:12px;align-items:baseline;margin-bottom:10px}
+    .dialogue-line:last-child{margin-bottom:0}
+    .dialogue-speaker{font-size:0.8rem;font-weight:700;color:var(--text-light);letter-spacing:0.06em;white-space:nowrap;min-width:54px}
+    .dialogue-text{font-size:1.02rem;color:var(--text);line-height:1.85}
+    .dialogue-text em{font-style:normal;color:var(--terracotta);font-weight:500}
+
+    /* ── EXAMPLE LIST ── */
+    .example-list{list-style:none;margin:0 0 28px;padding:0;display:flex;flex-direction:column;gap:10px}
+    .example-list li{display:flex;align-items:flex-start;gap:10px;font-size:1.02rem;line-height:1.9;color:var(--text)}
+    .example-list li::before{content:"—";color:var(--sage);font-weight:700;flex-shrink:0;margin-top:2px}
+
+    /* ── CALLOUT ── */
+    .callout{background:var(--sage-pale);border-left:4px solid var(--sage);border-radius:0 var(--radius) var(--radius) 0;padding:18px 22px;margin:8px 0 28px;font-size:0.97rem;line-height:1.9}
+    .callout strong{color:var(--bark)}
+    .callout.terra{background:rgba(193,127,89,0.08);border-left-color:var(--terracotta)}
+
+    /* ── DIVIDER ── */
+    .section-divider{border:none;border-top:1px solid var(--sage-light);margin:36px 0}
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav{max-width:680px;margin:0 auto;padding:28px 24px 80px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--sage-light)}
+    .btn-back{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--text-light);font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;border:1px solid var(--sage-light);background:var(--white);transition:all 0.2s ease}
+    .btn-back:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top{display:inline-flex;align-items:center;gap:6px;cursor:pointer;color:var(--text-light);font-family:'Noto Sans TC',sans-serif;font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;border:1px solid var(--sage-light);background:var(--white);transition:all 0.2s ease}
+    .btn-top:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+    /* ── FOOTER ── */
+    footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+      .menu-toggle{display:block}
+      .article-header h1{font-size:1.55rem}
+      .dialogue-block{padding:18px 20px}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../../index.html#podcast">Podcast</a>
+      <a href="../../index.html#about">關於我</a>
+      <a href="../../blog/index.html">Blog</a>
+      <a href="../../qa/index.html">Q&amp;A</a>
+      <a href="/note/index.html">Note</a>
+      <a href="../../index.html#contact" class="cta">聯絡我</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HEADER ── -->
+<div class="article-header">
+  <a href="../../blog/index.html" class="back-link">← 回到 Blog</a>
+  <div class="tag-row">
+    <div class="life-badge"><span class="tag">Life</span></div>
+    <div class="life-badge"><span class="tag">日常碎念</span></div>
+  </div>
+  <h1>「現在還過得去」，就沒問題了嗎？</h1>
+  <div class="article-meta">2026 年 5 月 29 日</div>
+</div>
+
+<!-- ── ARTICLE ── -->
+<div class="article-content">
+
+  <p>那天在診所聽到櫃檯小姐和藥師的對話。</p>
+
+  <div class="dialogue-block">
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">櫃檯</span>
+      <span class="dialogue-text">「所以只要不賣，就不會虧嘛！」</span>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">藥師</span>
+      <span class="dialogue-text">「不是這樣說的，照這個邏輯，所有買股票的人不就都不會虧錢了？」</span>
+    </div>
+    <div class="dialogue-line">
+      <span class="dialogue-speaker">櫃檯</span>
+      <span class="dialogue-text"><em>「反正我就是沒賣啊～」</em></span>
+    </div>
+  </div>
+
+  <p>這段對話讓我想到生活裡太多相似的情境——</p>
+
+  <ul class="example-list">
+    <li>只要還沒生病，熬夜、大吃大喝就沒關係吧？雖然胖了一點，但健檢報告還沒多少紅字啊。</li>
+    <li>我已經有去健身房了，有在動就夠了吧？</li>
+    <li>有吃保健食品，應該算健康了吧？</li>
+  </ul>
+
+  <p>人很容易在一知半解的狀態下，覺得「現在還過得去」就沒問題，甚至對自己多做的那一點點事情感到沾沾自喜。但很少有人會認真去追問：我現在的做法，到底是真的有效，還是只是看起來很努力的自我安慰？<strong>有沒有可能我需要在不同階段調整方式，而不是一直複製同樣的習慣？</strong></p>
+
+  <hr class="section-divider">
+
+  <p>你可能覺得我想太多了。</p>
+
+  <p>但正因為我長期在和學員一對一晤談的過程中，看見這些不斷累積的誤解——它們會讓人愈來愈難修正錯誤的認知；也讓人在核心問題上蒙上一層黑布，很難清楚看見自己真正的問題在哪裡。於是開始有意無意地閃躲、找藉口、在錯誤方向上努力、改變流於表面……挫折感累積久了，身心能量都跟著低落，最後只好妥協，接受一個不太健康的身體狀態。而這些，都有可能悄悄影響人生中許多重要的決定。</p>
+
+  <div class="callout terra">
+    💬 不是要每個人都很嚴謹地追蹤每一餐、每一個數字。而是偶爾停下來問一問自己：<strong>我現在做的這些事，是真的在幫助我，還是在讓我感覺有在做事？</strong>這兩件事，差距其實很大。
+  </div>
+
+  <p>說到這裡好像又太嚴肅了。</p>
+
+  <p>不過，就是一段診所偶然聽到的對話，卻在我腦子裡引發了這麼多劇場。哈哈哈</p>
+
+  <p>這就是我的日常內心碎念。</p>
+
+</div>
+
+<!-- ── BOTTOM NAV ── -->
+<div class="bottom-nav">
+  <a href="../../blog/index.html" class="btn-back">← 回到 Blog</a>
+  <button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    回頂部
+  </button>
+</div>
+
+<footer>
+  <p>© 2026 Abby Eat Life — Abby 營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
