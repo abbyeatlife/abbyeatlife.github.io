@@ -24,492 +24,308 @@
     --shadow: 0 4px 20px rgba(61,50,41,0.10);
     --radius: 16px;
   }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans TC', sans-serif; background: var(--cream); color: var(--bark); min-height: 100vh; }
 
-  body {
-    font-family: 'Noto Sans TC', sans-serif;
-    background: var(--cream);
-    color: var(--bark);
-    min-height: 100vh;
-  }
-
-  /* HEADER */
   header {
-    background: var(--bark);
-    color: var(--cream);
+    background: var(--bark); color: var(--cream);
     padding: 24px 32px 20px;
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    display: flex; align-items: baseline; gap: 16px;
+    position: sticky; top: 0; z-index: 100;
     box-shadow: 0 2px 12px rgba(0,0,0,0.2);
   }
-  header h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.5rem;
-    letter-spacing: 0.02em;
-  }
-  header span {
-    font-size: 0.8rem;
-    color: var(--sage-light);
-    font-weight: 300;
-    letter-spacing: 0.05em;
-  }
+  header h1 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; letter-spacing: 0.02em; }
+  header span { font-size: 0.8rem; color: var(--sage-light); font-weight: 300; letter-spacing: 0.05em; }
 
-  /* TABS */
   .tab-bar {
-    display: flex;
-    gap: 0;
-    padding: 0 32px;
-    background: var(--bark-light);
-    overflow-x: auto;
+    display: flex; gap: 0; padding: 0 32px;
+    background: var(--bark-light); overflow-x: auto;
   }
   .tab-btn {
-    padding: 12px 22px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    color: rgba(253,251,247,0.6);
-    border-bottom: 3px solid transparent;
-    transition: all 0.2s;
-    white-space: nowrap;
-    letter-spacing: 0.03em;
+    padding: 12px 22px; background: none; border: none; cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 1rem; font-weight: 500;
+    color: rgba(253,251,247,0.6); border-bottom: 3px solid transparent;
+    transition: all 0.2s; white-space: nowrap; letter-spacing: 0.03em;
   }
   .tab-btn:hover { color: var(--cream); }
-  .tab-btn.active {
-    color: var(--cream);
-    border-bottom-color: var(--terra-light);
-  }
+  .tab-btn.active { color: var(--cream); border-bottom-color: var(--terra-light); }
 
-  /* MAIN LAYOUT */
   main { max-width: 900px; margin: 0 auto; padding: 32px 20px 60px; }
 
-  /* SECTION CARD */
   .section-card {
-    background: white;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 28px;
-    margin-bottom: 28px;
+    background: white; border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 28px; margin-bottom: 28px;
     border-left: 5px solid var(--sage);
   }
   .section-card.protein { border-left-color: var(--terra); }
-  .section-card.fat { border-left-color: #c0a030; }
-  .section-card.veg { border-left-color: var(--green-dark); }
-  .section-card.fruit { border-left-color: #e07070; }
-  .section-card.dairy { border-left-color: var(--blue); }
+  .section-card.fat     { border-left-color: #c0a030; }
+  .section-card.veg     { border-left-color: var(--green-dark); }
+  .section-card.fruit   { border-left-color: #e07070; }
+  .section-card.dairy   { border-left-color: var(--blue); }
+  .section-card.proteincomp { border-left-color: #8a2060; }
+  .section-card.fruitgi { border-left-color: #e07030; }
 
   .section-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.5rem;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    font-family: 'DM Serif Display', serif; font-size: 1.5rem;
+    margin-bottom: 6px; display: flex; align-items: center; gap: 10px;
   }
   .badge {
-    font-size: 0.82rem;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 20px;
-    background: var(--sage-pale);
-    color: var(--sage);
-    letter-spacing: 0.03em;
+    font-size: 0.82rem; font-family: 'Noto Sans TC', sans-serif; font-weight: 500;
+    padding: 3px 10px; border-radius: 20px;
+    background: var(--sage-pale); color: var(--sage); letter-spacing: 0.03em;
   }
-  .section-card.protein .badge { background: #faeae0; color: var(--terra); }
-  .section-card.fat .badge { background: #fef9e0; color: #9a7010; }
-  .section-card.veg .badge { background: #e0f0e8; color: var(--green-dark); }
-  .section-card.fruit .badge { background: #fde8e8; color: #c05050; }
-  .section-card.dairy .badge { background: var(--blue-pale); color: var(--blue); }
+  .section-card.protein .badge   { background: #faeae0; color: var(--terra); }
+  .section-card.fat .badge       { background: #fef9e0; color: #9a7010; }
+  .section-card.veg .badge       { background: #e0f0e8; color: var(--green-dark); }
+  .section-card.fruit .badge     { background: #fde8e8; color: #c05050; }
+  .section-card.dairy .badge     { background: var(--blue-pale); color: var(--blue); }
+  .section-card.proteincomp .badge { background: #f5e0ee; color: #8a2060; }
+  .section-card.fruitgi .badge   { background: #feeee0; color: #c05010; }
 
-  .section-desc {
-    font-size: 0.92rem;
-    color: var(--bark-light);
-    margin-bottom: 20px;
-    line-height: 1.6;
-  }
+  .section-desc { font-size: 0.92rem; color: var(--bark-light); margin-bottom: 20px; line-height: 1.6; }
 
-  /* CONTROLS ROW */
-  .controls {
-    display: flex;
-    gap: 14px;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
-  .control-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    min-width: 160px;
-    flex: 1;
-  }
-  .control-group label {
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--bark-light);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
+  .controls { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 20px; }
+  .control-group { display: flex; flex-direction: column; gap: 5px; min-width: 160px; flex: 1; }
+  .control-group label { font-size: 0.82rem; font-weight: 500; color: var(--bark-light); letter-spacing: 0.06em; text-transform: uppercase; }
   select, input[type=number] {
-    padding: 11px 14px;
-    border: 1.5px solid #e0d8d0;
-    border-radius: 10px;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-size: 1rem;
-    background: var(--cream);
-    color: var(--bark);
-    cursor: pointer;
-    transition: border-color 0.2s;
+    padding: 11px 14px; border: 1.5px solid #e0d8d0; border-radius: 10px;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 1rem;
+    background: var(--cream); color: var(--bark); cursor: pointer; transition: border-color 0.2s;
   }
-  select:focus, input[type=number]:focus {
-    outline: none;
-    border-color: var(--sage);
-  }
+  select:focus, input[type=number]:focus { outline: none; border-color: var(--sage); }
   .section-card.protein select:focus { border-color: var(--terra); }
-  .section-card.fat select:focus { border-color: #c0a030; }
-  .section-card.fruit select:focus { border-color: #e07070; }
-  .section-card.dairy select:focus { border-color: var(--blue); }
+  .section-card.fat select:focus     { border-color: #c0a030; }
+  .section-card.fruit select:focus   { border-color: #e07070; }
+  .section-card.dairy select:focus   { border-color: var(--blue); }
 
-  /* RESULT PANEL */
   .result-panel {
-    background: var(--sage-pale);
-    border-radius: 12px;
-    padding: 18px 20px;
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    align-items: center;
+    background: var(--sage-pale); border-radius: 12px;
+    padding: 18px 20px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
   }
   .section-card.protein .result-panel { background: #fdf0e8; }
-  .section-card.fat .result-panel { background: #fefbe0; }
-  .section-card.veg .result-panel { background: #e8f5ec; }
-  .section-card.fruit .result-panel { background: #fde8e8; }
-  .section-card.dairy .result-panel { background: var(--blue-pale); }
+  .section-card.fat .result-panel     { background: #fefbe0; }
+  .section-card.veg .result-panel     { background: #e8f5ec; }
+  .section-card.fruit .result-panel   { background: #fde8e8; }
+  .section-card.dairy .result-panel   { background: var(--blue-pale); }
 
   .result-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: white;
-    border-radius: 10px;
-    padding: 12px 18px;
-    min-width: 90px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    transition: transform 0.2s;
+    display: flex; flex-direction: column; align-items: center;
+    background: white; border-radius: 10px; padding: 12px 18px; min-width: 90px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: transform 0.2s;
   }
   .result-item:hover { transform: translateY(-2px); }
-  .result-label {
-    font-size: 0.78rem;
-    color: var(--bark-light);
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .result-value {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--sage);
-    line-height: 1.1;
-  }
+  .result-label { font-size: 0.78rem; color: var(--bark-light); font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+  .result-value { font-size: 1.75rem; font-weight: 700; color: var(--sage); line-height: 1.1; }
   .section-card.protein .result-value { color: var(--terra); }
-  .section-card.fat .result-value { color: #9a7010; }
-  .section-card.veg .result-value { color: var(--green-dark); }
-  .section-card.fruit .result-value { color: #c05050; }
-  .section-card.dairy .result-value { color: var(--blue); }
-  .result-unit {
-    font-size: 0.8rem;
-    color: var(--bark-light);
-    font-weight: 400;
-  }
+  .section-card.fat .result-value     { color: #9a7010; }
+  .section-card.veg .result-value     { color: var(--green-dark); }
+  .section-card.fruit .result-value   { color: #c05050; }
+  .section-card.dairy .result-value   { color: var(--blue); }
+  .result-unit { font-size: 0.8rem; color: var(--bark-light); font-weight: 400; }
   .result-portions {
-    font-size: 0.92rem;
-    color: var(--bark-light);
-    margin-left: auto;
-    align-self: center;
-    padding: 8px 14px;
-    background: white;
-    border-radius: 8px;
-    line-height: 1.6;
+    font-size: 0.92rem; color: var(--bark-light); margin-left: auto; align-self: center;
+    padding: 8px 14px; background: white; border-radius: 8px; line-height: 1.6;
   }
   .result-portions strong { color: var(--bark); }
 
-  /* FAT LEVEL BADGE */
-  .fat-badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    margin-top: 6px;
-  }
-  .fat-low { background: #d4f0e0; color: #2a6a40; }
-  .fat-mid { background: #fef0c0; color: #8a6000; }
+  .fat-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; margin-top: 6px; }
+  .fat-low  { background: #d4f0e0; color: #2a6a40; }
+  .fat-mid  { background: #fef0c0; color: #8a6000; }
   .fat-high { background: #fdd8d8; color: #8a2020; }
 
-  /* COMPARISON TABLE */
   .compare-btn {
-    margin-top: 16px;
-    background: none;
-    border: 1.5px solid currentColor;
-    padding: 9px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-size: 0.92rem;
-    font-weight: 500;
-    color: var(--sage);
-    transition: all 0.2s;
-    letter-spacing: 0.03em;
+    margin-top: 16px; background: none; border: 1.5px solid currentColor;
+    padding: 9px 20px; border-radius: 8px; cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 0.92rem; font-weight: 500;
+    color: var(--sage); transition: all 0.2s; letter-spacing: 0.03em;
   }
   .section-card.protein .compare-btn { color: var(--terra); }
   .compare-btn:hover { background: rgba(139,158,126,0.1); }
   .section-card.protein .compare-btn:hover { background: rgba(193,127,89,0.1); }
 
-  .compare-table {
-    margin-top: 16px;
-    display: none;
-    overflow-x: auto;
-  }
+  .compare-table { margin-top: 16px; display: none; overflow-x: auto; }
   .compare-table.show { display: block; }
-  .compare-table table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.92rem;
-  }
+  .compare-table table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
   .compare-table th {
-    background: var(--bark);
-    color: var(--cream);
-    padding: 9px 12px;
-    text-align: left;
-    font-weight: 500;
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
+    background: var(--bark); color: var(--cream); padding: 9px 12px;
+    text-align: left; font-weight: 500; font-size: 0.85rem; letter-spacing: 0.05em;
   }
   .compare-table th:first-child { border-radius: 8px 0 0 0; }
-  .compare-table th:last-child { border-radius: 0 8px 0 0; }
-  .compare-table td {
-    padding: 8px 12px;
-    border-bottom: 1px solid #f0ebe5;
-    color: var(--bark);
-  }
+  .compare-table th:last-child  { border-radius: 0 8px 0 0; }
+  .compare-table td { padding: 8px 12px; border-bottom: 1px solid #f0ebe5; color: var(--bark); }
   .compare-table tr:nth-child(even) td { background: #faf8f5; }
   .compare-table tr:hover td { background: var(--sage-pale); }
 
-  /* MEAL BUILDER */
   .meal-builder {
-    background: white;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 28px;
-    margin-bottom: 28px;
+    background: white; border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 28px; margin-bottom: 28px;
     border-top: 4px solid var(--bark);
   }
-  .meal-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.5rem;
-    margin-bottom: 6px;
-  }
-  .meal-desc { font-size: 0.92rem; color: var(--bark-light); margin-bottom: 20px; }
+  .meal-title { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 6px; }
+  .meal-desc  { font-size: 0.92rem; color: var(--bark-light); margin-bottom: 20px; }
 
   .meal-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
   .meal-item-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    background: var(--cream);
-    border-radius: 10px;
-    font-size: 0.95rem;
-    flex-wrap: wrap;
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px; background: var(--cream);
+    border-radius: 10px; font-size: 0.95rem; flex-wrap: wrap;
   }
   .meal-item-row .food-name { font-weight: 600; flex: 1; min-width: 120px; }
   .meal-item-row .food-amount { color: var(--bark-light); font-size: 0.88rem; }
   .meal-macros { display: flex; gap: 10px; font-size: 0.85rem; }
   .m-carb { color: #6b8e3a; font-weight: 600; }
   .m-prot { color: #b06030; font-weight: 600; }
-  .m-fat { color: #a07020; font-weight: 600; }
-  .m-cal { color: var(--bark); font-weight: 600; }
+  .m-fat  { color: #a07020; font-weight: 600; }
+  .m-cal  { color: var(--bark); font-weight: 600; }
   .remove-btn {
-    background: #fdd;
-    border: none;
-    border-radius: 6px;
-    width: 26px;
-    height: 26px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    color: #c04040;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
+    background: #fdd; border: none; border-radius: 6px;
+    width: 26px; height: 26px; cursor: pointer; font-size: 0.85rem; color: #c04040;
+    display: flex; align-items: center; justify-content: center; transition: background 0.15s;
   }
   .remove-btn:hover { background: #f8b0b0; }
 
   .meal-total {
-    background: var(--bark);
-    color: var(--cream);
-    border-radius: 12px;
-    padding: 16px 20px;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    align-items: center;
+    background: var(--bark); color: var(--cream); border-radius: 12px;
+    padding: 16px 20px; display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
   }
   .meal-total-item { display: flex; flex-direction: column; align-items: center; }
   .meal-total-label { font-size: 0.75rem; opacity: 0.6; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
   .meal-total-value { font-size: 1.5rem; font-weight: 700; }
-  .meal-total-unit { font-size: 0.75rem; opacity: 0.6; }
+  .meal-total-unit  { font-size: 0.75rem; opacity: 0.6; }
   .clear-btn {
-    margin-left: auto;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.25);
-    color: var(--cream);
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-size: 0.75rem;
-    transition: background 0.2s;
+    margin-left: auto; background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25); color: var(--cream);
+    padding: 8px 16px; border-radius: 8px; cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 0.75rem; transition: background 0.2s;
   }
   .clear-btn:hover { background: rgba(255,255,255,0.25); }
 
   .add-meal-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--sage);
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 9px;
-    cursor: pointer;
-    font-family: 'Noto Sans TC', sans-serif;
-    font-size: 0.92rem;
-    font-weight: 500;
-    margin-top: 14px;
-    transition: background 0.2s, transform 0.1s;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--sage); color: white; border: none;
+    padding: 10px 20px; border-radius: 9px; cursor: pointer;
+    font-family: 'Noto Sans TC', sans-serif; font-size: 0.92rem; font-weight: 500;
+    margin-top: 14px; transition: background 0.2s, transform 0.1s;
   }
   .add-meal-btn:hover { background: var(--green-dark); }
   .add-meal-btn:active { transform: scale(0.97); }
   .section-card.protein .add-meal-btn { background: var(--terra); }
   .section-card.protein .add-meal-btn:hover { background: #a06040; }
 
-  /* REFERENCE NUMBERS */
   .ref-strip {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    font-size: 0.85rem;
-    color: var(--bark-light);
-    margin-bottom: 14px;
-    padding: 8px 12px;
-    background: var(--sand);
-    border-radius: 8px;
+    display: flex; gap: 10px; flex-wrap: wrap; font-size: 0.85rem; color: var(--bark-light);
+    margin-bottom: 14px; padding: 8px 12px; background: var(--sand); border-radius: 8px;
   }
   .ref-strip span { display: flex; align-items: center; gap: 4px; }
   .ref-strip strong { color: var(--bark); }
 
-  /* HIDDEN */
   .tab-section { display: none; }
   .tab-section.active { display: block; }
 
-  /* IMAGE ZONE */
-  .img-zone {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1.5px dashed #d8cfc8;
-  }
+  .img-zone { margin-top: 20px; padding-top: 20px; border-top: 1.5px dashed #d8cfc8; }
   .img-zone-label {
-    font-size: 0.72rem;
-    color: #b0a090;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 0.72rem; color: #b0a090; letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
   }
-  .img-zone-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: #e0d8d0;
-  }
-  .img-row {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
+  .img-zone-label::after { content: ''; flex: 1; height: 1px; background: #e0d8d0; }
+  .img-row { display: flex; gap: 12px; flex-wrap: wrap; }
   .img-row img {
-    max-width: 100%;
-    max-height: 320px;
-    border-radius: 10px;
-    object-fit: contain;
-    background: #f5f0ea;
-    flex: 1;
-    min-width: 200px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    cursor: zoom-in;
-    transition: transform 0.15s, box-shadow 0.15s;
+    max-width: 100%; max-height: 320px; border-radius: 10px; object-fit: contain;
+    background: #f5f0ea; flex: 1; min-width: 200px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08); cursor: zoom-in; transition: transform 0.15s, box-shadow 0.15s;
   }
-  .img-row img:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  .img-row img:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+
+  /* ── NEW: Protein Comparison & Fruit GI ── */
+  .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .filter-btn {
+    padding: 6px 16px; border-radius: 20px; border: 1.5px solid #e0d8d0;
+    background: white; cursor: pointer; font-family: 'Noto Sans TC', sans-serif;
+    font-size: 0.85rem; color: var(--bark-light); transition: all 0.18s;
   }
+  .filter-btn:hover { border-color: var(--bark-light); color: var(--bark); }
+  .filter-btn.active { background: var(--bark); color: var(--cream); border-color: var(--bark); }
+  .section-card.proteincomp .filter-btn.active { background: #8a2060; border-color: #8a2060; }
+  .section-card.fruitgi .filter-btn.active     { background: #c05010; border-color: #c05010; }
+
+  .comp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .comp-card {
+    background: #faf8f5; border: 1px solid #ede8e2; border-radius: 12px;
+    padding: 14px 16px; transition: box-shadow 0.18s, transform 0.18s;
+  }
+  .comp-card:hover { box-shadow: 0 4px 16px rgba(61,50,41,0.12); transform: translateY(-2px); }
+  .comp-card-name { font-weight: 600; font-size: 0.95rem; color: var(--bark); margin-bottom: 3px; }
+  .comp-card-sub  { font-size: 0.78rem; color: var(--bark-light); margin-bottom: 10px; }
+  .comp-bars { display: flex; flex-direction: column; gap: 5px; }
+  .comp-bar-row { display: flex; align-items: center; gap: 6px; }
+  .comp-bar-label { font-size: 0.72rem; color: var(--bark-light); width: 32px; flex-shrink: 0; }
+  .comp-bar-track { flex: 1; height: 6px; background: #e8e2dc; border-radius: 3px; overflow: hidden; }
+  .comp-bar-fill  { height: 100%; border-radius: 3px; }
+  .comp-bar-val   { font-size: 0.72rem; font-weight: 600; color: var(--bark); width: 36px; text-align: right; flex-shrink: 0; }
+  .comp-kcal { margin-top: 8px; font-size: 0.82rem; font-weight: 700; }
+  .comp-fat-tag {
+    display: inline-block; font-size: 0.68rem; padding: 2px 8px;
+    border-radius: 10px; margin-top: 6px; font-weight: 700;
+  }
+
+  /* GI TABLE */
+  .gi-intro {
+    background: #fff8f0; border-left: 3px solid #c05010;
+    border-radius: 0 10px 10px 0; padding: 12px 16px; margin-bottom: 18px;
+    font-size: 0.9rem; line-height: 1.75; color: var(--bark);
+  }
+  .gi-legend { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .gi-legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--bark-light); }
+  .gi-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .gi-low  { background: #3aad6a; }
+  .gi-mid  { background: #e8a020; }
+  .gi-high { background: #d84040; }
+
+  .gi-table-wrap { overflow-x: auto; }
+  .gi-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .gi-table th {
+    background: var(--bark); color: var(--cream); padding: 10px 12px;
+    text-align: left; font-weight: 500; font-size: 0.82rem; letter-spacing: 0.04em; white-space: nowrap;
+  }
+  .gi-table th:first-child { border-radius: 8px 0 0 0; }
+  .gi-table th:last-child  { border-radius: 0 8px 0 0; }
+  .gi-table td { padding: 9px 12px; border-bottom: 1px solid #f0ebe5; vertical-align: middle; }
+  .gi-table tr:nth-child(even) td { background: #faf8f5; }
+  .gi-table tr:hover td { background: #fef8f0; }
+  .gi-bar-cell { width: 120px; }
+  .gi-bar-track { height: 8px; background: #ede8e2; border-radius: 4px; overflow: hidden; }
+  .gi-bar-fill  { height: 100%; border-radius: 4px; }
+  .gi-tag {
+    display: inline-block; font-size: 0.7rem; padding: 2px 8px;
+    border-radius: 10px; font-weight: 700; white-space: nowrap;
+  }
+  .gi-tag-low  { background: #d4f5e4; color: #1a6a3a; }
+  .gi-tag-mid  { background: #fef0c0; color: #8a6000; }
+  .gi-tag-high { background: #fdd8d8; color: #8a2020; }
+  .gi-num { font-weight: 700; font-size: 1rem; }
+  .note-row { font-size: 0.82rem; color: var(--bark-light); }
+  .gi-note { margin-top: 14px; padding: 10px 14px; background: var(--sage-pale); border-radius: 8px; font-size: 0.82rem; color: var(--bark-light); line-height: 1.7; }
 
   /* LIGHTBOX */
   .lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(30,22,18,0.88);
-    z-index: 999;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    cursor: zoom-out;
-    backdrop-filter: blur(4px);
+    display: none; position: fixed; inset: 0;
+    background: rgba(30,22,18,0.88); z-index: 999;
+    align-items: center; justify-content: center; padding: 24px;
+    cursor: zoom-out; backdrop-filter: blur(4px);
   }
   .lightbox.open { display: flex; }
   .lightbox img {
-    max-width: 92vw;
-    max-height: 88vh;
-    border-radius: 12px;
-    object-fit: contain;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    cursor: default;
-    animation: lbIn 0.2s ease;
+    max-width: 92vw; max-height: 88vh; border-radius: 12px;
+    object-fit: contain; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    cursor: default; animation: lbIn 0.2s ease;
   }
-  @keyframes lbIn {
-    from { opacity: 0; transform: scale(0.93); }
-    to   { opacity: 1; transform: scale(1); }
-  }
+  @keyframes lbIn { from { opacity:0; transform:scale(0.93); } to { opacity:1; transform:scale(1); } }
   .lightbox-close {
-    position: fixed;
-    top: 18px;
-    right: 22px;
-    background: rgba(255,255,255,0.15);
-    border: none;
-    color: white;
-    font-size: 1.6rem;
-    line-height: 1;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s;
+    position: fixed; top: 18px; right: 22px;
+    background: rgba(255,255,255,0.15); border: none; color: white;
+    font-size: 1.6rem; line-height: 1; width: 42px; height: 42px;
+    border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; transition: background 0.15s;
   }
   .lightbox-close:hover { background: rgba(255,255,255,0.3); }
 
@@ -519,12 +335,12 @@
     .controls { gap: 10px; }
     .control-group { min-width: 130px; }
     .tab-btn { padding: 10px 14px; font-size: 0.78rem; }
+    .comp-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
   }
 </style>
 </head>
 <body>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
   <img id="lightbox-img" src="" alt="" onclick="event.stopPropagation()">
@@ -536,13 +352,15 @@
 </header>
 
 <div class="tab-bar">
-  <button class="tab-btn active" onclick="switchTab('grain')">🌾 全榖根莖類</button>
-  <button class="tab-btn" onclick="switchTab('protein')">🥩 豆魚蛋肉類</button>
-  <button class="tab-btn" onclick="switchTab('veg')">🥦 蔬菜類</button>
-  <button class="tab-btn" onclick="switchTab('fruit')">🍊 水果類</button>
-  <button class="tab-btn" onclick="switchTab('dairy')">🥛 乳品類</button>
-  <button class="tab-btn" onclick="switchTab('fat')">🥑 油脂類</button>
-  <button class="tab-btn" onclick="switchTab('meal')">🍽️ 組合一餐</button>
+  <button class="tab-btn active"  onclick="switchTab('grain')">🌾 全榖根莖類</button>
+  <button class="tab-btn"        onclick="switchTab('protein')">🥩 豆魚蛋肉類</button>
+  <button class="tab-btn"        onclick="switchTab('veg')">🥦 蔬菜類</button>
+  <button class="tab-btn"        onclick="switchTab('fruit')">🍊 水果類</button>
+  <button class="tab-btn"        onclick="switchTab('dairy')">🥛 乳品類</button>
+  <button class="tab-btn"        onclick="switchTab('fat')">🥑 油脂類</button>
+  <button class="tab-btn"        onclick="switchTab('meal')">🍽️ 組合一餐</button>
+  <button class="tab-btn"        onclick="switchTab('proteincomp')">📊 蛋白質食物比較</button>
+  <button class="tab-btn"        onclick="switchTab('fruitgi')">🍇 水果 GI 值</button>
 </div>
 
 <main>
@@ -616,7 +434,6 @@
     <div class="img-zone">
       <div class="img-zone-label">參考圖片</div>
       <div class="img-row">
-        <!-- 把圖片檔放在同一個資料夾，修改 src 的檔名即可 -->
         <img src="images/全榖根莖01.jpg" alt="全榖根莖類份量參考">
         <img src="images/主食類-份量代換大表.jpg" alt="全榖根莖類代換量">
       </div>
@@ -881,6 +698,88 @@
   </div>
 </div>
 
+<!-- ========== PROTEIN COMPARISON (NEW) ========== -->
+<div id="tab-proteincomp" class="tab-section">
+  <div class="section-card proteincomp">
+    <div class="section-title">蛋白質食物比較 <span class="badge">每 100g 含量對照</span></div>
+    <div class="section-desc">
+      以每 100g 生重為單位，由低脂到高脂排列。同樣重量下熱量越低、蛋白質越高，代表這個食物的蛋白質 CP 值越好。
+    </div>
+    <div class="filter-bar" id="pcomp-filter">
+      <button class="filter-btn active" onclick="filterPComp('all', this)">全部</button>
+      <button class="filter-btn" onclick="filterPComp('低脂', this)">🟢 低脂</button>
+      <button class="filter-btn" onclick="filterPComp('中脂', this)">🟡 中脂</button>
+      <button class="filter-btn" onclick="filterPComp('高脂', this)">🔴 高脂</button>
+    </div>
+    <div class="gi-table-wrap">
+      <table class="gi-table" id="pcomp-table">
+        <thead>
+          <tr>
+            <th>食物</th>
+            <th>脂肪等級</th>
+            <th>熱量 (kcal)</th>
+            <th class="gi-bar-cell">熱量視覺</th>
+            <th>蛋白質 (g)</th>
+            <th>脂肪 (g)</th>
+            <th>碳水 (g)</th>
+            <th>備註</th>
+          </tr>
+        </thead>
+        <tbody id="pcomp-tbody"></tbody>
+      </table>
+    </div>
+    <div class="gi-note">
+      💡 <strong>減脂期優先選低脂蛋白質來源</strong>（雞胸、白肉魚、蝦、花枝、豆腐）。鮭魚雖屬中脂但富含 Omega-3，每週 1–2 次很好。松阪豬、香腸等高脂肉類偶爾品嚐即可。
+    </div>
+  </div>
+</div>
+
+<!-- ========== FRUIT GI (NEW) ========== -->
+<div id="tab-fruitgi" class="tab-section">
+  <div class="section-card fruitgi">
+    <div class="section-title">水果 GI 值參考 <span class="badge">升糖指數對照表</span></div>
+    <div class="section-desc">
+      GI 值反映食物讓血糖上升的速度。胰島素阻抗的人建議優先選低 GI 水果，減少血糖震盪。
+    </div>
+    <div class="gi-intro">
+      ⚠️ <strong>GI 值低不代表可以無限量吃</strong>——水果仍含果糖，份量一樣要控制。<br>
+      建議每天 1–2 份（約 1 個小蘋果大小），以低 GI、偏酸的種類為優先。
+    </div>
+    <div class="gi-legend">
+      <div class="gi-legend-item"><div class="gi-dot gi-low"></div>低 GI（&lt;55）血糖上升緩慢 ✓ 推薦</div>
+      <div class="gi-legend-item"><div class="gi-dot gi-mid"></div>中 GI（55–69）適量食用</div>
+      <div class="gi-legend-item"><div class="gi-dot gi-high"></div>高 GI（≥70）謹慎，控制份量</div>
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterGI('all', this)">全部</button>
+      <button class="filter-btn" onclick="filterGI('low', this)">🟢 低 GI（推薦）</button>
+      <button class="filter-btn" onclick="filterGI('mid', this)">🟡 中 GI</button>
+      <button class="filter-btn" onclick="filterGI('high', this)">🔴 高 GI</button>
+    </div>
+    <div class="gi-table-wrap">
+      <table class="gi-table" id="gi-table">
+        <thead>
+          <tr>
+            <th>水果</th>
+            <th>GI 值</th>
+            <th class="gi-bar-cell">升糖速度</th>
+            <th>等級</th>
+            <th>1份重量</th>
+            <th>每100g 醣(g)</th>
+            <th>備註</th>
+          </tr>
+        </thead>
+        <tbody id="gi-tbody"></tbody>
+      </table>
+    </div>
+    <div class="gi-note">
+      📌 <strong>胰島素阻抗優先選：</strong>芭樂、奇異果、蘋果、小番茄、草莓、藍莓。<br>
+      📌 <strong>減少頻率：</strong>芒果、西瓜、鳳梨、荔枝、龍眼（GI 高或果糖密度高）。<br>
+      📌 水果最好在白天吃，飯後吃效果優於空腹單獨吃。
+    </div>
+  </div>
+</div>
+
 <!-- ========== MEAL BUILDER ========== -->
 <div id="tab-meal" class="tab-section">
   <div class="meal-builder">
@@ -902,85 +801,146 @@
 </main>
 
 <script>
-// ===== DATA =====
+// ===== EXISTING DATA =====
 const grainData = {
-  rice:         { name:'白飯', per1:50, unit:'g(¼碗)', carb:15, prot:2, fat:0, cal:70 },
-  congee:       { name:'粥/稀飯', per1:125, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
-  ricecake:     { name:'白年糕', per1:30, unit:'g', carb:15, prot:2, fat:0, cal:70 },
-  taro_cake:    { name:'芋頭糕', per1:60, unit:'g', carb:15, prot:2, fat:0, cal:70 },
-  oats:         { name:'燕麥片', per1:20, unit:'g(3湯匙)', carb:15, prot:2, fat:0, cal:70 },
-  noodle:       { name:'麵條(熟)', per1:60, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
-  toast:        { name:'薄吐司', per1:25, unit:'g(1片)', carb:15, prot:2, fat:0, cal:70 },
-  ramen_dry:    { name:'拉麵(生)', per1:25, unit:'g', carb:15, prot:2, fat:0, cal:70 },
-  dumpling_skin:{ name:'餃子皮', per1:30, unit:'g(3張)', carb:15, prot:2, fat:0, cal:70 },
-  crackers:     { name:'蘇打餅乾', per1:20, unit:'g(3片)', carb:15, prot:2, fat:0, cal:70 },
-  potato:       { name:'馬鈴薯', per1:90, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
-  yam:          { name:'山藥', per1:100, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
-  pumpkin:      { name:'南瓜', per1:110, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
-  sweet_potato: { name:'地瓜', per1:55, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
-  taro:         { name:'芋頭', per1:55, unit:'g(½碗)', carb:15, prot:2, fat:0, cal:70 },
-  corn:         { name:'玉米粒', per1:65, unit:'g(5湯匙)', carb:15, prot:2, fat:0, cal:70 },
-  barley:       { name:'薏仁(生)', per1:20, unit:'g', carb:15, prot:2, fat:0, cal:70 },
-  mung_bean:    { name:'綠豆(生)', per1:20, unit:'g', carb:15, prot:2, fat:0, cal:70 },
-  red_bean:     { name:'紅豆(生)', per1:20, unit:'g', carb:15, prot:2, fat:0, cal:70 },
+  rice:{name:'白飯',per1:50,unit:'g(¼碗)',carb:15,prot:2,fat:0,cal:70},
+  congee:{name:'粥/稀飯',per1:125,unit:'g(½碗)',carb:15,prot:2,fat:0,cal:70},
+  ricecake:{name:'白年糕',per1:30,unit:'g',carb:15,prot:2,fat:0,cal:70},
+  taro_cake:{name:'芋頭糕',per1:60,unit:'g',carb:15,prot:2,fat:0,cal:70},
+  oats:{name:'燕麥片',per1:20,unit:'g(3湯匙)',carb:15,prot:2,fat:0,cal:70},
+  noodle:{name:'麵條(熟)',per1:60,unit:'g(½碗)',carb:15,prot:2,fat:0,cal:70},
+  toast:{name:'薄吐司',per1:25,unit:'g(1片)',carb:15,prot:2,fat:0,cal:70},
+  ramen_dry:{name:'拉麵(生)',per1:25,unit:'g',carb:15,prot:2,fat:0,cal:70},
+  dumpling_skin:{name:'餃子皮',per1:30,unit:'g(3張)',carb:15,prot:2,fat:0,cal:70},
+  crackers:{name:'蘇打餅乾',per1:20,unit:'g(3片)',carb:15,prot:2,fat:0,cal:70},
+  potato:{name:'馬鈴薯',per1:90,unit:'g(½碗)',carb:15,prot:2,fat:0,cal:70},
+  yam:{name:'山藥',per1:100,unit:'g(½碗)',carb:15,prot:2,fat:0,cal:70},
+  pumpkin:{name:'南瓜',per1:110,unit:'g(½碗)',carb:15,prot:2,fat:0,cal:70},
+  sweet_potato:{name:'地瓜',per1:55,unit:'g(½碗)',carb:15,prot:2,fat:0,cal:70},
+  taro:{name:'芋頭',per1:55,unit:'g(½碗)',carb:15,prot:2,fat:0,cal:70},
+  corn:{name:'玉米粒',per1:65,unit:'g(5湯匙)',carb:15,prot:2,fat:0,cal:70},
+  barley:{name:'薏仁(生)',per1:20,unit:'g',carb:15,prot:2,fat:0,cal:70},
+  mung_bean:{name:'綠豆(生)',per1:20,unit:'g',carb:15,prot:2,fat:0,cal:70},
+  red_bean:{name:'紅豆(生)',per1:20,unit:'g',carb:15,prot:2,fat:0,cal:70},
 };
 
 const proteinData = {
-  chicken_breast:{ name:'雞胸肉', per1:30, unit:'g生重', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
-  egg_white:     { name:'蛋白', per1:85, unit:'g(2個)', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
-  shrimp:        { name:'蝦仁', per1:30, unit:'g生重', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
-  clam:          { name:'蛤蜊/牡蠣', per1:60, unit:'g', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
-  squid:         { name:'花枝', per1:40, unit:'g', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
-  tofu_firm:     { name:'豆漿', per1:260, unit:'mL(1杯)', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
-  pig_lean:      { name:'豬里肌', per1:35, unit:'g生重', prot:7, fat:3, carb:0, cal:55, level:'低脂' },
-  egg:           { name:'雞蛋', per1:55, unit:'g(1顆)', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
-  tofu_trad:     { name:'傳統豆腐', per1:80, unit:'g(2小格)', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
-  tofu_soft:     { name:'嫩豆腐', per1:140, unit:'g(半盒)', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
-  tofu_dry:      { name:'五香豆干', per1:35, unit:'g(2/3片)', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
-  salmon:        { name:'鮭魚', per1:35, unit:'g生重', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
-  pork_rib:      { name:'豬小排', per1:35, unit:'g生重', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
-  beef:          { name:'牛排', per1:35, unit:'g生重', prot:7, fat:5, carb:0, cal:75, level:'中脂' },
-  pork_belly:    { name:'五花肉', per1:50, unit:'g生重', prot:7, fat:10, carb:0, cal:120, level:'高脂' },
-  sausage:       { name:'香腸', per1:40, unit:'g(約1條)', prot:7, fat:10, carb:0, cal:120, level:'高脂' },
-  saury:         { name:'秋刀魚', per1:35, unit:'g生重', prot:7, fat:10, carb:0, cal:120, level:'高脂' },
+  chicken_breast:{name:'雞胸肉',per1:30,unit:'g生重',prot:7,fat:3,carb:0,cal:55,level:'低脂'},
+  egg_white:{name:'蛋白',per1:85,unit:'g(2個)',prot:7,fat:3,carb:0,cal:55,level:'低脂'},
+  shrimp:{name:'蝦仁',per1:30,unit:'g生重',prot:7,fat:3,carb:0,cal:55,level:'低脂'},
+  clam:{name:'蛤蜊/牡蠣',per1:60,unit:'g',prot:7,fat:3,carb:0,cal:55,level:'低脂'},
+  squid:{name:'花枝',per1:40,unit:'g',prot:7,fat:3,carb:0,cal:55,level:'低脂'},
+  tofu_firm:{name:'豆漿',per1:260,unit:'mL(1杯)',prot:7,fat:3,carb:0,cal:55,level:'低脂'},
+  pig_lean:{name:'豬里肌',per1:35,unit:'g生重',prot:7,fat:3,carb:0,cal:55,level:'低脂'},
+  egg:{name:'雞蛋',per1:55,unit:'g(1顆)',prot:7,fat:5,carb:0,cal:75,level:'中脂'},
+  tofu_trad:{name:'傳統豆腐',per1:80,unit:'g(2小格)',prot:7,fat:5,carb:0,cal:75,level:'中脂'},
+  tofu_soft:{name:'嫩豆腐',per1:140,unit:'g(半盒)',prot:7,fat:5,carb:0,cal:75,level:'中脂'},
+  tofu_dry:{name:'五香豆干',per1:35,unit:'g(2/3片)',prot:7,fat:5,carb:0,cal:75,level:'中脂'},
+  salmon:{name:'鮭魚',per1:35,unit:'g生重',prot:7,fat:5,carb:0,cal:75,level:'中脂'},
+  pork_rib:{name:'豬小排',per1:35,unit:'g生重',prot:7,fat:5,carb:0,cal:75,level:'中脂'},
+  beef:{name:'牛排',per1:35,unit:'g生重',prot:7,fat:5,carb:0,cal:75,level:'中脂'},
+  pork_belly:{name:'五花肉',per1:50,unit:'g生重',prot:7,fat:10,carb:0,cal:120,level:'高脂'},
+  sausage:{name:'香腸',per1:40,unit:'g(約1條)',prot:7,fat:10,carb:0,cal:120,level:'高脂'},
+  saury:{name:'秋刀魚',per1:35,unit:'g生重',prot:7,fat:10,carb:0,cal:120,level:'高脂'},
 };
 
 const fruitData = {
-  apple:150, banana:70, kiwi:115, grape:105, tomato_s:175, guava:160,
-  watermelon:250, orange:150, mango:150, pineapple:130, pear:150,
-  longan:90, strawberry:160, papaya:120, durian:35,
+  apple:150,banana:70,kiwi:115,grape:105,tomato_s:175,guava:160,
+  watermelon:250,orange:150,mango:150,pineapple:130,pear:150,
+  longan:90,strawberry:160,papaya:120,durian:35,
 };
 
 const dairyData = {
-  whole_milk:  { name:'全脂鮮奶', per1:240, unit:'mL', prot:8, fat:8, carb:12, cal:150, level:'全脂' },
-  whole_powder:{ name:'全脂奶粉', per1:35, unit:'g(4湯匙)', prot:8, fat:8, carb:12, cal:150, level:'全脂' },
-  low_milk:    { name:'低脂鮮奶', per1:240, unit:'mL', prot:8, fat:4, carb:12, cal:120, level:'低脂' },
-  low_powder:  { name:'低脂奶粉', per1:25, unit:'g(3湯匙)', prot:8, fat:4, carb:12, cal:120, level:'低脂' },
-  low_cheese:  { name:'低脂起士', per1:40, unit:'g(2片)', prot:8, fat:4, carb:12, cal:120, level:'低脂' },
-  skim_milk:   { name:'脫脂鮮奶', per1:240, unit:'mL', prot:8, fat:0, carb:12, cal:80, level:'脫脂' },
-  skim_powder: { name:'脫脂奶粉', per1:25, unit:'g(3湯匙)', prot:8, fat:0, carb:12, cal:80, level:'脫脂' },
-  yogurt:      { name:'優格', per1:180, unit:'g(1杯)', prot:8, fat:0, carb:12, cal:80, level:'脫脂' },
+  whole_milk:{name:'全脂鮮奶',per1:240,unit:'mL',prot:8,fat:8,carb:12,cal:150,level:'全脂'},
+  whole_powder:{name:'全脂奶粉',per1:35,unit:'g(4湯匙)',prot:8,fat:8,carb:12,cal:150,level:'全脂'},
+  low_milk:{name:'低脂鮮奶',per1:240,unit:'mL',prot:8,fat:4,carb:12,cal:120,level:'低脂'},
+  low_powder:{name:'低脂奶粉',per1:25,unit:'g(3湯匙)',prot:8,fat:4,carb:12,cal:120,level:'低脂'},
+  low_cheese:{name:'低脂起士',per1:40,unit:'g(2片)',prot:8,fat:4,carb:12,cal:120,level:'低脂'},
+  skim_milk:{name:'脫脂鮮奶',per1:240,unit:'mL',prot:8,fat:0,carb:12,cal:80,level:'脫脂'},
+  skim_powder:{name:'脫脂奶粉',per1:25,unit:'g(3湯匙)',prot:8,fat:0,carb:12,cal:80,level:'脫脂'},
+  yogurt:{name:'優格',per1:180,unit:'g(1杯)',prot:8,fat:0,carb:12,cal:80,level:'脫脂'},
 };
 
 const fatData = {
-  veg_oil:       { name:'植物油', per1:5, unit:'g(⅓湯匙)', fat:5, cal:45 },
-  lard:          { name:'豬油', per1:5, unit:'g(⅓湯匙)', fat:5, cal:45 },
-  almond:        { name:'杏仁果', per1:7, unit:'g(½湯匙)', fat:5, cal:45 },
-  walnut:        { name:'生核桃', per1:7, unit:'g(1湯匙)', fat:5, cal:45 },
-  cashew:        { name:'腰果', per1:8, unit:'g(1湯匙)', fat:5, cal:45 },
-  pumpkin_seed:  { name:'南瓜子', per1:10, unit:'g(1½湯匙)', fat:5, cal:45 },
-  sunflower:     { name:'葵花子', per1:12, unit:'g(2湯匙)', fat:5, cal:45 },
-  peanut:        { name:'帶殼花生', per1:8, unit:'g(2湯匙)', fat:5, cal:45 },
-  peanut_butter: { name:'花生醬', per1:7, unit:'g(1湯匙)', fat:5, cal:45 },
-  sesame_paste:  { name:'芝麻醬', per1:7, unit:'g(½湯匙)', fat:5, cal:45 },
-  mayo:          { name:'沙拉醬/美乃滋', per1:7, unit:'g(½湯匙)', fat:5, cal:45 },
+  veg_oil:{name:'植物油',per1:5,unit:'g(⅓湯匙)',fat:5,cal:45},
+  lard:{name:'豬油',per1:5,unit:'g(⅓湯匙)',fat:5,cal:45},
+  almond:{name:'杏仁果',per1:7,unit:'g(½湯匙)',fat:5,cal:45},
+  walnut:{name:'生核桃',per1:7,unit:'g(1湯匙)',fat:5,cal:45},
+  cashew:{name:'腰果',per1:8,unit:'g(1湯匙)',fat:5,cal:45},
+  pumpkin_seed:{name:'南瓜子',per1:10,unit:'g(1½湯匙)',fat:5,cal:45},
+  sunflower:{name:'葵花子',per1:12,unit:'g(2湯匙)',fat:5,cal:45},
+  peanut:{name:'帶殼花生',per1:8,unit:'g(2湯匙)',fat:5,cal:45},
+  peanut_butter:{name:'花生醬',per1:7,unit:'g(1湯匙)',fat:5,cal:45},
+  sesame_paste:{name:'芝麻醬',per1:7,unit:'g(½湯匙)',fat:5,cal:45},
+  mayo:{name:'沙拉醬/美乃滋',per1:7,unit:'g(½湯匙)',fat:5,cal:45},
 };
+
+// ===== NEW DATA: Protein per 100g =====
+const proteinComp100 = [
+  { name:'雞胸肉', sub:'生重', prot:22.4, fat:1.9, carb:0, cal:109, level:'低脂', note:'減脂首選，CP值最高' },
+  { name:'雞腿肉(去皮)', sub:'生重', prot:18.7, fat:5.2, carb:0, cal:125, level:'低脂', note:'去皮後脂肪大幅降低' },
+  { name:'白肉魚(鯛/鱸)', sub:'生重', prot:20.2, fat:1.5, carb:0, cal:96, level:'低脂', note:'低脂高蛋白，極推' },
+  { name:'蝦仁', sub:'生重', prot:18.4, fat:0.9, carb:0, cal:82, level:'低脂', note:'幾乎零脂肪' },
+  { name:'花枝/透抽', sub:'生重', prot:16.4, fat:0.8, carb:0, cal:75, level:'低脂', note:'低脂、高蛋白' },
+  { name:'豬里肌', sub:'生重', prot:22.2, fat:3.5, carb:0, cal:121, level:'低脂', note:'豬肉中最瘦的部位' },
+  { name:'雞蛋(全蛋)', sub:'全顆', prot:12.7, fat:9.5, carb:0.6, cal:138, level:'中脂', note:'蛋黃含豐富微量營養素' },
+  { name:'傳統豆腐', sub:'生重', prot:8.1, fat:3.5, carb:2.0, cal:72, level:'中脂', note:'植物性蛋白，含鈣' },
+  { name:'五香豆干', sub:'', prot:14.3, fat:7.5, carb:3.2, cal:138, level:'中脂', note:'蛋白質密度較高' },
+  { name:'鮭魚', sub:'生重', prot:20.1, fat:13.4, carb:0, cal:202, level:'中脂', note:'富含Omega-3，每週1-2次' },
+  { name:'牛腱肉', sub:'生重', prot:20.4, fat:4.2, carb:0, cal:120, level:'低脂', note:'牛肉中較低脂部位' },
+  { name:'牛五花', sub:'生重', prot:14.2, fat:22.1, carb:0, cal:259, level:'高脂', note:'燒烤常用，脂肪高' },
+  { name:'松阪豬', sub:'生重', prot:16.8, fat:19.2, carb:0, cal:245, level:'高脂', note:'口感好但脂肪偏高' },
+  { name:'五花肉', sub:'生重', prot:14.0, fat:25.0, carb:0, cal:283, level:'高脂', note:'脂肪含量高，少量食用' },
+  { name:'香腸', sub:'熟重', prot:14.0, fat:23.5, carb:4.2, cal:290, level:'高脂', note:'加工品，含鈉高' },
+  { name:'無糖豆漿', sub:'每100mL', prot:3.3, fat:1.9, carb:1.0, cal:34, level:'低脂', note:'植物蛋白，適合加量飲用' },
+  { name:'希臘優格(無糖)', sub:'每100g', prot:9.0, fat:0.4, carb:3.6, cal:59, level:'低脂', note:'高蛋白點心首選' },
+  { name:'毛豆', sub:'去殼生重', prot:13.0, fat:5.0, carb:7.5, cal:122, level:'低脂', note:'植物蛋白+纖維，極佳點心' },
+  { name:'雞翅(去皮)', sub:'生重', prot:18.5, fat:6.8, carb:0, cal:134, level:'低脂', note:'去皮後脂肪尚可，帶皮則中脂' },
+  { name:'雞翅(帶皮)', sub:'生重', prot:17.0, fat:12.8, carb:0, cal:186, level:'中脂', note:'帶皮脂肪明顯提升' },
+  { name:'板腱牛', sub:'生重', prot:19.8, fat:5.5, carb:0, cal:129, level:'低脂', note:'牛肩部位，嫩且低脂，推薦' },
+  { name:'菲力牛排', sub:'生重', prot:21.5, fat:4.2, carb:0, cal:124, level:'低脂', note:'牛肉最嫩最低脂部位' },
+  { name:'沙朗牛排', sub:'生重', prot:18.8, fat:12.5, carb:0, cal:190, level:'中脂', note:'油花適中，口感豐富' },
+  { name:'牛腩', sub:'生重', prot:17.2, fat:18.0, carb:0, cal:234, level:'高脂', note:'膠原蛋白豐富，脂肪偏高' },
+  { name:'嘴邊肉', sub:'生重', prot:18.5, fat:10.2, carb:0, cal:167, level:'中脂', note:'豬臉頰肉，口感Q嫩' },
+  { name:'肝連肉', sub:'生重', prot:19.2, fat:7.8, carb:0, cal:147, level:'低脂', note:'橫膈膜附近，口感軟嫩低脂' },
+  { name:'雞胗', sub:'生重', prot:18.3, fat:1.8, carb:0.5, cal:91, level:'低脂', note:'低脂低熱量，富含鐵鋅' },
+  { name:'豬心', sub:'生重', prot:17.5, fat:4.2, carb:0.4, cal:109, level:'低脂', note:'低脂，富含B12和鐵' },
+  { name:'豬肝', sub:'生重', prot:20.4, fat:3.8, carb:2.5, cal:124, level:'低脂', note:'鐵質豐富，每週不超過2次' },
+  { name:'雞肝', sub:'生重', prot:17.1, fat:4.8, carb:0.9, cal:116, level:'低脂', note:'高鐵高維A，每週不超過1次' },
+  { name:'大腸', sub:'熟重', prot:11.2, fat:14.5, carb:0, cal:176, level:'中脂', note:'膽固醇較高，偶爾食用' },
+  { name:'鴨血/豬血', sub:'熟重', prot:6.8, fat:0.4, carb:1.2, cal:37, level:'低脂', note:'極低熱量，鐵質豐富，適合火鍋' },
+  { name:'乳酪絲(披薩用)', sub:'每100g', prot:25.0, fat:22.0, carb:2.0, cal:306, level:'高脂', note:'蛋白質高但脂肪也高，控制份量' },
+  { name:'茶葉蛋', sub:'每顆約55g', prot:7.0, fat:4.7, carb:0.4, cal:73, level:'中脂', note:'方便補蛋白質' },
+];
+
+// ===== NEW DATA: Fruit GI =====
+const fruitGI = [
+  { name:'芭樂', gi:20, level:'low', per1:'160g', carb100:8.0,  note:'GI極低，高纖維維C，★推薦' },
+  { name:'小番茄', gi:25, level:'low', per1:'175g', carb100:5.4,  note:'嚴格說是蔬菜，適合代替點心' },
+  { name:'藍莓', gi:25, level:'low', per1:'120g', carb100:12.1, note:'抗氧化極佳，GI低' },
+  { name:'草莓', gi:29, level:'low', per1:'160g', carb100:7.7,  note:'份量多熱量低，高維C' },
+  { name:'奇異果', gi:35, level:'low', per1:'115g', carb100:13.5, note:'GI低，含消化酵素，★推薦' },
+  { name:'蘋果', gi:38, level:'low', per1:'115g', carb100:13.8, note:'果膠豐富，飽足感好，★推薦' },
+  { name:'水梨', gi:38, level:'low', per1:'150g', carb100:10.4, note:'水分高，消化快' },
+  { name:'柳丁', gi:43, level:'low', per1:'150g', carb100:11.9, note:'維C豐富，GI低' },
+  { name:'葡萄柚', gi:25, level:'low', per1:'140g', carb100:9.0,  note:'微苦但GI極低' },
+  { name:'木瓜', gi:55, level:'mid', per1:'120g', carb100:9.8,  note:'含木瓜酵素助消化，適量可' },
+  { name:'葡萄', gi:56, level:'mid', per1:'105g', carb100:17.0, note:'糖分偏高，控制份量' },
+  { name:'香蕉(熟)', gi:62, level:'mid', per1:'70g',  carb100:22.2, note:'越熟GI越高，選偏生的' },
+  { name:'木瓜', gi:55, level:'mid', per1:'120g', carb100:9.8,  note:'適量食用' },
+  { name:'鳳梨', gi:66, level:'mid', per1:'130g', carb100:14.1, note:'甜度高，建議少量' },
+  { name:'芒果(愛文)', gi:55, level:'mid', per1:'150g', carb100:15.8, note:'果糖含量高，★少量' },
+  { name:'西瓜', gi:72, level:'high', per1:'250g', carb100:8.0,  note:'GI高但含水量大，少量可' },
+  { name:'荔枝', gi:79, level:'high', per1:'90g',  carb100:18.2, note:'高糖，一次不超過5顆' },
+  { name:'龍眼', gi:79, level:'high', per1:'90g',  carb100:18.2, note:'高糖，同荔枝，少量' },
+  { name:'榴槤', gi:49, level:'low',  per1:'35g',  carb100:27.1, note:'GI不算高但熱量極高，嚴格限量' },
+];
 
 // ===== MEAL STATE =====
 let mealItems = [];
 let mealIdCounter = 0;
 
-// ===== CALC FUNCTIONS =====
+// ===== CALC FUNCTIONS (original) =====
 function calcGrain() {
   const key = document.getElementById('grain-food').value;
   const weight = parseFloat(document.getElementById('grain-weight').value)||0;
@@ -990,23 +950,15 @@ function calcGrain() {
   const prot = +(portions * d.prot).toFixed(1);
   const cal = +(portions * d.cal).toFixed(0);
   document.getElementById('grain-result').innerHTML = `
-    ${ri('醣類', carb, 'g')}
-    ${ri('蛋白質', prot, 'g')}
-    ${ri('熱量', cal, 'kcal')}
-    <div class="result-portions">
-      <strong>${d.name}</strong> ${weight}g<br>
-      = <strong>${+portions.toFixed(2)} 份</strong>全榖根莖類<br>
-      <small>（1份=${d.per1}${d.unit}）</small>
-    </div>
+    ${ri('醣類',carb,'g')}${ri('蛋白質',prot,'g')}${ri('熱量',cal,'kcal')}
+    <div class="result-portions"><strong>${d.name}</strong> ${weight}g<br>= <strong>${+portions.toFixed(2)} 份</strong>全榖根莖類<br><small>（1份=${d.per1}${d.unit}）</small></div>
   `;
-  window._grainCurrent = { name: d.name, amount: weight+'g', carb, prot, fat:0, cal, category:'grain' };
+  window._grainCurrent = {name:d.name,amount:weight+'g',carb,prot,fat:0,cal,category:'grain'};
 }
-
 function updateProteinWeight() {
   const key = document.getElementById('protein-food').value;
   document.getElementById('protein-weight').value = proteinData[key].per1;
 }
-
 function calcProtein() {
   const key = document.getElementById('protein-food').value;
   const weight = parseFloat(document.getElementById('protein-weight').value)||0;
@@ -1015,34 +967,18 @@ function calcProtein() {
   const prot = +(portions * d.prot).toFixed(1);
   const fat = +(portions * d.fat).toFixed(1);
   const cal = +(portions * d.cal).toFixed(0);
-  const badge = d.level === '低脂'
-    ? '<span class="fat-badge fat-low">低脂</span>'
-    : d.level === '中脂'
-    ? '<span class="fat-badge fat-mid">中脂</span>'
-    : '<span class="fat-badge fat-high">高脂</span>';
+  const badge = d.level==='低脂'?'<span class="fat-badge fat-low">低脂</span>':d.level==='中脂'?'<span class="fat-badge fat-mid">中脂</span>':'<span class="fat-badge fat-high">高脂</span>';
   document.getElementById('protein-result').innerHTML = `
-    ${ri('蛋白質', prot, 'g')}
-    ${ri('脂肪', fat, 'g')}
-    ${ri('熱量', cal, 'kcal')}
-    <div class="result-portions">
-      <strong>${d.name}</strong> ${badge}<br>
-      ${weight}g = <strong>${+portions.toFixed(2)} 份</strong><br>
-      <small>（1份=${d.per1}${d.unit}）</small>
-    </div>
+    ${ri('蛋白質',prot,'g')}${ri('脂肪',fat,'g')}${ri('熱量',cal,'kcal')}
+    <div class="result-portions"><strong>${d.name}</strong> ${badge}<br>${weight}g = <strong>${+portions.toFixed(2)} 份</strong><br><small>（1份=${d.per1}${d.unit}）</small></div>
   `;
-  window._proteinCurrent = { name: d.name, amount: weight+'g', carb:0, prot, fat, cal, category:'protein' };
+  window._proteinCurrent = {name:d.name,amount:weight+'g',carb:0,prot,fat,cal,category:'protein'};
   const tbody = document.getElementById('protein-compare-body');
   if (tbody) {
     const rows = Object.values(proteinData).map(p => {
-      const port = prot / p.prot;
-      const w = +(port * p.per1).toFixed(0);
-      const f = +(port * p.fat).toFixed(1);
-      const c = +(port * p.cal).toFixed(0);
-      const fb = p.level === '低脂'
-        ? `<span class="fat-badge fat-low">低脂</span>`
-        : p.level === '中脂'
-        ? `<span class="fat-badge fat-mid">中脂</span>`
-        : `<span class="fat-badge fat-high">高脂</span>`;
+      const port = prot/p.prot; const w = +(port*p.per1).toFixed(0);
+      const f = +(port*p.fat).toFixed(1); const c = +(port*p.cal).toFixed(0);
+      const fb = p.level==='低脂'?`<span class="fat-badge fat-low">低脂</span>`:p.level==='中脂'?`<span class="fat-badge fat-mid">中脂</span>`:`<span class="fat-badge fat-high">高脂</span>`;
       return `<tr><td>${p.name}</td><td>${w}${p.unit}</td><td>${f}g</td><td>${c} kcal</td><td>${fb}</td></tr>`;
     });
     tbody.innerHTML = rows.join('');
@@ -1050,113 +986,138 @@ function calcProtein() {
     if (th) th.textContent = `達${prot}g蛋白質需要`;
   }
 }
-
 function calcVeg() {
   const weight = parseFloat(document.getElementById('veg-weight').value)||0;
-  const portions = weight / 100;
-  const carb = +(portions * 5).toFixed(1);
-  const prot = +(portions * 1).toFixed(1);
-  const cal = +(portions * 25).toFixed(0);
+  const portions = weight/100;
+  const carb=+(portions*5).toFixed(1), prot=+(portions*1).toFixed(1), cal=+(portions*25).toFixed(0);
   const fname = document.getElementById('veg-food').selectedOptions[0].text.split('(')[0].trim();
   document.getElementById('veg-result').innerHTML = `
-    ${ri('醣類', carb, 'g')}
-    ${ri('蛋白質', prot, 'g')}
-    ${ri('熱量', cal, 'kcal')}
-    <div class="result-portions">
-      <strong>${fname}</strong> ${weight}g<br>
-      = <strong>${+portions.toFixed(2)} 份</strong>蔬菜<br>
-      <small>熟約 ${+portions.toFixed(1)} 碟（半碗）</small>
-    </div>
+    ${ri('醣類',carb,'g')}${ri('蛋白質',prot,'g')}${ri('熱量',cal,'kcal')}
+    <div class="result-portions"><strong>${fname}</strong> ${weight}g<br>= <strong>${+portions.toFixed(2)} 份</strong>蔬菜<br><small>熟約 ${+portions.toFixed(1)} 碟（半碗）</small></div>
   `;
-  window._vegCurrent = { name: fname, amount: weight+'g', carb, prot, fat:0, cal, category:'veg' };
+  window._vegCurrent = {name:fname,amount:weight+'g',carb,prot,fat:0,cal,category:'veg'};
 }
-
 function calcFruit() {
   const key = document.getElementById('fruit-food').value;
   const weight = parseFloat(document.getElementById('fruit-weight').value)||100;
   const per1 = parseInt(document.getElementById('fruit-food').selectedOptions[0].dataset.g)||115;
-  const portions = weight / per1;
-  const carb = +(portions * 15).toFixed(1);
-  const cal = +(portions * 60).toFixed(0);
+  const portions = weight/per1;
+  const carb=+(portions*15).toFixed(1), cal=+(portions*60).toFixed(0);
   const fname = document.getElementById('fruit-food').selectedOptions[0].text.split('(')[0].trim();
   document.getElementById('fruit-result').innerHTML = `
-    ${ri('醣類', carb, 'g')}
-    ${ri('熱量', cal, 'kcal')}
-    <div class="result-portions">
-      <strong>${fname}</strong> ${weight}g<br>
-      = <strong>${+portions.toFixed(2)} 份</strong>水果類<br>
-      <small>（1份=${per1}g）</small>
-    </div>
+    ${ri('醣類',carb,'g')}${ri('熱量',cal,'kcal')}
+    <div class="result-portions"><strong>${fname}</strong> ${weight}g<br>= <strong>${+portions.toFixed(2)} 份</strong>水果類<br><small>（1份=${per1}g）</small></div>
   `;
-  window._fruitCurrent = { name: fname, amount: weight+'g', carb, prot:0, fat:0, cal, category:'fruit' };
+  window._fruitCurrent = {name:fname,amount:weight+'g',carb,prot:0,fat:0,cal,category:'fruit'};
 }
-
 function updateDairyWeight() {
   const key = document.getElementById('dairy-food').value;
   document.getElementById('dairy-weight').value = dairyData[key].per1;
 }
-
 function calcDairy() {
   const key = document.getElementById('dairy-food').value;
   const weight = parseFloat(document.getElementById('dairy-weight').value)||0;
   const d = dairyData[key];
-  const portions = weight / d.per1;
-  const prot = +(portions * d.prot).toFixed(1);
-  const fat = +(portions * d.fat).toFixed(1);
-  const carb = +(portions * d.carb).toFixed(1);
-  const cal = +(portions * d.cal).toFixed(0);
+  const portions = weight/d.per1;
+  const prot=+(portions*d.prot).toFixed(1), fat=+(portions*d.fat).toFixed(1);
+  const carb=+(portions*d.carb).toFixed(1), cal=+(portions*d.cal).toFixed(0);
   document.getElementById('dairy-result').innerHTML = `
-    ${ri('蛋白質', prot, 'g')}
-    ${ri('醣類', carb, 'g')}
-    ${ri('脂肪', fat, 'g')}
-    ${ri('熱量', cal, 'kcal')}
-    <div class="result-portions">
-      <strong>${d.name}</strong>（${d.level}）<br>
-      ${weight}${d.unit} = <strong>${+portions.toFixed(2)} 份</strong><br>
-      <small>（1份=${d.per1}${d.unit}）</small>
-    </div>
+    ${ri('蛋白質',prot,'g')}${ri('醣類',carb,'g')}${ri('脂肪',fat,'g')}${ri('熱量',cal,'kcal')}
+    <div class="result-portions"><strong>${d.name}</strong>（${d.level}）<br>${weight}${d.unit} = <strong>${+portions.toFixed(2)} 份</strong><br><small>（1份=${d.per1}${d.unit}）</small></div>
   `;
-  window._dairyCurrent = { name: d.name, amount: weight+d.unit, carb, prot, fat, cal, category:'dairy' };
+  window._dairyCurrent = {name:d.name,amount:weight+d.unit,carb,prot,fat,cal,category:'dairy'};
 }
-
 function updateFatWeight() {
   const key = document.getElementById('fat-food').value;
   document.getElementById('fat-weight').value = fatData[key].per1;
 }
-
 function calcFat() {
   const key = document.getElementById('fat-food').value;
   const weight = parseFloat(document.getElementById('fat-weight').value)||0;
   const d = fatData[key];
-  const portions = weight / d.per1;
-  const fat = +(portions * d.fat).toFixed(1);
-  const cal = +(portions * d.cal).toFixed(0);
+  const portions = weight/d.per1;
+  const fat=+(portions*d.fat).toFixed(1), cal=+(portions*d.cal).toFixed(0);
   document.getElementById('fat-result').innerHTML = `
-    ${ri('脂肪', fat, 'g')}
-    ${ri('熱量', cal, 'kcal')}
-    <div class="result-portions">
-      <strong>${d.name}</strong><br>
-      ${weight}${d.unit} = <strong>${+portions.toFixed(2)} 份</strong><br>
-      <small>（1份=${d.per1}${d.unit}）</small>
-    </div>
+    ${ri('脂肪',fat,'g')}${ri('熱量',cal,'kcal')}
+    <div class="result-portions"><strong>${d.name}</strong><br>${weight}${d.unit} = <strong>${+portions.toFixed(2)} 份</strong><br><small>（1份=${d.per1}${d.unit}）</small></div>
   `;
-  window._fatCurrent = { name: d.name, amount: weight+d.unit, carb:0, prot:0, fat, cal, category:'fat' };
+  window._fatCurrent = {name:d.name,amount:weight+d.unit,carb:0,prot:0,fat,cal,category:'fat'};
+}
+function ri(label,value,unit) {
+  return `<div class="result-item"><div class="result-label">${label}</div><div class="result-value">${value}</div><div class="result-unit">${unit}</div></div>`;
 }
 
-function ri(label, value, unit) {
-  return `<div class="result-item"><div class="result-label">${label}</div><div class="result-value">${value}</div><div class="result-unit">${unit}</div></div>`;
+// ===== NEW: Protein Comparison Render (TABLE) =====
+function renderPComp(filter) {
+  const tbody = document.getElementById('pcomp-tbody');
+  const maxCal = 300;
+  // sort: 低脂→中脂→高脂, within same level sort by cal asc
+  const levelOrder = { '低脂': 0, '中脂': 1, '高脂': 2 };
+  const items = proteinComp100
+    .filter(d => filter === 'all' || d.level === filter)
+    .sort((a, b) => levelOrder[a.level] - levelOrder[b.level] || a.cal - b.cal);
+
+  tbody.innerHTML = items.map(d => {
+    const tagClass = d.level==='低脂'?'gi-tag-low':d.level==='中脂'?'gi-tag-mid':'gi-tag-high';
+    const barColor = d.level==='低脂'?'#3aad6a':d.level==='中脂'?'#e8a020':'#d84040';
+    const barW = Math.min(100, (d.cal / maxCal) * 100);
+    const protColor = d.prot >= 20 ? '#2a6a40' : d.prot >= 15 ? '#6b8e3a' : '#a07020';
+    return `
+      <tr>
+        <td><strong>${d.name}</strong><br><span style="font-size:0.75rem;color:#aaa">${d.sub}</span></td>
+        <td><span class="gi-tag ${tagClass}">${d.level}</span></td>
+        <td><span style="font-weight:700;font-size:1rem;color:${barColor}">${d.cal}</span></td>
+        <td class="gi-bar-cell">
+          <div class="gi-bar-track">
+            <div class="gi-bar-fill" style="width:${barW}%;background:${barColor}"></div>
+          </div>
+        </td>
+        <td><span style="font-weight:700;color:${protColor}">${d.prot}g</span></td>
+        <td>${d.fat}g</td>
+        <td>${d.carb}g</td>
+        <td style="font-size:0.78rem;color:#888">${d.note}</td>
+      </tr>
+    `;
+  }).join('');
+}
+function filterPComp(filter, btn) {
+  document.querySelectorAll('#pcomp-filter .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPComp(filter);
+}
+
+// ===== NEW: Fruit GI Render =====
+function renderGI(filter) {
+  const tbody = document.getElementById('gi-tbody');
+  const items = fruitGI.filter(d => filter === 'all' || d.level === filter);
+  const sorted = [...items].sort((a,b) => a.gi - b.gi);
+  tbody.innerHTML = sorted.map(d => {
+    const tagClass = d.level==='low'?'gi-tag-low':d.level==='mid'?'gi-tag-mid':'gi-tag-high';
+    const tagText  = d.level==='low'?'低 GI':d.level==='mid'?'中 GI':'高 GI';
+    const barColor = d.level==='low'?'#3aad6a':d.level==='mid'?'#e8a020':'#d84040';
+    const barW = Math.min(100, (d.gi/100)*100);
+    return `
+      <tr data-level="${d.level}">
+        <td><strong>${d.name}</strong></td>
+        <td><span class="gi-num" style="color:${barColor}">${d.gi}</span></td>
+        <td class="gi-bar-cell"><div class="gi-bar-track"><div class="gi-bar-fill" style="width:${barW}%;background:${barColor}"></div></div></td>
+        <td><span class="gi-tag ${tagClass}">${tagText}</span></td>
+        <td class="note-row">${d.per1}</td>
+        <td class="note-row">${d.carb100}g</td>
+        <td class="note-row">${d.note}</td>
+      </tr>
+    `;
+  }).join('');
+}
+function filterGI(filter, btn) {
+  document.querySelectorAll('.section-card.fruitgi .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGI(filter);
 }
 
 // ===== MEAL =====
 function addToMeal(category) {
-  const map = {
-    grain: '_grainCurrent',
-    protein: '_proteinCurrent',
-    veg: '_vegCurrent',
-    fruit: '_fruitCurrent',
-    dairy: '_dairyCurrent',
-    fat: '_fatCurrent',
-  };
+  const map = {grain:'_grainCurrent',protein:'_proteinCurrent',veg:'_vegCurrent',fruit:'_fruitCurrent',dairy:'_dairyCurrent',fat:'_fatCurrent'};
   const item = window[map[category]];
   if (!item) return;
   item.id = ++mealIdCounter;
@@ -1164,10 +1125,9 @@ function addToMeal(category) {
   renderMeal();
   switchTab('meal');
 }
-
 function renderMeal() {
   const container = document.getElementById('meal-items');
-  if (mealItems.length === 0) {
+  if (mealItems.length===0) {
     container.innerHTML = '<div style="color:#aaa;font-size:0.85rem;padding:12px;">還沒有食物，請到各類別點「加入今日餐盤」</div>';
   } else {
     container.innerHTML = mealItems.map(item => `
@@ -1184,66 +1144,45 @@ function renderMeal() {
       </div>
     `).join('');
   }
-  const totals = mealItems.reduce((acc, i) => {
-    acc.carb += i.carb; acc.prot += i.prot; acc.fat += i.fat; acc.cal += i.cal;
-    return acc;
-  }, { carb:0, prot:0, fat:0, cal:0 });
+  const totals = mealItems.reduce((acc,i)=>{ acc.carb+=i.carb;acc.prot+=i.prot;acc.fat+=i.fat;acc.cal+=i.cal;return acc;},{carb:0,prot:0,fat:0,cal:0});
   document.getElementById('t-carb').textContent = totals.carb.toFixed(1);
   document.getElementById('t-prot').textContent = totals.prot.toFixed(1);
-  document.getElementById('t-fat').textContent = totals.fat.toFixed(1);
-  document.getElementById('t-cal').textContent = totals.cal.toFixed(0);
+  document.getElementById('t-fat').textContent  = totals.fat.toFixed(1);
+  document.getElementById('t-cal').textContent  = totals.cal.toFixed(0);
 }
+function removeMealItem(id) { mealItems = mealItems.filter(i=>i.id!==id); renderMeal(); }
+function clearMeal() { mealItems=[]; renderMeal(); }
 
-function removeMealItem(id) {
-  mealItems = mealItems.filter(i => i.id !== id);
-  renderMeal();
-}
-
-function clearMeal() {
-  mealItems = [];
-  renderMeal();
-}
-
-// ===== UI HELPERS =====
+// ===== UI =====
+const TAB_ORDER = ['grain','protein','veg','fruit','dairy','fat','meal','proteincomp','fruitgi'];
 function switchTab(tab) {
-  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + tab).classList.add('active');
-  const idx = ['grain','protein','veg','fruit','dairy','fat','meal'].indexOf(tab);
-  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+  document.querySelectorAll('.tab-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+tab).classList.add('active');
+  const idx = TAB_ORDER.indexOf(tab);
+  if (idx>=0) document.querySelectorAll('.tab-btn')[idx].classList.add('active');
 }
+function toggleCompare(id) { document.getElementById(id).classList.toggle('show'); }
 
-function toggleCompare(id) {
-  const el = document.getElementById(id);
-  el.classList.toggle('show');
-}
-
-// ===== LIGHTBOX =====
-function openLightbox(src, alt) {
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox-img').alt = alt;
+// LIGHTBOX
+function openLightbox(src,alt) {
+  document.getElementById('lightbox-img').src=src;
+  document.getElementById('lightbox-img').alt=alt;
   document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.style.overflow='';
 }
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeLightbox();
-});
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); });
 
-// ===== INIT =====
-calcGrain();
-calcProtein();
-calcVeg();
-calcFruit();
-calcDairy();
-calcFat();
-
-// Bind lightbox to all img-zone images
-document.querySelectorAll('.img-row img').forEach(img => {
-  img.addEventListener('click', () => openLightbox(img.src, img.alt));
+// INIT
+calcGrain(); calcProtein(); calcVeg(); calcFruit(); calcDairy(); calcFat();
+renderPComp('all');
+renderGI('all');
+document.querySelectorAll('.img-row img').forEach(img=>{
+  img.addEventListener('click',()=>openLightbox(img.src,img.alt));
 });
 </script>
 </body>
