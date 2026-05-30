@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>認識胰島素阻抗｜Abby Eat Life</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: #F7F4F0;
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem 2rem;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  width: 100%; max-width: 760px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+.brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; color: #6b5a4e; letter-spacing: 0.04em;
+}
+.brand em { font-style: italic; color: #8B9E7E; }
+.mode-toggle {
+  display: flex; gap: 4px;
+  background: #ede9e4; border-radius: 20px; padding: 4px;
+}
+.mode-btn {
+  padding: 5px 14px; border-radius: 16px;
+  font-size: 12px; font-family: 'Noto Sans TC', sans-serif;
+  cursor: pointer; border: none;
+  color: #8a7a72; background: transparent;
+  transition: all 0.2s; font-weight: 400;
+}
+.mode-btn.active { background: #3D3229; color: #FDFBF7; }
+
+/* ── DECK WRAPPER ── */
+.deck { width: 100%; max-width: 760px; }
+
+/* ── NAV BAR ── */
+.nav-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.nav-btn {
+  background: #fff; border: 1px solid #ddd; border-radius: 8px;
+  padding: 8px 18px; font-size: 14px; cursor: pointer;
+  color: #333; transition: background 0.15s;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+.nav-btn:hover { background: #f0ede8; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-dots { display: flex; gap: 7px; }
+.dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: #ccc; cursor: pointer; border: none; padding: 0;
+  transition: background 0.2s;
+}
+.dot.active { background: #8B9E7E; }
+.counter { font-size: 12px; color: #aaa; letter-spacing: 0.08em; }
+
+/* ── SLIDES ── */
+.slide {
+  display: none;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #e8e4de;
+  padding: 2rem 2.25rem 2.5rem;
+  min-height: 500px;
+}
+.slide.active { display: block; animation: up 0.22s ease; }
+@keyframes up { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+.slide-label {
+  font-size: 11px; color: #aaa; letter-spacing: 0.12em;
+  text-transform: uppercase; margin-bottom: 0.5rem;
+}
+.slide h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 700;
+  color: #1a1a1a; margin-bottom: 0.5rem; line-height: 1.3;
+}
+.slide h1 em { font-style: italic; color: #C17F59; }
+.subtitle {
+  font-size: 15px; color: #666;
+  margin-bottom: 1.75rem; line-height: 1.7;
+}
+
+/* highlight box */
+.hl {
+  border-left: 3px solid #8B9E7E;
+  background: #edf2e8;
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.2rem; margin-bottom: 1.25rem;
+}
+.hl p { font-size: 14.5px; color: #1a1a1a; line-height: 1.8; }
+.hl.terra { border-left-color: #C17F59; background: #faf0e8; }
+.hl.amber { border-left-color: #D4A84B; background: #fdf8ec; }
+
+/* card grids */
+.card-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.25rem; }
+.card {
+  background: #F7F4F0; border: 1px solid #e8e4de;
+  border-radius: 12px; padding: 1rem 1.1rem;
+}
+.card .c-label { font-size: 12px; color: #888; margin-bottom: 6px; }
+.card .c-val { font-size: 17px; font-weight: 700; color: #1a1a1a; line-height: 1.3; }
+.card .c-sub { font-size: 12px; color: #888; margin-top: 3px; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+.mini-card {
+  background: #F7F4F0; border: 1px solid #e8e4de;
+  border-radius: 10px; padding: 0.9rem 1rem;
+}
+.mini-card h4 {
+  font-size: 11.5px; font-weight: 600; color: #888;
+  margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em;
+}
+.mini-card p, .mini-card li { font-size: 13.5px; color: #333; line-height: 1.7; }
+.mini-card ul { padding-left: 14px; }
+
+/* three-card row */
+.triple { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.25rem; }
+.t-card {
+  background: #F7F4F0; border: 1px solid #e8e4de;
+  border-radius: 12px; padding: 1rem 1.1rem;
+  position: relative; overflow: hidden;
+}
+.t-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+}
+.t-card.sage::before { background: #8B9E7E; }
+.t-card.terra::before { background: #C17F59; }
+.t-card.amber::before { background: #D4A84B; }
+.t-card .t-icon { font-size: 22px; margin-bottom: 8px; }
+.t-card h4 { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+.t-card p { font-size: 12.5px; color: #555; line-height: 1.65; }
+
+/* spectrum */
+.sp-labels { display:flex; justify-content:space-between; font-size:12px; color:#888; margin-bottom:8px; }
+.sp-bar { height:14px; border-radius:7px; background:linear-gradient(to right,#a8c89a,#d4b86a,#d4856a,#b85540); margin-bottom:10px; box-shadow:0 2px 6px rgba(0,0,0,0.07); }
+.sp-zones { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; margin-bottom:1.25rem; }
+.sp-z { padding:7px; border-radius:8px; font-size:12.5px; text-align:center; font-weight:500; }
+.sp-z1 { background:#d6edca; color:#3a6b2e; }
+.sp-z2 { background:#fae9c0; color:#7a5a1a; }
+.sp-z3 { background:#f5d0be; color:#8b3e1e; }
+.sp-z4 { background:#f0b8b0; color:#7a1f1f; }
+
+/* step list */
+.step-list { list-style:none; }
+.step-list li { display:flex; gap:13px; align-items:flex-start; margin-bottom:1rem; }
+.step-num {
+  width:28px; height:28px; border-radius:50%;
+  background:#edf2e8; color:#5a7a50;
+  font-size:13px; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; margin-top:2px;
+}
+.step-text { font-size:14px; color:#1a1a1a; line-height:1.75; }
+.step-text strong { font-weight:700; }
+
+/* profile two-col */
+.profile-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:0;
+  border:1px solid #e8e4de; border-radius:12px; overflow:hidden;
+  margin-bottom:1.25rem; background:#fff;
+}
+.pg-col { padding:1rem 1.1rem; }
+.pg-col + .pg-col { border-left:1px solid #e8e4de; }
+.pg-col h4 { font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:#8B9E7E; margin-bottom:10px; font-weight:600; }
+.pg-col ul { list-style:none; padding:0; }
+.pg-col ul li {
+  font-size:13.5px; color:#444; padding:5px 0 5px 14px;
+  border-bottom:1px solid #f0ebe5; position:relative; line-height:1.5;
+}
+.pg-col ul li:last-child { border-bottom:none; }
+.pg-col ul li::before { content:'›'; position:absolute; left:0; color:#C17F59; font-weight:700; }
+.pg-foot {
+  grid-column:1/-1; background:#F7F4F0; border-top:1px solid #e8e4de;
+  padding:12px 16px; font-size:13.5px; color:#3D3229; line-height:1.65;
+}
+.pg-foot::before { content:'💡 '; }
+
+/* summary */
+.sum-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:1.5rem; }
+.sum-card { background:#edf2e8; border-radius:10px; padding:1rem; text-align:center; }
+.sum-val { font-size:22px; font-weight:700; color:#5a7a50; }
+.sum-label { font-size:12px; color:#666; margin-top:4px; }
+
+.divider { border:none; border-top:1px solid #ede9e4; margin:1.25rem 0; }
+
+/* profile tab row (for profiles slide) */
+.ptabs { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:1rem; }
+.ptab {
+  padding:6px 14px; border-radius:16px; font-size:12.5px;
+  border:1px solid #ddd; background:#fff; color:#666;
+  cursor:pointer; font-family:'Noto Sans TC',sans-serif;
+  transition:all 0.15s;
+}
+.ptab.on { background:#3D3229; border-color:#3D3229; color:#fff; }
+.ppanel { display:none; }
+.ppanel.on { display:block; }
+
+/* waist standard tag */
+.tag { display:inline-block; font-size:12px; padding:3px 10px; border-radius:6px; margin-right:5px; font-weight:500; }
+.tg { background:#edf2e8; color:#5a7a50; }
+.ta { background:#faf0e8; color:#8A5000; }
+
+/* ─── CALC SLIDE ─── */
+.calc-form-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:1.25rem; }
+.cg label {
+  display:block; font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
+  color:#888; margin-bottom:5px; font-weight:500;
+}
+.cg label .opt { font-size:10px; color:#bbb; margin-left:3px; }
+.cg input, .cg select {
+  width:100%; padding:9px 11px;
+  border:1px solid #ddd; border-radius:8px;
+  font-family:'Noto Sans TC',sans-serif; font-size:14px;
+  background:#F7F4F0; color:#1a1a1a; outline:none;
+  transition:border-color 0.2s;
+}
+.cg input:focus, .cg select:focus { border-color:#8B9E7E; background:#fff; }
+.cg .hint { font-size:11px; color:#bbb; margin-top:3px; }
+.calc-btn {
+  padding:11px 28px; background:#8B9E7E; border:none; border-radius:9px;
+  color:#fff; font-size:14px; font-family:'Noto Sans TC',sans-serif;
+  font-weight:500; cursor:pointer; transition:background 0.2s;
+}
+.calc-btn:hover { background:#7a8d6e; }
+.cr { display:none; margin-top:1.25rem; border:1px solid #e8e4de; border-radius:12px; overflow:hidden; }
+.cr.show { display:block; }
+.cr-head { padding:1rem 1.2rem; border-bottom:1px solid #e8e4de; }
+.cr-badge { display:inline-block; padding:3px 12px; border-radius:16px; font-size:12px; font-weight:500; margin-bottom:7px; }
+.bl { background:#d6edca; color:#3a6b2e; }
+.bm { background:#fae9c0; color:#7a5a1a; }
+.bh { background:#f5d0be; color:#8b3e1e; }
+.cr-title { font-size:16px; font-weight:700; color:#1a1a1a; margin-bottom:4px; }
+.cr-desc { font-size:13px; color:#666; }
+.cr-body { padding:1rem 1.2rem; }
+.cr-sec { font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:#8B9E7E; margin-bottom:9px; font-weight:600; }
+.cr-items { display:flex; flex-direction:column; gap:7px; margin-bottom:0.75rem; }
+.cr-item {
+  display:flex; gap:9px; align-items:flex-start;
+  background:#F7F4F0; border-radius:8px;
+  padding:9px 11px; font-size:13.5px; color:#333; line-height:1.55;
+}
+.cr-item .ci { flex-shrink:0; font-size:15px; margin-top:1px; }
+.cr-disc { font-size:12px; color:#aaa; line-height:1.6; margin-top:8px; }
+.cr-note { background:#faf0e8; border-radius:8px; padding:9px 12px; font-size:12px; color:#8A5000; margin-bottom:9px; }
+
+/* ─── MEMO MODE ─── */
+#memo-mode {
+  display:none; width:100%; max-width:760px;
+  background:#fff; border-radius:16px; border:1px solid #e8e4de;
+  padding:2rem 2.25rem 3rem;
+}
+#memo-mode.show { display:block; }
+.mm h2 {
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem; color:#3D3229; margin-bottom:6px; margin-top:2rem;
+}
+.mm h2:first-child { margin-top:0; }
+.mm h3 { font-size:1rem; font-weight:700; color:#1a1a1a; margin:1.2rem 0 6px; }
+.mm p { font-size:14px; color:#444; line-height:1.85; margin-bottom:10px; }
+.mm strong { color:#1a1a1a; font-weight:700; }
+.mm hr { border:none; border-top:1px solid #e8e4de; margin:1.75rem 0; }
+.mm-tag { font-size:10.5px; text-transform:uppercase; letter-spacing:0.18em; color:#8B9E7E; font-weight:600; display:block; margin-bottom:6px; }
+.mm-box {
+  border-radius:10px; padding:14px 16px; margin:10px 0;
+  font-size:13.5px; line-height:1.75; color:#333;
+}
+.mm-box p { font-size:13.5px; color:#333; margin-bottom:5px; }
+.mm-box p:last-child { margin:0; }
+.mm-box.sage { background:#edf2e8; border-left:4px solid #8B9E7E; }
+.mm-box.terra { background:#faf0e8; border-left:4px solid #C17F59; }
+.mm-box.amber { background:#fdf8ec; border-left:4px solid #D4A84B; }
+.mm-table { width:100%; border-collapse:collapse; font-size:13.5px; margin:10px 0; }
+.mm-table th { background:#3D3229; color:#FDFBF7; padding:8px 13px; text-align:left; font-weight:500; font-size:12px; }
+.mm-table td { padding:8px 13px; border-bottom:1px solid #e8e4de; color:#444; line-height:1.6; }
+.mm-table tr:last-child td { border-bottom:none; }
+.mm-table tr:nth-child(even) td { background:#faf8f5; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="brand">Abby Eat Life｜<em>教學工具</em></div>
+  <div class="mode-toggle">
+    <button class="mode-btn active" id="btn-teach" onclick="switchMode('teach')">📽 教學模式</button>
+    <button class="mode-btn" id="btn-memo" onclick="switchMode('memo')">📋 備忘筆記</button>
+  </div>
+</div>
+
+<!-- ══════════ TEACH MODE ══════════ -->
+<div class="deck" id="teach-mode">
+  <div class="nav-bar">
+    <button class="nav-btn" id="btn-prev" onclick="go(-1)">← 上一頁</button>
+    <div class="nav-dots" id="dots"></div>
+    <button class="nav-btn" id="btn-next" onclick="go(1)">下一頁 →</button>
+  </div>
+  <div style="text-align:center;font-size:12px;color:#bbb;margin-bottom:0.85rem;" id="ctr"></div>
+
+  <!-- S0: 標題 -->
+  <div class="slide active" id="s0">
+    <div class="slide-label">開場</div>
+    <h1>認識<em>胰島素阻抗</em><br>別讓標籤替代思考</h1>
+    <div class="subtitle">胰島素阻抗不是固定的詛咒，而是身體代謝狀態的即時反映——幾乎完全可以被生活習慣左右。</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="c-label">它是什麼</div>
+        <div class="c-val">代謝狀態</div>
+        <div class="c-sub">不是體質標籤</div>
+      </div>
+      <div class="card">
+        <div class="c-label">可以改變嗎</div>
+        <div class="c-val" style="color:#5a7a50;">可以</div>
+        <div class="c-sub">連續且可逆</div>
+      </div>
+      <div class="card">
+        <div class="c-label">最大影響因素</div>
+        <div class="c-val">生活習慣</div>
+        <div class="c-sub">飲食、運動、睡眠</div>
+      </div>
+    </div>
+    <div class="hl">
+      <p>坊間資訊通常只說「胰島素阻抗讓你容易胖」，卻沒有告訴你它是怎麼來的、嚴重程度怎麼判斷、不同人身上影響力差多少。<br><strong>少了背景脈絡，很多人就直接對號入座。</strong></p>
+    </div>
+    <div class="two-col">
+      <div class="mini-card">
+        <h4>這頁要學的</h4>
+        <p>胰島素的角色、阻抗的成因、你的條件下影響力有多大</p>
+      </div>
+      <div class="mini-card">
+        <h4>今天不學的</h4>
+        <p>不要求記住所有細節，重點是建立正確思考框架</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- S1: 胰島素是什麼 -->
+  <div class="slide" id="s1">
+    <div class="slide-label">第一頁 · 基本概念</div>
+    <h1>胰島素，<br>身體的「合成型荷爾蒙」</h1>
+    <div class="subtitle">不只是碳水化合物會觸發——進食就會分泌，而且它在線上時，燃脂反應會被暫停。</div>
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>進食觸發分泌</strong><br>碳水最強、蛋白質中等、脂肪與碳水同吃時會放大反應。甚至聞到食物氣味，大腦就會預先觸發少量分泌。</div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>它的工作：開門讓葡萄糖進細胞</strong><br>胰島素打開細胞的「門」，把血糖送進去利用或儲存。本質是合成型荷爾蒙——身體進入「建造與儲存」模式。</div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>燃脂反應在胰島素分泌時暫停</strong><br>胰島素會抑制脂肪分解酶（HSL）的活性，讓脂肪細胞無法釋出脂肪酸。胰島素高 = 囤積優先、燃脂暫停。</div>
+      </li>
+    </ul>
+    <div class="hl amber">
+      <p><strong>⚠️ 重要提醒：不是「胰島素越低越好」。</strong><br>
+      餐後升高、空腹回落，是身體正常的代謝節律。重點是節律是否正常、身體對胰島素的反應是否靈敏——不是讓它一直保持低點。</p>
+    </div>
+  </div>
+
+  <!-- S2: 什麼是阻抗 -->
+  <div class="slide" id="s2">
+    <div class="slide-label">第二頁 · 阻抗的意思</div>
+    <h1>「阻抗」是什麼意思？<br>為什麼跟變胖有關？</h1>
+    <div class="subtitle">阻抗代表細胞的「門」變不靈敏了，身體需要分泌更多胰島素才能達到同樣效果。</div>
+    <div class="hl terra">
+      <p><strong>🔴 核心觀念：</strong><br>
+      胰島素長時間維持在高水位 → 身體持續處於「囤積優先、燃脂暫停」的狀態。<br>
+      脂肪不容易動用、多餘熱量更快進脂肪細胞，這才是「容易胖」的真正機制。</p>
+    </div>
+    <div class="triple">
+      <div class="t-card sage">
+        <div class="t-icon">🫃</div>
+        <h4>主因：內臟脂肪</h4>
+        <p>內臟脂肪釋放的發炎物質（TNF-α、IL-6）直接干擾胰島素受體訊號。<strong>腰圍比體脂率更能反映風險。</strong></p>
+      </div>
+      <div class="t-card terra">
+        <div class="t-icon">😴</div>
+        <h4>常被低估：睡眠壓力</h4>
+        <p>皮質醇長期偏高 → 直接促進內臟脂肪累積，並造成功能性胰島素阻抗。影響力遠大於偶爾吃甜食。</p>
+      </div>
+      <div class="t-card amber">
+        <div class="t-icon">🪑</div>
+        <h4>靜態生活</h4>
+        <p>骨骼肌是最大的葡萄糖利用器官。缺乏活動 → 肌肉不參與代謝 → 胰島素需要做更多工作。</p>
+      </div>
+    </div>
+    <div class="hl">
+      <p><strong>🌿 關鍵觀念：它是連續的、可逆的代謝狀態。</strong><br>
+      不是你基因決定好的命運。成因和嚴重程度，幾乎完全取決於整體的生活習慣。</p>
+    </div>
+  </div>
+
+  <!-- S3: 光譜 -->
+  <div class="slide" id="s3">
+    <div class="slide-label">第三頁 · 連續光譜</div>
+    <h1>它是一道光譜，<br>不是有或沒有</h1>
+    <div class="subtitle">你現在站的位置，是飲食、活動、睡眠三件事的綜合結果——而且隨時可以往回走。</div>
+    <div class="sp-labels"><span>胰島素敏感度佳 ✅</span><span>⚠️ 胰島素阻抗明顯</span></div>
+    <div class="sp-bar"></div>
+    <div class="sp-zones">
+      <div class="sp-z sp-z1">敏感正常</div>
+      <div class="sp-z sp-z2">輕度下降</div>
+      <div class="sp-z sp-z3">代償期</div>
+      <div class="sp-z sp-z4">明顯阻抗</div>
+    </div>
+    <div class="hl amber">
+      <p><strong>腰圍是最實用的代理指標</strong><br>
+      台灣代謝症候群標準：女性腰圍 ≥ 80 cm、男性 ≥ 90 cm 是內臟脂肪過多的警訊。<br>
+      同樣體脂率，梨形身材（臀腿）的代謝風險遠低於蘋果形身材（腹部）。</p>
+    </div>
+    <div class="two-col">
+      <div class="mini-card">
+        <h4>好消息</h4>
+        <p>規律運動 + 穩定飲食節律 + 充足睡眠，胰島素敏感性通常在<strong>數週內</strong>就能看到改善。</p>
+      </div>
+      <div class="mini-card">
+        <h4>肌肉是天然解藥</h4>
+        <p>骨骼肌是最大葡萄糖緩衝器。每次運動後，敏感性改善效果可維持 <strong>24–48 小時</strong>。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4: 族群 -->
+  <div class="slide" id="s4">
+    <div class="slide-label">第四頁 · 不同族群</div>
+    <h1>你的條件，<br>決定阻抗的影響力有多大</h1>
+    <div class="subtitle">同樣叫「胰島素阻抗」，對不同人的實際意義差距非常大。點選符合你的狀況。</div>
+    <div class="ptabs">
+      <button class="ptab on" onclick="showP(0,this)">體脂偏高</button>
+      <button class="ptab" onclick="showP(1,this)">有運動但卡關</button>
+      <button class="ptab" onclick="showP(2,this)">體脂正常追線條</button>
+      <button class="ptab" onclick="showP(3,this)">長期節食停滯</button>
+    </div>
+
+    <div class="ppanel on" id="pp0">
+      <div class="profile-grid">
+        <div class="pg-col">
+          <h4>胰島素阻抗的影響力</h4>
+          <ul>
+            <li>內臟脂肪高，阻抗程度可能較明顯</li>
+            <li>熱量波動大時，脂肪合成效率更高</li>
+            <li>蛋白質不足時優先分解肌肉</li>
+            <li>每次大起大落都在強化惡性循環</li>
+          </ul>
+        </div>
+        <div class="pg-col">
+          <h4>優先策略</h4>
+          <ul>
+            <li><strong>穩定攝取比製造大赤字更重要</strong></li>
+            <li>蛋白質優先：每餐至少 20–25g</li>
+            <li>步數 ≥ 7,000，日常活動優先</li>
+            <li>改善睡眠品質，降低皮質醇</li>
+          </ul>
+        </div>
+        <div class="pg-foot">策略不是迴避碳水，而是建立規律節奏——讓身體重新感受到安全感。</div>
+      </div>
+    </div>
+    <div class="ppanel" id="pp1">
+      <div class="profile-grid">
+        <div class="pg-col">
+          <h4>胰島素阻抗的影響力</h4>
+          <ul>
+            <li>運動習慣大幅改善胰島素敏感性</li>
+            <li>肌肉是天然的葡萄糖緩衝器</li>
+            <li><strong>此時阻抗影響力已大幅降低</strong></li>
+            <li>腰圍正常者代謝風險通常不高</li>
+          </ul>
+        </div>
+        <div class="pg-col">
+          <h4>真正卡關的常見原因</h4>
+          <ul>
+            <li>熱量被低估（油脂、醬料、飲料）</li>
+            <li>蛋白質不足（目標 1.6–2g/kg）</li>
+            <li>整體 NEAT 活動量被高估</li>
+            <li><strong>睡眠不足或慢性壓力（皮質醇）</strong></li>
+          </ul>
+        </div>
+        <div class="pg-foot">卡關通常跟胰島素阻抗關係不大。先查飲食記錄完整度、蛋白質量、睡眠——三件事影響力加起來遠大於荷爾蒙。</div>
+      </div>
+    </div>
+    <div class="ppanel" id="pp2">
+      <div class="profile-grid">
+        <div class="pg-col">
+          <h4>胰島素阻抗的影響力</h4>
+          <ul>
+            <li>在這個體脂範圍，<strong>影響力極小</strong></li>
+            <li>規律運動已持續改善敏感性</li>
+            <li>偶爾吃甜食的干擾非常有限</li>
+            <li>擔心阻抗通常是資訊過載的結果</li>
+          </ul>
+        </div>
+        <div class="pg-col">
+          <h4>真正值得關注的</h4>
+          <ul>
+            <li><strong>體脂越低，身體防禦越強</strong>（瘦素下降）</li>
+            <li>蛋白質是否足夠維持肌肉量</li>
+            <li>是否有真實的熱量缺口</li>
+            <li>訓練是否有漸進性刺激</li>
+          </ul>
+        </div>
+        <div class="pg-foot">把精力放在訓練品質和蛋白質攝取上，效果遠大於繼續擔心胰島素阻抗。</div>
+      </div>
+    </div>
+    <div class="ppanel" id="pp3">
+      <div class="profile-grid">
+        <div class="pg-col">
+          <h4>實際發生的機制</h4>
+          <ul>
+            <li>長期低熱量 → 瘦素下降 → 代謝率降低</li>
+            <li>肌肉流失 → 基礎代謝持續下降</li>
+            <li>皮質醇偏高 → 功能性胰島素阻抗</li>
+            <li>溜溜球循環強化「易胖體質感」</li>
+          </ul>
+        </div>
+        <div class="pg-col">
+          <h4>優先處理</h4>
+          <ul>
+            <li><strong>不是「吃更少」，是「吃得更對」</strong></li>
+            <li>逐步提升蛋白質攝取，保留肌肉</li>
+            <li>導入阻力訓練，重建代謝底盤</li>
+            <li>修復飲食節律（規律餐次優先）</li>
+          </ul>
+        </div>
+        <div class="pg-foot">打破循環的起點不是更嚴格，而是更穩定。這個族群的阻抗，很大程度是長期節食和壓力造成的功能性狀態。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5: CALC -->
+  <div class="slide" id="s5">
+    <div class="slide-label">第五頁 · 個人評估</div>
+    <h1>填入你的數據，<br>初步了解你現在的狀態</h1>
+    <div class="subtitle">體脂率與腰圍為選填——沒有數值仍可分析，準確度略降。</div>
+    <div class="calc-form-grid">
+      <div class="cg">
+        <label>性別</label>
+        <select id="f-gender"><option value="">請選擇</option><option value="f">女性</option><option value="m">男性</option></select>
+      </div>
+      <div class="cg">
+        <label>身高（cm）</label>
+        <input type="number" id="f-height" placeholder="例：163">
+      </div>
+      <div class="cg">
+        <label>體重（kg）</label>
+        <input type="number" id="f-weight" placeholder="例：58">
+      </div>
+      <div class="cg">
+        <label>體脂率（%）<span class="opt">選填</span></label>
+        <input type="number" id="f-bf" placeholder="沒有可留空">
+        <p class="hint">InBody 為佳；家用體脂秤偏高約 3–5%</p>
+      </div>
+      <div class="cg">
+        <label>腰圍（cm）<span class="opt">選填</span></label>
+        <input type="number" id="f-waist" placeholder="沒有可留空">
+        <p class="hint">肚臍水平位置量</p>
+      </div>
+      <div class="cg">
+        <label>內臟脂肪等級<span class="opt">選填</span></label>
+        <input type="number" id="f-visceral" placeholder="1–20">
+      </div>
+      <div class="cg">
+        <label>每週運動頻率</label>
+        <select id="f-activity">
+          <option value="">請選擇</option>
+          <option value="0">幾乎不運動</option>
+          <option value="1">偶爾（1–2次）</option>
+          <option value="2">規律（3–4次）</option>
+          <option value="3">高頻（5次以上）</option>
+        </select>
+      </div>
+      <div class="cg">
+        <label>運動類型</label>
+        <select id="f-extype">
+          <option value="">請選擇</option>
+          <option value="strength">重訓為主</option>
+          <option value="cardio">有氧為主</option>
+          <option value="mixed">重訓＋有氧</option>
+          <option value="none">無固定運動</option>
+        </select>
+      </div>
+    </div>
+    <button class="calc-btn" onclick="runCalc()">分析我的狀態 →</button>
+
+    <div class="cr" id="calc-result">
+      <div class="cr-head">
+        <div class="cr-badge" id="cr-badge"></div>
+        <div class="cr-title" id="cr-title"></div>
+        <div class="cr-desc" id="cr-desc"></div>
+      </div>
+      <div class="cr-body">
+        <div id="cr-note"></div>
+        <div class="cr-sec">根據你的數據，優先關注</div>
+        <div class="cr-items" id="cr-items"></div>
+        <div class="cr-disc">⚠️ 方向性評估，非醫療診斷。個人化建議請搭配營養師評估飲食記錄後制定。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6: SUMMARY -->
+  <div class="slide" id="s6">
+    <div class="slide-label">第六頁 · 核心記憶點</div>
+    <h1>記住這五件事</h1>
+    <div class="subtitle">無論你現在的條件如何，這五個觀念是理解胰島素阻抗時不會出錯的框架。</div>
+    <div class="sum-grid" style="grid-template-columns:repeat(5,1fr);">
+      <div class="sum-card"><div class="sum-val" style="font-size:1.6rem;">🔄</div><div class="sum-label">它是可逆的</div></div>
+      <div class="sum-card"><div class="sum-val" style="font-size:1.6rem;">📍</div><div class="sum-label">腰圍比體脂率重要</div></div>
+      <div class="sum-card"><div class="sum-val" style="font-size:1.6rem;">💪</div><div class="sum-label">肌肉是最好的藥</div></div>
+      <div class="sum-card"><div class="sum-val" style="font-size:1.6rem;">😴</div><div class="sum-label">睡眠被嚴重低估</div></div>
+      <div class="sum-card"><div class="sum-val" style="font-size:1.6rem;">⚖️</div><div class="sum-label">穩定勝過完美</div></div>
+    </div>
+    <div class="divider"></div>
+    <ul class="step-list">
+      <li><div class="step-num">🔄</div><div class="step-text"><strong>它是可逆的</strong>——不是終身體質，是代謝環境的反映，可以被生活習慣改變。</div></li>
+      <li><div class="step-num">📍</div><div class="step-text"><strong>位置比總量重要</strong>——內臟脂肪（腰圍）比全身體脂率更能反映代謝風險和阻抗程度。</div></li>
+      <li><div class="step-num">💪</div><div class="step-text"><strong>肌肉是最好的藥</strong>——規律阻力訓練是改善胰島素敏感性最有效、最持久的方法。</div></li>
+      <li><div class="step-num">😴</div><div class="step-text"><strong>睡眠被嚴重低估</strong>——慢性睡眠不足對代謝的破壞力，遠大於偶爾吃一頓甜食。</div></li>
+      <li><div class="step-num">⚖️</div><div class="step-text"><strong>穩定勝過完美</strong>——穩定的飲食節奏對胰島素敏感性的改善，優於任何短期嚴格控制。</div></li>
+    </ul>
+    <div class="hl terra" style="margin-top:0.5rem;">
+      <p>真正重要的問題不是「我有沒有胰島素阻抗」，而是「我的生活習慣，正在把我的代謝環境推向哪個方向？」</p>
+    </div>
+  </div>
+
+</div><!-- /deck teach -->
+
+<!-- ══════════ MEMO MODE ══════════ -->
+<div id="memo-mode" class="mm">
+  <span class="mm-tag">備忘筆記｜原理速查</span>
+  <h2>胰島素阻抗：原理備忘</h2>
+  <p>講解時一時想不起某個機制，切過來看。</p>
+
+  <hr>
+  <span class="mm-tag">觸發胰島素分泌的不只碳水</span>
+  <h3>什麼會讓胰島素升高？</h3>
+  <table class="mm-table">
+    <tr><th>觸發來源</th><th>機制</th><th>強度</th></tr>
+    <tr><td><strong>碳水化合物</strong></td><td>血糖直接升高 → 胰臟 β 細胞分泌胰島素</td><td>最強</td></tr>
+    <tr><td><strong>蛋白質</strong></td><td>BCAA、亮胺酸（Leucine）刺激 β 細胞</td><td>中等</td></tr>
+    <tr><td><strong>脂肪（單獨）</strong></td><td>幾乎不刺激</td><td>極低</td></tr>
+    <tr><td><strong>脂肪＋碳水同吃</strong></td><td>延遲胃排空 → 血糖波動拉長 → 胰島素延長分泌</td><td>中高</td></tr>
+    <tr><td><strong>頭期相分泌</strong></td><td>看到/聞到食物 → 大腦預先觸發少量分泌</td><td>低</td></tr>
+    <tr><td><strong>某些甜味劑</strong></td><td>腸道激素間接路徑，研究仍有爭議</td><td>不確定</td></tr>
+  </table>
+  <div class="mm-box sage">
+    <p><strong>教學重點：</strong>不要說「只要吃碳水就會胰島素高」——蛋白質也會觸發，脂肪＋碳水同吃會放大。正確說法是「進食都會觸發，碳水最直接，但整體飲食模式比單一食物更重要。」</p>
+  </div>
+
+  <hr>
+  <span class="mm-tag">合成型荷爾蒙機制</span>
+  <h3>胰島素同時在做什麼？</h3>
+  <div class="mm-box">
+    <p>① <strong>促進葡萄糖進入細胞</strong>（肌肉、脂肪、肝臟）→ 利用或儲存為肝醣</p>
+    <p>② <strong>促進蛋白質合成</strong>（肌肉修復、增長）</p>
+    <p>③ <strong>促進脂肪合成</strong>（多餘熱量轉為三酸甘油酯儲存）</p>
+    <p>④ <strong>抑制脂肪分解</strong>（抑制 HSL：hormone-sensitive lipase）</p>
+  </div>
+  <div class="mm-box terra">
+    <p><strong>常見誤解要糾正：</strong>胰島素不是「越低越好」。第一型糖尿病完全缺乏胰島素反而會危及生命。重點是節律正常性與細胞反應靈敏性，不是讓它一直保持低點。</p>
+  </div>
+
+  <hr>
+  <span class="mm-tag">內臟脂肪如何造成阻抗</span>
+  <h3>細胞的「門」為什麼變不靈敏？</h3>
+  <p>內臟脂肪（≠ 皮下脂肪）是代謝活性高的組織，釋放：</p>
+  <div class="mm-box">
+    <p>• <strong>TNF-α</strong>：干擾胰島素受體底物（IRS-1）磷酸化，受體訊號傳導出問題</p>
+    <p>• <strong>IL-6</strong>：系統性發炎，降低肌肉和肝臟的胰島素敏感性</p>
+    <p>• <strong>游離脂肪酸（FFA）</strong>：大量進入肝臟和肌肉，干擾葡萄糖代謝路徑</p>
+  </div>
+  <div class="mm-box amber">
+    <p><strong>快速記憶：</strong>腰圍偏大 → 內臟脂肪多 → 發炎訊號高 → 胰島素受體鈍化 → 需要分泌更多 → 血糖反應變慢 → 脂肪更容易囤積</p>
+  </div>
+
+  <hr>
+  <span class="mm-tag">運動的兩條路</span>
+  <h3>肌肉為什麼是天然解藥？</h3>
+  <table class="mm-table">
+    <tr><th>機制</th><th>說明</th><th>效果持續</th></tr>
+    <tr><td><strong>GLUT4 上調（急性）</strong></td><td>肌肉收縮本身不依賴胰島素，直接把 GLUT4 轉運體送到細胞膜，讓葡萄糖進入</td><td>運動後 24–48 小時</td></tr>
+    <tr><td><strong>肌肉量提升（慢性）</strong></td><td>肌肉量越多 → 全身葡萄糖緩衝容量越大 → 胰島素需要做的工作越少</td><td>長期累積效果</td></tr>
+  </table>
+  <div class="mm-box sage">
+    <p><strong>教學語言建議：</strong>「你每次做重訓或有氧，肌肉就在幫你清血糖——而且這個效果在運動後還會持續將近兩天。所以有運動習慣的人，身體本來就在持續對抗胰島素阻抗的形成。」</p>
+  </div>
+
+  <hr>
+  <span class="mm-tag">溜溜球惡性循環</span>
+  <h3>熱量大起大落為什麼特別不利？</h3>
+  <div class="mm-box terra">
+    <p><strong>高熱量的天：</strong>血糖大幅震盪 → 胰島素大量分泌 → 脂肪合成訊號強 → 多餘熱量幾乎直接進脂肪細胞（因為已有阻抗，這個過程比一般人更快）</p>
+  </div>
+  <div class="mm-box">
+    <p><strong>低熱量的天：</strong>缺乏能量＋蛋白質不足 → 身體優先分解肌肉（比脂肪更容易動用）→ 肌肉量減少 → 基礎代謝下降 → 下次吃多一點更容易胖</p>
+  </div>
+  <div class="mm-box amber">
+    <p><strong>結論：</strong>每一次的大起大落，都在強化「胰島素阻抗 + 肌肉流失 + 代謝變差」的三角惡性循環。這是溜溜球體質越來越難瘦的原因——不是意志力不夠，是代謝環境被訓練成更容易囤積。</p>
+  </div>
+
+  <hr>
+  <span class="mm-tag">皮質醇的角色</span>
+  <h3>睡眠與壓力的影響機制</h3>
+  <div class="mm-box">
+    <p>慢性睡眠不足和高壓 → 皮質醇長期偏高，皮質醇會：</p>
+    <p>① <strong>直接促進內臟脂肪囤積</strong>（尤其腹部）</p>
+    <p>② <strong>抑制脂肪氧化</strong>（身體更傾向燃燒碳水和肌肉）</p>
+    <p>③ <strong>造成功能性胰島素阻抗</strong>（即使體脂不高也會發生）</p>
+    <p>④ <strong>升高血糖</strong>（刺激肝臟釋放葡萄糖 → 胰島素跟著升高）</p>
+  </div>
+  <div class="mm-box sage">
+    <p><strong>重點：</strong>「明明吃得不多但體重不動」的人，睡眠和壓力是最常被忽略的關鍵變數。飲食記錄看起來沒問題，但皮質醇在阻礙代謝。</p>
+  </div>
+
+  <hr>
+  <span class="mm-tag">對容易焦慮學生的語言框架</span>
+  <h3>怎麼跟對號入座的人說？</h3>
+  <div class="mm-box sage">
+    <p>「胰島素阻抗這件事，在你現在的條件下影響力其實很小。你有運動習慣，肌肉本身每天都在幫你維持胰島素敏感性。真正值得我們一起看的是：你的熱量缺口夠不夠、蛋白質有沒有到位、睡眠和壓力狀態怎麼樣——這三件事對你體脂的影響力，加起來是胰島素阻抗的好幾倍。」</p>
+  </div>
+  <div class="mm-box terra">
+    <p><strong>不要說：</strong>「你的胰島素阻抗問題需要特別注意」（體脂正常、有運動的人聽到會不必要地焦慮）</p>
+    <p><strong>要說：</strong>「你現在需要的不是擔心荷爾蒙，而是把基本功做扎實——蛋白質、睡眠、熱量缺口。」</p>
+  </div>
+</div><!-- /memo-mode -->
+
+<script>
+// ─── SLIDE ENGINE ───
+const TOTAL = 7;
+let cur = 0;
+const dotsEl = document.getElementById('dots');
+const ctrEl = document.getElementById('ctr');
+
+for (let i = 0; i < TOTAL; i++) {
+  const d = document.createElement('button');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+}
+
+function goTo(n) {
+  document.getElementById('s' + cur).classList.remove('active');
+  dotsEl.children[cur].classList.remove('active');
+  cur = ((n % TOTAL) + TOTAL) % TOTAL;
+  document.getElementById('s' + cur).classList.add('active');
+  dotsEl.children[cur].classList.add('active');
+  ctrEl.textContent = (cur + 1) + ' / ' + TOTAL;
+  document.getElementById('btn-prev').disabled = cur === 0;
+  document.getElementById('btn-next').disabled = cur === TOTAL - 1;
+}
+function go(d) { goTo(cur + d); }
+goTo(0);
+
+document.addEventListener('keydown', e => {
+  if (document.getElementById('teach-mode').style.display === 'none') return;
+  if (e.key === 'ArrowRight') go(1);
+  if (e.key === 'ArrowLeft') go(-1);
+});
+
+// ─── MODE SWITCH ───
+function switchMode(mode) {
+  const teach = document.getElementById('teach-mode');
+  const memo = document.getElementById('memo-mode');
+  if (mode === 'teach') {
+    teach.style.display = '';
+    memo.classList.remove('show');
+  } else {
+    teach.style.display = 'none';
+    memo.classList.add('show');
+  }
+  document.getElementById('btn-teach').classList.toggle('active', mode === 'teach');
+  document.getElementById('btn-memo').classList.toggle('active', mode === 'memo');
+}
+
+// ─── PROFILE TABS ───
+function showP(idx, btn) {
+  document.querySelectorAll('.ppanel').forEach((p, i) => p.classList.toggle('on', i === idx));
+  document.querySelectorAll('.ptab').forEach((b, i) => b.classList.toggle('on', i === idx));
+}
+
+// ─── CALCULATOR ───
+function runCalc() {
+  const gender = document.getElementById('f-gender').value;
+  const height = parseFloat(document.getElementById('f-height').value);
+  const weight = parseFloat(document.getElementById('f-weight').value);
+  const bf = parseFloat(document.getElementById('f-bf').value);
+  const waist = parseFloat(document.getElementById('f-waist').value);
+  const visceral = parseFloat(document.getElementById('f-visceral').value) || null;
+  const activity = document.getElementById('f-activity').value;
+  const exType = document.getElementById('f-extype').value;
+
+  if (!gender || !height || !weight || !activity) {
+    alert('請填入性別、身高、體重及活動量後再分析。體脂率與腰圍為選填。');
+    return;
+  }
+
+  const bmi = weight / ((height / 100) ** 2);
+  const hasBf = !isNaN(bf) && bf > 0;
+  const hasWaist = !isNaN(waist) && waist > 0;
+  let bfEst = hasBf ? bf : (gender === 'f' ? 1.20 * bmi : 1.20 * bmi - 10.8);
+  const usingEst = !hasBf;
+  const waistRisk = hasWaist ? ((gender === 'f' && waist >= 80) || (gender === 'm' && waist >= 90)) : bmi >= 27;
+
+  const bfHigh = (gender === 'f' && bfEst >= 30) || (gender === 'm' && bfEst >= 25);
+  const bfMid  = (gender === 'f' && bfEst >= 23) || (gender === 'm' && bfEst >= 18);
+  const hasEx  = activity === '2' || activity === '3';
+  const hasStr = exType === 'strength' || exType === 'mixed';
+
+  let score = 0;
+  if (bfHigh) score += 2; else if (bfMid) score += 1;
+  if (waistRisk) score += (!hasWaist ? 1 : 2);
+  if (visceral !== null && visceral >= 10) score += 2;
+  else if (visceral !== null && visceral >= 6) score += 1;
+  if (!hasEx) score += 2; else if (!hasStr) score += 0.5;
+
+  let level, badge, title, desc, items;
+  if (score <= 2) {
+    level = 'bl'; badge = '✅ 胰島素敏感性可能良好';
+    title = '目前不需要特別擔心胰島素阻抗';
+    desc = '整體代謝風險偏低。追求身體組成目標時的阻礙，大概率來自其他更直接的因素。';
+    items = [
+      {i:'🎯', t:'確認真實熱量缺口：油脂、醬料、飲料的完整度比感覺上的控制更重要'},
+      {i:'🥩', t:'蛋白質是否到位：體重 × 1.6–2g/天，維持肌肉量的關鍵'},
+      {i:'😴', t:'睡眠品質：慢性睡眠不足對代謝的負面影響超過大多數人想像'},
+      {i:'📈', t:'訓練漸進性：進度停滯時，訓練強度調整可能比飲食更有效'},
+    ];
+  } else if (score <= 4) {
+    level = 'bm'; badge = '⚠️ 部分代謝指標值得留意';
+    title = '胰島素敏感性可能有輕微下降，但可以快速改善';
+    desc = '部分指標顯示代謝環境有改善空間。這個程度對生活習慣調整反應很快。';
+    items = [
+      {i:'🚶', t:'增加日常步數：7,000–10,000 步是改善胰島素敏感性最容易執行的起點'},
+      {i:'💪', t:'導入阻力訓練：每週 2–3 次，數週內可看到代謝改善'},
+      {i:'⏱️', t:'穩定餐次節律：規律的能量供應有助於降低長時間胰島素水平'},
+      {i:'🥩', t:'蛋白質優先：每餐 20–25g，穩定血糖、保留肌肉'},
+      {i:'😴', t:'改善睡眠：皮質醇是阻抗幕後推手，睡眠不足時再嚴格的飲食效果都打折'},
+    ];
+  } else {
+    level = 'bh'; badge = '🔴 代謝環境需要積極調整';
+    title = '胰島素阻抗可能是身體組成管理的實質障礙';
+    desc = '內臟脂肪或整體體脂偏高加上活動量不足，可能已形成明顯代謝阻力。策略的選擇比努力程度更重要。';
+    items = [
+      {i:'⚖️', t:'穩定攝取優先於大幅赤字：熱量大起大落會加速脂肪囤積'},
+      {i:'🥩', t:'蛋白質是保護機制：每日至少 1.2–1.5g/kg，防止肌肉流失'},
+      {i:'🚶', t:'從步數開始：7,000–10,000 步是最低門檻最有效的起點'},
+      {i:'💪', t:'阻力訓練：每週 2 次以上，從根本改善肌肉對胰島素的反應'},
+      {i:'😴', t:'睡眠不可妥協：每晚少於 6 小時會讓隔天胰島素反應顯著惡化'},
+      {i:'🍽️', t:'建議搭配營養師評估飲食記錄，這個階段個人化分析非常關鍵'},
+    ];
+  }
+
+  document.getElementById('cr-badge').textContent = badge;
+  document.getElementById('cr-badge').className = 'cr-badge ' + level;
+  document.getElementById('cr-title').textContent = title;
+  document.getElementById('cr-desc').textContent = desc;
+  document.getElementById('cr-items').innerHTML = items.map(x =>
+    `<div class="cr-item"><span class="ci">${x.i}</span><span>${x.t}</span></div>`).join('');
+
+  const note = (usingEst || !hasWaist)
+    ? `<div class="cr-note">📋 ${usingEst ? '體脂率未填，以 BMI 公式估算（誤差較大）。' : ''}${!hasWaist ? ' 腰圍未填，以 BMI 推估風險。' : ''} 補充這兩項數值後評估會更準確。</div>`
+    : '';
+  document.getElementById('cr-note').innerHTML = note;
+
+  const r = document.getElementById('calc-result');
+  r.classList.add('show');
+  r.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+</body>
+</html>
