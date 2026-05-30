@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haley · 第二期重啟｜飲食分析與認知指導</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Noto+Sans+TC:wght@300;400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --terra:   #B85042;
+  --terra-l: #D4756A;
+  --terra-xl: #F0DDD9;
+  --sage:    #8B9E7E;
+  --sage-d:  #6B7E5E;
+  --sage-l:  #B5C9A8;
+  --sage-xl: #E8F0E3;
+  --cream:   #FDFBF7;
+  --bark:    #3D3229;
+  --sand:    #F0EDE8;
+  --gray:    #888;
+  --text:    #2C2320;
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 3rem;
+}
+
+.deck { width: 100%; max-width: 740px; }
+
+/* ── NAV ── */
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+.nav-btn {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-family: 'Noto Sans TC', sans-serif;
+  cursor: pointer;
+  color: var(--bark);
+  transition: background 0.15s, border-color 0.15s;
+}
+.nav-btn:hover { background: var(--sand); border-color: var(--sage-l); }
+
+.nav-dots { display: flex; gap: 7px; align-items: center; }
+.dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+.dot.active { background: var(--terra); transform: scale(1.25); }
+.counter { font-size: 12px; color: var(--gray); text-align: center; margin-bottom: 1rem; }
+
+/* ── SLIDE ── */
+.slide {
+  display: none;
+  background: #fff;
+  border-radius: 18px;
+  border: 1px solid #e4dfd8;
+  padding: 2.25rem 2.5rem 2.75rem;
+  min-height: 500px;
+  box-shadow: 0 2px 16px rgba(60,40,30,0.06);
+}
+.slide.active {
+  display: block;
+  animation: fadeUp 0.22s ease;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── TYPOGRAPHY ── */
+.slide-label {
+  font-size: 11px;
+  color: var(--sage);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 0.6rem;
+}
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--bark);
+  margin-bottom: 0.55rem;
+  line-height: 1.35;
+}
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.75;
+  margin-bottom: 1.75rem;
+}
+
+/* ── COMPONENTS ── */
+.card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.25rem; }
+.card {
+  background: var(--sand);
+  border: 1px solid #e0dbd4;
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+}
+.card .c-label { font-size: 11px; color: var(--gray); margin-bottom: 5px; }
+.card .c-val { font-size: 17px; font-weight: 600; color: var(--text); line-height: 1.3; }
+.card .c-sub { font-size: 11px; color: var(--gray); margin-top: 3px; }
+
+.hl {
+  background: var(--terra-xl);
+  border-left: 3px solid var(--terra);
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.hl p { font-size: 14px; color: var(--text); line-height: 1.8; }
+.hl.sage {
+  background: var(--sage-xl);
+  border-left-color: var(--sage);
+}
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+.mini-card {
+  background: var(--sand);
+  border: 1px solid #e0dbd4;
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+}
+.mini-card h4 {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 7px;
+}
+.mini-card p, .mini-card li { font-size: 13px; color: #444; line-height: 1.7; }
+.mini-card ul { padding-left: 14px; }
+
+.divider { border: none; border-top: 1px solid #ede9e4; margin: 1.4rem 0; }
+
+.step-list { list-style: none; }
+.step-list li { display: flex; gap: 13px; align-items: flex-start; margin-bottom: 1.15rem; }
+.step-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--terra-xl);
+  color: var(--terra);
+  font-size: 13px; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.step-num.sage { background: var(--sage-xl); color: var(--sage-d); }
+.step-text { font-size: 14px; color: var(--text); line-height: 1.75; }
+.step-text strong { font-weight: 600; color: var(--bark); }
+
+.tag {
+  display: inline-block;
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  margin-right: 6px;
+}
+.tag-r { background: var(--terra-xl); color: var(--terra); }
+.tag-g { background: var(--sage-xl); color: var(--sage-d); }
+.tag-y { background: #FEF3DC; color: #8A5000; }
+
+/* bar chart */
+.bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+.bar-label { font-size: 12px; color: var(--gray); width: 36px; flex-shrink: 0; text-align: right; }
+.bar-track { flex: 1; height: 8px; background: #ede9e4; border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+.bar-val { font-size: 12px; color: var(--bark); font-weight: 600; width: 52px; flex-shrink: 0; }
+
+/* timeline */
+.timeline { display: flex; border-radius: 10px; overflow: hidden; margin-bottom: 1.25rem; }
+.tl-cell { flex: 1; padding: 10px 6px; text-align: center; }
+.tl-label { font-size: 11px; font-weight: 600; }
+.tl-sub   { font-size: 11px; margin-top: 3px; }
+
+/* insight box */
+.insight {
+  border: 1px solid var(--terra-xl);
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.insight-head {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 7px;
+}
+.insight-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+.insight-icon.r { background: var(--terra-xl); }
+.insight-icon.g { background: var(--sage-xl); }
+.insight-icon.y { background: #FEF3DC; }
+.insight-title { font-size: 13px; font-weight: 600; color: var(--bark); }
+.insight p { font-size: 13px; color: #555; line-height: 1.75; }
+
+/* summary grid */
+.sum-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.5rem; }
+.sum-card { background: var(--terra-xl); border-radius: 12px; padding: 1rem; text-align: center; }
+.sum-card.sage { background: var(--sage-xl); }
+.sum-val { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; color: var(--terra); }
+.sum-card.sage .sum-val { color: var(--sage-d); }
+.sum-label { font-size: 11px; color: var(--gray); margin-top: 4px; }
+
+.note { font-size: 12px; color: var(--gray); line-height: 1.7; margin-top: 1rem; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="deck">
+
+  <div class="nav-bar">
+    <button class="nav-btn" onclick="go(-1)">← 上一頁</button>
+    <div class="nav-dots" id="dots"></div>
+    <button class="nav-btn" onclick="go(1)">下一頁 →</button>
+  </div>
+  <div class="counter" id="ctr"></div>
+
+  <!-- ═══ S1 體態進度 ═══ -->
+  <div class="slide active" id="s0">
+    <div class="slide-label">第一頁 · 體態進度</div>
+    <h1>體重沒動，但腰圍縮了 3.2 cm</h1>
+    <div class="subtitle">數字沒說謊——身體組成正在悄悄改變，只是體重計還沒反映出來。</div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="c-label">體重變化</div>
+        <div class="c-val">≈ 持平</div>
+        <div class="c-sub">80.95 → 81.05 kg</div>
+      </div>
+      <div class="card">
+        <div class="c-label">腰圍變化</div>
+        <div class="c-val" style="color:var(--sage-d);">−3.2 cm ✓</div>
+        <div class="c-sub">97 → 93.8 cm</div>
+      </div>
+      <div class="card">
+        <div class="c-label">執行天數</div>
+        <div class="c-val">11 天</div>
+        <div class="c-sub">5/18 – 5/28</div>
+      </div>
+    </div>
+
+    <div class="hl sage">
+      <p><strong>腰圍縮小，是比體重更重要的訊號。</strong><br>
+      體重是肌肉、脂肪、水分、骨骼的總和。腹部脂肪在減少的同時，若身體有水分滯留（例如吃較鹹的食物、生理週期前後），體重數字就可能暫時不變甚至微升。這不代表沒有進步，方向是對的。</p>
+    </div>
+
+    <div class="two-col">
+      <div class="mini-card">
+        <h4>為什麼腰圍比體重更可信？</h4>
+        <p>腰圍反映的是腹部內臟脂肪的變化，這部分對代謝健康和荷爾蒙的影響最直接。腰圍持續縮小，代表飲食策略方向正確。</p>
+      </div>
+      <div class="mini-card">
+        <h4>接下來要觀察什麼？</h4>
+        <p>繼續量腰圍，每週記錄。體重以<strong>週平均值</strong>來看趨勢，不要被單天數字牽著走。持續兩週平均值往下，才算真正的進步。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ S2 飲食分析 ═══ -->
+  <div class="slide" id="s1">
+    <div class="slide-label">第二頁 · 飲食分析</div>
+    <h1>吃對了嗎？熱量與習慣檢視</h1>
+    <div class="subtitle">平均熱量接近目標，但波動太大——這正是體重沒有穩定下降的主因。</div>
+
+    <div style="margin-bottom:1.4rem;">
+      <div style="font-size:12px; color:var(--gray); margin-bottom:10px;">每日熱量（目標 1,500 kcal）</div>
+      <div class="bar-row">
+        <div class="bar-label">5/18</div>
+        <div class="bar-track"><div class="bar-fill" style="width:87%; background:var(--terra-l);"></div></div>
+        <div class="bar-val">1,747</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">5/19</div>
+        <div class="bar-track"><div class="bar-fill" style="width:86%; background:var(--terra-l);"></div></div>
+        <div class="bar-val">1,719</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">5/20</div>
+        <div class="bar-track"><div class="bar-fill" style="width:76%; background:var(--sage);"></div></div>
+        <div class="bar-val">1,525</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">5/21</div>
+        <div class="bar-track"><div class="bar-fill" style="width:78%; background:var(--sage);"></div></div>
+        <div class="bar-val">1,561</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">5/22</div>
+        <div class="bar-track"><div class="bar-fill" style="width:61%; background:var(--sage-d);"></div></div>
+        <div class="bar-val">1,228 ⚠️</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">5/23</div>
+        <div class="bar-track"><div class="bar-fill" style="width:89%; background:var(--terra);"></div></div>
+        <div class="bar-val">1,771</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">5/24</div>
+        <div class="bar-track"><div class="bar-fill" style="width:75%; background:var(--sage);"></div></div>
+        <div class="bar-val">1,492</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">5/25</div>
+        <div class="bar-track"><div class="bar-fill" style="width:73%; background:var(--sage);"></div></div>
+        <div class="bar-val">1,454</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">5/26</div>
+        <div class="bar-track"><div class="bar-fill" style="width:67%; background:var(--sage-d);"></div></div>
+        <div class="bar-val">1,341 ⚠️</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">5/27</div>
+        <div class="bar-track"><div class="bar-fill" style="width:68%; background:var(--sage-d);"></div></div>
+        <div class="bar-val">1,363</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">5/28</div>
+        <div class="bar-track"><div class="bar-fill" style="width:87%; background:var(--terra-l);"></div></div>
+        <div class="bar-val">1,748</div>
+      </div>
+    </div>
+
+    <div class="hl">
+      <p>平均熱量約 <strong>1,545 kcal</strong>，與目標差距不大——但最低 1,228、最高 1,771，落差將近 <strong>550 kcal</strong>。<br>這種大起大落，比持續超標更難處理。</p>
+    </div>
+  </div>
+
+  <!-- ═══ S3 飲食優缺點 ═══ -->
+  <div class="slide" id="s2">
+    <div class="slide-label">第三頁 · 飲食習慣</div>
+    <h1>做得好的地方，還有改善空間</h1>
+    <div class="subtitle">先看進步，再看下一步。</div>
+
+    <div class="insight">
+      <div class="insight-head">
+        <div class="insight-icon g">✅</div>
+        <div class="insight-title">喝水量明顯進步</div>
+      </div>
+      <p>大多數天都有達到 2,000 cc，這對排便、代謝、飽足感都有直接幫助。繼續保持。</p>
+    </div>
+
+    <div class="insight">
+      <div class="insight-head">
+        <div class="insight-icon g">✅</div>
+        <div class="insight-title">蔬菜種類豐富多了</div>
+      </div>
+      <p>菠菜、秋葵、絲瓜、小白菜、鴻喜菇都有出現，比上課前明顯改善。菇類的加入很棒，纖維高、料理快。</p>
+    </div>
+
+    <div class="insight">
+      <div class="insight-head">
+        <div class="insight-icon g">✅</div>
+        <div class="insight-title">開始記錄，這是最大的進步</div>
+      </div>
+      <p>能看到自己吃了什麼，才有辦法做調整。記錄本身就是改變的開始。</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="insight">
+      <div class="insight-head">
+        <div class="insight-icon r">⚠️</div>
+        <div class="insight-title">週末飲食明顯偏離</div>
+      </div>
+      <p>5/23 炸雞＋薯條＋乳酪麵包（1,771 kcal）、5/28 生乳捲 2 塊（1,748 kcal），都在假日。外食選擇熱量密度高、蔬菜少、油脂多，是目前最需要強化的應對策略。</p>
+    </div>
+
+    <div class="insight">
+      <div class="insight-head">
+        <div class="insight-icon r">⚠️</div>
+        <div class="insight-title">點心出現頻率偏高</div>
+      </div>
+      <p>粉粿出現 3 次、乳酪麵包 3 次、生乳捲連續 2 天、夾心餅乾、可麗露……單次熱量看似不高，但幾乎都是純碳水或高糖脂，累積起來對整天的碳水和脂肪影響不小。</p>
+    </div>
+
+    <div class="insight">
+      <div class="insight-head">
+        <div class="insight-icon r">⚠️</div>
+        <div class="insight-title">松阪豬出現頻率偏高</div>
+      </div>
+      <p>松阪豬屬於油脂較高的部位，一週出現 3–4 次，對脂肪攝取有影響。建議與雞胸肉、魚肉、里肌等低脂蛋白質輪替，口感上可以用醬燒、清炒等方式補足滿足感。</p>
+    </div>
+  </div>
+
+  <!-- ═══ S4 熱量波動 ═══ -->
+  <div class="slide" id="s3">
+    <div class="slide-label">第四頁 · 核心觀念</div>
+    <h1>為什麼熱量「大起大落」<br>比持續超標更傷？</h1>
+    <div class="subtitle">這不是意志力的問題，是身體的代謝機制在作用。</div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>體脂高 → 幾乎確定有胰島素阻抗</strong><br>
+          胰島素阻抗的意思是：身體需要分泌更多胰島素，才能把血糖送進細胞。而胰島素是強力的「囤積訊號」——它不只把糖送進細胞，也會<strong>抑制脂肪分解</strong>。所以這類體質的身體，幾乎是處於「一直在囤、很難在燃」的狀態。
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>高熱量的天：脂肪囤積特別有效率</strong><br>
+          血糖大幅震盪 → 胰島素大量分泌 → 多出來的熱量幾乎直接進脂肪細胞。因為胰島素阻抗，這個囤積過程比一般人更快、更有效率。
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>低熱量的天：掉的不一定是脂肪</strong><br>
+          熱量缺口存在，但如果蛋白質不足，身體在缺乏能量時會優先分解<strong>肌肉</strong>（比脂肪更容易動用）。肌肉量減少 → 基礎代謝下降 → 下次吃多一點就更容易胖。
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>反覆循環 → 代謝越來越差</strong><br>
+          每一次大起大落，都在強化「胰島素阻抗 ＋ 肌肉流失 ＋ 代謝變差」的三角惡性循環。這也是為什麼溜溜球體質的人，會越來越難瘦。
+        </div>
+      </li>
+    </ul>
+
+    <div class="hl sage">
+      <p>現在最需要做的事，不是製造更大的熱量赤字，<br>而是<strong>讓身體的胰島素敏感性慢慢恢復</strong>——這需要的是規律、穩定的飲食節奏，不是大起大落的衝刺。</p>
+    </div>
+  </div>
+
+  <!-- ═══ S5 作弊日迷思 ═══ -->
+  <div class="slide" id="s4">
+    <div class="slide-label">第五頁 · 觀念澄清</div>
+    <h1>「作弊日」不是免責牌</h1>
+    <div class="subtitle">健身界的這個概念，很容易在錯誤時機被誤用。</div>
+
+    <div class="two-col" style="margin-bottom:1.25rem;">
+      <div class="mini-card">
+        <h4>作弊日的原始邏輯</h4>
+        <p>長期熱量赤字會讓<strong>瘦素（Leptin）</strong>下降，身體啟動節能模式——代謝率降低、飢餓感增加。偶爾一次較高熱量的攝取，可以短暫刺激瘦素回升，讓代謝不要過度適應。</p>
+      </div>
+      <div class="mini-card">
+        <h4>這個邏輯成立的前提</h4>
+        <ul>
+          <li>體脂率已相對低</li>
+          <li>平時飲食非常精準</li>
+          <li>高熱量是刻意計畫的，不是忍不住的</li>
+          <li>頻率約每 2–4 週一次</li>
+          <li>多吃的是碳水，不是油炸甜食混著吃</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hl">
+      <p>對現階段的你來說，這些前提<strong>一條都還不符合</strong>。<br>
+      如果把每個週末的失控合理化成「我在做作弊日」，等於給了自己一個不需要負責的出口。<br><br>
+      正確的認知是：<strong>作弊日是精準控制後的策略工具——連每天吃什麼都還沒穩定下來之前，根本還沒到需要用這個工具的階段。</strong></p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div style="font-size:13px; font-weight:600; color:var(--bark); margin-bottom:10px;">更適合現在的概念：82 法則</div>
+    <div class="hl sage">
+      <p>飲食熱量的 <strong>80% 吃在目標內</strong>（有營養、有計畫），<strong>20% 保留彈性</strong>（療癒食物、聚餐、偶爾的甜點）。<br><br>
+      差別在於：82 法則是<strong>分散在每天的彈性</strong>，不會累積成一次性的大爆發。這才是長期可持續的飲食策略。</p>
+    </div>
+  </div>
+
+  <!-- ═══ S6 吃飯順序 ═══ -->
+  <div class="slide" id="s5">
+    <div class="slide-label">第六頁 · 飲食技巧</div>
+    <h1>菜肉飯果——吃飯順序<br>真的有差嗎？</h1>
+    <div class="subtitle">有科學依據，但不是萬能，重點還是份量控制。</div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num sage">菜</div>
+        <div class="step-text">
+          <strong>先吃蔬菜</strong><br>
+          膳食纖維在腸道中形成緩衝層，延緩後續碳水化合物（飯）被吸收的速度，讓血糖上升比較平緩。
+        </div>
+      </li>
+      <li>
+        <div class="step-num sage">肉</div>
+        <div class="step-text">
+          <strong>接著吃蛋白質</strong><br>
+          蛋白質進一步增加飽足感，讓你在吃到澱粉之前已經有一定的飽足訊號，自然不會過量吃飯。
+        </div>
+      </li>
+      <li>
+        <div class="step-num sage">飯</div>
+        <div class="step-text">
+          <strong>再吃澱粉</strong><br>
+          此時血糖上升幅度明顯比空腹直接吃飯溫和，研究顯示飯後血糖峰值可降低 20–30%。
+        </div>
+      </li>
+      <li>
+        <div class="step-num sage">果</div>
+        <div class="step-text">
+          <strong>最後吃水果</strong><br>
+          水果的果糖在其他食物已消化進行中的狀態下，對血糖的衝擊相對最小。
+        </div>
+      </li>
+    </ul>
+
+    <div class="hl sage">
+      <p>「菜肉飯果」和「肉菜飯果」差異很小，<strong>兩種都可以</strong>。重點是把蔬菜和蛋白質擺在澱粉前面吃。<br><br>
+      這個方法最大的實際好處是：<strong>幫助你在不刻意計算的情況下，自然控制澱粉攝取量，同時確保蔬菜和蛋白質吃夠</strong>。<br><br>
+      如果每一類食物的份量本來就掌握得很好，順序的影響相對有限。現階段先把飲食記錄和份量控制做穩，吃飯順序作為輔助工具參考即可。</p>
+    </div>
+  </div>
+
+  <!-- ═══ S7 本週行動 ═══ -->
+  <div class="slide" id="s6">
+    <div class="slide-label">第七頁 · 行動計畫</div>
+    <h1>接下來兩週，從這裡聚焦</h1>
+    <div class="subtitle">不需要全部到位，先把最關鍵的兩件事做穩。</div>
+
+    <div class="sum-grid">
+      <div class="sum-card">
+        <div class="sum-val">79 kg</div>
+        <div class="sum-label">下次見面目標體重</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-val sage">−1 cm</div>
+        <div class="sum-label">下次見面腰圍目標</div>
+      </div>
+      <div class="sum-card">
+        <div class="sum-val">1,500</div>
+        <div class="sum-label">每日目標熱量 kcal</div>
+      </div>
+    </div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <strong>穩定熱量，不要讓高低落差超過 200 kcal</strong><br>
+          與其某天吃 1,200、某天吃 1,800，不如每天都吃在 1,350–1,650 之間。穩定的飲食節奏，才能讓身體的胰島素敏感性慢慢改善。
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <strong>週末提前想好外食策略</strong><br>
+          外出前先決定「我要吃什麼、吃多少」，而不是到現場再臨時決定。聚餐選蛋白質優先、澱粉減半，甜食當天一種就好。
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <strong>點心換成蛋白質優先</strong><br>
+          茶葉蛋、無糖豆漿、無糖優格，取代粉粿、乳酪麵包、生乳捲。飽足感更持久，血糖更穩定，更不容易在晚餐後繼續吃。
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <strong>每日步數繼續累積</strong><br>
+          目標 7,000 步，每小時起身走動 10 分鐘比一次走完更有效。通勤、飯後散步都算。
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-text">
+          <strong>三大營養素目標複習</strong><br>
+          蛋白質 <strong>140 g</strong>｜脂肪 <strong>50 g</strong>｜碳水 <strong>130 g</strong>｜熱量 <strong>1,500 kcal</strong><br>
+          低熱量的天，優先把蛋白質補足，而不是什麼都少吃。
+        </div>
+      </li>
+    </ul>
+
+    <p class="note">下次上課：5/30（六）16:00 ｜ Abby Eat Life × Nutrition Coaching</p>
+  </div>
+
+</div><!-- end deck -->
+
+<script>
+const total = 7;
+let cur = 0;
+const dotsEl = document.getElementById('dots');
+const ctrEl  = document.getElementById('ctr');
+
+for (let i = 0; i < total; i++) {
+  const d = document.createElement('button');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.setAttribute('aria-label', `第 ${i+1} 頁`);
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+}
+
+function goTo(n) {
+  document.getElementById('s' + cur).classList.remove('active');
+  dotsEl.children[cur].classList.remove('active');
+  cur = ((n % total) + total) % total;
+  document.getElementById('s' + cur).classList.add('active');
+  dotsEl.children[cur].classList.add('active');
+  ctrEl.textContent = (cur + 1) + ' / ' + total;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function go(d) { goTo(cur + d); }
+
+ctrEl.textContent = '1 / ' + total;
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') go(1);
+  if (e.key === 'ArrowLeft')  go(-1);
+});
+</script>
+</body>
+</html>
