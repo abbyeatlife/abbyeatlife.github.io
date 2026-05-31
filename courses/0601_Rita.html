@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rita 第二堂課｜Abby Eat Life</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: #F7F4F0;
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem 2rem;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  width: 100%; max-width: 760px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+.brand { font-family: 'Playfair Display', serif; font-size: 14px; color: #6b5a4e; letter-spacing: 0.04em; }
+.brand em { font-style: italic; color: #8B9E7E; }
+.mode-toggle { display: flex; gap: 4px; background: #ede9e4; border-radius: 20px; padding: 4px; }
+.mode-btn {
+  padding: 5px 14px; border-radius: 16px; font-size: 12px;
+  font-family: 'Noto Sans TC', sans-serif;
+  cursor: pointer; border: none; color: #8a7a72; background: transparent;
+  transition: all 0.2s; font-weight: 400;
+}
+.mode-btn.active { background: #3D3229; color: #FDFBF7; }
+
+/* ── DECK ── */
+.deck { width: 100%; max-width: 760px; }
+.nav-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+.nav-btn {
+  background: #fff; border: 1px solid #ddd; border-radius: 8px;
+  padding: 8px 18px; font-size: 14px; cursor: pointer; color: #333;
+  transition: background 0.15s; font-family: 'Noto Sans TC', sans-serif;
+}
+.nav-btn:hover { background: #f0ede8; }
+.nav-btn:disabled { opacity: 0.3; cursor: default; }
+.nav-dots { display: flex; gap: 7px; }
+.dot { width: 9px; height: 9px; border-radius: 50%; background: #ccc; cursor: pointer; border: none; padding: 0; transition: background 0.2s; }
+.dot.active { background: #8B9E7E; }
+.counter { font-size: 12px; color: #aaa; letter-spacing: 0.08em; }
+
+/* ── SLIDES ── */
+.slide {
+  display: none; background: #fff; border-radius: 16px;
+  border: 1px solid #e8e4de; padding: 2rem 2.25rem 2.5rem; min-height: 500px;
+}
+.slide.active { display: block; animation: up 0.22s ease; }
+@keyframes up { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+.slide-label { font-size: 11px; color: #aaa; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+.slide h1 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 0.5rem; line-height: 1.3; }
+.slide h1 em { font-style: italic; color: #C17F59; }
+.subtitle { font-size: 15px; color: #666; margin-bottom: 1.75rem; line-height: 1.7; }
+
+/* highlight boxes */
+.hl { border-left: 3px solid #8B9E7E; background: #edf2e8; border-radius: 0 10px 10px 0; padding: 1rem 1.2rem; margin-bottom: 1.25rem; }
+.hl p { font-size: 14.5px; color: #1a1a1a; line-height: 1.8; }
+.hl.terra { border-left-color: #C17F59; background: #faf0e8; }
+.hl.amber { border-left-color: #D4A84B; background: #fdf8ec; }
+.hl.red { border-left-color: #C0392B; background: #fdf0ef; }
+
+/* card grids */
+.card-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.25rem; }
+.card { background: #F7F4F0; border: 1px solid #e8e4de; border-radius: 12px; padding: 1rem 1.1rem; }
+.card .c-label { font-size: 12px; color: #888; margin-bottom: 6px; }
+.card .c-val { font-size: 17px; font-weight: 700; color: #1a1a1a; line-height: 1.3; }
+.card .c-sub { font-size: 12px; color: #888; margin-top: 3px; }
+.card.good .c-val { color: #5a7a50; }
+.card.warn .c-val { color: #C17F59; }
+.card.bad .c-val { color: #C0392B; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1rem; }
+.mini-card { background: #F7F4F0; border: 1px solid #e8e4de; border-radius: 10px; padding: 0.9rem 1rem; }
+.mini-card h4 { font-size: 11.5px; font-weight: 600; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+.mini-card p, .mini-card li { font-size: 13.5px; color: #333; line-height: 1.7; }
+.mini-card ul { padding-left: 14px; }
+
+/* triple cards */
+.triple { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.25rem; }
+.t-card { background: #F7F4F0; border: 1px solid #e8e4de; border-radius: 12px; padding: 1rem 1.1rem; position: relative; overflow: hidden; }
+.t-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+.t-card.sage::before { background: #8B9E7E; }
+.t-card.terra::before { background: #C17F59; }
+.t-card.amber::before { background: #D4A84B; }
+.t-card.bark::before { background: #3D3229; }
+.t-card .t-icon { font-size: 22px; margin-bottom: 8px; }
+.t-card h4 { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+.t-card p { font-size: 12.5px; color: #555; line-height: 1.65; }
+
+/* step list */
+.step-list { list-style: none; }
+.step-list li { display: flex; gap: 13px; align-items: flex-start; margin-bottom: 1rem; }
+.step-num { width: 28px; height: 28px; border-radius: 50%; background: #edf2e8; color: #5a7a50; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.step-num.terra { background: #faf0e8; color: #8A5000; }
+.step-num.red { background: #fdf0ef; color: #C0392B; }
+.step-text { font-size: 14px; color: #1a1a1a; line-height: 1.75; }
+.step-text strong { font-weight: 700; }
+
+.divider { border: none; border-top: 1px solid #ede9e4; margin: 1.25rem 0; }
+
+/* data table */
+.data-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-bottom: 1.25rem; }
+.data-table th { background: #3D3229; color: #FDFBF7; padding: 9px 13px; text-align: left; font-weight: 500; font-size: 12px; }
+.data-table td { padding: 9px 13px; border-bottom: 1px solid #e8e4de; color: #444; line-height: 1.6; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:nth-child(even) td { background: #faf8f5; }
+.data-table .good { color: #5a7a50; font-weight: 600; }
+.data-table .warn { color: #C17F59; font-weight: 600; }
+.data-table .bad { color: #C0392B; font-weight: 600; }
+.data-table .note { color: #888; font-size: 12px; }
+
+/* progress bar */
+.prog-wrap { margin-bottom: 1rem; }
+.prog-label { display: flex; justify-content: space-between; font-size: 12.5px; color: #666; margin-bottom: 5px; }
+.prog-bar { height: 10px; border-radius: 5px; background: #e8e4de; overflow: hidden; }
+.prog-fill { height: 100%; border-radius: 5px; transition: width 0.6s ease; }
+.prog-fill.sage { background: #8B9E7E; }
+.prog-fill.terra { background: #C17F59; }
+.prog-fill.amber { background: #D4A84B; }
+.prog-fill.bark { background: #3D3229; }
+.prog-fill.red { background: #C0392B; }
+
+/* big stat */
+.big-stat-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 1.25rem; }
+.big-stat { text-align: center; background: #F7F4F0; border: 1px solid #e8e4de; border-radius: 12px; padding: 1.1rem 0.5rem; }
+.big-stat .bsv { font-size: 26px; font-weight: 700; font-family: 'Playfair Display', serif; color: #1a1a1a; }
+.big-stat .bsl { font-size: 11px; color: #888; margin-top: 4px; }
+.big-stat .bst { font-size: 11px; color: #aaa; margin-top: 2px; }
+.big-stat.good .bsv { color: #5a7a50; }
+.big-stat.warn .bsv { color: #C17F59; }
+.big-stat.bad .bsv { color: #C0392B; }
+
+/* vs comparison */
+.vs-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: center; margin-bottom: 1.25rem; }
+.vs-box { background: #F7F4F0; border: 1px solid #e8e4de; border-radius: 12px; padding: 1rem; }
+.vs-box h4 { font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.vs-box p { font-size: 13px; color: #444; line-height: 1.65; }
+.vs-box.green { border-color: #8B9E7E; background: #edf2e8; }
+.vs-box.red { border-color: #C0392B; background: #fdf0ef; }
+.vs-mid { font-size: 14px; font-weight: 700; color: #aaa; text-align: center; }
+
+/* body fat visual */
+.fat-diagram { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
+.fat-box { border-radius: 12px; padding: 1rem; }
+.fat-box.subcut { background: #faf8f5; border: 1.5px dashed #d4c8be; }
+.fat-box.visceral { background: #faf0e8; border: 1.5px solid #C17F59; }
+.fat-box h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+.fat-box .ficon { font-size: 24px; margin-bottom: 6px; }
+.fat-box p { font-size: 12.5px; color: #555; line-height: 1.65; }
+.fat-tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 5px; margin-top: 6px; font-weight: 500; }
+.fat-tag.low { background: #edf2e8; color: #5a7a50; }
+.fat-tag.high { background: #faf0e8; color: #8A5000; }
+
+/* muscle mechanism */
+.mech-flow { display: flex; gap: 8px; align-items: stretch; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.mech-step { background: #F7F4F0; border: 1px solid #e8e4de; border-radius: 10px; padding: 0.8rem 0.9rem; flex: 1; min-width: 110px; }
+.mech-step .ms-icon { font-size: 18px; margin-bottom: 5px; }
+.mech-step .ms-title { font-size: 12px; font-weight: 700; color: #1a1a1a; margin-bottom: 3px; }
+.mech-step .ms-body { font-size: 11.5px; color: #666; line-height: 1.5; }
+.mech-arrow { display: flex; align-items: center; color: #ccc; font-size: 18px; flex-shrink: 0; padding-top: 0.5rem; }
+
+/* exercise table */
+.ex-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 1.25rem; }
+.ex-table th { background: #8B9E7E; color: #fff; padding: 8px 12px; text-align: left; font-weight: 500; font-size: 11.5px; }
+.ex-table td { padding: 9px 12px; border-bottom: 1px solid #e8e4de; color: #444; line-height: 1.55; vertical-align: top; }
+.ex-table tr:last-child td { border-bottom: none; }
+.ex-table tr:nth-child(even) td { background: #faf8f5; }
+.badge { display: inline-block; font-size: 10.5px; padding: 2px 8px; border-radius: 5px; font-weight: 500; }
+.badge.now { background: #edf2e8; color: #5a7a50; }
+.badge.later { background: #faf0e8; color: #8A5000; }
+.badge.no { background: #f0eeec; color: #999; }
+
+/* summary grid */
+.sum-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 1.5rem; }
+.sum-card { background: #edf2e8; border-radius: 10px; padding: 1rem; text-align: center; }
+.sum-card .sv { font-size: 1.8rem; }
+.sum-card .sl { font-size: 12px; color: #3a6b2e; margin-top: 4px; font-weight: 500; }
+
+/* waist indicator */
+.waist-bar-wrap { margin-bottom: 1.25rem; }
+.waist-labels { display: flex; justify-content: space-between; font-size: 11.5px; color: #888; margin-bottom: 6px; }
+.waist-bar { height: 16px; border-radius: 8px; background: linear-gradient(to right, #a8c89a 0%, #a8c89a 40%, #d4b86a 40%, #d4b86a 55%, #d4856a 55%, #d4856a 70%, #b85540 70%); margin-bottom: 8px; position: relative; }
+.waist-marker { position: absolute; top: -6px; transform: translateX(-50%); font-size: 14px; }
+.waist-zones { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; }
+.wz { padding: 6px 8px; border-radius: 7px; font-size: 12px; text-align: center; font-weight: 500; }
+.wz1 { background: #d6edca; color: #3a6b2e; }
+.wz2 { background: #fae9c0; color: #7a5a1a; }
+.wz3 { background: #f0b8b0; color: #7a1f1f; }
+
+/* ─── MEMO MODE ─── */
+#memo-mode { display:none; width:100%; max-width:760px; background:#fff; border-radius:16px; border:1px solid #e8e4de; padding:2rem 2.25rem 3rem; }
+#memo-mode.show { display:block; }
+.mm h2 { font-family:'Playfair Display',serif; font-size:1.5rem; color:#3D3229; margin-bottom:6px; margin-top:2rem; }
+.mm h2:first-child { margin-top:0; }
+.mm h3 { font-size:1rem; font-weight:700; color:#1a1a1a; margin:1.2rem 0 6px; }
+.mm p { font-size:14px; color:#444; line-height:1.85; margin-bottom:10px; }
+.mm strong { color:#1a1a1a; font-weight:700; }
+.mm hr { border:none; border-top:1px solid #e8e4de; margin:1.75rem 0; }
+.mm-tag { font-size:10.5px; text-transform:uppercase; letter-spacing:0.18em; color:#8B9E7E; font-weight:600; display:block; margin-bottom:6px; }
+.mm-box { border-radius:10px; padding:14px 16px; margin:10px 0; font-size:13.5px; line-height:1.75; color:#333; }
+.mm-box p { font-size:13.5px; color:#333; margin-bottom:5px; }
+.mm-box p:last-child { margin:0; }
+.mm-box.sage { background:#edf2e8; border-left:4px solid #8B9E7E; }
+.mm-box.terra { background:#faf0e8; border-left:4px solid #C17F59; }
+.mm-box.amber { background:#fdf8ec; border-left:4px solid #D4A84B; }
+.mm-table { width:100%; border-collapse:collapse; font-size:13.5px; margin:10px 0; }
+.mm-table th { background:#3D3229; color:#FDFBF7; padding:8px 13px; text-align:left; font-weight:500; font-size:12px; }
+.mm-table td { padding:8px 13px; border-bottom:1px solid #e8e4de; color:#444; line-height:1.6; }
+.mm-table tr:last-child td { border-bottom:none; }
+.mm-table tr:nth-child(even) td { background:#faf8f5; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">Abby Eat Life｜<em>教學工具</em></div>
+  <div class="mode-toggle">
+    <button class="mode-btn active" id="btn-teach" onclick="switchMode('teach')">📽 教學模式</button>
+    <button class="mode-btn" id="btn-memo" onclick="switchMode('memo')">📋 備忘筆記</button>
+  </div>
+</div>
+
+<!-- ══════════ TEACH MODE ══════════ -->
+<div class="deck" id="teach-mode">
+  <div class="nav-bar">
+    <button class="nav-btn" id="btn-prev" onclick="go(-1)">← 上一頁</button>
+    <div class="nav-dots" id="dots"></div>
+    <button class="nav-btn" id="btn-next" onclick="go(1)">下一頁 →</button>
+  </div>
+  <div style="text-align:center;font-size:12px;color:#bbb;margin-bottom:0.85rem;" id="ctr"></div>
+
+  <!-- S0: 封面 -->
+  <div class="slide active" id="s0">
+    <div class="slide-label">第二堂課</div>
+    <h1>Rita，<br>你這兩週<em>做得很好。</em></h1>
+    <div class="subtitle">今天的課有四個重點：確認本期進度、深入看你的飲食數據、認識腹部脂肪的成因、以及為什麼運動對你來說是現階段最重要的事。</div>
+    <div class="card-grid">
+      <div class="card good">
+        <div class="c-label">體重變化</div>
+        <div class="c-val">▼ 0.4 kg</div>
+        <div class="c-sub">69.0 → 68.6 kg</div>
+      </div>
+      <div class="card good">
+        <div class="c-label">期間包含</div>
+        <div class="c-val">日本五天</div>
+        <div class="c-sub">出遊仍守住，不容易</div>
+      </div>
+      <div class="card warn">
+        <div class="c-label">蛋白質平均</div>
+        <div class="c-val">95.3 g</div>
+        <div class="c-sub">目標 100～110g，接近</div>
+      </div>
+    </div>
+    <div class="hl">
+      <p>很多人出國旅遊後體重上升 1～2 kg，你卻還減了 0.4 kg。<br>這代表你的飲食底子已經打起來了——<strong>今天要做的，是繼續優化、再往前走一步。</strong></p>
+    </div>
+    <div class="two-col">
+      <div class="mini-card">
+        <h4>今天四個主題</h4>
+        <ul>
+          <li>① 本期進度確認</li>
+          <li>② 飲食數據深度分析</li>
+          <li>③ 腹部脂肪認知建立</li>
+          <li>④ 運動：為什麼現在最重要</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>本期目標回顧</h4>
+        <ul>
+          <li>體重 ≤ 68.5 kg ✅</li>
+          <li>蛋白質每天 100g 🔶</li>
+          <li>腰圍開始往下走（待量）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- S1: 飲食數據總覽 -->
+  <div class="slide" id="s1">
+    <div class="slide-label">飲食分析 · 本期數據</div>
+    <h1>這兩週，<br>你的飲食<em>長什麼樣？</em></h1>
+    <div class="subtitle">有記錄的 7 天數據（日本期間無記錄）。你已經比第一期進步非常多——問題集中在少數幾天。</div>
+
+    <table class="data-table">
+      <tr><th>日期</th><th>熱量</th><th>蛋白質</th><th>碳水</th><th>脂肪</th><th>評估</th></tr>
+      <tr><td>5/18 上課當天</td><td>1,321</td><td class="warn">99.8g</td><td>119g</td><td>49g</td><td class="note">接近達標</td></tr>
+      <tr><td>5/19</td><td class="bad">931</td><td class="bad">58.7g</td><td>102g</td><td>32g</td><td class="bad">⚠️ 過低</td></tr>
+      <tr><td>5/20</td><td>1,392</td><td class="good">103.3g</td><td>135g</td><td>49g</td><td class="good">✅ 達標</td></tr>
+      <tr><td>5/21</td><td>1,454</td><td class="good">109.8g</td><td>129g</td><td>56g</td><td class="good">✅ 達標</td></tr>
+      <tr><td>5/22</td><td>1,266</td><td class="good">104.4g</td><td>116g</td><td>43g</td><td class="good">✅ 達標</td></tr>
+      <tr><td>5/28 回台首日</td><td class="bad">972</td><td class="warn">83.1g</td><td>96g</td><td>28g</td><td class="bad">⚠️ 過低</td></tr>
+      <tr><td>5/29</td><td>1,319</td><td class="good">107.8g</td><td>127g</td><td>42g</td><td class="good">✅ 達標</td></tr>
+      <tr style="background:#F7F4F0;"><td><strong>平均</strong></td><td class="warn"><strong>1,236</strong></td><td class="warn"><strong>95.3g</strong></td><td>118g</td><td>43g</td><td class="note">略偏低</td></tr>
+    </table>
+
+    <div class="hl terra">
+      <p><strong>最需要討論的不是那些好的天——而是 5/19 和 5/28。</strong><br>
+      5/19 只有 931 kcal、5/28 只有 972 kcal，這兩天比 BMR 還低。這個話題等等來談。</p>
+    </div>
+  </div>
+
+  <!-- S2: 三大營養素達標分析 -->
+  <div class="slide" id="s2">
+    <div class="slide-label">飲食分析 · 營養素達標率</div>
+    <h1>目標達標了嗎？<br><em>蛋白質</em>是關鍵缺口</h1>
+    <div class="subtitle">對照第一期設定的目標，來看這期實際執行的表現。</div>
+
+    <div class="big-stat-row">
+      <div class="big-stat warn">
+        <div class="bsv">1,236</div>
+        <div class="bsl">平均熱量 kcal</div>
+        <div class="bst">目標 1,280～1,400</div>
+      </div>
+      <div class="big-stat warn">
+        <div class="bsv">95.3g</div>
+        <div class="bsl">平均蛋白質</div>
+        <div class="bst">目標 100～110g</div>
+      </div>
+      <div class="big-stat good">
+        <div class="bsv">118g</div>
+        <div class="bsl">平均碳水</div>
+        <div class="bst">目標 120～140g</div>
+      </div>
+      <div class="big-stat good">
+        <div class="bsv">43g</div>
+        <div class="bsl">平均脂肪</div>
+        <div class="bst">目標 35～45g</div>
+      </div>
+    </div>
+
+    <div class="prog-wrap">
+      <div class="prog-label"><span>熱量達標率</span><span>1,236 / 1,280 kcal（88%）</span></div>
+      <div class="prog-bar"><div class="prog-fill amber" style="width:88%"></div></div>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-label"><span>蛋白質達標率（100g 天數）</span><span>3 / 7 天（43%）</span></div>
+      <div class="prog-bar"><div class="prog-fill terra" style="width:43%"></div></div>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-label"><span>碳水在目標範圍內</span><span>5 / 7 天（71%）</span></div>
+      <div class="prog-bar"><div class="prog-fill sage" style="width:71%"></div></div>
+    </div>
+    <div class="prog-wrap">
+      <div class="prog-label"><span>脂肪在目標範圍內</span><span>6 / 7 天（86%）</span></div>
+      <div class="prog-bar"><div class="prog-fill sage" style="width:86%"></div></div>
+    </div>
+
+    <div class="hl">
+      <p>碳水和脂肪你都掌握得很好。蛋白質是唯一需要繼續加強的地方——<strong>尤其早餐幾乎都沒有蛋白質來源。</strong>這件事等等要一起來解決。</p>
+    </div>
+  </div>
+
+  <!-- S3: 穩定性問題 -->
+  <div class="slide" id="s3">
+    <div class="slide-label">飲食分析 · 穩定性</div>
+    <h1>吃更少，<br>不是答案——<em>穩定才是。</em></h1>
+    <div class="subtitle">你上次問過「是不是要吃更少？」。今天來正式回答這個問題，因為這非常重要。</div>
+
+    <div class="vs-row">
+      <div class="vs-box red">
+        <h4>❌ 你的 5/19 和 5/28</h4>
+        <p>931 kcal / 972 kcal<br>低於 BMR（1,430 kcal）<br><br>血糖偏低 → 胃飢餓素（Ghrelin）當天就升高<br>→ 大腦收到更強的飢餓信號<br>→ 下一頓更難控制、外出更容易爆發</p>
+      </div>
+      <div class="vs-mid">VS</div>
+      <div class="vs-box green">
+        <h4>✅ 你的 5/20、5/21、5/22</h4>
+        <p>1,266～1,454 kcal<br>在合理範圍內<br><br>血糖穩定 → 胃飢餓素維持正常水位<br>→ 飽足感正常、不會過度飢餓<br>→ 體重才能穩定下降</p>
+      </div>
+    </div>
+
+    <div class="hl terra">
+      <p><strong>「吃更少」只會讓下一次的反彈更大。</strong><br>
+      你 5/19 吃 931 kcal，5/20 反而蛋白質才開始補回來。這不是巧合——身體在補。<br>
+      我們要做的是：<strong>每天穩定在 1,280～1,400 kcal，不要有任何天低於 1,200。</strong></p>
+    </div>
+
+    <div class="two-col">
+      <div class="mini-card">
+        <h4>5/28 特別要討論</h4>
+        <p>日本回來第一天只吃 972 kcal。這是用節食來「補救」旅遊嗎？這個心理模式是我們要一起打破的。</p>
+      </div>
+      <div class="mini-card">
+        <h4>正確的心態</h4>
+        <p>去日本玩得開心，回來之後不過度少吃來還債，只需要把節奏抓回來——該吃的吃夠、蛋白質補上來，然後提升活動量就可以了。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4: 腹部脂肪認知 -->
+  <div class="slide" id="s4">
+    <div class="slide-label">腹部脂肪 · 認知建立</div>
+    <h1>腰圍 92 cm，<br>比體重數字<em>更值得重視</em></h1>
+    <div class="subtitle">腰圍超標代表的不只是體型問題，而是內臟脂肪可能偏高的信號。這件事我們今天要認識清楚。</div>
+
+    <div class="waist-bar-wrap">
+      <div class="waist-labels"><span>理想 ＜ 80 cm</span><span>邊緣 80～85 cm</span><span>⚠️ 超標 ≥ 85 cm</span></div>
+      <div class="waist-bar">
+        <div class="waist-marker" style="left:82%">📍</div>
+      </div>
+      <div class="waist-zones">
+        <div class="wz wz1">＜ 80 cm　代謝風險低</div>
+        <div class="wz wz2">80～85 cm　需要留意</div>
+        <div class="wz wz3">≥ 85 cm　代謝症候群警訊</div>
+      </div>
+    </div>
+
+    <div class="fat-diagram">
+      <div class="fat-box subcut">
+        <div class="ficon">🤏</div>
+        <h4 style="color:#6b5a4e;">皮下脂肪</h4>
+        <p>皮膚下方，用手可以捏到，質地鬆軟。代謝活性較低，健康風險相對小。對飲食和運動反應較慢。</p>
+        <span class="fat-tag low">健康風險：相對低</span>
+<span style="font-size:11px; color:#888;">＊位置有差：臀腿影響小，腹部皮下仍需留意</span>
+      </div>
+      <div class="fat-box visceral">
+        <div class="ficon">⚠️</div>
+        <h4 style="color:#8A5000;">內臟脂肪</h4>
+        <p>器官之間，捏不到，肚子摸起來偏硬或往前鼓出。代謝活性高，釋放發炎物質，與心血管疾病、胰島素阻抗直接相關。</p>
+        <span class="fat-tag high">健康風險：高</span>
+      </div>
+    </div>
+
+    <div class="hl amber">
+      <p><strong>好消息：內臟脂肪對飲食和運動的反應最快。</strong><br>
+      相比皮下脂肪，內臟脂肪在飲食調整和運動啟動後消退得最明顯——腰圍通常是你最先看到改變的地方。</p>
+    </div>
+  </div>
+
+  <!-- S5: 為什麼Rita的腹部脂肪特別容易累積 -->
+  <div class="slide" id="s5">
+    <div class="slide-label">腹部脂肪 · 你的三個風險因子</div>
+    <h1>為什麼是腹部？<br>你身上有<em>三件事疊在一起</em></h1>
+    <div class="subtitle">腰圍超標不是你的錯，但了解原因，才知道怎麼精準處理。</div>
+
+    <div class="triple">
+      <div class="t-card terra">
+        <div class="t-icon">🌸</div>
+        <h4>雌激素開始走低</h4>
+        <p>接近更年期，雌激素下降讓脂肪分佈從臀腿轉向<strong>腹部</strong>，且胰島素敏感性同步下降，碳水更容易囤積在中段。</p>
+      </div>
+      <div class="t-card amber">
+        <div class="t-icon">😤</div>
+        <h4>長期高壓 → 皮質醇偏高</h4>
+        <p>工作＋家庭的長期壓力讓皮質醇長期偏高。皮質醇有一個很明確的作用：<strong>直接促進腹部內臟脂肪囤積。</strong></p>
+      </div>
+      <div class="t-card bark">
+        <div class="t-icon">🪑</div>
+        <h4>活動量低 + 肌肉量不足</h4>
+        <p>肌肉是碳水的最大倉庫。肌肉量不足時，吃進來的碳水沒有地方去，<strong>更容易轉為脂肪囤積在腹部。</strong></p>
+      </div>
+    </div>
+
+    <div class="hl">
+      <p><strong>這三個因子加在一起，才是腰圍超標的真正原因。</strong><br>
+      飲食調整可以處理其中一部分，但要真正讓腰圍下來，<strong>運動是缺少的那一塊</strong>——這就是我們今天最後要談的主題。</p>
+    </div>
+
+    <div class="two-col">
+      <div class="mini-card">
+        <h4>我們能控制的</h4>
+        <ul>
+          <li>✅ 飲食穩定性（你已經在做）</li>
+          <li>✅ 蛋白質攝取（持續強化）</li>
+          <li>✅ 活動量與肌肉量（今天重點）</li>
+          <li>🔶 壓力管理（長期目標）</li>
+        </ul>
+      </div>
+      <div class="mini-card">
+        <h4>腰圍目標</h4>
+        <p>短期：往 <strong>88 cm</strong> 以內走<br>中期：回到 <strong>80 cm</strong> 以內<br><br>腰圍的改變比體重更能反映真實的脂肪減少。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6: 運動認知 -->
+  <div class="slide" id="s6">
+    <div class="slide-label">運動認知 · 為什麼肌肉很重要</div>
+    <h1>肌肉，<br>是你腹部脂肪的<em>天然解藥</em></h1>
+    <div class="subtitle">不是要你去健身房操自己。是讓你理解：你的身體現在最需要的，不是更嚴格的飲食，而是多一點點肌肉。</div>
+
+    <div class="mech-flow">
+      <div class="mech-step">
+        <div class="ms-icon">💪</div>
+        <div class="ms-title">建立肌肉</div>
+        <div class="ms-body">每週 2 次阻力訓練，讓身體多一點肌肉組織</div>
+      </div>
+      <div class="mech-arrow">→</div>
+      <div class="mech-step">
+        <div class="ms-icon">🍚</div>
+        <div class="ms-title">碳水有地方去</div>
+        <div class="ms-body">肌肉是碳水的最大倉庫，減少脂肪囤積機率</div>
+      </div>
+      <div class="mech-arrow">→</div>
+      <div class="mech-step">
+        <div class="ms-icon">📉</div>
+        <div class="ms-title">胰島素阻抗改善</div>
+        <div class="ms-body">肌肉收縮本身不需要胰島素就能清血糖</div>
+      </div>
+      <div class="mech-arrow">→</div>
+      <div class="mech-step">
+        <div class="ms-icon">🔥</div>
+        <div class="ms-title">腹部脂肪加速消退</div>
+        <div class="ms-body">內臟脂肪對運動反應最快，腰圍開始動</div>
+      </div>
+    </div>
+
+    <div class="hl terra">
+      <p><strong>運動後的胰島素敏感性改善可以持續 24～48 小時。</strong><br>
+      意思是：你今天做了運動，明天的身體在處理碳水時會更有效率——就算你明天沒有運動也一樣。這就是為什麼每週 2 次就能看到效果。</p>
+    </div>
+
+    <div class="hl amber">
+      <p><strong>代謝率的關係：</strong>肌肉量每增加 1 kg，基礎代謝率大約上升 13～15 kcal／天。<br>
+      這個數字聽起來不多，但加上胰島素敏感性改善和內臟脂肪消退，<strong>複合效果非常顯著。</strong></p>
+    </div>
+  </div>
+
+  <!-- S7: 運動處方 -->
+  <div class="slide" id="s7">
+    <div class="slide-label">運動認知 · 適合你的起點</div>
+    <h1>你不需要愛運動，<br>只需要<em>15 分鐘，一週兩次</em></h1>
+    <div class="subtitle">根據你的狀況，設計一個門檻超低的運動起點。不用換衣服，在家客廳就可以做。</div>
+
+    <table class="ex-table">
+      <tr><th>類型</th><th>內容</th><th>頻率</th><th>現階段</th></tr>
+      <tr>
+        <td><strong>日常活動量 ↑</strong></td>
+        <td>每坐 45 分鐘站起來動 5 分鐘；在家工作時電話站著接；超慢跑拉長到 45 分鐘</td>
+        <td>每天</td>
+        <td><span class="badge now">立刻開始</span></td>
+      </tr>
+      <tr>
+        <td><strong>居家肌力訓練</strong></td>
+        <td>深蹲 × 15 下、弓步蹲 × 10 下（每腳）、牆壁伏地挺身 × 12 下、棒式撐 30 秒<br><span style="font-size:12px;color:#888;">每個動作 3 組，共約 15 分鐘</span></td>
+        <td>每週 2 次</td>
+        <td><span class="badge now">本期目標</span></td>
+      </tr>
+      <tr>
+        <td><strong>團體有氧課</strong></td>
+        <td>你姊姊有在上的那種，或瑜伽、皮拉提斯</td>
+        <td>視情況</td>
+        <td><span class="badge later">之後可加入</span></td>
+      </tr>
+      <tr>
+        <td><strong>健身房重訓</strong></td>
+        <td>機器或自由重量</td>
+        <td>—</td>
+        <td><span class="badge no">不強迫</span></td>
+      </tr>
+    </table>
+
+    <div class="hl">
+      <p><strong>執行方式建議：</strong><br>
+      不用換運動服，家居服可以。做完之後傳一個訊息給我「做完了」。<br>
+      兩週內完成 4 次，下次上課我們就來看腰圍有沒有開始動。</p>
+    </div>
+  </div>
+
+  <!-- S8: 本期行動清單 -->
+  <div class="slide" id="s8">
+    <div class="slide-label">本期行動計劃</div>
+    <h1>接下來兩週，<br><em>四件事</em>就夠了</h1>
+    <div class="subtitle">不需要全部完美，先把這四件事做到。下次見面我們就來確認成果。</div>
+
+    <ul class="step-list">
+      <li>
+        <div class="step-num">01</div>
+        <div class="step-text">
+          <strong>熱量不要低於 1,200 kcal</strong><br>
+          不管那天有沒有在控制，不要讓身體感覺到能量短缺。5/19 和 5/28 那樣的天，我們要消滅它。
+        </div>
+      </li>
+      <li>
+        <div class="step-num">02</div>
+        <div class="step-text">
+          <strong>早餐加入蛋白質</strong><br>
+          不只是鮮奶咖啡。加一顆雞蛋、或豆漿換成無糖高蛋白豆漿 300 ml，讓早餐蛋白質至少 15g。
+        </div>
+      </li>
+      <li>
+        <div class="step-num terra">03</div>
+        <div class="step-text">
+          <strong>每週 2 次居家肌力訓練</strong><br>
+          深蹲＋弓步＋牆壁伏地挺身＋棒式，15 分鐘。做完傳訊息給我。兩週目標：完成 4 次。
+        </div>
+      </li>
+      <li>
+        <div class="step-num">04</div>
+        <div class="step-text">
+          <strong>下次上課前量腰圍</strong><br>
+          肚臍水平位置，早上空腹量。這個數字比體重更重要——我們要開始追蹤它。
+        </div>
+      </li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <div class="big-stat-row" style="grid-template-columns:repeat(3,1fr);">
+      <div class="big-stat">
+        <div class="bsv" style="color:#C17F59;">68.2</div>
+        <div class="bsl">下次體重目標 kg</div>
+        <div class="bst">再減 0.4 kg</div>
+      </div>
+      <div class="big-stat">
+        <div class="bsv" style="color:#8B9E7E;">100g</div>
+        <div class="bsl">蛋白質每日目標</div>
+        <div class="bst">每餐 30g 以上</div>
+      </div>
+      <div class="big-stat">
+        <div class="bsv" style="color:#3D3229;">4 次</div>
+        <div class="bsl">居家肌力訓練</div>
+        <div class="bst">兩週內完成</div>
+      </div>
+    </div>
+
+
+</div><!-- /deck -->
+
+<!-- ══════════ MEMO MODE ══════════ -->
+<div id="memo-mode" class="mm">
+  <span class="mm-tag">備忘筆記｜Rita 第二堂課</span>
+  <h2>本期數據速查</h2>
+
+  <table class="mm-table">
+    <tr><th>日期</th><th>熱量</th><th>蛋白質</th><th>碳水</th><th>脂肪</th><th>備註</th></tr>
+    <tr><td>5/18</td><td>1,321</td><td>99.8g</td><td>119g</td><td>49g</td><td>接近達標</td></tr>
+    <tr><td>5/19</td><td style="color:#C0392B;font-weight:600;">931</td><td style="color:#C0392B;font-weight:600;">58.7g</td><td>102g</td><td>32g</td><td style="color:#C0392B;">⚠️ 過低</td></tr>
+    <tr><td>5/20</td><td>1,392</td><td style="color:#5a7a50;font-weight:600;">103.3g</td><td>135g</td><td>49g</td><td style="color:#5a7a50;">✅</td></tr>
+    <tr><td>5/21</td><td>1,454</td><td style="color:#5a7a50;font-weight:600;">109.8g</td><td>129g</td><td>56g</td><td style="color:#5a7a50;">✅</td></tr>
+    <tr><td>5/22</td><td>1,266</td><td style="color:#5a7a50;font-weight:600;">104.4g</td><td>116g</td><td>43g</td><td style="color:#5a7a50;">✅</td></tr>
+    <tr><td>5/28</td><td style="color:#C0392B;font-weight:600;">972</td><td>83.1g</td><td>96g</td><td>28g</td><td style="color:#C0392B;">⚠️ 過低</td></tr>
+    <tr><td>5/29</td><td>1,319</td><td style="color:#5a7a50;font-weight:600;">107.8g</td><td>127g</td><td>42g</td><td style="color:#5a7a50;">✅</td></tr>
+    <tr><td><strong>平均</strong></td><td><strong>1,236</strong></td><td><strong>95.3g</strong></td><td>118g</td><td>43g</td><td>—</td></tr>
+  </table>
+
+  <div class="mm-box sage">
+    <p><strong>體態記錄：</strong>5/15 體重 69.0 kg，腰圍 92 cm。5/28 體重 68.6 kg，腰圍未測量。<br>
+    本期減 0.4 kg，包含日本五天無記錄期間。腰圍請本次上課前提醒她量。</p>
+  </div>
+
+  <hr>
+  <span class="mm-tag">飲食記錄注意到的數字錯誤</span>
+  <h3>需要校正的記錄問題</h3>
+  <div class="mm-box terra">
+    <p><strong>5/18 晚餐：</strong>洋蔥半顆記錄脂肪 14.4g——洋蔥幾乎無脂肪，此數字明顯有誤，可能是欄位搞混（可能是記到其他食材的脂肪，或打錯欄）。輕描淡寫提一下，不要讓她覺得被檢討。</p>
+  </div>
+  <div class="mm-box amber">
+    <p><strong>說法建議：</strong>「我有發現一個地方，洋蔥的脂肪欄好像記錯了，這種小失誤很正常，我們慢慢練習。你整體記錄的完整度已經非常好了。」</p>
+  </div>
+
+  <hr>
+  <span class="mm-tag">5/19 和 5/28 低熱量天的討論策略</span>
+  <h3>怎麼問她這兩天發生什麼</h3>
+  <div class="mm-box">
+    <p><strong>5/19（931 kcal）：</strong>記錄顯示早餐只有鮮奶咖啡，午餐很少，晚餐也偏輕。可能原因：工作壓力大沒時間吃、胃口不好、刻意少吃。直接問她那天發生什麼。</p>
+    <p><strong>5/28（972 kcal）：</strong>日本回來第一天。極可能是「補救心理」——想用少吃來彌補旅遊期間吃多的罪惡感。這個心理模式需要打破，但語氣要溫和。</p>
+  </div>
+  <div class="mm-box sage">
+    <p><strong>引導語：</strong>「你 5/28 剛從日本回來那天，我看到只有 972 大卡，是不是想說旅遊期間吃多了，回來補救一下？」<br>
+    接著：「這個心態我完全理解，但身體不是在記帳。你日本多走路、多消耗，回來正常吃才是對的，不需要補救。」</p>
+  </div>
+  <div class="mm-box amber">
+    <p><strong>⚠️ 科學說法備忘：荷爾蒙時間尺度要說對</strong></p>
+    <p>• <strong>胃飢餓素（Ghrelin）：</strong>吃太少幾小時內就會升高，當天就影響下一餐的飢餓感與食慾控制。用來解釋「一兩天少吃 → 下一頓更難控制」是正確的。</p>
+    <p>• <strong>瘦體素（Leptin）：</strong>反映的是長期脂肪儲存量，需要持續數週的熱量限制才會有明顯下降。不適合用來解釋一兩天少吃的影響。適合用在解釋長期忽高忽低整體模式的後果。</p>
+    <p>• <strong>對 Rita 說的正確版本：</strong>「吃太少那天，胃飢餓素（讓你更餓的荷爾蒙）當天就會升高，所以下一頓飢餓感更強、更難控制。這跟意志力無關，是荷爾蒙。」</p>
+  </div>
+
+  <hr>
+  <span class="mm-tag">內臟脂肪機制備忘</span>
+  <h3>腹部脂肪的生理機制</h3>
+  <table class="mm-table">
+    <tr><th>因子</th><th>機制</th><th>Rita 的狀況</th></tr>
+    <tr><td>雌激素下降</td><td>脂肪分佈從臀腿轉向腹部；胰島素敏感性同步下降</td><td>44歲，接近更年期前期</td></tr>
+    <tr><td>皮質醇偏高</td><td>直接促進內臟脂肪囤積；抑制脂肪氧化；造成功能性胰島素阻抗</td><td>工作家庭雙重長期壓力</td></tr>
+    <tr><td>肌肉量不足</td><td>骨骼肌是最大葡萄糖倉庫；肌肉少→碳水沒有出口→囤積脂肪</td><td>幾乎無運動習慣</td></tr>
+  </table>
+  <div class="mm-box amber">
+    <p><strong>腰圍標準（台灣代謝症候群）：</strong>女性 ≥ 80 cm 為超標，≥ 85 cm 為代謝症候群標準之一。Rita 腰圍 92 cm，已超標。但<strong>內臟脂肪對飲食和運動的反應最快</strong>，這是好消息。</p>
+  </div>
+
+  <hr>
+  <span class="mm-tag">肌肉改善胰島素阻抗的兩條路徑</span>
+  <h3>運動機制：可以跟她說的版本</h3>
+  <table class="mm-table">
+    <tr><th>機制</th><th>說明</th><th>效果持續</th></tr>
+    <tr><td><strong>GLUT4 急性上調</strong></td><td>肌肉收縮不需要胰島素就能把 GLUT4 轉運體送到細胞膜，直接讓葡萄糖進入肌肉。血糖自動清掉，胰島素不用做那麼多工作。</td><td>運動後 24～48 小時</td></tr>
+    <tr><td><strong>肌肉量增加（慢性）</strong></td><td>肌肉量越多，全身葡萄糖緩衝容量越大，同樣一份碳水需要的胰島素越少。</td><td>長期累積效果</td></tr>
+  </table>
+  <div class="mm-box sage">
+    <p><strong>對 Rita 說的語言版本：</strong>「你每次做重訓，肌肉在收縮的時候，它本身不需要胰島素就能幫你清掉血糖。這個效果在運動後還會繼續撐 24～48 小時。所以你禮拜一做了，禮拜二你的身體在處理碳水時就還在這個比較好的狀態。這就是為什麼一週兩次就夠了。」</p>
+  </div>
+
+  <hr>
+  <span class="mm-tag">居家運動動作說明</span>
+  <h3>四個動作的執行細節</h3>
+  <div class="mm-box">
+    <p><strong>① 深蹲 Squat：</strong>雙腳與肩同寬，腳尖微開，膝蓋跟腳尖同方向，蹲到大腿平行地面，背打直。3 組 × 15 下。針對大腿和臀部，最大肌群，燃脂效率最高。</p>
+    <p><strong>② 弓步蹲 Lunge：</strong>一腳向前跨一大步，後膝蓋輕碰地，回來換腳。3 組 × 每腳 10 下。可以扶牆做。針對臀部和大腿。</p>
+    <p><strong>③ 牆壁伏地挺身：</strong>雙手撐牆，身體斜 45 度，彎手肘接近牆面再推回。3 組 × 12 下。比標準伏地挺身容易很多，針對胸和手臂。</p>
+    <p><strong>④ 棒式 Plank：</strong>手肘撐地，身體打直，撐 30 秒。3 組。核心穩定，直接強化腹部肌肉。可以從 20 秒開始沒關係。</p>
+  </div>
+  <div class="mm-box terra">
+    <p><strong>如果她說「做不到」：</strong>深蹲做不標準可以先坐椅子再站起來代替；棒式撐不住可以從跪姿棒式開始。重點是<strong>開始</strong>，形式先放寬。</p>
+  </div>
+
+  <hr>
+  <span class="mm-tag">早餐蛋白質補強建議</span>
+  <h3>幫她設計早餐蛋白質選項</h3>
+  <div class="mm-box sage">
+    <p>她的習慣是美式咖啡＋鮮奶。可以在不改變太多的情況下增加蛋白質：</p>
+    <p>• 鮮奶 → 換成無糖豆漿 300 ml（蛋白質 10g）</p>
+    <p>• 加 1～2 顆水煮蛋或溫泉蛋（每顆 7g，兩顆 14g）</p>
+    <p>• 加毛豆 50g（蛋白質約 7g）</p>
+    <p>• 她 5/18 有吃鮭魚早餐，那天蛋白質最高，可以鼓勵複製</p>
+  </div>
+  <p><strong>目標：</strong>早餐蛋白質至少 15g，這樣午餐和晚餐各 30g 就可以輕鬆到 100g。</p>
+</div>
+
+<script>
+const TOTAL = 9;
+let cur = 0;
+const dotsEl = document.getElementById('dots');
+const ctrEl = document.getElementById('ctr');
+
+for (let i = 0; i < TOTAL; i++) {
+  const d = document.createElement('button');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+}
+
+function goTo(n) {
+  document.getElementById('s' + cur).classList.remove('active');
+  dotsEl.children[cur].classList.remove('active');
+  cur = ((n % TOTAL) + TOTAL) % TOTAL;
+  document.getElementById('s' + cur).classList.add('active');
+  dotsEl.children[cur].classList.add('active');
+  ctrEl.textContent = (cur + 1) + ' / ' + TOTAL;
+  document.getElementById('btn-prev').disabled = cur === 0;
+  document.getElementById('btn-next').disabled = cur === TOTAL - 1;
+}
+function go(d) { goTo(cur + d); }
+goTo(0);
+
+document.addEventListener('keydown', e => {
+  if (document.getElementById('teach-mode').style.display === 'none') return;
+  if (e.key === 'ArrowRight') go(1);
+  if (e.key === 'ArrowLeft') go(-1);
+});
+
+function switchMode(mode) {
+  const teach = document.getElementById('teach-mode');
+  const memo = document.getElementById('memo-mode');
+  if (mode === 'teach') {
+    teach.style.display = '';
+    memo.classList.remove('show');
+  } else {
+    teach.style.display = 'none';
+    memo.classList.add('show');
+  }
+  document.getElementById('btn-teach').classList.toggle('active', mode === 'teach');
+  document.getElementById('btn-memo').classList.toggle('active', mode === 'memo');
+}
+</script>
+</body>
+</html>
