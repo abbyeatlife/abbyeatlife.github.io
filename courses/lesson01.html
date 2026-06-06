@@ -21,6 +21,7 @@
     --red-light: #fce4e4;
     --blue-light: #d0e8f2;
     --yellow-light: #fff3cd;
+    --purple-light: #ede7f6;
     --shadow: 0 2px 16px rgba(0,0,0,0.06);
   }
 
@@ -106,6 +107,20 @@
   }
   .golden::before { content: '"'; font-size: 32px; font-weight: 900; color: var(--accent); margin-right: 4px; }
 
+  /* ── 新增：章節分隔標籤 ── */
+  .new-badge {
+    display: inline-block;
+    background: var(--accent-warm);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+    vertical-align: middle;
+    letter-spacing: 1px;
+  }
+
   .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
   @media (max-width: 560px) { .compare-grid { grid-template-columns: 1fr; } }
   .compare-item { border-radius: 12px; padding: 20px; text-align: center; }
@@ -154,6 +169,8 @@
   .tag-green { background: var(--green-light); color: #1b5e20; }
   .tag-red { background: var(--red-light); color: #b71c1c; }
   .tag-yellow { background: var(--yellow-light); color: #5a4a2f; }
+  .tag-blue { background: var(--blue-light); color: #1a4a6b; }
+  .tag-purple { background: var(--purple-light); color: #4a1a7a; }
 
   .pyramid { display: flex; flex-direction: column; align-items: center; margin: 24px 0; gap: 4px; }
   .pyramid-level {
@@ -454,6 +471,131 @@
     padding: 12px 16px;
   }
 
+  /* ══════════════════════════════════════
+     新增區塊專屬樣式
+  ══════════════════════════════════════ */
+
+  /* 荷爾蒙 hormone cards */
+  .hormone-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 16px 0;
+  }
+  @media (max-width: 620px) { .hormone-grid { grid-template-columns: 1fr; } }
+  .hormone-card {
+    border-radius: 14px;
+    padding: 22px 18px;
+    border: 1px solid var(--border);
+    background: white;
+    box-shadow: var(--shadow);
+  }
+  .hormone-card .hc-icon { font-size: 32px; margin-bottom: 8px; }
+  .hormone-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+  .hormone-card .hc-subtitle { font-size: 12px; color: var(--primary-light); font-weight: 600; margin-bottom: 10px; letter-spacing: 0.5px; }
+  .hormone-card p { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+  .hormone-card.cortisol { border-top: 4px solid #e07a5f; }
+  .hormone-card.insulin  { border-top: 4px solid #e8a838; }
+  .hormone-card.meno     { border-top: 4px solid #9c7fc2; }
+
+  /* 代謝適應 timeline */
+  .adapt-timeline { margin: 20px 0; }
+  .adapt-step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .adapt-step-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .adapt-step-content h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+  .adapt-step-content p { font-size: 14px; color: var(--text-light); margin: 0; }
+  .adapt-arrow {
+    text-align: center;
+    color: var(--primary-light);
+    font-size: 20px;
+    margin: -8px 0 -4px 18px;
+  }
+
+  /* 赤字爭議 debate cards */
+  .debate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  @media (max-width: 560px) { .debate-grid { grid-template-columns: 1fr; } }
+  .debate-card {
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+  .debate-card.pro { background: #f0faf4; border-left: 4px solid var(--primary); }
+  .debate-card.con { background: #fff8f0; border-left: 4px solid var(--accent-warm); }
+  .debate-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+  .debate-card.pro h4 { color: var(--primary); }
+  .debate-card.con h4 { color: var(--accent-warm); }
+  .debate-card ul { list-style: none; padding: 0; }
+  .debate-card ul li { font-size: 13px; color: var(--text-light); padding: 4px 0 4px 16px; position: relative; line-height: 1.6; }
+  .debate-card.pro ul li::before { content: '✓'; position: absolute; left: 0; color: var(--primary); font-weight: 700; }
+  .debate-card.con ul li::before { content: '⚠'; position: absolute; left: 0; color: var(--accent-warm); }
+
+  /* 明明沒吃多 reality check */
+  .reality-box {
+    background: linear-gradient(135deg, #fef9f5, #fdf4ef);
+    border: 2px dashed var(--accent);
+    border-radius: 16px;
+    padding: 28px;
+    margin: 20px 0;
+  }
+  .reality-box h3 { font-size: 18px; font-weight: 700; color: #5a4a2f; margin-bottom: 16px; }
+  .reality-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+    align-items: flex-start;
+  }
+  .reality-tag {
+    flex-shrink: 0;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .rt-behavior { background: #fce4e4; color: #b71c1c; }
+  .rt-physio   { background: #fff3cd; color: #6d4c00; }
+  .reality-row p { font-size: 14px; color: var(--text-light); margin: 0; line-height: 1.7; }
+
+  /* ══ 章節間隔線 ══ */
+  .section-divider {
+    border: none;
+    border-top: 2px dashed #e0ddd6;
+    margin: 56px 0 48px;
+  }
+  .section-divider-label {
+    text-align: center;
+    margin: -52px 0 44px;
+    position: relative;
+  }
+  .section-divider-label span {
+    background: var(--bg);
+    padding: 0 16px;
+    font-size: 13px;
+    color: var(--text-light);
+    letter-spacing: 2px;
+  }
+
   .footer {
     text-align: center;
     padding: 40px 20px;
@@ -462,18 +604,17 @@
     border-top: 1px solid var(--border);
     margin-top: 40px;
   }
-/* ── 相關文章 + 回頂部 ── */
-        .related-articles { max-width: 760px; margin: 0 auto; padding: 0 24px 48px; }
-        .related-articles h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--bark); margin-bottom: 16px; text-align: center; }
-        .related-grid { display: flex; flex-direction: column; gap: 8px; }
-        .related-card { background: var(--white); border-radius: var(--radius); padding: 13px 20px; text-decoration: none; border: 1px solid rgba(139,158,126,0.15); transition: all 0.2s ease; text-align: center; }
-        .related-card:hover { background: var(--sage-pale); border-color: var(--sage-light); }
-        .related-card .rc-h { font-size: 0.9rem; font-weight: 500; color: var(--bark-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .related-card:hover .rc-h { color: var(--bark); }
-        .back-to-top { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 12px auto 0; height: 36px; padding: 0 18px; background: var(--sage); color: var(--white); border: none; border-radius: 8px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; font-size: 0.82rem; font-weight: 500; transition: background 0.2s ease; white-space: nowrap; }
-        .back-to-top:hover { background: var(--bark); }
-        .back-to-top svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-    </style>
+
+  .related-articles { max-width: 760px; margin: 0 auto; padding: 0 24px 48px; }
+  .related-articles h4 { font-size: 1.1rem; font-weight: 600; color: var(--primary); margin-bottom: 16px; text-align: center; }
+  .related-grid { display: flex; flex-direction: column; gap: 8px; }
+  .related-card { background: white; border-radius: 12px; padding: 13px 20px; text-decoration: none; border: 1px solid var(--border); transition: all 0.2s ease; text-align: center; }
+  .related-card:hover { background: #f0faf4; border-color: var(--primary-light); }
+  .related-card .rc-h { font-size: 0.9rem; font-weight: 500; color: var(--text-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .back-to-top { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 12px auto 0; height: 36px; padding: 0 18px; background: var(--primary); color: white; border: none; border-radius: 8px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; font-size: 0.82rem; font-weight: 500; transition: background 0.2s ease; white-space: nowrap; }
+  .back-to-top:hover { background: var(--primary-light); }
+  .back-to-top svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+</style>
 </head>
 <body>
 
@@ -554,7 +695,6 @@
     <p class="calc-subtitle">帶入你的數字，馬上算出每日熱量建議</p>
 
     <div class="calc-grid">
-      <!-- 性別 -->
       <div class="calc-field calc-full">
         <label>性別</label>
         <div class="calc-gender">
@@ -562,22 +702,18 @@
           <button class="gender-btn" id="btn-male" onclick="setGender('male')">👨 男性</button>
         </div>
       </div>
-      <!-- 年齡 -->
       <div class="calc-field">
         <label>年齡（歲）</label>
         <input type="number" id="age" placeholder="例：30" min="10" max="100">
       </div>
-      <!-- 身高 -->
       <div class="calc-field">
         <label>身高（公分）</label>
         <input type="number" id="height" placeholder="例：160" min="100" max="250">
       </div>
-      <!-- 體重 -->
       <div class="calc-field">
         <label>體重（公斤）</label>
         <input type="number" id="weight" placeholder="例：55" min="20" max="300">
       </div>
-      <!-- 活動量 -->
       <div class="calc-field">
         <label>活動程度</label>
         <select id="activity">
@@ -626,6 +762,212 @@
 
   <div class="golden">今天這個數字，不是判你對錯，是讓我們之後有調整依據。</div>
 </div>
+
+<!-- ════ 分隔線 ════ -->
+<hr class="section-divider">
+<div class="section-divider-label"><span>▼ 了解熱量平衡的「干擾因子」</span></div>
+
+<!-- ★ 新增 3.5：明明沒吃多卻胖？ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number" style="background:#c17f59;">?</span>
+    <h2>「明明沒吃多，為什麼還是胖？」<span class="new-badge">NEW</span></h2>
+  </div>
+  <div class="card">
+    <p>這是最常被問到的問題之一。答案需要拆開來看：<strong>行為層面</strong>的問題和<strong>生理層面</strong>的問題，成因不同，處理方式也不同。</p>
+    <div class="reality-box">
+      <h3>🔍 兩種層面的原因</h3>
+
+      <div class="reality-row">
+        <span class="reality-tag rt-behavior">行為層面</span>
+        <p><strong>熱量低估</strong>：油脂、醬料、飲料中的熱量容易被忽略。研究顯示，即使是營養知識豐富的人，自我回報的熱量也常低估 20–40%。</p>
+      </div>
+      <div class="reality-row">
+        <span class="reality-tag rt-behavior">行為層面</span>
+        <p><strong>補償效應</strong>：運動後不自覺多吃、久坐時間拉長（NEAT 下降）、情緒性進食——這些都在抵銷熱量赤字，卻很難被自己察覺。</p>
+      </div>
+      <div class="reality-row">
+        <span class="reality-tag rt-physio">生理層面</span>
+        <p><strong>胰島素抗性 / 代謝效率差異</strong>：同樣攝取 1800 kcal，身體對葡萄糖的利用效率不同，儲存脂肪的傾向也不同——但這不等於「吃多少都會胖」，只是會讓熱量管理更費力。</p>
+      </div>
+      <div class="reality-row">
+        <span class="reality-tag rt-physio">生理層面</span>
+        <p><strong>肌肉量低</strong>：肌肉是消耗熱量的主力。肌肉量少的人基礎代謝偏低，同樣熱量下脂肪更容易累積。</p>
+      </div>
+      <div class="reality-row">
+        <span class="reality-tag rt-physio">生理層面</span>
+        <p><strong>荷爾蒙影響</strong>：皮質醇偏高、胰島素抗性、更年期雌激素下降，都會改變脂肪的「分佈位置」和「儲存效率」，讓人感覺「怎麼吃都變腰間肉」。</p>
+      </div>
+    </div>
+    <div class="note" style="background:#f0faf4; border-left:4px solid var(--primary);">
+      💡 <strong>關鍵認知：</strong>能量守恆定律依然成立。荷爾蒙和代謝問題不會讓你「憑空發胖」，但它們確實會讓熱量管理的過程更困難、更耗意志力、更容易出錯——這值得被認真對待，而不是被輕描淡寫地說「少吃就好」。
+    </div>
+  </div>
+  <div class="golden">不是你的意志力有問題，是你的身體正在用不同的難度模式跑這場遊戲。</div>
+</div>
+
+<!-- ★ 新增 3.6：荷爾蒙如何干擾熱量管理 -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number" style="background:#9c7fc2;">⚗</span>
+    <h2>荷爾蒙如何干擾熱量管理？<span class="new-badge">NEW</span></h2>
+  </div>
+  <div class="card">
+    <p>荷爾蒙不直接「創造」熱量，但會從多個方向影響你執行熱量計畫的難度——包括食慾控制、脂肪分佈、代謝速率與情緒管理。</p>
+    <div class="hormone-grid">
+      <div class="hormone-card cortisol">
+        <div class="hc-icon">😰</div>
+        <h4>皮質醇偏高</h4>
+        <div class="hc-subtitle">壓力 / 睡眠不足</div>
+        <p>長期壓力使皮質醇居高不下，會<strong>促進腹部脂肪囤積</strong>、升高血糖（使胰島素分泌增加）、加強食慾（尤其對高糖高脂食物的渴望），並降低睡眠品質——形成惡性循環。</p>
+      </div>
+      <div class="hormone-card insulin">
+        <div class="hc-icon">🩸</div>
+        <h4>胰島素抗性</h4>
+        <div class="hc-subtitle">長期精緻飲食 / 久坐 / 家族史</div>
+        <p>細胞對胰島素訊號反應遲鈍，血糖不易被利用，胰島素濃度長期偏高。這使<strong>脂肪分解受到抑制</strong>、容易飢餓、減脂效率降低。即使熱量控制得宜，進程也會比一般人慢。</p>
+      </div>
+      <div class="hormone-card meno">
+        <div class="hc-icon">🌸</div>
+        <h4>更年期／雌激素下降</h4>
+        <div class="hc-subtitle">約 45–55 歲</div>
+        <p>雌激素保護脂肪優先分佈在臀腿部位。雌激素下降後，<strong>脂肪更容易轉移至腹部</strong>，肌肉量加速流失，代謝率也隨之下降。同樣的飲食方式，減脂效果可能大幅縮水。</p>
+      </div>
+    </div>
+    <table class="info-table" style="margin-top:8px;">
+      <tr><th>干擾因子</th><th>對熱量管理的實際影響</th><th>能做什麼</th></tr>
+      <tr><td>皮質醇偏高</td><td>增加食慾、腹部囤脂、干擾睡眠</td><td>壓力管理、睡眠優先、避免過度節食</td></tr>
+      <tr><td>胰島素抗性</td><td>脂肪分解受阻、容易餓、血糖波動大</td><td>低升糖飲食、增加肌肉量、減少精緻碳水</td></tr>
+      <tr><td>更年期</td><td>腹部脂肪增加、肌肉流失加速</td><td>提高蛋白質攝取、加入重量訓練</td></tr>
+      <tr><td>多次復胖史</td><td>代謝適應更明顯，脂肪更容易回來</td><td>設定更保守赤字、延長維持期</td></tr>
+    </table>
+  </div>
+  <div class="golden">荷爾蒙讓你玩的是困難模式，但遊戲規則沒有變。</div>
+</div>
+
+<!-- ★ 新增 3.7：代謝適應 -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number" style="background:#3a6ea5;">↓</span>
+    <h2>代謝適應：為什麼越減越難減？<span class="new-badge">NEW</span></h2>
+  </div>
+  <div class="card">
+    <h3>身體的「節能模式」</h3>
+    <p>當你長期減少熱量攝取，身體不會傻傻地繼續以原本速度燃燒能量。它會主動<strong>調降能量消耗</strong>，這個現象叫做「代謝適應（Metabolic Adaptation）」，也稱為「適應性產熱（Adaptive Thermogenesis）」。</p>
+
+    <div class="adapt-timeline">
+      <div class="adapt-step">
+        <div class="adapt-step-num">1</div>
+        <div class="adapt-step-content">
+          <h4>初期：NEAT 自動下降</h4>
+          <p>身體會在你不自知的情況下，減少日常小動作（腳抖、站立頻率、走路速度），每天可能少消耗 100–300 kcal，這是最先啟動的節能機制。</p>
+        </div>
+      </div>
+      <div class="adapt-arrow">↓</div>
+      <div class="adapt-step">
+        <div class="adapt-step-num">2</div>
+        <div class="adapt-step-content">
+          <h4>持續：甲狀腺激素下調</h4>
+          <p>持續的熱量限制會使 T3 甲狀腺素濃度下降，直接影響基礎代謝率，讓靜態下的燃脂效率降低。</p>
+        </div>
+      </div>
+      <div class="adapt-arrow">↓</div>
+      <div class="adapt-step">
+        <div class="adapt-step-num">3</div>
+        <div class="adapt-step-content">
+          <h4>進一步：瘦素（Leptin）下降、飢餓素（Ghrelin）上升</h4>
+          <p>抑制食慾的瘦素濃度降低，促進食慾的飢餓素升高——你會覺得更餓、更容易被食物吸引，行為控制難度大幅上升。</p>
+        </div>
+      </div>
+      <div class="adapt-arrow">↓</div>
+      <div class="adapt-step">
+        <div class="adapt-step-num">4</div>
+        <div class="adapt-step-content">
+          <h4>終點：平台期出現</h4>
+          <p>熱量赤字被代謝適應「填補」後，體重停止下降。這不是你做錯什麼，而是身體的生存本能。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note" style="background:#e8f5ff; border-left:4px solid #3a6ea5;">
+      🔄 <strong>如何應對代謝適應？</strong><br>
+      <ul class="clean" style="margin-top:8px;">
+        <li>安排「飲食休息期（Diet Break）」：每 8–12 週回到維持熱量 1–2 週，讓荷爾蒙回升</li>
+        <li>保留重量訓練：維持肌肉量是防止 BMR 下滑的最有效手段</li>
+        <li>避免過激赤字：赤字越大，適應越快、肌肉流失越多</li>
+        <li>平台期不等於失敗：觀察趨勢，先評估再調整</li>
+      </ul>
+    </div>
+  </div>
+  <div class="golden">減脂越到後期越需要耐心，不是因為你的意志力不夠，是因為身體越來越聰明。</div>
+</div>
+
+<!-- ★ 新增 3.8：熱量赤字的爭議 -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-number" style="background:#5a4a2f;">⇌</span>
+    <h2>熱量赤字模型的爭議與限制<span class="new-badge">NEW</span></h2>
+  </div>
+  <div class="card">
+    <p>熱量赤字是目前證據最充分的減重框架，但學術界和實務界確實有不同聲音值得了解——這不是要你否定它，而是讓你對它的「邊界」有更清醒的認識。</p>
+
+    <div class="debate-grid">
+      <div class="debate-card pro">
+        <h4>✅ 熱量赤字模型的優勢</h4>
+        <ul>
+          <li>物理學基礎紮實，能量守恆是所有飲食法的底層邏輯</li>
+          <li>大量隨機對照試驗支持其有效性</li>
+          <li>可量化、可追蹤、可調整</li>
+          <li>適用於大多數健康成人</li>
+        </ul>
+      </div>
+      <div class="debate-card con">
+        <h4>⚠️ 常被提出的質疑</h4>
+        <ul>
+          <li>TDEE 難以精確測量，計算器只是估算</li>
+          <li>食物標示熱量有誤差（±20% 都屬合理）</li>
+          <li>代謝適應使「固定赤字」效果隨時間遞減</li>
+          <li>忽略食物品質對荷爾蒙、飽足感的影響</li>
+          <li>對多次復胖者、荷爾蒙失衡者效果更有限</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:24px; margin-bottom:12px;">其他減重框架怎麼說？</h3>
+    <table class="info-table">
+      <tr><th>流派</th><th>核心主張</th><th>與熱量赤字的關係</th></tr>
+      <tr>
+        <td><strong>低碳 / 生酮飲食</strong></td>
+        <td>限制碳水、降低胰島素，促進脂肪燃燒</td>
+        <td>通常仍在製造赤字，只是透過食慾抑制達成</td>
+      </tr>
+      <tr>
+        <td><strong>間歇性斷食</strong></td>
+        <td>縮短進食窗口，影響荷爾蒙節律</td>
+        <td>多數研究顯示效果來自總熱量減少</td>
+      </tr>
+      <tr>
+        <td><strong>直覺飲食</strong></td>
+        <td>重建對飢餓與飽足的感知，不計算熱量</td>
+        <td>反對主動製造赤字，重視心理健康</td>
+      </tr>
+      <tr>
+        <td><strong>荷爾蒙優先派</strong></td>
+        <td>修復胰島素 / 皮質醇，代謝自然改善</td>
+        <td>認為質量優先，熱量是結果不是工具</td>
+      </tr>
+    </table>
+
+    <div class="note" style="background:#f0faf4; border-left:4px solid var(--primary); margin-top:16px;">
+      🧭 <strong>我們的立場：</strong>熱量赤字是起點和框架，不是唯一真理。在這門課裡，我們用它來建立可量化的基準，同時尊重每個人荷爾蒙、心理、生活型態的差異——數字服務你，不是綁架你。
+    </div>
+  </div>
+  <div class="golden">沒有一個飲食法適合所有人，但每個人都需要先理解能量平衡這個底層邏輯。</div>
+</div>
+
+<!-- ════ 分隔線 ════ -->
+<hr class="section-divider">
+<div class="section-divider-label"><span>▼ 回到基礎：熱量與營養素</span></div>
 
 <!-- 4. 熱量 vs. 營養素 -->
 <div class="section">
@@ -729,8 +1071,6 @@
     <button class="macro-btn" onclick="calcMacro()">計算三大營養素分配 🥗</button>
 
     <div class="macro-results" id="macro-results">
-
-      <!-- 三欄結果 -->
       <div class="macro-result-grid">
         <div class="macro-result-card protein-card">
           <div class="mrc-icon">🧱</div>
@@ -754,8 +1094,6 @@
           <div class="mrc-pct" id="m-carb-pct">—%</div>
         </div>
       </div>
-
-      <!-- 比例長條圖 -->
       <div class="macro-bar-wrap">
         <div class="macro-bar">
           <div class="mb-protein" id="mb-protein"></div>
@@ -768,7 +1106,6 @@
           <span><span class="dot" style="background:#40916c"></span>碳水</span>
         </div>
       </div>
-
       <div class="macro-summary" id="macro-summary"></div>
     </div>
   </div>
@@ -913,6 +1250,8 @@
       <li>同樣熱量下，<strong>營養素比例</strong>決定你的體態</li>
       <li>食物選擇遵循原則：<strong>原型、低脂、粗糙、優質</strong></li>
       <li>飲食金字塔<strong>由下而上</strong>：先顧熱量平衡，再談細節</li>
+      <li><strong>荷爾蒙干擾</strong>（皮質醇、胰島素抗性、更年期）會讓熱量管理更困難，但不改變能量守恆的底層規則</li>
+      <li><strong>代謝適應</strong>是正常生理反應，透過保留肌肉量和安排飲食休息期來應對</li>
       <li><strong>關注長期趨勢</strong>，不要被每日體重波動綁架</li>
     </ol>
   </div>
@@ -923,6 +1262,8 @@
 <div class="footer">飲食控制課程 ｜ 第一堂 ｜ Abby 營養師</div>
 
 <script>
+  let gender = 'female';
+
   function calcMacro() {
     const weight = parseFloat(document.getElementById('macro-weight').value);
     const tdee   = parseFloat(document.getElementById('macro-tdee').value);
@@ -933,42 +1274,31 @@
       return;
     }
 
-    // 蛋白質：體重 × 係數
     const proteinG    = Math.round(weight * proteinRatio);
     const proteinKcal = proteinG * 4;
-
-    // 脂肪：佔總熱量 25%
     const fatKcal = Math.round(tdee * 0.25);
     const fatG    = Math.round(fatKcal / 9);
-
-    // 碳水：剩餘
     const carbKcal = tdee - proteinKcal - fatKcal;
     const carbG    = Math.round(carbKcal / 4);
 
-    // 百分比
     const proteinPct = Math.round(proteinKcal / tdee * 100);
     const fatPct     = Math.round(fatKcal / tdee * 100);
     const carbPct    = 100 - proteinPct - fatPct;
 
-    // 填入結果
     document.getElementById('m-protein-g').textContent    = proteinG + ' g';
     document.getElementById('m-protein-kcal').textContent = proteinKcal.toLocaleString() + ' 大卡';
     document.getElementById('m-protein-pct').textContent  = proteinPct + '%';
-
     document.getElementById('m-fat-g').textContent    = fatG + ' g';
     document.getElementById('m-fat-kcal').textContent = fatKcal.toLocaleString() + ' 大卡';
     document.getElementById('m-fat-pct').textContent  = fatPct + '%';
-
     document.getElementById('m-carb-g').textContent    = carbG > 0 ? carbG + ' g' : '— g';
     document.getElementById('m-carb-kcal').textContent = carbKcal > 0 ? carbKcal.toLocaleString() + ' 大卡' : '—';
     document.getElementById('m-carb-pct').textContent  = carbPct > 0 ? carbPct + '%' : '—%';
 
-    // 長條圖
     document.getElementById('mb-protein').style.width = proteinPct + '%';
     document.getElementById('mb-fat').style.width     = fatPct + '%';
     document.getElementById('mb-carb').style.width    = (carbPct > 0 ? carbPct : 0) + '%';
 
-    // 摘要文字
     const warn = carbKcal < 0
       ? '<br>⚠️ 蛋白質熱量已超過目標，建議提高 TDEE 目標或降低蛋白質係數。'
       : '';
@@ -982,7 +1312,6 @@
     results.classList.add('show');
     results.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
-
 
   function setGender(g) {
     gender = g;
@@ -1001,7 +1330,6 @@
       return;
     }
 
-    // Mifflin-St Jeor
     let bmr;
     if (gender === 'female') {
       bmr = 10 * weight + 6.25 * height - 5 * age - 161;
