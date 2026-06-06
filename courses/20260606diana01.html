@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diana 初次課程｜Abby Eat Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sage: #8B9E7E;
+  --terra: #C17F59;
+  --cream: #FDFBF7;
+  --bark: #3D3229;
+  --sage-light: #e8ede5;
+  --terra-light: #f5e6db;
+  --bg: #FDFBF7;
+  --bg-secondary: #f3f0ea;
+  --border: rgba(61,50,41,0.12);
+  --border-md: rgba(61,50,41,0.22);
+  --text: #2a2218;
+  --text-secondary: #6b5e52;
+  --text-tertiary: #a0948a;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.page-header {
+  background: var(--bark);
+  color: var(--cream);
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.page-header .sub { font-size: 13px; opacity: 0.65; margin-top: 2px; }
+.header-dot {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--terra);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 500; color: #fff;
+  flex-shrink: 0;
+}
+.layout { display: flex; min-height: calc(100vh - 72px); }
+.sidebar {
+  width: 200px; flex-shrink: 0;
+  background: #fff;
+  border-right: 0.5px solid var(--border);
+  padding: 1.25rem 0;
+  position: sticky; top: 0;
+  height: calc(100vh - 72px);
+  overflow-y: auto;
+}
+.sidebar-group { margin-bottom: 0.5rem; }
+.sidebar-group-label {
+  font-size: 11px; color: var(--text-tertiary);
+  padding: 0.5rem 1.25rem 0.25rem;
+  letter-spacing: 0.06em; font-weight: 500;
+}
+.sidebar-btn {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%; padding: 8px 1.25rem;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 13px; color: var(--text-secondary);
+  text-align: left; transition: all 0.15s;
+}
+.sidebar-btn:hover { background: var(--bg-secondary); color: var(--text); }
+.sidebar-btn.active { background: var(--sage-light); color: var(--sage); font-weight: 500; }
+.sidebar-btn .badge {
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 500; flex-shrink: 0;
+}
+.badge-a { background: var(--sage-light); color: var(--sage); }
+.badge-b { background: var(--terra-light); color: var(--terra); }
+.sidebar-btn.active .badge-a { background: var(--sage); color: #fff; }
+.sidebar-btn.active .badge-b { background: var(--terra); color: #fff; }
+.main { flex: 1; padding: 2rem; max-width: 780px; }
+.section { display: none; }
+.section.visible { display: block; }
+.section-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 0.5px solid var(--border);
+}
+.section-badge {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 500; flex-shrink: 0;
+}
+.section-title {
+  font-size: 17px; font-weight: 500;
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+}
+.card {
+  background: #fff;
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.3rem;
+  margin-bottom: 1rem;
+}
+.card-label {
+  font-size: 12px; color: var(--text-tertiary);
+  margin-bottom: 10px; letter-spacing: 0.03em;
+  font-weight: 500; text-transform: uppercase;
+}
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+.metric-card { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 0.9rem 1rem; }
+.metric-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+.metric-value { font-size: 22px; font-weight: 500; color: var(--text); }
+.metric-note { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+.tag { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 10px; margin: 2px; }
+.tag-ok { background: var(--sage-light); color: #5a7a4e; }
+.tag-warn { background: #fef3e2; color: #a06010; }
+.tag-alert { background: #fdecea; color: #a03030; }
+.progress-row { margin-bottom: 1rem; }
+.progress-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; }
+.progress-label span:first-child { color: var(--text-secondary); }
+.progress-label span:last-child { color: var(--text); font-weight: 500; }
+.progress-bar-bg { height: 8px; background: var(--bg-secondary); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 4px; }
+.progress-note { font-size: 11px; color: var(--text-tertiary); margin-top: 3px; }
+.info-row {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 10px 0; border-bottom: 0.5px solid var(--border);
+  font-size: 14px;
+}
+.info-row:last-child { border-bottom: none; }
+.info-icon { color: var(--text-tertiary); flex-shrink: 0; padding-top: 2px; font-size: 16px; }
+.info-text { color: var(--text); line-height: 1.65; }
+.info-text strong { font-weight: 500; }
+.compare-table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+.compare-table th {
+  background: var(--bg-secondary); font-weight: 500;
+  padding: 8px 12px; text-align: left;
+  color: var(--text-secondary); font-size: 12px;
+  border-bottom: 0.5px solid var(--border);
+}
+.compare-table td {
+  padding: 9px 12px; border-bottom: 0.5px solid var(--border);
+  color: var(--text); vertical-align: top; line-height: 1.5;
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.hl-red { color: #c0392b; font-weight: 500; }
+.hl-green { color: #27ae60; font-weight: 500; }
+.hl-orange { color: #d4820a; font-weight: 500; }
+.tip-box {
+  background: var(--sage-light);
+  border-left: 3px solid var(--sage);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 10px 14px; font-size: 13px;
+  color: var(--text); line-height: 1.65; margin-top: 0.75rem;
+}
+.warn-box {
+  background: var(--terra-light);
+  border-left: 3px solid var(--terra);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 10px 14px; font-size: 13px;
+  color: var(--text); line-height: 1.65; margin-top: 0.75rem;
+}
+.blue-box {
+  background: #e8f0f8;
+  border-left: 3px solid #5a88b8;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 10px 14px; font-size: 13px;
+  color: var(--text); line-height: 1.65; margin-top: 0.75rem;
+}
+.week-goal {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 0; border-bottom: 0.5px solid var(--border); font-size: 14px;
+}
+.week-goal:last-child { border-bottom: none; }
+.goal-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--sage-light); color: var(--sage);
+  font-size: 12px; font-weight: 500; flex-shrink: 0; margin-top: 1px;
+}
+.goal-text { color: var(--text); line-height: 1.55; }
+.goal-sub { color: var(--text-secondary); font-size: 12px; margin-top: 2px; }
+.chart-wrap { position: relative; width: 100%; height: 200px; margin: 0.75rem 0; }
+.lab-row {
+  display: grid; grid-template-columns: 1fr 80px 80px 80px;
+  align-items: center; gap: 8px;
+  padding: 8px 0; border-bottom: 0.5px solid var(--border); font-size: 13px;
+}
+.lab-row:last-child { border-bottom: none; }
+.lab-name { color: var(--text); }
+.lab-val { font-weight: 500; text-align: center; }
+.lab-ref { font-size: 11px; color: var(--text-tertiary); text-align: center; }
+.lab-tag { text-align: center; }
+.lab-section-title {
+  font-size: 11px; font-weight: 500; color: var(--text-tertiary);
+  letter-spacing: 0.05em; padding: 10px 0 4px;
+  border-bottom: 0.5px solid var(--border); margin-bottom: 4px;
+}
+@media (max-width: 640px) {
+  .layout { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 0.5px solid var(--border); display: flex; flex-wrap: wrap; padding: 0.5rem; gap: 4px; }
+  .sidebar-group { margin: 0; }
+  .sidebar-group-label { display: none; }
+  .sidebar-btn { border-radius: 20px; padding: 6px 12px; }
+  .sidebar-btn.active { background: var(--sage); color: #fff; }
+  .main { padding: 1rem; }
+  .lab-row { grid-template-columns: 1fr 70px 70px; }
+  .lab-ref { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="header-dot">D</div>
+  <div>
+    <h1>Diana 初次課程</h1>
+    <div class="sub">2026.06.06 ｜ Abby Eat Life 營養coaching</div>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" role="navigation" aria-label="課程模組">
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">基礎內容</div>
+      <button class="sidebar-btn active" onclick="show('a1', this)">
+        <span class="badge badge-a">A1</span> 現況盤點
+      </button>
+      <button class="sidebar-btn" onclick="show('a2', this)">
+        <span class="badge badge-a">A2</span> 熱量目標
+      </button>
+      <button class="sidebar-btn" onclick="show('a3', this)">
+        <span class="badge badge-a">A3</span> 飲食分析
+      </button>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">針對性內容</div>
+      <button class="sidebar-btn" onclick="show('b1', this)">
+        <span class="badge badge-b">B1</span> 健檢報告解讀
+      </button>
+      <button class="sidebar-btn" onclick="show('b2', this)">
+        <span class="badge badge-b">B2</span> 胰島素阻抗
+      </button>
+      <button class="sidebar-btn" onclick="show('b3', this)">
+        <span class="badge badge-b">B3</span> 荷爾蒙與腹部脂肪
+      </button>
+      <button class="sidebar-btn" onclick="show('b4', this)">
+        <span class="badge badge-b">B4</span> 本週行動計畫
+      </button>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <!-- A1 現況盤點 -->
+    <div class="section visible" id="sec-a1">
+      <div class="section-header">
+        <div class="section-badge badge-a">A1</div>
+        <div class="section-title">你現在在哪裡？——現況盤點</div>
+      </div>
+
+      <div class="grid-4">
+        <div class="metric-card">
+          <div class="metric-label">目前體重</div>
+          <div class="metric-value">66.1 kg</div>
+          <div class="metric-note">2026/6/4（週四）</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">體脂肪率</div>
+          <div class="metric-value" style="color:var(--terra);">35.7%</div>
+          <div class="metric-note">女性理想 &lt;28%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">腰圍</div>
+          <div class="metric-value">75 cm</div>
+          <div class="metric-note">女性警戒值 &gt;80cm</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">BMI</div>
+          <div class="metric-value">25.8</div>
+          <div class="metric-note">過重邊緣（≥24）</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">近一週體態變化</div>
+        <div class="chart-wrap">
+          <canvas id="weightChart" role="img" aria-label="Diana近一週體重與體脂變化"></canvas>
+        </div>
+        <div class="tip-box">體重從 66.6 kg 降到 66.1 kg，短短四天下降 0.5 kg，方向正確。繼續觀察趨勢，不用每天計較數字。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">本週運動紀錄</div>
+        <table class="compare-table" style="margin-top:8px;">
+          <thead>
+            <tr><th>日期</th><th>步數</th><th>運動</th><th>評估</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>5/28 週四</td><td>10,000</td><td>—</td><td><span class="tag tag-ok">達標</span></td></tr>
+            <tr><td>5/29 週五</td><td>10,000</td><td>—</td><td><span class="tag tag-ok">達標</span></td></tr>
+            <tr><td>5/30 週六</td><td>12,000</td><td>重量訓練</td><td><span class="tag tag-ok">優秀</span></td></tr>
+            <tr><td>5/31 週日</td><td>5,000</td><td>—</td><td><span class="tag tag-warn">較少</span></td></tr>
+            <tr><td>6/1 週一</td><td>10,000</td><td>CrossFit</td><td><span class="tag tag-ok">優秀</span></td></tr>
+            <tr><td>6/2 週二</td><td>5,000</td><td>—</td><td><span class="tag tag-warn">較少</span></td></tr>
+            <tr><td>6/3 週三</td><td>10,000</td><td>重量訓練</td><td><span class="tag tag-ok">優秀</span></td></tr>
+            <tr><td>6/4 週四</td><td>11,000</td><td>Zumba</td><td><span class="tag tag-ok">優秀</span></td></tr>
+          </tbody>
+        </table>
+        <div class="tip-box">本週有 5 天達到 10,000 步以上，且有重訓 × 2、CrossFit × 1、Zumba × 1，運動習慣非常扎實，是很好的基礎。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">體組成現況分析</div>
+        <div style="margin-top:10px;">
+          <div class="progress-row">
+            <div class="progress-label"><span>體脂肪率 35.7%</span><span>理想目標 &lt;28%</span></div>
+            <div class="progress-bar-bg"><div class="progress-fill" style="width:80%; background:var(--terra);"></div></div>
+            <div class="progress-note">差距約 7–8%，以目前體重換算約需減少 4–5 kg 脂肪</div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-label"><span>腰圍 75 cm</span><span>警戒值 80 cm</span></div>
+            <div class="progress-bar-bg"><div class="progress-fill" style="width:60%; background:#8AAFC4;"></div></div>
+            <div class="progress-note">目前未超過警戒值，但內臟脂肪偏高說明腹部脂肪仍需改善</div>
+          </div>
+        </div>
+        <div class="warn-box">
+          <strong>重要提醒：</strong>體脂 35.7% 對應體重 66 kg，代表體內脂肪約 23.5 kg，肌肉量相對偏低。
+          這也說明為什麼即使有在重訓，體重仍偏高——<strong>增肌同時減脂</strong>是這個階段的核心目標，不是單純看體重數字。
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">目前飲食亮點 vs 可優化處</div>
+        <div style="margin-top:8px; margin-bottom:10px;">
+          <span class="tag tag-ok">✓ 自煮為主</span>
+          <span class="tag tag-ok">✓ 原型食物</span>
+          <span class="tag tag-ok">✓ 蔬菜量充足 200g+</span>
+          <span class="tag tag-ok">✓ 粗糧取代精製澱粉</span>
+          <span class="tag tag-ok">✓ 海鮮蛋白質多樣</span>
+        </div>
+        <div>
+          <span class="tag tag-warn">△ 蛋白質總量待確認</span>
+          <span class="tag tag-warn">△ 假日飲食落差大</span>
+          <span class="tag tag-warn">△ 早餐醣類比例偏高</span>
+          <span class="tag tag-alert">✗ 服藥後口味改變未記錄</span>
+          <span class="tag tag-alert">✗ 點心／醬料可能有缺漏</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- A2 熱量目標 -->
+    <div class="section" id="sec-a2">
+      <div class="section-header">
+        <div class="section-badge badge-a">A2</div>
+        <div class="section-title">減重期該吃多少？</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">TDEE 估算（課堂填寫）</div>
+        <div style="margin-top:12px; display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; align-items:center; gap:12px; font-size:14px;">
+            <span style="color:var(--text-secondary); min-width:140px;">🧮 BMR（基礎代謝）</span>
+            <input type="number" id="bmr" placeholder="填入數字" oninput="calcTDEE()" style="width:120px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+            <span style="color:var(--text-tertiary); font-size:13px;">kcal</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:14px;">
+            <span style="color:var(--text-secondary); min-width:140px;">⚡ 活動係數</span>
+            <select id="activity" onchange="calcTDEE()" style="width:200px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+              <option value="1.2">1.2 久坐少動</option>
+              <option value="1.375" selected>1.375 輕度至中度活動</option>
+              <option value="1.55">1.55 中度活動（每週運動3–5次）</option>
+              <option value="1.725">1.725 高度活動</option>
+            </select>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:14px;">
+            <span style="color:var(--text-secondary); min-width:140px;">🔥 TDEE</span>
+            <div id="tdee-display" style="font-size:20px; font-weight:500; color:var(--text); min-width:80px;">——</div>
+            <span style="color:var(--text-tertiary); font-size:13px;">kcal／天</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:14px;">
+            <span style="color:var(--text-secondary); min-width:140px;">🎯 減重目標熱量</span>
+            <div id="target-display" style="font-size:20px; font-weight:500; color:var(--sage); min-width:80px;">——</div>
+            <span style="color:var(--text-tertiary); font-size:13px;">kcal（赤字約 300–400）</span>
+          </div>
+        </div>
+        <div class="tip-box">
+          有胰島素阻抗或代謝偏慢的情況下，建議先以<strong>較保守的係數（1.375）估算</strong>，避免高估每日消耗量，讓目標熱量更貼近實際需求。<br>
+          等飲食記錄完整後，再根據實際體重變化趨勢微調。熱量缺口控制在 <strong>300–400 kcal</strong>，不建議過大，避免肌肉流失讓代謝更差。
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">三大營養素目標設定</div>
+        <div style="margin-top:12px; display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+              <span style="font-size:14px; color:var(--text-secondary); min-width:100px;">🥩 蛋白質</span>
+              <input type="number" id="prot-g" placeholder="克數" oninput="calcMacros()" style="width:90px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+              <span style="font-size:13px; color:var(--text-tertiary);">g　= <span id="prot-kcal" style="color:var(--sage); font-weight:500;">——</span> kcal</span>
+            </div>
+            <div class="progress-bar-bg"><div id="prot-bar" class="progress-fill" style="width:0%; background:var(--sage); transition:width 0.4s;"></div></div>
+            <div style="font-size:11px; color:var(--text-tertiary); margin-top:3px;">建議 1.4–1.6g × 體重（66kg）＝ 約 92–106 g／天　有重訓＋改善胰島素阻抗的雙重需求</div>
+          </div>
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+              <span style="font-size:14px; color:var(--text-secondary); min-width:100px;">🫒 脂肪</span>
+              <input type="number" id="fat-g" placeholder="克數" oninput="calcMacros()" style="width:90px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+              <span style="font-size:13px; color:var(--text-tertiary);">g　= <span id="fat-kcal" style="color:var(--terra); font-weight:500;">——</span> kcal</span>
+            </div>
+            <div class="progress-bar-bg"><div id="fat-bar" class="progress-fill" style="width:0%; background:var(--terra); transition:width 0.4s;"></div></div>
+            <div style="font-size:11px; color:var(--text-tertiary); margin-top:3px;">約佔總熱量 25–30%　對荷爾蒙合成與 Omega-3 吸收重要，不可過低</div>
+          </div>
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+              <span style="font-size:14px; color:var(--text-secondary); min-width:100px;">🍚 碳水化合物</span>
+              <input type="number" id="carb-g" placeholder="克數" oninput="calcMacros()" style="width:90px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+              <span style="font-size:13px; color:var(--text-tertiary);">g　= <span id="carb-kcal" style="color:#5a88a8; font-weight:500;">——</span> kcal</span>
+            </div>
+            <div class="progress-bar-bg"><div id="carb-bar" class="progress-fill" style="width:0%; background:#8AAFC4; transition:width 0.4s;"></div></div>
+            <div style="font-size:11px; color:var(--text-tertiary); margin-top:3px;">優先選低GI複合碳水（糙米、地瓜、燕麥、藜麥）　有助穩定血糖改善胰島素阻抗</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; padding-top:8px; border-top:0.5px solid var(--border); font-size:13px;">
+            <span style="color:var(--text-secondary);">合計熱量：</span>
+            <span id="total-kcal" style="font-weight:500; font-size:16px; color:var(--text);">——</span>
+            <span style="color:var(--text-tertiary);">kcal</span>
+          </div>
+        </div>
+        <div class="tip-box">設定順序：<strong>蛋白質優先 → 脂肪下限 → 碳水填滿</strong><br>胰島素阻抗的人特別需要優先確保蛋白質達標，避免血糖大幅震盪。</div>
+      </div>
+    </div>
+
+    <!-- A3 飲食分析 -->
+    <div class="section" id="sec-a3">
+      <div class="section-header">
+        <div class="section-badge badge-a">A3</div>
+        <div class="section-title">飲食記錄分析</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">平日飲食估算（自煮便當）</div>
+        <table class="compare-table" style="margin-top:8px;">
+          <thead>
+            <tr><th style="width:18%;">餐別</th><th style="width:40%;">內容</th><th style="width:18%;">熱量估算</th><th style="width:24%;">蛋白質估算</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>早餐</td>
+              <td>白肉100g＋麥片40g＋無糖可可4g＋杏仁奶80g＋夏威夷豆8g＋藍莓葡萄100g</td>
+              <td>420–460 kcal</td>
+              <td class="hl-orange">約 25–28 g</td>
+            </tr>
+            <tr>
+              <td>午餐</td>
+              <td>白肉150g（熟）＋糙米100g（熟）＋蔬菜200g</td>
+              <td>480–520 kcal</td>
+              <td class="hl-green">約 32–35 g</td>
+            </tr>
+            <tr>
+              <td>晚餐</td>
+              <td>紅肉160g＋粗糧100g（熟）＋蔬菜200g</td>
+              <td>480–530 kcal</td>
+              <td class="hl-green">約 30–33 g</td>
+            </tr>
+            <tr>
+              <td style="font-weight:500;">平日合計</td>
+              <td>—</td>
+              <td style="font-weight:500;">1,380–1,510 kcal</td>
+              <td style="font-weight:500; color:var(--terra);">約 87–96 g</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="warn-box">蛋白質目標約 92–106 g，平日記錄的內容剛好在邊緣。若加上醬料、烹調油脂，實際熱量可能偏高；若有漏記點心，總熱量差距會更明顯。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">假日飲食落差</div>
+        <table class="compare-table" style="margin-top:8px;">
+          <thead>
+            <tr><th style="width:18%;">餐別</th><th style="width:42%;">內容</th><th style="width:18%;">熱量估算</th><th style="width:22%;">注意點</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>午餐</td>
+              <td>海鮮拉麵（麵條＋蝦＋蛤蜊＋豬肉＋溏心蛋＋白湯底）</td>
+              <td class="hl-orange">650–750 kcal</td>
+              <td>鈉高、澱粉多</td>
+            </tr>
+            <tr>
+              <td>晚餐</td>
+              <td>藜麥碗（藜麥＋板豆腐＋蝦＋大量蔬菜＋海苔＋醬汁）</td>
+              <td>420–480 kcal</td>
+              <td>醬汁未知</td>
+            </tr>
+            <tr>
+              <td>早餐</td>
+              <td colspan="3" style="color:var(--text-tertiary); font-style:italic;">⚠ 無記錄</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="tip-box">假日晚餐的藜麥碗食材選擇很好！拉麵是合理的彈性選擇，但鈉含量較高，可以試著少喝湯底。假日早餐建議補上記錄。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">可能的飲食缺口（記錄之外）</div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">?</div>
+          <div class="info-text"><strong>服藥後口味改變</strong>：Diana 提到吃荷爾蒙藥後會想吃平常不吃的東西，這段時間的額外飲食有沒有在記錄裡？</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">?</div>
+          <div class="info-text"><strong>醬料與烹調油脂</strong>：自煮便當的炒菜用幾匙油？藜麥碗的醬汁是什麼？這些是熱量常被低估的來源</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">?</div>
+          <div class="info-text"><strong>重訓前後的補充</strong>：運動前後有沒有額外補充食物或飲品？</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">?</div>
+          <div class="info-text"><strong>假日早餐</strong>：假日的第一餐沒有記錄，這一餐對當天的血糖節律影響很大</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B1 健檢報告解讀 -->
+    <div class="section" id="sec-b1">
+      <div class="section-header">
+        <div class="section-badge badge-b">B1</div>
+        <div class="section-title">健檢報告——與營養相關的數值</div>
+      </div>
+
+      <div class="warn-box" style="margin-bottom:1rem; margin-top:0;">
+        ⚕️ 以下解讀僅針對<strong>與飲食營養相關的面向</strong>進行說明，不取代醫師的臨床診斷。如有任何醫療疑慮，請以主治醫師判斷為準。
+      </div>
+
+      <div class="card">
+        <div class="card-label">⭐ 最重要：代謝相關指標（2026/05/18）</div>
+        <div class="lab-row" style="font-size:11px; color:var(--text-tertiary); font-weight:500; padding-bottom:4px;">
+          <span>項目</span><span style="text-align:center;">數值</span><span style="text-align:center;">參考值</span><span style="text-align:center;">狀態</span>
+        </div>
+        <div class="lab-row">
+          <div class="lab-name"><strong>HOMA-IR 胰島素阻抗</strong></div>
+          <div class="lab-val hl-red">1.61</div>
+          <div class="lab-ref">≤ 1.4</div>
+          <div class="lab-tag"><span class="tag tag-alert">偏高</span></div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-name">空腹血糖 GLU AC</div>
+          <div class="lab-val hl-orange">93.9 mg/dL</div>
+          <div class="lab-ref">70–100</div>
+          <div class="lab-tag"><span class="tag tag-warn">偏高端</span></div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-name">Insulin 胰島素</div>
+          <div class="lab-val">6.96 uU/mL</div>
+          <div class="lab-ref">2.6–24.9</div>
+          <div class="lab-tag"><span class="tag tag-ok">正常</span></div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-name">TG 三酸甘油脂</div>
+          <div class="lab-val">103 mg/dL</div>
+          <div class="lab-ref">&lt; 150</div>
+          <div class="lab-tag"><span class="tag tag-ok">正常</span></div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-name">HDL 高密度膽固醇</div>
+          <div class="lab-val hl-green">62 mg/dL</div>
+          <div class="lab-ref">&gt; 50（女）</div>
+          <div class="lab-tag"><span class="tag tag-ok">良好</span></div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-name">LDL 低密度膽固醇</div>
+          <div class="lab-val">63 mg/dL</div>
+          <div class="lab-ref">&lt; 130</div>
+          <div class="lab-tag"><span class="tag tag-ok">良好</span></div>
+        </div>
+        <div class="tip-box">
+          <strong>重點解讀：</strong>血糖 93.9 mg/dL 雖然在正常範圍，但搭配 HOMA-IR 1.61 偏高，說明身體需要<strong>分泌更多胰島素才能把血糖壓在這個水平</strong>。
+          胰島素長期偏高 → 脂肪分解被抑制 → 腹部脂肪容易堆積。這不是你的錯，是身體的代謝訊號，也是我們飲食介入的核心方向。
+          另外 HDL 62 很好——這是重訓帶來的成果。
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">尿酸 UA（2026/05/18）</div>
+        <div class="lab-row">
+          <div class="lab-name">UA 尿酸</div>
+          <div class="lab-val hl-orange">5.9 mg/dL</div>
+          <div class="lab-ref">女性 2.4–5.7</div>
+          <div class="lab-tag"><span class="tag tag-warn">輕微偏高</span></div>
+        </div>
+        <div class="warn-box">
+          尿酸偏高與飲食有直接關係。飲食上建議：
+          <br>• 減少<strong>高果糖食物</strong>（含糖飲料、市售果汁、蜂蜜）
+          <br>• 避免<strong>酒精</strong>（會抑制尿酸排泄）
+          <br>• 動物內臟盡量少吃（高普林）
+          <br>• 多喝水（每天至少 2,000 ml）幫助尿酸排出
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">腎功能（需留意）</div>
+        <div class="lab-row">
+          <div class="lab-name">eGFR 腎絲球過濾率</div>
+          <div class="lab-val hl-orange">73.72 mL/min</div>
+          <div class="lab-ref">&gt; 90</div>
+          <div class="lab-tag"><span class="tag tag-warn">偏低</span></div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-name">Creatinine 肌酸酐</div>
+          <div class="lab-val hl-orange">1.0 mg/dL</div>
+          <div class="lab-ref">女性 0.5–0.9</div>
+          <div class="lab-tag"><span class="tag tag-warn">稍高</span></div>
+        </div>
+        <div class="warn-box">
+          這部分<strong>請回診時和醫師確認</strong>。<br>
+          在飲食上，這代表我們設定蛋白質目標時會保守一些，建議維持在 <strong>1.2–1.5 g/kg</strong>（約 79–99 g）而不過度追求高蛋白。
+          運動後的蛋白補充仍是必要的，只是不需要額外大量補充蛋白粉。
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">荷爾蒙（2026/03/17）</div>
+        <div class="lab-row">
+          <div class="lab-name">E2 雌激素</div>
+          <div class="lab-val">94 pg/mL</div>
+          <div class="lab-ref">濾泡期 12.4–233</div>
+          <div class="lab-tag"><span class="tag tag-warn">偏低端</span></div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-name">FSH 濾泡刺激素</div>
+          <div class="lab-val hl-green">5.58 mIU/mL</div>
+          <div class="lab-ref">濾泡期 3.5–12.5</div>
+          <div class="lab-tag"><span class="tag tag-ok">正常</span></div>
+        </div>
+        <div class="lab-row">
+          <div class="lab-name">LH 黃體激素</div>
+          <div class="lab-val hl-green">7.97 mIU/mL</div>
+          <div class="lab-ref">濾泡期 2.4–12.6</div>
+          <div class="lab-tag"><span class="tag tag-ok">正常</span></div>
+        </div>
+        <div class="blue-box">
+          FSH 和 LH 都在正常範圍，代表<strong>目前尚未進入更年期</strong>。雌激素偏低端但仍在範圍內，這解釋了部分腹部脂肪堆積的原因（下一頁會詳細說）。荷爾蒙藥物治療方向正確，臨床判斷請以婦科醫師為主。
+        </div>
+      </div>
+    </div>
+
+    <!-- B2 胰島素阻抗 -->
+    <div class="section" id="sec-b2">
+      <div class="section-header">
+        <div class="section-badge badge-b">B2</div>
+        <div class="section-title">胰島素阻抗——為什麼讓你這麼難瘦？</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">胰島素的正常運作方式</div>
+        <div class="info-row">
+          <div class="info-icon">1️⃣</div>
+          <div class="info-text">吃東西 → 血糖上升 → 胰臟分泌胰島素</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">2️⃣</div>
+          <div class="info-text">胰島素像「鑰匙」→ 打開細胞的門 → 讓葡萄糖進入細胞當能量</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">3️⃣</div>
+          <div class="info-text">血糖恢復正常 → 胰島素降低 → 身體可以開始燃燒脂肪</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">胰島素阻抗發生時</div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">⚠</div>
+          <div class="info-text"><strong>細胞對胰島素不靈敏了</strong>——鑰匙還在，但鎖壞了，要用更多鑰匙才能開門</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">⚠</div>
+          <div class="info-text"><strong>胰臟被迫分泌更多胰島素</strong>才能維持正常血糖</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">⚠</div>
+          <div class="info-text"><strong>胰島素長期偏高的後果</strong>：
+            <br>• 脂肪分解被抑制 → 不容易燃燒脂肪
+            <br>• 多餘能量優先轉為脂肪儲存
+            <br>• 脂肪特別往腹部＋內臟堆積
+            <br>• 食慾調控變差 → 容易餓、渴望甜食
+          </div>
+        </div>
+        <div class="warn-box">
+          Diana 的 HOMA-IR 1.61（正常 ≤1.4），代表胰島素阻抗已存在。<br>
+          這解釋了：<strong>即使吃得還算健康、也有在運動，腹部脂肪仍持續增加</strong>——不是意志力的問題，是代謝環境的問題。
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">胰島素阻抗的常見成因</div>
+        <div class="info-row">
+          <div class="info-icon">🍚</div>
+          <div class="info-text"><strong>精製碳水化合物過多</strong>：白米、麵包、糖飲料讓血糖快速上升，長期刺激胰島素過度分泌</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🪑</div>
+          <div class="info-text"><strong>久坐</strong>：肌肉是最大的葡萄糖消耗器官，久坐讓肌肉使用葡萄糖的能力下降</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">😴</div>
+          <div class="info-text"><strong>睡眠不足</strong>：睡眠不足會在短短幾天內讓胰島素敏感性明顯下降</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">😰</div>
+          <div class="info-text"><strong>慢性壓力</strong>：皮質醇持續偏高 → 促進肝臟釋放葡萄糖 → 血糖長期偏高 → 胰島素長期被刺激</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🔥</div>
+          <div class="info-text"><strong>慢性發炎</strong>：AS（僵直性脊椎炎）的長期發炎狀態本身也是胰島素阻抗的推手</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">飲食改善胰島素阻抗的核心策略</div>
+        <div class="week-goal">
+          <div class="goal-num">1</div>
+          <div class="goal-text">穩定血糖波動——選低GI食物
+            <div class="goal-sub">糙米、地瓜、燕麥、藜麥 取代 白飯、白麵包（Diana 已經做到這點了！）</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">2</div>
+          <div class="goal-text">每餐先吃蔬菜＋蛋白質，再吃澱粉
+            <div class="goal-sub">進食順序可讓血糖上升速度減慢 20–30%，是最簡單的血糖控制技巧</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">3</div>
+          <div class="goal-text">增加膳食纖維
+            <div class="goal-sub">纖維會延緩醣類吸收、減緩血糖上升。蔬菜 200g 以上、加入豆類，是有效方式</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">4</div>
+          <div class="goal-text">餐後走路 10–15 分鐘
+            <div class="goal-sub">飯後輕度活動可讓肌肉消耗血糖，直接改善胰島素敏感性。Diana 的步數數據顯示這個習慣已經有了！</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">5</div>
+          <div class="goal-text">持續重訓
+            <div class="goal-sub">增加肌肉量是改善胰島素阻抗最有效的長期策略。每增加 1 kg 肌肉，代謝葡萄糖的能力就提升</div>
+          </div>
+        </div>
+        <div class="tip-box">好消息是：胰島素阻抗是<strong>可逆的</strong>。飲食調整 + 運動習慣維持，通常 8–12 週就能看到明顯改善，而且 Diana 已經有很好的運動基礎了。</div>
+      </div>
+    </div>
+
+    <!-- B3 荷爾蒙與腹部脂肪 -->
+    <div class="section" id="sec-b3">
+      <div class="section-header">
+        <div class="section-badge badge-b">B3</div>
+        <div class="section-title">荷爾蒙變化與腹部脂肪的關係</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">雌激素如何影響脂肪分布？</div>
+        <div class="info-row">
+          <div class="info-icon">🌸</div>
+          <div class="info-text"><strong>雌激素充足時</strong>：脂肪偏向儲存在<strong>臀部與大腿</strong>（皮下脂肪），這是女性生理的保護機制</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">📉</div>
+          <div class="info-text"><strong>雌激素下降時</strong>：這個保護機制減弱，脂肪分布開始轉向<strong>腹部與內臟</strong>，即使總熱量沒有增加，腰圍也會漸漸變大</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">🔗</div>
+          <div class="info-text"><strong>雌激素與胰島素的連動</strong>：雌激素下降也會直接降低胰島素敏感性，讓胰島素阻抗更容易發生——這兩個問題在 Diana 身上是同時存在的</div>
+        </div>
+        <div class="blue-box">
+          Diana 的雌激素 94 pg/mL 在正常範圍偏低端，FSH/LH 正常代表<strong>尚未進入更年期</strong>。
+          目前醫師開立的荷爾蒙藥物正在幫助調整這個狀況，是正確的方向。
+          我們飲食上能做的是：<strong>降低整體發炎、穩定血糖、支持荷爾蒙代謝</strong>，讓藥物的效果發揮得更好。
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Diana 的狀況為什麼這麼難處理？三重因素疊加</div>
+        <div style="margin-top:10px;">
+          <div class="progress-row">
+            <div class="progress-label"><span>① 胰島素阻抗</span><span>HOMA-IR 1.61</span></div>
+            <div class="progress-bar-bg"><div class="progress-fill" style="width:70%; background:var(--terra);"></div></div>
+            <div class="progress-note">抑制脂肪分解，讓能量更容易儲存為脂肪</div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-label"><span>② 雌激素偏低</span><span>E2 94 pg/mL（偏低端）</span></div>
+            <div class="progress-bar-bg"><div class="progress-fill" style="width:55%; background:#8AAFC4;"></div></div>
+            <div class="progress-note">脂肪分布從皮下往腹部轉移，加重胰島素阻抗</div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-label"><span>③ 睡眠品質差＋壓力</span><span>去年至今</span></div>
+            <div class="progress-bar-bg"><div class="progress-fill" style="width:60%; background:#C4A88A;"></div></div>
+            <div class="progress-note">皮質醇升高 → 促進腹部脂肪堆積 → 干擾荷爾蒙平衡</div>
+          </div>
+        </div>
+        <div class="warn-box">這三個因素會互相強化。這也是為什麼：<strong>即使吃得健康、有在運動，體重還是漸漸往上走</strong>——你的感受是真實的，不是你不夠努力。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">抗發炎飲食對 Diana 的雙重效益</div>
+        <table class="compare-table" style="margin-top:8px;">
+          <thead>
+            <tr><th style="width:40%;">飲食策略</th><th style="width:30%;">對胰島素阻抗</th><th style="width:30%;">對荷爾蒙／AS</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>增加 Omega-3（鮭魚、鯖魚、亞麻仁）</td>
+              <td class="hl-green">改善細胞膜流動性，提升胰島素敏感性</td>
+              <td class="hl-green">減少 TNF-α 等發炎激素，對 AS 也有幫助</td>
+            </tr>
+            <tr>
+              <td>多樣彩色蔬菜（多酚、植化素）</td>
+              <td class="hl-green">抗氧化、降低慢性發炎</td>
+              <td class="hl-green">支持荷爾蒙代謝與排毒</td>
+            </tr>
+            <tr>
+              <td>減少精製糖與超加工食品</td>
+              <td class="hl-green">穩定血糖，減少胰島素刺激</td>
+              <td class="hl-green">降低系統性發炎負擔</td>
+            </tr>
+            <tr>
+              <td>充足蛋白質</td>
+              <td class="hl-green">維持肌肉量，改善代謝率</td>
+              <td class="hl-green">提供荷爾蒙合成所需的胺基酸</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="tip-box">抗發炎飲食對 Diana 來說是一石二鳥：同時改善胰島素阻抗、支持荷爾蒙環境、降低 AS 的發炎負擔。</div>
+      </div>
+    </div>
+
+    <!-- B4 本週行動計畫 -->
+    <div class="section" id="sec-b4">
+      <div class="section-header">
+        <div class="section-badge badge-b">B4</div>
+        <div class="section-title">這週開始——具體行動計畫</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">飲食調整優先順序</div>
+        <div class="week-goal">
+          <div class="goal-num">1</div>
+          <div class="goal-text">每餐確認進食順序：蔬菜 → 蛋白質 → 澱粉
+            <div class="goal-sub">不需要改變食物內容，只改變吃的順序，就能幫助穩定血糖</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">2</div>
+          <div class="goal-text">早餐蛋白質提升至 30 g 以上
+            <div class="goal-sub">現在早餐約 25–28 g，稍微補足：多加一顆蛋，或白肉從 100g 增加到 130g（熟重）</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">3</div>
+          <div class="goal-text">每週加入 2 次深海魚（鮭魚、鯖魚）
+            <div class="goal-sub">Diana 的飲食記錄已有做到，繼續保持！Omega-3 對胰島素阻抗與 AS 雙重有益</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">4</div>
+          <div class="goal-text">記錄要補上的部分：醬料、假日早餐、服藥後的額外飲食
+            <div class="goal-sub">不是要監控，是幫助我們找到目前看不見的模式</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">5</div>
+          <div class="goal-text">每天飲水量至少 2,000 ml
+            <div class="goal-sub">幫助尿酸代謝，也支持整體代謝效率</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">追蹤指標建議</div>
+        <div class="info-row">
+          <div class="info-icon">📊</div>
+          <div class="info-text"><strong>體重</strong>：每週同一天早上空腹量，看週平均趨勢而不是每天數字</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📏</div>
+          <div class="info-text"><strong>腰圍</strong>：每兩週量一次，腰圍縮小比體重更能反映內臟脂肪的改善</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🔥</div>
+          <div class="info-text"><strong>飽足感與能量感</strong>：如果調整後整天比較有力氣、下午不容易嗜睡，代表血糖穩定了</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📸</div>
+          <div class="info-text"><strong>InBody</strong>：建議合作開始時做一次，作為體組成的基準點，比體重更有參考價值</div>
+        </div>
+        <div class="tip-box">
+          <strong>下次上課前請準備：</strong><br>
+          繼續飲食記錄（補上醬料、假日早餐），以及上課後的感受或疑問，下次一起討論。
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">你做得很好的事情——請繼續保持</div>
+        <div style="margin-top:10px; line-height:2.4;">
+          <span class="tag tag-ok">✓ 重訓習慣穩定</span>
+          <span class="tag tag-ok">✓ 步數達標</span>
+          <span class="tag tag-ok">✓ 自煮為主、原型食物</span>
+          <span class="tag tag-ok">✓ 蔬菜量 200g+</span>
+          <span class="tag tag-ok">✓ 粗糧取代精製澱粉</span>
+          <span class="tag tag-ok">✓ HDL 良好（重訓的成果）</span>
+          <span class="tag tag-ok">✓ 主動管理健康</span>
+        </div>
+        <div class="tip-box">Diana 的飲食基礎其實很好，問題不是你吃得多不健康，而是身體的代謝環境需要調整。我們的目標是讓你的努力能夠真正被身體看見。</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('visible');
+  btn.classList.add('active');
+}
+
+function calcTDEE() {
+  const bmr = parseFloat(document.getElementById('bmr').value);
+  const act = parseFloat(document.getElementById('activity').value);
+  if (!bmr || isNaN(bmr)) {
+    document.getElementById('tdee-display').textContent = '——';
+    document.getElementById('target-display').textContent = '——';
+    return;
+  }
+  const tdee = Math.round(bmr * act);
+  const target = Math.round(tdee - 350);
+  document.getElementById('tdee-display').textContent = tdee.toLocaleString();
+  document.getElementById('target-display').textContent = target.toLocaleString();
+}
+
+function calcMacros() {
+  const p = parseFloat(document.getElementById('prot-g').value) || 0;
+  const f = parseFloat(document.getElementById('fat-g').value) || 0;
+  const c = parseFloat(document.getElementById('carb-g').value) || 0;
+  const pKcal = Math.round(p * 4);
+  const fKcal = Math.round(f * 9);
+  const cKcal = Math.round(c * 4);
+  const total = pKcal + fKcal + cKcal;
+  document.getElementById('prot-kcal').textContent = p ? pKcal : '——';
+  document.getElementById('fat-kcal').textContent = f ? fKcal : '——';
+  document.getElementById('carb-kcal').textContent = c ? cKcal : '——';
+  document.getElementById('total-kcal').textContent = total ? total.toLocaleString() : '——';
+  if (total > 0) {
+    document.getElementById('prot-bar').style.width = Math.min(100, Math.round(pKcal/total*100)) + '%';
+    document.getElementById('fat-bar').style.width = Math.min(100, Math.round(fKcal/total*100)) + '%';
+    document.getElementById('carb-bar').style.width = Math.min(100, Math.round(cKcal/total*100)) + '%';
+  }
+}
+
+const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const gridColor = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)';
+const textColor = isDark ? '#aaa' : '#6b5e52';
+
+new Chart(document.getElementById('weightChart'), {
+  type: 'line',
+  data: {
+    labels: ['5/31 (日)', '6/4 (四)'],
+    datasets: [{
+      label: '體重 (kg)',
+      data: [66.6, 66.1],
+      borderColor: '#8B9E7E',
+      backgroundColor: 'rgba(139,158,126,0.08)',
+      pointBackgroundColor: '#8B9E7E',
+      pointRadius: 6,
+      tension: 0.3,
+      fill: true,
+      yAxisID: 'y'
+    },{
+      label: '體脂率 (%)',
+      data: [35.9, 35.7],
+      borderColor: '#C17F59',
+      backgroundColor: 'rgba(193,127,89,0.06)',
+      pointBackgroundColor: '#C17F59',
+      pointRadius: 6,
+      tension: 0.3,
+      fill: false,
+      yAxisID: 'y2',
+      borderDash: [4,3]
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        labels: { color: textColor, font: { size: 11 }, boxWidth: 14 }
+      },
+      tooltip: {
+        callbacks: {
+          label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y + (ctx.datasetIndex === 0 ? ' kg' : ' %')
+        }
+      }
+    },
+    scales: {
+      x: { ticks: { color: textColor, font: { size: 12 } }, grid: { color: gridColor } },
+      y: {
+        min: 65, max: 68,
+        ticks: { color: textColor, font: { size: 11 }, callback: v => v + ' kg' },
+        grid: { color: gridColor },
+        title: { display: true, text: '體重 kg', color: textColor, font: { size: 11 } }
+      },
+      y2: {
+        position: 'right',
+        min: 34, max: 37,
+        ticks: { color: '#C17F59', font: { size: 11 }, callback: v => v + '%' },
+        grid: { drawOnChartArea: false },
+        title: { display: true, text: '體脂率 %', color: '#C17F59', font: { size: 11 } }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
