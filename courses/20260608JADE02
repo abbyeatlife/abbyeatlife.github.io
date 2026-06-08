@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jade 第二次課程｜Abby Eat Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Playfair+Display:ital,wght@0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sage: #8B9E7E;
+  --terra: #C17F59;
+  --cream: #FDFBF7;
+  --bark: #3D3229;
+  --sage-light: #e8ede5;
+  --terra-light: #f5e6db;
+  --blue: #5B82A6;
+  --blue-light: #dce8f2;
+  --bg: #FDFBF7;
+  --bg-2: #f3f0ea;
+  --border: rgba(61,50,41,0.11);
+  --border-md: rgba(61,50,41,0.22);
+  --text: #2a2218;
+  --text-2: #6b5e52;
+  --text-3: #a0948a;
+  --r-md: 8px;
+  --r-lg: 14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.7;min-height:100vh;}
+
+/* HEADER */
+.hdr{background:var(--bark);color:var(--cream);padding:1.25rem 2rem;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;}
+.hdr-dot{width:34px;height:34px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:#fff;flex-shrink:0;}
+.hdr h1{font-family:'Playfair Display',serif;font-size:18px;font-weight:500;}
+.hdr .sub{font-size:12px;opacity:0.55;margin-top:1px;}
+.hdr-badge{margin-left:auto;background:rgba(139,158,126,0.3);border:0.5px solid rgba(139,158,126,0.5);color:var(--sage-light);font-size:11px;padding:3px 10px;border-radius:12px;white-space:nowrap;}
+
+/* LAYOUT */
+.layout{display:flex;min-height:calc(100vh - 64px);}
+.sidebar{width:196px;flex-shrink:0;background:#fff;border-right:0.5px solid var(--border);padding:1rem 0;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto;}
+.sg-label{font-size:10px;color:var(--text-3);padding:0.6rem 1.1rem 0.2rem;letter-spacing:0.07em;font-weight:700;text-transform:uppercase;}
+.sb-btn{display:flex;align-items:center;gap:8px;width:100%;padding:7px 1.1rem;background:none;border:none;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:13px;color:var(--text-2);text-align:left;transition:all 0.13s;}
+.sb-btn:hover{background:var(--bg-2);color:var(--text);}
+.sb-btn.active{background:var(--sage-light);color:var(--sage);font-weight:500;}
+.sb-btn.active .bdg-a{background:var(--sage);color:#fff;}
+.sb-btn.active .bdg-b{background:var(--terra);color:#fff;}
+.sb-btn.active .bdg-c{background:var(--blue);color:#fff;}
+.bdg{width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;}
+.bdg-a{background:var(--sage-light);color:var(--sage);}
+.bdg-b{background:var(--terra-light);color:var(--terra);}
+.bdg-c{background:var(--blue-light);color:var(--blue);}
+
+.main{flex:1;padding:1.75rem 2rem;max-width:800px;}
+.sec{display:none;}
+.sec.on{display:block;}
+
+/* SECTION HEADER */
+.sec-hdr{display:flex;align-items:center;gap:10px;margin-bottom:1.4rem;padding-bottom:1rem;border-bottom:0.5px solid var(--border);}
+.sec-bdg{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.sec-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:500;}
+
+/* CARDS */
+.card{background:#fff;border:0.5px solid var(--border);border-radius:var(--r-lg);padding:1.1rem 1.3rem;margin-bottom:1rem;}
+.card-lbl{font-size:11px;color:var(--text-3);margin-bottom:10px;letter-spacing:0.04em;font-weight:600;text-transform:uppercase;}
+
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:1rem;}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:1rem;}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:1rem;}
+
+.mc{background:var(--bg-2);border-radius:var(--r-md);padding:0.85rem 1rem;}
+.mc-lbl{font-size:11px;color:var(--text-2);margin-bottom:3px;}
+.mc-val{font-size:22px;font-weight:700;color:var(--text);}
+.mc-note{font-size:11px;color:var(--text-3);margin-top:2px;}
+
+.chart-wrap{position:relative;width:100%;height:200px;margin:0.75rem 0;}
+
+/* TAGS */
+.tag{display:inline-block;font-size:11px;padding:3px 9px;border-radius:10px;margin:2px;}
+.tok{background:var(--sage-light);color:#4a6b3e;}
+.twarn{background:#fef3e2;color:#a06010;}
+.talert{background:#fdecea;color:#a03030;}
+.tblue{background:var(--blue-light);color:var(--blue);}
+
+/* INFO ROWS */
+.ir{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:0.5px solid var(--border);font-size:14px;}
+.ir:last-child{border-bottom:none;}
+.ir-ico{color:var(--text-3);flex-shrink:0;padding-top:2px;font-size:15px;width:20px;text-align:center;}
+.ir-txt{color:var(--text);line-height:1.65;}
+.ir-txt strong{font-weight:600;}
+
+/* PROGRESS */
+.pr{margin-bottom:0.9rem;}
+.pr-lbl{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;}
+.pr-lbl span:first-child{color:var(--text-2);}
+.pr-lbl span:last-child{color:var(--text);font-weight:600;}
+.pr-bg{height:7px;background:var(--bg-2);border-radius:4px;overflow:hidden;}
+.pr-fill{height:100%;border-radius:4px;transition:width 0.7s ease;}
+.pr-note{font-size:11px;color:var(--text-3);margin-top:3px;}
+
+/* BOXES */
+.tip{background:var(--sage-light);border-left:3px solid var(--sage);border-radius:0 var(--r-md) var(--r-md) 0;padding:10px 14px;font-size:13px;color:var(--text);line-height:1.65;margin-top:0.75rem;}
+.warn{background:var(--terra-light);border-left:3px solid var(--terra);border-radius:0 var(--r-md) var(--r-md) 0;padding:10px 14px;font-size:13px;color:var(--text);line-height:1.65;margin-top:0.75rem;}
+.blue-box{background:var(--blue-light);border-left:3px solid var(--blue);border-radius:0 var(--r-md) var(--r-md) 0;padding:10px 14px;font-size:13px;color:var(--text);line-height:1.65;margin-top:0.75rem;}
+
+/* GOAL ROWS */
+.gr{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:0.5px solid var(--border);font-size:14px;}
+.gr:last-child{border-bottom:none;}
+.gr-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;}
+.gr-a{background:var(--sage-light);color:var(--sage);}
+.gr-b{background:var(--terra-light);color:var(--terra);}
+.gr-c{background:var(--blue-light);color:var(--blue);}
+.gr-txt{color:var(--text);line-height:1.55;}
+.gr-sub{color:var(--text-2);font-size:12px;margin-top:2px;}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:13px;}
+.tbl th{background:var(--bg-2);font-weight:600;padding:7px 11px;text-align:left;color:var(--text-2);font-size:11px;border-bottom:0.5px solid var(--border);letter-spacing:0.02em;}
+.tbl td{padding:8px 11px;border-bottom:0.5px solid var(--border);color:var(--text);vertical-align:top;}
+.tbl tr:last-child td{border-bottom:none;}
+.hl-g{color:#2e7d32;font-weight:600;}
+.hl-r{color:#c0392b;font-weight:600;}
+.hl-o{color:#a06010;font-weight:600;}
+
+/* WEEK COMPARISON */
+.wk-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border-radius:var(--r-md);overflow:hidden;margin-top:10px;}
+.wk-col{background:#fff;padding:10px 12px;}
+.wk-col:first-child{background:var(--bg-2);}
+.wk-head{font-size:11px;color:var(--text-3);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;}
+.wk-val{font-size:18px;font-weight:700;color:var(--text);}
+.wk-sub{font-size:11px;color:var(--text-2);margin-top:2px;}
+.wk-delta{font-size:13px;font-weight:700;margin-top:4px;}
+.delta-g{color:#2e7d32;}
+.delta-r{color:#c0392b;}
+
+/* SCENARIO CARD */
+.sc-card{border:0.5px solid var(--border);border-radius:var(--r-lg);overflow:hidden;margin-bottom:0.75rem;}
+.sc-head{padding:10px 14px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;}
+.sc-head-a{background:var(--sage-light);color:#3d5c35;}
+.sc-head-b{background:var(--terra-light);color:#7a4a2a;}
+.sc-head-c{background:var(--blue-light);color:#2d5278;}
+.sc-body{padding:10px 14px;font-size:13px;color:var(--text);line-height:1.65;background:#fff;}
+
+/* INSULIN VISUAL */
+.ins-row{display:flex;align-items:center;gap:0;margin:8px 0;}
+.ins-label{font-size:12px;color:var(--text-2);width:110px;flex-shrink:0;}
+.ins-bar-wrap{flex:1;height:20px;background:var(--bg-2);border-radius:4px;overflow:hidden;position:relative;}
+.ins-fill{height:100%;border-radius:4px;display:flex;align-items:center;padding-left:8px;font-size:10px;color:#fff;font-weight:600;}
+.ins-note{font-size:11px;color:var(--text-3);width:80px;text-align:right;flex-shrink:0;padding-left:8px;}
+
+/* PROTEIN TRACKER */
+.pt-wrap{display:flex;align-items:center;gap:12px;margin:10px 0;}
+.pt-label{font-size:13px;color:var(--text-2);width:80px;flex-shrink:0;}
+.pt-bar-wrap{flex:1;height:12px;background:var(--bg-2);border-radius:6px;overflow:hidden;}
+.pt-fill{height:100%;border-radius:6px;transition:width 0.6s ease;}
+.pt-val{font-size:13px;font-weight:600;color:var(--text);width:60px;text-align:right;flex-shrink:0;}
+
+@media(max-width:640px){
+  .layout{flex-direction:column;}
+  .sidebar{width:100%;height:auto;position:static;display:flex;flex-wrap:wrap;padding:0.5rem;gap:3px;}
+  .sg-label{display:none;}
+  .sb-btn{border-radius:16px;padding:5px 10px;width:auto;}
+  .sb-btn.active{background:var(--sage);color:#fff;}
+  .main{padding:1rem;}
+  .wk-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-dot">J</div>
+  <div>
+    <h1>Jade 第二次課程</h1>
+    <div class="sub">2026.06.08 ｜ Abby Eat Life 營養 Coaching</div>
+  </div>
+
+</div>
+
+<div class="layout">
+  <nav class="sidebar">
+    <div class="sg-label">本週回顧</div>
+    <button class="sb-btn active" onclick="show('a1',this)"><span class="bdg bdg-a">A1</span>體重進度</button>
+    <button class="sb-btn" onclick="show('a2',this)"><span class="bdg bdg-a">A2</span>飲食分析</button>
+    <button class="sb-btn" onclick="show('a3',this)"><span class="bdg bdg-a">A3</span>執行亮點</button>
+    <div class="sg-label" style="margin-top:0.5rem;">新觀念</div>
+    <button class="sb-btn" onclick="show('b1',this)"><span class="bdg bdg-b">B1</span>代謝適應</button>
+    <button class="sb-btn" onclick="show('b2',this)"><span class="bdg bdg-b">B2</span>蛋白質提升</button>
+    <button class="sb-btn" onclick="show('b3',this)"><span class="bdg bdg-b">B3</span>聚餐策略</button>
+    <div class="sg-label" style="margin-top:0.5rem;">進階概念</div>
+    <button class="sb-btn" onclick="show('c1',this)"><span class="bdg bdg-c">C1</span>血糖波動</button>
+    <button class="sb-btn" onclick="show('c2',this)"><span class="bdg bdg-c">C2</span>下階段目標</button>
+  </nav>
+
+  <main class="main">
+
+    <!-- A1 體重進度 -->
+    <div class="sec on" id="sec-a1">
+      <div class="sec-hdr">
+        <div class="sec-bdg bdg-a">A1</div>
+        <div class="sec-title">體重進度回顧</div>
+      </div>
+
+      <div class="wk-grid">
+        <div class="wk-col">
+          <div class="wk-head">基準（第一週）</div>
+          <div class="wk-val">74.1 kg</div>
+          <div class="wk-sub">5/19–5/24 週均</div>
+        </div>
+        <div class="wk-col">
+          <div class="wk-head">第二週</div>
+          <div class="wk-val">72.6 kg</div>
+          <div class="wk-sub">5/26–6/1 週均</div>
+          <div class="wk-delta delta-g">↓ 1.5 kg</div>
+        </div>
+        <div class="wk-col">
+          <div class="wk-head">第三週</div>
+          <div class="wk-val">72.0 kg</div>
+          <div class="wk-sub">6/2–6/7 週均</div>
+          <div class="wk-delta delta-g">↓ 0.6 kg</div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:1rem;">
+        <div class="card-lbl">兩週體重曲線</div>
+        <div class="chart-wrap">
+          <canvas id="weightChart" role="img" aria-label="Jade體重從74公斤下降至71.9公斤的折線圖"></canvas>
+        </div>
+      </div>
+
+      <div class="g3">
+        <div class="mc">
+          <div class="mc-lbl">兩週總降幅</div>
+          <div class="mc-val" style="color:var(--sage);">↓ 2.1 kg</div>
+          <div class="mc-note">目標 1 kg，超標完成 ✓</div>
+        </div>
+        <div class="mc">
+          <div class="mc-lbl">目前最低紀錄</div>
+          <div class="mc-val">71.9 kg</div>
+          <div class="mc-note">6/7（日）</div>
+        </div>
+        <div class="mc">
+          <div class="mc-lbl">距離目標</div>
+          <div class="mc-val">7.0 kg</div>
+          <div class="mc-note">目標 65 kg</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">這次降得快，原因是什麼？</div>
+        <div class="ir">
+          <div class="ir-ico">💧</div>
+          <div class="ir-txt"><strong>水腫消退（約佔一半）</strong>：飲食改善後鈉攝取大降，組織間積水開始排出，這部分不是脂肪</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">⚡</div>
+          <div class="ir-txt"><strong>肝醣消耗</strong>：熱量稍低於維持量，肝醣儲存下降，每克肝醣帶走約 3g 水，體重視覺上降得快</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">🔥</div>
+          <div class="ir-txt"><strong>真正的脂肪燃燒</strong>：持續的熱量赤字在這兩週也有實質的脂肪消耗，估計約 0.5–0.8 kg</div>
+        </div>
+        <div class="warn">接下來體重會趨緩——這是正常的，不是出問題。水腫退完、肝醣穩定後，進入穩定脂肪燃燒期，每週 0.5 kg 才是持續的速度。</div>
+      </div>
+    </div>
+
+    <!-- A2 飲食分析 -->
+    <div class="sec" id="sec-a2">
+      <div class="sec-hdr">
+        <div class="sec-bdg bdg-a">A2</div>
+        <div class="sec-title">飲食數據分析（12天均值）</div>
+      </div>
+
+      <div class="g4">
+        <div class="mc">
+          <div class="mc-lbl">估算日均熱量</div>
+          <div class="mc-val" style="color:var(--terra);">1,325</div>
+          <div class="mc-note">kcal（目標 1,500）</div>
+        </div>
+        <div class="mc">
+          <div class="mc-lbl">蛋白質均值</div>
+          <div class="mc-val" style="color:var(--terra);">91 g</div>
+          <div class="mc-note">目標 120 g，差 29 g</div>
+        </div>
+        <div class="mc">
+          <div class="mc-lbl">碳水均值</div>
+          <div class="mc-val" style="color:var(--sage);">122 g</div>
+          <div class="mc-note">目標 120–150 g ✓</div>
+        </div>
+        <div class="mc">
+          <div class="mc-lbl">脂肪均值</div>
+          <div class="mc-val" style="color:var(--sage);">47 g</div>
+          <div class="mc-note">目標約 50 g ✓</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">三大營養素達成率</div>
+        <div style="margin-top:10px;">
+          <div class="pr">
+            <div class="pr-lbl"><span>熱量</span><span>1,325 / 1,500 kcal</span></div>
+            <div class="pr-bg"><div class="pr-fill" style="width:88%;background:var(--terra);"></div></div>
+            <div class="pr-note">⚠️ 偏低 175 kcal，需往上吃一點</div>
+          </div>
+          <div class="pr">
+            <div class="pr-lbl"><span>蛋白質</span><span>91 / 120 g</span></div>
+            <div class="pr-bg"><div class="pr-fill" style="width:76%;background:var(--terra);"></div></div>
+            <div class="pr-note">⚠️ 仍差約 29 g，是目前最主要的缺口</div>
+          </div>
+          <div class="pr">
+            <div class="pr-lbl"><span>碳水化合物</span><span>122 / 130 g</span></div>
+            <div class="pr-bg"><div class="pr-fill" style="width:94%;background:var(--sage);"></div></div>
+            <div class="pr-note">✅ 達標，品質也有提升</div>
+          </div>
+          <div class="pr">
+            <div class="pr-lbl"><span>脂肪</span><span>47 / 50 g</span></div>
+            <div class="pr-bg"><div class="pr-fill" style="width:94%;background:var(--sage);"></div></div>
+            <div class="pr-note">✅ 接近目標</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">每日熱量分佈（12天）</div>
+        <div class="chart-wrap">
+          <canvas id="kcalChart" role="img" aria-label="12天每日熱量分布長條圖"></canvas>
+        </div>
+        <div class="warn">5/30（僅銀耳蓮子湯＋聚餐）和 6/1、6/5 熱量明顯偏低，這幾天蛋白質也特別不足，是最需要補強的情境。</div>
+      </div>
+    </div>
+
+    <!-- A3 執行亮點 -->
+    <div class="sec" id="sec-a3">
+      <div class="sec-hdr">
+        <div class="sec-bdg bdg-a">A3</div>
+        <div class="sec-title">執行亮點 ＋ 觀察到的模式</div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">做得非常好的地方 👏</div>
+        <div class="ir">
+          <div class="ir-ico" style="color:var(--sage);">✓</div>
+          <div class="ir-txt"><strong>烹調方式大幅改善</strong>：昆布鍋、烤、燙、蒸為主，炸物幾乎消失</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico" style="color:var(--sage);">✓</div>
+          <div class="ir-txt"><strong>蔬菜量和種類明顯增加</strong>：高麗菜、空心菜、花椰菜、蒟蒻絲、生菜都出現了</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico" style="color:var(--sage);">✓</div>
+          <div class="ir-txt"><strong>主動補蛋白質</strong>：優格、高蛋白粉加入日常，顯示有在執行</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico" style="color:var(--sage);">✓</div>
+          <div class="ir-txt"><strong>Omega-3 有進來</strong>：6/1 大量鮭魚、蝦仁，6/4 生魚片，方向完全正確</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico" style="color:var(--sage);">✓</div>
+          <div class="ir-txt"><strong>活動量提升</strong>：多次達到萬步，三次騎腳踏車，非常穩定</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico" style="color:var(--sage);">✓</div>
+          <div class="ir-txt"><strong>紀錄很細很完整</strong>：連克數都有記，資料品質很高</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">需要優化的模式</div>
+        <div class="ir">
+          <div class="ir-ico">⚠️</div>
+          <div class="ir-txt"><strong>部分日子只有兩餐</strong>：6/2、6/5 進食間隔過長，容易讓蛋白質合成效率下降</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">⚠️</div>
+          <div class="ir-txt"><strong>聚餐情境還沒有策略</strong>：5/30、6/6 出現泰式奶茶、咖哩、春捲，需要建立應對框架</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">⚠️</div>
+          <div class="ir-txt"><strong>熱量整體偏低</strong>：均值 1,325 kcal，低於目標 175 kcal，長期下去會讓代謝開始適應</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">⚠️</div>
+          <div class="ir-txt"><strong>小貢丸出現（6/3）</strong>：加工火鍋料，鈉偏高，偶發沒問題，注意頻率</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B1 代謝適應 -->
+    <div class="sec" id="sec-b1">
+      <div class="sec-hdr">
+        <div class="sec-bdg bdg-b">B1</div>
+        <div class="sec-title">為什麼不能一直少吃？——代謝適應</div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">身體的「節能模式」是怎麼啟動的</div>
+        <div class="ir">
+          <div class="ir-ico">🧠</div>
+          <div class="ir-txt"><strong>身體偵測到熱量持續不足</strong>，會啟動保護機制：降低基礎代謝率（BMR 可能下降 10–15%）</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">💪</div>
+          <div class="ir-txt"><strong>開始分解肌肉當能量</strong>：熱量太低時，身體優先犧牲肌肉，而不是脂肪</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">📉</div>
+          <div class="ir-txt"><strong>體重下降速度越來越慢</strong>：即使吃一樣少，身體消耗越來越少，瘦得越來越辛苦</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">🔄</div>
+          <div class="ir-txt"><strong>停止節食後容易反彈</strong>：代謝已降低，但食慾恢復，熱量一回來就快速囤積</div>
+        </div>
+        <div class="warn">你現在均值 1,325 kcal，目標是 1,500 kcal。<strong>要往上吃，不是往下壓</strong>。吃夠才能讓身體知道「不是飢荒」，繼續正常燃燒脂肪。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">正確的減脂節奏</div>
+        <div class="gr">
+          <div class="gr-num gr-a">1</div>
+          <div class="gr-txt">每週下降約 0.5 kg
+            <div class="gr-sub">這個速度 = 約 75% 是脂肪流失，肌肉保留</div>
+          </div>
+        </div>
+        <div class="gr">
+          <div class="gr-num gr-a">2</div>
+          <div class="gr-txt">每 4–6 週考慮「維持週」
+            <div class="gr-sub">熱量拉回 TDEE 一週，讓代謝重置，避免長期適應</div>
+          </div>
+        </div>
+        <div class="gr">
+          <div class="gr-num gr-a">3</div>
+          <div class="gr-txt">體重停滯不等於失敗
+            <div class="gr-sub">停滯 1–2 週是正常的，身體在重新調整，繼續執行就會再動</div>
+          </div>
+        </div>
+        <div class="tip">目前你做的很好，只需要<strong>熱量從 1,325 往 1,500 靠攏</strong>，主要從蛋白質補進來，速度就會更穩定。</div>
+      </div>
+    </div>
+
+    <!-- B2 蛋白質提升 -->
+    <div class="sec" id="sec-b2">
+      <div class="sec-hdr">
+        <div class="sec-bdg bdg-b">B2</div>
+        <div class="sec-title">蛋白質缺口 29g，怎麼補最自然？</div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">目前 vs 目標</div>
+        <div style="margin-top:12px;">
+          <div class="pt-wrap">
+            <div class="pt-label">目前均值</div>
+            <div class="pt-bar-wrap"><div class="pt-fill" style="width:76%;background:var(--terra);"></div></div>
+            <div class="pt-val" style="color:var(--terra);">91 g</div>
+          </div>
+          <div class="pt-wrap">
+            <div class="pt-label">目標</div>
+            <div class="pt-bar-wrap"><div class="pt-fill" style="width:100%;background:var(--sage);"></div></div>
+            <div class="pt-val" style="color:var(--sage);">120 g</div>
+          </div>
+        </div>
+        <div class="warn" style="margin-top:10px;">缺口約 <strong>29g／天</strong>，對應約 116 大卡，是達到目標熱量 1,500 kcal 的主要缺口來源</div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">三個微調，不需要大改飲食</div>
+        <div class="gr">
+          <div class="gr-num gr-b">+</div>
+          <div class="gr-txt">高蛋白粉每天穩定加一次（+20–25g）
+            <div class="gr-sub">目前已經有用，但部分日子沒加。建議固定在晚餐後或睡前豆漿裡</div>
+          </div>
+        </div>
+        <div class="gr">
+          <div class="gr-num gr-b">+</div>
+          <div class="gr-txt">豆漿量從 250cc 提升到 400–500cc（+5–8g）
+            <div class="gr-sub">早餐已有習慣，只是增量，幾乎沒有負擔</div>
+          </div>
+        </div>
+        <div class="gr">
+          <div class="gr-num gr-b">+</div>
+          <div class="gr-txt">午晚餐肉類多抓 30–50g（+7–10g）
+            <div class="gr-sub">比方說雞腿從 100g 到 130g，或加一顆溏心蛋</div>
+          </div>
+        </div>
+        <div class="tip">這三個加起來約 +32–43g，就能填補缺口，而且完全符合你目前的飲食習慣，不需要硬吃不喜歡的東西。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">你已經吃得很好的蛋白質選擇 ⭐</div>
+        <div style="margin-top:6px;line-height:2.2;">
+          <span class="tag tok">✓ 烤雞腿（去骨去皮）</span>
+          <span class="tag tok">✓ 鯛魚片</span>
+          <span class="tag tok">✓ 煙燻鮭魚</span>
+          <span class="tag tok">✓ 蝦仁</span>
+          <span class="tag tok">✓ 希臘優格</span>
+          <span class="tag tok">✓ 嫩豆腐／板豆腐</span>
+          <span class="tag tok">✓ 水煮蛋</span>
+          <span class="tag tok">✓ 雞里肌</span>
+          <span class="tag twarn">△ 皮蛋豆腐（鈉偏高）</span>
+          <span class="tag twarn">△ 烤香腸（加工，鈉高）</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- B3 聚餐策略 -->
+    <div class="sec" id="sec-b3">
+      <div class="sec-hdr">
+        <div class="sec-bdg bdg-b">B3</div>
+        <div class="sec-title">聚餐怎麼吃？外食情境應對策略</div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">核心觀念先建立</div>
+        <div class="ir">
+          <div class="ir-ico">📅</div>
+          <div class="ir-txt"><strong>一餐不影響趨勢</strong>：減脂是週均的概念，一次聚餐吃多不會讓你胖，但連續三天失控才會。</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">⚖️</div>
+          <div class="ir-txt"><strong>前後調整，不是當天零吃</strong>：聚餐當天不需要餓著去，前一餐稍微清淡，聚餐後隔天正常吃回來就好。</div>
+        </div>
+        <div class="tip">聚餐的目標不是「控制到完美」，而是<strong>不讓一次聚餐把整週的努力全部抵消</strong>。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">常見聚餐情境應對</div>
+
+        <div class="sc-card">
+          <div class="sc-head sc-head-a">🇰🇷 韓式料理（如 5/30 馬鈴薯排骨湯）</div>
+          <div class="sc-body">
+            <strong>風險：</strong>馬鈴薯排骨湯澱粉高、湯底含鈉高<br>
+            <strong>策略：</strong>排骨肉優先吃，馬鈴薯控量（吃 1–2 塊即可），湯少喝，飯量減半。烤肉類選五花肉搭菜葉包，減少直接吃飯。
+          </div>
+        </div>
+
+        <div class="sc-card">
+          <div class="sc-head sc-head-b">🇻🇳 越式／東南亞料理（如 6/6）</div>
+          <div class="sc-body">
+            <strong>風險：</strong>泰式奶茶（約 300–400 kcal、高糖）、咖哩（椰漿高脂）、春捲（炸皮高熱量）<br>
+            <strong>策略：</strong>泰式奶茶換成無糖茶或氣泡水；咖哩吃料不喝湯；春捲若是炸的，吃半個就好；主菜選烤肉類優先。
+          </div>
+        </div>
+
+        <div class="sc-card">
+          <div class="sc-head sc-head-c">🍱 一般聚餐通用原則</div>
+          <div class="sc-body">
+            1. <strong>先到先選蛋白質</strong>：入座先夾魚、肉、豆腐，盤子先填好<br>
+            2. <strong>蔬菜先吃</strong>：減緩血糖上升，也能增加飽足感<br>
+            3. <strong>含糖飲料換掉</strong>：一杯奶茶 ≈ 一碗飯的熱量<br>
+            4. <strong>聚餐後的隔天</strong>：正常吃回來，不要因為昨天多吃就今天少吃來「補償」，這樣會打亂節律
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- C1 血糖波動 -->
+    <div class="sec" id="sec-c1">
+      <div class="sec-hdr">
+        <div class="sec-bdg bdg-c">C1</div>
+        <div class="sec-title">血糖波動與飢餓感的關係</div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">為什麼有時候吃完很快又餓？</div>
+        <div class="ir">
+          <div class="ir-ico">📈</div>
+          <div class="ir-txt"><strong>血糖快速上升</strong>：空腹吃精製澱粉（白飯、吐司、麵），血糖快速飆高</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">💉</div>
+          <div class="ir-txt"><strong>胰島素大量分泌</strong>：身體趕快把血糖降下來，胰島素分泌量偏高</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">📉</div>
+          <div class="ir-txt"><strong>血糖反跌→又餓了</strong>：血糖降得太快，很快出現飢餓感，容易吃下一餐又多吃</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">🔁</div>
+          <div class="ir-txt"><strong>長期反覆</strong>：胰島素長期偏高，身體開始對胰島素不敏感，脂肪更難被燃燒</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">血糖曲線的差異</div>
+        <div class="chart-wrap" style="height:160px;">
+          <canvas id="glucoseChart" role="img" aria-label="血糖波動比較：一般吃法vs正確順序的血糖曲線對比圖"></canvas>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">三個簡單方法，平穩血糖</div>
+        <div class="gr">
+          <div class="gr-num gr-c">1</div>
+          <div class="gr-txt">進食順序：蔬菜 → 蛋白質 → 澱粉
+            <div class="gr-sub">先吃蔬菜纖維包覆腸道，再吃蛋白質，最後才吃飯。同樣的食物，順序對血糖影響可以差 30–40%</div>
+          </div>
+        </div>
+        <div class="gr">
+          <div class="gr-num gr-c">2</div>
+          <div class="gr-txt">碳水分散在三餐，不集中
+            <div class="gr-sub">你有幾天午餐一次吃了 150–218g 白飯，建議拆開來，例如午餐 100g、晚餐 80g</div>
+          </div>
+        </div>
+        <div class="gr">
+          <div class="gr-num gr-c">3</div>
+          <div class="gr-txt">選複合碳水取代精製碳水
+            <div class="gr-sub">地瓜、南瓜、藜麥（你 6/1 有吃到！）血糖上升比白飯慢很多，飽足感也更持久</div>
+          </div>
+        </div>
+        <div class="blue-box">這不是要你不吃白飯，而是讓你知道<strong>同樣的碳水，聰明搭配可以讓血糖更穩</strong>，下一餐不那麼快餓，整天的飲食就更容易控制。</div>
+      </div>
+    </div>
+
+    <!-- C2 下階段目標 -->
+    <div class="sec" id="sec-c2">
+      <div class="sec-hdr">
+        <div class="sec-bdg bdg-c">C2</div>
+        <div class="sec-title">下階段目標設定</div>
+      </div>
+
+      <div class="g2">
+        <div class="mc">
+          <div class="mc-lbl">現在週均體重</div>
+          <div class="mc-val">72.0 kg</div>
+          <div class="mc-note">6/2–6/7</div>
+        </div>
+        <div class="mc">
+          <div class="mc-lbl">下次目標週均</div>
+          <div class="mc-val" style="color:var(--sage);">71.0 kg</div>
+          <div class="mc-note">兩週後，↓ 1 kg</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">下兩週執行重點</div>
+        <div class="gr">
+          <div class="gr-num gr-a">1</div>
+          <div class="gr-txt">熱量往 1,500 kcal 靠攏
+            <div class="gr-sub">目前 1,325，需要多吃約 175 kcal，主要從蛋白質補進來</div>
+          </div>
+        </div>
+        <div class="gr">
+          <div class="gr-num gr-a">2</div>
+          <div class="gr-txt">蛋白質衝到 110–120g
+            <div class="gr-sub">高蛋白粉每天固定一次 + 豆漿量提升 + 肉類稍微增量</div>
+          </div>
+        </div>
+        <div class="gr">
+          <div class="gr-num gr-a">3</div>
+          <div class="gr-txt">開始練習進食順序
+            <div class="gr-sub">蔬菜先、蛋白質中、澱粉最後，不需要完美，有意識就好</div>
+          </div>
+        </div>
+        <div class="gr">
+          <div class="gr-num gr-a">4</div>
+          <div class="gr-txt">加入重訓一次
+            <div class="gr-sub">任何形式都可以，啞鈴、深蹲、徒手訓練，讓肌肉知道它有用處</div>
+          </div>
+        </div>
+        <div class="gr">
+          <div class="gr-num gr-a">5</div>
+          <div class="gr-txt">體重趨緩時不要緊張
+            <div class="gr-sub">這兩週水腫退完後，體重下降速度會變慢，這是正常的，繼續執行就好</div>
+          </div>
+        </div>
+        <div class="tip">你這兩週的執行力非常好，飲食模式已經完全走在正確的方向上。接下來是<strong>微調精準度</strong>，不是大改方向。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-lbl">下次課程（約兩週後）準備</div>
+        <div class="ir">
+          <div class="ir-ico">📋</div>
+          <div class="ir-txt">繼續用目前的格式記錄飲食，重點補上烹調方式</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">⚖️</div>
+          <div class="ir-txt">每天早上量體重，記錄在同一張表上</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">📏</div>
+          <div class="ir-txt">量腰圍（上次忘記量），下次帶數字來</div>
+        </div>
+        <div class="ir">
+          <div class="ir-ico">💊</div>
+          <div class="ir-txt">魚油有規律吃嗎？下次回報</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.sb-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('on');
+  btn.classList.add('active');
+}
+
+const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const gc = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)';
+const tc = isDark ? '#aaa' : '#8a7e76';
+
+// 體重折線圖
+new Chart(document.getElementById('weightChart'), {
+  type: 'line',
+  data: {
+    labels: ['5/19','5/20','5/21','5/22','5/23','5/24','5/26','5/27','5/28','5/29','5/30','5/31','6/1','6/2','6/3','6/4','6/5','6/6','6/7'],
+    datasets: [{
+      label: '體重',
+      data: [74, 73.2, 73.4, 73.9, 75.2, 74.6, 73.6, 73.2, 72.7, 72.4, 72.2, 72.4, 72.6, 72.3, 72.1, 72.0, 72.0, 72.5, 71.9],
+      borderColor: '#8B9E7E',
+      backgroundColor: 'rgba(139,158,126,0.07)',
+      pointBackgroundColor: '#8B9E7E',
+      pointRadius: 3.5,
+      tension: 0.35,
+      fill: true,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ctx.parsed.y + ' kg' }}
+    },
+    scales: {
+      x: { ticks: { color: tc, font: { size: 10 }, maxRotation: 45 }, grid: { color: gc } },
+      y: { min: 70, max: 76, ticks: { color: tc, font: { size: 11 }, callback: v => v + ' kg' }, grid: { color: gc } }
+    }
+  }
+});
+
+// 熱量長條圖
+new Chart(document.getElementById('kcalChart'), {
+  type: 'bar',
+  data: {
+    labels: ['5/26','5/27','5/28','5/29','5/30','5/31','6/1','6/2','6/3','6/4','6/5','6/6'],
+    datasets: [{
+      label: '估算熱量',
+      data: [1450, 1300, 1350, 1500, 1200, 1550, 1150, 1200, 1350, 1350, 1100, 1400],
+      backgroundColor: (ctx) => {
+        const v = ctx.parsed.y;
+        return v < 1300 ? 'rgba(193,127,89,0.7)' : v >= 1450 ? 'rgba(139,158,126,0.7)' : 'rgba(139,158,126,0.45)';
+      },
+      borderRadius: 4,
+    },{
+      label: '目標 1500',
+      data: Array(12).fill(1500),
+      type: 'line',
+      borderColor: '#C17F59',
+      borderDash: [5,4],
+      pointRadius: 0,
+      borderWidth: 1.5,
+      fill: false,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ctx.parsed.y + ' kcal' }}
+    },
+    scales: {
+      x: { ticks: { color: tc, font: { size: 11 } }, grid: { display: false } },
+      y: { min: 900, max: 1700, ticks: { color: tc, font: { size: 11 }, callback: v => v + '' }, grid: { color: gc } }
+    }
+  }
+});
+
+// 血糖曲線圖
+new Chart(document.getElementById('glucoseChart'), {
+  type: 'line',
+  data: {
+    labels: ['餐前', '15分', '30分', '45分', '60分', '90分', '120分', '150分', '180分'],
+    datasets: [{
+      label: '一般吃法（澱粉先）',
+      data: [90, 130, 165, 155, 140, 105, 78, 82, 88],
+      borderColor: '#C17F59',
+      backgroundColor: 'rgba(193,127,89,0.06)',
+      pointRadius: 3, tension: 0.4, fill: true,
+    },{
+      label: '蔬菜→蛋白質→澱粉',
+      data: [90, 100, 118, 125, 120, 108, 95, 92, 90],
+      borderColor: '#8B9E7E',
+      backgroundColor: 'rgba(139,158,126,0.06)',
+      pointRadius: 3, tension: 0.4, fill: true,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom',
+        labels: { color: tc, font: { size: 11 }, boxWidth: 12, padding: 12 }
+      }
+    },
+    scales: {
+      x: { ticks: { color: tc, font: { size: 10 } }, grid: { color: gc } },
+      y: { min: 70, max: 180, ticks: { color: tc, font: { size: 10 }, callback: v => v + ' mg/dL' }, grid: { color: gc } }
+    }
+  }
+});
+</script>
+</body>
+</html>
