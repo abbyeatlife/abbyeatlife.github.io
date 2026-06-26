@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>瑞 初次課程｜Abby Eat Life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sage: #8B9E7E;
+  --terra: #C17F59;
+  --cream: #FDFBF7;
+  --bark: #3D3229;
+  --sage-light: #e8ede5;
+  --terra-light: #f5e6db;
+  --bg: #FDFBF7;
+  --bg-secondary: #f3f0ea;
+  --border: rgba(61,50,41,0.12);
+  --border-md: rgba(61,50,41,0.22);
+  --text: #2a2218;
+  --text-secondary: #6b5e52;
+  --text-tertiary: #a0948a;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.page-header {
+  background: var(--bark);
+  color: var(--cream);
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.page-header .sub { font-size: 13px; opacity: 0.65; margin-top: 2px; }
+.header-dot {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--terra);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 500; color: #fff;
+  flex-shrink: 0;
+}
+.layout { display: flex; min-height: calc(100vh - 72px); }
+.sidebar {
+  width: 210px; flex-shrink: 0;
+  background: #fff;
+  border-right: 0.5px solid var(--border);
+  padding: 1.25rem 0;
+  position: sticky; top: 0;
+  height: calc(100vh - 72px);
+  overflow-y: auto;
+}
+.sidebar-group { margin-bottom: 0.5rem; }
+.sidebar-group-label {
+  font-size: 11px; color: var(--text-tertiary);
+  padding: 0.5rem 1.25rem 0.25rem;
+  letter-spacing: 0.06em; font-weight: 500;
+}
+.sidebar-btn {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%; padding: 8px 1.25rem;
+  background: none; border: none; cursor: pointer;
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 13px; color: var(--text-secondary);
+  text-align: left; transition: all 0.15s;
+}
+.sidebar-btn:hover { background: var(--bg-secondary); color: var(--text); }
+.sidebar-btn.active { background: var(--sage-light); color: var(--sage); font-weight: 500; }
+.sidebar-btn .badge {
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 500; flex-shrink: 0;
+}
+.badge-a { background: var(--sage-light); color: var(--sage); }
+.badge-b { background: var(--terra-light); color: var(--terra); }
+.sidebar-btn.active .badge-a { background: var(--sage); color: #fff; }
+.sidebar-btn.active .badge-b { background: var(--terra); color: #fff; }
+.main { flex: 1; padding: 2rem; max-width: 800px; }
+.section { display: none; }
+.section.visible { display: block; }
+.section-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 0.5px solid var(--border);
+}
+.section-badge {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 500; flex-shrink: 0;
+}
+.section-title {
+  font-size: 17px; font-weight: 500;
+  font-family: 'Playfair Display', serif;
+  color: var(--text);
+}
+.card {
+  background: #fff;
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.3rem;
+  margin-bottom: 1rem;
+}
+.card-label {
+  font-size: 12px; color: var(--text-tertiary);
+  margin-bottom: 10px; letter-spacing: 0.03em;
+  font-weight: 500; text-transform: uppercase;
+}
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 1rem; }
+.metric-card {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1rem;
+}
+.metric-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+.metric-value { font-size: 22px; font-weight: 500; color: var(--text); }
+.metric-note { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+.chart-wrap { position: relative; width: 100%; height: 200px; margin: 0.75rem 0; }
+.tag {
+  display: inline-block; font-size: 11px; padding: 3px 10px;
+  border-radius: 10px; margin: 2px;
+}
+.tag-ok { background: var(--sage-light); color: #5a7a4e; }
+.tag-warn { background: #fef3e2; color: #a06010; }
+.tag-alert { background: #fdecea; color: #a03030; }
+.progress-row { margin-bottom: 1rem; }
+.progress-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 5px; }
+.progress-label span:first-child { color: var(--text-secondary); }
+.progress-label span:last-child { color: var(--text); font-weight: 500; }
+.progress-bar-bg { height: 8px; background: var(--bg-secondary); border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 4px; }
+.progress-note { font-size: 11px; color: var(--text-tertiary); margin-top: 3px; }
+.info-row {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 10px 0; border-bottom: 0.5px solid var(--border);
+  font-size: 14px;
+}
+.info-row:last-child { border-bottom: none; }
+.info-icon { color: var(--text-tertiary); flex-shrink: 0; padding-top: 2px; font-size: 16px; }
+.info-text { color: var(--text); line-height: 1.65; }
+.info-text strong { font-weight: 500; }
+.tip-box {
+  background: var(--sage-light);
+  border-left: 3px solid var(--sage);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 10px 14px; font-size: 13px;
+  color: var(--text); line-height: 1.65;
+  margin-top: 0.75rem;
+}
+.warn-box {
+  background: var(--terra-light);
+  border-left: 3px solid var(--terra);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 10px 14px; font-size: 13px;
+  color: var(--text); line-height: 1.65;
+  margin-top: 0.75rem;
+}
+.week-goal {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 0; border-bottom: 0.5px solid var(--border); font-size: 14px;
+}
+.week-goal:last-child { border-bottom: none; }
+.goal-num {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--sage-light); color: var(--sage);
+  font-size: 12px; font-weight: 500; flex-shrink: 0; margin-top: 1px;
+}
+.goal-text { color: var(--text); line-height: 1.55; }
+.goal-sub { color: var(--text-secondary); font-size: 12px; margin-top: 2px; }
+.compare-table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+.compare-table th {
+  background: var(--bg-secondary);
+  font-weight: 500; padding: 8px 12px; text-align: left;
+  color: var(--text-secondary); font-size: 12px;
+  border-bottom: 0.5px solid var(--border);
+}
+.compare-table td {
+  padding: 9px 12px; border-bottom: 0.5px solid var(--border);
+  color: var(--text); vertical-align: top; line-height: 1.5;
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.hl-red { color: #c0392b; font-weight: 500; }
+.hl-green { color: #27ae60; font-weight: 500; }
+.hl-warn { color: #a06010; font-weight: 500; }
+.food-chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 10px; border-radius: 12px; font-size: 12px; margin: 3px;
+}
+.chip-warn { background: #fef3e2; color: #a06010; }
+.chip-bad { background: #fdecea; color: #a03030; }
+.chip-ok { background: var(--sage-light); color: #5a7a4e; }
+.divider { height: 0.5px; background: var(--border); margin: 1.25rem 0; }
+.highlight-box {
+  background: #fef9f5;
+  border: 0.5px solid rgba(193,127,89,0.3);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 640px) {
+  .layout { flex-direction: column; }
+  .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 0.5px solid var(--border); display: flex; flex-wrap: wrap; padding: 0.5rem; gap: 4px; }
+  .sidebar-group { margin: 0; }
+  .sidebar-group-label { display: none; }
+  .sidebar-btn { border-radius: 20px; padding: 6px 12px; }
+  .sidebar-btn.active { background: var(--sage); color: #fff; }
+  .main { padding: 1rem; }
+  .two-col { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="header-dot">瑞</div>
+  <div>
+    <h1>瑞 初次課程</h1>
+    <div class="sub">2026.06.26 ｜ Abby Eat Life 營養coaching</div>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" role="navigation" aria-label="課程模組">
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">基礎認識</div>
+      <button class="sidebar-btn active" onclick="show('a1', this)">
+        <span class="badge badge-a">A1</span> 飲食現況
+      </button>
+      <button class="sidebar-btn" onclick="show('a2', this)">
+        <span class="badge badge-a">A2</span> 熱量 &amp; TDEE
+      </button>
+      <button class="sidebar-btn" onclick="show('a3', this)">
+        <span class="badge badge-a">A3</span> 進食時間
+      </button>
+      <button class="sidebar-btn" onclick="show('a4', this)">
+        <span class="badge badge-a">A4</span> 減重速度
+      </button>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">飲食策略</div>
+      <button class="sidebar-btn" onclick="show('b1', this)">
+        <span class="badge badge-b">B1</span> 蛋白質怎麼吃
+      </button>
+      <button class="sidebar-btn" onclick="show('b2', this)">
+        <span class="badge badge-b">B2</span> 水果怎麼吃
+      </button>
+    </div>
+    <div class="sidebar-group">
+      <div class="sidebar-group-label">認知建構</div>
+      <button class="sidebar-btn" onclick="show('c1', this)">
+        <span class="badge badge-b">C1</span> 關鍵觀念
+      </button>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <!-- A1 飲食現況 -->
+    <div class="section visible" id="sec-a1">
+      <div class="section-header">
+        <div class="section-badge badge-a">A1</div>
+        <div class="section-title">你的飲食目前是什麼樣子？</div>
+      </div>
+
+      <div class="grid-4">
+        <div class="metric-card">
+          <div class="metric-label">記錄天數</div>
+          <div class="metric-value">3 天</div>
+          <div class="metric-note">6/22–6/24</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">平均熱量（估算）</div>
+          <div class="metric-value">~1,257</div>
+          <div class="metric-note">kcal／天</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">平均蛋白質</div>
+          <div class="metric-value">~75 g</div>
+          <div class="metric-note">目標應達 95–100g</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">三天體重變化</div>
+          <div class="metric-value">−1.1 kg</div>
+          <div class="metric-note">67 → 65.9 kg</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">三天體重 &amp; 腰圍</div>
+        <div class="chart-wrap">
+          <canvas id="weightChart" role="img" aria-label="瑞三天體重折線圖，從67公斤下降至65.9公斤">三天體重：67, 66.6, 65.9</canvas>
+        </div>
+        <div class="tip-box">三天下降 1.1 kg，速度偏快——這不全是脂肪消失，大部分是開始記錄後飲食改變造成的水分與糖原波動。腰圍兩天都是 90 cm 沒動，這才是更真實的訊號。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">三大營養素分布（三天平均估算）</div>
+        <div style="margin-top:10px;">
+          <div class="progress-row">
+            <div class="progress-label"><span>蛋白質</span><span>~75 g（目標 95–100 g）</span></div>
+            <div class="progress-bar-bg"><div class="progress-fill" style="width:75%; background:var(--sage);"></div></div>
+            <div class="progress-note">每天缺口約 20–30 g，且來源多為植物性，利用率不如動物性蛋白</div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-label"><span>碳水化合物</span><span>~112 g（其中水果佔比偏高）</span></div>
+            <div class="progress-bar-bg"><div class="progress-fill" style="width:55%; background:#8AAFC4;"></div></div>
+            <div class="progress-note">量不多，但水果、豆奶裡的糖分需要留意來源與時機</div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-label"><span>脂肪</span><span>~48 g（來源可以調整）</span></div>
+            <div class="progress-bar-bg"><div class="progress-fill" style="width:65%; background:var(--terra);"></div></div>
+            <div class="progress-note">苦茶油、全脂鮮奶、酪梨牛奶是主要來源——脂肪量本身不是問題，來源可以調整，把熱量空間讓給蛋白質</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">什麼是熱量密度？為什麼它影響妳的減脂？</div>
+        <div style="font-size:13px; color:var(--text-secondary); margin-bottom:14px; line-height:1.75;">
+          熱量密度 = 每 100g 食物含有多少大卡。同樣 100g，有些食物只有 30 大卡，有些卻有 600 大卡。<br>
+          <strong style="color:var(--text);">當妳的總熱量預算有限，選低熱量密度的食物，就能吃更多、吃更飽、同時不超標。</strong>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
+          <div style="background:var(--sage-light); border-radius:10px; padding:12px 14px;">
+            <div style="font-size:11px; font-weight:500; color:#5a7a4e; margin-bottom:8px; letter-spacing:0.04em;">低熱量密度 ✓ 可以吃多一點</div>
+            <div style="display:flex; flex-direction:column; gap:5px; font-size:13px; color:var(--text);">
+              <div style="display:flex; justify-content:space-between;"><span>蔬菜類</span><span style="color:#5a7a4e; font-weight:500;">15–35 kcal/100g</span></div>
+              <div style="display:flex; justify-content:space-between;"><span>芭樂</span><span style="color:#5a7a4e; font-weight:500;">34 kcal/100g</span></div>
+              <div style="display:flex; justify-content:space-between;"><span>嫩豆腐</span><span style="color:#5a7a4e; font-weight:500;">60 kcal/100g</span></div>
+              <div style="display:flex; justify-content:space-between;"><span>雞胸肉</span><span style="color:#5a7a4e; font-weight:500;">109 kcal/100g</span></div>
+              <div style="display:flex; justify-content:space-between;"><span>蝦仁</span><span style="color:#5a7a4e; font-weight:500;">82 kcal/100g</span></div>
+            </div>
+          </div>
+          <div style="background:var(--terra-light); border-radius:10px; padding:12px 14px;">
+            <div style="font-size:11px; font-weight:500; color:#a06010; margin-bottom:8px; letter-spacing:0.04em;">高熱量密度 ⚠ 份量要留意</div>
+            <div style="display:flex; flex-direction:column; gap:5px; font-size:13px; color:var(--text);">
+              <div style="display:flex; justify-content:space-between;"><span>苦茶油</span><span style="color:#c04a1d; font-weight:500;">884 kcal/100g</span></div>
+              <div style="display:flex; justify-content:space-between;"><span>酪梨</span><span style="color:#c04a1d; font-weight:500;">160 kcal/100g</span></div>
+              <div style="display:flex; justify-content:space-between;"><span>生豆包</span><span style="color:#a06010; font-weight:500;">140 kcal/100g</span></div>
+              <div style="display:flex; justify-content:space-between;"><span>全脂鮮奶</span><span style="color:#a06010; font-weight:500;">63 kcal/100ml</span></div>
+              <div style="display:flex; justify-content:space-between;"><span>堅果</span><span style="color:#c04a1d; font-weight:500;">550–650 kcal/100g</span></div>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--bg-secondary); border-radius:10px; padding:12px 14px; font-size:13px; color:var(--text); line-height:1.75;">
+          <strong>妳飲食中的例子：</strong><br>
+          苦茶油 10g（一小匙）= <strong>90 大卡</strong>，相當於吃了 <strong>300g 蔬菜</strong>——視覺上根本看不出來，但熱量已經加進去了。<br>
+          酪梨牛奶 300ml ≈ <strong>270 大卡</strong>，相當於一碗牛里肌火鍋（150g）的熱量。
+        </div>
+        <div class="tip-box" style="margin-top:12px;">熱量密度的概念不是「不能吃油」，而是幫妳在同樣飽足感下，讓每一口的熱量「更值得」——蛋白質和蔬菜就是最划算的選擇。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">目前做得好的地方</div>
+        <div style="margin-bottom:8px;">
+          <span class="tag tag-ok">✓ 蔬菜量穩定</span>
+          <span class="tag tag-ok">✓ 有記錄時間點</span>
+          <span class="tag tag-ok">✓ 選牛里肌（優質蛋白質）</span>
+          <span class="tag tag-ok">✓ 有運動習慣</span>
+          <span class="tag tag-ok">✓ 步數達標</span>
+        </div>
+        <div class="card-label" style="margin-top:14px;">可以再優化的地方</div>
+        <div>
+          <span class="tag tag-warn">△ 蛋白質不足</span>
+          <span class="tag tag-warn">△ 水果每天兩份以上</span>
+          <span class="tag tag-warn">△ 第一餐太晚（12:00 後）</span>
+          <span class="tag tag-alert">✗ 空腹上兩堂有氧課</span>
+          <span class="tag tag-alert">✗ 22:30 才吃宵夜</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">進食模式的關鍵觀察</div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">⏰</div>
+          <div class="info-text"><strong>第一餐集中在中午後</strong>：每天只喝黑咖啡撐到 12 點甚至下午，咖啡因壓制飢餓訊號，但身體並不是真的不需要能量</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">🏃</div>
+          <div class="info-text"><strong>空腹上課是習慣</strong>：在健身房遇到妳，當時已經上第二堂課、卻幾乎沒吃東西。這種模式下強度有氧課會消耗到肌肉，52 歲的肌肉量本來就在減少，更需要保住</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">🌙</div>
+          <div class="info-text"><strong>有時吃到深夜</strong>：6/24 的 22:30 豆奶，看起來不多，但深夜進食的代謝利用率最低</div>
+        </div>
+        <div class="warn-box">妳目前的狀態是：運動量大、吃得不多、卻瘦不下來。這不是意志力的問題，而是身體正在保護自己——接下來我們來拆解為什麼。</div>
+      </div>
+    </div>
+
+    <!-- A2 TDEE -->
+    <div class="section" id="sec-a2">
+      <div class="section-header">
+        <div class="section-badge badge-a">A2</div>
+        <div class="section-title">每天該吃多少？認識 TDEE</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">TDEE 是什麼</div>
+        <div class="info-row">
+          <div class="info-icon">📊</div>
+          <div class="info-text"><strong>TDEE（全日能量消耗）</strong> = 你一整天消耗的所有熱量，包含基礎代謝、日常活動、消化食物的熱效應</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🎯</div>
+          <div class="info-text">減脂的原理很簡單：<strong>吃進來的熱量 &lt; TDEE</strong> → 身體動用儲存的脂肪。但這個赤字不能太大，否則身體會「節能」，代謝反而往下調</div>
+        </div>
+      </div>
+
+      <div class="card" style="border: 1px solid rgba(193,127,89,0.35);">
+        <div class="card-label">⚠ 關於有氧課的消耗，你需要知道這件事</div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">🔢</div>
+          <div class="info-text"><strong>手錶顯示的「燃燒卡路里」是估算值，不是你的實際消耗</strong>。手錶用的是統計模型，個體差異非常大——同樣一堂 BodyJam、同樣上完 60 分鐘，A 可能真實消耗 500 大卡，B 卻只有 300 大卡，但兩個人的手錶都顯示 420 大卡。差距來自肌肉量、代謝效率、習慣程度，這些因素手錶完全抓不到</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">🔄</div>
+          <div class="info-text"><strong>身體對有氧課會適應</strong>。同樣的課上了幾個月後，身體效率提升，消耗的熱量反而比初學時少——這是正常的神經肌肉適應，不是妳做錯了什麼</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">⚡</div>
+          <div class="info-text"><strong>大量有氧可能讓非運動時的活動量自動下降</strong>。研究發現，高強度運動後人會本能地減少走動、站立時間，實際上抵銷了部分消耗</div>
+        </div>
+        <div class="warn-box">
+          <strong>所以我們怎麼估算活動量？</strong><br>
+          我們討論妳的日常作息——工作型態、平常走動多不多、坐著的時間佔多少——一起判斷哪個活動係數最符合妳的真實狀況。有些人看起來很忙、很動，但代謝不一定比較好；這部分我們口頭聊就好，不需要靠數字來決定。
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">計算妳的 TDEE 與目標熱量</div>
+        <div style="margin-top:12px; display:flex; flex-direction:column; gap:16px;">
+          <div style="display:flex; align-items:center; gap:12px; font-size:14px;">
+            <span style="color:var(--text-secondary); min-width:140px;">🧮 BMR（基礎代謝）</span>
+            <input type="number" id="bmr" placeholder="填入數字" oninput="calcTDEE()" style="width:120px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+            <span style="color:var(--text-tertiary); font-size:13px;">kcal</span>
+          </div>
+          <div style="font-size:12px; color:var(--text-tertiary); margin-top:-8px; padding-left:152px;">Mifflin-St Jeor：BMR = 10×體重(kg) + 6.25×身高(cm) − 5×年齡 − 161</div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:14px;">
+            <span style="color:var(--text-secondary); min-width:140px;">👟 活動係數</span>
+            <select id="activity" onchange="calcTDEE()" style="width:200px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+              <option value="1.2">1.2 久坐為主</option>
+              <option value="1.375">1.375 輕度活動</option>
+              <option value="1.55" selected>1.55 中度活動</option>
+              <option value="1.725">1.725 高度活動</option>
+            </select>
+          </div>
+          <div style="font-size:12px; color:var(--text-tertiary); margin-top:-8px; padding-left:152px;">有氧課的消耗已包含在日常活動內，不另外加計</div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:14px; padding-top:8px; border-top:0.5px solid var(--border);">
+            <span style="color:var(--text-secondary); min-width:140px;">🔥 TDEE</span>
+            <div id="tdee-display" style="font-size:22px; font-weight:500; color:var(--text); min-width:80px;">——</div>
+            <span style="color:var(--text-tertiary); font-size:13px;">kcal／天</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px; font-size:14px;">
+            <span style="color:var(--text-secondary); min-width:140px;">🎯 減脂目標熱量</span>
+            <div id="target-display" style="font-size:22px; font-weight:500; color:var(--sage); min-width:80px;">——</div>
+            <span style="color:var(--text-tertiary); font-size:13px;">kcal（赤字約 400–500）</span>
+          </div>
+        </div>
+        <div class="tip-box" style="margin-top:14px;">
+          妳目前三天平均吃 <strong>~1,257 kcal</strong>，幾乎可以確定低於妳的 TDEE。但吃太少不等於瘦更快——接下來看看為什麼。
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">吃太少會發生什麼事</div>
+        <div class="info-row">
+          <div class="info-icon">📉</div>
+          <div class="info-text"><strong>代謝適應</strong>：當熱量長期嚴重不足，身體會主動降低基礎代謝率來保護自己，讓妳「用更少能量也能活」</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">💪</div>
+          <div class="info-text"><strong>肌肉流失加速</strong>：蛋白質不足 + 熱量不足 + 空腹有氧，三個條件加在一起，身體會優先分解肌肉當燃料</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🏋️</div>
+          <div class="info-text"><strong>52 歲的肌肉更需要被保護</strong>：更年期前後肌肉流失速度加快，肌肉量直接影響基礎代謝率，少了肌肉，代謝更低，越來越難瘦</div>
+        </div>
+        <div class="warn-box">初期策略：<strong>先把吃的部分調對</strong>，讓身體有足夠燃料運作。有氧課繼續上、繼續享受，但不要依賴它「燃燒卡路里」——它的價值在於心肺健康、壓力管理、還有妳喜歡的社交氛圍。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">三大營養素目標</div>
+        <div style="margin-top:12px; display:flex; flex-direction:column; gap:16px;">
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+              <span style="font-size:14px; color:var(--text-secondary); min-width:100px;">蛋白質</span>
+              <input type="number" id="prot-g" placeholder="克數" oninput="calcMacros()" style="width:90px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+              <span style="font-size:13px; color:var(--text-tertiary);">g = <span id="prot-kcal" style="color:var(--sage); font-weight:500;">——</span> kcal</span>
+            </div>
+            <div class="progress-bar-bg"><div id="prot-bar" class="progress-fill" style="width:0%; background:var(--sage); transition:width 0.4s;"></div></div>
+            <div style="font-size:11px; color:var(--text-tertiary); margin-top:3px;">建議 95–100 g（體重 × 1.4–1.5）｜目前只有 75g，每天缺 20–30g</div>
+          </div>
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+              <span style="font-size:14px; color:var(--text-secondary); min-width:100px;">脂肪</span>
+              <input type="number" id="fat-g" placeholder="克數" oninput="calcMacros()" style="width:90px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+              <span style="font-size:13px; color:var(--text-tertiary);">g = <span id="fat-kcal" style="color:var(--terra); font-weight:500;">——</span> kcal</span>
+            </div>
+            <div class="progress-bar-bg"><div id="fat-bar" class="progress-fill" style="width:0%; background:var(--terra); transition:width 0.4s;"></div></div>
+            <div style="font-size:11px; color:var(--text-tertiary); margin-top:3px;">約 40–50 g｜維持荷爾蒙分泌與飽足感的最低需求</div>
+          </div>
+          <div>
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+              <span style="font-size:14px; color:var(--text-secondary); min-width:100px;">碳水化合物</span>
+              <input type="number" id="carb-g" placeholder="克數" oninput="calcMacros()" style="width:90px; padding:6px 10px; border:0.5px solid var(--border-md); border-radius:var(--radius-md); font-family:inherit; font-size:14px; background:var(--bg); color:var(--text);">
+              <span style="font-size:13px; color:var(--text-tertiary);">g = <span id="carb-kcal" style="color:#5a88a8; font-weight:500;">——</span> kcal</span>
+            </div>
+            <div class="progress-bar-bg"><div id="carb-bar" class="progress-fill" style="width:0%; background:#8AAFC4; transition:width 0.4s;"></div></div>
+            <div style="font-size:11px; color:var(--text-tertiary); margin-top:3px;">填滿剩餘熱量｜優先選原型食物（地瓜、燕麥、糙米）</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; padding-top:8px; border-top:0.5px solid var(--border); font-size:13px;">
+            <span style="color:var(--text-secondary);">合計熱量：</span>
+            <span id="total-kcal" style="font-weight:500; font-size:16px; color:var(--text);">——</span>
+            <span style="color:var(--text-tertiary);">kcal</span>
+          </div>
+        </div>
+        <div class="tip-box">設定順序：<strong>蛋白質優先 → 脂肪下限 → 碳水填滿</strong>。三者都到位，才能同時保住肌肉＋消耗脂肪。</div>
+      </div>
+    </div>
+
+    <!-- A3 進食時間 -->
+    <div class="section" id="sec-a3">
+      <div class="section-header">
+        <div class="section-badge badge-a">A3</div>
+        <div class="section-title">進食時間怎麼安排對妳最有利？</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">妳目前的進食窗口</div>
+        <div style="margin: 12px 0;">
+          <div style="display:flex; align-items:center; gap:0; margin-bottom:10px;">
+            <div style="font-size:12px; color:var(--text-secondary); width:50px;">6/22</div>
+            <div style="flex:1; position:relative; height:28px; background:var(--bg-secondary); border-radius:4px; overflow:hidden;">
+              <div style="position:absolute; left:52%; width:36%; height:100%; background:rgba(139,158,126,0.45); border-radius:2px;"></div>
+              <div style="position:absolute; left:52%; top:50%; transform:translateY(-50%); font-size:10px; color:var(--sage); white-space:nowrap; padding-left:4px;">12:30 – 19:00</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0; margin-bottom:10px;">
+            <div style="font-size:12px; color:var(--text-secondary); width:50px;">6/23</div>
+            <div style="flex:1; position:relative; height:28px; background:var(--bg-secondary); border-radius:4px; overflow:hidden;">
+              <div style="position:absolute; left:42%; width:33%; height:100%; background:rgba(139,158,126,0.45); border-radius:2px;"></div>
+              <div style="position:absolute; left:42%; top:50%; transform:translateY(-50%); font-size:10px; color:var(--sage); white-space:nowrap; padding-left:4px;">10:00 – 18:00</div>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:0; margin-bottom:4px;">
+            <div style="font-size:12px; color:var(--text-secondary); width:50px;">6/24</div>
+            <div style="flex:1; position:relative; height:28px; background:var(--bg-secondary); border-radius:4px; overflow:hidden;">
+              <div style="position:absolute; left:48%; width:47%; height:100%; background:rgba(193,127,89,0.35); border-radius:2px;"></div>
+              <div style="position:absolute; left:48%; top:50%; transform:translateY(-50%); font-size:10px; color:var(--terra); white-space:nowrap; padding-left:4px;">11:30 – 22:30 ⚠</div>
+            </div>
+          </div>
+          <div style="display:flex; font-size:10px; color:var(--text-tertiary); margin-top:6px; padding-left:50px;">
+            <span style="flex:1; text-align:left;">6:00</span>
+            <span style="flex:1; text-align:center;">12:00</span>
+            <span style="flex:1; text-align:right;">24:00</span>
+          </div>
+        </div>
+        <div class="warn-box">6/24 的進食窗口長達 11 小時，還延伸到深夜 22:30。對減脂來說，縮短進食窗口、讓最後一餐早一點結束，比計算每一口熱量更有效率。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">為什麼進食時間影響減脂？</div>
+        <div class="info-row">
+          <div class="info-icon">🌅</div>
+          <div class="info-text"><strong>早上的胰島素敏感度最高</strong>：同樣的食物，早上吃對血糖的衝擊比晚上小。意思是妳早一點吃第一餐，身體處理碳水的效率更好</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🌙</div>
+          <div class="info-text"><strong>深夜進食讓身體沒有「空窗期」</strong>：身體需要一段不消化食物的時間來啟動修復模式（包括脂肪動員）。吃到深夜再隔天中午才吃，窗口雖然長但節點不對</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">⏱</div>
+          <div class="info-text"><strong>空腹時間不等於「不吃早餐」</strong>：妳可能不覺得餓，但咖啡因在壓制飢餓訊號，身體其實需要燃料——尤其是要上兩堂有氧課之前</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">建議的進食節律（適合妳的生活型態）</div>
+        <div class="week-goal">
+          <div class="goal-num">1</div>
+          <div class="goal-text">運動前補一點蛋白質
+            <div class="goal-sub">上課前 1–1.5 小時吃一顆水煮蛋 + 少量碳水（例如半根香蕉），不需要吃很多，讓身體知道有燃料</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">2</div>
+          <div class="goal-text">第一餐目標 10:00–11:30 之間
+            <div class="goal-sub">不需要強迫自己吃「傳統早餐」，蛋白質+蔬菜型的早午餐完全沒問題，重點是把開始進食的時間往前移</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">3</div>
+          <div class="goal-text">最後一餐在 19:30 前結束
+            <div class="goal-sub">晚上 20:00 後不再進食，讓身體有至少 13–14 小時的消化休息期。豆奶宵夜就不需要了，若真的很餓代表白天蛋白質還不夠</div>
+          </div>
+        </div>
+        <div class="tip-box">不是要妳「斷食」，而是把同樣的食物集中在對身體更有利的時段吃。這一個調整就可以在不改變食物內容的前提下提升代謝效率。</div>
+      </div>
+    </div>
+
+    <!-- A4 減重速度 -->
+    <div class="section" id="sec-a4">
+      <div class="section-header">
+        <div class="section-badge badge-a">A4</div>
+        <div class="section-title">減重速度怎麼設定才合理？</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="metric-card">
+          <div class="metric-label">安全減重速度</div>
+          <div class="metric-value">0.5–1%</div>
+          <div class="metric-note">體重／週，約每週 0.3–0.6 kg</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">妳的合理預期</div>
+          <div class="metric-value">4–6 個月</div>
+          <div class="metric-note">回到起點體重區間（-7 kg）</div>
+        </div>
+      </div>
+
+      <div class="card" style="border: 1px solid rgba(139,158,126,0.4);">
+        <div class="card-label">💬 妳說：「6/24 連上兩堂課反而沒瘦」</div>
+        <div style="font-size:13px; color:var(--text-secondary); margin-bottom:14px; line-height:1.8;">
+          先看一下這四天完整的數字——
+        </div>
+        <div style="overflow-x:auto; margin-bottom:14px;">
+          <table style="width:100%; border-collapse:collapse; font-size:13px;">
+            <thead>
+              <tr style="background:var(--bg-secondary);">
+                <th style="padding:8px 10px; text-align:left; font-weight:500; color:var(--text-secondary); font-size:12px; border-bottom:0.5px solid var(--border);">日期</th>
+                <th style="padding:8px 10px; text-align:center; font-weight:500; color:var(--text-secondary); font-size:12px; border-bottom:0.5px solid var(--border);">體重</th>
+                <th style="padding:8px 10px; text-align:center; font-weight:500; color:var(--text-secondary); font-size:12px; border-bottom:0.5px solid var(--border);">腰圍</th>
+                <th style="padding:8px 10px; text-align:left; font-weight:500; color:var(--text-secondary); font-size:12px; border-bottom:0.5px solid var(--border);">運動</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:8px 10px; border-bottom:0.5px solid var(--border); color:var(--text-secondary);">6/22 一</td>
+                <td style="padding:8px 10px; border-bottom:0.5px solid var(--border); text-align:center; font-weight:500;">67.0 kg</td>
+                <td style="padding:8px 10px; border-bottom:0.5px solid var(--border); text-align:center;">—</td>
+                <td style="padding:8px 10px; border-bottom:0.5px solid var(--border);">BodyJam 1hr</td>
+              </tr>
+              <tr style="background:#faf8f5;">
+                <td style="padding:8px 10px; border-bottom:0.5px solid var(--border); color:var(--text-secondary);">6/23 二</td>
+                <td style="padding:8px 10px; border-bottom:0.5px solid var(--border); text-align:center; font-weight:500;">66.6 kg</td>
+                <td style="padding:8px 10px; border-bottom:0.5px solid var(--border); text-align:center;">90 cm</td>
+                <td style="padding:8px 10px; border-bottom:0.5px solid var(--border);">Combat 50'</td>
+              </tr>
+              <tr>
+                <td style="padding:8px 10px; border-bottom:0.5px solid var(--border); color:var(--text-secondary);">6/24 三</td>
+                <td style="padding:8px 10px; border-bottom:0.5px solid var(--border); text-align:center; font-weight:500;">65.9 kg</td>
+                <td style="padding:8px 10px; border-bottom:0.5px solid var(--border); text-align:center;">90 cm</td>
+                <td style="padding:8px 10px; border-bottom:0.5px solid var(--border);"><strong style="color:var(--terra);">BB + BJ 連兩堂</strong></td>
+              </tr>
+              <tr style="background:#f0f5ee;">
+                <td style="padding:8px 10px; color:var(--text-secondary);">6/25 四</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:500; color:var(--sage);">65.8 kg</td>
+                <td style="padding:8px 10px; text-align:center; font-weight:500; color:var(--sage);">88 cm ↓</td>
+                <td style="padding:8px 10px;">緩和運動</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="background:var(--sage-light); border-radius:10px; padding:12px 14px; font-size:13px; color:var(--text); line-height:1.8; margin-bottom:12px;">
+          妳連上兩堂課的那天（6/24）→ 隔天體重只掉 0.1 kg，妳覺得「反而沒瘦」。<br>
+          但妳沒注意到的是：<strong>腰圍從 90 cm 縮到 88 cm，一口氣少了 2 cm。</strong><br>
+          體重幾乎沒動，但腹部脂肪在減少——這才是真正的進步。
+        </div>
+        <div class="info-row" style="padding-top:12px;">
+          <div class="info-icon" style="color:var(--terra);">⚡</div>
+          <div class="info-text"><strong>「努力」和「當天體重下降」之間，沒有直接連線</strong>。運動會讓肌肉充血、讓身體短暫留住水分做修復，隔天體重有時反而不降、甚至微升——這不是失敗，這是肌肉正在修復的訊號</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">📅</div>
+          <div class="info-text"><strong>體重是隔天的，但脂肪消耗是跨幾天累積的</strong>。妳今天運動的效果，可能要 2–3 天後才會反映在體重上，也可能只反映在腰圍而不是體重數字</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">🔢</div>
+          <div class="info-text"><strong>「連上兩堂課」是輸入，不是輸出</strong>。輸入能不能變成體重下降，還取決於那天吃了什麼、睡眠狀況、水分、荷爾蒙。把「我有運動」和「我今天要瘦」直接畫等號，是最容易讓自己沮喪的思維</div>
+        </div>
+        <div class="warn-box">所以我們不看「今天有沒有運動」來判斷進步。我們看的是：<strong>這週腰圍、這週體重平均、蛋白質有沒有吃夠</strong>。妳 6/25 腰圍 88cm，這個數字比任何一天的體重都更值得開心。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">體重下降預估</div>
+        <div class="chart-wrap">
+          <canvas id="progressChart" role="img" aria-label="瑞體重預估下降折線圖，從67公斤在20週內降至約60公斤">預估20週可達60kg目標區間</canvas>
+        </div>
+        <div class="tip-box">預估曲線不是直線——身體會有停滯期、生理期前後波動，這是正常的，不代表失敗。要看的是「趨勢」，而不是每天的數字。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">真正有意義的體態指標</div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--sage);">📏</div>
+          <div class="info-text"><strong>腰圍縮小</strong>：比體重更直接反映腹部脂肪的變化，也是代謝健康最重要的指標。目標：90cm → 85cm 以下</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--sage);">📉</div>
+          <div class="info-text"><strong>體脂率下降</strong>：目前 38.7%，52 歲女性建議在 30% 以下。體脂下降比體重數字更說明身體組成有改善</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--sage);">⚖️</div>
+          <div class="info-text"><strong>週平均體重</strong>：每天量，但看一週的平均值，而不是單天的數字。每天體重波動 1–2 kg 都是正常的（水分、食物重量、荷爾蒙）</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--sage);">👗</div>
+          <div class="info-text"><strong>衣服的感覺</strong>：腰圍的衣服變鬆了，就算體重沒動，也是真實的進步</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--sage);">💪</div>
+          <div class="info-text"><strong>體力與精神狀態</strong>：如果妳開始感覺課上起來更有力氣、睡眠改善、不容易疲倦，代謝健康在往好的方向走</div>
+        </div>
+        <div class="warn-box">這七公斤是疫情後慢慢堆上去的，不會在一個月內全部消失。但只要方向對，身體一定會反應。</div>
+      </div>
+    </div>
+
+    <!-- B1 蛋白質 -->
+    <div class="section" id="sec-b1">
+      <div class="section-header">
+        <div class="section-badge badge-b">B1</div>
+        <div class="section-title">蛋白質要怎麼吃夠？高 CP 值選擇</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="metric-card">
+          <div class="metric-label">目前平均</div>
+          <div class="metric-value" style="color:var(--terra);">~75 g</div>
+          <div class="metric-note">每天</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">目標</div>
+          <div class="metric-value" style="color:var(--sage);">95–100 g</div>
+          <div class="metric-note">每天（每公斤體重 × 1.4–1.5）</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">為什麼 52 歲更需要足夠蛋白質</div>
+        <div class="info-row">
+          <div class="info-icon">🏗</div>
+          <div class="info-text"><strong>肌肉合成門檻提高了</strong>：年輕時 20g 蛋白質就能啟動肌肉合成，50 歲後需要每餐至少 30g 才有效果——而妳目前兩餐平均約 35–40g，勉強到邊界</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🛡</div>
+          <div class="info-text"><strong>蛋白質保住肌肉、肌肉保住代謝</strong>：每減少 1kg 肌肉，基礎代謝率就少約 13–15 kcal/天，長期累積下來代謝差距很大</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🌿</div>
+          <div class="info-text"><strong>植物性蛋白質利用率較低</strong>：妳目前主要吃豆包、凍豆腐、豆奶，植物性蛋白的胺基酸組成不如動物性完整，吸收利用率約差 10–20%。建議提高動物性蛋白佔比</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">蛋白質食物 CP 值比較（每 100g）｜由低脂到高脂排列</div>
+        <div style="font-size:12px; color:var(--text-tertiary); margin-bottom:14px;">熱量越低、蛋白質越高 = CP 值越好。綠色標籤 = 減脂首選，橘色 = 適量，紅色 = 少量</div>
+        <div id="prot-comp-grid" style="display:flex; flex-direction:column; gap:10px;"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">怎麼讓每天多出 20–30g 蛋白質？</div>
+        <div class="week-goal">
+          <div class="goal-num">1</div>
+          <div class="goal-text">水煮蛋從 2 顆增加到 3 顆
+            <div class="goal-sub">多一顆蛋 = 多 6–7g 蛋白質、75 kcal，是最便宜低成本的升級</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">2</div>
+          <div class="goal-text">牛里肌從 100g 增加到 150g
+            <div class="goal-sub">多 50g 肉 = 多約 13g 蛋白質。在火鍋或料理時多加就好，不需要另外準備</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">3</div>
+          <div class="goal-text">加入一杯無糖希臘優格當點心
+            <div class="goal-sub">取代酪梨牛奶，蛋白質相近但熱量少 100–150 kcal，且不含額外糖分</div>
+          </div>
+        </div>
+        <div class="tip-box">妳不需要改變整個飲食架構，只需要把現有食物的量和選擇微調，每天就能多出足夠的蛋白質。</div>
+      </div>
+    </div>
+
+    <!-- B2 水果 -->
+    <div class="section" id="sec-b2">
+      <div class="section-header">
+        <div class="section-badge badge-b">B2</div>
+        <div class="section-title">水果需要限量嗎？聰明吃水果的方式</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">妳目前的水果攝取</div>
+        <div style="margin-top:10px; line-height:2.4;">
+          <span class="food-chip chip-warn">桃子 215g（約 85 kcal，糖 20g）</span>
+          <span class="food-chip chip-warn">芭樂 200g（約 68 kcal，糖 14g）</span>
+          <span class="food-chip chip-bad">酪梨牛奶 300ml（約 250–300 kcal）</span>
+          <span class="food-chip chip-warn">水蜜桃 206g（約 82 kcal，糖 19g）</span>
+          <span class="food-chip chip-ok">櫻桃 50g（約 30 kcal）</span>
+        </div>
+        <div style="font-size:12px; color:var(--text-tertiary); margin-top:8px;">三天平均：水果每天出現 1.5–2 次，其中酪梨牛奶熱量密度明顯偏高</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">妳的身體現在需要更有技巧地吃水果</div>
+        <div class="info-row">
+          <div class="info-icon">🍬</div>
+          <div class="info-text"><strong>不是水果不好，是妳現在的身體需要更聰明地吃</strong>：52 歲荷爾蒙環境改變後，腹部脂肪對果糖的代謝比年輕時更敏感——水果裡的果糖由肝臟處理，在肝臟效率下降或攝取過於集中時，部分果糖會轉為三酸甘油脂儲存。這不是要妳完全不吃水果，而是要有意識地選擇時機和種類</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">⏰</div>
+          <div class="info-text"><strong>單獨吃甜水果對血糖衝擊較大</strong>：血糖快速上升 → 胰島素分泌 → 胰島素高的時候，脂肪分解被抑制。建議搭配蛋白質一起吃，減緩血糖波動</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🥑</div>
+          <div class="info-text"><strong>酪梨是特例</strong>：主要成分是油脂（健康脂肪），不是糖，但每 100g 約有 160 kcal。打成牛奶加了鮮奶，一杯就是 250–300 kcal——不適合作為日常點心</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">水果怎麼吃對妳最有利</div>
+        <div class="week-goal">
+          <div class="goal-num">1</div>
+          <div class="goal-text">每天一份，不超過 200g
+            <div class="goal-sub">一份水果大約是一個拳頭大小。妳的芭樂 200g、桃子 215g 已經在邊界，不要每天兩份以上</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">2</div>
+          <div class="goal-text">優先選低 GI 水果
+            <div class="goal-sub">芭樂、奇異果、柳橙、蘋果是好選擇。荔枝、西瓜、芒果、哈密瓜糖分高，暫時限量</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">3</div>
+          <div class="goal-text">搭配蛋白質一起吃，不要單吃
+            <div class="goal-sub">水果 + 水煮蛋 / 希臘優格，血糖上升會更平緩，飽足感也更持久</div>
+          </div>
+        </div>
+        <div class="week-goal">
+          <div class="goal-num">4</div>
+          <div class="goal-text">放在運動後或正餐附近
+            <div class="goal-sub">運動後肌肉對葡萄糖的吸收率最高，這時候吃水果，糖分去補充肌肉糖原的比例最大</div>
+          </div>
+        </div>
+        <div class="tip-box">水果有益健康，妳不需要完全不吃——但現在每天兩份以上、有時單獨當點心，這個模式可以調整。一份、搭蛋白質、挑對時機，效果截然不同。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">常見水果糖分與熱量比較（每 100g）</div>
+        <div style="overflow-x:auto;">
+        <table class="compare-table" style="min-width:400px; margin-top:8px;">
+          <thead>
+            <tr>
+              <th style="width:25%;">水果</th>
+              <th style="width:20%;">熱量</th>
+              <th style="width:20%;">糖分</th>
+              <th style="width:35%;">建議</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>芭樂</td><td class="hl-green">34 kcal</td><td class="hl-green">7 g</td><td><span class="tag tag-ok">優先選擇</span></td></tr>
+            <tr><td>奇異果</td><td class="hl-green">61 kcal</td><td class="hl-green">9 g</td><td><span class="tag tag-ok">優先選擇</span></td></tr>
+            <tr><td>草莓</td><td class="hl-green">33 kcal</td><td class="hl-green">7 g</td><td><span class="tag tag-ok">優先選擇</span></td></tr>
+            <tr><td>桃子／水蜜桃</td><td>40 kcal</td><td class="hl-warn">10 g</td><td><span class="tag tag-warn">適量，勿超量</span></td></tr>
+            <tr><td>蘋果</td><td>52 kcal</td><td class="hl-warn">10 g</td><td><span class="tag tag-warn">適量</span></td></tr>
+            <tr><td>香蕉</td><td class="hl-warn">89 kcal</td><td class="hl-warn">17 g</td><td><span class="tag tag-warn">運動前小半根可以</span></td></tr>
+            <tr><td>芒果</td><td class="hl-warn">65 kcal</td><td class="hl-red">14 g</td><td><span class="tag tag-alert">減量</span></td></tr>
+            <tr><td>荔枝</td><td class="hl-warn">66 kcal</td><td class="hl-red">15 g</td><td><span class="tag tag-alert">減量</span></td></tr>
+            <tr><td>酪梨</td><td class="hl-red">160 kcal</td><td class="hl-green">1 g（主成分為脂肪）</td><td><span class="tag tag-warn">1/4 顆以內</span></td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- C1 認知建構 -->
+    <div class="section" id="sec-c1">
+      <div class="section-header">
+        <div class="section-badge badge-b">C1</div>
+        <div class="section-title">幾個重要的認知，讓這次不一樣</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">認知一：這七公斤不是「吃太多」造成的</div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--sage);">💡</div>
+          <div class="info-text">疫情後的體重改變，有很大一部分是<strong>荷爾蒙環境變了</strong>。50 歲前後雌激素下降，脂肪的分布模式會從「臀腿型」轉移到「腹部型」——這就是為什麼腰圍特別難縮，用過去有效的方法現在卻沒反應</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--sage);">💡</div>
+          <div class="info-text">這不是意志力失敗，是身體需要不同的策略。同樣一套「少吃多動」的邏輯，在 30 歲和 52 歲的身體上執行結果不同</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">認知二：吃太少會讓身體更守不住體重</div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">⚠</div>
+          <div class="info-text">妳目前約 1,200 kcal，對一個每天步行 10,000 步、每週上 3–4 堂有氧課的人來說明顯偏低。<strong>身體感受到長期熱量不足，會啟動節能模式</strong>：降低基礎代謝、減少非必要活動、優先保留脂肪</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--terra);">⚠</div>
+          <div class="info-text">結果是：妳很努力，但體重就是不動。這不是妳的問題，這是身體的保護機制在運作</div>
+        </div>
+        <div class="tip-box">初期可能需要<strong>稍微多吃一點</strong>（尤其是蛋白質），才能讓代謝回到正軌。這聽起來違反直覺，但從數字上是合理的。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">認知三：有氧課是妳的朋友，但不是減脂的主角</div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--sage);">🎵</div>
+          <div class="info-text">妳喜歡 BodyJam / BodyCombat，這很好——這兩堂課帶給妳的是心肺健康、壓力管理、和社群連結。這些價值妳可以完全保留</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon" style="color:var(--sage);">🎯</div>
+          <div class="info-text">但<strong>改變身體組成的工作，主要由蛋白質和飲食結構來完成</strong>，不是由消耗多少卡路里決定的。有氧課的「燃脂」效果在課堂結束後很快回到基準，飲食的影響則是 24 小時都在作用</div>
+        </div>
+        <div class="warn-box">請把心率表上的燃燒數字當參考、不是真相。繼續享受課堂，把計算熱量的心力用在飲食上。</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">認知四：長期的成功需要「可以持續」而不是「最嚴格」</div>
+        <div class="info-row">
+          <div class="info-icon">🧘</div>
+          <div class="info-text">不需要每一天完美——重要的是<strong>七天裡五天做到</strong>，比兩天完美、五天崩潰要有效得多</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📊</div>
+          <div class="info-text">體重會有波動，這不是失敗，是生理正常現象（水分、荷爾蒙、食物重量）。要看的是<strong>兩週、四週的趨勢</strong>，不是今天和昨天的差值</div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🔄</div>
+          <div class="info-text">如果某天沒做到，只需要「下一餐回來」就好——不是下一週、不是明天，就是<strong>下一餐</strong>繼續走在方向上</div>
+        </div>
+        <div class="tip-box">這次和以前不同的是：我們有數據、有策略、而且妳已經在做很多對的事了。接下來是微調，不是重來。</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  document.querySelectorAll('.sidebar-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('visible');
+  btn.classList.add('active');
+}
+
+function calcTDEE() {
+  const bmr = parseFloat(document.getElementById('bmr').value);
+  const act = parseFloat(document.getElementById('activity').value);
+  if (!bmr || isNaN(bmr)) {
+    document.getElementById('tdee-display').textContent = '——';
+    document.getElementById('target-display').textContent = '——';
+    return;
+  }
+  const tdee = Math.round(bmr * act);
+  const target = Math.round(tdee - 450);
+  document.getElementById('tdee-display').textContent = tdee.toLocaleString();
+  document.getElementById('target-display').textContent = target.toLocaleString();
+}
+
+function calcMacros() {
+  const p = parseFloat(document.getElementById('prot-g').value) || 0;
+  const f = parseFloat(document.getElementById('fat-g').value) || 0;
+  const c = parseFloat(document.getElementById('carb-g').value) || 0;
+  const pKcal = Math.round(p * 4);
+  const fKcal = Math.round(f * 9);
+  const cKcal = Math.round(c * 4);
+  const total = pKcal + fKcal + cKcal;
+  document.getElementById('prot-kcal').textContent = p ? pKcal : '——';
+  document.getElementById('fat-kcal').textContent = f ? fKcal : '——';
+  document.getElementById('carb-kcal').textContent = c ? cKcal : '——';
+  document.getElementById('total-kcal').textContent = total ? total.toLocaleString() : '——';
+  if (total > 0) {
+    document.getElementById('prot-bar').style.width = Math.min(100, Math.round(pKcal / total * 100)) + '%';
+    document.getElementById('fat-bar').style.width = Math.min(100, Math.round(fKcal / total * 100)) + '%';
+    document.getElementById('carb-bar').style.width = Math.min(100, Math.round(cKcal / total * 100)) + '%';
+  }
+}
+
+const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const gridColor = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.06)';
+const textColor = isDark ? '#aaa' : '#6b5e52';
+
+new Chart(document.getElementById('weightChart'), {
+  type: 'line',
+  data: {
+    labels: ['6/22 一', '6/23 二', '6/24 三'],
+    datasets: [{
+      label: '體重 (kg)',
+      data: [67, 66.6, 65.9],
+      borderColor: '#8B9E7E',
+      backgroundColor: 'rgba(139,158,126,0.08)',
+      pointBackgroundColor: '#8B9E7E',
+      pointRadius: 6,
+      tension: 0.3,
+      fill: true,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => '體重：' + ctx.parsed.y + ' kg' }}
+    },
+    scales: {
+      x: { ticks: { color: textColor, font: { size: 12 }, autoSkip: false }, grid: { color: gridColor } },
+      y: { min: 65, max: 68, ticks: { color: textColor, font: { size: 11 }, callback: v => v + ' kg' }, grid: { color: gridColor } }
+    }
+  }
+});
+
+new Chart(document.getElementById('progressChart'), {
+  type: 'line',
+  data: {
+    labels: ['現在', '第4週', '第8週', '第12週', '第16週', '第20週'],
+    datasets: [{
+      label: '預估體重',
+      data: [67, 65.8, 64.6, 63.4, 62.0, 60.5],
+      borderColor: '#8B9E7E',
+      backgroundColor: 'rgba(139,158,126,0.08)',
+      pointBackgroundColor: '#8B9E7E',
+      pointRadius: 5,
+      tension: 0.3, fill: true,
+    }, {
+      label: '目標區間 60 kg',
+      data: [60, 60, 60, 60, 60, 60],
+      borderColor: '#C17F59',
+      borderDash: [5, 4],
+      pointRadius: 0,
+      borderWidth: 1.5,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ctx.parsed.y.toFixed(1) + ' kg' }}
+    },
+    scales: {
+      x: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor } },
+      y: { min: 58, max: 69, ticks: { color: textColor, font: { size: 11 }, callback: v => v + ' kg' }, grid: { color: gridColor } }
+    }
+  }
+});
+
+// ===== Protein comparison visual cards =====
+const ruiProteinData = [
+  { name:'希臘優格（無糖）', tag:'點心首選', status:'add', prot:9.0, fat:0.4, cal:59 },
+  { name:'蝦（水煮）', tag:'首選', status:'add', prot:18.4, fat:0.9, cal:82 },
+  { name:'白肉魚（鯛/鱸）', tag:'推薦', status:'add', prot:20.2, fat:1.5, cal:96 },
+  { name:'雞胸肉（水煮）', tag:'首選★', status:'add', prot:22.4, fat:1.9, cal:109 },
+  { name:'雞胗', tag:'高鐵低脂', status:'add', prot:18.3, fat:1.8, cal:91 },
+  { name:'豬里肌（烤）', tag:'推薦★', status:'add', prot:22.2, fat:3.5, cal:121 },
+  { name:'牛里肌（妳在吃）', tag:'繼續吃', status:'current', prot:26.0, fat:4.2, cal:145 },
+  { name:'板豆腐', tag:'植物性可選', status:'add', prot:8.1, fat:3.5, cal:72 },
+  { name:'水煮蛋（全蛋）', tag:'妳在吃', status:'current', prot:12.7, fat:9.5, cal:138 },
+  { name:'鮭魚（烤）', tag:'Omega-3★', status:'add', prot:20.1, fat:13.4, cal:202 },
+  { name:'凍豆腐（妳在吃）', tag:'可輔助', status:'upgrade', prot:9.0, fat:5.6, cal:82 },
+  { name:'生豆包（妳在吃）', tag:'油脂偏高', status:'upgrade', prot:10.0, fat:9.2, cal:140 },
+  { name:'無糖豆漿（妳在喝）', tag:'量要夠', status:'upgrade', prot:3.3, fat:1.9, cal:34 },
+];
+// sort by fat asc
+ruiProteinData.sort((a, b) => a.fat - b.fat);
+const maxCal = 210;
+const grid = document.getElementById('prot-comp-grid');
+if (grid) {
+  grid.innerHTML = ruiProteinData.map(d => {
+    const statusColor = d.status === 'current' ? '#5a7a4e' : d.status === 'upgrade' ? '#a06010' : '#3D6B8C';
+    const statusBg = d.status === 'current' ? '#e8ede5' : d.status === 'upgrade' ? '#fef3e2' : '#ddeeff';
+    const calBarW = Math.min(100, Math.round((d.cal / maxCal) * 100));
+    const fatBarW = Math.min(100, Math.round((d.fat / 20) * 100));
+    const protBarW = Math.min(100, Math.round((d.prot / 28) * 100));
+    const calColor = d.cal < 110 ? '#3aad6a' : d.cal < 160 ? '#e8a020' : '#d84040';
+    const fatColor = d.fat < 5 ? '#3aad6a' : d.fat < 10 ? '#e8a020' : '#d84040';
+    return `
+      <div style="background:#faf8f5; border:0.5px solid #ede8e2; border-radius:10px; padding:12px 14px; display:grid; grid-template-columns:160px 1fr; gap:12px; align-items:center;">
+        <div>
+          <div style="font-weight:500; font-size:14px; color:#2a2218; margin-bottom:4px;">${d.name}</div>
+          <span style="font-size:11px; padding:2px 8px; border-radius:10px; background:${statusBg}; color:${statusColor}; font-weight:500;">${d.tag}</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <div style="display:flex; align-items:center; gap:6px;">
+            <span style="font-size:11px; color:#a0948a; width:42px; flex-shrink:0;">蛋白質</span>
+            <div style="flex:1; height:7px; background:#e8e2dc; border-radius:3px; overflow:hidden;"><div style="width:${protBarW}%; height:100%; background:#8B9E7E; border-radius:3px;"></div></div>
+            <span style="font-size:12px; font-weight:500; color:#5a7a4e; width:36px; text-align:right;">${d.prot}g</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <span style="font-size:11px; color:#a0948a; width:42px; flex-shrink:0;">脂肪</span>
+            <div style="flex:1; height:7px; background:#e8e2dc; border-radius:3px; overflow:hidden;"><div style="width:${fatBarW}%; height:100%; background:${fatColor}; border-radius:3px;"></div></div>
+            <span style="font-size:12px; font-weight:500; color:${fatColor}; width:36px; text-align:right;">${d.fat}g</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <span style="font-size:11px; color:#a0948a; width:42px; flex-shrink:0;">熱量</span>
+            <div style="flex:1; height:7px; background:#e8e2dc; border-radius:3px; overflow:hidden;"><div style="width:${calBarW}%; height:100%; background:${calColor}; border-radius:3px;"></div></div>
+            <span style="font-size:12px; font-weight:500; color:${calColor}; width:52px; text-align:right;">${d.cal} kcal</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+</script>
+</body>
+</html>
