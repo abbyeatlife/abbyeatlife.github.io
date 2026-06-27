@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>欣樺的第一次課程 ── Abby 營養師</title>
+<style>
+  .tab-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 36px;
+    border-bottom: 2px solid var(--divider);
+    padding-bottom: 0;
+  }
+  .tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bark-light);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn.active {
+    color: var(--sage-deep);
+    border-bottom-color: var(--sage-deep);
+  }
+  .tab-btn:hover:not(.active) { color: var(--bark); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Teacher notes specific */
+  .tn-block {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--divider);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .tn-header {
+    background: var(--bark);
+    color: white;
+    padding: 14px 22px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .tn-header span { opacity: 0.6; font-size: 12px; font-weight: 400; margin-left: 10px; }
+  .tn-body {
+    padding: 20px 22px;
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--bark);
+  }
+  .tn-body h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--sage-deep);
+    margin: 16px 0 6px;
+    padding-left: 10px;
+    border-left: 3px solid var(--sage);
+  }
+  .tn-body h4:first-child { margin-top: 0; }
+  .tn-body p { margin-bottom: 10px; color: var(--bark-light); }
+  .tn-body ul { padding-left: 18px; color: var(--bark-light); margin-bottom: 10px; }
+  .tn-body ul li { margin-bottom: 5px; }
+  .tn-body strong { color: var(--bark); }
+  .tn-caution {
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--bark-light);
+    margin-top: 14px;
+  }
+  .tn-caution strong { color: var(--terra); }
+  .path-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  .path-node {
+    background: #F0F4EE;
+    border: 1px solid var(--sage-pale);
+    border-radius: 8px;
+    padding: 6px 12px;
+    color: var(--bark);
+    font-weight: 600;
+    font-size: 12.5px;
+    text-align: center;
+  }
+  .path-arr { color: var(--terra); font-weight: 700; font-size: 1rem; }
+</style>
+<style>
+  /* ── 品牌 Token ── */
+  :root {
+    --sage:       #8B9E7E;
+    --sage-pale:  #C8D5C0;
+    --sage-deep:  #5C7252;
+    --terra:      #C17F59;
+    --terra-pale: #E8C4A8;
+    --cream:      #FDFBF7;
+    --bark:       #3D3229;
+    --bark-light: #6B5B4E;
+    --divider:    #E2DDD6;
+    --warn-bg:    #FEF6EE;
+    --warn-border:#E8B88A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--bark);
+    font-family: 'Noto Sans TC', 'PingFang TC', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 28px 80px;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    background: var(--sage-deep);
+    border-radius: 16px;
+    padding: 48px 40px 40px;
+    margin-bottom: 48px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    top: -60px; right: -60px;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    bottom: -30px; left: 60px;
+  }
+  .cover-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin-bottom: 12px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    opacity: 0.75;
+  }
+  .cover-meta span::before { content: '· '; }
+
+  /* ── Section ── */
+  .section {
+    margin-bottom: 48px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--divider);
+  }
+  .section-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--sage);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.35rem;
+    color: var(--bark);
+  }
+  .section-header .sub {
+    font-size: 12px;
+    color: var(--bark-light);
+    margin-left: auto;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Cards ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--divider);
+  }
+  .card-icon {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+  }
+  .card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--bark);
+    margin-bottom: 6px;
+  }
+  .card p {
+    font-size: 13px;
+    color: var(--bark-light);
+    line-height: 1.6;
+  }
+  .card.highlight {
+    border-color: var(--sage);
+    background: #F4F7F2;
+  }
+  .card.highlight h3 { color: var(--sage-deep); }
+
+  /* ── 飲食觀察 table ── */
+  .diet-obs {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    margin-bottom: 20px;
+  }
+  .diet-obs th {
+    background: var(--sage);
+    color: white;
+    text-align: left;
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .diet-obs th:first-child { border-radius: 8px 0 0 0; }
+  .diet-obs th:last-child  { border-radius: 0 8px 0 0; }
+  .diet-obs td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--divider);
+    vertical-align: top;
+  }
+  .diet-obs tr:last-child td { border-bottom: none; }
+  .diet-obs tr:nth-child(even) td { background: #F9F7F4; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .tag-red   { background: #FDECEA; color: #B94040; }
+  .tag-amber { background: #FEF4E5; color: #A06020; }
+  .tag-green { background: #EBF3E8; color: #4A7C40; }
+
+  /* ── 知識框 ── */
+  .know-box {
+    background: white;
+    border-left: 4px solid var(--sage);
+    border-radius: 0 12px 12px 0;
+    padding: 18px 20px;
+    margin: 16px 0;
+    font-size: 13.5px;
+  }
+  .know-box .kbTitle {
+    font-weight: 700;
+    color: var(--sage-deep);
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  .know-box ul {
+    padding-left: 18px;
+    color: var(--bark-light);
+  }
+  .know-box ul li { margin-bottom: 4px; }
+
+  /* ── 警示框 ── */
+  .warn-box {
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 13.5px;
+  }
+  .warn-box .wTitle {
+    font-weight: 700;
+    color: var(--terra);
+    margin-bottom: 6px;
+  }
+
+  /* ── 情緒飲食連結圖 ── */
+  .chain {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  .chain-item {
+    background: white;
+    border: 1.5px solid var(--divider);
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: center;
+    min-width: 90px;
+  }
+  .chain-item .ci-top { font-size: 11px; color: var(--bark-light); }
+  .chain-item .ci-main { font-weight: 700; font-size: 13.5px; color: var(--bark); }
+  .chain-arrow { color: var(--terra); font-size: 1.1rem; font-weight: 700; }
+
+  /* ── 替換食物 ── */
+  .swap-grid {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 10px;
+    margin: 16px 0;
+    font-size: 13.5px;
+  }
+  .swap-from, .swap-to {
+    background: white;
+    border-radius: 10px;
+    padding: 12px 16px;
+    border: 1px solid var(--divider);
+  }
+  .swap-from { border-color: #F0C8C0; background: #FEF5F3; }
+  .swap-to   { border-color: var(--sage-pale); background: #F4F7F2; }
+  .swap-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .swap-from .swap-label { color: #B94040; }
+  .swap-to   .swap-label { color: var(--sage-deep); }
+  .swap-arrow-col {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; color: var(--terra); font-weight: 700;
+  }
+  .swap-from ul, .swap-to ul {
+    padding-left: 16px;
+    color: var(--bark);
+    line-height: 1.7;
+  }
+
+  /* ── 行動計劃 ── */
+  .action-list {
+    counter-reset: action;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .action-list li {
+    counter-increment: action;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: white;
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 1px solid var(--divider);
+  }
+  .action-list li::before {
+    content: counter(action);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--terra);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .action-list li strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 4px;
+    color: var(--bark);
+  }
+  .action-list li span {
+    font-size: 13px;
+    color: var(--bark-light);
+    line-height: 1.65;
+  }
+
+  /* ── 邊界提醒 ── */
+  .boundary {
+    background: var(--bark);
+    color: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 24px;
+    font-size: 13.5px;
+  }
+  .boundary h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--terra-pale);
+  }
+  .boundary ul { padding-left: 18px; line-height: 1.8; opacity: 0.88; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 12px;
+    color: var(--bark-light);
+    border-top: 1px solid var(--divider);
+    padding-top: 24px;
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; }
+    .cover h1 { font-size: 1.7rem; }
+    .swap-grid { grid-template-columns: 1fr; }
+    .swap-arrow-col { display: none; }
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Cover -->
+<div class="cover">
+  <div class="cover-label">Abby 營養師 ✦ 個人課程</div>
+  <h1>欣樺的<br>第一次課程</h1>
+  <div class="cover-meta">
+    <span>2026 / 6 / 28</span>
+    <span>169 cm ／ 69 kg</span>
+    <span>37 歲</span>
+    <span>Session 01</span>
+  </div>
+</div>
+
+<!-- Tab Bar -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('course')">📋 課程內容</button>
+  <button class="tab-btn" onclick="switchTab('notes')">🔬 老師補充資料</button>
+</div>
+
+<div id="tab-course" class="tab-panel active">
+
+<!-- 0. 今天的目標 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">✦</div>
+    <h2>今天我們想做到什麼</h2>
+  </div>
+  <div class="card-grid">
+    <div class="card highlight">
+      <div class="card-icon">🔍</div>
+      <h3>看懂飲食記錄在說什麼</h3>
+      <p>不是找錯，而是找規律——身體在什麼時候、為什麼會做出那些選擇。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">🧠</div>
+      <h3>理解飲食與情緒的連結</h3>
+      <p>蛋白質、血糖、咖啡因——這些都會直接影響妳每天的感受。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">🌿</div>
+      <h3>帶走 2～3 個具體做法</h3>
+      <p>從現有的生活模式微調，不需要全部改變，只需要找到可以動的地方。</p>
+    </div>
+  </div>
+  <div class="warn-box">
+    <div class="wTitle">先說清楚我能做什麼</div>
+    飲食結構、血糖穩定、生理期前的暴食策略、運動配合飲食的邏輯——這些都在我的範圍內。<br>
+    憂鬱症的治療、藥物調整、皮膚的醫療介入，這些繼續交給妳的醫師。<br>
+    但很多時候，<strong>吃得好一點，感覺會真的好一點點</strong>——我們從這裡開始。
+  </div>
+</div>
+
+<!-- 1. 飲食紀錄分析 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>飲食紀錄分析</h2>
+    <span class="sub">6/23 ─ 6/25 三天</span>
+  </div>
+
+  <table class="diet-obs">
+    <thead>
+      <tr>
+        <th>觀察到的模式</th>
+        <th>嚴重程度</th>
+        <th>可能的影響</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>蛋白質嚴重不足</strong><br>早餐幾乎零蛋白，中餐以蛋餅、飯糰快速處理</td>
+        <td><span class="tag tag-red">優先處理</span></td>
+        <td>飽足感低 → 晚餐吃更多、血清素原料不足 → 情緒更脆弱</td>
+      </tr>
+      <tr>
+        <td><strong>精緻碳水比例偏高</strong><br>巧克力餅乾、豆沙鍋餅、飯×3碗、義大利麵</td>
+        <td><span class="tag tag-red">優先處理</span></td>
+        <td>血糖劇烈起伏 → 情緒波動、暴食風險、可能加重皮膚發炎</td>
+      </tr>
+      <tr>
+        <td><strong>晚餐後的補償性零食</strong><br>晚餐有原型食物，但之後又再吃餅乾、魷魚絲</td>
+        <td><span class="tag tag-amber">需要觀察</span></td>
+        <td>心理上的「空缺感」未被填滿，白天不夠吃的累積在此爆發</td>
+      </tr>
+      <tr>
+        <td><strong>咖啡因攝取中</strong><br>每天中冰拿鐵，以前是 2 大杯濃萃（已主動降低）</td>
+        <td><span class="tag tag-amber">持續觀察</span></td>
+        <td>影響睡眠品質、與安眠藥交互作用值得注意</td>
+      </tr>
+      <tr>
+        <td><strong>三餐分配不均</strong><br>早午餐偏少且方便，晚餐是一天最大量</td>
+        <td><span class="tag tag-amber">需要調整</span></td>
+        <td>下午飢餓感累積 → 晚餐過量、夜間血糖不穩</td>
+      </tr>
+      <tr>
+        <td><strong>蔬菜和湯品有出現</strong><br>晚餐常有蔬菜類、有蛋有肉</td>
+        <td><span class="tag tag-green">做得不錯</span></td>
+        <td>晚餐的基礎結構其實還可以，主要問題在早午餐</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 知識框 1：蛋白質與情緒 -->
+  <div class="know-box">
+    <div class="kbTitle">🔬 為什麼蛋白質跟情緒有關？</div>
+    <ul>
+      <li>血清素（Serotonin）是影響情緒穩定的重要神經傳導物質</li>
+      <li>血清素的原料是<strong>色胺酸（Tryptophan）</strong>，它只能從食物中獲取</li>
+      <li>色胺酸存在於蛋、肉、豆類、乳製品等<strong>蛋白質食物</strong>裡</li>
+      <li>早餐沒有蛋白質 → 上午色胺酸供給不足 → 血清素合成減少 → 整個上午情緒更脆弱、更容易焦慮</li>
+    </ul>
+  </div>
+
+  <!-- 情緒連鎖圖 -->
+  <p style="font-size:13px; color:var(--bark-light); margin-bottom:8px; font-weight:600;">▸ 一個常見的惡性循環</p>
+  <div class="chain">
+    <div class="chain-item">
+      <div class="ci-top">早午餐</div>
+      <div class="ci-main">蛋白質少</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item">
+      <div class="ci-top">血糖</div>
+      <div class="ci-main">起伏大</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item">
+      <div class="ci-top">下午</div>
+      <div class="ci-main">飢餓感強</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item">
+      <div class="ci-top">晚餐</div>
+      <div class="ci-main">吃太多</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item">
+      <div class="ci-top">飯後</div>
+      <div class="ci-main">還想吃</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item">
+      <div class="ci-top">睡前</div>
+      <div class="ci-main">零食出現</div>
+    </div>
+  </div>
+
+  <!-- 知識框 2：精緻碳水與發炎 -->
+  <div class="know-box">
+    <div class="kbTitle">🔬 精緻碳水、加工食品與皮膚的關係</div>
+    <ul>
+      <li>高糖、高度加工食品會刺激 <strong>胰島素大量分泌</strong>，促進發炎反應（IL-6、TNF-α等）</li>
+      <li>加工食品中常含有<strong>人工添加劑、防腐劑、乳化劑</strong>，部分人的免疫系統對這些物質敏感</li>
+      <li>慢性低度發炎狀態會讓皮膚屏障功能下降，<strong>過敏症狀更容易被觸發或加重</strong></li>
+      <li>月經前黃體素下降 → 本來就容易發炎 → 如果飲食上再加油，症狀會更明顯</li>
+      <li><strong>不是說這是唯一原因</strong>，但飲食可以做到的是：減少不必要的發炎刺激</li>
+    </ul>
+  </div>
+
+  <!-- 知識框 3：咖啡因 -->
+  <div class="know-box">
+    <div class="kbTitle">☕ 咖啡因與情緒、睡眠的關係</div>
+    <ul>
+      <li>咖啡因的半衰期約 5～7 小時：下午 2 點喝，晚上 9 點身體還有一半在作用</li>
+      <li>長期高咖啡因攝取 → 腺苷受體敏感度下降 → <strong>沒喝就更累、焦慮感上升</strong></li>
+      <li>妳已經主動從 2 大杯濃萃降到中杯，這非常好——這是身體在恢復它的自然節律</li>
+      <li>目前建議：<strong>中午 12 點後盡量不喝</strong>，讓睡眠品質有機會改善</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 2. 運動 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>關於運動</h2>
+    <span class="sub">修復優先，活動量其次</span>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">✅</div>
+      <h3>妳現在在做的</h3>
+      <p>重訓 2次/週、騎腳踏車、游泳（玩水）。<br>這個組合已經很均衡，不是沒在動的人。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🩺</div>
+      <h3>一個重要的訊號</h3>
+      <p>停重訓 2 週後皮膚過敏有減緩——這告訴我們妳身體目前的<strong>修復能力有限</strong>，不適合大量高強度訓練。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚖️</div>
+      <h3>運動也是一種壓力</h3>
+      <p>適量 → 有益；過量 → 皮質醇上升 → 免疫功能下降 → 發炎加重。<br>重點是<strong>身體能恢復得了</strong>。</p>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">🌿 目前最適合妳的運動方向</div>
+    <ul>
+      <li><strong>優先：</strong>每天散步 20～30 分鐘，促進腦部血液循環、幫助情緒穩定，身體負擔低</li>
+      <li><strong>保留：</strong>游泳和騎車這類低衝擊有氧，對情緒和睡眠都有幫助</li>
+      <li><strong>重訓：</strong>可以恢復，但先把飲食蛋白質補起來，讓肌肉有原料可以恢復</li>
+      <li><strong>週總量目標：</strong>中等強度有氧 150 分鐘，<strong>平均分散在各天</strong>，不要集中</li>
+      <li>身體在修復模式時，規律和溫和比強度更重要</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 3. 身體歷史的回顧 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>妳的身體歷史</h2>
+    <span class="sub">聽妳說，幫妳梳理</span>
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">📋 我想多了解的幾件事</div>
+    這個部分沒有標準答案，也不是要找誰的錯。<br>
+    我只是想幫妳把這幾年發生的事拼在一起，看看有沒有什麼規律。
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">📉</div>
+      <h3>2022 年的 50.4 kg</h3>
+      <p>那時候是怎麼做到的？當時身體感覺怎麼樣？那個方式長期下去可以維持嗎？</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📈</div>
+      <h3>2023 年之後的回升</h3>
+      <p>發生了什麼事？是藥物調整？生活壓力？還是原本的方法太難維持而放棄？</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💊</div>
+      <h3>藥物這件事</h3>
+      <p>血清素藥物和安眠藥有時候本身就有體重增加的副作用——妳有跟醫生討論過這件事嗎？</p>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">⚠️ 關於藥物與體重（供參考，非診斷）</div>
+    <ul>
+      <li>部分抗憂鬱藥（SSRI/SNRI）確實有<strong>體重增加</strong>作為已知副作用</li>
+      <li>部分安眠藥可能影響代謝速率和食慾</li>
+      <li>抗過敏藥（某些抗組織胺）也可能增加食慾</li>
+      <li>這些不是妳的錯，也不是意志力的問題</li>
+      <li><strong>建議：</strong>帶著這個問題去問妳的精神科醫師——「我的體重這幾年一直在增加，這跟藥物有關係嗎？」</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 4. 生理期前暴食 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>生理期前的暴食</h2>
+    <span class="sub">生理機制，不是意志力</span>
+  </div>
+
+  <p style="margin-bottom: 16px; color: var(--bark-light); font-size: 14px;">
+    妳提到生理期前心情不好、食慾暴增，半夜爬起來吃東西。<br>
+    這件事有非常清楚的生理原因，我想讓妳先理解這個機制，再來談怎麼做。
+  </p>
+
+  <div class="chain" style="margin-bottom: 24px;">
+    <div class="chain-item">
+      <div class="ci-top">黃體期後期</div>
+      <div class="ci-main">黃體素下降</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item">
+      <div class="ci-top">血糖調節</div>
+      <div class="ci-main">變差</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item">
+      <div class="ci-top">血清素、多巴胺</div>
+      <div class="ci-main">同步偏低</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item">
+      <div class="ci-top">大腦發出訊號</div>
+      <div class="ci-main">快找能量！</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item">
+      <div class="ci-top">本能反應</div>
+      <div class="ci-main">想吃甜、高碳</div>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">💡 具體應對策略</div>
+    <ul>
+      <li><strong>預先加餐，不是等到很餓才吃：</strong>生理期前一週，下午 3～4 點主動吃一份含蛋白質的點心（水煮蛋、無糖豆漿、起司、堅果）</li>
+      <li><strong>堅果本身沒問題</strong>——問題是在半夜飢餓狀態下才吃。提前安排「合法的堅果時間」，量不變但時間點對了</li>
+      <li><strong>晚餐蛋白質加量：</strong>這個時期晚餐多加一份蛋或豆腐，幫助血糖穩定到睡前</li>
+      <li><strong>黑巧克力替換：</strong>想吃甜的衝動來了，可以吃 2～3 片 70% 以上的黑巧克力，滿足感較高、血糖波動較小</li>
+      <li>這不是在獎勵自己，是在<strong>主動管理生理機制</strong></li>
+    </ul>
+  </div>
+</div>
+
+<!-- 5. 實際行動 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>第一步：可以動的地方</h2>
+    <span class="sub">不要全部改，先改這幾件事</span>
+  </div>
+
+  <!-- 替換食物 -->
+  <p style="font-weight: 700; font-size: 14px; margin-bottom: 12px; color: var(--bark);">▸ 把精緻碳水換成更有支撐感的選擇</p>
+  <div class="swap-grid">
+    <div class="swap-from">
+      <div class="swap-label">目前在吃</div>
+      <ul>
+        <li>法國麵包（空白早餐）</li>
+        <li>巧克力餅乾</li>
+        <li>豆沙鍋餅</li>
+        <li>義美紅茶（含糖）</li>
+        <li>檸檬糖魷魚絲</li>
+      </ul>
+    </div>
+    <div class="swap-arrow-col">→</div>
+    <div class="swap-to">
+      <div class="swap-label">可以換成</div>
+      <ul>
+        <li>法國麵包＋茶葉蛋 or 滷蛋</li>
+        <li>無調味堅果 15g（提前安排好）</li>
+        <li>茶葉蛋＋低糖豆漿</li>
+        <li>無糖茶 or 氣泡水</li>
+        <li>毛豆、原味堅果（預先分裝好的份量）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 行動清單 -->
+  <p style="font-weight: 700; font-size: 14px; margin: 24px 0 12px; color: var(--bark);">▸ 這個月的三個目標</p>
+  <ul class="action-list">
+    <li>
+      <strong>每一餐都有蛋白質</strong>
+      <span>不需要計算克數，只要每餐都有出現一份蛋白質食物：蛋、豆腐、豆漿、雞肉、魚、起司其中一種。早餐是最容易改變的起點。</span>
+    </li>
+    <li>
+      <strong>精緻糖的替換</strong>
+      <span>餅乾、含糖飲料、加工甜食，試著把其中一種換掉。不需要全部清掉，找一個最容易換的先動。</span>
+    </li>
+    <li>
+      <strong>記錄繼續，加上「感受」這一欄</strong>
+      <span>不是情緒日記，只是「今天下午很想吃東西」「今天睡得很差」「今天壓力大」這樣一句話。讓我可以看到飲食和身體狀態的連結。</span>
+    </li>
+  </ul>
+
+  <!-- 邊界提醒 -->
+  <div class="boundary">
+    <h3>需要帶去問醫生的事</h3>
+    <ul>
+      <li>「我的體重這幾年一直在增加，跟我在吃的藥有關係嗎？」</li>
+      <li>「我可以補充 Omega-3 魚油嗎？會跟我的藥有什麼交互作用？」</li>
+      <li>皮膚過敏的狀況，繼續追蹤皮膚科，飲食調整是輔助，不是替代</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- end tab-course -->
+
+<!-- Teacher Notes Tab -->
+<div id="tab-notes" class="tab-panel">
+
+  <div class="tn-block">
+    <div class="tn-header">色胺酸與血清素的完整機制 <span>給老師自己理解用</span></div>
+    <div class="tn-body">
+      <h4>色胺酸是什麼？</h4>
+      <p><strong>色胺酸（Tryptophan）</strong>是一種<strong>必需胺基酸</strong>——人體無法自行合成，只能從食物中攝取。含量較多的食物包括：蛋、豆腐、豆漿、雞胸肉、鮭魚、堅果、香蕉。</p>
+
+      <h4>從食物到血清素的路徑</h4>
+      <div class="path-flow">
+        <div class="path-node">食物中的蛋白質</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">消化分解出色胺酸</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">進入血液</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">競爭穿越血腦屏障</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">進入大腦</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">色胺酸 → 5-HTP</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">5-HTP → 血清素</div>
+      </div>
+
+      <h4>為什麼「競爭穿越血腦屏障」這步很關鍵？</h4>
+      <p>色胺酸要進入大腦，需要通過一個<strong>載體蛋白</strong>，但這個載體同時也要運輸其他大型中性胺基酸（LNAA，如苯丙胺酸、白胺酸、纈胺酸等）。這些胺基酸和色胺酸<strong>共用同一條通道，互相競爭</strong>。</p>
+      <p>這就解釋了一個很反直覺的現象：</p>
+      <ul>
+        <li>吃純蛋白質 → 所有胺基酸一起升高 → 色胺酸競爭輸 → 進腦量反而沒增加多少</li>
+        <li>吃蛋白質＋少量碳水 → 胰島素分泌 → 把其他競爭者（LNAA）送進肌肉 → 色胺酸「獨走」進大腦 → 血清素合成增加</li>
+      </ul>
+      <p>這也是為什麼人情緒低落時會本能地想吃澱粉——大腦在用一個笨方法幫自己補血清素。</p>
+
+      <div class="tn-caution">
+        <strong>跟學生溝通時：</strong>不需要講競爭機制這麼細，說「蛋白質是血清素的原料，但要配合一點澱粉才吸收得好」就夠了，而且剛好對應她目前的飲食問題（純澱粉早餐 = 沒有原料；純蛋白質也不是最佳 = 需要搭配）。
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">血清素與情緒：要小心的說法 <span>科學上有一些細節</span></div>
+    <div class="tn-body">
+      <h4>「血清素低 = 憂鬱」這個說法是過度簡化的</h4>
+      <p>這個「血清素假說（Serotonin Hypothesis）」從 1960 年代開始流行，也是 SSRI 藥物設計的理論基礎。但近年（尤其 2022 年後）有多篇 meta-analysis 指出，直接把「血清素濃度低」等同於「憂鬱症」的說法，在科學上支持度其實不強。</p>
+      <ul>
+        <li>憂鬱症是多因素的，血清素只是其中一條路</li>
+        <li>更精確的說法：血清素系統影響的是<strong>情緒調節的靈活度和韌性</strong>，而非直接等於快樂或不快樂</li>
+        <li>SSRI 藥物對部分人有效，但機制可能不只是「補血清素」這麼單純</li>
+      </ul>
+      <div class="tn-caution">
+        <strong>對 Hua 的應用：</strong>不要說「妳血清素太低所以憂鬱」（這既不精確也不是妳該說的）。可以說的是：「飲食裡蛋白質足夠，有助於讓神經系統有足夠的材料運作，情緒的穩定性也會比較好。」這是有根據且在妳範疇內的說法。
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">腸道、過敏、血清素：三者的連結 <span>Hua 特別相關</span></div>
+    <div class="tn-body">
+      <h4>腸道是血清素的主要製造地</h4>
+      <ul>
+        <li>人體約 <strong>90% 的血清素在腸道製造</strong>（由腸嗜鉻細胞 Enterochromaffin cells 產生）</li>
+        <li>但腸道的血清素<strong>無法穿越血腦屏障</strong>，所以它主要負責腸道蠕動和腸道神經的局部調控</li>
+        <li>腸道影響大腦情緒的主要路徑是透過<strong>迷走神經（Vagus nerve）</strong>，也就是「腸腦軸（Gut-Brain Axis）」</li>
+      </ul>
+
+      <h4>腸道菌相如何影響情緒</h4>
+      <div class="path-flow">
+        <div class="path-node">腸道菌相健康</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">腸道黏膜完整</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">迷走神經訊號穩定</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">大腦情緒調節較佳</div>
+      </div>
+      <div class="path-flow">
+        <div class="path-node">腸道菌相失衡</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">腸漏（Leaky gut）</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">全身慢性發炎</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">大腦發炎訊號 → 情緒更脆弱</div>
+      </div>
+
+      <h4>Hua 的過敏跟這條線有什麼關係？</h4>
+      <ul>
+        <li>皮膚過敏 = 免疫系統過度活化 = 身體處於慢性發炎狀態</li>
+        <li>慢性發炎本身就會加重腸道黏膜的損傷（腸道菌相和皮膚免疫是雙向影響的）</li>
+        <li>這也是為什麼「過敏體質的人」比較容易有腸胃敏感、腸躁等問題</li>
+        <li>飲食中的精緻糖和高度加工食品 → 加劇腸道菌相失衡 → 皮膚和情緒雙重惡化</li>
+      </ul>
+
+      <div class="tn-caution">
+        <strong>給 Hua 的實用結論：</strong>降低精緻糖和加工食品，對她的皮膚、腸道、和情緒穩定性同時有幫助——這是同一件事，不是三件事。這個論點你可以在課程中用來串連她提出的三個問題，讓她覺得「原來這些都是相關的」，不是一堆互相獨立的問題。
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">黃體期血糖變差——是所有女生都這樣嗎？ <span>答案：是，但程度差很多</span></div>
+    <div class="tn-body">
+      <h4>生理機制</h4>
+      <ul>
+        <li>黃體期（排卵後到月經前）黃體素（Progesterone）濃度升高</li>
+        <li>黃體素本身有<strong>輕度抗胰島素作用</strong>——讓細胞對胰島素的敏感性下降</li>
+        <li>身體需要分泌更多胰島素才能維持同樣的血糖穩定</li>
+        <li>月經前黃體素驟降 → 這個落差期的血糖調節最不穩定 → 同時血清素和多巴胺也在這個時期偏低</li>
+      </ul>
+
+      <h4>為什麼有些人特別嚴重？</h4>
+      <ul>
+        <li>平時飲食精緻碳水比例高 → 血糖本來就不穩，黃體期更放大</li>
+        <li>慢性壓力大 → 皮質醇升高也會干擾血糖調節，疊加效應</li>
+        <li>睡眠差 → 同上，睡眠不足本身就讓血糖更難控制</li>
+        <li>基礎蛋白質攝取不足 → 血糖起伏更大</li>
+      </ul>
+      <p>Hua 目前這四個因素可能都有，所以她的症狀比一般人明顯是合理的——不是她特別脆弱，是她的處境讓這個生理機制被放大了。</p>
+
+      <div class="tn-caution">
+        <strong>跟 Hua 說這段的方式：</strong>「這個不是只有妳這樣，幾乎所有女生月經前都會有程度不一的血糖不穩定，只是有人輕到沒感覺。妳之所以特別明顯，是因為妳同時還有其他因素在加重它——這些都是可以慢慢改善的。」先讓她覺得自己不是異常，再談策略。
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">高糖 → 胰島素 → 發炎（IL-6、TNF-α）的機制 <span>皮膚過敏的飲食連結</span></div>
+    <div class="tn-body">
+
+      <h4>問題不是胰島素本身，而是血糖波動太劇烈</h4>
+      <p>胰島素的本職是把血糖送進細胞，這是正常且必要的。問題在於血糖<strong>飆升太快太高</strong>時，觸發的一連串下游反應。</p>
+
+      <h4>路徑一：脂肪細胞的發炎訊號</h4>
+      <div class="path-flow">
+        <div class="path-node">胰島素大量分泌</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">促進脂肪合成<br>脂肪細胞變大</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">分泌 IL-6、TNF-α</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">活化更多免疫細胞</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">發炎循環</div>
+      </div>
+      <p style="margin-top:8px;">IL-6（介白素-6）和 TNF-α（腫瘤壞死因子）不只是發炎的標記，它們本身就是<strong>發炎的推手</strong>，會持續活化免疫系統。</p>
+
+      <h4>路徑二：氧化壓力</h4>
+      <div class="path-flow">
+        <div class="path-node">細胞處理大量葡萄糖</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">粒線體過載</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">產生大量自由基（ROS）</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">活化 NF-κB（發炎開關）</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">更多 IL-6、TNF-α</div>
+      </div>
+
+      <h4>路徑三：腸道菌相擾動</h4>
+      <div class="path-flow">
+        <div class="path-node">高糖飲食</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">腸道菌相失衡</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">黏膜屏障下降</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">LPS（細菌碎片）滲漏進血液</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">強烈活化免疫系統</div>
+      </div>
+      <p style="margin-top:8px;">LPS（脂多醣）是革蘭氏陰性菌的細胞壁碎片，是目前已知最強的發炎觸發物之一。</p>
+
+      <h4>這些發炎物質對皮膚做了什麼</h4>
+      <ul>
+        <li>活化肥大細胞（Mast cells）→ 釋放組織胺 → <strong>過敏反應加重</strong></li>
+        <li>破壞皮膚屏障蛋白（Filaggrin）→ 皮膚通透性上升 → <strong>外來刺激更容易滲入</strong></li>
+        <li>促進角質細胞過度增生 → 部分人表現為<strong>痘痘或濕疹</strong></li>
+      </ul>
+
+      <div class="tn-caution">
+        <strong>對 Hua 的意義：</strong>她本來就有免疫系統過度活化的底子，飲食上持續給高糖刺激，等於一直在按發炎的油門，讓皮膚屏障沒有機會修復。降低精緻糖不是「保養」，是在<strong>減少不必要的免疫系統負擔</strong>。<br><br>
+        <strong>跟她說的話：</strong>「糖吃多了，身體的免疫系統會一直處於警備狀態，妳的過敏就更容易被觸發，而且這個反應是有機制的，不是迷思。」
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">糖化（Glycation）與膠原蛋白、皮膚老化 <span>AGEs 的機制</span></div>
+    <div class="tn-body">
+
+      <h4>什麼是糖化？</h4>
+      <p>當血液裡有過多的葡萄糖或果糖，這些糖分子會<strong>非酶性地附著在蛋白質上</strong>，產生 <strong>AGEs（Advanced Glycation End-products，糖化終產物）</strong>。</p>
+      <p>這個反應不需要酵素，只要糖和蛋白質接觸、時間夠長就會發生。你在廚房看到食物加熱後變褐色（梅納反應），本質上是同一件事——只是在體內是在體溫下<strong>慢慢、持續地進行</strong>。</p>
+
+      <h4>糖化對膠原蛋白做了什麼</h4>
+      <div class="path-flow">
+        <div class="path-node">血液中多餘的糖</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">附著在膠原蛋白上</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">纖維之間產生交聯<br>（Cross-linking）</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">膠原蛋白變硬<br>失去彈性</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">皺紋、鬆弛<br>失去光澤</div>
+      </div>
+      <p style="margin-top:8px;">正常膠原蛋白纖維柔軟有彈性。糖化後纖維互相黏連，就像橡皮筋被黏在一起就沒辦法伸縮。更麻煩的是，<strong>受損的膠原蛋白很難被身體替換掉</strong>——膠原蛋白的代謝週期本來就很慢。</p>
+
+      <h4>AGEs 還會再次觸發發炎</h4>
+      <div class="path-flow">
+        <div class="path-node">AGEs 在體內累積</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">與細胞上的 RAGE 受體結合</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">活化 NF-κB</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">又產生 IL-6、TNF-α</div>
+        <div class="path-arr">→</div>
+        <div class="path-node">回到發炎循環</div>
+      </div>
+      <p style="margin-top:8px;">也就是說，糖化產物本身又成為新的發炎來源——兩條路徑最終<strong>匯流到同一個結果</strong>。</p>
+
+      <h4>⚠️ 果糖特別需要注意</h4>
+      <p>果糖的糖化速度比葡萄糖快 <strong>7–10 倍</strong>，而果糖大量藏在：含糖飲料、市售果汁、加工食品裡的高果糖漿（HFCS）。「不甜的加工食品」裡可能藏了比你想像更多的果糖。</p>
+
+      <h4>兩條路徑總整理</h4>
+      <div style="background:#F9F7F4; border-radius:10px; padding:16px 20px; font-size:12.5px; font-family:monospace; line-height:2; color:var(--bark);">
+        高糖飲食<br>
+        ├─→ 血糖快速飆升<br>
+        │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─→ 胰島素大量分泌 → 脂肪細胞活化 → IL-6、TNF-α → 全身發炎<br>
+        │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─→ 氧化壓力（ROS）→ NF-κB → 更多發炎<br>
+        │&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─→ 腸道菌相失衡 → LPS 滲漏 → 免疫活化<br>
+        └─→ 血液中多餘的糖<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─→ 糖化（Glycation）→ AGEs<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─→ 膠原蛋白交聯 → 失彈性、皺紋<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─→ RAGE 活化 → 回到發炎路徑
+      </div>
+
+      <div class="tn-caution" style="margin-top:14px;">
+        <strong>跟 Hua 說的話：</strong>「糖對皮膚有兩個壞處：一個是讓免疫系統一直處於警備狀態，過敏就更容易被觸發；另一個是糖會直接黏在皮膚的膠原蛋白上，讓它變硬、失去彈性。這兩件事同時在發生，所以吃糖對皮膚的影響不是迷思，是有機制的。」
+      </div>
+    </div>
+  </div>
+
+</div><!-- end tab-notes -->
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+<!-- Footer -->
+<div class="footer">
+  Abby 營養師 ✦ abbyeatlife.github.io<br>
+  本資料為個人課程使用，請勿轉載
+</div>
+
+</body>
+</html>
