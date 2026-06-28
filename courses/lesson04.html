@@ -128,6 +128,17 @@
   }
   .result-portions strong { color: var(--bark); }
 
+  /* NEW: estimation notice */
+  .protein-estimate-note {
+    width: 100%; margin-top: 10px;
+    padding: 8px 12px; border-radius: 8px;
+    background: #fff8ee; border-left: 3px solid #e8a020;
+    font-size: 0.78rem; color: #7a5a10; line-height: 1.55;
+  }
+  .protein-estimate-note.seafood {
+    background: #eef8f0; border-left-color: #3aad6a; color: #1a5a30;
+  }
+
   .fat-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; margin-top: 6px; }
   .fat-low  { background: #d4f0e0; color: #2a6a40; }
   .fat-mid  { background: #fef0c0; color: #8a6000; }
@@ -236,7 +247,6 @@
   }
   .img-row img:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
 
-  /* ── NEW: Protein Comparison & Fruit GI ── */
   .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
   .filter-btn {
     padding: 6px 16px; border-radius: 20px; border: 1.5px solid #e0d8d0;
@@ -268,7 +278,6 @@
     border-radius: 10px; margin-top: 6px; font-weight: 700;
   }
 
-  /* GI TABLE */
   .gi-intro {
     background: #fff8f0; border-left: 3px solid #c05010;
     border-radius: 0 10px 10px 0; padding: 12px 16px; margin-bottom: 18px;
@@ -306,7 +315,6 @@
   .note-row { font-size: 0.82rem; color: var(--bark-light); }
   .gi-note { margin-top: 14px; padding: 10px 14px; background: var(--sage-pale); border-radius: 8px; font-size: 0.82rem; color: var(--bark-light); line-height: 1.7; }
 
-  /* LIGHTBOX */
   .lightbox {
     display: none; position: fixed; inset: 0;
     background: rgba(30,22,18,0.88); z-index: 999;
@@ -459,9 +467,9 @@
           <optgroup label="低脂 (55kcal/份)">
             <option value="chicken_breast">雞胸肉 (生30g/份)</option>
             <option value="egg_white">蛋白 (生85g=2個/份)</option>
-            <option value="shrimp">蝦仁 (生30g/份)</option>
-            <option value="clam">蛤蜊/牡蠣 (生60g/份)</option>
-            <option value="squid">花枝 (生40g/份)</option>
+            <option value="shrimp">蝦仁 ★極低脂 (生30g/份)</option>
+            <option value="clam">蛤蜊/牡蠣 ★極低脂 (生60g/份)</option>
+            <option value="squid">花枝 ★極低脂 (生40g/份)</option>
             <option value="tofu_firm">豆漿 (260mL=1杯/份)</option>
             <option value="pig_lean">豬里肌 (生35g/份)</option>
           </optgroup>
@@ -698,7 +706,7 @@
   </div>
 </div>
 
-<!-- ========== PROTEIN COMPARISON (NEW) ========== -->
+<!-- ========== PROTEIN COMPARISON ========== -->
 <div id="tab-proteincomp" class="tab-section">
   <div class="section-card proteincomp">
     <div class="section-title">蛋白質食物比較 <span class="badge">每 100g 含量對照</span></div>
@@ -734,7 +742,7 @@
   </div>
 </div>
 
-<!-- ========== FRUIT GI (NEW) ========== -->
+<!-- ========== FRUIT GI ========== -->
 <div id="tab-fruitgi" class="tab-section">
   <div class="section-card fruitgi">
     <div class="section-title">水果 GI 值參考 <span class="badge">升糖指數對照表</span></div>
@@ -801,7 +809,7 @@
 </main>
 
 <script>
-// ===== EXISTING DATA =====
+// ===== DATA =====
 const grainData = {
   rice:{name:'白飯',per1:50,unit:'g(¼碗)',carb:15,prot:2,fat:0,cal:70},
   congee:{name:'粥/稀飯',per1:125,unit:'g(½碗)',carb:15,prot:2,fat:0,cal:70},
@@ -824,6 +832,9 @@ const grainData = {
   red_bean:{name:'紅豆(生)',per1:20,unit:'g',carb:15,prot:2,fat:0,cal:70},
 };
 
+// seafoodKeys: 這幾種食物實際脂肪遠低於代換表估算值
+const seafoodKeys = new Set(['shrimp','clam','squid']);
+
 const proteinData = {
   chicken_breast:{name:'雞胸肉',per1:30,unit:'g生重',prot:7,fat:3,carb:0,cal:55,level:'低脂'},
   egg_white:{name:'蛋白',per1:85,unit:'g(2個)',prot:7,fat:3,carb:0,cal:55,level:'低脂'},
@@ -845,7 +856,7 @@ const proteinData = {
 };
 
 const fruitData = {
-  apple:150,banana:70,kiwi:115,grape:105,tomato_s:175,guava:160,
+  apple:115,banana:70,kiwi:115,grape:105,tomato_s:175,guava:160,
   watermelon:250,orange:150,mango:150,pineapple:130,pear:150,
   longan:90,strawberry:160,papaya:120,durian:35,
 };
@@ -875,7 +886,6 @@ const fatData = {
   mayo:{name:'沙拉醬/美乃滋',per1:7,unit:'g(½湯匙)',fat:5,cal:45},
 };
 
-// ===== NEW DATA: Protein per 100g =====
 const proteinComp100 = [
   { name:'雞胸肉', sub:'生重', prot:22.4, fat:1.9, carb:0, cal:109, level:'低脂', note:'減脂首選，CP值最高' },
   { name:'雞腿肉(去皮)', sub:'生重', prot:18.7, fat:5.2, carb:0, cal:125, level:'低脂', note:'去皮後脂肪大幅降低' },
@@ -913,7 +923,6 @@ const proteinComp100 = [
   { name:'茶葉蛋', sub:'每顆約55g', prot:7.0, fat:4.7, carb:0.4, cal:73, level:'中脂', note:'方便補蛋白質' },
 ];
 
-// ===== NEW DATA: Fruit GI =====
 const fruitGI = [
   { name:'芭樂', gi:20, level:'low', per1:'160g', carb100:8.0,  note:'GI極低，高纖維維C，★推薦' },
   { name:'小番茄', gi:25, level:'low', per1:'175g', carb100:5.4,  note:'嚴格說是蔬菜，適合代替點心' },
@@ -939,45 +948,77 @@ const fruitGI = [
 let mealItems = [];
 let mealIdCounter = 0;
 
-// ===== CALC FUNCTIONS (original) =====
+// ===== HELPERS =====
+function ri(label, value, unit) {
+  return `<div class="result-item"><div class="result-label">${label}</div><div class="result-value">${value}</div><div class="result-unit">${unit}</div></div>`;
+}
+
+// 判斷是否為海鮮（實際脂肪遠低於代換表估算值的食物）
+function getProteinEstimateNote(key, level) {
+  if (seafoodKeys.has(key)) {
+    return `<div class="protein-estimate-note seafood">
+      🐟 此食物實際脂肪極低（每100g 約 &lt;1g），顯示數值為食物代換表「${level}類」整體估算值，實際熱量會低於計算結果。若需精確數字請參考「蛋白質食物比較」頁。
+    </div>`;
+  }
+  return `<div class="protein-estimate-note">
+    📊 脂肪與熱量為食物代換表「${level}類」估算值，個別食物實際數值略有差異。精確數值請參考「蛋白質食物比較」頁。
+  </div>`;
+}
+
+// ===== CALC FUNCTIONS =====
 function calcGrain() {
   const key = document.getElementById('grain-food').value;
-  const weight = parseFloat(document.getElementById('grain-weight').value)||0;
+  const weight = parseFloat(document.getElementById('grain-weight').value) || 0;
   const d = grainData[key];
   const portions = weight / d.per1;
   const carb = +(portions * d.carb).toFixed(1);
   const prot = +(portions * d.prot).toFixed(1);
-  const cal = +(portions * d.cal).toFixed(0);
+  const cal  = +(portions * d.cal).toFixed(0);
   document.getElementById('grain-result').innerHTML = `
-    ${ri('醣類',carb,'g')}${ri('蛋白質',prot,'g')}${ri('熱量',cal,'kcal')}
+    ${ri('醣類', carb, 'g')}${ri('蛋白質', prot, 'g')}${ri('熱量', cal, 'kcal')}
     <div class="result-portions"><strong>${d.name}</strong> ${weight}g<br>= <strong>${+portions.toFixed(2)} 份</strong>全榖根莖類<br><small>（1份=${d.per1}${d.unit}）</small></div>
   `;
-  window._grainCurrent = {name:d.name,amount:weight+'g',carb,prot,fat:0,cal,category:'grain'};
+  window._grainCurrent = {name:d.name, amount:weight+'g', carb, prot, fat:0, cal, category:'grain'};
 }
+
 function updateProteinWeight() {
   const key = document.getElementById('protein-food').value;
   document.getElementById('protein-weight').value = proteinData[key].per1;
 }
+
 function calcProtein() {
   const key = document.getElementById('protein-food').value;
-  const weight = parseFloat(document.getElementById('protein-weight').value)||0;
+  const weight = parseFloat(document.getElementById('protein-weight').value) || 0;
   const d = proteinData[key];
   const portions = weight / d.per1;
   const prot = +(portions * d.prot).toFixed(1);
-  const fat = +(portions * d.fat).toFixed(1);
-  const cal = +(portions * d.cal).toFixed(0);
-  const badge = d.level==='低脂'?'<span class="fat-badge fat-low">低脂</span>':d.level==='中脂'?'<span class="fat-badge fat-mid">中脂</span>':'<span class="fat-badge fat-high">高脂</span>';
+  const fat  = +(portions * d.fat).toFixed(1);
+  const cal  = +(portions * d.cal).toFixed(0);
+  const badge = d.level==='低脂'
+    ? '<span class="fat-badge fat-low">低脂</span>'
+    : d.level==='中脂'
+    ? '<span class="fat-badge fat-mid">中脂</span>'
+    : '<span class="fat-badge fat-high">高脂</span>';
+
   document.getElementById('protein-result').innerHTML = `
-    ${ri('蛋白質',prot,'g')}${ri('脂肪',fat,'g')}${ri('熱量',cal,'kcal')}
+    ${ri('蛋白質', prot, 'g')}${ri('脂肪', fat, 'g')}${ri('熱量', cal, 'kcal')}
     <div class="result-portions"><strong>${d.name}</strong> ${badge}<br>${weight}g = <strong>${+portions.toFixed(2)} 份</strong><br><small>（1份=${d.per1}${d.unit}）</small></div>
+    ${getProteinEstimateNote(key, d.level)}
   `;
-  window._proteinCurrent = {name:d.name,amount:weight+'g',carb:0,prot,fat,cal,category:'protein'};
+  window._proteinCurrent = {name:d.name, amount:weight+'g', carb:0, prot, fat, cal, category:'protein'};
+
   const tbody = document.getElementById('protein-compare-body');
   if (tbody) {
     const rows = Object.values(proteinData).map(p => {
-      const port = prot/p.prot; const w = +(port*p.per1).toFixed(0);
-      const f = +(port*p.fat).toFixed(1); const c = +(port*p.cal).toFixed(0);
-      const fb = p.level==='低脂'?`<span class="fat-badge fat-low">低脂</span>`:p.level==='中脂'?`<span class="fat-badge fat-mid">中脂</span>`:`<span class="fat-badge fat-high">高脂</span>`;
+      const port = prot / p.prot;
+      const w = +(port * p.per1).toFixed(0);
+      const f = +(port * p.fat).toFixed(1);
+      const c = +(port * p.cal).toFixed(0);
+      const fb = p.level==='低脂'
+        ? `<span class="fat-badge fat-low">低脂</span>`
+        : p.level==='中脂'
+        ? `<span class="fat-badge fat-mid">中脂</span>`
+        : `<span class="fat-badge fat-high">高脂</span>`;
       return `<tr><td>${p.name}</td><td>${w}${p.unit}</td><td>${f}g</td><td>${c} kcal</td><td>${fb}</td></tr>`;
     });
     tbody.innerHTML = rows.join('');
@@ -985,77 +1026,83 @@ function calcProtein() {
     if (th) th.textContent = `達${prot}g蛋白質需要`;
   }
 }
+
 function calcVeg() {
-  const weight = parseFloat(document.getElementById('veg-weight').value)||0;
-  const portions = weight/100;
-  const carb=+(portions*5).toFixed(1), prot=+(portions*1).toFixed(1), cal=+(portions*25).toFixed(0);
+  const weight = parseFloat(document.getElementById('veg-weight').value) || 0;
+  const portions = weight / 100;
+  const carb = +(portions * 5).toFixed(1);
+  const prot = +(portions * 1).toFixed(1);
+  const cal  = +(portions * 25).toFixed(0);
   const fname = document.getElementById('veg-food').selectedOptions[0].text.split('(')[0].trim();
   document.getElementById('veg-result').innerHTML = `
-    ${ri('醣類',carb,'g')}${ri('蛋白質',prot,'g')}${ri('熱量',cal,'kcal')}
+    ${ri('醣類', carb, 'g')}${ri('蛋白質', prot, 'g')}${ri('熱量', cal, 'kcal')}
     <div class="result-portions"><strong>${fname}</strong> ${weight}g<br>= <strong>${+portions.toFixed(2)} 份</strong>蔬菜<br><small>熟約 ${+portions.toFixed(1)} 碟（半碗）</small></div>
   `;
-  window._vegCurrent = {name:fname,amount:weight+'g',carb,prot,fat:0,cal,category:'veg'};
+  window._vegCurrent = {name:fname, amount:weight+'g', carb, prot, fat:0, cal, category:'veg'};
 }
+
 function calcFruit() {
-  const key = document.getElementById('fruit-food').value;
-  const weight = parseFloat(document.getElementById('fruit-weight').value)||100;
-  const per1 = parseInt(document.getElementById('fruit-food').selectedOptions[0].dataset.g)||115;
-  const portions = weight/per1;
-  const carb=+(portions*15).toFixed(1), cal=+(portions*60).toFixed(0);
+  const weight = parseFloat(document.getElementById('fruit-weight').value) || 100;
+  const per1 = parseInt(document.getElementById('fruit-food').selectedOptions[0].dataset.g) || 115;
+  const portions = weight / per1;
+  const carb = +(portions * 15).toFixed(1);
+  const cal  = +(portions * 60).toFixed(0);
   const fname = document.getElementById('fruit-food').selectedOptions[0].text.split('(')[0].trim();
   document.getElementById('fruit-result').innerHTML = `
-    ${ri('醣類',carb,'g')}${ri('熱量',cal,'kcal')}
+    ${ri('醣類', carb, 'g')}${ri('熱量', cal, 'kcal')}
     <div class="result-portions"><strong>${fname}</strong> ${weight}g<br>= <strong>${+portions.toFixed(2)} 份</strong>水果類<br><small>（1份=${per1}g）</small></div>
   `;
-  window._fruitCurrent = {name:fname,amount:weight+'g',carb,prot:0,fat:0,cal,category:'fruit'};
+  window._fruitCurrent = {name:fname, amount:weight+'g', carb, prot:0, fat:0, cal, category:'fruit'};
 }
+
 function updateDairyWeight() {
   const key = document.getElementById('dairy-food').value;
   document.getElementById('dairy-weight').value = dairyData[key].per1;
 }
+
 function calcDairy() {
   const key = document.getElementById('dairy-food').value;
-  const weight = parseFloat(document.getElementById('dairy-weight').value)||0;
+  const weight = parseFloat(document.getElementById('dairy-weight').value) || 0;
   const d = dairyData[key];
-  const portions = weight/d.per1;
-  const prot=+(portions*d.prot).toFixed(1), fat=+(portions*d.fat).toFixed(1);
-  const carb=+(portions*d.carb).toFixed(1), cal=+(portions*d.cal).toFixed(0);
+  const portions = weight / d.per1;
+  const prot = +(portions * d.prot).toFixed(1);
+  const fat  = +(portions * d.fat).toFixed(1);
+  const carb = +(portions * d.carb).toFixed(1);
+  const cal  = +(portions * d.cal).toFixed(0);
   document.getElementById('dairy-result').innerHTML = `
-    ${ri('蛋白質',prot,'g')}${ri('醣類',carb,'g')}${ri('脂肪',fat,'g')}${ri('熱量',cal,'kcal')}
+    ${ri('蛋白質', prot, 'g')}${ri('醣類', carb, 'g')}${ri('脂肪', fat, 'g')}${ri('熱量', cal, 'kcal')}
     <div class="result-portions"><strong>${d.name}</strong>（${d.level}）<br>${weight}${d.unit} = <strong>${+portions.toFixed(2)} 份</strong><br><small>（1份=${d.per1}${d.unit}）</small></div>
   `;
-  window._dairyCurrent = {name:d.name,amount:weight+d.unit,carb,prot,fat,cal,category:'dairy'};
+  window._dairyCurrent = {name:d.name, amount:weight+d.unit, carb, prot, fat, cal, category:'dairy'};
 }
+
 function updateFatWeight() {
   const key = document.getElementById('fat-food').value;
   document.getElementById('fat-weight').value = fatData[key].per1;
 }
+
 function calcFat() {
   const key = document.getElementById('fat-food').value;
-  const weight = parseFloat(document.getElementById('fat-weight').value)||0;
+  const weight = parseFloat(document.getElementById('fat-weight').value) || 0;
   const d = fatData[key];
-  const portions = weight/d.per1;
-  const fat=+(portions*d.fat).toFixed(1), cal=+(portions*d.cal).toFixed(0);
+  const portions = weight / d.per1;
+  const fat = +(portions * d.fat).toFixed(1);
+  const cal = +(portions * d.cal).toFixed(0);
   document.getElementById('fat-result').innerHTML = `
-    ${ri('脂肪',fat,'g')}${ri('熱量',cal,'kcal')}
+    ${ri('脂肪', fat, 'g')}${ri('熱量', cal, 'kcal')}
     <div class="result-portions"><strong>${d.name}</strong><br>${weight}${d.unit} = <strong>${+portions.toFixed(2)} 份</strong><br><small>（1份=${d.per1}${d.unit}）</small></div>
   `;
-  window._fatCurrent = {name:d.name,amount:weight+d.unit,carb:0,prot:0,fat,cal,category:'fat'};
-}
-function ri(label,value,unit) {
-  return `<div class="result-item"><div class="result-label">${label}</div><div class="result-value">${value}</div><div class="result-unit">${unit}</div></div>`;
+  window._fatCurrent = {name:d.name, amount:weight+d.unit, carb:0, prot:0, fat, cal, category:'fat'};
 }
 
-// ===== NEW: Protein Comparison Render (TABLE) =====
+// ===== PROTEIN COMPARISON TABLE =====
 function renderPComp(filter) {
   const tbody = document.getElementById('pcomp-tbody');
   const maxCal = 300;
-  // sort: 低脂→中脂→高脂, within same level sort by cal asc
   const levelOrder = { '低脂': 0, '中脂': 1, '高脂': 2 };
   const items = proteinComp100
     .filter(d => filter === 'all' || d.level === filter)
     .sort((a, b) => levelOrder[a.level] - levelOrder[b.level] || a.cal - b.cal);
-
   tbody.innerHTML = items.map(d => {
     const tagClass = d.level==='低脂'?'gi-tag-low':d.level==='中脂'?'gi-tag-mid':'gi-tag-high';
     const barColor = d.level==='低脂'?'#3aad6a':d.level==='中脂'?'#e8a020':'#d84040';
@@ -1066,11 +1113,7 @@ function renderPComp(filter) {
         <td><strong>${d.name}</strong><br><span style="font-size:0.75rem;color:#aaa">${d.sub}</span></td>
         <td><span class="gi-tag ${tagClass}">${d.level}</span></td>
         <td><span style="font-weight:700;font-size:1rem;color:${barColor}">${d.cal}</span></td>
-        <td class="gi-bar-cell">
-          <div class="gi-bar-track">
-            <div class="gi-bar-fill" style="width:${barW}%;background:${barColor}"></div>
-          </div>
-        </td>
+        <td class="gi-bar-cell"><div class="gi-bar-track"><div class="gi-bar-fill" style="width:${barW}%;background:${barColor}"></div></div></td>
         <td><span style="font-weight:700;color:${protColor}">${d.prot}g</span></td>
         <td>${d.fat}g</td>
         <td>${d.carb}g</td>
@@ -1085,16 +1128,17 @@ function filterPComp(filter, btn) {
   renderPComp(filter);
 }
 
-// ===== NEW: Fruit GI Render =====
+// ===== FRUIT GI TABLE =====
 function renderGI(filter) {
   const tbody = document.getElementById('gi-tbody');
-  const items = fruitGI.filter(d => filter === 'all' || d.level === filter);
-  const sorted = [...items].sort((a,b) => a.gi - b.gi);
-  tbody.innerHTML = sorted.map(d => {
+  const items = [...fruitGI]
+    .filter(d => filter === 'all' || d.level === filter)
+    .sort((a, b) => a.gi - b.gi);
+  tbody.innerHTML = items.map(d => {
     const tagClass = d.level==='low'?'gi-tag-low':d.level==='mid'?'gi-tag-mid':'gi-tag-high';
     const tagText  = d.level==='low'?'低 GI':d.level==='mid'?'中 GI':'高 GI';
     const barColor = d.level==='low'?'#3aad6a':d.level==='mid'?'#e8a020':'#d84040';
-    const barW = Math.min(100, (d.gi/100)*100);
+    const barW = Math.min(100, (d.gi / 100) * 100);
     return `
       <tr data-level="${d.level}">
         <td><strong>${d.name}</strong></td>
@@ -1116,7 +1160,7 @@ function filterGI(filter, btn) {
 
 // ===== MEAL =====
 function addToMeal(category) {
-  const map = {grain:'_grainCurrent',protein:'_proteinCurrent',veg:'_vegCurrent',fruit:'_fruitCurrent',dairy:'_dairyCurrent',fat:'_fatCurrent'};
+  const map = {grain:'_grainCurrent', protein:'_proteinCurrent', veg:'_vegCurrent', fruit:'_fruitCurrent', dairy:'_dairyCurrent', fat:'_fatCurrent'};
   const item = window[map[category]];
   if (!item) return;
   item.id = ++mealIdCounter;
@@ -1126,7 +1170,7 @@ function addToMeal(category) {
 }
 function renderMeal() {
   const container = document.getElementById('meal-items');
-  if (mealItems.length===0) {
+  if (mealItems.length === 0) {
     container.innerHTML = '<div style="color:#aaa;font-size:0.85rem;padding:12px;">還沒有食物，請到各類別點「加入今日餐盤」</div>';
   } else {
     container.innerHTML = mealItems.map(item => `
@@ -1143,45 +1187,47 @@ function renderMeal() {
       </div>
     `).join('');
   }
-  const totals = mealItems.reduce((acc,i)=>{ acc.carb+=i.carb;acc.prot+=i.prot;acc.fat+=i.fat;acc.cal+=i.cal;return acc;},{carb:0,prot:0,fat:0,cal:0});
+  const totals = mealItems.reduce((acc, i) => {
+    acc.carb += i.carb; acc.prot += i.prot; acc.fat += i.fat; acc.cal += i.cal;
+    return acc;
+  }, {carb:0, prot:0, fat:0, cal:0});
   document.getElementById('t-carb').textContent = totals.carb.toFixed(1);
   document.getElementById('t-prot').textContent = totals.prot.toFixed(1);
   document.getElementById('t-fat').textContent  = totals.fat.toFixed(1);
   document.getElementById('t-cal').textContent  = totals.cal.toFixed(0);
 }
-function removeMealItem(id) { mealItems = mealItems.filter(i=>i.id!==id); renderMeal(); }
-function clearMeal() { mealItems=[]; renderMeal(); }
+function removeMealItem(id) { mealItems = mealItems.filter(i => i.id !== id); renderMeal(); }
+function clearMeal() { mealItems = []; renderMeal(); }
 
 // ===== UI =====
 const TAB_ORDER = ['grain','protein','veg','fruit','dairy','fat','meal','proteincomp','fruitgi'];
 function switchTab(tab) {
-  document.querySelectorAll('.tab-section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+tab).classList.add('active');
+  document.querySelectorAll('.tab-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
   const idx = TAB_ORDER.indexOf(tab);
-  if (idx>=0) document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+  if (idx >= 0) document.querySelectorAll('.tab-btn')[idx].classList.add('active');
 }
 function toggleCompare(id) { document.getElementById(id).classList.toggle('show'); }
 
-// LIGHTBOX
-function openLightbox(src,alt) {
-  document.getElementById('lightbox-img').src=src;
-  document.getElementById('lightbox-img').alt=alt;
+function openLightbox(src, alt) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-img').alt = alt;
   document.getElementById('lightbox').classList.add('open');
-  document.body.style.overflow='hidden';
+  document.body.style.overflow = 'hidden';
 }
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow='';
+  document.body.style.overflow = '';
 }
-document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeLightbox(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
 // INIT
 calcGrain(); calcProtein(); calcVeg(); calcFruit(); calcDairy(); calcFat();
 renderPComp('all');
 renderGI('all');
-document.querySelectorAll('.img-row img').forEach(img=>{
-  img.addEventListener('click',()=>openLightbox(img.src,img.alt));
+document.querySelectorAll('.img-row img').forEach(img => {
+  img.addEventListener('click', () => openLightbox(img.src, img.alt));
 });
 </script>
 </body>
