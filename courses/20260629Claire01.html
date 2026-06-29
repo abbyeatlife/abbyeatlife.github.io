@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claire 的第一次課程 ── Abby 營養師</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* ── 品牌 Token ── */
+  :root {
+    --sage:       #8B9E7E;
+    --sage-pale:  #C8D5C0;
+    --sage-deep:  #5C7252;
+    --terra:      #C17F59;
+    --terra-pale: #E8C4A8;
+    --cream:      #FDFBF7;
+    --bark:       #3D3229;
+    --bark-light: #6B5B4E;
+    --divider:    #E2DDD6;
+    --warn-bg:    #FEF6EE;
+    --warn-border:#E8B88A;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--bark);
+    font-family: 'Noto Sans TC', 'PingFang TC', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 28px 80px;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    background: var(--bark);
+    border-radius: 16px;
+    padding: 48px 40px 40px;
+    margin-bottom: 48px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(193,127,89,0.15);
+    top: -80px; right: -60px;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(139,158,126,0.12);
+    bottom: -20px; left: 80px;
+  }
+  .cover-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-bottom: 12px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .cover h1 em {
+    font-style: normal;
+    color: var(--terra-pale);
+  }
+  .cover-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    opacity: 0.7;
+  }
+  .cover-meta span::before { content: '· '; }
+
+  /* ── Tab Bar ── */
+  .tab-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 36px;
+    border-bottom: 2px solid var(--divider);
+    padding-bottom: 0;
+  }
+  .tab-btn {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bark-light);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn.active {
+    color: var(--sage-deep);
+    border-bottom-color: var(--sage-deep);
+  }
+  .tab-btn:hover:not(.active) { color: var(--bark); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── Section ── */
+  .section { margin-bottom: 48px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--divider);
+  }
+  .section-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--sage);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.35rem;
+    color: var(--bark);
+  }
+  .section-header .sub {
+    font-size: 12px;
+    color: var(--bark-light);
+    margin-left: auto;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Cards ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--divider);
+  }
+  .card-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .card h3 { font-size: 14px; font-weight: 700; color: var(--bark); margin-bottom: 6px; }
+  .card p { font-size: 13px; color: var(--bark-light); line-height: 1.6; }
+  .card.highlight { border-color: var(--sage); background: #F4F7F2; }
+  .card.highlight h3 { color: var(--sage-deep); }
+  .card.terra { border-color: var(--terra-pale); background: var(--warn-bg); }
+  .card.terra h3 { color: var(--terra); }
+
+  /* ── 飲食觀察 table ── */
+  .diet-obs {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    margin-bottom: 20px;
+  }
+  .diet-obs th {
+    background: var(--sage);
+    color: white;
+    text-align: left;
+    padding: 10px 14px;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .diet-obs th:first-child { border-radius: 8px 0 0 0; }
+  .diet-obs th:last-child  { border-radius: 0 8px 0 0; }
+  .diet-obs td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--divider);
+    vertical-align: top;
+  }
+  .diet-obs tr:last-child td { border-bottom: none; }
+  .diet-obs tr:nth-child(even) td { background: #F9F7F4; }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .tag-red   { background: #FDECEA; color: #B94040; }
+  .tag-amber { background: #FEF4E5; color: #A06020; }
+  .tag-green { background: #EBF3E8; color: #4A7C40; }
+
+  /* ── 知識框 ── */
+  .know-box {
+    background: white;
+    border-left: 4px solid var(--sage);
+    border-radius: 0 12px 12px 0;
+    padding: 18px 20px;
+    margin: 16px 0;
+    font-size: 13.5px;
+  }
+  .know-box .kbTitle {
+    font-weight: 700;
+    color: var(--sage-deep);
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+  .know-box ul { padding-left: 18px; color: var(--bark-light); }
+  .know-box ul li { margin-bottom: 4px; }
+  .know-box p { color: var(--bark-light); margin-bottom: 8px; }
+
+  /* ── 警示框 ── */
+  .warn-box {
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 13.5px;
+  }
+  .warn-box .wTitle {
+    font-weight: 700;
+    color: var(--terra);
+    margin-bottom: 6px;
+  }
+
+  /* ── 連鎖圖 ── */
+  .chain {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+  .chain-item {
+    background: white;
+    border: 1.5px solid var(--divider);
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: center;
+    min-width: 88px;
+  }
+  .chain-item .ci-top { font-size: 11px; color: var(--bark-light); }
+  .chain-item .ci-main { font-weight: 700; font-size: 13.5px; color: var(--bark); }
+  .chain-item.red { border-color: #F0C8C0; background: #FEF5F3; }
+  .chain-item.red .ci-main { color: #B94040; }
+  .chain-arrow { color: var(--terra); font-size: 1.1rem; font-weight: 700; }
+
+  /* ── 替換食物 ── */
+  .swap-grid {
+    display: grid;
+    grid-template-columns: 1fr 40px 1fr;
+    gap: 10px;
+    margin: 16px 0;
+    font-size: 13.5px;
+  }
+  .swap-from, .swap-to {
+    background: white;
+    border-radius: 10px;
+    padding: 14px 16px;
+    border: 1px solid var(--divider);
+  }
+  .swap-from { border-color: #F0C8C0; background: #FEF5F3; }
+  .swap-to   { border-color: var(--sage-pale); background: #F4F7F2; }
+  .swap-label { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .swap-from .swap-label { color: #B94040; }
+  .swap-to   .swap-label { color: var(--sage-deep); }
+  .swap-arrow-col {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; color: var(--terra); font-weight: 700;
+  }
+  .swap-from ul, .swap-to ul {
+    padding-left: 16px;
+    color: var(--bark);
+    line-height: 1.8;
+  }
+
+  /* ── 行動計劃 ── */
+  .action-list {
+    counter-reset: action;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .action-list li {
+    counter-increment: action;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: white;
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 1px solid var(--divider);
+  }
+  .action-list li::before {
+    content: counter(action);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--terra);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .action-list li strong { display: block; font-size: 14px; margin-bottom: 4px; color: var(--bark); }
+  .action-list li span { font-size: 13px; color: var(--bark-light); line-height: 1.65; }
+
+  /* ── 情境卡 ── */
+  .scenario-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .scenario {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 1px solid var(--divider);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    align-items: start;
+  }
+  .scenario-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--bark);
+    color: var(--terra-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .scenario h4 { font-size: 14px; font-weight: 700; color: var(--bark); margin-bottom: 4px; }
+  .scenario p { font-size: 13px; color: var(--bark-light); line-height: 1.65; }
+  .scenario .strategy {
+    margin-top: 8px;
+    background: #F4F7F2;
+    border-left: 3px solid var(--sage);
+    border-radius: 0 6px 6px 0;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: var(--sage-deep);
+  }
+  .scenario .strategy strong { font-weight: 700; display: block; margin-bottom: 2px; }
+
+  /* ── 邊界提醒 ── */
+  .boundary {
+    background: var(--bark);
+    color: white;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 24px;
+    font-size: 13.5px;
+  }
+  .boundary h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--terra-pale); }
+  .boundary ul { padding-left: 18px; line-height: 1.8; opacity: 0.88; }
+
+  /* ── 蛋白質計算器 ── */
+  .protein-viz {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--divider);
+    padding: 20px;
+    margin: 16px 0;
+  }
+  .protein-bar-wrap { margin: 14px 0 8px; }
+  .protein-label-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--bark-light);
+    margin-bottom: 6px;
+  }
+  .protein-bar-bg {
+    height: 18px;
+    background: #EBF3E8;
+    border-radius: 9px;
+    overflow: hidden;
+    position: relative;
+  }
+  .protein-bar-fill {
+    height: 100%;
+    background: var(--sage);
+    border-radius: 9px;
+    transition: width 0.6s ease;
+  }
+  .protein-bar-fill.low { background: #D4846A; }
+  .protein-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .protein-row-label {
+    font-size: 12.5px;
+    color: var(--bark-light);
+    width: 100px;
+    flex-shrink: 0;
+  }
+  .protein-row-bar { flex: 1; }
+  .protein-row-val {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--bark);
+    width: 60px;
+    text-align: right;
+  }
+
+  /* ── Teacher Notes ── */
+  .tn-block {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--divider);
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .tn-header {
+    background: var(--bark);
+    color: white;
+    padding: 14px 22px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .tn-header span { opacity: 0.6; font-size: 12px; font-weight: 400; margin-left: 10px; }
+  .tn-body {
+    padding: 20px 22px;
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: var(--bark);
+  }
+  .tn-body h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--sage-deep);
+    margin: 16px 0 6px;
+    padding-left: 10px;
+    border-left: 3px solid var(--sage);
+  }
+  .tn-body h4:first-child { margin-top: 0; }
+  .tn-body p { margin-bottom: 10px; color: var(--bark-light); }
+  .tn-body ul { padding-left: 18px; color: var(--bark-light); margin-bottom: 10px; }
+  .tn-body ul li { margin-bottom: 5px; }
+  .tn-body strong { color: var(--bark); }
+  .tn-caution {
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--bark-light);
+    margin-top: 14px;
+  }
+  .tn-caution strong { color: var(--terra); }
+  .path-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  .path-node {
+    background: #F0F4EE;
+    border: 1px solid var(--sage-pale);
+    border-radius: 8px;
+    padding: 6px 12px;
+    color: var(--bark);
+    font-weight: 600;
+    font-size: 12.5px;
+    text-align: center;
+  }
+  .path-arr { color: var(--terra); font-weight: 700; font-size: 1rem; }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 12px;
+    color: var(--bark-light);
+    border-top: 1px solid var(--divider);
+    padding-top: 24px;
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; }
+    .cover h1 { font-size: 1.7rem; }
+    .swap-grid { grid-template-columns: 1fr; }
+    .swap-arrow-col { display: none; }
+    .card-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="cover">
+  <div class="cover-label">Abby 營養師 ✦ 個人課程</div>
+  <h1>Claire 的<br><em>第一次課程</em></h1>
+  <div class="cover-meta">
+    <span>2026 / 6 / 29</span>
+    <span>167 cm ／ 58 kg</span>
+    <span>39 歲</span>
+    <span>Session 01</span>
+  </div>
+</div>
+
+<!-- Tab Bar -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('course', event)">📋 課程內容</button>
+  <button class="tab-btn" onclick="switchTab('notes', event)">🔬 老師備忘資料</button>
+</div>
+
+<!-- ══════════════════════ COURSE TAB ══════════════════════ -->
+<div id="tab-course" class="tab-panel active">
+
+<!-- 0. 今天的目標 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">✦</div>
+    <h2>今天我們想做到什麼</h2>
+  </div>
+  <div class="card-grid">
+    <div class="card highlight">
+      <div class="card-icon">🔍</div>
+      <h3>讀懂妳的飲食記錄</h3>
+      <p>不是打分數，而是找出規律——哪些時候吃得比較亂、為什麼，身體在說什麼。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">🎯</div>
+      <h3>釐清目標的真正意思</h3>
+      <p>「腰圍縮小」和「有控制感」——這兩件事的方向一致，但策略不太一樣，今天來釐清。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">🌿</div>
+      <h3>帶走具體、可執行的方向</h3>
+      <p>不是全部改掉，是找到妳現有模式裡最容易動的地方，先動那一個。</p>
+    </div>
+  </div>
+  <div class="warn-box">
+    <div class="wTitle">先說清楚今天的範圍</div>
+    飲食結構、熱量穩定性、蛋白質補足、零食的應對策略、體組成的改善方向——這些都在今天的範圍內。<br>
+    <strong>目標不是變成一個「飲食完美」的人，而是讓每天的飲食選擇更有方向感、更少內耗。</strong>
+  </div>
+</div>
+
+<!-- 1. 飲食記錄分析 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>飲食記錄在說什麼</h2>
+    <span class="sub">6/5 ─ 6/23，16 天有效紀錄</span>
+  </div>
+
+  <table class="diet-obs">
+    <thead>
+      <tr>
+        <th>觀察到的模式</th>
+        <th>程度</th>
+        <th>對體組成目標的影響</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>熱量波動極大，沒有穩定節奏</strong><br>同一週內可以從 850 跳到 2,200 kcal，高低差距超過 1,300 kcal</td>
+        <td><span class="tag tag-red">優先處理</span></td>
+        <td>身體無法預期能量供給，傾向囤積；飢餓感變得更難管理，容易觸發補償性進食</td>
+      </tr>
+      <tr>
+        <td><strong>蛋白質攝取不足且不穩定</strong><br>有在吃蛋、魚、雞肉、高蛋白飲，但份量小、分布不均，估計多數天不到 50–60g</td>
+        <td><span class="tag tag-red">優先處理</span></td>
+        <td>飽足感低 → 更容易想吃零食；肌肉維持困難 → 體組成改善會慢</td>
+      </tr>
+      <tr>
+        <td><strong>零食是最大的熱量破口</strong><br>餅乾、爆米花、韓國麵包出現頻率高，單次量常達 200–1,000 kcal</td>
+        <td><span class="tag tag-red">優先處理</span></td>
+        <td>6/11 餅乾一天就吃了約 1,000 kcal；這是整體熱量最不可控的部分</td>
+      </tr>
+      <tr>
+        <td><strong>週末飲食幾乎空白</strong><br>6/19–21 連續 3 天無紀錄；週末節奏明顯不同</td>
+        <td><span class="tag tag-amber">需要了解</span></td>
+        <td>週末可能是最不規律的時段，也是最容易「脫軌」卻不被記錄的時間</td>
+      </tr>
+      <tr>
+        <td><strong>有在吃蔬菜，晚餐結構不錯</strong><br>高麗菜、花椰菜、杏鮑菇出現頻率高，晚餐常有魚或雞肉</td>
+        <td><span class="tag tag-green">做得不錯</span></td>
+        <td>晚餐的原型食物基礎是好的；問題主要在白天的結構和零食</td>
+      </tr>
+      <tr>
+        <td><strong>地瓜作為主食選擇不錯</strong><br>出現頻率高，算是比白飯更好的碳水選擇</td>
+        <td><span class="tag tag-green">值得保留</span></td>
+        <td>GI 值相對低、有膳食纖維，可以繼續作為主要澱粉來源</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 熱量波動視覺化 -->
+  <div class="know-box">
+    <div class="kbTitle">📊 16 天熱量分布概況</div>
+    <p style="margin-bottom: 14px;">每天的估算熱量落在哪裡——可以看到波動有多大：</p>
+
+    <div class="protein-row">
+      <div class="protein-row-label">6/5　約 1,775</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill" style="width:71%"></div></div>
+      </div>
+      <div class="protein-row-val">1,775</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">6/6　約 1,775</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill" style="width:71%"></div></div>
+      </div>
+      <div class="protein-row-val">1,775</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">6/7　約 950</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill low" style="width:38%"></div></div>
+      </div>
+      <div class="protein-row-val" style="color:#B94040">950</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">6/8　約 1,350</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill" style="width:54%"></div></div>
+      </div>
+      <div class="protein-row-val">1,350</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">6/10　約 1,025</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill low" style="width:41%"></div></div>
+      </div>
+      <div class="protein-row-val" style="color:#B94040">1,025</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">6/11　約 2,050 ⚠️</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill low" style="width:100%; background: #B94040"></div></div>
+      </div>
+      <div class="protein-row-val" style="color:#B94040">2,050+</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">6/13　約 2,025 ⚠️</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill low" style="width:100%; background: #B94040"></div></div>
+      </div>
+      <div class="protein-row-val" style="color:#B94040">2,025+</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">6/16　約 1,100</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill low" style="width:44%"></div></div>
+      </div>
+      <div class="protein-row-val" style="color:#B94040">1,100</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">6/17　約 750 ⬇️</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill low" style="width:30%"></div></div>
+      </div>
+      <div class="protein-row-val" style="color:#B94040">750</div>
+    </div>
+    <p style="font-size: 12px; color: var(--bark-light); margin-top: 10px;">🟩 合理範圍（1,400–1,700 kcal）　🟥 過高或過低　（100% = 2,500 kcal 基準）</p>
+  </div>
+
+  <!-- 知識框：為什麼忽高忽低更難瘦 -->
+  <div class="know-box">
+    <div class="kbTitle">🔬 為什麼熱量忽高忽低，體組成反而更難改善？</div>
+    <ul>
+      <li>吃很少的幾天 → 飢餓素（Ghrelin）升高 → 飢餓感在下午或晚上爆發，進食量跟著暴增</li>
+      <li>白天熱量不足，累積到下午 / 晚上才「補回來」，而且更容易選高糖高脂的食物（大腦在催促快速補充能量）</li>
+      <li>心理上的「今天沒吃什麼，晚上可以多一點」補償心態也會放大進食量</li>
+      <li><strong>結果不是少吃那幾天有效，而是接下來幾天反彈吃更多，整體熱量沒有真正減少</strong></li>
+      <li>她的記錄最大問題不是「整體吃太多」，而是波動製造了這個惡性循環</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 2. 蛋白質現況 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>蛋白質的現況</h2>
+    <span class="sub">有在吃，但量不夠</span>
+  </div>
+
+  <p style="margin-bottom: 16px; color: var(--bark-light); font-size: 14px;">
+    Claire 的飲食記錄裡<strong>有出現</strong>蛋白質食物（高蛋白飲、雞肉、魚、蛋）——這是好事。<br>
+    但從份量來看，多數天的蛋白質攝取估計在 <strong>45–65g 之間</strong>，距離目標有落差。
+  </p>
+
+  <div class="protein-viz">
+    <p style="font-size: 14px; font-weight: 700; margin-bottom: 4px;">她目前可能的蛋白質攝取 vs. 建議量</p>
+    <p style="font-size: 13px; color: var(--bark-light); margin-bottom: 16px;">以體重 58 kg 計算，維持肌肉量的基本需求約 90–110g/天</p>
+
+    <div class="protein-row">
+      <div class="protein-row-label">目前估計</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg">
+          <div class="protein-bar-fill low" style="width:50%"></div>
+        </div>
+      </div>
+      <div class="protein-row-val" style="color:#D4846A">約 50–65g</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">建議目標</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg">
+          <div class="protein-bar-fill" style="width:85%"></div>
+        </div>
+      </div>
+      <div class="protein-row-val">90–100g</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">理想體組成目標</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg">
+          <div class="protein-bar-fill" style="width:100%"></div>
+        </div>
+      </div>
+      <div class="protein-row-val">100–110g</div>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">⚠️ 「有吃到」和「吃夠了」是兩件不同的事</div>
+    高蛋白飲 1 份（約 25–30g）＋ 鯛魚 1 片（約 15–20g）＋ 雞肉少量（約 10–15g）<br>
+    → 這一天的蛋白質加起來大約 50–65g，只有目標的一半。<br><br>
+    <strong>沒有「量」的概念時，很容易覺得自己有吃蛋白質，但身體其實沒有收到足夠的訊號。</strong>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">💡 蛋白質為什麼對她的目標這麼重要？</div>
+    <ul>
+      <li><strong>飽足感：</strong>蛋白質是三大營養素裡最有飽足感的，足夠的蛋白質 → 更不容易在下午或晚上想吃零食</li>
+      <li><strong>肌肉維持：</strong>她想改善體組成，前提是維持住現有的肌肉量，這需要足夠的蛋白質作為原料</li>
+      <li><strong>血糖穩定：</strong>蛋白質可以減緩碳水進入血液的速度，讓血糖波動較小，進食後不會那麼快又餓</li>
+    </ul>
+  </div>
+
+  <!-- 每日蛋白質怎麼達標 -->
+  <p style="font-weight: 700; font-size: 14px; margin: 20px 0 12px; color: var(--bark);">▸ 用她習慣的食物，每天怎麼湊到 90–100g？</p>
+
+  <div class="swap-grid">
+    <div class="swap-from">
+      <div class="swap-label">目前常見組合</div>
+      <ul>
+        <li>高蛋白飲 1 份 ▸ 約 25g</li>
+        <li>鯛魚 1 片（小）▸ 約 15g</li>
+        <li>蛋 1 顆 ▸ 約 6g</li>
+        <li>雞肉少量 ▸ 約 10g</li>
+        <li style="font-weight:700; color:#B94040;">合計 ▸ 約 56g ❌</li>
+      </ul>
+    </div>
+    <div class="swap-arrow-col">→</div>
+    <div class="swap-to">
+      <div class="swap-label">調整後可以達到的組合</div>
+      <ul>
+        <li>高蛋白飲 1 份 ▸ 約 25g</li>
+        <li>鯛魚 1 片（大）▸ 約 25g</li>
+        <li>蛋 2 顆 ▸ 約 12g</li>
+        <li>雞腿肉 1 份（手掌大）▸ 約 30g</li>
+        <li style="font-weight:700; color:var(--sage-deep);">合計 ▸ 約 92g ✓</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 3. 零食的模式 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>零食的真實情況</h2>
+    <span class="sub">不是嘴饞，是有觸發點的</span>
+  </div>
+
+  <p style="margin-bottom: 16px; color: var(--bark-light); font-size: 14px;">
+    從飲食記錄可以看到，破口幾乎都來自同一類食物，而且往往出現在特定情境下。
+    先把這個模式說清楚，才能找到真正有用的應對方式。
+  </p>
+
+  <!-- 零食出現頻率 -->
+  <div class="protein-viz">
+    <p style="font-size: 14px; font-weight: 700; margin-bottom: 12px;">16 天裡出現的主要「熱量破口」</p>
+    <div class="protein-row">
+      <div class="protein-row-label">餅乾類</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill low" style="width:90%"></div></div>
+      </div>
+      <div class="protein-row-val" style="color:#B94040">9 次出現</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">麵包類</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill low" style="width:55%"></div></div>
+      </div>
+      <div class="protein-row-val" style="color:#B94040">5 次出現</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">速食 / 炸物</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill low" style="width:33%"></div></div>
+      </div>
+      <div class="protein-row-val" style="color:#B94040">3 次出現</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">冷凍甜品</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill" style="width:30%; background: var(--terra)"></div></div>
+      </div>
+      <div class="protein-row-val" style="color:var(--terra)">3 次出現</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">堅果（提前安排）</div>
+      <div class="protein-row-bar">
+        <div class="protein-bar-bg"><div class="protein-bar-fill" style="width:35%"></div></div>
+      </div>
+      <div class="protein-row-val" style="color:var(--sage-deep)">4 次出現 ✓</div>
+    </div>
+  </div>
+
+  <!-- 情緒進食鏈 -->
+  <p style="font-size:13px; color:var(--bark-light); margin: 20px 0 8px; font-weight:600;">▸ 最常出現的惡性循環</p>
+  <div class="chain">
+    <div class="chain-item red">
+      <div class="ci-top">白天</div>
+      <div class="ci-main">吃得少</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item">
+      <div class="ci-top">血糖</div>
+      <div class="ci-main">忽高忽低</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item">
+      <div class="ci-top">下午 / 晚上</div>
+      <div class="ci-main">飢餓感大</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item red">
+      <div class="ci-top">快速找</div>
+      <div class="ci-main">餅乾、麵包</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item">
+      <div class="ci-top">吃完後</div>
+      <div class="ci-main">血糖再飆</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item red">
+      <div class="ci-top">1 小時後</div>
+      <div class="ci-main">又想吃</div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. 衝動進食的情境與策略 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>衝動進食的情境分析</h2>
+    <span class="sub">找到觸發點，才能真正改善</span>
+  </div>
+
+  <p style="margin-bottom: 16px; color: var(--bark-light); font-size: 14px;">
+    從 16 天的記錄，可以整理出幾個特別容易失控的情境。<br>
+    不是要「忍住不吃」，而是<strong>在情境出現之前就先準備好替代方案</strong>。
+  </p>
+
+  <div class="scenario-list">
+
+    <div class="scenario">
+      <div class="scenario-num">A</div>
+      <div>
+        <h4>情境一：白天吃太少，下午 / 晚上飢餓感爆發</h4>
+        <p>6/7、6/10、6/17 這幾天早午餐偏少（850–1,050 kcal），到了下午或晚上就出現大量零食或異常高熱量的選擇。</p>
+        <div class="strategy">
+          <strong>🎯 策略：下午固定加餐，不要等到很餓</strong>
+          下午 3–4 點主動安排一份含蛋白質的點心（水煮蛋 1–2 顆、無糖豆漿 1 杯、無糖優格 1 小盒）。
+          飢餓感是身體在催促，先給它一個有結構的答案，而不是讓它自己去找餅乾。
+        </div>
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-num">B</div>
+      <div>
+        <h4>情境二：壓力或情緒低點，餅乾是第一個出現的選擇</h4>
+        <p>6/11 一天餅乾就吃了約 1,000 kcal——這個量不像是隨手拿了幾片，更像是情緒驅動的連續進食。餅乾的特性（高糖、好吃、方便、易取得）讓它在情緒低落時特別危險。</p>
+        <div class="strategy">
+          <strong>🎯 策略：環境管理優先，不靠意志力</strong>
+          把餅乾放到不方便取得的地方（需要起身去找）；在容易伸手的地方改放堅果分裝包或水果。
+          不是禁止，而是讓「吃到餅乾」需要多一點步驟。
+        </div>
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-num">C</div>
+      <div>
+        <h4>情境三：外食聚餐，高熱量選擇難以避免</h4>
+        <p>6/5 速食、6/9 居酒屋、6/13 烤肉這三天都是聚餐，熱量都在 1,700–2,200 kcal 以上。這是生活的一部分，不需要全部迴避。</p>
+        <div class="strategy">
+          <strong>🎯 策略：聚餐前後的策略調整，而不是禁止聚餐</strong>
+          聚餐當天的前後一餐吃得輕一點（但有足夠蛋白質）；聚餐當天不需要有罪惡感，
+          問題是聚餐之外的「非聚餐零食」才是真正的變數。
+        </div>
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-num">D</div>
+      <div>
+        <h4>情境四：週末節奏改變，飲食記錄消失</h4>
+        <p>6/19–21 連續三天無紀錄，加上 6/13–14 是記錄裡最混亂的時段，都在週末。週末的結構感比較低，更容易「順著當下感覺吃」。</p>
+        <div class="strategy">
+          <strong>🎯 策略：週末保留一個「錨點」</strong>
+          不需要週末飲食跟平日一樣精確，但保留一頓固定的正餐結構（有蛋白質＋蔬菜）。
+          記錄可以簡化，哪怕只是一行字，目的是讓週末有一點點連結感，
+          不要等週一才從零開始。
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 核心認知 -->
+  <div class="know-box">
+    <div class="kbTitle">🧠 一個重要的認知轉換</div>
+    <p>妳說的目標是「有控制感的飲食狀態」——這件事的核心其實不是「管住嘴」，而是：</p>
+    <ul>
+      <li><strong>讓身體的飢餓訊號變得可預測</strong>（蛋白質和穩定熱量幫助這件事）</li>
+      <li><strong>讓高熱量食物不再是情緒出口的唯一選擇</strong>（環境設計和替代方案）</li>
+      <li><strong>讓週末不再是一個「重置」</strong>（一個錨點就夠了）</li>
+    </ul>
+    <p style="margin-top: 8px;">控制感不是來自意志力，而是來自<strong>結構的穩定性</strong>。</p>
+  </div>
+</div>
+
+<!-- 5. 體組成目標的真實意思 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>妳的目標長什麼樣子</h2>
+    <span class="sub">腰圍改善 ＋ 體組成優化</span>
+  </div>
+
+  <p style="margin-bottom: 16px; color: var(--bark-light); font-size: 14px;">
+    目前身高 167 cm、體重 58 kg，BMI 約 20.8，在正常偏低範圍。<br>
+    妳想要的不是「體重變輕」，而是「腰圍縮小、身體的組成比例改善」——<strong>這兩件事的方向稍微不同。</strong>
+  </p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">⚖️</div>
+      <h3>體重下降 ≠ 體組成改善</h3>
+      <p>如果蛋白質不夠，體重下降時流失的是肌肉。肌肉少了 → 基礎代謝變低 → 之後更容易再胖回來。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">💪</div>
+      <h3>維持肌肉、減少體脂才是方向</h3>
+      <p>腰圍縮小的前提是體脂肪減少，而不只是體重數字下降。蛋白質充足 + 熱量穩定是達到這件事的核心。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📏</div>
+      <h3>腰圍觀察比體重更重要</h3>
+      <p>妳的目標是腰圍，所以建議定期量腰圍（早上空腹），不一定每天量，作為進度指標，不要只盯體重。</p>
+    </div>
+  </div>
+
+  <!-- 關鍵說明：為什麼體重沒變但體態在惡化 -->
+  <div class="warn-box" style="margin: 24px 0;">
+    <div class="wTitle">🔍 為什麼妳「沒有變胖」，但腰圍卻越來越不對勁？</div>
+    <p style="margin-bottom: 10px;">從妳的飲食記錄來看，整體熱量時高時低，平均下來大致維持現狀——所以體重沒有明顯增加。但<strong>體重沒變，不代表身體組成沒有在改變。</strong></p>
+    <p style="margin-bottom: 10px;">妳的飲食模式正在悄悄做一件事：</p>
+    <ul style="padding-left: 18px; line-height: 1.9; color: var(--bark-light);">
+      <li><strong>蛋白質長期不足</strong> → 身體在蛋白質不夠時，會優先分解肌肉來維持日常功能 → 肌肉量緩慢流失</li>
+      <li><strong>沒有足夠的阻力訓練</strong> → 肌肉沒有「被需要」的訊號 → 流失速度更快，也更難重建</li>
+      <li><strong>零食熱量比例高</strong> → 這些熱量幾乎沒有蛋白質，不會變成肌肉，只會走脂肪儲存的路徑</li>
+    </ul>
+    <p style="margin-top: 12px;">結果就是：<strong>體重沒動，但脂肪比例慢慢上升、肌肉比例慢慢下降</strong>。體重計看不出來，但腰圍和身體的緊實感會告訴妳。</p>
+    <p style="margin-top: 10px; font-weight: 700; color: var(--bark);">所以妳要改變的，不是「吃更少」，而是「吃什麼」——讓每一口熱量更多比例變成肌肉的材料，而不是脂肪的材料。</p>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">📐 適合 Claire 的熱量目標區間</div>
+    <ul>
+      <li><strong>估計每日維持熱量（TDEE）：</strong>約 1,700–1,900 kcal（老師職業，每週教課活動量中等）</li>
+      <li><strong>建議每日目標：</strong>1,500–1,700 kcal，創造溫和的熱量赤字</li>
+      <li><strong>不建議長期低於 1,400 kcal：</strong>吃太少會讓飢餓感更難控制，反而更容易在下午和晚上大量補回來</li>
+      <li><strong>蛋白質目標：</strong>90–100g / 天（分配在三餐，每餐約 25–35g）</li>
+      <li>目前記錄顯示波動在 750–2,050+ kcal，<strong>把目標放在「縮小波動幅度」比「吃更少」更重要</strong></li>
+    </ul>
+  </div>
+</div>
+
+<!-- 6. 第一步行動 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>第一步：先做這三件事</h2>
+    <span class="sub">不要全部改，先動這幾個點</span>
+  </div>
+
+  <ul class="action-list">
+    <li>
+      <strong>每一餐都有一份蛋白質（最重要）</strong>
+      <span>妳已經有記錄的習慣，可以開始注意每天有沒有吃夠蛋白質。每餐確認有出現一份：蛋、魚、雞肉、豆腐、豆漿、高蛋白飲，其中至少一種。份量標準：比現在再多一點——雞肉從半拳頭到一拳頭，魚從一小片到一整片。</span>
+    </li>
+    <li>
+      <strong>下午 3–4 點主動加餐，不等到很餓</strong>
+      <span>選擇：水煮蛋 1–2 顆、無糖豆漿 1 杯、無糖優格 1 小盒、堅果 1 小包（已分裝好的量）。目的是讓血糖穩定到晚餐，減少晚上吃大量零食的衝動。</span>
+    </li>
+    <li>
+      <strong>把餅乾從「隨手可得」變成「需要去找」</strong>
+      <span>不是叫妳不吃餅乾，而是改變環境設計：餅乾放進不順手的地方；桌上、包包裡改放堅果分裝包或水果。當吃餅乾需要多走幾步，很多時候衝動就過去了。</span>
+    </li>
+  </ul>
+
+  <!-- 食物替換 -->
+  <p style="font-weight: 700; font-size: 14px; margin: 28px 0 12px; color: var(--bark);">▸ 最容易改動的食物替換</p>
+  <div class="swap-grid">
+    <div class="swap-from">
+      <div class="swap-label">目前常出現的高熱量零食</div>
+      <ul>
+        <li>餅乾 1 大包（隨手拿）</li>
+        <li>韓國麵包 3 個（300 kcal）</li>
+        <li>爆米花（500 kcal 以上）</li>
+        <li>巧克力餅乾</li>
+        <li>速食雞塊＋薯條</li>
+      </ul>
+    </div>
+    <div class="swap-arrow-col">→</div>
+    <div class="swap-to">
+      <div class="swap-label">可以替換的選項</div>
+      <ul>
+        <li>堅果分裝包 1 包（預先稱好 15–20g）</li>
+        <li>茶葉蛋 1–2 顆＋無糖豆漿</li>
+        <li>毛豆 1 小碗（有飽足感、有蛋白質）</li>
+        <li>70% 以上黑巧克力 2–3 片</li>
+        <li>雞腿肉串＋蔬菜（已有在吃，替換炸物）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 本月目標 -->
+  <div class="boundary">
+    <h3>這個月的具體觀察目標</h3>
+    <ul>
+      <li>每天至少有一餐記錄下來（簡單一行也算）</li>
+      <li>定期量腰圍並記錄下來，不一定要每天量</li>
+      <li>注意「在什麼情境下想吃零食」——不需要忍住，但先試著記下來</li>
+      <li>週末保留一頓有結構的正餐（有蛋白質＋蔬菜），其他不強求</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- end tab-course -->
+
+<!-- ══════════════════════ TEACHER NOTES TAB ══════════════════════ -->
+<div id="tab-notes" class="tab-panel">
+
+  <!-- 學生個性備忘 -->
+  <div class="tn-block">
+    <div class="tn-header">Claire 的個性備忘 <span>課程溝通策略參考</span></div>
+    <div class="tn-body">
+      <h4>行為特徵觀察</h4>
+      <ul>
+        <li>一月初通話後已讀不回長達半年，昨天突然聯繫且立刻想約隔天——<strong>衝動行事傾向明顯</strong>，動力來自情緒或當下觸發點，而非長期計畫</li>
+        <li>飲食記錄「有在做」但選擇性——<strong>狀態好的天記得比較詳細，失控的天（6/14）幾乎沒有份量記錄</strong>，週末連續 3 天空白</li>
+        <li>有健康意識（買堅果、買地瓜、有高蛋白飲），但缺乏量的概念——<strong>知道「要吃對」但不知道「要吃多少」</strong></li>
+      </ul>
+      <h4>溝通策略</h4>
+      <ul>
+        <li>她的動力是情緒觸發型，所以<strong>第一堂課要讓她有具體感受到「有人在幫我看」</strong>，飲食分析那段要讓她覺得被理解，不是被評判</li>
+        <li>不要一次給太多行動清單——<strong>最多 2–3 件事，否則她可能做不到就放棄</strong></li>
+        <li>她說自己「有記錄的習慣」，但記錄品質其實不穩定；可以請她這個月試著在記錄裡加「當時的感受」一欄，讓記錄成為她自我觀察的工具，而不是回報功課的感覺</li>
+        <li>衝動進食的討論要給她<strong>環境管理策略</strong>（把餅乾放到不順手的地方）而不是「要有意志力」——後者對她這種類型的人沒有用，還容易讓她覺得自己做不到</li>
+      </ul>
+      <div class="tn-caution">
+        <strong>潛在風險：</strong>她可能很快就停止回報（和一月初的模式一樣）。這堂課後，可以主動安排一個固定的跟進節點（例如兩週後），而不是等她自己聯絡。
+      </div>
+    </div>
+  </div>
+
+  <!-- 熱量目標估算依據 -->
+  <div class="tn-block">
+    <div class="tn-header">熱量目標的估算依據 <span>自用計算參考</span></div>
+    <div class="tn-body">
+      <h4>基本資料</h4>
+      <ul>
+        <li>身高：167 cm　體重：58 kg　年齡：39 歲</li>
+        <li>職業：老師（推測以坐姿為主，但有教課活動量）</li>
+        <li>沒有提到規律運動習慣（記錄裡未見運動紀錄）</li>
+      </ul>
+      <h4>Mifflin-St Jeor 公式估算 BMR</h4>
+      <ul>
+        <li>BMR = 10 × 58 + 6.25 × 167 − 5 × 39 − 161</li>
+        <li>= 580 + 1,043.75 − 195 − 161 = <strong>約 1,268 kcal</strong></li>
+      </ul>
+      <h4>TDEE 估算（依活動係數）</h4>
+      <ul>
+        <li>輕度活動（1.375）：約 1,743 kcal</li>
+        <li>中度活動（1.55）：約 1,965 kcal</li>
+        <li>教師工作推測落在輕至中度之間：<strong>TDEE 約 1,750–1,900 kcal</strong></li>
+      </ul>
+      <h4>建議熱量目標</h4>
+      <ul>
+        <li>赤字目標：每日減少 200–400 kcal</li>
+        <li>建議範圍：<strong>1,450–1,650 kcal / 天</strong></li>
+        <li>蛋白質目標：58 × 1.6 = 92.8g，建議目標 <strong>90–100g</strong></li>
+        <li>不建議低於 1,400 kcal 的原因：她的飲食記錄已經有多天低於此值，再下壓可能觸發代謝適應，而且會讓她更容易在後段報復性進食</li>
+      </ul>
+      <div class="tn-caution">
+        <strong>重要提醒：</strong>她目前的問題不是「整體吃太多」（多數天在 1,100–1,700 kcal 之間），而是熱量分布極度不均，高的天太高、低的天又太低。改善熱量穩定性比單純壓低熱量更有效。
+      </div>
+    </div>
+  </div>
+
+  <!-- 衝動進食的心理機制 -->
+  <div class="tn-block">
+    <div class="tn-header">衝動進食的神經與心理機制 <span>理解學生行為的背景知識</span></div>
+    <div class="tn-body">
+      <h4>兩種衝動進食，機制不同</h4>
+      <ul>
+        <li><strong>生理性衝動：</strong>血糖下降 → 大腦發出緊急能量需求訊號 → 本能尋找高糖高熱量食物（快速補糖）。這是演化設計，不是意志力問題。</li>
+        <li><strong>情緒性衝動：</strong>壓力、無聊、挫折 → 大腦的獎勵系統（多巴胺迴路）被觸發 → 食物（特別是甜食、鹹食）短暫提供情緒緩解 → 行為被強化 → 下次同樣情境更容易重複</li>
+      </ul>
+      <h4>為什麼餅乾特別容易成為破口</h4>
+      <ul>
+        <li>高糖高脂組合 → 對大腦獎勵系統的刺激強度遠高於原型食物</li>
+        <li>方便取得、食用門檻低、不需要準備</li>
+        <li>份量邊界模糊——比吃一個蘋果更難判斷「我已經吃夠了」</li>
+        <li>食用後會帶來短暫的血糖飆升 → 落下時更餓 → 繼續吃的循環</li>
+      </ul>
+      <h4>環境設計（Environment Design）為什麼比意志力更有效</h4>
+      <ul>
+        <li>意志力是有限資源，在一天結束時最低；飢餓時也最低——這兩個時間點剛好是最容易吃零食的時間</li>
+        <li>環境設計是「讓正確的選擇變成最容易的選擇」，不需要消耗意志力資源</li>
+        <li>具體做法：把高熱量零食放在不順手的位置（需要起身、打開一個抽屜、走去另一個房間）；在手邊放已經處理好的健康選項（分裝好的堅果、洗好的水果）</li>
+        <li>研究顯示：僅僅是把食物「看不見」（從桌上移走），就可以減少 25–30% 的進食量</li>
+      </ul>
+      <div class="tn-caution">
+        <strong>對 Claire 的應用：</strong>她的衝動進食模式看起來是兩種都有——白天吃少了之後的生理性飢餓，加上情緒觸發（6/11 大量餅乾、6/14 的描述「一次較失控的進食」）。跟她談這段不要用「妳要更有意志力」的方向，而是「我們來設計一個讓妳更難吃到餅乾的環境」。
+      </div>
+    </div>
+  </div>
+
+  <!-- 代謝適應提醒 -->
+  <div class="tn-block">
+    <div class="tn-header">代謝適應（Adaptive Thermogenesis）<span>為什麼不建議吃太少</span></div>
+    <div class="tn-body">
+      <h4>什麼是代謝適應？</h4>
+      <p>當身體長期面對熱量不足，它會啟動保護機制：降低基礎代謝率、減少非運動性熱量消耗（NEAT）、影響瘦素和甲狀腺素分泌，讓身體進入「省電模式」。</p>
+      <h4>對 Claire 的意義</h4>
+      <ul>
+        <li>她已經有多天低於 1,000 kcal（6/7 約 950、6/17 約 750）——這些天身體已經在適應了</li>
+        <li>接著的高熱量天（6/11、6/13 超過 2,000）又讓身體收到相反的訊號</li>
+        <li>這種大幅振盪 + 偶爾極低的組合，是讓體組成難以改善的典型模式</li>
+      </ul>
+      <h4>跟她說的版本</h4>
+      <p>「妳有幾天吃很少，這不代表那幾天有效——相反，吃太少的時候身體會開始省電，讓妳之後連正常吃都更容易囤積。所以目標是讓每天都在合理範圍，不是有幾天吃到很少。」</p>
+      <div class="tn-caution">
+        <strong>注意：</strong>不要把代謝適應說成「所以妳可以吃更多」——重點是「穩定在建議範圍內」，不是「低了幾天之後可以高幾天來彌補」。
+      </div>
+    </div>
+  </div>
+
+  <!-- 選擇性記錄的模式 -->
+  <div class="tn-block">
+    <div class="tn-header">她的「選擇性記錄」模式 <span>一個可以在課程中輕輕帶到的觀察</span></div>
+    <div class="tn-body">
+      <h4>觀察到的現象</h4>
+      <ul>
+        <li>6/14（失控進食那天）：「未記錄明確份量」——記錄本身很簡短，只說了「一次較失控的進食」</li>
+        <li>6/19–21（週末三天）：完全無紀錄</li>
+        <li>平日記錄相對詳細，但份量描述仍常見模糊（「餅乾 150 卡」沒說幾片）</li>
+      </ul>
+      <h4>這個模式說明什麼</h4>
+      <p>選擇性記錄是一個自我保護機制——記錄「沒問題的天」，略過「有問題的天」。這樣的記錄看起來比實際狀況好，也讓人很難從記錄裡找到真正需要改善的點。</p>
+      <h4>怎麼在課程中處理</h4>
+      <p>不要直接說「妳的記錄不完整」，這樣會讓她有防衛感。可以說：「我發現有幾天的記錄比較少，通常那幾天就是最值得我們聊的天——因為那是身體最需要幫助的時候。下次試試看，就算只記一句話也好。」</p>
+      <div class="tn-caution">
+        <strong>這本身就是一個很好的衛教切入點：</strong>讓她理解「記錄的價值不是展示自己吃得多好，而是幫助我們看到規律」——改變她對記錄這件事的心態，比要求她記得更仔細更有效。
+      </div>
+    </div>
+  </div>
+
+</div><!-- end tab-notes -->
+
+<script>
+function switchTab(name, event) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (event && event.target) event.target.classList.add('active');
+}
+</script>
+
+<!-- Footer -->
+<div class="footer">
+  Abby 營養師 ✦ abbyeatlife.github.io<br>
+  本資料為個人課程使用，請勿轉載
+</div>
+
+</body>
+</html>
