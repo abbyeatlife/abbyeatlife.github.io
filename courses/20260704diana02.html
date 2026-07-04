@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diana 第二次課程 ── Abby 營養師</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:       #8B9E7E;
+    --sage-pale:  #C8D5C0;
+    --sage-deep:  #5C7252;
+    --terra:      #C17F59;
+    --terra-pale: #E8C4A8;
+    --cream:      #FDFBF7;
+    --bark:       #3D3229;
+    --bark-light: #6B5B4E;
+    --divider:    #E2DDD6;
+    --warn-bg:    #FEF6EE;
+    --warn-border:#E8B88A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    color: var(--bark);
+    font-family: 'Noto Sans TC', 'PingFang TC', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 28px 80px;
+  }
+
+  /* Cover */
+  .cover {
+    background: var(--bark);
+    border-radius: 16px;
+    padding: 48px 40px 40px;
+    margin-bottom: 48px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(193,127,89,0.15);
+    top: -80px; right: -60px;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(139,158,126,0.12);
+    bottom: -20px; left: 80px;
+  }
+  .cover-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; margin-bottom: 12px; }
+  .cover h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 2.2rem; font-weight: 700; line-height: 1.25; margin-bottom: 16px; }
+  .cover h1 em { font-style: normal; color: var(--terra-pale); }
+  .cover-meta { display: flex; gap: 24px; flex-wrap: wrap; font-size: 13px; opacity: 0.7; }
+  .cover-meta span::before { content: '· '; }
+
+  /* Tab Bar */
+  .tab-bar { display: flex; gap: 8px; margin-bottom: 36px; border-bottom: 2px solid var(--divider); padding-bottom: 0; }
+  .tab-btn { padding: 10px 20px; border: none; background: none; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 600; color: var(--bark-light); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
+  .tab-btn.active { color: var(--sage-deep); border-bottom-color: var(--sage-deep); }
+  .tab-btn:hover:not(.active) { color: var(--bark); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Section */
+  .section { margin-bottom: 48px; }
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--divider); }
+  .section-num { width: 36px; height: 36px; border-radius: 50%; background: var(--sage); color: white; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .section-header h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; color: var(--bark); }
+  .section-header .sub { font-size: 12px; color: var(--bark-light); margin-left: auto; letter-spacing: 0.05em; }
+
+  /* Cards */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; margin-bottom: 20px; }
+  .card { background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--divider); }
+  .card-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .card h3 { font-size: 14px; font-weight: 700; color: var(--bark); margin-bottom: 6px; }
+  .card p { font-size: 13px; color: var(--bark-light); line-height: 1.6; }
+  .card.highlight { border-color: var(--sage); background: #F4F7F2; }
+  .card.highlight h3 { color: var(--sage-deep); }
+  .card.terra { border-color: var(--terra-pale); background: var(--warn-bg); }
+  .card.terra h3 { color: var(--terra); }
+
+  /* Table */
+  .diet-obs { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-bottom: 20px; }
+  .diet-obs th { background: var(--sage); color: white; text-align: left; padding: 10px 14px; font-weight: 600; font-size: 12px; letter-spacing: 0.04em; }
+  .diet-obs th:first-child { border-radius: 8px 0 0 0; }
+  .diet-obs th:last-child  { border-radius: 0 8px 0 0; }
+  .diet-obs td { padding: 11px 14px; border-bottom: 1px solid var(--divider); vertical-align: top; }
+  .diet-obs tr:last-child td { border-bottom: none; }
+  .diet-obs tr:nth-child(even) td { background: #F9F7F4; }
+  .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+  .tag-red   { background: #FDECEA; color: #B94040; }
+  .tag-amber { background: #FEF4E5; color: #A06020; }
+  .tag-green { background: #EBF3E8; color: #4A7C40; }
+
+  /* Know Box */
+  .know-box { background: white; border-left: 4px solid var(--sage); border-radius: 0 12px 12px 0; padding: 18px 20px; margin: 16px 0; font-size: 13.5px; }
+  .know-box .kbTitle { font-weight: 700; color: var(--sage-deep); margin-bottom: 6px; font-size: 14px; }
+  .know-box ul { padding-left: 18px; color: var(--bark-light); }
+  .know-box ul li { margin-bottom: 4px; }
+  .know-box p { color: var(--bark-light); margin-bottom: 8px; }
+
+  /* Warn Box */
+  .warn-box { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 12px; padding: 16px 20px; margin: 16px 0; font-size: 13.5px; }
+  .warn-box .wTitle { font-weight: 700; color: var(--terra); margin-bottom: 6px; }
+
+  /* Chain */
+  .chain { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 20px 0; font-size: 13px; }
+  .chain-item { background: white; border: 1.5px solid var(--divider); border-radius: 8px; padding: 8px 14px; text-align: center; min-width: 88px; }
+  .chain-item .ci-top { font-size: 11px; color: var(--bark-light); }
+  .chain-item .ci-main { font-weight: 700; font-size: 13.5px; color: var(--bark); }
+  .chain-item.red { border-color: #F0C8C0; background: #FEF5F3; }
+  .chain-item.red .ci-main { color: #B94040; }
+  .chain-item.green { border-color: var(--sage-pale); background: #F4F7F2; }
+  .chain-item.green .ci-main { color: var(--sage-deep); }
+  .chain-arrow { color: var(--terra); font-size: 1.1rem; font-weight: 700; }
+
+  /* Swap Grid */
+  .swap-grid { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 10px; margin: 16px 0; font-size: 13.5px; }
+  .swap-from, .swap-to { background: white; border-radius: 10px; padding: 14px 16px; border: 1px solid var(--divider); }
+  .swap-from { border-color: #F0C8C0; background: #FEF5F3; }
+  .swap-to   { border-color: var(--sage-pale); background: #F4F7F2; }
+  .swap-label { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .swap-from .swap-label { color: #B94040; }
+  .swap-to   .swap-label { color: var(--sage-deep); }
+  .swap-arrow-col { display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--terra); font-weight: 700; }
+  .swap-from ul, .swap-to ul { padding-left: 16px; color: var(--bark); line-height: 1.8; }
+
+  /* Action List */
+  .action-list { counter-reset: action; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .action-list li { counter-increment: action; display: flex; gap: 14px; align-items: flex-start; background: white; border-radius: 12px; padding: 16px 18px; border: 1px solid var(--divider); }
+  .action-list li::before { content: counter(action); width: 28px; height: 28px; border-radius: 50%; background: var(--terra); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .action-list li strong { display: block; font-size: 14px; margin-bottom: 4px; color: var(--bark); }
+  .action-list li span { font-size: 13px; color: var(--bark-light); line-height: 1.65; }
+
+  /* Scenario */
+  .scenario-list { display: flex; flex-direction: column; gap: 14px; margin: 16px 0; }
+  .scenario { background: white; border-radius: 12px; padding: 16px 18px; border: 1px solid var(--divider); display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
+  .scenario-num { width: 32px; height: 32px; border-radius: 50%; background: var(--bark); color: var(--terra-pale); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .scenario h4 { font-size: 14px; font-weight: 700; color: var(--bark); margin-bottom: 4px; }
+  .scenario p { font-size: 13px; color: var(--bark-light); line-height: 1.65; }
+  .scenario .strategy { margin-top: 8px; background: #F4F7F2; border-left: 3px solid var(--sage); border-radius: 0 6px 6px 0; padding: 8px 12px; font-size: 13px; color: var(--sage-deep); }
+  .scenario .strategy strong { font-weight: 700; display: block; margin-bottom: 2px; }
+
+  /* Boundary */
+  .boundary { background: var(--bark); color: white; border-radius: 12px; padding: 20px 24px; margin-top: 24px; font-size: 13.5px; }
+  .boundary h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--terra-pale); }
+  .boundary ul { padding-left: 18px; line-height: 1.8; opacity: 0.88; }
+
+  /* Progress bars */
+  .protein-viz { background: white; border-radius: 12px; border: 1px solid var(--divider); padding: 20px; margin: 16px 0; }
+  .protein-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .protein-row-label { font-size: 12.5px; color: var(--bark-light); width: 130px; flex-shrink: 0; }
+  .protein-row-bar { flex: 1; }
+  .protein-row-val { font-size: 12.5px; font-weight: 700; color: var(--bark); width: 70px; text-align: right; }
+  .protein-bar-bg { height: 18px; background: #EBF3E8; border-radius: 9px; overflow: hidden; }
+  .protein-bar-fill { height: 100%; background: var(--sage); border-radius: 9px; transition: width 0.6s ease; }
+  .protein-bar-fill.low { background: #D4846A; }
+  .protein-bar-fill.ok  { background: var(--sage); }
+  .protein-bar-fill.high { background: #B94040; }
+
+  /* Teacher Notes */
+  .tn-block { background: white; border-radius: 14px; border: 1px solid var(--divider); margin-bottom: 28px; overflow: hidden; }
+  .tn-header { background: var(--bark); color: white; padding: 14px 22px; font-size: 15px; font-weight: 700; }
+  .tn-header span { opacity: 0.6; font-size: 12px; font-weight: 400; margin-left: 10px; }
+  .tn-body { padding: 20px 22px; font-size: 13.5px; line-height: 1.8; color: var(--bark); }
+  .tn-body h4 { font-size: 13px; font-weight: 700; color: var(--sage-deep); margin: 16px 0 6px; padding-left: 10px; border-left: 3px solid var(--sage); }
+  .tn-body h4:first-child { margin-top: 0; }
+  .tn-body p { margin-bottom: 10px; color: var(--bark-light); }
+  .tn-body ul { padding-left: 18px; color: var(--bark-light); margin-bottom: 10px; }
+  .tn-body ul li { margin-bottom: 5px; }
+  .tn-body strong { color: var(--bark); }
+  .tn-caution { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: var(--bark-light); margin-top: 14px; }
+  .tn-caution strong { color: var(--terra); }
+
+  /* Divider */
+  .section-divider { border: none; border-top: 1px dashed var(--divider); margin: 28px 0; }
+
+  /* Footer */
+  .footer { text-align: center; margin-top: 60px; font-size: 12px; color: var(--bark-light); border-top: 1px solid var(--divider); padding-top: 24px; }
+
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; }
+    .cover h1 { font-size: 1.7rem; }
+    .swap-grid { grid-template-columns: 1fr; }
+    .swap-arrow-col { display: none; }
+    .card-grid { grid-template-columns: 1fr; }
+    .protein-row-label { width: 90px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="cover">
+  <div class="cover-label">Abby 營養師 ✦ 個人課程</div>
+  <h1>Diana 的<br><em>第二次課程</em></h1>
+  <div class="cover-meta">
+    <span>2026 / 07 / 04</span>
+    <span>160 cm ／ 65–66 kg</span>
+    <span>43 歲</span>
+    <span>Session 02</span>
+  </div>
+</div>
+
+<!-- Tab Bar -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('course', event)">📋 課程內容</button>
+  <button class="tab-btn" onclick="switchTab('notes', event)">🔬 老師備忘資料</button>
+</div>
+
+<!-- ══════════════════════ COURSE TAB ══════════════════════ -->
+<div id="tab-course" class="tab-panel active">
+
+<!-- 0. 今天的目標 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">✦</div>
+    <h2>今天我們想做到什麼</h2>
+  </div>
+  <div class="card-grid">
+    <div class="card highlight">
+      <div class="card-icon">📈</div>
+      <h3>確認這一個月的進展</h3>
+      <p>體重、腰圍、體脂肪的變化趨勢——數字告訴我們的，跟身體感受到的，一起來看。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">🔧</div>
+      <h3>調整工具的使用方式</h3>
+      <p>飲食記錄做到這個階段，該怎麼用得更輕鬆、更持久，而不是一直被數字綁住。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">🧠</div>
+      <h3>建立幾個關鍵認知</h3>
+      <p>讓這個月的努力有更好的框架支撐，知道身體在做什麼、為什麼這樣安排是對的。</p>
+    </div>
+  </div>
+  <div class="warn-box">
+    <div class="wTitle">先說一件最重要的事</div>
+    這一個月你做到的事情比你想像的多——<strong>體重下降、腰圍縮小、記錄持續、運動沒有中斷</strong>。今天不是來挑毛病的，而是幫你把已經在走的路走得更穩。
+  </div>
+</div>
+
+<!-- 1. 體態進展 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>這一個月，身體在做什麼</h2>
+    <span class="sub">數字的變化 ＋ 趨勢判讀</span>
+  </div>
+
+  <div class="protein-viz">
+    <p style="font-size:14px; font-weight:700; margin-bottom:16px;">體態數據一覽</p>
+    <div class="protein-row">
+      <div class="protein-row-label">6/6 體重</div>
+      <div class="protein-row-bar"><div class="protein-bar-bg"><div class="protein-bar-fill" style="width:88%"></div></div></div>
+      <div class="protein-row-val">65.8 kg</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">6/14 體重</div>
+      <div class="protein-row-bar"><div class="protein-bar-bg"><div class="protein-bar-fill ok" style="width:85%"></div></div></div>
+      <div class="protein-row-val">64.9 kg</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">6/20 體重</div>
+      <div class="protein-row-bar"><div class="protein-bar-bg"><div class="protein-bar-fill ok" style="width:86%"></div></div></div>
+      <div class="protein-row-val">65.0 kg</div>
+    </div>
+    <hr class="section-divider">
+    <div class="protein-row">
+      <div class="protein-row-label">上次 體脂率</div>
+      <div class="protein-row-bar"><div class="protein-bar-bg"><div class="protein-bar-fill low" style="width:80%"></div></div></div>
+      <div class="protein-row-val" style="color:#D4846A">35.7%</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">6/14 體脂率</div>
+      <div class="protein-row-bar"><div class="protein-bar-bg"><div class="protein-bar-fill low" style="width:78%"></div></div></div>
+      <div class="protein-row-val" style="color:#D4846A">34.9%</div>
+    </div>
+    <hr class="section-divider">
+    <div class="protein-row">
+      <div class="protein-row-label">上次 腰圍</div>
+      <div class="protein-row-bar"><div class="protein-bar-bg"><div class="protein-bar-fill" style="width:75%"></div></div></div>
+      <div class="protein-row-val">75 cm</div>
+    </div>
+    <div class="protein-row">
+      <div class="protein-row-label">6/20 腰圍</div>
+      <div class="protein-row-bar"><div class="protein-bar-bg"><div class="protein-bar-fill ok" style="width:74%"></div></div></div>
+      <div class="protein-row-val">74 cm</div>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">📊 這些數字代表什麼意思？</div>
+    <ul>
+      <li><strong>體重 −0.8 kg：</strong>一個月下降不到 1 kg，這個速度剛剛好——太快反而代表有肌肉在流失</li>
+      <li><strong>體脂 −0.8%：</strong>體脂率下降的同時體重也在下降，代表流失的主要是脂肪，不是肌肉</li>
+      <li><strong>腰圍 −1 cm：</strong>腰圍縮小是內臟脂肪改善最直接的訊號，這個數字對你來說是最重要的進展</li>
+    </ul>
+    <p style="margin-top:8px;"><strong>整體評估：軌道是對的，而且方向對了最難，這關你已經過了。</strong></p>
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">關於 6/14 → 6/20 體重微幅回升（64.9 → 65.0）</div>
+    這 0.1 kg 的差距在正常波動範圍內，不代表退步。體重每天都會因為水分、進食時間、腸胃狀況而上下 0.5–1 kg，這個範圍內的變化不需要解讀，看的是「週趨勢」，不是每日單點。
+  </div>
+</div>
+
+<!-- 2. 飲食記錄的進展 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>飲食記錄做得怎麼樣</h2>
+    <span class="sub">兩週完整記錄的觀察</span>
+  </div>
+
+  <table class="diet-obs">
+    <thead>
+      <tr>
+        <th>觀察到的模式</th>
+        <th>程度</th>
+        <th>說明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>記錄完整度高，細緻度超出預期</strong><br>每樣食物都有克數和三大營養素，甚至連 7-11 蜂蜜檸檬水 20ml 都有記</td>
+        <td><span class="tag tag-green">非常好</span></td>
+        <td>這個細緻度已經超過多數學生，代表你已經建立了對食物的量感</td>
+      </tr>
+      <tr>
+        <td><strong>早餐結構非常穩定</strong><br>兩週早餐幾乎完全一致，麥片＋雞胸肉＋水果＋杏仁奶</td>
+        <td><span class="tag tag-green">非常好</span></td>
+        <td>穩定的早餐是讓一天飲食有結構的錨點，這個習慣很值得保留</td>
+      </tr>
+      <tr>
+        <td><strong>蛋白質平均達標</strong><br>兩週平均約 107g，落在目標範圍 100–120g 內</td>
+        <td><span class="tag tag-green">達標</span></td>
+        <td>重訓加上胰島素阻抗的雙重需求，蛋白質達標對你非常重要</td>
+      </tr>
+      <tr>
+        <td><strong>熱量有幾天波動較大</strong><br>最低約 1,180 kcal（6/17），最高約 1,675 kcal（6/22），同週內落差約 500 kcal</td>
+        <td><span class="tag tag-amber">可以留意</span></td>
+        <td>整體在合理範圍，但穩定性還有空間改善——下一階段可以往這個方向走</td>
+      </tr>
+      <tr>
+        <td><strong>假日和聚餐日的碳水偏高</strong><br>6/21 聚餐脂肪 78g，6/22 碳水 169g，主要來自饅頭、湯圓等精製澱粉</td>
+        <td><span class="tag tag-amber">可以留意</span></td>
+        <td>這是生活的一部分，不需要完全避免，但了解這個模式對你有幫助</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="know-box">
+    <div class="kbTitle">💡 記錄做到這個程度，代表什麼？</div>
+    <p>你現在已經對食物有了基本的量感——知道 100g 雞胸肉大概有多少蛋白質，知道糙米飯 100g 的碳水大概落在哪裡。這個量感是接下來「不用記錄也能掌控飲食」的基礎。</p>
+    <p>下一個階段，我們不需要每一克都計較，而是把這個量感轉化成你自己的飲食直覺。</p>
+  </div>
+</div>
+
+<!-- 3. 工具的鬆緊度 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>記錄工具，該怎麼用才對</h2>
+    <span class="sub">從「精確記錄」走向「飲食直覺」</span>
+  </div>
+
+  <p style="margin-bottom:16px; color:var(--bark-light); font-size:14px;">
+    你現在的記錄細緻到小數點兩位。這個階段是對的——<strong>剛開始學的時候，工具就是要用這麼細</strong>。<br>
+    但工具的目的是讓你最終不需要它，而不是一輩子依賴它。
+  </p>
+
+  <div class="chain">
+    <div class="chain-item green">
+      <div class="ci-top">第一階段</div>
+      <div class="ci-main">精確記錄</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item green">
+      <div class="ci-top">建立</div>
+      <div class="ci-main">食物量感</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item green">
+      <div class="ci-top">第二階段</div>
+      <div class="ci-main">彈性記錄</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item green">
+      <div class="ci-top">培養</div>
+      <div class="ci-main">飲食直覺</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item">
+      <div class="ci-top">最終目標</div>
+      <div class="ci-main">自然掌控</div>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">🎯 你現在已經在第一和第二階段之間</div>
+    <p>量感已經建立了，接下來可以試著讓記錄「輕一點」：</p>
+    <ul>
+      <li>不需要計算到小數點——蛋白質 25g 和 25.3g 對身體來說沒有差別</li>
+      <li>熟悉的食物不需要每次重查——你的雞胸肉 100g 是多少蛋白質，你已經知道了</li>
+      <li>一週可以選 3–4 天認真記，其他天用大概估算就好</li>
+      <li>假日可以只記餐別和大概內容，不需要跟平日一樣精細</li>
+    </ul>
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">⚠️ 記錄太精細，有時候反而是障礙</div>
+    當記錄變成一件需要花很多時間的事，你有兩個選擇：繼續用力做、或者某天撐不住就全部放棄。<br>
+    我們要找的是第三條路：<strong>輕鬆到你願意一直做下去的記錄方式。</strong>
+  </div>
+
+  <div class="scenario-list">
+    <div class="scenario">
+      <div class="scenario-num">A</div>
+      <div>
+        <h4>假日和聚餐——乾脆放假不記錄</h4>
+        <p>你目前假日的記錄比平日鬆散，這很正常。假日的飲食節奏本來就不一樣。</p>
+        <div class="strategy">
+          <strong>🎯 策略：假日有意識地放鬆，而不是失控</strong>
+          假日不需要記錄每一口，但保留一個「錨點」——比方說確保有一頓飯有足夠的蛋白質和蔬菜。聚餐就吃、不需要罪惡感，問題不在那一餐，而在於平日有沒有把基礎打穩。
+        </div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num">B</div>
+      <div>
+        <h4>平日——從「每樣都記」到「重點追蹤」</h4>
+        <p>你已經知道早餐大概是多少蛋白質、多少碳水了，這個不需要每天重算。</p>
+        <div class="strategy">
+          <strong>🎯 策略：固定餐只記一次，只追蹤變動的部分</strong>
+          早餐結構這麼穩定，可以只記「早餐如常」，主要記錄午晚餐和點心就夠了。這樣記錄的負擔少了一半，但資訊量幾乎沒有損失。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. 食物種類的策略 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>食物種類與食慾的關係</h2>
+    <span class="sub">一個你可能不知道的大腦機制</span>
+  </div>
+
+  <p style="margin-bottom:16px; color:var(--bark-light); font-size:14px;">
+    看你的飲食記錄，有一個值得注意的現象：<strong>每一餐的食物種類非常多</strong>。<br>
+    這本身不是壞事，但有一個大腦的機制值得你了解。
+  </p>
+
+  <div class="know-box">
+    <div class="kbTitle">🧠 感官特異性飽足感（Sensory-Specific Satiety）</div>
+    <p>人對同一種口味的食物，飽足感會隨著進食快速上升——吃了幾口之後，那個食物對你的吸引力就會下降。</p>
+    <p>但每換一種新口味，飽足感會重置，食慾被重新激活。這就是為什麼：</p>
+    <ul>
+      <li>吃到飽餐廳讓人特別容易吃超量——不停換口味，飽足感一直被重置</li>
+      <li>你可能已經吃飽了，但看到桌上還有一道沒吃過的菜，還是想動筷子</li>
+      <li>只吃一種餅乾，比有十種口味可以選，會更快停下來</li>
+    </ul>
+    <p style="margin-top:8px;">研究顯示，多樣化餐點比單一食物平均多攝取 20–40% 的熱量，即使當事人沒有意識到自己吃多了。</p>
+  </div>
+
+  <p style="font-weight:700; font-size:14px; margin:20px 0 12px; color:var(--bark);">▸ 從你的記錄舉例</p>
+
+  <div class="swap-grid">
+    <div class="swap-from">
+      <div class="swap-label">口味複雜的一餐（6/13 晚餐）</div>
+      <ul>
+        <li>滷雞腿（鹹香滷味）</li>
+        <li>雞胸肉（清淡）</li>
+        <li>素雞（另一種口感）</li>
+        <li>甜不辣（炸物鹹甜）</li>
+        <li>清炒洋蔥（甜味）</li>
+        <li>白飯</li>
+      </ul>
+    </div>
+    <div class="swap-arrow-col">→</div>
+    <div class="swap-to">
+      <div class="swap-label">口味簡化後的版本</div>
+      <ul>
+        <li>滷雞腿（保留）</li>
+        <li>炒青菜（保留）</li>
+        <li>清炒洋蔥（保留）</li>
+        <li>白飯（保留）</li>
+        <li style="color:var(--sage-deep);">✓ 食材一樣天然</li>
+        <li style="color:var(--sage-deep);">✓ 口味主軸更單純</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">✅ 做得好的例子：6/23 晚餐</div>
+    <p>炒米粉＋炒青江菜＋番茄＋高麗菜＋巴沙魚——食材豐富，但口味主軸是清炒，沒有多種不同風味同時出現。這種組合容易讓身體自然感知飽足，是很好的參考模式。</p>
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">重點不是讓你吃得無聊</div>
+    蔬菜和蛋白質來源保持多樣，這個繼續。<br>
+    可以試著在<strong>調味和口味風格</strong>上讓每一餐簡單一點——比方說這一餐是清淡系，下一餐是滷味系，而不是同一餐裡同時有滷的、炸的、清炒的。
+  </div>
+</div>
+
+<!-- 5. 運動量與壓力 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>運動量、壓力與內臟脂肪</h2>
+    <span class="sub">有時候練多了，反而是阻力</span>
+  </div>
+
+  <p style="margin-bottom:16px; color:var(--bark-light); font-size:14px;">
+    你這個月的運動量非常可觀：重訓 6–7 次、CrossFit 3 次、Zumba 2 次、K-pop 2 次、划船機 1 次。<br>
+    對上班族來說，這已經遠超平均水準。在肯定這份努力的同時，有一個面向值得一起討論。
+  </p>
+
+  <div class="know-box">
+    <div class="kbTitle">🔬 運動、皮質醇與內臟脂肪的三角關係</div>
+    <ul>
+      <li>高強度運動（重訓大重量、CrossFit）訓練後會短暫刺激皮質醇上升——這是正常的</li>
+      <li>但如果<strong>訓練頻率過高、恢復不足</strong>，皮質醇可能持續偏高</li>
+      <li>慢性高皮質醇的後果：直接促進腹部與內臟脂肪堆積、加重胰島素阻抗、影響睡眠品質</li>
+      <li>這就是為什麼有些人練越多，腹部脂肪反而越難消——訓練本身成了壓力源</li>
+    </ul>
+  </div>
+
+  <div class="chain">
+    <div class="chain-item">
+      <div class="ci-top">高強度訓練</div>
+      <div class="ci-main">過於頻繁</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item red">
+      <div class="ci-top">恢復不足</div>
+      <div class="ci-main">皮質醇偏高</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item red">
+      <div class="ci-top">加重</div>
+      <div class="ci-main">胰島素阻抗</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item red">
+      <div class="ci-top">腹部脂肪</div>
+      <div class="ci-main">更難消</div>
+    </div>
+  </div>
+
+  <p style="font-weight:700; font-size:14px; margin:20px 0 12px; color:var(--bark);">▸ 怎麼判斷自己的恢復狀況？</p>
+
+  <div class="scenario-list">
+    <div class="scenario">
+      <div class="scenario-num">✓</div>
+      <div>
+        <h4>恢復良好的訊號</h4>
+        <p>訓練後雖然疲憊，但隔天起床精神不錯、肌肉有點痠但不是那種拖著走的感覺、整體情緒穩定、睡眠品質還好。</p>
+        <div class="strategy">
+          <strong>→ 目前的強度是你身體可以承受的</strong>繼續維持，不需要調整。
+        </div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num">⚠</div>
+      <div>
+        <h4>需要留意的訊號</h4>
+        <p>每天都覺得累、起床不太想動、訓練表現開始下滑、比平常更容易煩躁或情緒低落、對食物的渴望突然變強。</p>
+        <div class="strategy">
+          <strong>→ 身體在說它需要恢復</strong>可以把某幾天的高強度訓練換成輕鬆走路或伸展，讓身體重新充電，這不是退步，是讓進步可以持續。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">💡 低強度有氧——一個額外的幫助</div>
+    <p>你目前的有氧是 Zumba 和 K-pop（中高強度間歇），這對整體心肺和熱量消耗都很好。</p>
+    <p>如果想特別針對內臟脂肪，可以考慮額外加入每週 2–3 次、30–40 分鐘的<strong>快走或輕鬆慢跑</strong>——低強度穩定有氧燃燒脂肪的效率比高強度更直接，而且不會給身體額外的壓力負擔。</p>
+    <p>這不是要取代現有的訓練，而是在原本的課表裡加一個「減壓型」的活動。</p>
+  </div>
+</div>
+
+<!-- 6. 行動計畫 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>接下來這一個月</h2>
+    <span class="sub">不是全部改，是繼續走，走得更輕鬆</span>
+  </div>
+
+  <ul class="action-list">
+    <li>
+      <strong>記錄方式減輕一點</strong>
+      <span>早餐固定，可以只記「如常」。一週選 3–4 天認真記，其他天大概估算就好。假日聚餐不需要記到每一克，保留一頓有結構的正餐就夠了。</span>
+    </li>
+    <li>
+      <strong>每週繼續量腰圍，這是最重要的指標</strong>
+      <span>體重一週看一次趨勢，不用每天盯。腰圍每兩週量一次，這個數字對你來說比體重更有意義——它反映的是內臟脂肪的改善。</span>
+    </li>
+    <li>
+      <strong>留意訓練後的體感</strong>
+      <span>注意自己的恢復狀況。如果開始覺得每天都累、睡不好、情緒容易低落，試著把某一天的高強度課換成輕鬆走路或伸展。</span>
+    </li>
+    <li>
+      <strong>每一餐試著讓口味主軸簡單一點</strong>
+      <span>不是減少食材，而是讓每一餐有一個明確的口味主軸，而不是同時有滷味、炸物、清炒多種風味。這個調整不需要刻意，只是一個可以試試看的方向。</span>
+    </li>
+  </ul>
+
+  <div class="boundary">
+    <h3>這一個月的觀察重點</h3>
+    <ul>
+      <li>腰圍的變化趨勢——有沒有繼續往下</li>
+      <li>訓練後的恢復感——精神是飽滿還是持續疲憊</li>
+      <li>假日和聚餐後，下一天有沒有特別想吃很多——這是補償機制的訊號</li>
+      <li>記錄「減輕」之後，自己的飲食有沒有出現什麼變化</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- end tab-course -->
+
+<!-- ══════════════════════ TEACHER NOTES TAB ══════════════════════ -->
+<div id="tab-notes" class="tab-panel">
+
+  <!-- 學生個性備忘 -->
+  <div class="tn-block">
+    <div class="tn-header">Diana 個性備忘 <span>課程溝通策略參考</span></div>
+    <div class="tn-body">
+      <h4>核心人格特質</h4>
+      <ul>
+        <li>高度自主、自我管理意識強——不習慣被指導，更喜歡「理解邏輯後自己操作」</li>
+        <li>強烈的自我形象：「我吃得健康、有在運動」——任何暗示她做錯的說法都容易引發防衛</li>
+        <li>傾向把問題外部歸因（荷爾蒙、壓力、胰島素阻抗）而不是先檢視行為面</li>
+        <li>記錄方式「展示性」——整齊、有標示、給人看的版本，不一定是完整的真實版本</li>
+        <li>溝通風格偏迴避，不主動說問題，但也不會正面衝突</li>
+      </ul>
+      <h4>本次課程溝通策略</h4>
+      <ul>
+        <li><strong>先給肯定再談調整</strong>——這次真的有進展，要真心說出來，不是客套話</li>
+        <li><strong>把調整說成「升級」</strong>——記錄減輕不是說她之前做法不對，而是「你已經通過第一關，現在進入第二關」</li>
+        <li><strong>感官飽足感的概念要說得輕</strong>——不是說她吃太多、吃法有問題，而是分享一個大腦的機制，讓她自己連結</li>
+        <li><strong>運動量的討論問她的感受</strong>——不要直接說「你練太多了」，而是問「訓練後你的恢復感覺怎麼樣？精神有沒有比較神清氣爽？」讓她自己說出答案</li>
+        <li><strong>多用問句引導，少直接給答案</strong>——她說出來的結論，比你說的更容易被她接受</li>
+      </ul>
+      <div class="tn-caution">
+        <strong>本次最大風險：</strong>數字討論過多可能讓她覺得被評判。今天課程要刻意「退出數字」，把焦點放在感受、趨勢和認知，而不是逐日分析熱量高低。
+      </div>
+    </div>
+  </div>
+
+  <!-- 飲食記錄詳細分析 -->
+  <div class="tn-block">
+    <div class="tn-header">飲食記錄詳細分析 <span>6/10 – 6/24，自用參考</span></div>
+    <div class="tn-body">
+      <h4>兩週平均數據</h4>
+      <ul>
+        <li>熱量：約 1,440–1,480 kcal／天（目標 1,400–1,500 ✅）</li>
+        <li>蛋白質：約 107g／天（目標 100–120g ✅）</li>
+        <li>碳水：約 135g／天（目標 120–150g ✅）</li>
+        <li>脂肪：約 54g／天（合理範圍 ✅）</li>
+      </ul>
+      <h4>值得注意的偏差點</h4>
+      <ul>
+        <li><strong>糙米飯的碳水數值持續偏低</strong>——她可能用到某個偏低的資料來源，100g 熟糙米飯應約 28–30g 醣，她記的是 22–23g。建議課後輕輕提醒核對資料來源</li>
+        <li><strong>牛梅花的脂肪明顯偏低</strong>——100g 牛梅花脂肪只記了 3.7g，實際帶油花的梅花應有 10–18g。這個累積低估會造成整體脂肪低估</li>
+        <li><strong>6/12 海底撈完全未記</strong>——估算那一餐約 650–800 kcal，所以那天實際總熱量約 1,380–1,530 kcal，不是看起來的 730 kcal</li>
+        <li><strong>部分外食只記熱量總數沒有重量</strong>（如「開飯聚餐」）——這是外食估算的限制，正常現象</li>
+      </ul>
+      <h4>整體評估</h4>
+      <p>即使加上以上偏差的修正，整體兩週的熱量仍落在合理範圍，不存在「明顯吃超標卻沒意識到」的情況。體重和腰圍的實際下降也呼應了這個結論。</p>
+      <div class="tn-caution">
+        <strong>課堂不要逐日分析熱量數字</strong>——她的記錄已經足夠好，逐日挑問題反而讓她覺得再怎麼努力都不夠。今天重點是整體趨勢、認知建立，不是數字校正。
+      </div>
+    </div>
+  </div>
+
+  <!-- 感官特異性飽足感學理 -->
+  <div class="tn-block">
+    <div class="tn-header">感官特異性飽足感學理背景 <span>課程概念的學術依據</span></div>
+    <div class="tn-body">
+      <h4>什麼是感官特異性飽足感（Sensory-Specific Satiety）？</h4>
+      <p>由 Barbara Rolls 等人在 1980 年代確立的研究概念。當你持續進食同一種食物，該食物在大腦中的愉悅感和食慾刺激會逐漸下降；但換一種新口味或質地，食慾會重新被激活。</p>
+      <h4>對 Diana 的飲食意義</h4>
+      <ul>
+        <li>她的飲食食材很好，但每餐常常同時出現 6–8 種不同風味的食物——滷、清炒、炸、醃漬同時出現</li>
+        <li>這不是說她吃了「不健康的東西」，而是口味多樣性讓飽足訊號比較慢被身體感知</li>
+        <li>調整方向：食材種類維持，但讓每一餐的口味主軸單純——這樣自然飽足感會更快，不需要靠計算</li>
+      </ul>
+      <h4>跟她說的版本</h4>
+      <p>不要用學術語言，用她自己的記錄舉例（6/13 晚餐 vs 6/23 晚餐），讓她自己感受兩種模式的差異，比你解釋原理更有說服力。</p>
+      <div class="tn-caution">
+        <strong>注意說法：</strong>絕對不要說「你每餐吃太多種食物」——這會讓她覺得被批評健康飲食的習慣。說法應該是「我想跟你分享一個大腦的有趣機制……」讓她帶著好奇心而不是防衛心接受這個概念。
+      </div>
+    </div>
+  </div>
+
+  <!-- 彈性控制 vs 僵化控制 -->
+  <div class="tn-block">
+    <div class="tn-header">彈性控制 vs 僵化控制 <span>為什麼記錄減輕反而更好</span></div>
+    <div class="tn-body">
+      <h4>研究背景</h4>
+      <p>飲食心理研究區分了兩種飲食控制模式：</p>
+      <ul>
+        <li><strong>僵化控制（Rigid Dietary Restraint）：</strong>嚴格規則、不容許偏離、任何偏差都是「失敗」</li>
+        <li><strong>彈性控制（Flexible Dietary Restraint）：</strong>有大方向、允許偶爾偏離、從整體趨勢判斷而不是單日表現</li>
+      </ul>
+      <p>研究一致顯示，彈性控制的人體態維持成效更好、情緒更穩定、對食物的焦慮更低，且長期執行率更高。</p>
+      <h4>Diana 目前的狀況</h4>
+      <p>她的記錄細緻度其實已經有點接近僵化控制的邊緣——計算到小數點、連 20ml 的飲料都記。這個習慣幫她建立了量感，但長期維持這個精細度會造成認知疲勞，最終可能導致她某天突然完全放棄記錄。</p>
+      <h4>課程中怎麼說</h4>
+      <p>把「記錄減輕」說成進入下一個階段，不是說她之前做錯了。用具體的例子：「早餐那麼穩定，以後只要記一句『早餐如常』就好了，這樣做你會更輕鬆，結果不會變差。」</p>
+    </div>
+  </div>
+
+  <!-- 過度訓練學理 -->
+  <div class="tn-block">
+    <div class="tn-header">過度訓練與皮質醇的學理背景 <span>運動量討論的依據</span></div>
+    <div class="tn-body">
+      <h4>高強度訓練與皮質醇的關係</h4>
+      <ul>
+        <li>高強度訓練（尤其是大重量重訓、CrossFit 類型）會刺激皮質醇短暫上升，這是正常的急性壓力反應</li>
+        <li>訓練後 30–60 分鐘內皮質醇應恢復正常；但若訓練頻率過高、睡眠或恢復不足，皮質醇可能維持慢性偏高狀態</li>
+        <li>慢性高皮質醇：直接刺激腹部和內臟脂肪堆積（皮質醇受體在內臟脂肪組織特別豐富）、降低胰島素敏感性（加重 Diana 本來就有的胰島素阻抗）、影響瘦素訊號（讓飽足感變差）</li>
+      </ul>
+      <h4>Diana 的訓練量評估</h4>
+      <p>每週重訓 4 次＋CrossFit 2–3 次＋有氧舞蹈 2 次，對上班族而言屬於高訓練量。這個量本身不一定有問題，關鍵在恢復品質：睡眠是否充足、兩次高強度訓練之間是否有恢復日。</p>
+      <h4>怎麼在課程中討論</h4>
+      <p>不要直接說「你練太多了」，而是問她恢復感受：「訓練後你通常感覺怎麼樣？隔天起床精神如何？」讓她自己評估，你再根據她的答案給建議。如果她說恢復很好，就說「那目前的強度你身體可以承受，繼續維持」；如果她說很累，再帶出「可能需要讓某幾天輕一點」的建議。</p>
+      <div class="tn-caution">
+        <strong>不要否定她的運動習慣</strong>——這是她的驕傲，也是真實的資產。只是要讓她知道運動跟恢復是一對，不是只有運動才算努力。
+      </div>
+    </div>
+  </div>
+
+</div><!-- end tab-notes -->
+
+<script>
+function switchTab(name, event) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (event && event.target) event.target.classList.add('active');
+}
+</script>
+
+<div class="footer">
+  Abby 營養師 ✦ abbyeatlife.github.io<br>
+  本資料為個人課程使用，請勿轉載
+</div>
+
+</body>
+</html>
