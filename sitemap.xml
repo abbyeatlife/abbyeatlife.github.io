@@ -58,7 +58,13 @@
   </url>
 
   <!-- ── BLOG ── -->
- <url>
+  <url>
+    <loc>https://abbyeatlife.github.io/blog/20260706/index.html</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://abbyeatlife.github.io/blog/20260628/index.html</loc>
     <lastmod>2026-06-28</lastmod>
     <changefreq>monthly</changefreq>
