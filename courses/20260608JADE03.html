@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jade 第三次課程 ── Abby 營養師</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:       #8B9E7E;
+    --sage-pale:  #C8D5C0;
+    --sage-deep:  #5C7252;
+    --terra:      #C17F59;
+    --terra-pale: #E8C4A8;
+    --cream:      #FDFBF7;
+    --bark:       #3D3229;
+    --bark-light: #6B5B4E;
+    --divider:    #E2DDD6;
+    --warn-bg:    #FEF6EE;
+    --warn-border:#E8B88A;
+    --chalk:      #1a1a2e;
+    --chalk-line: rgba(255,255,255,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    color: var(--bark);
+    font-family: 'Noto Sans TC', 'PingFang TC', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 28px 80px;
+  }
+
+  /* Cover */
+  .cover {
+    background: var(--bark);
+    border-radius: 16px;
+    padding: 48px 40px 40px;
+    margin-bottom: 48px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(193,127,89,0.15);
+    top: -80px; right: -60px;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(139,158,126,0.12);
+    bottom: -20px; left: 80px;
+  }
+  .cover-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; margin-bottom: 12px; }
+  .cover h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 2.2rem; font-weight: 700; line-height: 1.25; margin-bottom: 16px; }
+  .cover h1 em { font-style: normal; color: var(--terra-pale); }
+  .cover-meta { display: flex; gap: 24px; flex-wrap: wrap; font-size: 13px; opacity: 0.7; }
+  .cover-meta span::before { content: '· '; }
+
+  /* Tab Bar */
+  .tab-bar { display: flex; gap: 8px; margin-bottom: 36px; border-bottom: 2px solid var(--divider); padding-bottom: 0; overflow-x: auto; }
+  .tab-btn { padding: 10px 20px; border: none; background: none; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 600; color: var(--bark-light); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
+  .tab-btn.active { color: var(--sage-deep); border-bottom-color: var(--sage-deep); }
+  .tab-btn:hover:not(.active) { color: var(--bark); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Section */
+  .section { margin-bottom: 48px; }
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--divider); }
+  .section-num { width: 36px; height: 36px; border-radius: 50%; background: var(--sage); color: white; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .section-num.terra { background: var(--terra); }
+  .section-header h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; color: var(--bark); }
+  .section-header .sub { font-size: 12px; color: var(--bark-light); margin-left: auto; letter-spacing: 0.05em; }
+
+  /* Cards */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px; }
+  .card { background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--divider); }
+  .card-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .card h3 { font-size: 14px; font-weight: 700; color: var(--bark); margin-bottom: 6px; }
+  .card p { font-size: 13px; color: var(--bark-light); line-height: 1.6; }
+  .card.highlight { border-color: var(--sage); background: #F4F7F2; }
+  .card.highlight h3 { color: var(--sage-deep); }
+  .card.terra { border-color: var(--terra-pale); background: var(--warn-bg); }
+  .card.terra h3 { color: var(--terra); }
+
+  /* Metric Bar */
+  .metric-viz { background: white; border-radius: 12px; border: 1px solid var(--divider); padding: 20px; margin: 16px 0; }
+  .metric-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .metric-row:last-child { margin-bottom: 0; }
+  .metric-label { font-size: 12.5px; color: var(--bark-light); width: 140px; flex-shrink: 0; }
+  .metric-bar-bg { flex: 1; height: 18px; background: #EBF3E8; border-radius: 9px; overflow: hidden; }
+  .metric-bar-fill { height: 100%; border-radius: 9px; transition: width 0.6s ease; }
+  .fill-sage { background: var(--sage); }
+  .fill-terra { background: #D4846A; }
+  .fill-blue { background: #5B82A6; }
+  .metric-val { font-size: 12.5px; font-weight: 700; color: var(--bark); width: 80px; text-align: right; flex-shrink: 0; }
+  .metric-val.red { color: #B94040; }
+  .metric-val.green { color: var(--sage-deep); }
+
+  /* Table */
+  .diet-obs { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-bottom: 20px; }
+  .diet-obs th { background: var(--sage); color: white; text-align: left; padding: 10px 14px; font-weight: 600; font-size: 12px; letter-spacing: 0.04em; }
+  .diet-obs th:first-child { border-radius: 8px 0 0 0; }
+  .diet-obs th:last-child  { border-radius: 0 8px 0 0; }
+  .diet-obs td { padding: 11px 14px; border-bottom: 1px solid var(--divider); vertical-align: top; }
+  .diet-obs tr:last-child td { border-bottom: none; }
+  .diet-obs tr:nth-child(even) td { background: #F9F7F4; }
+  .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+  .tag-red   { background: #FDECEA; color: #B94040; }
+  .tag-amber { background: #FEF4E5; color: #A06020; }
+  .tag-green { background: #EBF3E8; color: #4A7C40; }
+
+  /* Know Box */
+  .know-box { background: white; border-left: 4px solid var(--sage); border-radius: 0 12px 12px 0; padding: 18px 20px; margin: 16px 0; font-size: 13.5px; }
+  .know-box .kbTitle { font-weight: 700; color: var(--sage-deep); margin-bottom: 6px; font-size: 14px; }
+  .know-box ul { padding-left: 18px; color: var(--bark-light); }
+  .know-box ul li { margin-bottom: 4px; }
+  .know-box p { color: var(--bark-light); margin-bottom: 8px; }
+
+  /* Warn Box */
+  .warn-box { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 12px; padding: 16px 20px; margin: 16px 0; font-size: 13.5px; }
+  .warn-box .wTitle { font-weight: 700; color: var(--terra); margin-bottom: 6px; }
+
+  /* Chain */
+  .chain { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 20px 0; font-size: 13px; }
+  .chain-item { background: white; border: 1.5px solid var(--divider); border-radius: 8px; padding: 8px 14px; text-align: center; min-width: 88px; }
+  .chain-item .ci-top { font-size: 11px; color: var(--bark-light); }
+  .chain-item .ci-main { font-weight: 700; font-size: 13.5px; color: var(--bark); }
+  .chain-item.red { border-color: #F0C8C0; background: #FEF5F3; }
+  .chain-item.red .ci-main { color: #B94040; }
+  .chain-item.green { border-color: var(--sage-pale); background: #F4F7F2; }
+  .chain-item.green .ci-main { color: var(--sage-deep); }
+  .chain-item.amber { border-color: #F0D8B0; background: #FEF8EE; }
+  .chain-item.amber .ci-main { color: #A06020; }
+  .chain-arrow { color: var(--terra); font-size: 1.1rem; font-weight: 700; }
+
+  /* Action List */
+  .action-list { counter-reset: action; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .action-list li { counter-increment: action; display: flex; gap: 14px; align-items: flex-start; background: white; border-radius: 12px; padding: 16px 18px; border: 1px solid var(--divider); }
+  .action-list li::before { content: counter(action); width: 28px; height: 28px; border-radius: 50%; background: var(--terra); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .action-list li strong { display: block; font-size: 14px; margin-bottom: 4px; color: var(--bark); }
+  .action-list li span { font-size: 13px; color: var(--bark-light); line-height: 1.65; }
+
+  /* Scenario */
+  .scenario-list { display: flex; flex-direction: column; gap: 14px; margin: 16px 0; }
+  .scenario { background: white; border-radius: 12px; padding: 16px 18px; border: 1px solid var(--divider); display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
+  .scenario-num { width: 32px; height: 32px; border-radius: 50%; background: var(--bark); color: var(--terra-pale); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .scenario-num.sage { background: var(--sage); color: white; }
+  .scenario h4 { font-size: 14px; font-weight: 700; color: var(--bark); margin-bottom: 4px; }
+  .scenario p { font-size: 13px; color: var(--bark-light); line-height: 1.65; }
+  .scenario .strategy { margin-top: 8px; background: #F4F7F2; border-left: 3px solid var(--sage); border-radius: 0 6px 6px 0; padding: 8px 12px; font-size: 13px; color: var(--sage-deep); }
+  .scenario .strategy strong { font-weight: 700; display: block; margin-bottom: 2px; }
+
+  /* Boundary */
+  .boundary { background: var(--bark); color: white; border-radius: 12px; padding: 20px 24px; margin-top: 24px; font-size: 13.5px; }
+  .boundary h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--terra-pale); }
+  .boundary ul { padding-left: 18px; line-height: 1.8; opacity: 0.88; }
+
+  /* Check list */
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+  .check-list li { display: flex; align-items: flex-start; gap: 12px; background: white; border-radius: 10px; padding: 13px 16px; border: 1px solid var(--divider); font-size: 13.5px; }
+  .check-box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--divider); flex-shrink: 0; margin-top: 1px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .check-box.checked { background: var(--sage); border-color: var(--sage); }
+  .check-box.checked::after { content: '✓'; color: white; font-size: 13px; font-weight: 700; }
+  .check-txt strong { display: block; font-size: 13.5px; color: var(--bark); margin-bottom: 3px; }
+  .check-txt span { font-size: 12.5px; color: var(--bark-light); line-height: 1.6; }
+
+  /* Teacher Notes */
+  .tn-block { background: white; border-radius: 14px; border: 1px solid var(--divider); margin-bottom: 28px; overflow: hidden; }
+  .tn-header { background: var(--bark); color: white; padding: 14px 22px; font-size: 15px; font-weight: 700; }
+  .tn-header span { opacity: 0.6; font-size: 12px; font-weight: 400; margin-left: 10px; }
+  .tn-body { padding: 20px 22px; font-size: 13.5px; line-height: 1.8; color: var(--bark); }
+  .tn-body h4 { font-size: 13px; font-weight: 700; color: var(--sage-deep); margin: 16px 0 6px; padding-left: 10px; border-left: 3px solid var(--sage); }
+  .tn-body h4:first-child { margin-top: 0; }
+  .tn-body p { margin-bottom: 10px; color: var(--bark-light); }
+  .tn-body ul { padding-left: 18px; color: var(--bark-light); margin-bottom: 10px; }
+  .tn-body ul li { margin-bottom: 5px; }
+  .tn-body strong { color: var(--bark); }
+  .tn-caution { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: var(--bark-light); margin-top: 14px; }
+  .tn-caution strong { color: var(--terra); }
+
+  /* ── BLACKBOARD ── */
+  .blackboard {
+    background: #1e3a2f;
+    border-radius: 16px;
+    padding: 32px 36px 36px;
+    min-height: 480px;
+    position: relative;
+    font-family: 'Noto Sans TC', sans-serif;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.15);
+    border: 4px solid #2d4a3a;
+    overflow: hidden;
+  }
+  .blackboard::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      transparent,
+      transparent 39px,
+      rgba(255,255,255,0.04) 39px,
+      rgba(255,255,255,0.04) 40px
+    );
+    pointer-events: none;
+  }
+  .bb-toolbar {
+    display: flex; gap: 10px; align-items: center;
+    margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .bb-title {
+    font-size: 13px; color: rgba(255,255,255,0.4);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-right: auto;
+  }
+  .bb-btn {
+    padding: 6px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7);
+    font-size: 12px; cursor: pointer; font-family: inherit;
+    transition: all 0.15s;
+  }
+  .bb-btn:hover { background: rgba(255,255,255,0.15); color: white; }
+  .bb-btn.active { background: rgba(139,158,126,0.4); border-color: rgba(139,158,126,0.6); color: #c8d5c0; }
+
+  .chalk-colors { display: flex; gap: 6px; align-items: center; }
+  .chalk-dot {
+    width: 18px; height: 18px; border-radius: 50%; cursor: pointer;
+    border: 2px solid transparent; transition: all 0.15s;
+  }
+  .chalk-dot:hover, .chalk-dot.selected { border-color: white; transform: scale(1.2); }
+  .chalk-dot.white { background: rgba(255,255,255,0.85); }
+  .chalk-dot.yellow { background: #f5d76e; }
+  .chalk-dot.pink { background: #f0a0a0; }
+  .chalk-dot.cyan { background: #88d8d8; }
+  .chalk-dot.sage { background: #8B9E7E; }
+
+  .bb-canvas {
+    width: 100%;
+    min-height: 380px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: rgba(255,255,255,0.85);
+    font-size: 22px;
+    line-height: 40px;
+    font-family: 'Noto Sans TC', sans-serif;
+    resize: none;
+    caret-color: rgba(255,255,255,0.8);
+    text-shadow: 0 0 8px rgba(255,255,255,0.15);
+    letter-spacing: 0.03em;
+  }
+  .bb-canvas::placeholder { color: rgba(255,255,255,0.18); font-size: 18px; }
+
+  .bb-canvas.yellow { color: #f5d76e; text-shadow: 0 0 8px rgba(245,215,110,0.2); }
+  .bb-canvas.pink   { color: #f0a0a0; text-shadow: 0 0 8px rgba(240,160,160,0.2); }
+  .bb-canvas.cyan   { color: #88d8d8; text-shadow: 0 0 8px rgba(136,216,216,0.2); }
+  .bb-canvas.sage   { color: #c8d5c0; text-shadow: 0 0 8px rgba(200,213,192,0.2); }
+
+  .bb-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+  .bb-date { font-size: 12px; color: rgba(255,255,255,0.25); }
+  .bb-eraser {
+    padding: 6px 16px; border-radius: 6px;
+    background: rgba(193,127,89,0.2); border: 1px solid rgba(193,127,89,0.4);
+    color: var(--terra-pale); font-size: 12px; cursor: pointer;
+    font-family: inherit; transition: all 0.15s;
+  }
+  .bb-eraser:hover { background: rgba(193,127,89,0.35); }
+
+  /* Week table */
+  .week-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 16px 0; }
+  .week-table th { background: var(--bark); color: white; padding: 9px 12px; text-align: center; font-size: 12px; }
+  .week-table th:first-child { border-radius: 8px 0 0 0; text-align: left; }
+  .week-table th:last-child { border-radius: 0 8px 0 0; }
+  .week-table td { padding: 9px 12px; border-bottom: 1px solid var(--divider); text-align: center; }
+  .week-table td:first-child { text-align: left; font-weight: 600; color: var(--bark); }
+  .week-table tr:last-child td { border-bottom: none; }
+  .week-table tr:nth-child(even) td { background: #F9F7F4; }
+  .num-ok { color: var(--sage-deep); font-weight: 700; }
+  .num-warn { color: #B94040; font-weight: 700; }
+  .num-mid { color: #A06020; font-weight: 700; }
+
+  /* Divider */
+  .section-divider { border: none; border-top: 1px dashed var(--divider); margin: 20px 0; }
+
+  /* Footer */
+  .footer { text-align: center; margin-top: 60px; font-size: 12px; color: var(--bark-light); border-top: 1px solid var(--divider); padding-top: 24px; }
+
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; }
+    .cover h1 { font-size: 1.7rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    .bb-canvas { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="cover">
+  <div class="cover-label">Abby 營養師 ✦ 個人課程</div>
+  <h1>Jade 的<br><em>第三次課程</em></h1>
+  <div class="cover-meta">
+    <span>2026 / 07 / 06</span>
+    <span>161 cm ／ 約 72.5 kg</span>
+    <span>46 歲</span>
+    <span>Session 03</span>
+  </div>
+</div>
+
+<!-- Tab Bar -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('course', event)">📋 課程內容</button>
+  <button class="tab-btn" onclick="switchTab('blackboard', event)">🖊 課堂黑板</button>
+  <button class="tab-btn" onclick="switchTab('notes', event)">🔬 老師備忘</button>
+</div>
+
+<!-- ══════════════ COURSE TAB ══════════════ -->
+<div id="tab-course" class="tab-panel active">
+
+<!-- 開場 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">✦</div>
+    <h2>今天我們要做什麼</h2>
+  </div>
+  <div class="card-grid">
+    <div class="card highlight">
+      <div class="card-icon">📊</div>
+      <h3>看這一個月的體態進展</h3>
+      <p>體重趨勢、週均分析，還有身體真正告訴我們的訊息。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">🍽️</div>
+      <h3>飲食分析</h3>
+      <p>做得好的地方繼續，找出讓進度卡住的飲食模式。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">🚀</div>
+      <h3>啟動下一關的策略</h3>
+      <p>三件具體的事，讓身體重新開始動。</p>
+    </div>
+  </div>
+  <div class="warn-box">
+    <div class="wTitle">先說最重要的事</div>
+    這四週你沒有胖回去、飲食品質維持住了、活動量也在——這些都是成績。今天的目標不是從頭來，而是<strong>把已經走到這裡的動能，重新點火</strong>。
+  </div>
+</div>
+
+<!-- 1. 體重趨勢 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>這四週，體重在告訴我們什麼</h2>
+    <span class="sub">週均趨勢判讀</span>
+  </div>
+
+  <div class="metric-viz">
+    <p style="font-size:14px;font-weight:700;margin-bottom:16px;">週均體重趨勢</p>
+    <div class="metric-row">
+      <div class="metric-label">課前基準（6/2–6/7）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:100%"></div></div>
+      <div class="metric-val">72.0 kg</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">第一週（6/9–6/14）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:99%"></div></div>
+      <div class="metric-val">72.6 kg</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">第二週（6/15–6/21）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:98%"></div></div>
+      <div class="metric-val">72.5 kg</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">第三週（6/22–6/28）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-terra" style="width:99%"></div></div>
+      <div class="metric-val">72.7 kg</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">第四週（6/29–7/3）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-terra" style="width:100%"></div></div>
+      <div class="metric-val">73.1 kg</div>
+    </div>
+    <hr class="section-divider">
+    <div class="metric-row">
+      <div class="metric-label">距離目標 65 kg</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-blue" style="width:30%"></div></div>
+      <div class="metric-val" style="color:#5B82A6;">還有 7–8 kg</div>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">📊 這些數字代表什麼？</div>
+    <ul>
+      <li><strong>四週週均約 72.5–73.1 kg：</strong>沒有往上衝，但也沒有繼續往下走——這是第一個真正的平台期</li>
+      <li><strong>7/1 單日跳到 74.1 kg：</strong>屬於一日性波動，隔天即回落，不代表退步</li>
+      <li><strong>生理期（6/20）前後體重偏高：</strong>6/18–6/22 的體重升高有一部分是生理期水腫，這是正常現象，排除這個因素後週均約在 72.2–72.5</li>
+    </ul>
+    <p style="margin-top:8px;"><strong>結論：沒有退步，但需要一些調整來打破這個平台。</strong></p>
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">什麼是「平台期」？身體在做什麼？</div>
+    你的身體很聰明。當它連續幾週都在同樣的熱量下運作，它會把這個熱量當作「正常」，然後把代謝速率往下調整來配合。這不是失敗，是身體的適應機制——<strong>打破它的方法不是再少吃，而是給身體新的刺激。</strong>
+  </div>
+</div>
+
+<!-- 2. 飲食分析 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>飲食分析</h2>
+    <span class="sub">有記錄的六天觀察</span>
+  </div>
+
+  <table class="diet-obs">
+    <thead>
+      <tr>
+        <th>觀察到的模式</th>
+        <th>程度</th>
+        <th>說明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>烹調方式維持得很好</strong><br>昆布鍋、烤、燙、蒸為主，炸物幾乎沒有出現</td>
+        <td><span class="tag tag-green">非常好</span></td>
+        <td>這個習慣從第一次課程就建立了，而且維持下來——這是最難的部分</td>
+      </tr>
+      <tr>
+        <td><strong>蔬菜種類豐富</strong><br>空心菜、花椰菜、生菜、韓式泡菜、藜麥都有出現</td>
+        <td><span class="tag tag-green">非常好</span></td>
+        <td>纖維量和種類都足夠，對腸胃健康和血糖穩定都有幫助</td>
+      </tr>
+      <tr>
+        <td><strong>Omega-3 持續進來</strong><br>鮭魚、鯛魚、鮪魚生魚片都有吃到</td>
+        <td><span class="tag tag-green">達標</span></td>
+        <td>抗發炎飲食的重要環節，繼續維持</td>
+      </tr>
+      <tr>
+        <td><strong>熱量整體偏低</strong><br>六天均值約 1,225 kcal，低於目標 1,500 kcal 近 300 kcal</td>
+        <td><span class="tag tag-red">需要調整</span></td>
+        <td>這是平台期的主要原因——吃太少讓身體開始省電，而不是繼續燃燒</td>
+      </tr>
+      <tr>
+        <td><strong>蛋白質接近但未穩定達標</strong><br>均值約 107g，目標 120g，差距 13g</td>
+        <td><span class="tag tag-amber">可以加強</span></td>
+        <td>有記錄的天數表現不錯，但空白日的狀況不明</td>
+      </tr>
+      <tr>
+        <td><strong>碳水部分日子偏低</strong><br>6/15 只有 75g、6/24 只有 65g</td>
+        <td><span class="tag tag-amber">可以留意</span></td>
+        <td>碳水太低加上有需要重訓，身體可能優先分解肌肉作為能量來源</td>
+      </tr>
+      <tr>
+        <td><strong>空白日超過三週</strong><br>只有六天有完整記錄，其餘飲食狀況不明</td>
+        <td><span class="tag tag-amber">可以討論</span></td>
+        <td>「沒有紀錄的日子，真正吃了什麼？」這是這次要一起面對的問題</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="know-box">
+    <div class="kbTitle">💡 有記錄 vs 沒記錄的差距</div>
+    <p>你有記錄的日子，飲食品質都很好——蛋白質到位、烹調方式乾淨、蔬菜足夠。問題在於<strong>沒有記錄的三週裡，飲食是不是也維持了同樣的品質？</strong></p>
+    <p>這不是要批評你，而是一個值得誠實回答的問題，因為答案直接影響接下來的策略。</p>
+  </div>
+</div>
+
+<!-- 3. 為什麼卡住了 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>為什麼會卡在這裡</h2>
+    <span class="sub">三個互相影響的原因</span>
+  </div>
+
+  <div class="chain">
+    <div class="chain-item amber">
+      <div class="ci-top">熱量</div>
+      <div class="ci-main">長期偏低</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item red">
+      <div class="ci-top">身體偵測到</div>
+      <div class="ci-main">資源不足</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item red">
+      <div class="ci-top">基礎代謝</div>
+      <div class="ci-main">往下調整</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item red">
+      <div class="ci-top">即使吃少</div>
+      <div class="ci-main">赤字縮小</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item amber">
+      <div class="ci-top">體重</div>
+      <div class="ci-main">停止下降</div>
+    </div>
+  </div>
+
+  <div class="scenario-list">
+    <div class="scenario">
+      <div class="scenario-num">1</div>
+      <div>
+        <h4>熱量吃太少，身體進入省電模式</h4>
+        <p>目前均值約 1,225 kcal，持續了四到六週。身體的代謝速率已經悄悄往下調，即使你吃同樣少，消耗也變少了。</p>
+        <div class="strategy">
+          <strong>→ 解法：往上吃，不是繼續往下壓</strong>
+          把熱量拉回 1,400–1,500 kcal，讓身體重新相信「資源夠用」，代謝才會回升。
+        </div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num">2</div>
+      <div>
+        <h4>沒有重訓，身體沒有保留肌肉的理由</h4>
+        <p>熱量赤字期間，身體會優先保留脂肪作為能量儲備，犧牲肌肉。重訓的訊號是讓身體知道「肌肉有用，不能裁掉」。</p>
+        <div class="strategy">
+          <strong>→ 解法：每週一次重訓，任何形式都可以</strong>
+          不需要去健身房，啞鈴深蹲、徒手訓練都算。重點是給肌肉「壓力刺激」。
+        </div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num">3</div>
+      <div>
+        <h4>空白日的飲食失去結構</h4>
+        <p>有記錄就吃得好，沒記錄就可能回到舊模式——這是「行為需要外部結構支撐」的正常現象，不是意志力的問題。</p>
+        <div class="strategy">
+          <strong>→ 解法：不需要每天記，但要有「固定菜單」當錨點</strong>
+          不用想吃什麼，照著菜單選就好。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. 三件事 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num terra">4</div>
+    <h2>接下來四週，做這三件事</h2>
+    <span class="sub">具體、可執行、不需要很努力</span>
+  </div>
+
+  <div class="warn-box" style="margin-bottom:20px;">
+    <div class="wTitle">🎯 四週挑戰目標</div>
+    現在週均約 72.5 kg → 下次課程（8月3日）目標週均 <strong>70 kg 左右</strong><br>
+    做到這三件事，你的身體會重新動起來。
+  </div>
+
+  <ul class="action-list">
+    <li>
+      <strong>熱量往 1,400–1,500 kcal 靠攏，主要從蛋白質補</strong>
+      <span>目前均值 1,225 kcal，需要多吃約 200 kcal。不是叫你多吃澱粉，而是讓蛋白質補足這個缺口——雞胸多 50g、豆漿多一杯、蛋白粉每天固定加一次，就差不多了。</span>
+    </li>
+    <li>
+      <strong>蛋白質每天穩定在 110–120g</strong>
+      <span>高蛋白粉每天固定一次（+20–25g）、豆漿量拉到 400–500cc（+5–8g）、午晚餐肉類多抓 30–50g（+7–10g）。三個加起來就補齊了，而且都是你已經在吃的東西。</span>
+    </li>
+    <li>
+      <strong>每週重訓一次，用朋友綁定</strong>
+      <span>你的朋友叫你去走路你就去——這個力量很強。可以請他順便拉你去做一次重訓或徒手訓練。每週一次，任何形式，讓肌肉知道它有用。</span>
+    </li>
+  </ul>
+
+  <div class="know-box" style="margin-top:20px;">
+    <div class="kbTitle">🍱 懶人版固定菜單參考</div>
+    <p>「不知道吃什麼」的時候，照這個選就好：</p>
+    <table class="week-table" style="margin-top:10px;">
+      <thead>
+        <tr><th>餐次</th><th>選項 A</th><th>選項 B</th><th>最懶的選擇</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>早餐</td>
+          <td>水煮蛋＋豆漿＋優格</td>
+          <td>麥味登蛋白堡</td>
+          <td>水煮蛋＋蛋白飲</td>
+        </tr>
+        <tr>
+          <td>午餐</td>
+          <td>超商健康餐＋水煮蛋</td>
+          <td>昆布鍋（雞胸＋豆腐＋菜）</td>
+          <td>竹筍蒸鮮（選雞＋生魚片）</td>
+        </tr>
+        <tr>
+          <td>晚餐</td>
+          <td>雞胸＋燙青菜＋白飯半碗</td>
+          <td>蛤蜊湯＋魚＋菜</td>
+          <td>茶葉蛋＋豆漿＋超商沙拉</td>
+        </tr>
+        <tr>
+          <td>點心（需要時）</td>
+          <td>希臘優格＋蛋白粉</td>
+          <td>毛豆一小碗</td>
+          <td>茶葉蛋一顆</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- 5. 關於紀錄 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>飲食紀錄，這次怎麼做</h2>
+    <span class="sub">不是每天都記，但要有節點</span>
+  </div>
+
+  <p style="margin-bottom:16px;color:var(--bark-light);font-size:14px;">
+    上次建議你「可以試著不記錄」，發現這個方式對你目前的階段還太早放手。<br>
+    <strong>不是說你自律性不夠——而是你現在還需要一個外部結構來支撐飲食意識。</strong>這很正常。
+  </p>
+
+  <div class="scenario-list">
+    <div class="scenario">
+      <div class="scenario-num sage">A</div>
+      <div>
+        <h4>平日：固定菜單＋記重點就好</h4>
+        <p>照固定菜單吃的那幾天，只需要記「如常」或寫食物名稱，不用查克數——你已經知道那些食物大概是多少了。</p>
+        <div class="strategy">
+          <strong>→ 主要記錄：偏離固定菜單的那些選擇</strong>
+          比方說今天吃了牛肉丸、喝了含糖飲料，這些才是需要記的，讓自己看到頻率。
+        </div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num sage">B</div>
+      <div>
+        <h4>每週三：花十分鐘回顧這一週</h4>
+        <p>不需要每天都記得完美，但週三晚上花十分鐘，想一下這週蛋白質有沒有到、有沒有連續三天都沒吃好。</p>
+        <div class="strategy">
+          <strong>→ 週三是你的「查核點」，不是判決日</strong>
+          發現哪天吃得鬆，後面補回來就好，不需要自責。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. 下次追蹤清單 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num terra">6</div>
+    <h2>下次課程追蹤項目</h2>
+    <span class="sub">7月6日——把這些帶來</span>
+  </div>
+
+  <ul class="check-list" id="checkList">
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>體重：週均有沒有到 70 kg 左右？</strong>
+        <span>繼續每天早上量，看的是週均不是單日數字</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>腰圍：有沒有量？數字是多少？</strong>
+        <span>這次務必要量，明天早上量，皮尺放在顯眼的地方</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>重訓：這四週做了幾次？</strong>
+        <span>哪怕一次也算，有做就是成功</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>熱量：大概有沒有吃到 1,400 kcal？</strong>
+        <span>不需要每天都到，但大部分的天要接近</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>蛋白質：每天有沒有到 110g？</strong>
+        <span>高蛋白粉每天加一次是最容易的方法</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>魚油：有規律在吃嗎？</strong>
+        <span>隨最大餐飯後服用就好</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>脹氣問題：蛋白粉有換豌豆蛋白試試嗎？</strong>
+        <span>如果還在不舒服，下次一起討論替代方案</span>
+      </div>
+    </li>
+  </ul>
+
+  <div class="boundary">
+    <h3>給自己的四週承諾</h3>
+    <ul>
+      <li>熱量吃夠 1,400 kcal，主要靠蛋白質補</li>
+      <li>每週重訓一次，朋友幫忙監督</li>
+      <li>週三晚上花十分鐘回顧這週的飲食</li>
+      <li>腰圍明天量，下次帶數字來</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- end tab-course -->
+
+<!-- ══════════════ BLACKBOARD TAB ══════════════ -->
+<div id="tab-blackboard" class="tab-panel">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">🖊</div>
+      <h2>課堂黑板</h2>
+      <span class="sub">即時記錄課堂重點</span>
+    </div>
+
+    <div class="blackboard">
+      <div class="bb-toolbar">
+        <span class="bb-title">📋 2026.07.06 Jade × Abby</span>
+        <div class="chalk-colors">
+          <div class="chalk-dot white selected" onclick="setColor('white', this)" title="白色"></div>
+          <div class="chalk-dot yellow" onclick="setColor('yellow', this)" title="黃色"></div>
+          <div class="chalk-dot pink" onclick="setColor('pink', this)" title="粉紅"></div>
+          <div class="chalk-dot cyan" onclick="setColor('cyan', this)" title="青色"></div>
+          <div class="chalk-dot sage" onclick="setColor('sage', this)" title="鼠尾草綠"></div>
+        </div>
+        <button class="bb-btn" onclick="toggleBold()" id="boldBtn">B 粗體</button>
+        <button class="bb-btn" onclick="increaseFontSize()" title="放大字">A+</button>
+        <button class="bb-btn" onclick="decreaseFontSize()" title="縮小字">A-</button>
+      </div>
+
+      <textarea
+        class="bb-canvas"
+        id="bbCanvas"
+        placeholder="在這裡輸入課堂重點關鍵字…&#10;&#10;例如：&#10;平台期 → 身體省電模式&#10;解法：吃夠 1500 kcal&#10;重訓 → 保住肌肉&#10;目標：4週後 70 kg"
+        oninput="saveBB()"
+      ></textarea>
+    </div>
+
+    <div class="bb-footer">
+      <span class="bb-date" id="bbDate"></span>
+      <button class="bb-eraser" onclick="clearBB()">🧹 清除黑板</button>
+    </div>
+
+    <div class="know-box" style="margin-top:20px;">
+      <div class="kbTitle">💡 黑板使用提示</div>
+      <ul>
+        <li>分享螢幕給學生時，切換到這個分頁，直接在上面打字</li>
+        <li>可以換粉筆顏色區分不同主題（白色：主要概念、黃色：重點數字、粉紅：待改善、青色：學生的話）</li>
+        <li>內容會暫存在瀏覽器，關掉分頁前記得截圖</li>
+        <li>字體大小可以用 A+ / A- 調整，讓遠端學生看得清楚</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ NOTES TAB ══════════════ -->
+<div id="tab-notes" class="tab-panel">
+
+  <div class="tn-block">
+    <div class="tn-header">Jade 個性備忘 <span>課程溝通策略</span></div>
+    <div class="tn-body">
+      <h4>核心人格特質</h4>
+      <ul>
+        <li><strong>需要外部結構：</strong>有紀錄就吃得好，沒紀錄就失控——自律動力來自「有系統可以依靠」，不是內在驅動，這不是缺點，是需要對應的策略</li>
+        <li><strong>決策以「方便」為優先：</strong>選牛肉丸是因為快，不是因為想吃——給她一個不用思考的菜單比說教更有效</li>
+        <li><strong>對數字有反應：</strong>她記得自己上次多少公斤、在意蛋白質有沒有到——用具體數字和目標溝通最有效</li>
+        <li><strong>需要被肯定：</strong>她對老師評價很在意，「你這兩週吃得很乾淨」這句話她聽起來很有力量</li>
+        <li><strong>朋友影響力大：</strong>朋友叫她走路她就去——善用這個社交綁定機制</li>
+        <li><strong>好勝心藏得比較深：</strong>說過「希望這是最後一次減肥」——有清楚的長期動機，只是需要被重新點燃</li>
+      </ul>
+      <h4>本次課程溝通策略</h4>
+      <ul>
+        <li><strong>不要說「你鬆懈了」</strong>——說「你卡關了，我們來找原因」，讓她覺得有人和她站在一起而不是被批評</li>
+        <li><strong>把調整包裝成「下一關」</strong>——「前兩個月過了第一關，現在進入第二關，規則稍微不一樣」</li>
+        <li><strong>用她自己說的話</strong>——她說「吃太少了卻沒有瘦」，這就是今天的切入點，從她的觀察出發</li>
+        <li><strong>三件事說清楚就好</strong>——不要給她太多任務，她的執行力需要聚焦</li>
+        <li><strong>讓她自己說出承諾</strong>——「你覺得這四週做得到嗎？」她說出來的承諾比你說的更有效</li>
+      </ul>
+      <div class="tn-caution">
+        <strong>最大風險：</strong>她可能有點不好意思說這四週有些天吃得比較亂。給她空間說，不要急著填補沉默，讓她自己說出來比你猜測更好。
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">飲食詳細分析 <span>自用參考，課堂不逐日展示</span></div>
+    <div class="tn-body">
+      <h4>六天記錄的估算數據</h4>
+      <table class="week-table">
+        <thead>
+          <tr><th>日期</th><th>熱量</th><th>蛋白質</th><th>碳水</th><th>脂肪</th><th>特別觀察</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>6/14</td>
+            <td class="num-mid">~1,550</td>
+            <td class="num-mid">~110g</td>
+            <td class="num-ok">~150g</td>
+            <td class="num-ok">~52g</td>
+            <td>鹽酥雞出現，這天熱量相對最接近目標</td>
+          </tr>
+          <tr>
+            <td>6/15</td>
+            <td class="num-mid">~1,350</td>
+            <td class="num-mid">~110g</td>
+            <td class="num-warn">~75g</td>
+            <td class="num-ok">~62g</td>
+            <td>碳水明顯偏低</td>
+          </tr>
+          <tr>
+            <td>6/16</td>
+            <td class="num-mid">~1,250</td>
+            <td class="num-ok">~120g</td>
+            <td class="num-mid">~85g</td>
+            <td class="num-ok">~40g</td>
+            <td>蛋黃酥（高糖高油），蛋白質那天最接近達標</td>
+          </tr>
+          <tr>
+            <td>6/17</td>
+            <td class="num-warn">~1,150</td>
+            <td class="num-mid">~100g</td>
+            <td class="num-mid">~95g</td>
+            <td class="num-ok">~45g</td>
+            <td>鹼粽未完整計入，實際碳水可能更高</td>
+          </tr>
+          <tr>
+            <td>6/18</td>
+            <td class="num-warn">~1,000</td>
+            <td class="num-warn">~85g</td>
+            <td class="num-mid">~80g</td>
+            <td class="num-warn">~35g</td>
+            <td>這天整體偏低，三大營養素都不足</td>
+          </tr>
+          <tr>
+            <td>6/24</td>
+            <td class="num-warn">~1,050</td>
+            <td class="num-mid">~115g</td>
+            <td class="num-warn">~65g</td>
+            <td class="num-warn">~25g</td>
+            <td>脂肪只有 25g，低於建議下限 40g</td>
+          </tr>
+        </tbody>
+      </table>
+      <h4>需要注意的偏差點</h4>
+      <ul>
+        <li><strong>脂肪 6/24 只有 25g：</strong>建議下限是 40g，低於這個量會影響女性荷爾蒙合成（雌激素、皮質醇調節），長期過低可能影響生理週期</li>
+        <li><strong>碳水 6/15、6/24 偏低：</strong>加上沒有重訓，身體可能選擇分解肌肉作為能量，不利體組成</li>
+        <li><strong>7/1 體重 74.1 kg：</strong>推測是前一晚（6/30）飲食或睡眠問題，隔天即回落至 72.6，屬一日性波動</li>
+      </ul>
+      <div class="tn-caution">
+        <strong>課堂不要逐日展示數字：</strong>重點是讓她理解「吃太少 → 身體省電 → 體重停滯」這個邏輯，而不是讓她看到每一天的分析覺得被盯著。
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">代謝適應學理背景 <span>課程概念的依據</span></div>
+    <div class="tn-body">
+      <h4>代謝適應（Metabolic Adaptation）</h4>
+      <p>持續熱量限制會觸發多個代謝下調機制：基礎代謝率（BMR）下降、甲狀腺素（T3）降低、瘦素（Leptin）減少。研究顯示，持續 6 週以上的熱量赤字，代謝速率可能下降 10–15%，即所謂的「代謝適應」或「代謝韌性」。</p>
+      <h4>對 Jade 的意義</h4>
+      <ul>
+        <li>她的 TDEE 原本約 1,750–1,800 kcal（輕度活動），持續吃 1,200–1,300 kcal 長達 4–6 週後，實際代謝率可能已降至 1,500–1,600 kcal</li>
+        <li>這時即使吃 1,200 kcal，赤字也只剩 300–400 kcal，瘦的速度當然趨緩</li>
+        <li>解法是把熱量拉回 1,400–1,500 kcal，同時加入重訓刺激，讓代謝重置</li>
+      </ul>
+      <h4>課堂怎麼說</h4>
+      <p>用「薪水」比喻：「身體就像一個員工，你長期給它領低薪，它就開始做事做少一點來撐過去。要讓它重新認真工作，要把薪水拉回來，同時給它一個它非努力不可的任務（重訓）。」</p>
+    </div>
+  </div>
+
+</div><!-- end tab-notes -->
+
+<script>
+function switchTab(name, event) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (event && event.target) event.target.classList.add('active');
+  if (name === 'blackboard') initBB();
+}
+
+// Check list
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+}
+
+// Blackboard
+let currentColor = 'white';
+let isBold = false;
+let currentFontSize = 22;
+
+function initBB() {
+  const saved = localStorage.getItem('jade_s3_bb');
+  if (saved) document.getElementById('bbCanvas').value = saved;
+  const dateEl = document.getElementById('bbDate');
+  if (dateEl) {
+    const now = new Date();
+    dateEl.textContent = now.toLocaleDateString('zh-TW') + ' — 課堂記錄';
+  }
+}
+
+function setColor(color, el) {
+  currentColor = color;
+  document.querySelectorAll('.chalk-dot').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+  const canvas = document.getElementById('bbCanvas');
+  canvas.className = 'bb-canvas ' + (color === 'white' ? '' : color);
+}
+
+function toggleBold() {
+  isBold = !isBold;
+  const btn = document.getElementById('boldBtn');
+  btn.classList.toggle('active', isBold);
+  document.getElementById('bbCanvas').style.fontWeight = isBold ? '700' : '400';
+}
+
+function increaseFontSize() {
+  currentFontSize = Math.min(currentFontSize + 2, 40);
+  document.getElementById('bbCanvas').style.fontSize = currentFontSize + 'px';
+}
+
+function decreaseFontSize() {
+  currentFontSize = Math.max(currentFontSize - 2, 14);
+  document.getElementById('bbCanvas').style.fontSize = currentFontSize + 'px';
+}
+
+function saveBB() {
+  localStorage.setItem('jade_s3_bb', document.getElementById('bbCanvas').value);
+}
+
+function clearBB() {
+  if (confirm('確定要清除黑板嗎？')) {
+    document.getElementById('bbCanvas').value = '';
+    localStorage.removeItem('jade_s3_bb');
+  }
+}
+
+// Init date on load
+window.addEventListener('load', () => {
+  const dateEl = document.getElementById('bbDate');
+  if (dateEl) {
+    const now = new Date();
+    dateEl.textContent = now.toLocaleDateString('zh-TW') + ' — 課堂記錄';
+  }
+});
+</script>
+
+<div class="footer">
+  Abby 營養師 ✦ abbyeatlife.github.io<br>
+  本資料為個人課程使用，請勿轉載
+</div>
+
+</body>
+</html>
