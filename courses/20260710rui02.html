@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>瑞 第二次課程 ── Abby 營養師</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:       #8B9E7E;
+    --sage-pale:  #C8D5C0;
+    --sage-deep:  #5C7252;
+    --terra:      #C17F59;
+    --terra-pale: #E8C4A8;
+    --cream:      #FDFBF7;
+    --bark:       #3D3229;
+    --bark-light: #6B5B4E;
+    --divider:    #E2DDD6;
+    --warn-bg:    #FEF6EE;
+    --warn-border:#E8B88A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    color: var(--bark);
+    font-family: 'Noto Sans TC', 'PingFang TC', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 28px 80px;
+  }
+
+  /* Cover */
+  .cover {
+    background: var(--bark);
+    border-radius: 16px;
+    padding: 48px 40px 40px;
+    margin-bottom: 48px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(193,127,89,0.15);
+    top: -80px; right: -60px;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(139,158,126,0.12);
+    bottom: -20px; left: 80px;
+  }
+  .cover-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; margin-bottom: 12px; }
+  .cover h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 2.2rem; font-weight: 700; line-height: 1.25; margin-bottom: 16px; }
+  .cover h1 em { font-style: normal; color: var(--terra-pale); }
+  .cover-meta { display: flex; gap: 24px; flex-wrap: wrap; font-size: 13px; opacity: 0.7; }
+  .cover-meta span::before { content: '· '; }
+
+  /* Tab Bar */
+  .tab-bar { display: flex; gap: 8px; margin-bottom: 36px; border-bottom: 2px solid var(--divider); overflow-x: auto; }
+  .tab-btn { padding: 10px 20px; border: none; background: none; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 600; color: var(--bark-light); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
+  .tab-btn.active { color: var(--sage-deep); border-bottom-color: var(--sage-deep); }
+  .tab-btn:hover:not(.active) { color: var(--bark); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Section */
+  .section { margin-bottom: 48px; }
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--divider); }
+  .section-num { width: 36px; height: 36px; border-radius: 50%; background: var(--sage); color: white; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .section-num.terra { background: var(--terra); }
+  .section-header h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; color: var(--bark); }
+  .section-header .sub { font-size: 12px; color: var(--bark-light); margin-left: auto; letter-spacing: 0.05em; white-space: nowrap; }
+
+  /* Cards */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px; }
+  .card { background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--divider); }
+  .card-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .card h3 { font-size: 14px; font-weight: 700; color: var(--bark); margin-bottom: 6px; }
+  .card p { font-size: 13px; color: var(--bark-light); line-height: 1.6; }
+  .card.highlight { border-color: var(--sage); background: #F4F7F2; }
+  .card.highlight h3 { color: var(--sage-deep); }
+  .card.terra { border-color: var(--terra-pale); background: var(--warn-bg); }
+  .card.terra h3 { color: var(--terra); }
+
+  /* Metric Viz */
+  .metric-viz { background: white; border-radius: 12px; border: 1px solid var(--divider); padding: 20px; margin: 16px 0; }
+  .metric-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .metric-row:last-child { margin-bottom: 0; }
+  .metric-label { font-size: 12.5px; color: var(--bark-light); width: 160px; flex-shrink: 0; }
+  .metric-bar-bg { flex: 1; height: 18px; background: #EBF3E8; border-radius: 9px; overflow: hidden; }
+  .metric-bar-fill { height: 100%; border-radius: 9px; }
+  .fill-sage { background: var(--sage); }
+  .fill-terra { background: #D4846A; }
+  .fill-blue { background: #5B82A6; }
+  .fill-green { background: #4a9e6a; }
+  .metric-val { font-size: 12.5px; font-weight: 700; color: var(--bark); width: 90px; text-align: right; flex-shrink: 0; }
+  .metric-val.red { color: #B94040; }
+  .metric-val.green { color: var(--sage-deep); }
+  .metric-val.amber { color: #A06020; }
+
+  /* Table */
+  .diet-obs { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-bottom: 20px; }
+  .diet-obs th { background: var(--sage); color: white; text-align: left; padding: 10px 14px; font-weight: 600; font-size: 12px; letter-spacing: 0.04em; }
+  .diet-obs th:first-child { border-radius: 8px 0 0 0; }
+  .diet-obs th:last-child  { border-radius: 0 8px 0 0; }
+  .diet-obs td { padding: 11px 14px; border-bottom: 1px solid var(--divider); vertical-align: top; }
+  .diet-obs tr:last-child td { border-bottom: none; }
+  .diet-obs tr:nth-child(even) td { background: #F9F7F4; }
+  .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+  .tag-red   { background: #FDECEA; color: #B94040; }
+  .tag-amber { background: #FEF4E5; color: #A06020; }
+  .tag-green { background: #EBF3E8; color: #4A7C40; }
+
+  /* Know Box */
+  .know-box { background: white; border-left: 4px solid var(--sage); border-radius: 0 12px 12px 0; padding: 18px 20px; margin: 16px 0; font-size: 13.5px; }
+  .know-box .kbTitle { font-weight: 700; color: var(--sage-deep); margin-bottom: 6px; font-size: 14px; }
+  .know-box ul { padding-left: 18px; color: var(--bark-light); }
+  .know-box ul li { margin-bottom: 4px; }
+  .know-box p { color: var(--bark-light); margin-bottom: 8px; }
+
+  /* Warn Box */
+  .warn-box { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 12px; padding: 16px 20px; margin: 16px 0; font-size: 13.5px; }
+  .warn-box .wTitle { font-weight: 700; color: var(--terra); margin-bottom: 6px; }
+
+  /* Chain */
+  .chain { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 20px 0; font-size: 13px; }
+  .chain-item { background: white; border: 1.5px solid var(--divider); border-radius: 8px; padding: 8px 14px; text-align: center; min-width: 88px; }
+  .chain-item .ci-top { font-size: 11px; color: var(--bark-light); }
+  .chain-item .ci-main { font-weight: 700; font-size: 13.5px; color: var(--bark); }
+  .chain-item.red { border-color: #F0C8C0; background: #FEF5F3; }
+  .chain-item.red .ci-main { color: #B94040; }
+  .chain-item.green { border-color: var(--sage-pale); background: #F4F7F2; }
+  .chain-item.green .ci-main { color: var(--sage-deep); }
+  .chain-item.amber { border-color: #F0D8B0; background: #FEF8EE; }
+  .chain-item.amber .ci-main { color: #A06020; }
+  .chain-arrow { color: var(--terra); font-size: 1.1rem; font-weight: 700; }
+
+  /* Action List */
+  .action-list { counter-reset: action; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .action-list li { counter-increment: action; display: flex; gap: 14px; align-items: flex-start; background: white; border-radius: 12px; padding: 16px 18px; border: 1px solid var(--divider); }
+  .action-list li::before { content: counter(action); width: 28px; height: 28px; border-radius: 50%; background: var(--terra); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .action-list li strong { display: block; font-size: 14px; margin-bottom: 4px; color: var(--bark); }
+  .action-list li span { font-size: 13px; color: var(--bark-light); line-height: 1.65; }
+
+  /* Scenario */
+  .scenario-list { display: flex; flex-direction: column; gap: 14px; margin: 16px 0; }
+  .scenario { background: white; border-radius: 12px; padding: 16px 18px; border: 1px solid var(--divider); display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
+  .scenario-num { width: 32px; height: 32px; border-radius: 50%; background: var(--bark); color: var(--terra-pale); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .scenario-num.sage { background: var(--sage); color: white; }
+  .scenario h4 { font-size: 14px; font-weight: 700; color: var(--bark); margin-bottom: 4px; }
+  .scenario p { font-size: 13px; color: var(--bark-light); line-height: 1.65; }
+  .scenario .strategy { margin-top: 8px; background: #F4F7F2; border-left: 3px solid var(--sage); border-radius: 0 6px 6px 0; padding: 8px 12px; font-size: 13px; color: var(--sage-deep); }
+  .scenario .strategy strong { font-weight: 700; display: block; margin-bottom: 2px; }
+
+  /* Boundary */
+  .boundary { background: var(--bark); color: white; border-radius: 12px; padding: 20px 24px; margin-top: 24px; font-size: 13.5px; }
+  .boundary h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--terra-pale); }
+  .boundary ul { padding-left: 18px; line-height: 1.8; opacity: 0.88; }
+
+  /* Check list */
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+  .check-list li { display: flex; align-items: flex-start; gap: 12px; background: white; border-radius: 10px; padding: 13px 16px; border: 1px solid var(--divider); font-size: 13.5px; }
+  .check-box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--divider); flex-shrink: 0; margin-top: 1px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .check-box.checked { background: var(--sage); border-color: var(--sage); }
+  .check-box.checked::after { content: '✓'; color: white; font-size: 13px; font-weight: 700; }
+  .check-txt strong { display: block; font-size: 13.5px; color: var(--bark); margin-bottom: 3px; }
+  .check-txt span { font-size: 12.5px; color: var(--bark-light); line-height: 1.6; }
+
+  /* Teacher Notes */
+  .tn-block { background: white; border-radius: 14px; border: 1px solid var(--divider); margin-bottom: 28px; overflow: hidden; }
+  .tn-header { background: var(--bark); color: white; padding: 14px 22px; font-size: 15px; font-weight: 700; }
+  .tn-header span { opacity: 0.6; font-size: 12px; font-weight: 400; margin-left: 10px; }
+  .tn-body { padding: 20px 22px; font-size: 13.5px; line-height: 1.8; color: var(--bark); }
+  .tn-body h4 { font-size: 13px; font-weight: 700; color: var(--sage-deep); margin: 16px 0 6px; padding-left: 10px; border-left: 3px solid var(--sage); }
+  .tn-body h4:first-child { margin-top: 0; }
+  .tn-body p { margin-bottom: 10px; color: var(--bark-light); }
+  .tn-body ul { padding-left: 18px; color: var(--bark-light); margin-bottom: 10px; }
+  .tn-body ul li { margin-bottom: 5px; }
+  .tn-body strong { color: var(--bark); }
+  .tn-caution { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: var(--bark-light); margin-top: 14px; }
+  .tn-caution strong { color: var(--terra); }
+
+  /* Week table */
+  .week-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 16px 0; }
+  .week-table th { background: var(--bark); color: white; padding: 9px 12px; text-align: center; font-size: 12px; }
+  .week-table th:first-child { border-radius: 8px 0 0 0; text-align: left; }
+  .week-table th:last-child { border-radius: 0 8px 0 0; }
+  .week-table td { padding: 9px 12px; border-bottom: 1px solid var(--divider); text-align: center; }
+  .week-table td:first-child { text-align: left; color: var(--bark); }
+  .week-table tr:last-child td { border-bottom: none; }
+  .week-table tr:nth-child(even) td { background: #F9F7F4; }
+  .num-ok   { color: #3a8a50; font-weight: 700; }
+  .num-warn { color: #B94040; font-weight: 700; }
+  .num-mid  { color: #A06020; font-weight: 700; }
+
+  /* Blackboard */
+  .blackboard {
+    background: #1e3a2f;
+    border-radius: 16px;
+    padding: 32px 36px 36px;
+    min-height: 480px;
+    position: relative;
+    font-family: 'Noto Sans TC', sans-serif;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.15);
+    border: 4px solid #2d4a3a;
+    overflow: hidden;
+  }
+  .blackboard::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(transparent, transparent 39px, rgba(255,255,255,0.04) 39px, rgba(255,255,255,0.04) 40px);
+    pointer-events: none;
+  }
+  .bb-toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .bb-title { font-size: 13px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-right: auto; }
+  .bb-btn { padding: 6px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); font-size: 12px; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+  .bb-btn:hover { background: rgba(255,255,255,0.15); color: white; }
+  .bb-btn.active { background: rgba(139,158,126,0.4); border-color: rgba(139,158,126,0.6); color: #c8d5c0; }
+  .chalk-colors { display: flex; gap: 6px; align-items: center; }
+  .chalk-dot { width: 18px; height: 18px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all 0.15s; }
+  .chalk-dot:hover, .chalk-dot.selected { border-color: white; transform: scale(1.2); }
+  .chalk-dot.white  { background: rgba(255,255,255,0.85); }
+  .chalk-dot.yellow { background: #f5d76e; }
+  .chalk-dot.pink   { background: #f0a0a0; }
+  .chalk-dot.cyan   { background: #88d8d8; }
+  .chalk-dot.sage   { background: #8B9E7E; }
+  .bb-canvas { width: 100%; min-height: 380px; background: transparent; border: none; outline: none; color: rgba(255,255,255,0.85); font-size: 22px; line-height: 40px; font-family: 'Noto Sans TC', sans-serif; resize: none; caret-color: rgba(255,255,255,0.8); text-shadow: 0 0 8px rgba(255,255,255,0.15); letter-spacing: 0.03em; }
+  .bb-canvas::placeholder { color: rgba(255,255,255,0.18); font-size: 18px; }
+  .bb-canvas.yellow { color: #f5d76e; text-shadow: 0 0 8px rgba(245,215,110,0.2); }
+  .bb-canvas.pink   { color: #f0a0a0; }
+  .bb-canvas.cyan   { color: #88d8d8; }
+  .bb-canvas.sage   { color: #c8d5c0; }
+  .bb-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+  .bb-date { font-size: 12px; color: rgba(255,255,255,0.25); }
+  .bb-eraser { padding: 6px 16px; border-radius: 6px; background: rgba(193,127,89,0.2); border: 1px solid rgba(193,127,89,0.4); color: var(--terra-pale); font-size: 12px; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+  .bb-eraser:hover { background: rgba(193,127,89,0.35); }
+
+  /* Circadian diagram */
+  .circadian-wrap { background: white; border-radius: 12px; border: 1px solid var(--divider); padding: 20px; margin: 16px 0; }
+  .circ-row { display: flex; align-items: stretch; gap: 0; margin-bottom: 8px; font-size: 12.5px; }
+  .circ-label { width: 72px; flex-shrink: 0; color: var(--bark-light); padding-top: 4px; font-size: 12px; }
+  .circ-bar-area { flex: 1; position: relative; height: 32px; background: #f0ece6; border-radius: 6px; overflow: hidden; }
+  .circ-fill { position: absolute; top: 0; height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 600; color: white; white-space: nowrap; }
+  .circ-fill.good  { background: var(--sage); }
+  .circ-fill.ok    { background: #8AAFC4; }
+  .circ-fill.warn  { background: var(--terra); }
+  .circ-fill.dim   { background: #b0a090; }
+  .circ-note { width: 130px; flex-shrink: 0; font-size: 11.5px; color: var(--bark-light); padding-left: 10px; display: flex; align-items: center; line-height: 1.4; }
+
+  /* QA */
+  .qa-list { display: flex; flex-direction: column; gap: 16px; margin: 16px 0; }
+  .qa-item { background: white; border-radius: 12px; border: 1px solid var(--divider); overflow: hidden; }
+  .qa-q { background: #f4f1ec; padding: 12px 16px; font-size: 14px; font-weight: 700; color: var(--bark); display: flex; gap: 10px; align-items: flex-start; }
+  .qa-q-badge { background: var(--terra); color: white; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .qa-a { padding: 14px 16px; font-size: 13.5px; color: var(--bark-light); line-height: 1.75; }
+  .qa-a strong { color: var(--bark); }
+  .qa-a .core { margin-top: 10px; background: #F4F7F2; border-left: 3px solid var(--sage); border-radius: 0 6px 6px 0; padding: 8px 12px; font-size: 13px; color: var(--sage-deep); }
+
+  .section-divider { border: none; border-top: 1px dashed var(--divider); margin: 20px 0; }
+  .footer { text-align: center; margin-top: 60px; font-size: 12px; color: var(--bark-light); border-top: 1px solid var(--divider); padding-top: 24px; }
+
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; }
+    .cover h1 { font-size: 1.7rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    .bb-canvas { font-size: 18px; }
+    .circ-note { display: none; }
+    .metric-label { width: 110px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<div class="cover">
+  <div class="cover-label">Abby 營養師 ✦ 個人課程</div>
+  <h1>瑞的<br><em>第二次課程</em></h1>
+  <div class="cover-meta">
+    <span>2026 / 07 / 10</span>
+    <span>158 cm ／ 64.4 kg</span>
+    <span>57 歲</span>
+    <span>Session 02</span>
+  </div>
+</div>
+
+<!-- Tab Bar -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('course', event)">📋 課程內容</button>
+  <button class="tab-btn" onclick="switchTab('blackboard', event)">🖊 課堂黑板</button>
+  <button class="tab-btn" onclick="switchTab('notes', event)">🔬 老師備忘</button>
+</div>
+
+<!-- ══ COURSE TAB ══ -->
+<div id="tab-course" class="tab-panel active">
+
+<!-- 開場 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">✦</div>
+    <h2>今天我們要做什麼</h2>
+  </div>
+  <div class="card-grid">
+    <div class="card highlight">
+      <div class="card-icon">📈</div>
+      <h3>看兩週的體態進展</h3>
+      <p>體重、腰圍、體脂的完整趨勢，讀懂數字背後的意義。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">🍽️</div>
+      <h3>飲食分析</h3>
+      <p>做得好的繼續，找出讓進度更順的微調空間。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">❓</div>
+      <h3>回答妳的三個問題</h3>
+      <p>不吃飯、累不運動、時間不固定——一起找到適合妳的答案。</p>
+    </div>
+  </div>
+  <div class="warn-box">
+    <div class="wTitle">先說最重要的事</div>
+    兩週體重掉了 <strong>1.7 kg</strong>，腰圍縮了 <strong>2 cm</strong>，蛋白質從 75g 拉到平均 103g——這些都是真實的進步。今天的目標是把這個動能維持住，同時把幾個細節再調精準一點。
+  </div>
+</div>
+
+<!-- 1. 體態進展 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>兩週體態：數字在告訴我們什麼</h2>
+    <span class="sub">6/27 → 7/9</span>
+  </div>
+
+  <div class="metric-viz">
+    <p style="font-size:14px;font-weight:700;margin-bottom:16px;">體重趨勢（每日量測）</p>
+    <div class="metric-row">
+      <div class="metric-label">第一週均值（6/27–7/3）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-terra" style="width:100%"></div></div>
+      <div class="metric-val amber">65.6 kg</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">第二週均值（7/4–7/9）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:97%"></div></div>
+      <div class="metric-val green">64.7 kg</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">週間降幅</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-green" style="width:60%"></div></div>
+      <div class="metric-val green">−0.9 kg／週</div>
+    </div>
+    <hr class="section-divider">
+    <div class="metric-row">
+      <div class="metric-label">腰圍變化</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-green" style="width:55%"></div></div>
+      <div class="metric-val green">90 → 86 cm（−4 cm）</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">體脂（參考用）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-blue" style="width:78%"></div></div>
+      <div class="metric-val">37.8–38.7%</div>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">📊 這些數字代表什麼？</div>
+    <ul>
+      <li><strong>週降 0.9 kg，速度稍快：</strong>目標是 0.3–0.6 kg／週，她做到 0.9，約是上限的 1.5 倍。但這裡有個重要背景——前幾天的快速下降有很大一部分是<strong>水分和肝糖原的重量</strong>，不全是脂肪。課前飲食有較多精製糖和鹽分，這些會讓身體多留水；開始改變飲食後，多餘的水分自然釋放，體重就快速下降。真正的脂肪消耗速度，以她的熱量赤字估算，兩週大約只消耗了 0.5–0.6 kg 純脂肪，剩下的是水分。接下來的速度會自然放慢，這才是真正脂肪在動的節奏</li>
+      <li><strong>腰圍 4 cm：</strong>這才是最重要的數字。腰圍縮小代表腹部脂肪在減少——這是妳這次最想解決的問題，而且正在發生</li>
+      <li><strong>體脂 37.8–38.7%，數字在跳動：</strong>體重計測體脂的方式是用電流穿過身體估算，水分多一點電阻低、機器說體脂低；水分少一點電阻高、機器說體脂高。妳那幾天體脂比較高，最可能的原因是<strong>輕微脫水</strong>——運動後還沒補水就量、天氣熱出汗多、或者前一天喝水少。腰圍縮了 4 公分就是腹部脂肪在減少的真實證據，體重計上的體脂數字跳動不代表妳的脂肪在增加</li>
+      <li><strong>7/4→7/5 體重從 64.9 沒有繼續掉：</strong>這兩天的飲食做了什麼調整，我們等一下一起看</li>
+    </ul>
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">體脂數字怎麼看才對？</div>
+    家用體重計的體脂只適合看<strong>長期趨勢</strong>（每個月固定條件下比較），不適合每天看。固定條件指的是：早上起床、如廁後、空腹、未運動——每次都這樣量，比較這個數字才有意義。妳腰圍從 90 縮到 86，這 4 公分騙不了人，這才是體脂在下降的真實訊號。
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">關於「連上兩堂課反而沒瘦」——上次的補充</div>
+    上次妳在備註說這句話，我們已經在第一堂解釋過。這兩週的數字給了一個更好的答案：<strong>妳 6/24 連上兩堂課的效果，出現在 6/25 的腰圍（90→88），不是體重數字</strong>。身體的變化不是即時結算的，需要給它幾天時間。這個模式在這兩週一直在重演——繼續做對的事，身體會跟上來。
+  </div>
+</div>
+
+<!-- 2. 飲食分析 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>飲食分析：兩週 13 天觀察</h2>
+    <span class="sub">熱量、三大營養素、飲食模式</span>
+  </div>
+
+  <div class="metric-viz">
+    <p style="font-size:14px;font-weight:700;margin-bottom:16px;">兩週平均營養素（我的估算）</p>
+    <div class="metric-row">
+      <div class="metric-label">熱量（目標 1,300–1,400）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:88%"></div></div>
+      <div class="metric-val amber">~1,280 kcal</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">蛋白質（目標 100–110g）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:95%"></div></div>
+      <div class="metric-val green">~103g ↑</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">碳水（目標 110–130g）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-blue" style="width:84%"></div></div>
+      <div class="metric-val amber">~112g</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">脂肪（目標 40–50g）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-terra" style="width:87%"></div></div>
+      <div class="metric-val green">~43g</div>
+    </div>
+  </div>
+
+  <table class="diet-obs">
+    <thead>
+      <tr>
+        <th>觀察到的模式</th>
+        <th>評估</th>
+        <th>說明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>蛋白質大幅提升</strong><br>從課前 75g 拉到平均 103g，蝦仁、雞胸、豬後腿、牛排都出現了</td>
+        <td><span class="tag tag-green">非常好</span></td>
+        <td>這是這兩週最重要的進步，妳真的執行了。蝦仁 200g 幾乎每天都有，習慣建立得很好</td>
+      </tr>
+      <tr>
+        <td><strong>蔬菜種類豐富</strong><br>絲瓜、菇類、蘆筍、秋葵、花椰菜、地瓜葉都有，種類很好</td>
+        <td><span class="tag tag-green">非常好</span></td>
+        <td>纖維量足夠，也讓進食份量增加而不增加太多熱量</td>
+      </tr>
+      <tr>
+        <td><strong>水果份量仍偏多</strong><br>芭樂幾乎每天出現，有時一天兩份（400g），加上奇異果、水蜜桃、香蕉</td>
+        <td><span class="tag tag-amber">需要留意</span></td>
+        <td>幾天的水果碳水佔了當天碳水的 40–50%。在有運動的日子，碳水來源建議更多在根莖類</td>
+      </tr>
+      <tr>
+        <td><strong>牛排部位不明、份量偏多</strong><br>7/2 牛排 200g、7/8 牛排 200g，脂肪估算偏高</td>
+        <td><span class="tag tag-amber">可以調整</span></td>
+        <td>如果是霜降或肋眼，200g 的脂肪可達 28–30g，佔當天脂肪上限的大半。建議改菲力、板腱，或份量控制在 150g</td>
+      </tr>
+      <tr>
+        <td><strong>7/5 黑丸刨冰</strong><br>碳水 105g 單次進來，那天蛋白質也只有 82g（兩週最低）</td>
+        <td><span class="tag tag-amber">偶爾可以</span></td>
+        <td>她自己已經在備註寫了 🤣——不是大問題，策略是：吃甜食那天，其他餐蛋白質先補好</td>
+      </tr>
+      <tr>
+        <td><strong>酪梨多次出現</strong><br>7/3 酪梨 100g、7/6 酪梨 150g、7/9 酪梨 150g</td>
+        <td><span class="tag tag-amber">熱量密度高</span></td>
+        <td>酪梨是健康脂肪沒錯，但 150g 就有約 24g 脂肪、240 kcal，偶爾吃可以，不適合每天都有</td>
+      </tr>
+      <tr>
+        <td><strong>熱量個別天低谷明顯</strong><br>7/4 只有約 1,050 kcal，7/6 約 1,180 kcal</td>
+        <td><span class="tag tag-red">需要補足</span></td>
+        <td>低谷通常發生在「沒有特別準備食物」的日子。熱量不穩定會讓身體的代謝規律難以建立</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="know-box">
+    <div class="kbTitle">💡 碳水來源的差別：水果 vs 根莖類</div>
+    <p>妳現在碳水的比例不算高，但來源的分配可以更聰明：</p>
+    <ul>
+      <li><strong>水果的碳水（果糖）</strong>→ 走肝臟代謝，在腹部脂肪偏多的狀態下效率較低</li>
+      <li><strong>根莖類的碳水（澱粉）</strong>→ 走肌肉和肝糖，<strong>有運動的日子特別有用</strong>，可以補充肌肉糖原、讓下一堂課表現更好</li>
+    </ul>
+    <p>建議：有上課的日子，把水果減一份，用地瓜或南瓜補上；休息日維持現在的水果量就好。</p>
+  </div>
+</div>
+
+<!-- 3. 生理節律與進食時間 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>白天吃多一點，身體保養更好</h2>
+    <span class="sub">生理節律與代謝效率</span>
+  </div>
+
+  <p style="font-size:14px; color:var(--bark-light); margin-bottom:18px; line-height:1.8;">
+    妳的第一餐很穩定地在 11:00–12:00，這是好事。不過整體的飲食分配，有一個值得調整的方向——<strong>不是「幾點吃」的問題，而是身體在一天不同時段處理食物的效率真的不一樣。</strong>
+  </p>
+
+  <div class="circadian-wrap">
+    <p style="font-size:13px; font-weight:700; color:var(--bark); margin-bottom:14px;">身體代謝效率的生理節律</p>
+    <div class="circ-row">
+      <div class="circ-label">早上<br>6–12點</div>
+      <div class="circ-bar-area">
+        <div class="circ-fill good" style="left:0; width:85%;">胰島素敏感度高</div>
+      </div>
+      <div class="circ-note">✓ 代謝效率最佳，同樣食物血糖衝擊最小</div>
+    </div>
+    <div style="height:8px;"></div>
+    <div class="circ-row">
+      <div class="circ-label">中午<br>12–15點</div>
+      <div class="circ-bar-area">
+        <div class="circ-fill good" style="left:0; width:90%;">仍維持高代謝</div>
+      </div>
+      <div class="circ-note">✓ 最適合吃份量較多的正餐</div>
+    </div>
+    <div style="height:8px;"></div>
+    <div class="circ-row">
+      <div class="circ-label">下午<br>15–19點</div>
+      <div class="circ-bar-area">
+        <div class="circ-fill ok" style="left:0; width:65%;">代謝逐漸趨緩</div>
+      </div>
+      <div class="circ-note">△ 適合輕食或蛋白質點心</div>
+    </div>
+    <div style="height:8px;"></div>
+    <div class="circ-row">
+      <div class="circ-label">晚上<br>19–22點</div>
+      <div class="circ-bar-area">
+        <div class="circ-fill warn" style="left:0; width:40%;">胰島素敏感度低</div>
+      </div>
+      <div class="circ-note">⚠ 同樣的食物，晚上對血糖衝擊更大</div>
+    </div>
+    <div style="height:8px;"></div>
+    <div class="circ-row">
+      <div class="circ-label">深夜<br>22點後</div>
+      <div class="circ-bar-area">
+        <div class="circ-fill dim" style="left:0; width:20%;">代謝進入修復模式</div>
+      </div>
+      <div class="circ-note">✗ 消化食物會干擾身體修復</div>
+    </div>
+  </div>
+
+  <div class="know-box" style="margin-top:16px;">
+    <div class="kbTitle">🕐 這對妳的意義是什麼？</div>
+    <p>妳目前的飲食模式是「第一餐在 12 點、晚餐在 18–19 點」——這個窗口其實很好，問題在於<strong>整天熱量的分配</strong>：</p>
+    <ul>
+      <li>第一餐通常比較少（蛋 + 少量食物），主要熱量集中在晚餐</li>
+      <li>晚上身體的代謝效率比早午餐時段低 20–30%，同樣的食物在晚上更容易以脂肪儲存</li>
+      <li>7/2 晚上 21:00 才吃晚餐，這時候胰島素敏感度是一天最低的時段</li>
+    </ul>
+    <p><strong>目標不是要妳「早吃早餐」，而是讓午餐的份量稍微豐富一點，晚餐維持清淡，讓妳的代謝在效率最高的時段工作。</strong></p>
+  </div>
+
+  <div class="scenario-list">
+    <div class="scenario">
+      <div class="scenario-num sage">A</div>
+      <div>
+        <h4>有上課的日子（早上或中午有課）</h4>
+        <p>運動前補一顆蛋或少量碳水，讓身體有燃料。課後的那一餐是黃金時間——胰島素敏感度高＋肌肉剛運動完，是這一天把蛋白質和碳水吃進去效率最好的時機。</p>
+        <div class="strategy">
+          <strong>→ 課後那餐：蛋白質 35–40g + 根莖類碳水</strong>
+          例如：豬里肌 150g + 南瓜 200g + 蔬菜，讓身體用最好的效率補充。
+        </div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num sage">B</div>
+      <div>
+        <h4>休息的日子（步數少、沒有課）</h4>
+        <p>這天的碳水需求比較低，可以把水果的份量稍微縮減、根莖類也不需要特別加。蛋白質維持，脂肪正常，整體熱量可以在 1,200 kcal 左右——這是合理的，不是吃太少。</p>
+        <div class="strategy">
+          <strong>→ 休息日不需要「補課」多吃</strong>
+          身體消耗少、吃得少是對的，不需要強迫自己吃到 1,400 kcal。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. QA 三個問題 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>妳想問的三個問題</h2>
+    <span class="sub">課前預告的問題一起來回答</span>
+  </div>
+
+  <div class="qa-list">
+    <div class="qa-item">
+      <div class="qa-q">
+        <span class="qa-q-badge">Q1</span>
+        我都不吃米飯，這樣可以嗎？
+      </div>
+      <div class="qa-a">
+        <p>看妳這兩週的記錄，米飯只出現了兩次（6/28、7/5）。但碳水來源其實很多元——南瓜、燕麥、玉米、山藥、芭樂、香蕉、奇異果都有，<strong>妳並不是真的「沒吃碳水」，只是來源換掉了而已</strong>。</p>
+        <p>所以答案是：<strong>不吃米飯本身完全沒問題</strong>，只要碳水總量到位、來源選對就好。</p>
+        <div class="core">
+          💡 需要留意的反而是：水果的果糖和地瓜的澱粉對身體的作用不一樣。<strong>有運動的日子，建議碳水來源要有更多根莖類（南瓜、地瓜、山藥）而不是全靠水果</strong>——讓肌肉糖原補充更有效率。
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 4b. 水果怎麼聰明吃 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4b</div>
+    <h2>水果怎麼聰明吃？</h2>
+    <span class="sub">果糖 vs 澱粉、時機、運動強度判斷</span>
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">先說結論</div>
+    水果不是不能吃，而是它的糖跟飯的糖走的路完全不同——搞清楚這條路，妳就知道什麼時候吃、吃多少、選哪種，才真的划算。
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">🍚 米飯 / 地瓜的糖 vs 🍊 水果的糖</div>
+    <p>米飯、南瓜、地瓜消化後分解的是<strong>葡萄糖</strong>——全身細胞都能直接用，肌肉、腦、心臟通通可以吃，有運動的肌肉優先吸收。</p>
+    <p>水果裡的糖主要是<strong>果糖</strong>——全身細胞幾乎都不能直接用，幾乎 100% 必須先送到肝臟排隊處理。</p>
+    <div style="margin-top:14px; display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+      <div style="background:#F4F7F2; border-radius:10px; padding:14px; border-left:3px solid var(--sage);">
+        <div style="font-size:12px; font-weight:700; color:var(--sage-deep); margin-bottom:8px;">🍚 葡萄糖的路</div>
+        <div style="font-size:13px; color:var(--bark-light); line-height:2;">腸道吸收 → 血液<br>↓<br><strong>全身細胞直接用</strong><br>（肌肉最優先）<br>↓<br>多的存成肌糖原<br>↓<br>再多才存脂肪</div>
+      </div>
+      <div style="background:var(--warn-bg); border-radius:10px; padding:14px; border-left:3px solid var(--terra);">
+        <div style="font-size:12px; font-weight:700; color:var(--terra); margin-bottom:8px;">🍊 果糖的路</div>
+        <div style="font-size:13px; color:var(--bark-light); line-height:2;">腸道吸收 → 血液<br>↓<br><strong>全部送肝臟處理</strong><br>↓<br>先補肝糖原<br>↓<br>肝糖滿了 → <strong style="color:#B94040;">脂肪</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scenario-list">
+    <div class="scenario">
+      <div class="scenario-num" style="background:#c07070; color:white;">✗</div>
+      <div>
+        <h4>為什麼不建議喝果汁，或單次吃太多水果？</h4>
+        <p>完整水果的纖維像一道閘門，讓腸道慢慢吸收果糖，肝臟可以從容處理。果汁把纖維榨掉，果糖大量快速湧進肝臟，來不及處理，轉成脂肪的比例大幅上升。一次吃兩三份水果的效果類似——肝臟的即時處理量就這樣，超過了就往脂肪走。</p>
+        <div class="strategy"><strong>→ 每天一到兩份完整水果，不榨汁，是肝臟比較從容的節奏</strong></div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num sage">✓</div>
+      <div>
+        <h4>但運動前可以吃香蕉——這矛盾嗎？</h4>
+        <p>不矛盾。關鍵是<strong>肝臟倉庫有沒有空位</strong>。平常靜止時，肝糖原有存量，果糖進來倉庫快滿，多的走脂肪。但運動中肝糖原一直在釋放來維持血糖，倉庫是半空的——果糖進來有地方放，被好好利用。香蕉的碳水組成也比較均衡（葡萄糖、果糖、蔗糖各約三分之一），有一部分可以直接供肌肉用。</p>
+        <div class="strategy"><strong>→ 運動前 1 小時半根香蕉是對的——倉庫空著，進來就用掉</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">🏃 什麼強度才「用得到」碳水補充？</div>
+    <p style="margin-bottom:12px;">判斷只有一個問題：<strong>倉庫有沒有被真正動到？</strong></p>
+    <table class="week-table">
+      <thead>
+        <tr><th>運動類型</th><th>肌糖原消耗</th><th>需要額外補充？</th><th>妳的例子</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>散步、伸展、緩和運動</td><td class="num-ok">幾乎不動</td><td style="color:#3a8a50;font-weight:700;">不需要</td><td>緩和運動日、皮拉提斯</td></tr>
+        <tr><td>中高強度有氧 60 分鐘</td><td class="num-mid">有消耗</td><td style="color:#A06020;font-weight:700;">正餐補就夠</td><td>BodyJam、BodyCombat</td></tr>
+        <tr><td>重訓（多組、接近力竭）</td><td class="num-warn">消耗明顯</td><td style="color:#B94040;font-weight:700;">訓後補最有效率</td><td>未來的重訓課</td></tr>
+        <tr><td>耐力運動 90 分鐘以上</td><td class="num-warn">大量消耗</td><td style="color:#B94040;font-weight:700;">運動中就要補</td><td>馬拉松等</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px; font-size:13px; color:var(--bark-light);">「今天有上課」不等於「今天可以多吃水果」——<strong>緩和運動那天倉庫沒動到，水果的果糖進來跟靜止時一樣處理。</strong></p>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">🍇 妳常吃的水果：建議份量 vs 目前習慣</div>
+    <p style="font-size:13px; color:var(--bark-light); margin-bottom:12px;">一份水果的概念是「一個拳頭大小」，大約 60 kcal、醣類 15g。以下是妳常吃品項的具體數字：</p>
+    <table class="week-table">
+      <thead>
+        <tr><th>水果</th><th>建議一份重量</th><th>相當於</th><th>妳目前的量</th><th>果糖（每100g）</th><th>建議</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>芭樂</strong></td>
+          <td class="num-ok">150–160g</td>
+          <td style="font-size:12px; color:var(--bark-light);">約半顆中型芭樂</td>
+          <td class="num-warn">200g（稍多）</td>
+          <td class="num-ok">約 4g</td>
+          <td><span class="tag tag-green">首選，減一口</span></td>
+        </tr>
+        <tr>
+          <td><strong>奇異果</strong></td>
+          <td class="num-ok">115–120g</td>
+          <td style="font-size:12px; color:var(--bark-light);">約 1.5 顆</td>
+          <td class="num-warn">170g（約多半顆）</td>
+          <td class="num-ok">約 4g</td>
+          <td><span class="tag tag-green">首選，少半顆</span></td>
+        </tr>
+        <tr>
+          <td><strong>水蜜桃</strong></td>
+          <td class="num-ok">150g</td>
+          <td style="font-size:12px; color:var(--bark-light);">約 1 顆中型</td>
+          <td class="num-warn">178–206g（稍多）</td>
+          <td class="num-mid">約 5g</td>
+          <td><span class="tag tag-amber">適量，一天一顆</span></td>
+        </tr>
+        <tr>
+          <td><strong>香蕉（熟）</strong></td>
+          <td class="num-ok">70–80g</td>
+          <td style="font-size:12px; color:var(--bark-light);">約大半根</td>
+          <td class="num-warn">100–106g（多三分之一）</td>
+          <td class="num-mid">約 6g</td>
+          <td><span class="tag tag-amber">運動前優先</span></td>
+        </tr>
+        <tr>
+          <td><strong>櫻桃</strong></td>
+          <td class="num-ok">80–90g</td>
+          <td style="font-size:12px; color:var(--bark-light);">約 12–15 顆</td>
+          <td class="num-ok">50–60g（剛好）</td>
+          <td class="num-ok">約 4g</td>
+          <td><span class="tag tag-green">份量正確</span></td>
+        </tr>
+        <tr>
+          <td>芒果</td>
+          <td>150g</td>
+          <td style="font-size:12px; color:var(--bark-light);">約半顆小芒果</td>
+          <td>—</td>
+          <td class="num-warn">約 8g</td>
+          <td><span class="tag tag-red">夏天少量</span></td>
+        </tr>
+        <tr>
+          <td>荔枝 / 龍眼</td>
+          <td>90g</td>
+          <td style="font-size:12px; color:var(--bark-light);">約 8–10 顆</td>
+          <td>—</td>
+          <td class="num-warn">約 9g</td>
+          <td><span class="tag tag-red">一次不超過 8 顆</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:12px; font-size:13px; color:var(--bark-light);">妳選的品種都對，只是每次的量稍微縮一點點就好——芭樂從 200g 調到 160g、奇異果從 170g 調到 120g，大概少吃一兩口的感覺。一天兩份加起來剛好，肝臟的工作量更從容。</p>
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">對妳最實用的三個調整</div>
+    <ol style="padding-left:18px; line-height:2.4; font-size:13.5px;">
+      <li>每天水果維持 <strong>一到兩份</strong>（不超過兩個拳頭），芭樂和奇異果繼續，荔枝芒果減量</li>
+      <li>有上 BodyJam / BodyCombat 的日子，<strong>把一份水果換成根莖類碳水</strong>，讓肌肉糖原補充效率更好</li>
+      <li>緩和運動日或休息日，<strong>水果不需要額外多吃</strong>——倉庫沒空位，果糖進來一樣走老路</li>
+    </ol>
+  </div>
+</div>
+
+<!-- 繼續原本的 QA -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4c</div>
+    <h2>妳的另外兩個問題</h2>
+  </div>
+  <div class="qa-list">
+    <div class="qa-item">
+      <div class="qa-q">
+        <span class="qa-q-badge">Q2</span>
+        覺得累累的，不運動也行嗎？
+      </div>
+      <div class="qa-a">
+        <p>這個問題問得很好，而且我覺得妳說「累累的」，<strong>很可能不是偷懶——是身體真的在請妳放慢</strong>。有兩個原因可能同時在發生：</p>
+        <p><strong>原因一：肌肉燃料補充不夠</strong>——妳這兩週碳水平均 112g，其中相當一部分是水果的果糖（補肝糖原），真正能補到肌肉裡的澱粉類碳水其實有限。每週又有好幾堂有氧課持續消耗肌糖原，如果補充的葡萄糖不夠填回去，下一堂課之前肌肉的儲備就是不滿的，課上起來自然更費力、更容易累。這種累不是心理的懶，是真實的能量不足。</p>
+        <p><strong>原因二：皮質醇累積</strong>——吃少、運動多、有時睡晚，三個因素加在一起會讓皮質醇長期維持偏高。皮質醇高的感受之一就是「慢性疲勞」——明明睡夠了還是覺得累、動起來提不起勁。這時候硬撐去上課只會讓皮質醇繼續高，更難瘦。</p>
+        <div style="margin:12px 0; background:#f4f1ec; border-radius:8px; padding:12px 14px; font-size:13px; color:var(--bark-light);">
+          <strong style="color:var(--bark);">兩種「累」怎麼分：</strong><br>
+          肌肉痠、睡眠不足、感覺很沉 → 真的累，<strong>要休息</strong><br>
+          只是提不起勁、但睡得夠 → 輕度活動（散步、伸展）反而有幫助
+        </div>
+        <div class="core">
+          💡 <strong>妳說累，我的建議是聽身體的話</strong>。少上一堂課不會讓這兩週的成果消失。下一步把碳水來源調整好（有課的日子多一點根莖類），肌肉有燃料了，自然會覺得課上起來比較輕鬆。
+        </div>
+      </div>
+    </div>
+
+    <div class="qa-item">
+      <div class="qa-q">
+        <span class="qa-q-badge">Q3</span>
+        我吃飯的時間很不固定，這樣有沒有關係？
+      </div>
+      <div class="qa-a">
+        <p>好消息是：<strong>妳的第一餐非常穩定——幾乎每天都在 11:00–12:00</strong>，這個「錨點」已經建立了，不需要改。</p>
+        <p>比較需要留意的是晚餐時間的飄移。妳有幾天晚餐在 18:30，有幾天在 19:00，7/2 那天是 21:00——這三個時間點，身體代謝效率差蠻多的（可以看上面那張節律圖）。</p>
+        <div class="core">
+          💡 <strong>目標很簡單：晚餐盡量在 19:30 前結束</strong>。不是要妳把生活排得很硬，就是把「吃完晚餐」這件事稍微往前移半小時，讓身體有更多時間在睡前完成消化，代謝修復效率更好。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. 接下來兩週 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num terra">5</div>
+    <h2>接下來兩週，做這四件事</h2>
+    <span class="sub">具體、可執行</span>
+  </div>
+
+  <ul class="action-list">
+    <li>
+      <strong>有運動的日子：碳水來源多一點根莖類</strong>
+      <span>上課那天，把一份水果換成南瓜 200g 或地瓜 100g。不是要妳減少碳水，是換個更有效率的來源——讓肌肉糖原補充得好，下堂課表現更好、也更不容易餓。</span>
+    </li>
+    <li>
+      <strong>牛排選部位或控制份量</strong>
+      <span>建議選菲力、板腱、牛腱肉，或把份量從 200g 調到 150g。霜降和肋眼不是不能吃，但當天的脂肪預算要相應減少（例如那天酪梨就先暫停）。</span>
+    </li>
+    <li>
+      <strong>午餐稍微豐富一點，晚餐維持清淡</strong>
+      <span>不需要強迫自己吃早餐，但把重心稍微往中午移——午餐蛋白質 35–40g、有一份根莖類碳水。晚餐保持現在的蔬菜＋蛋白質模式就很好。這樣身體在代謝效率最高的時段工作量最大。</span>
+    </li>
+    <li>
+      <strong>熱量低谷的日子，補一顆蛋或一杯豆漿</strong>
+      <span>7/4 只有 1,050 kcal，這種低谷通常是「沒有特別準備」的日子。最簡單的補法：多一顆水煮蛋（+75 kcal、+7g 蛋白質），或多 250ml 豆漿（+90 kcal、+8g 蛋白質）。不需要大改，填補低谷就夠。</span>
+    </li>
+  </ul>
+</div>
+
+<!-- 6. 下次追蹤 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num terra">6</div>
+    <h2>下次課程追蹤項目</h2>
+    <span class="sub">持續記錄，帶這些數字來</span>
+  </div>
+
+  <ul class="check-list" id="checkList">
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>體重週均：有沒有繼續緩降？</strong>
+        <span>目標每週掉 0.3–0.5 kg，不追求快。每天量，看週均趨勢</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>腰圍：下次上課前量一次</strong>
+        <span>目前 86 cm，目標方向是 85 cm 以下，這比體重數字更重要</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>蛋白質有沒有維持在 100g 以上？</strong>
+        <span>這兩週平均 103g，繼續維持。低谷的日子多補一顆蛋或豆漿</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>有運動的日子有沒有換根莖類碳水？</strong>
+        <span>上課日：水果減一份，換南瓜或地瓜，觀察一週看看上課體力有沒有差別</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>晚餐有沒有試著在 19:30 前結束？</strong>
+        <span>不需要每天做到，但意識到這件事就是進步</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>重訓有沒有開始排進去？</strong>
+        <span>妳說課還在，準備把它約回來——這是這兩週可以開始行動的事</span>
+      </div>
+    </li>
+  </ul>
+
+  <div class="boundary">
+    <h3>給自己的兩週承諾</h3>
+    <ul>
+      <li>上課日：碳水來源有根莖類，不全靠水果</li>
+      <li>牛排換部位或控制在 150g</li>
+      <li>午餐稍微豐富，晚餐保持清淡</li>
+      <li>腰圍下次上課前量一次，帶數字來</li>
+      <li>重訓課約起來，任何時間都算</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- end tab-course -->
+
+<!-- ══ BLACKBOARD TAB ══ -->
+<div id="tab-blackboard" class="tab-panel">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">🖊</div>
+      <h2>課堂黑板</h2>
+      <span class="sub">即時記錄課堂重點</span>
+    </div>
+    <div class="blackboard">
+      <div class="bb-toolbar">
+        <span class="bb-title">📋 2026.07.10 瑞 × Abby</span>
+        <div class="chalk-colors">
+          <div class="chalk-dot white selected" onclick="setColor('white', this)"></div>
+          <div class="chalk-dot yellow" onclick="setColor('yellow', this)"></div>
+          <div class="chalk-dot pink" onclick="setColor('pink', this)"></div>
+          <div class="chalk-dot cyan" onclick="setColor('cyan', this)"></div>
+          <div class="chalk-dot sage" onclick="setColor('sage', this)"></div>
+        </div>
+        <button class="bb-btn" onclick="toggleBold()" id="boldBtn">B 粗體</button>
+        <button class="bb-btn" onclick="increaseFontSize()">A+</button>
+        <button class="bb-btn" onclick="decreaseFontSize()">A-</button>
+      </div>
+      <textarea class="bb-canvas" id="bbCanvas"
+        placeholder="在這裡輸入課堂重點關鍵字…&#10;&#10;例如：&#10;腰圍 90 → 86（4 cm！）&#10;有運動 → 根莖類碳水&#10;晚餐盡量 19:30 前&#10;牛排 → 菲力或板腱"
+        oninput="saveBB()"></textarea>
+    </div>
+    <div class="bb-footer">
+      <span class="bb-date" id="bbDate"></span>
+      <button class="bb-eraser" onclick="clearBB()">🧹 清除黑板</button>
+    </div>
+    <div class="know-box" style="margin-top:20px;">
+      <div class="kbTitle">💡 黑板使用提示</div>
+      <ul>
+        <li>分享螢幕給學生時切到這個分頁，直接在上面打字</li>
+        <li>換粉筆顏色區分主題：白色主概念、黃色數字、粉紅待改善、青色學生說的話</li>
+        <li>內容暫存在瀏覽器，關閉前記得截圖</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NOTES TAB ══ -->
+<div id="tab-notes" class="tab-panel">
+
+  <div class="tn-block">
+    <div class="tn-header">瑞的個性與溝通策略 <span>課程備忘</span></div>
+    <div class="tn-body">
+      <h4>這兩週觀察到的特質</h4>
+      <ul>
+        <li><strong>執行力強：</strong>蛋白質從 75g 拉到 103g，蝦仁幾乎每天出現，說了就做</li>
+        <li><strong>有自我覺察：</strong>刨冰那天她自己在備註寫了 🤣，代表她知道那天偏離了，不需要妳特別指出來——肯定她的覺察就好</li>
+        <li><strong>對結果很在意：</strong>之前說「連上兩堂課反而沒瘦」，這個特質讓她容易因為短期波動沮喪，要繼續強化「看趨勢而不是看單天」的認知</li>
+        <li><strong>喜歡有氧課是重要的情感出口：</strong>不要讓她覺得上課是「浪費」或「不夠」，繼續強調有氧課的價值在心肺與心情，身體組成交給飲食和未來的重訓</li>
+      </ul>
+      <h4>本次課程溝通策略</h4>
+      <ul>
+        <li><strong>開場先給成果：</strong>1.7 kg + 腰圍 4 cm，讓她先高興，再進入討論</li>
+        <li><strong>刨冰那天不要批評：</strong>她已經知道了，只需要「那天的策略是什麼」往前看就好</li>
+        <li><strong>三個問題讓她覺得問得很好：</strong>這三個問題其實都是聰明的問題，說出來讓她知道</li>
+        <li><strong>重訓是這次要推進的事：</strong>她說課還在、準備約回來，這次要讓她說出「哪一週要開始」</li>
+      </ul>
+      <div class="tn-caution">
+        <strong>注意：</strong>她的睡眠是晚睡晚起、總時數足夠。這個不需要主動提，除非她自己抱怨疲勞或睡眠品質，再一起討論。
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">每日飲食詳細估算 <span>老師自用，課堂不逐日展示</span></div>
+    <div class="tn-body">
+      <h4>13 天數據總表</h4>
+      <table class="week-table">
+        <thead>
+          <tr><th>日期</th><th>估算熱量</th><th>蛋白質</th><th>碳水</th><th>脂肪</th><th>特別觀察</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>6/27</td><td class="num-mid">~1,200</td><td class="num-mid">~90g</td><td class="num-mid">~100g</td><td class="num-mid">~50g</td><td>炸雞排+芋泥蛋糕，脂肪偏高</td></tr>
+          <tr><td>6/28</td><td class="num-warn">~1,050</td><td class="num-mid">~90g</td><td class="num-mid">~95g</td><td class="num-ok">~28g</td><td>里肌炒筍絲蛋白質漏填；熱量最低天之一</td></tr>
+          <tr><td>6/29</td><td class="num-ok">~1,320</td><td class="num-ok">~115g</td><td class="num-ok">~130g</td><td class="num-ok">~35g</td><td>最均衡的一天，蛋白質達標</td></tr>
+          <tr><td>6/30</td><td class="num-mid">~1,250</td><td class="num-ok">~105g</td><td class="num-ok">~110g</td><td class="num-ok">~44g</td><td>平衡，蝦仁只有 100g</td></tr>
+          <tr><td>7/1</td><td class="num-ok">~1,350</td><td class="num-ok">~108g</td><td class="num-ok">~115g</td><td class="num-mid">~50g</td><td>牛排+優格結構很好</td></tr>
+          <tr><td>7/2</td><td class="num-ok">~1,380</td><td class="num-ok">~118g</td><td class="num-mid">~95g</td><td class="num-mid">~52g</td><td>牛排 200g 脂肪高；21:00 晚餐</td></tr>
+          <tr><td>7/3</td><td class="num-ok">~1,420</td><td class="num-ok">~113g</td><td class="num-mid">~130g</td><td class="num-mid">~48g</td><td>芭樂兩次共 400g；酪梨 100g</td></tr>
+          <tr><td>7/4</td><td class="num-warn">~1,050</td><td class="num-mid">~93g</td><td class="num-mid">~88g</td><td class="num-ok">~32g</td><td>熱量明顯低谷，蛋白質也掉</td></tr>
+          <tr><td>7/5</td><td class="num-mid">~1,450</td><td class="num-warn">~82g</td><td class="num-warn">~178g</td><td class="num-ok">~37g</td><td>刨冰 105g 碳水；蛋白質兩週最低</td></tr>
+          <tr><td>7/6</td><td class="num-mid">~1,180</td><td class="num-ok">~103g</td><td class="num-mid">~87g</td><td class="num-mid">~47g</td><td>酪梨 150g；結構尚可</td></tr>
+          <tr><td>7/7</td><td class="num-mid">~1,230</td><td class="num-ok">~101g</td><td class="num-ok">~113g</td><td class="num-ok">~38g</td><td>雞胗+雞肝很好；水果兩份稍多</td></tr>
+          <tr><td>7/8</td><td class="num-ok">~1,320</td><td class="num-ok">~100g</td><td class="num-mid">~95g</td><td class="num-mid">~51g</td><td>牛排 200g 又高；南瓜重複出現</td></tr>
+          <tr><td>7/9</td><td class="num-ok">~1,420</td><td class="num-ok">~113g</td><td class="num-ok">~120g</td><td class="num-mid">~48g</td><td>種類最豐富；酪梨 150g 脂肪偏高</td></tr>
+        </tbody>
+      </table>
+      <div class="tn-caution">
+        <strong>課堂不要逐日展示：</strong>重點是讓她看到整體趨勢和兩三個可以微調的方向，逐日分析會讓她有被監視的感覺。
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">生理節律學理背景 <span>課程概念的依據</span></div>
+    <div class="tn-body">
+      <h4>晝夜節律與代謝（Circadian Rhythm & Metabolism）</h4>
+      <p>人體的胰島素敏感度（Insulin Sensitivity）隨晝夜節律變化，早晨最高、夜間最低。這意味著：</p>
+      <ul>
+        <li>同樣的食物，早上吃對血糖的衝擊比晚上小約 20–30%</li>
+        <li>夜間進食（尤其含碳水）更容易提升餐後血糖和胰島素，促進脂肪儲存</li>
+        <li>研究顯示，熱量前移（Early Time-Restricted Eating）即使總熱量不變，也有助於改善體組成和代謝指標</li>
+      </ul>
+      <h4>對瑞的具體意義</h4>
+      <ul>
+        <li>她的第一餐時間已經固定（11–12 點），這是好的錨點</li>
+        <li>主要的調整方向是讓午餐份量稍微多一點、晚餐保持清淡，而不是要求她「早吃早餐」</li>
+        <li>7/2 的 21:00 晚餐是最需要避免的模式——那個時段胰島素敏感度是一天最低點</li>
+      </ul>
+      <h4>課堂怎麼說</h4>
+      <p>「妳的身體在一天不同時段，處理食物的效率真的不一樣。早上像是全速運轉的工廠，晚上像是準備收工的工廠——同樣一批材料進來，收工前進來的材料就容易堆在倉庫裡。所以我們不是要妳幾點吃，而是讓比較多的工作在工廠全速運轉的時候完成。」</p>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">疲勞訊號 &amp; 體脂 BIA 誤差 <span>學理背景，課堂用簡化版</span></div>
+    <div class="tn-body">
+      <h4>為什麼「累」可能是身體在請她放慢——兩個機制</h4>
+      <p><strong>機制一：低肌糖原造成的真實體能不足</strong></p>
+      <p>瑞的碳水平均 112g，但其中果糖來源佔相當比例（水果），果糖補的是肝糖原，不是肌糖原。真正能補充肌糖原的澱粉類葡萄糖攝取偏少，加上每週多堂有氧課的消耗，肌糖原可能在課前就處於未完全補滿的狀態。肌糖原不足的表現就是：同樣的課覺得更費力、更早累、恢復更慢——這不是懈怠，是能量供應不足的生理反應。</p>
+      <p><strong>機制二：皮質醇累積效應（Cortisol Accumulation）</strong></p>
+      <p>慢性皮質醇升高的三個觸發因素她都有：熱量長期偏低（約 1,280 kcal，低於 TDEE）、運動量偏大（每週多堂有氧）、睡眠時間偏晚（即使總時數足夠，晚睡本身有輕微的晝夜節律干擾）。長期皮質醇偏高的表現包括：慢性疲勞感、容易情緒低落、運動後恢復慢、腹部脂肪頑固難消。這也是她腰圍下降速度可能比預期慢的原因之一。</p>
+      <p>解法不是停止運動，而是讓身體覺得「資源夠用」——熱量吃足、碳水來源調整、感覺真的累的日子真正休息。</p>
+
+      <h4>體脂 BIA（生物電阻抗）誤差的來源</h4>
+      <p>BIA 的原理：微弱電流穿過身體，脂肪導電差（阻抗高）、水分導電好（阻抗低）。機器用阻抗值套公式估算體脂比例。問題在於這個估算<strong>假設身體水分比例固定</strong>，但實際上水分比例每天都在變：</p>
+      <ul>
+        <li>輕微脫水（運動後未補水、天熱出汗、前一天喝水少）→ 阻抗升高 → 機器判讀為體脂偏高</li>
+        <li>水分偏多（飯後量、喝水多、生理期前後水腫）→ 阻抗降低 → 機器判讀為體脂偏低</li>
+        <li>研究顯示同一個人在不同水分狀態下，BIA 體脂讀數可差 2–4%，遠超過真實體脂變化幅度</li>
+      </ul>
+      <p>瑞的體脂在 37.8–38.7% 之間震盪，0.9% 的差距完全在 BIA 的正常誤差範圍內，與真實體脂變化無關。腰圍縮 4 公分才是體脂下降的可靠指標。</p>
+
+      <h4>正確使用 BIA 的方式</h4>
+      <ul>
+        <li>固定條件：早上起床後、如廁後、空腹、未運動、未大量喝水</li>
+        <li>看趨勢：每月固定條件下量一次，只比這個數字</li>
+        <li>不適合每天看：每天的誤差比真實變化更大，只會造成困擾</li>
+        <li>更好的替代指標：腰圍、腰臀比、衣服鬆緊感，這些每週都可以參考</li>
+      </ul>
+
+      <div class="tn-caution">
+        <strong>課堂說法：</strong>「體脂這個數字，妳水喝多了它說妳脂肪少，妳運動後脫水了它說妳脂肪多。腰圍縮了 4 公分，這個騙不了人，才是妳脂肪真的在動的證明。」
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">果糖代謝完整機制 <span>教師補充學理，課堂用簡化版說明</span></div>
+    <div class="tn-body">
+      <h4>果糖 vs 葡萄糖：為什麼代謝路徑完全不同</h4>
+      <p>澱粉（米飯、地瓜）消化後產生<strong>葡萄糖</strong>，可被全身細胞的 GLUT4 轉運蛋白直接攝取利用，肌肉是最大的消耗器官，尤其運動後 GLUT4 表現量大幅上升。</p>
+      <p><strong>果糖</strong>則幾乎只能由肝臟的 GLUT5 轉運蛋白攝取，進入肝臟後由果糖激酶（Fructokinase）代謝。關鍵差異是：果糖磷酸化繞過了磷酸果糖激酶（PFK）這個葡萄糖代謝的限速步驟，意味著肝臟對果糖的攝取<strong>沒有自動煞車</strong>——進多少處理多少，不像葡萄糖有調節機制。</p>
+
+      <h4>果糖進入肝臟後的三條路（依序優先）</h4>
+      <ul>
+        <li><strong>第一優先：補充肝糖原（Hepatic Glycogen）</strong>——肝糖原不夠時，果糖會被用來合成肝糖，這是最理想的去向</li>
+        <li><strong>第二：少量轉為葡萄糖釋出</strong>——僅在血糖偏低時較活躍，通量很小，不是主要路徑</li>
+        <li><strong>第三（肝糖滿了之後）：De Novo Lipogenesis（DNL，從頭合成脂肪）</strong>——果糖的中間代謝產物磷酸丙糖直接進入脂肪合成路徑，生成三酸甘油脂（TG），打包成 VLDL 釋出或堆積在肝臟</li>
+      </ul>
+      <p>長期大量果糖攝取的後果：血液三酸甘油脂升高、非酒精性脂肪肝（NAFLD）、內臟脂肪（尤其是腹部）增加。對已有腰圍偏大的人，這條路走得更快。</p>
+
+      <h4>果糖為什麼不刺激飽足感</h4>
+      <p>葡萄糖會刺激胰島素分泌，胰島素再刺激脂肪細胞分泌<strong>瘦素（Leptin）</strong>向腦部發出「吃飽了」的訊號。果糖對胰島素的刺激極小，因此不觸發正常的飽足感回饋——這也是喝果汁不容易有飽足感、容易喝過量的原因。</p>
+
+      <h4>纖維的緩衝作用</h4>
+      <p>完整水果的纖維（尤其可溶性纖維）在腸道形成膠狀介質，減慢果糖吸收速度，讓肝臟可以分批處理。研究顯示同樣份量的果糖，完整水果 vs 果汁的肝臟脂肪合成速率差異顯著，完整水果的影響遠小於果汁。</p>
+
+      <h4>運動為什麼改變果糖的命運</h4>
+      <p>運動消耗肝糖原和肌糖原，讓肝糖原處於低存量狀態。果糖進來有空間填補，DNL（脂肪合成）的啟動閾值顯著提高。運動強度越高、持續時間越長，肝糖原消耗越多，果糖的「好的去向」空間就越大。</p>
+      <p>同時補充葡萄糖＋果糖（如能量膠的設計）可以突破腸道單一轉運蛋白的吸收上限：SGLT1 負責葡萄糖、GLUT5 負責果糖，兩條通道同時跑，總吸收速率可提升至 1.7–1.8g/分鐘（純葡萄糖上限約 1g/分鐘），這就是馬拉松補給品的科學邏輯。</p>
+
+      <h4>肌糖原 vs 肝糖原：兩個倉庫的差異</h4>
+      <ul>
+        <li><strong>肝糖原</strong>：儲量約 80–120g，可釋放葡萄糖回血液，是全身血糖的調節庫。果糖和葡萄糖都可以補充</li>
+        <li><strong>肌糖原</strong>：儲量約 300–500g（全身加總），<strong>不能釋放回血液</strong>，只供該肌肉自己收縮使用。補充只能靠葡萄糖，果糖無法直接補充肌糖原</li>
+      </ul>
+      <p>這意味著：運動後只吃水果，肌糖原補充效率很低。要有效補充肌糖原，必須有澱粉類的葡萄糖來源。</p>
+
+      <h4>對應到瑞的課堂說法（簡化版）</h4>
+      <p>「水果的糖跟飯的糖，進身體走的路完全不一樣。飯的糖可以直接被全身肌肉用掉，上完課的肌肉最愛吃；水果的糖只能先送去肝臟排隊，肝臟有空間才好好處理，沒空間就打包成脂肪。妳腰圍偏粗，代表肝臟那邊本來就有點忙，所以讓水果在對的時機進來——倉庫空著的時候，也就是運動前後——進來就用掉，不是走脂肪那條路。」</p>
+
+      <div class="tn-caution">
+        <strong>課堂不需要講 DNL、GLUT5、PFK 這些名詞。</strong>用「全身都能用的葡萄糖」vs「只有肝臟能處理的果糖」+ 「倉庫有沒有空位」這兩個概念就足夠讓學生理解行為改變的理由。
+      </div>
+    </div>
+  </div>
+
+</div><!-- end tab-notes -->
+
+<script>
+function switchTab(name, event) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (event && event.target) event.target.classList.add('active');
+  if (name === 'blackboard') initBB();
+}
+function toggleCheck(el) { el.classList.toggle('checked'); }
+
+let currentColor = 'white', isBold = false, currentFontSize = 22;
+function initBB() {
+  const saved = localStorage.getItem('rui_s2_bb');
+  if (saved) document.getElementById('bbCanvas').value = saved;
+  const dateEl = document.getElementById('bbDate');
+  if (dateEl) dateEl.textContent = new Date().toLocaleDateString('zh-TW') + ' — 課堂記錄';
+}
+function setColor(color, el) {
+  currentColor = color;
+  document.querySelectorAll('.chalk-dot').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+  const canvas = document.getElementById('bbCanvas');
+  canvas.className = 'bb-canvas ' + (color === 'white' ? '' : color);
+}
+function toggleBold() {
+  isBold = !isBold;
+  document.getElementById('boldBtn').classList.toggle('active', isBold);
+  document.getElementById('bbCanvas').style.fontWeight = isBold ? '700' : '400';
+}
+function increaseFontSize() {
+  currentFontSize = Math.min(currentFontSize + 2, 40);
+  document.getElementById('bbCanvas').style.fontSize = currentFontSize + 'px';
+}
+function decreaseFontSize() {
+  currentFontSize = Math.max(currentFontSize - 2, 14);
+  document.getElementById('bbCanvas').style.fontSize = currentFontSize + 'px';
+}
+function saveBB() { localStorage.setItem('rui_s2_bb', document.getElementById('bbCanvas').value); }
+function clearBB() {
+  if (confirm('確定要清除黑板嗎？')) {
+    document.getElementById('bbCanvas').value = '';
+    localStorage.removeItem('rui_s2_bb');
+  }
+}
+window.addEventListener('load', () => {
+  const dateEl = document.getElementById('bbDate');
+  if (dateEl) dateEl.textContent = new Date().toLocaleDateString('zh-TW') + ' — 課堂記錄';
+});
+</script>
+
+<div class="footer">
+  Abby 營養師 ✦ abbyeatlife.github.io<br>
+  本資料為個人課程使用，請勿轉載
+</div>
+</body>
+</html>
