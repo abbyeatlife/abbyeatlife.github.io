@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fanny 課程 0713 ── Abby 營養師</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:       #8B9E7E;
+    --sage-pale:  #C8D5C0;
+    --sage-deep:  #5C7252;
+    --terra:      #C17F59;
+    --terra-pale: #E8C4A8;
+    --cream:      #FDFBF7;
+    --bark:       #3D3229;
+    --bark-light: #6B5B4E;
+    --divider:    #E2DDD6;
+    --warn-bg:    #FEF6EE;
+    --warn-border:#E8B88A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    color: var(--bark);
+    font-family: 'Noto Sans TC', 'PingFang TC', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 28px 80px;
+  }
+
+  .cover {
+    background: var(--bark);
+    border-radius: 16px;
+    padding: 48px 40px 40px;
+    margin-bottom: 48px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(193,127,89,0.15);
+    top: -80px; right: -60px;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(139,158,126,0.12);
+    bottom: -20px; left: 80px;
+  }
+  .cover-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; margin-bottom: 12px; }
+  .cover h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 2.2rem; font-weight: 700; line-height: 1.25; margin-bottom: 16px; }
+  .cover h1 em { font-style: normal; color: var(--terra-pale); }
+  .cover-meta { display: flex; gap: 24px; flex-wrap: wrap; font-size: 13px; opacity: 0.7; }
+  .cover-meta span::before { content: '· '; }
+
+  .tab-bar { display: flex; gap: 8px; margin-bottom: 36px; border-bottom: 2px solid var(--divider); overflow-x: auto; }
+  .tab-btn { padding: 10px 20px; border: none; background: none; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 600; color: var(--bark-light); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: color 0.2s, border-color 0.2s; white-space: nowrap; }
+  .tab-btn.active { color: var(--sage-deep); border-bottom-color: var(--sage-deep); }
+  .tab-btn:hover:not(.active) { color: var(--bark); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .section { margin-bottom: 48px; }
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 2px solid var(--divider); }
+  .section-num { width: 36px; height: 36px; border-radius: 50%; background: var(--sage); color: white; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .section-num.terra { background: var(--terra); }
+  .section-header h2 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.35rem; color: var(--bark); }
+  .section-header .sub { font-size: 12px; color: var(--bark-light); margin-left: auto; letter-spacing: 0.05em; white-space: nowrap; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px; }
+  .card { background: white; border-radius: 12px; padding: 20px; border: 1px solid var(--divider); }
+  .card-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .card h3 { font-size: 14px; font-weight: 700; color: var(--bark); margin-bottom: 6px; }
+  .card p { font-size: 13px; color: var(--bark-light); line-height: 1.6; }
+  .card.highlight { border-color: var(--sage); background: #F4F7F2; }
+  .card.highlight h3 { color: var(--sage-deep); }
+  .card.terra { border-color: var(--terra-pale); background: var(--warn-bg); }
+  .card.terra h3 { color: var(--terra); }
+
+  .metric-viz { background: white; border-radius: 12px; border: 1px solid var(--divider); padding: 20px; margin: 16px 0; }
+  .metric-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .metric-row:last-child { margin-bottom: 0; }
+  .metric-label { font-size: 12.5px; color: var(--bark-light); width: 180px; flex-shrink: 0; }
+  .metric-bar-bg { flex: 1; height: 18px; background: #EBF3E8; border-radius: 9px; overflow: hidden; }
+  .metric-bar-fill { height: 100%; border-radius: 9px; }
+  .fill-sage { background: var(--sage); }
+  .fill-terra { background: #D4846A; }
+  .fill-blue { background: #5B82A6; }
+  .fill-green { background: #4a9e6a; }
+  .metric-val { font-size: 12.5px; font-weight: 700; color: var(--bark); width: 110px; text-align: right; flex-shrink: 0; }
+  .metric-val.red { color: #B94040; }
+  .metric-val.green { color: var(--sage-deep); }
+  .metric-val.amber { color: #A06020; }
+
+  .diet-obs { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-bottom: 20px; }
+  .diet-obs th { background: var(--sage); color: white; text-align: left; padding: 10px 14px; font-weight: 600; font-size: 12px; letter-spacing: 0.04em; }
+  .diet-obs th:first-child { border-radius: 8px 0 0 0; }
+  .diet-obs th:last-child  { border-radius: 0 8px 0 0; }
+  .diet-obs td { padding: 11px 14px; border-bottom: 1px solid var(--divider); vertical-align: top; }
+  .diet-obs tr:last-child td { border-bottom: none; }
+  .diet-obs tr:nth-child(even) td { background: #F9F7F4; }
+  .tag { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+  .tag-red   { background: #FDECEA; color: #B94040; }
+  .tag-amber { background: #FEF4E5; color: #A06020; }
+  .tag-green { background: #EBF3E8; color: #4A7C40; }
+
+  .know-box { background: white; border-left: 4px solid var(--sage); border-radius: 0 12px 12px 0; padding: 18px 20px; margin: 16px 0; font-size: 13.5px; }
+  .know-box .kbTitle { font-weight: 700; color: var(--sage-deep); margin-bottom: 6px; font-size: 14px; }
+  .know-box ul { padding-left: 18px; color: var(--bark-light); }
+  .know-box ul li { margin-bottom: 4px; }
+  .know-box p { color: var(--bark-light); margin-bottom: 8px; }
+
+  .warn-box { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 12px; padding: 16px 20px; margin: 16px 0; font-size: 13.5px; }
+  .warn-box .wTitle { font-weight: 700; color: var(--terra); margin-bottom: 6px; }
+
+  .action-list { counter-reset: action; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  .action-list li { counter-increment: action; display: flex; gap: 14px; align-items: flex-start; background: white; border-radius: 12px; padding: 16px 18px; border: 1px solid var(--divider); }
+  .action-list li::before { content: counter(action); width: 28px; height: 28px; border-radius: 50%; background: var(--terra); color: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+  .action-list li strong { display: block; font-size: 14px; margin-bottom: 4px; color: var(--bark); }
+  .action-list li span { font-size: 13px; color: var(--bark-light); line-height: 1.65; }
+
+  .scenario-list { display: flex; flex-direction: column; gap: 14px; margin: 16px 0; }
+  .scenario { background: white; border-radius: 12px; padding: 16px 18px; border: 1px solid var(--divider); display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start; }
+  .scenario-num { width: 32px; height: 32px; border-radius: 50%; background: var(--bark); color: var(--terra-pale); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .scenario-num.sage { background: var(--sage); color: white; }
+  .scenario h4 { font-size: 14px; font-weight: 700; color: var(--bark); margin-bottom: 4px; }
+  .scenario p { font-size: 13px; color: var(--bark-light); line-height: 1.65; }
+  .scenario .strategy { margin-top: 8px; background: #F4F7F2; border-left: 3px solid var(--sage); border-radius: 0 6px 6px 0; padding: 8px 12px; font-size: 13px; color: var(--sage-deep); }
+  .scenario .strategy strong { font-weight: 700; display: block; margin-bottom: 2px; }
+
+  .boundary { background: var(--bark); color: white; border-radius: 12px; padding: 20px 24px; margin-top: 24px; font-size: 13.5px; }
+  .boundary h3 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--terra-pale); }
+  .boundary ul { padding-left: 18px; line-height: 1.8; opacity: 0.88; }
+
+  .check-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+  .check-list li { display: flex; align-items: flex-start; gap: 12px; background: white; border-radius: 10px; padding: 13px 16px; border: 1px solid var(--divider); font-size: 13.5px; }
+  .check-box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--divider); flex-shrink: 0; margin-top: 1px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .check-box.checked { background: var(--sage); border-color: var(--sage); }
+  .check-box.checked::after { content: '✓'; color: white; font-size: 13px; font-weight: 700; }
+  .check-txt strong { display: block; font-size: 13.5px; color: var(--bark); margin-bottom: 3px; }
+  .check-txt span { font-size: 12.5px; color: var(--bark-light); line-height: 1.6; }
+
+  .tn-block { background: white; border-radius: 14px; border: 1px solid var(--divider); margin-bottom: 28px; overflow: hidden; }
+  .tn-header { background: var(--bark); color: white; padding: 14px 22px; font-size: 15px; font-weight: 700; }
+  .tn-header span { opacity: 0.6; font-size: 12px; font-weight: 400; margin-left: 10px; }
+  .tn-body { padding: 20px 22px; font-size: 13.5px; line-height: 1.8; color: var(--bark); }
+  .tn-body h4 { font-size: 13px; font-weight: 700; color: var(--sage-deep); margin: 16px 0 6px; padding-left: 10px; border-left: 3px solid var(--sage); }
+  .tn-body h4:first-child { margin-top: 0; }
+  .tn-body p { margin-bottom: 10px; color: var(--bark-light); }
+  .tn-body ul { padding-left: 18px; color: var(--bark-light); margin-bottom: 10px; }
+  .tn-body ul li { margin-bottom: 5px; }
+  .tn-body strong { color: var(--bark); }
+  .tn-caution { background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: var(--bark-light); margin-top: 14px; }
+  .tn-caution strong { color: var(--terra); }
+
+  .week-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 16px 0; }
+  .week-table th { background: var(--bark); color: white; padding: 9px 12px; text-align: center; font-size: 12px; }
+  .week-table th:first-child { border-radius: 8px 0 0 0; text-align: left; }
+  .week-table th:last-child { border-radius: 0 8px 0 0; }
+  .week-table td { padding: 9px 12px; border-bottom: 1px solid var(--divider); text-align: center; }
+  .week-table td:first-child { text-align: left; color: var(--bark); }
+  .week-table tr:last-child td { border-bottom: none; }
+  .week-table tr:nth-child(even) td { background: #F9F7F4; }
+  .num-ok   { color: #3a8a50; font-weight: 700; }
+  .num-warn { color: #B94040; font-weight: 700; }
+  .num-mid  { color: #A06020; font-weight: 700; }
+
+  .blackboard {
+    background: #1e3a2f;
+    border-radius: 16px;
+    padding: 32px 36px 36px;
+    min-height: 480px;
+    position: relative;
+    font-family: 'Noto Sans TC', sans-serif;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.15);
+    border: 4px solid #2d4a3a;
+    overflow: hidden;
+  }
+  .blackboard::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(transparent, transparent 39px, rgba(255,255,255,0.04) 39px, rgba(255,255,255,0.04) 40px);
+    pointer-events: none;
+  }
+  .bb-toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
+  .bb-title { font-size: 13px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-right: auto; }
+  .bb-btn { padding: 6px 14px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); font-size: 12px; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+  .bb-btn:hover { background: rgba(255,255,255,0.15); color: white; }
+  .bb-btn.active { background: rgba(139,158,126,0.4); border-color: rgba(139,158,126,0.6); color: #c8d5c0; }
+  .chalk-colors { display: flex; gap: 6px; align-items: center; }
+  .chalk-dot { width: 18px; height: 18px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all 0.15s; }
+  .chalk-dot:hover, .chalk-dot.selected { border-color: white; transform: scale(1.2); }
+  .chalk-dot.white  { background: rgba(255,255,255,0.85); }
+  .chalk-dot.yellow { background: #f5d76e; }
+  .chalk-dot.pink   { background: #f0a0a0; }
+  .chalk-dot.cyan   { background: #88d8d8; }
+  .chalk-dot.sage   { background: #8B9E7E; }
+  .bb-canvas { width: 100%; min-height: 380px; background: transparent; border: none; outline: none; color: rgba(255,255,255,0.85); font-size: 22px; line-height: 40px; font-family: 'Noto Sans TC', sans-serif; resize: none; caret-color: rgba(255,255,255,0.8); text-shadow: 0 0 8px rgba(255,255,255,0.15); letter-spacing: 0.03em; }
+  .bb-canvas::placeholder { color: rgba(255,255,255,0.18); font-size: 18px; }
+  .bb-canvas.yellow { color: #f5d76e; text-shadow: 0 0 8px rgba(245,215,110,0.2); }
+  .bb-canvas.pink   { color: #f0a0a0; }
+  .bb-canvas.cyan   { color: #88d8d8; }
+  .bb-canvas.sage   { color: #c8d5c0; }
+  .bb-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+  .bb-date { font-size: 12px; color: rgba(255,255,255,0.25); }
+  .bb-eraser { padding: 6px 16px; border-radius: 6px; background: rgba(193,127,89,0.2); border: 1px solid rgba(193,127,89,0.4); color: var(--terra-pale); font-size: 12px; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+  .bb-eraser:hover { background: rgba(193,127,89,0.35); }
+
+  .highlight-box { background: #F4F7F2; border: 1.5px solid var(--sage-pale); border-radius: 12px; padding: 20px 22px; margin: 16px 0; }
+  .highlight-box .hb-title { font-weight: 700; color: var(--sage-deep); font-size: 14px; margin-bottom: 8px; }
+
+  .circ-wrap { background: white; border-radius: 12px; border: 1px solid var(--divider); padding: 20px; margin: 16px 0; }
+  .circ-row { display: flex; align-items: stretch; gap: 0; margin-bottom: 8px; font-size: 12.5px; }
+  .circ-label { width: 80px; flex-shrink: 0; color: var(--bark-light); padding-top: 4px; font-size: 12px; }
+  .circ-bar-area { flex: 1; position: relative; height: 32px; background: #f0ece6; border-radius: 6px; overflow: hidden; }
+  .circ-fill { position: absolute; top: 0; height: 100%; border-radius: 4px; display: flex; align-items: center; padding-left: 8px; font-size: 11px; font-weight: 600; color: white; white-space: nowrap; }
+  .circ-fill.good  { background: var(--sage); }
+  .circ-fill.ok    { background: #8AAFC4; }
+  .circ-fill.warn  { background: var(--terra); }
+  .circ-fill.dim   { background: #b0a090; }
+  .circ-note { width: 140px; flex-shrink: 0; font-size: 11.5px; color: var(--bark-light); padding-left: 10px; display: flex; align-items: center; line-height: 1.4; }
+
+  .section-divider { border: none; border-top: 1px dashed var(--divider); margin: 20px 0; }
+  .footer { text-align: center; margin-top: 60px; font-size: 12px; color: var(--bark-light); border-top: 1px solid var(--divider); padding-top: 24px; }
+
+  @media (max-width: 600px) {
+    body { padding: 24px 16px 60px; }
+    .cover h1 { font-size: 1.7rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    .circ-note { display: none; }
+    .metric-label { width: 120px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-label">Abby 營養師 ✦ 個人課程</div>
+  <h1>Fanny<br><em>七月進度課程</em></h1>
+  <div class="cover-meta">
+    <span>2026 / 07 / 13</span>
+    <span>腰圍正式破百</span>
+    <span>Session 7月</span>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('course', event)">📋 課程內容</button>
+  <button class="tab-btn" onclick="switchTab('blackboard', event)">🖊 課堂黑板</button>
+  <button class="tab-btn" onclick="switchTab('notes', event)">🔬 老師備忘</button>
+</div>
+
+<!-- ══ COURSE TAB ══ -->
+<div id="tab-course" class="tab-panel active">
+
+<!-- 開場 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">✦</div>
+    <h2>今天我們要聊什麼</h2>
+  </div>
+  <div class="card-grid">
+    <div class="card highlight">
+      <div class="card-icon">🎉</div>
+      <h3>腰圍正式進入 9 字頭</h3>
+      <p>從 101.5 降到 99.5——這是這段時間最重要的里程碑，而且還在繼續。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">🌀</div>
+      <h3>兩個時期對比，給了一個重要線索</h3>
+      <p>體重往下走的那幾天，外食選的是白切雞、煮魚、沙拉；卡住的那幾天選的是粽子、Pizza、起司蒸餃。問題不在外食本身，而在外食選了什麼。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">⏰</div>
+      <h3>餐量分配的調整方向</h3>
+      <p>午餐豐富一點、晚餐清淡一點——身體在不同時段處理食物的效率真的不一樣。</p>
+    </div>
+  </div>
+  <div class="warn-box">
+    <div class="wTitle">先說最重要的事</div>
+    這期體重均值從 74.5 降到 73.9，腰圍從 100.5 降到 <strong>99.5 cm</strong>，正式跨過 100cm 大關。Appediet 的蛋白質記錄穩定維持在 104g，這個習慣已經建立得很好了。今天的目標是把下一個問題找出來解決——就是外食油脂和晚餐比重偏高這兩件事。
+  </div>
+</div>
+
+<!-- 1. 體態進展 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>這期體態進展</h2>
+    <span class="sub">6/16 → 7/13</span>
+  </div>
+
+  <div class="metric-viz">
+    <p style="font-size:14px;font-weight:700;margin-bottom:16px;">體重腰圍趨勢</p>
+    <div class="metric-row">
+      <div class="metric-label">期初體重（6/16）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-terra" style="width:100%"></div></div>
+      <div class="metric-val amber">74.6 kg</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">期末體重（7/13）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:96%"></div></div>
+      <div class="metric-val green">74.0 kg</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">均值降幅</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-green" style="width:55%"></div></div>
+      <div class="metric-val green">74.5 → 73.9 kg</div>
+    </div>
+    <hr class="section-divider">
+    <div class="metric-row">
+      <div class="metric-label">腰圍（期初）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-terra" style="width:100%"></div></div>
+      <div class="metric-val amber">100.5 cm</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">腰圍（期末）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:93%"></div></div>
+      <div class="metric-val green">99.5 cm 🎉</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <div class="hb-title">🌀 這期最重要的數據對比</div>
+    <p style="font-size:13.5px; color:var(--bark-light); line-height:1.8;">
+    <strong style="color:var(--bark);">體重往下走的那幾天（6/28–7/3）：</strong>外食選了白切雞、煮魚、鮪魚蛋沙拉、燕麥——清淡、低油脂，體重從 73.9 一路到最低點 73.4。<br><br>
+    <strong style="color:var(--bark);">體重卡住的那幾天：</strong>粽子＋壽司（6/21）、Pizza＋義大利麵（7/4）、起司蒸餃（6/26）——碳水和脂肪同時偏高，隔天體重反彈。<br><br>
+    <strong style="color:var(--bark);">颱風天（7/11–7/13）：</strong>自己煮兩天，步數只有 1,500，也沒有特別運動——但體重穩定在 74.0–74.1，沒有繼續往上爬。颱風天的作用是「守住」，而不是讓體重繼續降。<br><br>
+    <strong style="color:var(--bark);">結論：問題不在外食本身，而在外食選了什麼。</strong>妳在外食場合也做得到——6/28、6/29 就是證明。某些場合（聚餐、應酬）比較難選，但這是可以練習的技能。</p>
+  </div>
+
+  <table class="diet-obs">
+    <thead>
+      <tr><th>觀察到的模式</th><th>評估</th><th>說明</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>蛋白質穩定達標</strong><br>Appediet 記錄均值 104g，幾乎每天都有達標</td>
+        <td><span class="tag tag-green">非常好</span></td>
+        <td>這是最大的進步，繼續保持。蛋白質足夠讓肌肉維持、飽足感穩定</td>
+      </tr>
+      <tr>
+        <td><strong>碳水接近目標</strong><br>均值 151g，目標 155g，差距很小</td>
+        <td><span class="tag tag-green">達標</span></td>
+        <td>碳水總量沒有問題，但來源分配可以再調整（詳見第 3 節）</td>
+      </tr>
+      <tr>
+        <td><strong>外食油脂是最大缺口</strong><br>脂肪均值 63g，目標 60g，看起來只差一點點</td>
+        <td><span class="tag tag-amber">需要留意</span></td>
+這個數字可能還有低估——外食的隱藏油脂（醬汁、炒菜油、煎炸底油）很難從照片估出來。6/28–6/29 選清淡外食那兩天，脂肪明顯更低，就是最好的對照</td>
+      </tr>
+      <tr>
+        <td><strong>晚餐是當天最豐盛的一餐</strong><br>午餐通常較輕，晚餐份量偏多</td>
+        <td><span class="tag tag-amber">可以調整</span></td>
+        <td>身體在晚間代謝效率比白天低，同樣的食物在晚上對血糖的影響更大、更容易以脂肪儲存。這不是要少吃，而是要搬時間</td>
+      </tr>
+      <tr>
+        <td><strong>碳水超標日集中在外食場合</strong><br>6/19（牛肉麵+水餃）、6/21（粽子+壽司）、7/4（Pizza+義大利麵）</td>
+        <td><span class="tag tag-amber">外食策略</span></td>
+        <td>這幾天碳水都在 170–194g，是目標的 1.2 倍以上。不是不能外食，而是這些場合需要有備案（詳見第 4 節）</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 2. 飲食數據 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Appediet 數據分析（12天有效樣本）</h2>
+    <span class="sub">6/16–7/10，排除不完整記錄日</span>
+  </div>
+
+  <div class="metric-viz">
+    <p style="font-size:14px;font-weight:700;margin-bottom:16px;">三大營養素達成狀況</p>
+    <div class="metric-row">
+      <div class="metric-label">熱量（目標 1,500）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-terra" style="width:100%"></div></div>
+      <div class="metric-val amber">均值 1,722 kcal ⚠️</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">蛋白質（目標 97g）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:100%"></div></div>
+      <div class="metric-val green">均值 104g ✅</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">碳水（目標 155g）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-blue" style="width:98%"></div></div>
+      <div class="metric-val green">均值 151g ✅</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">脂肪（目標 60g）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-terra" style="width:95%"></div></div>
+      <div class="metric-val amber">均值 63g ⚠️</div>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">📊 熱量超標 222 kcal 的主要來源在哪裡？</div>
+    <ul>
+      <li><strong>外食隱藏油脂：</strong>熱炒、起司蒸餃、烤吐司拼盤、Pizza——這些食物的油脂很難從照片估出來，Appediet 的辨識也有限制，實際油脂比記錄的可能還要高</li>
+      <li><strong>碳水超標日集中在外食：</strong>6/19、6/21、7/4 三天碳水都超過 170g，這三天加起來的超標量就拉高了整體均值</li>
+      <li><strong>脂肪整體略高：</strong>均值 63g，目標 60g，看起來只差 3g，但外食的低估讓真實差距可能更大</li>
+    </ul>
+    <p><strong>結論：不是每天都在超標，而是幾個特定的外食場合把均值拉高了。</strong></p>
+  </div>
+</div>
+
+<!-- 3. 晚餐比重的問題 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>把份量從晚上搬到中午</h2>
+    <span class="sub">生理節律與餐量分配</span>
+  </div>
+
+  <p style="font-size:14px; color:var(--bark-light); margin-bottom:18px; line-height:1.8;">
+    妳目前的飲食重心在晚餐——午餐通常比較輕，晚餐是當天最豐盛的一餐。這個模式有一個值得調整的地方：<strong>身體在一天不同時段處理食物的效率真的不一樣</strong>，不是迷信，是有研究根據的。
+  </p>
+
+  <div class="circ-wrap">
+    <p style="font-size:13px; font-weight:700; color:var(--bark); margin-bottom:14px;">身體代謝效率的生理節律</p>
+    <div class="circ-row">
+      <div class="circ-label">早上<br>7–12點</div>
+      <div class="circ-bar-area"><div class="circ-fill good" style="left:0; width:88%;">胰島素敏感度高</div></div>
+      <div class="circ-note">✓ 同樣食物血糖衝擊最小</div>
+    </div>
+    <div style="height:8px;"></div>
+    <div class="circ-row">
+      <div class="circ-label">中午<br>12–15點</div>
+      <div class="circ-bar-area"><div class="circ-fill good" style="left:0; width:92%;">代謝效率最佳</div></div>
+      <div class="circ-note">✓ 最適合份量較多的一餐</div>
+    </div>
+    <div style="height:8px;"></div>
+    <div class="circ-row">
+      <div class="circ-label">下午<br>15–19點</div>
+      <div class="circ-bar-area"><div class="circ-fill ok" style="left:0; width:65%;">逐漸趨緩</div></div>
+      <div class="circ-note">△ 輕食或蛋白質點心</div>
+    </div>
+    <div style="height:8px;"></div>
+    <div class="circ-row">
+      <div class="circ-label">晚上<br>19–22點</div>
+      <div class="circ-bar-area"><div class="circ-fill warn" style="left:0; width:40%;">胰島素敏感度低</div></div>
+      <div class="circ-note">⚠ 同樣食物對血糖衝擊更大</div>
+    </div>
+    <div style="height:8px;"></div>
+    <div class="circ-row">
+      <div class="circ-label">深夜<br>22點後</div>
+      <div class="circ-bar-area"><div class="circ-fill dim" style="left:0; width:20%;">進入修復模式</div></div>
+      <div class="circ-note">✗ 食物會干擾身體修復</div>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">⏰ 對妳的意義是什麼？</div>
+    <p>目前妳的晚餐是當天熱量比重最高的一餐，這個時段身體的代謝效率比午餐時段低 20–30%。<strong>同樣的食物，中午吃和晚上吃，身體的處理方式不一樣——中午吃更容易被用掉，晚上吃更容易存起來。</strong></p>
+    <p>不是要妳少吃，是要<strong>把比較多的份量搬到中午</strong>，讓身體在效率最高的時段工作量最大。</p>
+  </div>
+
+  <div class="scenario-list">
+    <div class="scenario">
+      <div class="scenario-num sage">A</div>
+      <div>
+        <h4>目前的模式</h4>
+        <p>午餐：相對清淡（沙拉、輕食、半份）<br>晚餐：豐盛（主菜、白飯、多道菜）</p>
+        <div class="strategy"><strong>→ 問題所在：</strong>熱量重心在代謝效率最低的時段</div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num sage">B</div>
+      <div>
+        <h4>建議調整後的模式</h4>
+        <p>午餐：豐富一點（蛋白質 35g 以上 + 一份碳水 + 蔬菜）<br>晚餐：清淡為主（蛋白質 + 蔬菜，碳水減量）</p>
+        <div class="strategy"><strong>→ 目標：</strong>總熱量不變，只是把重心往中午移，讓身體有更多時間在高效率的時段工作</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">外食的具體策略</div>
+    妳的午餐和晚餐都常是外食，所以這個調整重點在<strong>點菜的選擇</strong>，不是要妳自己煮：<br><br>
+    🌟 <strong>午餐</strong>：點有蛋白質主菜的定食或便當，碳水（飯/麵）不需要縮減<br>
+    🌟 <strong>晚餐</strong>：多點蔬菜和蛋白質，碳水可以少一點（飯少半碗、麵少一口），或者選湯麵代替乾麵
+  </div>
+</div>
+
+<!-- 4. 外食高碳高脂應對策略 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>外食高碳高脂日的應對 SOP</h2>
+    <span class="sub">不是禁止，是有備案</span>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">🍕 高碳高脂組合為什麼特別容易卡</div>
+    <p>Pizza、義大利麵、起司蒸餃、粽子這類食物的共同特點：碳水和脂肪同時都很高。這個組合對身體的挑戰是——碳水讓胰島素升高，胰島素升高的時候脂肪的儲存效率也同步提升。簡單說就是：<strong>碳水把「存脂肪的開關」打開，脂肪趁機大量進入儲存</strong>。</p>
+    <p>而且這類食物的鈉含量通常也高，鈉又讓身體多留水，體重計數字就雙重受影響。</p>
+  </div>
+
+  <div class="scenario-list">
+    <div class="scenario">
+      <div class="scenario-num" style="background:#c07070; color:white;">前</div>
+      <div>
+        <h4>聚餐前：蛋白質先吃，不要空腹去</h4>
+        <p>空腹去聚餐食慾最旺盛、最難控制份量。出發前先吃一顆水煮蛋或喝一杯豆漿——不是要填飽，是讓飢餓感降低，到了現場更能做選擇而不是衝動進食。</p>
+        <div class="strategy"><strong>→ 出發前 30–60 分鐘：一顆蛋或 200ml 豆漿</strong></div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num" style="background:#8AAFC4; color:white;">中</div>
+      <div>
+        <h4>聚餐當下：蛋白質和蔬菜先吃</h4>
+        <p>不是要妳不吃碳水，而是先吃蛋白質和蔬菜墊底，讓血糖不要衝太快。碳水一樣可以吃，只是放後面，而且因為胃裡已經有東西，自然吃得少一點。</p>
+        <div class="strategy"><strong>→ 上菜順序：蔬菜 → 蛋白質主菜 → 碳水</strong></div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num" style="background:var(--sage); color:white;">後</div>
+      <div>
+        <h4>聚餐後：隔天回正常節奏，不要懲罰自己</h4>
+        <p>吃完了就吃完了。隔天回到正常的飲食模式，不需要「今天吃多了所以明天少吃」——這種懲罰性少吃反而讓身體的節律更亂。妳已經做到這件事了（6/19 之後有在調整），繼續保持。</p>
+        <div class="strategy"><strong>→ 隔天正常吃，讓身體自己找回平衡</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. 下期目標 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num terra">5</div>
+    <h2>接下來這期，做這四件事</h2>
+    <span class="sub">具體、可執行</span>
+  </div>
+
+  <ul class="action-list">
+    <li>
+      <strong>午餐的份量稍微增加，晚餐的碳水稍微減少</strong>
+      <span>不是要妳吃更少，是把重心往中午移。午餐點有主菜的套餐；晚餐飯少半碗、菜和蛋白質一樣吃。這個調整不需要算數字，感覺上「午餐比以前飽一點點、晚餐比以前輕一點點」就對了。</span>
+    </li>
+    <li>
+      <strong>外食場合用「蛋白質和蔬菜先吃」的順序</strong>
+      <span>不禁止任何食物，只改進食順序。先吃蛋白質和蔬菜，碳水放後面——這樣血糖衝擊小、自然吃少一點、又不需要忍耐。</span>
+    </li>
+    <li>
+      <strong>高鈉外食後多補白開水</strong>
+      <span>熱炒、滷味、起司類這些外食鈉含量高，吃完後多喝 300–500ml 白開水，幫助身體把多餘的鈉代謝掉，體重數字才不會因為水分滯留一直卡在那裡。</span>
+    </li>
+    <li>
+      <strong>有機會的話，複製 6/28–6/29 的外食選法</strong>
+      <span>白切雞、煮魚、沙拉、燕麥——這幾天外食就是這樣選，體重就往下走了。不是要妳每天自己煮，而是在能選的時候，朝這個方向選。</span>
+    </li>
+  </ul>
+</div>
+
+<!-- 6. 下次追蹤 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num terra">6</div>
+    <h2>下次課程追蹤項目</h2>
+  </div>
+
+  <ul class="check-list">
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>腰圍：繼續往 99cm 以下推進</strong>
+        <span>目前 99.5cm，這個指標比體重更重要，每週量一次記錄下來</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>蛋白質繼續維持 97g 以上</strong>
+        <span>這期均值 104g，是很好的表現，繼續保持</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>午餐有沒有變得比以前豐富一點？</strong>
+        <span>不需要算數字，感覺上午餐有蛋白質主菜、吃得比較飽就算達標</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>外食聚餐有沒有用到「蛋白質先吃」的策略？</strong>
+        <span>下次聚餐前先試試看，回報有沒有覺得自然吃少了一點</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>外食有沒有試著選清淡的？</strong>
+        <span>白切雞、煮魚、沙拉、燕麥——6/28、6/29 就是這樣選的，體重那幾天也往下走。能選的時候朝這個方向選就好</span>
+      </div>
+    </li>
+  </ul>
+
+  <div class="boundary">
+    <h3>這期給自己的承諾</h3>
+    <ul>
+      <li>午餐豐富一點，晚餐碳水輕一點</li>
+      <li>外食先吃蛋白質和蔬菜，碳水放後面</li>
+      <li>高鈉外食後多補水</li>
+      <li>外食能選清淡的時候，朝白切雞、煮魚、沙拉方向選</li>
+      <li>腰圍繼續往 99cm 以下推進</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- end tab-course -->
+
+<!-- ══ BLACKBOARD TAB ══ -->
+<div id="tab-blackboard" class="tab-panel">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">🖊</div>
+      <h2>課堂黑板</h2>
+      <span class="sub">即時記錄課堂重點</span>
+    </div>
+    <div class="blackboard">
+      <div class="bb-toolbar">
+        <span class="bb-title">📋 2026.07.13 Fanny × Abby</span>
+        <div class="chalk-colors">
+          <div class="chalk-dot white selected" onclick="setColor('white', this)"></div>
+          <div class="chalk-dot yellow" onclick="setColor('yellow', this)"></div>
+          <div class="chalk-dot pink" onclick="setColor('pink', this)"></div>
+          <div class="chalk-dot cyan" onclick="setColor('cyan', this)"></div>
+          <div class="chalk-dot sage" onclick="setColor('sage', this)"></div>
+        </div>
+        <button class="bb-btn" onclick="toggleBold()" id="boldBtn">B 粗體</button>
+        <button class="bb-btn" onclick="increaseFontSize()">A+</button>
+        <button class="bb-btn" onclick="decreaseFontSize()">A-</button>
+      </div>
+      <textarea class="bb-canvas" id="bbCanvas"
+        placeholder="在這裡輸入課堂重點關鍵字…&#10;&#10;例如：&#10;腰圍 100.5 → 99.5（破百 🎉）&#10;外食選清淡（白切雞/煮魚）→ 體重往下走&#10;午餐豐富一點 / 晚餐輕一點&#10;外食先吃蛋白質 → 碳水放後面"
+        oninput="saveBB()"></textarea>
+    </div>
+    <div class="bb-footer">
+      <span class="bb-date" id="bbDate"></span>
+      <button class="bb-eraser" onclick="clearBB()">🧹 清除黑板</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NOTES TAB ══ -->
+<div id="tab-notes" class="tab-panel">
+
+  <div class="tn-block">
+    <div class="tn-header">Fanny 的個性與溝通策略 <span>課程備忘</span></div>
+    <div class="tn-body">
+      <h4>這期觀察到的特質</h4>
+      <ul>
+        <li><strong>蛋白質習慣已建立：</strong>Appediet 均值穩定在 104g，這是真正的進步，不是偶爾達標</li>
+        <li><strong>6/28–6/29 的選擇很值得點名：</strong>那兩天外食選了白切雞、煮魚、沙拉，是這期外食選得最好的兩天，體重也剛好往下走——讓她看到這個連結，強化正確行為</li>
+        <li><strong>聚餐場合有在嘗試修正：</strong>藏壽司後隔天有調整，這個行為值得被點名肯定</li>
+        <li><strong>腰圍破百對她的意義重大：</strong>這是她一直在等待的里程碑，今天開場一定要先說這件事</li>
+      </ul>
+      <h4>本次課程溝通重點</h4>
+      <ul>
+        <li><strong>開場給她最大的好消息：</strong>腰圍 99.5，正式破百。先讓她開心，再進入討論</li>
+        <li><strong>6/28–6/29 當正向教學素材：</strong>「妳那幾天外食選了白切雞和煮魚，體重就往下走了——妳在外食也做得到，不是只有自己煮才行」，用她自己成功的數據說話，比用失敗的例子更有效</li>
+        <li><strong>晚餐比重偏高這件事要正面說：</strong>不是「妳晚餐吃太多了」，而是「把好的份量搬到中午，讓身體在效率最高的時段工作」</li>
+        <li><strong>Appediet 準確度的問題：</strong>外食油脂 APP 辨識有限，用兩段時期的外食選擇對比（清淡 vs 高碳高脂）來說明油脂的影響，不需要批評她記錄不準</li>
+      </ul>
+      <div class="tn-caution">
+        <strong>注意：</strong>Fanny 的生理期、荷爾蒙、睡眠這些因素在過去幾期都有出現，如果她今天提到這些，讓她說完後確認有沒有去婦科複診，不需要主動帶入這個話題。
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">每日飲食估算詳細表 <span>老師自用，課堂不逐日展示</span></div>
+    <div class="tn-body">
+      <h4>12天有效樣本（排除不明日）</h4>
+      <table class="week-table">
+        <thead>
+          <tr><th>日期</th><th>熱量 kcal</th><th>蛋白質 g</th><th>碳水 g</th><th>脂肪 g</th><th>特別觀察</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>6/16</td><td class="num-warn">2,231</td><td class="num-ok">133.5</td><td class="num-mid">139</td><td class="num-warn">77.4</td><td>日式薑汁燒肉+便當，脂肪超標</td></tr>
+          <tr><td>6/19</td><td class="num-warn">2,001</td><td class="num-ok">108.1</td><td class="num-warn">171.2</td><td class="num-warn">72.2</td><td>牛肉麵+水餃，碳水最高日之一</td></tr>
+          <tr><td>6/21</td><td class="num-warn">2,024</td><td class="num-ok">93.8</td><td class="num-warn">194.3</td><td class="num-warn">85.6</td><td>粽子+壽司，碳水+脂肪雙高</td></tr>
+          <tr><td>6/22</td><td class="num-mid">1,872</td><td class="num-ok">95.7</td><td class="num-warn">183.4</td><td class="num-warn">75.6</td><td>碳水仍偏高</td></tr>
+          <tr><td>6/26</td><td class="num-mid">1,748</td><td class="num-ok">100.5</td><td class="num-mid">167</td><td class="num-mid">65.3</td><td>起司蒸餃拉高脂肪</td></tr>
+          <tr><td>6/28</td><td class="num-ok">1,623</td><td class="num-ok">108.1</td><td class="num-ok">134.1</td><td class="num-mid">60.4</td><td>這期最均衡的一天之一</td></tr>
+          <tr><td>6/29</td><td class="num-ok">1,531</td><td class="num-ok">129.3</td><td class="num-ok">131.4</td><td class="num-ok">58.5</td><td>最接近目標，蛋白質最高</td></tr>
+          <tr><td>7/4</td><td class="num-mid">1,904</td><td class="num-ok">102.5</td><td class="num-warn">169.6</td><td class="num-mid">66.3</td><td>Pizza+義大利麵，碳水偏高</td></tr>
+          <tr><td>7/7</td><td class="num-mid">1,791</td><td class="num-ok">101</td><td class="num-mid">155.3</td><td class="num-mid">62</td><td>散壽司丼飯，碳水在目標線</td></tr>
+          <tr><td>7/10</td><td class="num-ok">1,585</td><td class="num-ok">113.7</td><td class="num-ok">131.9</td><td class="num-ok">48.9</td><td>這期最好的一天</td></tr>
+          <tr><td>7/11</td><td class="num-ok">1,404</td><td class="num-ok">106.8</td><td class="num-ok">92.6</td><td class="num-ok">50.7</td><td>颱風天自己煮，三大最均衡</td></tr>
+          <tr><td>補充日</td><td class="num-ok">~1,350</td><td class="num-ok">~100</td><td class="num-ok">~120</td><td class="num-ok">~45</td><td>7/12–7/13 颱風後估算，體重穩定</td></tr>
+        </tbody>
+      </table>
+      <div class="tn-caution">
+        <strong>課堂不要逐日展示：</strong>重點給她看整體的平均值和模式，逐日分析容易讓她有被監視的感覺，也容易因為某幾天的高數字而沮喪。
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">晚餐比重與生理節律學理 <span>課程概念的依據</span></div>
+    <div class="tn-body">
+      <h4>晝夜節律與代謝效率（Circadian Rhythm & Metabolism）</h4>
+      <p>人體的胰島素敏感度（Insulin Sensitivity）隨晝夜節律變化：早晨最高、深夜最低。這個規律不受進食時間影響，是由 CLOCK 基因調控的生理節奏。</p>
+      <ul>
+        <li>研究顯示：同樣的食物，早上吃的餐後血糖峰值比晚上低 20–30%</li>
+        <li>熱量前移（Early Time-Restricted Eating, eTRE）即使總熱量不變，也能改善空腹胰島素、血脂和體重</li>
+        <li>晚間進食會讓皮質醇在睡眠中維持偏高，干擾生長激素的分泌（生長激素主要在深層睡眠時分泌，負責脂肪分解和肌肉修復）</li>
+      </ul>
+      <h4>對 Fanny 具體的意義</h4>
+      <ul>
+        <li>她的晚餐通常是當天熱量最高的一餐，這個時段胰島素敏感度最低</li>
+        <li>調整重點不是「吃更少」，而是「把一部分晚餐的份量搬到午餐」</li>
+        <li>6/28–6/29 的外食選擇是最好的佐證：清淡外食（白切雞、煮魚、沙拉）→ 體重往下走；高碳高脂外食（粽子、Pizza、起司蒸餃）→ 體重卡住</li>
+      </ul>
+      <h4>課堂怎麼說（簡化版）</h4>
+      <p>「妳的身體在一天不同時段，處理食物的效率真的不一樣。中午像是工廠全速運轉，晚上像是準備收工——同樣一批材料，收工前進來的比較容易堆在倉庫。所以不是要妳少吃，而是把同樣的量稍微往中午移，讓身體在最有效率的時候工作最多。」</p>
+    </div>
+  </div>
+
+</div><!-- end tab-notes -->
+
+<script>
+function switchTab(name, event) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (event && event.target) event.target.classList.add('active');
+  if (name === 'blackboard') initBB();
+}
+function toggleCheck(el) { el.classList.toggle('checked'); }
+
+let currentColor = 'white', isBold = false, currentFontSize = 22;
+function initBB() {
+  const saved = localStorage.getItem('fanny_0713_bb');
+  if (saved) document.getElementById('bbCanvas').value = saved;
+  const dateEl = document.getElementById('bbDate');
+  if (dateEl) dateEl.textContent = new Date().toLocaleDateString('zh-TW') + ' — 課堂記錄';
+}
+function setColor(color, el) {
+  currentColor = color;
+  document.querySelectorAll('.chalk-dot').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+  const canvas = document.getElementById('bbCanvas');
+  canvas.className = 'bb-canvas ' + (color === 'white' ? '' : color);
+}
+function toggleBold() {
+  isBold = !isBold;
+  document.getElementById('boldBtn').classList.toggle('active', isBold);
+  document.getElementById('bbCanvas').style.fontWeight = isBold ? '700' : '400';
+}
+function increaseFontSize() {
+  currentFontSize = Math.min(currentFontSize + 2, 40);
+  document.getElementById('bbCanvas').style.fontSize = currentFontSize + 'px';
+}
+function decreaseFontSize() {
+  currentFontSize = Math.max(currentFontSize - 2, 14);
+  document.getElementById('bbCanvas').style.fontSize = currentFontSize + 'px';
+}
+function saveBB() { localStorage.setItem('fanny_0713_bb', document.getElementById('bbCanvas').value); }
+function clearBB() {
+  if (confirm('確定要清除黑板嗎？')) {
+    document.getElementById('bbCanvas').value = '';
+    localStorage.removeItem('fanny_0713_bb');
+  }
+}
+window.addEventListener('load', () => {
+  const dateEl = document.getElementById('bbDate');
+  if (dateEl) dateEl.textContent = new Date().toLocaleDateString('zh-TW') + ' — 課堂記錄';
+});
+</script>
+
+<div class="footer">
+  Abby 營養師 ✦ abbyeatlife.github.io<br>
+  本資料為個人課程使用，請勿轉載
+</div>
+</body>
+</html>
