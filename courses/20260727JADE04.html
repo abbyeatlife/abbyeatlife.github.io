@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jade 第四次課程 ── Abby 營養師</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage:       #8B9E7E;
+    --sage-pale:  #C8D5C0;
+    --sage-deep:  #5C7252;
+    --terra:      #C17F59;
+    --terra-pale: #E8C4A8;
+    --cream:      #FDFBF7;
+    --bark:       #3D3229;
+    --bark-light: #6B5B4E;
+    --divider:    #E2DDD6;
+    --warn-bg:    #FEF6EE;
+    --warn-border:#E8B88A;
+    --blue:       #5B82A6;
+    --blue-light: #dce8f2;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--cream);
+    color: var(--bark);
+    font-family: 'Noto Sans TC', 'PingFang TC', sans-serif;
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 28px 80px;
+  }
+
+  .cover {
+    background: var(--bark);
+    border-radius: 16px;
+    padding: 48px 40px 40px;
+    margin-bottom: 48px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before { content:''; position:absolute; width:260px; height:260px; border-radius:50%; background:rgba(193,127,89,0.15); top:-80px; right:-60px; }
+  .cover::after  { content:''; position:absolute; width:120px; height:120px; border-radius:50%; background:rgba(139,158,126,0.12); bottom:-20px; left:80px; }
+  .cover-label { font-size:11px; letter-spacing:0.18em; text-transform:uppercase; opacity:0.55; margin-bottom:12px; }
+  .cover h1 { font-family:'Playfair Display',Georgia,serif; font-size:2.2rem; font-weight:700; line-height:1.25; margin-bottom:16px; }
+  .cover h1 em { font-style:normal; color:var(--terra-pale); }
+  .cover-meta { display:flex; gap:24px; flex-wrap:wrap; font-size:13px; opacity:0.7; }
+  .cover-meta span::before { content:'· '; }
+
+  .tab-bar { display:flex; gap:8px; margin-bottom:36px; border-bottom:2px solid var(--divider); overflow-x:auto; }
+  .tab-btn { padding:10px 20px; border:none; background:none; font-family:'Noto Sans TC',sans-serif; font-size:14px; font-weight:600; color:var(--bark-light); cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-2px; transition:color 0.2s,border-color 0.2s; white-space:nowrap; }
+  .tab-btn.active { color:var(--sage-deep); border-bottom-color:var(--sage-deep); }
+  .tab-btn:hover:not(.active) { color:var(--bark); }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+
+  .section { margin-bottom:48px; }
+  .section-header { display:flex; align-items:center; gap:14px; margin-bottom:24px; padding-bottom:14px; border-bottom:2px solid var(--divider); }
+  .section-num { width:36px; height:36px; border-radius:50%; background:var(--sage); color:white; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700; flex-shrink:0; }
+  .section-num.terra { background:var(--terra); }
+  .section-num.blue  { background:var(--blue); }
+  .section-header h2 { font-family:'Playfair Display',Georgia,serif; font-size:1.35rem; color:var(--bark); }
+  .section-header .sub { font-size:12px; color:var(--bark-light); margin-left:auto; letter-spacing:0.05em; }
+
+  .card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; margin-bottom:20px; }
+  .card { background:white; border-radius:12px; padding:20px; border:1px solid var(--divider); }
+  .card-icon { font-size:1.6rem; margin-bottom:8px; }
+  .card h3 { font-size:14px; font-weight:700; color:var(--bark); margin-bottom:6px; }
+  .card p  { font-size:13px; color:var(--bark-light); line-height:1.6; }
+  .card.highlight { border-color:var(--sage); background:#F4F7F2; }
+  .card.highlight h3 { color:var(--sage-deep); }
+  .card.terra { border-color:var(--terra-pale); background:var(--warn-bg); }
+  .card.terra h3 { color:var(--terra); }
+  .card.blue  { border-color:#b8d0e8; background:var(--blue-light); }
+  .card.blue  h3 { color:var(--blue); }
+
+  .metric-viz { background:white; border-radius:12px; border:1px solid var(--divider); padding:20px; margin:16px 0; }
+  .metric-row { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .metric-row:last-child { margin-bottom:0; }
+  .metric-label { font-size:12.5px; color:var(--bark-light); width:160px; flex-shrink:0; }
+  .metric-bar-bg { flex:1; height:18px; background:#EBF3E8; border-radius:9px; overflow:hidden; }
+  .metric-bar-fill { height:100%; border-radius:9px; }
+  .fill-sage  { background:var(--sage); }
+  .fill-terra { background:#D4846A; }
+  .fill-blue  { background:var(--blue); }
+  .fill-gold  { background:#c8a84b; }
+  .metric-val { font-size:12.5px; font-weight:700; color:var(--bark); width:90px; text-align:right; flex-shrink:0; }
+  .metric-val.green { color:var(--sage-deep); }
+  .metric-val.red   { color:#B94040; }
+  .metric-val.amber { color:#A06020; }
+
+  .diet-obs { width:100%; border-collapse:collapse; font-size:13.5px; margin-bottom:20px; }
+  .diet-obs th { background:var(--sage); color:white; text-align:left; padding:10px 14px; font-weight:600; font-size:12px; letter-spacing:0.04em; }
+  .diet-obs th:first-child { border-radius:8px 0 0 0; }
+  .diet-obs th:last-child  { border-radius:0 8px 0 0; }
+  .diet-obs td { padding:11px 14px; border-bottom:1px solid var(--divider); vertical-align:top; }
+  .diet-obs tr:last-child td { border-bottom:none; }
+  .diet-obs tr:nth-child(even) td { background:#F9F7F4; }
+  .tag { display:inline-block; font-size:11px; padding:2px 8px; border-radius:20px; font-weight:600; }
+  .tag-red   { background:#FDECEA; color:#B94040; }
+  .tag-amber { background:#FEF4E5; color:#A06020; }
+  .tag-green { background:#EBF3E8; color:#4A7C40; }
+  .tag-blue  { background:var(--blue-light); color:var(--blue); }
+
+  .know-box { background:white; border-left:4px solid var(--sage); border-radius:0 12px 12px 0; padding:18px 20px; margin:16px 0; font-size:13.5px; }
+  .know-box .kbTitle { font-weight:700; color:var(--sage-deep); margin-bottom:6px; font-size:14px; }
+  .know-box ul { padding-left:18px; color:var(--bark-light); }
+  .know-box ul li { margin-bottom:4px; }
+  .know-box p { color:var(--bark-light); margin-bottom:8px; }
+
+  .know-box.blue { border-left-color:var(--blue); }
+  .know-box.blue .kbTitle { color:var(--blue); }
+
+  .warn-box { background:var(--warn-bg); border:1px solid var(--warn-border); border-radius:12px; padding:16px 20px; margin:16px 0; font-size:13.5px; }
+  .warn-box .wTitle { font-weight:700; color:var(--terra); margin-bottom:6px; }
+
+  .chain { display:flex; align-items:center; flex-wrap:wrap; gap:4px; margin:20px 0; font-size:13px; }
+  .chain-item { background:white; border:1.5px solid var(--divider); border-radius:8px; padding:8px 14px; text-align:center; min-width:88px; }
+  .chain-item .ci-top  { font-size:11px; color:var(--bark-light); }
+  .chain-item .ci-main { font-weight:700; font-size:13.5px; color:var(--bark); }
+  .chain-item.red   { border-color:#F0C8C0; background:#FEF5F3; }
+  .chain-item.red .ci-main   { color:#B94040; }
+  .chain-item.green { border-color:var(--sage-pale); background:#F4F7F2; }
+  .chain-item.green .ci-main { color:var(--sage-deep); }
+  .chain-item.amber { border-color:#F0D8B0; background:#FEF8EE; }
+  .chain-item.amber .ci-main { color:#A06020; }
+  .chain-item.blue  { border-color:#b8d0e8; background:var(--blue-light); }
+  .chain-item.blue .ci-main  { color:var(--blue); }
+  .chain-arrow { color:var(--terra); font-size:1.1rem; font-weight:700; }
+
+  .action-list { counter-reset:action; list-style:none; display:flex; flex-direction:column; gap:14px; }
+  .action-list li { counter-increment:action; display:flex; gap:14px; align-items:flex-start; background:white; border-radius:12px; padding:16px 18px; border:1px solid var(--divider); }
+  .action-list li::before { content:counter(action); width:28px; height:28px; border-radius:50%; background:var(--terra); color:white; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; margin-top:2px; }
+  .action-list li strong { display:block; font-size:14px; margin-bottom:4px; color:var(--bark); }
+  .action-list li span   { font-size:13px; color:var(--bark-light); line-height:1.65; }
+
+  .scenario-list { display:flex; flex-direction:column; gap:14px; margin:16px 0; }
+  .scenario { background:white; border-radius:12px; padding:16px 18px; border:1px solid var(--divider); display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:start; }
+  .scenario-num { width:32px; height:32px; border-radius:50%; background:var(--bark); color:var(--terra-pale); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:700; flex-shrink:0; }
+  .scenario-num.sage { background:var(--sage); color:white; }
+  .scenario-num.blue { background:var(--blue); color:white; }
+  .scenario h4 { font-size:14px; font-weight:700; color:var(--bark); margin-bottom:4px; }
+  .scenario p  { font-size:13px; color:var(--bark-light); line-height:1.65; }
+  .scenario .strategy { margin-top:8px; background:#F4F7F2; border-left:3px solid var(--sage); border-radius:0 6px 6px 0; padding:8px 12px; font-size:13px; color:var(--sage-deep); }
+  .scenario .strategy.blue { background:var(--blue-light); border-left-color:var(--blue); color:var(--blue); }
+  .scenario .strategy strong { font-weight:700; display:block; margin-bottom:2px; }
+
+  .boundary { background:var(--bark); color:white; border-radius:12px; padding:20px 24px; margin-top:24px; font-size:13.5px; }
+  .boundary h3 { font-size:14px; font-weight:700; margin-bottom:10px; color:var(--terra-pale); }
+  .boundary ul { padding-left:18px; line-height:1.8; opacity:0.88; }
+
+  .check-list { list-style:none; display:flex; flex-direction:column; gap:10px; margin:16px 0; }
+  .check-list li { display:flex; align-items:flex-start; gap:12px; background:white; border-radius:10px; padding:13px 16px; border:1px solid var(--divider); font-size:13.5px; }
+  .check-box { width:22px; height:22px; border-radius:6px; border:2px solid var(--divider); flex-shrink:0; margin-top:1px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.15s; }
+  .check-box.checked { background:var(--sage); border-color:var(--sage); }
+  .check-box.checked::after { content:'✓'; color:white; font-size:13px; font-weight:700; }
+  .check-txt strong { display:block; font-size:13.5px; color:var(--bark); margin-bottom:3px; }
+  .check-txt span   { font-size:12.5px; color:var(--bark-light); line-height:1.6; }
+
+  /* 血糖圖 */
+  .glucose-visual { background:white; border-radius:12px; border:1px solid var(--divider); padding:20px; margin:16px 0; }
+  .gv-row { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .gv-row:last-child { margin-bottom:0; }
+  .gv-label { font-size:12px; color:var(--bark-light); width:110px; flex-shrink:0; }
+  .gv-bar-wrap { flex:1; height:24px; background:#f5f2ee; border-radius:6px; overflow:hidden; position:relative; }
+  .gv-bar { height:100%; border-radius:6px; display:flex; align-items:center; padding-left:8px; font-size:11px; color:white; font-weight:700; }
+  .gv-note { font-size:11px; color:var(--bark-light); width:110px; text-align:right; flex-shrink:0; }
+
+  /* 生理期表格 */
+  .cycle-table { width:100%; border-collapse:collapse; font-size:13px; margin:16px 0; }
+  .cycle-table th { background:var(--bark); color:white; padding:9px 12px; text-align:left; font-size:12px; font-weight:600; }
+  .cycle-table th:first-child { border-radius:8px 0 0 0; }
+  .cycle-table th:last-child  { border-radius:0 8px 0 0; }
+  .cycle-table td { padding:9px 12px; border-bottom:1px solid var(--divider); font-size:13px; vertical-align:top; }
+  .cycle-table tr:last-child td { border-bottom:none; }
+  .cycle-table tr:nth-child(even) td { background:#F9F7F4; }
+
+  /* app 稽核表 */
+  .app-table { width:100%; border-collapse:collapse; font-size:13px; margin:16px 0; }
+  .app-table th { background:var(--blue); color:white; padding:9px 12px; text-align:left; font-size:12px; font-weight:600; }
+  .app-table th:first-child { border-radius:8px 0 0 0; }
+  .app-table th:last-child  { border-radius:0 8px 0 0; }
+  .app-table td { padding:9px 12px; border-bottom:1px solid var(--divider); vertical-align:top; }
+  .app-table tr:last-child td { border-bottom:none; }
+  .app-table tr:nth-child(even) td { background:#F9F7F4; }
+
+  .tn-block { background:white; border-radius:14px; border:1px solid var(--divider); margin-bottom:28px; overflow:hidden; }
+  .tn-header { background:var(--bark); color:white; padding:14px 22px; font-size:15px; font-weight:700; }
+  .tn-header span { opacity:0.6; font-size:12px; font-weight:400; margin-left:10px; }
+  .tn-body { padding:20px 22px; font-size:13.5px; line-height:1.8; color:var(--bark); }
+  .tn-body h4 { font-size:13px; font-weight:700; color:var(--sage-deep); margin:16px 0 6px; padding-left:10px; border-left:3px solid var(--sage); }
+  .tn-body h4:first-child { margin-top:0; }
+  .tn-body p  { margin-bottom:10px; color:var(--bark-light); }
+  .tn-body ul { padding-left:18px; color:var(--bark-light); margin-bottom:10px; }
+  .tn-body ul li { margin-bottom:5px; }
+  .tn-body strong { color:var(--bark); }
+  .tn-caution { background:var(--warn-bg); border:1px solid var(--warn-border); border-radius:8px; padding:12px 16px; font-size:13px; color:var(--bark-light); margin-top:14px; }
+  .tn-caution strong { color:var(--terra); }
+
+  /* blackboard */
+  .blackboard { background:#1e3a2f; border-radius:16px; padding:32px 36px 36px; min-height:480px; position:relative; font-family:'Noto Sans TC',sans-serif; box-shadow:inset 0 0 60px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.15); border:4px solid #2d4a3a; overflow:hidden; }
+  .blackboard::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(transparent,transparent 39px,rgba(255,255,255,0.04) 39px,rgba(255,255,255,0.04) 40px); pointer-events:none; }
+  .bb-toolbar { display:flex; gap:10px; align-items:center; margin-bottom:20px; flex-wrap:wrap; }
+  .bb-title { font-size:13px; color:rgba(255,255,255,0.4); letter-spacing:0.1em; text-transform:uppercase; margin-right:auto; }
+  .bb-btn { padding:6px 14px; border-radius:6px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.7); font-size:12px; cursor:pointer; font-family:inherit; transition:all 0.15s; }
+  .bb-btn:hover { background:rgba(255,255,255,0.15); color:white; }
+  .bb-btn.active { background:rgba(139,158,126,0.4); border-color:rgba(139,158,126,0.6); color:#c8d5c0; }
+  .chalk-colors { display:flex; gap:6px; align-items:center; }
+  .chalk-dot { width:18px; height:18px; border-radius:50%; cursor:pointer; border:2px solid transparent; transition:all 0.15s; }
+  .chalk-dot:hover,.chalk-dot.selected { border-color:white; transform:scale(1.2); }
+  .chalk-dot.white  { background:rgba(255,255,255,0.85); }
+  .chalk-dot.yellow { background:#f5d76e; }
+  .chalk-dot.pink   { background:#f0a0a0; }
+  .chalk-dot.cyan   { background:#88d8d8; }
+  .chalk-dot.sage   { background:#8B9E7E; }
+  .bb-canvas { width:100%; min-height:380px; background:transparent; border:none; outline:none; color:rgba(255,255,255,0.85); font-size:22px; line-height:40px; font-family:'Noto Sans TC',sans-serif; resize:none; caret-color:rgba(255,255,255,0.8); text-shadow:0 0 8px rgba(255,255,255,0.15); letter-spacing:0.03em; }
+  .bb-canvas::placeholder { color:rgba(255,255,255,0.18); font-size:18px; }
+  .bb-canvas.yellow { color:#f5d76e; text-shadow:0 0 8px rgba(245,215,110,0.2); }
+  .bb-canvas.pink   { color:#f0a0a0; text-shadow:0 0 8px rgba(240,160,160,0.2); }
+  .bb-canvas.cyan   { color:#88d8d8; text-shadow:0 0 8px rgba(136,216,216,0.2); }
+  .bb-canvas.sage   { color:#c8d5c0; text-shadow:0 0 8px rgba(200,213,192,0.2); }
+  .bb-footer { display:flex; justify-content:space-between; align-items:center; margin-top:12px; }
+  .bb-date   { font-size:12px; color:rgba(255,255,255,0.25); }
+  .bb-eraser { padding:6px 16px; border-radius:6px; background:rgba(193,127,89,0.2); border:1px solid rgba(193,127,89,0.4); color:var(--terra-pale); font-size:12px; cursor:pointer; font-family:inherit; transition:all 0.15s; }
+  .bb-eraser:hover { background:rgba(193,127,89,0.35); }
+
+  .section-divider { border:none; border-top:1px dashed var(--divider); margin:20px 0; }
+  .footer { text-align:center; margin-top:60px; font-size:12px; color:var(--bark-light); border-top:1px solid var(--divider); padding-top:24px; }
+
+  @media(max-width:600px){
+    body { padding:24px 16px 60px; }
+    .cover h1 { font-size:1.7rem; }
+    .card-grid { grid-template-columns:1fr; }
+    .bb-canvas { font-size:18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-label">Abby 營養師 ✦ 個人課程</div>
+  <h1>Jade 的<br><em>第四次課程</em></h1>
+  <div class="cover-meta">
+    <span>2026 / 07 / 27</span>
+    <span>161 cm ／ 約 73.5 kg</span>
+    <span>46 歲</span>
+    <span>Session 04</span>
+  </div>
+</div>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('course',event)">📋 課程內容</button>
+  <button class="tab-btn" onclick="switchTab('blackboard',event)">🖊 課堂黑板</button>
+  <button class="tab-btn" onclick="switchTab('notes',event)">🔬 老師備忘</button>
+</div>
+
+<!-- ══════════════ COURSE ══════════════ -->
+<div id="tab-course" class="tab-panel active">
+
+<!-- 開場 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">✦</div>
+    <h2>今天我們要做什麼</h2>
+  </div>
+  <div class="card-grid">
+    <div class="card highlight">
+      <div class="card-icon">📊</div>
+      <h3>體態進度分析</h3>
+      <p>體重、腰圍、生理週期三個維度一起看，找出真正的進步在哪裡。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">🍽️</div>
+      <h3>飲食分析與優化</h3>
+      <p>看這三週吃得怎麼樣，找出可以讓減脂更順利的調整方向。</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">🧠</div>
+      <h3>穩定性的重要</h3>
+      <p>血糖、多巴胺、作息——為什麼「穩定」比「努力」更重要？</p>
+    </div>
+    <div class="card highlight">
+      <div class="card-icon">📱</div>
+      <h3>聰明使用飲食 APP</h3>
+      <p>工具是助理，你才是老闆。怎麼審核數字、讀懂趨勢？</p>
+    </div>
+  </div>
+  <div class="warn-box">
+    <div class="wTitle">先說最重要的事</div>
+    腰圍從 <strong>87 cm → 85 cm</strong>，兩週少了 2 公分——這是這期最實質的進步，比體重數字更有意義。今天的目標是把這個進步的動能，轉化成更聰明的下一步。
+  </div>
+</div>
+
+<!-- 1. 體態進度 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>體態進度分析</h2>
+    <span class="sub">體重 ＋ 腰圍 ＋ 生理週期</span>
+  </div>
+
+  <div class="metric-viz">
+    <p style="font-size:14px;font-weight:700;margin-bottom:16px;">週均體重趨勢</p>
+    <div class="metric-row">
+      <div class="metric-label">第三次課當天（7/6）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-terra" style="width:100%"></div></div>
+      <div class="metric-val amber">73.0 kg</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">第一週（7/6–7/12）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-terra" style="width:99%"></div></div>
+      <div class="metric-val amber">73.2 kg 💧生理期前</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">第二週（7/13–7/19）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:96%"></div></div>
+      <div class="metric-val green">72.4 kg ↓ 0.8 kg ✅</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">第三週（7/20–7/25）</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-terra" style="width:100%"></div></div>
+      <div class="metric-val amber">73.5 kg 💧生理期來</div>
+    </div>
+    <hr class="section-divider">
+    <div class="metric-row">
+      <div class="metric-label">腰圍 7/7</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-terra" style="width:87%"></div></div>
+      <div class="metric-val amber">87 cm</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">腰圍 7/14</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:85%"></div></div>
+      <div class="metric-val green">85 cm ↓ 2 cm ✅</div>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">📊 怎麼正確解讀這些數字？</div>
+    <ul>
+      <li><strong>週均 72.4 kg（第二週）</strong>是這期真正的最低點，生理期後消水腫的成果</li>
+      <li><strong>第三週回升到 73.5 kg</strong>——7/21 生理期第一天，這是完全正常的水腫，不是退步</li>
+      <li><strong>腰圍 −2 cm</strong> 是這期最重要的指標，代表內臟脂肪有在改善</li>
+      <li><strong>體重受生理週期影響很大</strong>，真正要追蹤的是「每個生理週期最低點」的趨勢</li>
+    </ul>
+    <p style="margin-top:8px;"><strong>上次生理週期最低點約 71.9 kg，這次約 72.2 kg——差距不大，仍在緩慢平台區，但方向還在。</strong></p>
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">體重數字的「月週期」——你需要知道的框架</div>
+    女性體重不是一條直線往下，而是有規律的月波動：<br><br>
+    生理期前 5–10 天 → 黃體素高峰 → 身體留水 → 體重偏高<br>
+    生理期來後 → 黃體素下降 → 水分排出 → 體重下降<br><br>
+    <strong>真正的進度指標：每個週期的最低點，有沒有比上一個週期低？</strong><br>
+    建議每次生理期結束後記錄一次最低體重，這個數字才是你的減脂進度指標。
+  </div>
+</div>
+
+<!-- 2. 飲食分析 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>飲食分析</h2>
+    <span class="sub">9天有記錄，三大營養素趨勢</span>
+  </div>
+
+  <div class="metric-viz">
+    <p style="font-size:14px;font-weight:700;margin-bottom:16px;">9天均值 vs 目標</p>
+    <div class="metric-row">
+      <div class="metric-label">熱量</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:92%"></div></div>
+      <div class="metric-val green">~1,380 kcal ✅</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">蛋白質</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-terra" style="width:85%"></div></div>
+      <div class="metric-val amber">~85g ⚠️</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">碳水化合物</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:93%"></div></div>
+      <div class="metric-val green">~129g ✅</div>
+    </div>
+    <div class="metric-row">
+      <div class="metric-label">脂肪</div>
+      <div class="metric-bar-bg"><div class="metric-bar-fill fill-sage" style="width:96%"></div></div>
+      <div class="metric-val green">~48g ✅</div>
+    </div>
+  </div>
+
+  <table class="diet-obs">
+    <thead>
+      <tr><th>觀察模式</th><th>程度</th><th>說明</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>熱量均值進步明顯</strong><br>從上期約 1,225 kcal 提升到約 1,380 kcal</td>
+        <td><span class="tag tag-green">進步</span></td>
+        <td>往目標方向移動，這是這期最大的改善</td>
+      </tr>
+      <tr>
+        <td><strong>豌豆蛋白飲出現頻率很高</strong><br>幾乎每天都有補充</td>
+        <td><span class="tag tag-green">很好</span></td>
+        <td>蛋白質補充意識提升，這個習慣繼續維持</td>
+      </tr>
+      <tr>
+        <td><strong>蛋白質波動大，不穩定</strong><br>最低 68g（7/19），最高約 110g（7/15）</td>
+        <td><span class="tag tag-amber">需改善</span></td>
+        <td>穩定比衝高更重要，每天 85–100g 比偶爾 110g 有用</td>
+      </tr>
+      <tr>
+        <td><strong>聚餐日出現甜食＋精製碳水</strong><br>菠蘿包、仙草芋圓、水果蛋糕、奶黃包</td>
+        <td><span class="tag tag-amber">觀察</span></td>
+        <td>聚餐本身沒問題，但這幾天剛好都是高糖組合，隔天又補償性少吃</td>
+      </tr>
+      <tr>
+        <td><strong>7/18 這天結構最差</strong><br>菠蘿包＋排骨便當＋仙草芋圓，蛋白質只有約 60g</td>
+        <td><span class="tag tag-red">注意</span></td>
+        <td>高糖＋高油＋低蛋白，血糖波動最大的一天</td>
+      </tr>
+      <tr>
+        <td><strong>7/23 熱量只有約 1,000 kcal</strong><br>聚餐後的補償性少吃</td>
+        <td><span class="tag tag-red">需調整</span></td>
+        <td>這種「吃多→吃很少」的循環比聚餐本身更傷代謝</td>
+      </tr>
+      <tr>
+        <td><strong>7/10 有重訓＋橢圓機</strong><br>整個週期只有一次</td>
+        <td><span class="tag tag-amber">需加強</span></td>
+        <td>目標每週一次，這期只達到一次</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 3. 穩定性的重要 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num terra">3</div>
+    <h2>穩定性：為什麼比努力更重要</h2>
+    <span class="sub">血糖、多巴胺、作息的連鎖效應</span>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">🧠 一個你需要知道的大腦機制</div>
+    <p>你有沒有發現：吃了甜食或大餐之後，不但沒有滿足感，反而更想繼續吃？或者聚餐後隔天特別難控制飲食？這不是意志力的問題，而是血糖和多巴胺在背後操控。</p>
+  </div>
+
+  <p style="font-weight:700;font-size:14px;margin:20px 0 12px;color:var(--bark);">▸ 血糖的過山車效應</p>
+
+  <div class="chain">
+    <div class="chain-item amber">
+      <div class="ci-top">精製糖／高碳水</div>
+      <div class="ci-main">空腹攝取</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item red">
+      <div class="ci-top">血糖</div>
+      <div class="ci-main">快速飆高</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item red">
+      <div class="ci-top">胰島素</div>
+      <div class="ci-main">大量分泌</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item red">
+      <div class="ci-top">血糖</div>
+      <div class="ci-main">快速下跌</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item amber">
+      <div class="ci-top">飢餓感＋</div>
+      <div class="ci-main">想吃衝動</div>
+    </div>
+  </div>
+
+  <p style="font-weight:700;font-size:14px;margin:20px 0 12px;color:var(--bark);">▸ 多巴胺的高峰與低谷</p>
+
+  <div class="chain">
+    <div class="chain-item amber">
+      <div class="ci-top">高刺激食物</div>
+      <div class="ci-main">甜＋油＋鹹</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item blue">
+      <div class="ci-top">多巴胺</div>
+      <div class="ci-main">短暫飆升</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item red">
+      <div class="ci-top">多巴胺</div>
+      <div class="ci-main">快速下跌</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item red">
+      <div class="ci-top">情緒低落</div>
+      <div class="ci-main">不安焦慮</div>
+    </div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-item amber">
+      <div class="ci-top">再次尋求</div>
+      <div class="ci-main">高刺激食物</div>
+    </div>
+  </div>
+
+  <div class="warn-box" style="margin-top:20px;">
+    <div class="wTitle">這就是為什麼聚餐後特別難控制</div>
+    聚餐那天血糖大幅波動＋多巴胺大起大落，讓大腦在接下來的 24–48 小時都處於「想要更多刺激」的狀態。這不是你的錯，是神經化學的正常反應。<strong>但你可以學會預測它、然後不被它控制。</strong>
+  </div>
+
+  <p style="font-weight:700;font-size:14px;margin:20px 0 12px;color:var(--bark);">▸ 聚餐後補償性節食——為什麼反而更糟？</p>
+
+  <div class="scenario-list">
+    <div class="scenario">
+      <div class="scenario-num">❌</div>
+      <div>
+        <h4>補償模式（你現在的模式）</h4>
+        <p>聚餐吃多 → 隔天罪惡感 → 壓低熱量到 1,000 kcal → 血糖更不穩定 → 身體壓力感升高 → 代謝繼續下調 → 下次聚餐更容易失控</p>
+        <div class="strategy" style="background:#FEF5F3;border-left-color:#B94040;color:#B94040;">
+          <strong>→ 這個循環讓你越來越難瘦，而且越來越難受</strong>
+        </div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num sage">✅</div>
+      <div>
+        <h4>正確模式（目標）</h4>
+        <p>聚餐吃多 → 接受它，這是生活的一部分 → 隔天正常吃回來 1,400 kcal → 血糖穩定 → 身體有安全感 → 代謝維持正常</p>
+        <div class="strategy">
+          <strong>→ 一餐不影響趨勢，補償才會</strong>
+          聚餐不需要完美，但隔天一定要正常吃回來。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">🎯 放鬆與嚴格之間，怎麼拿捏？</div>
+    <ul>
+      <li><strong>放鬆的範圍：</strong>一週一到兩次聚餐、偶爾吃喜歡的甜點、不需要每克都計算</li>
+      <li><strong>不能放棄的底線：</strong>隔天正常吃回來、蛋白質每天都要到、不連續三天失控</li>
+      <li><strong>判斷標準：</strong>看的是週均，不是單日——一天吃多沒問題，三天都亂就需要收回來</li>
+    </ul>
+    <p style="margin-top:8px;"><strong>不是要你每天都完美，而是要讓週均維持在目標範圍內。</strong></p>
+  </div>
+</div>
+
+<!-- 4. APP 使用 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num blue">4</div>
+    <h2>聰明使用飲食 APP</h2>
+    <span class="sub">工具是助理，你才是老闆</span>
+  </div>
+
+  <p style="margin-bottom:16px;color:var(--bark-light);font-size:14px;">
+    APP 幫你記錄是好事，但 APP 給的數字不一定準確——<strong>你需要學會審核它，而不是盲目相信它。</strong>
+  </p>
+
+  <div class="know-box blue">
+    <div class="kbTitle">🔍 怎麼發現 APP 數字不對？</div>
+    <p>看到這些訊號，就要懷疑：</p>
+    <ul>
+      <li><strong>外食的脂肪顯示很低</strong>（例如 7/9 脂肪只有 14g）→ 外食幾乎不可能脂肪這麼低，資料庫有問題</li>
+      <li><strong>蛋白質顯示超高</strong>（例如 7/13 蛋白質 154g）→ 那天吃的量沒有這麼多，資料庫高估</li>
+      <li><strong>熱量跟你吃的量對不上</strong>→ 找原來那筆食物資料，換一筆更接近實際的</li>
+      <li><strong>吃得很少但體重不降</strong>→ 可能是 APP 低估了你實際的攝取量</li>
+    </ul>
+  </div>
+
+  <table class="app-table">
+    <thead>
+      <tr><th>你看到的數字</th><th>合理嗎？</th><th>怎麼判斷</th><th>行動</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>外食脂肪 &lt; 20g</td>
+        <td><span class="tag tag-red">不合理</span></td>
+        <td>外食炒菜油＋醬汁，脂肪至少 30–40g</td>
+        <td>換一筆資料或手動加 10–15g</td>
+      </tr>
+      <tr>
+        <td>火鍋套餐 300 Cal</td>
+        <td><span class="tag tag-amber">偏低</span></td>
+        <td>火鍋湯底＋肉片實際約 500–700 Cal</td>
+        <td>找更詳細的拆開記</td>
+      </tr>
+      <tr>
+        <td>蛋白質單日 150g+</td>
+        <td><span class="tag tag-red">不合理</span></td>
+        <td>那天沒有吃那麼多肉或蛋白質食物</td>
+        <td>找原始資料更正</td>
+      </tr>
+      <tr>
+        <td>整天吃很少但體重不降</td>
+        <td><span class="tag tag-blue">值得懷疑</span></td>
+        <td>可能有漏記或資料庫低估</td>
+        <td>回想有沒有漏記的食物</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="know-box blue">
+    <div class="kbTitle">📋 每週怎麼自我審核？</div>
+    <p>每週日或週一，花 5 分鐘做這四件事：</p>
+    <ul>
+      <li>① 看這週的<strong>週均體重</strong>，有沒有比上週低？</li>
+      <li>② 看這週的<strong>平均熱量</strong>，是不是落在 1,400–1,500 kcal？</li>
+      <li>③ 看蛋白質，<strong>每天有沒有到 85g 以上</strong>？哪幾天明顯偏低？</li>
+      <li>④ 看有沒有<strong>連續三天以上</strong>熱量低於 1,200 kcal 或高於 1,700 kcal？</li>
+    </ul>
+    <p style="margin-top:8px;"><strong>如果熱量吃得很低但體重還是沒降，不要再繼續壓低——這時候應該來問營養師，而不是繼續記錄下去。</strong></p>
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">⚠️ APP 設定的目標也要確認</div>
+    你的 APP 目前熱量目標設定是 <strong>1,200 kcal</strong>，脂肪目標是 <strong>27g</strong>——這兩個數字都不對。<br><br>
+    請幫我把 APP 目標改成：<br>
+    🎯 熱量：<strong>1,400 kcal</strong><br>
+    🎯 蛋白質：<strong>90g</strong><br>
+    🎯 碳水：<strong>130g</strong><br>
+    🎯 脂肪：<strong>45g</strong>
+  </div>
+</div>
+
+<!-- 5. 生理週期 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>用生理週期找到節奏</h2>
+    <span class="sub">每個月都有的規律，讓它成為你的工具</span>
+  </div>
+
+  <p style="margin-bottom:16px;color:var(--bark-light);font-size:14px;">
+    你的身體每個月都有一個固定的荷爾蒙週期，這個週期直接影響你的食慾、體重、體力和情緒。<strong>了解它，就可以預測它，然後不被它嚇到。</strong>
+  </p>
+
+  <table class="cycle-table">
+    <thead>
+      <tr><th>週期階段</th><th>天數</th><th>身體狀態</th><th>飲食策略</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>🟢 月經期</strong></td>
+        <td>第 1–5 天</td>
+        <td>體重開始下降、容易疲憊、鐵質需求高</td>
+        <td>多補充鐵質（紅肉、菠菜）、溫熱食物優先、不需要強迫運動</td>
+      </tr>
+      <tr>
+        <td><strong>🟢 卵泡期</strong></td>
+        <td>第 6–13 天</td>
+        <td>體重最低點、精力最好、胰島素敏感度高</td>
+        <td>這是減脂黃金期，可以稍微提高運動強度，蛋白質吃足，是體重最容易下降的時候</td>
+      </tr>
+      <tr>
+        <td><strong>🟡 排卵期</strong></td>
+        <td>第 14 天前後</td>
+        <td>體力最旺盛、食慾可能短暫增加</td>
+        <td>正常飲食，可以安排這週做重訓</td>
+      </tr>
+      <tr>
+        <td><strong>🔴 黃體期</strong></td>
+        <td>第 15–28 天</td>
+        <td>食慾增加、情緒波動、容易水腫、體重偏高</td>
+        <td>不要因為體重升高就壓低熱量；減少鈉攝取；補充鎂（深色蔬菜、堅果）有助於緩解情緒波動和水腫；這時候對甜食的渴望是正常的，備好健康零食</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="know-box">
+    <div class="kbTitle">💡 以你的週期來說（這次 7/23）</div>
+    <ul>
+      <li>現在約在<strong>月經後第 4 天</strong>，即將進入卵泡期——體重會開始往下走，是減脂黃金期</li>
+      <li>卵泡期黃金期約 <strong>7/29–8/5</strong>，精力最好、體重最容易下降，把握這段時間重訓！
+      <li>下次黃體期約從 <strong>8/6 前後</strong>開始，那時候體重會再往上，是正常的水腫，不要緊張</li>
+      <li>下次生理期預計約 <strong>8/20 前後</strong></li>
+      <li></li>
+    </ul>
+  </div>
+
+  <div class="warn-box">
+    <div class="wTitle">⚠️ 黃體期（生理期前一週）的飲食地雷</div>
+    食慾增加是荷爾蒙造成的，不是你意志力不好。這個時候最容易失守的原因是：<br>
+    家裡有零食可以拿 → 下次採購提前換成低負擔選項<br>
+    情緒低落想用甜食補償 → 備好黑巧克力（70%以上）、毛豆、希臘優格代替餅乾
+  </div>
+</div>
+
+<!-- 6. 重訓 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num terra">6</div>
+    <h2>重訓與活動量的重要性</h2>
+    <span class="sub">不是為了消耗熱量，而是為了讓身體繼續動</span>
+  </div>
+
+  <div class="scenario-list">
+    <div class="scenario">
+      <div class="scenario-num">🔥</div>
+      <div>
+        <h4>走路 vs 重訓：目的完全不同</h4>
+        <p>走路燃燒的熱量其實不多，但它讓你的日常代謝保持活躍。重訓消耗的熱量也不多，但它告訴身體「肌肉有用，不要裁掉」。</p>
+        <div class="strategy">
+          <strong>→ 兩個都要，缺一不可</strong>
+          走路 = 維持日常代謝活躍；重訓 = 保住肌肉，讓身體繼續燃燒脂肪
+        </div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num">💪</div>
+      <div>
+        <h4>為什麼接近更年期更需要重訓？</h4>
+        <p>雌激素下降會加速肌肉流失，肌肉每流失 1 kg，基礎代謝大約降低 50 kcal／天。不重訓的話，即使體重沒變，體脂率也會慢慢升高。</p>
+        <div class="strategy">
+          <strong>→ 重訓是你現在最重要的投資</strong>
+          不是為了練大塊，而是讓身體的燃燒能力不要繼續下降。
+        </div>
+      </div>
+    </div>
+    <div class="scenario">
+      <div class="scenario-num">🧘</div>
+      <div>
+        <h4>身體疲憊的時候怎麼辦？</h4>
+        <p>你說這期有點疲倦、提不起勁——身體疲憊確實不適合高強度重訓，但完全不動反而讓疲勞感更重。</p>
+        <div class="strategy">
+          <strong>→ 疲憊時的替代方案</strong>
+          輕鬆散步 20 分鐘、伸展、瑜珈——維持「身體有在動」的訊號就好，不需要逼自己上健身房。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="know-box">
+    <div class="kbTitle">🎯 這期的活動量目標</div>
+    <ul>
+      <li>步數：每天目標 <strong>7,000–8,000 步</strong>，有意識地走</li>
+      <li>重訓：每週 <strong>1 次</strong>，任何形式都可以（啞鈴、徒手、健身房）</li>
+      <li>善用生理週期：卵泡期（現在）是最適合重訓的時間，把握這兩週</li>
+      <li>朋友綁定：讓朋友一起走路或重訓，執行率最高</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 7. 下次追蹤 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num terra">7</div>
+    <h2>下次課程追蹤項目</h2>
+    <span class="sub">下次課程日期待定</span>
+  </div>
+
+  <ul class="check-list">
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>體重：這個生理週期的最低點是多少？</strong>
+        <span>繼續每天早上量，找出這次週期的最低點，這才是真正的進度指標</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>腰圍：每週量一次，帶數字來</strong>
+        <span>目標繼續往 84 cm 以下走</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>APP 目標設定有沒有改？</strong>
+        <span>熱量 1,400 kcal、蛋白質 90g、碳水 130g、脂肪 45g</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>重訓這段期間做了幾次？</strong>
+        <span>目標每週一次，現在是卵泡期黃金時段，先做起來</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>聚餐後有沒有正常吃回來？</strong>
+        <span>不是要你不聚餐，是觀察隔天有沒有補償性少吃</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>蛋白質每天有沒有到 85g？</strong>
+        <span>豌豆蛋白粉繼續固定一次，這是最容易補足的方式</span>
+      </div>
+    </li>
+    <li>
+      <div class="check-box" onclick="toggleCheck(this)"></div>
+      <div class="check-txt">
+        <strong>黃體期（約 8/6 後）有沒有備好健康零食？</strong>
+        <span>黑巧克力、毛豆、希臘優格——讓家裡有得拿的是好東西</span>
+      </div>
+    </li>
+  </ul>
+
+  <div class="boundary">
+    <h3>這三週的核心任務</h3>
+    <ul>
+      <li>卵泡期黃金期（7/29–8/5）：把重訓做起來，熱量吃夠 1,400</li>
+      <li>黃體期（約 8/6 後）：不要因為體重升高就壓低熱量，備好健康零食</li>
+      <li>聚餐後：隔天正常吃回來，不補償</li>
+      <li>每週日花 5 分鐘審核 APP 數字</li>
+    </ul>
+  </div>
+</div>
+
+</div><!-- end course -->
+
+<!-- ══════════════ BLACKBOARD ══════════════ -->
+<div id="tab-blackboard" class="tab-panel">
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">🖊</div>
+      <h2>課堂黑板</h2>
+      <span class="sub">即時記錄課堂重點</span>
+    </div>
+    <div class="blackboard">
+      <div class="bb-toolbar">
+        <span class="bb-title">📋 2026.07.27 Jade × Abby（下次課程日期待定）</span>
+        <div class="chalk-colors">
+          <div class="chalk-dot white selected" onclick="setColor('white',this)" title="白色"></div>
+          <div class="chalk-dot yellow" onclick="setColor('yellow',this)" title="黃色"></div>
+          <div class="chalk-dot pink" onclick="setColor('pink',this)" title="粉紅"></div>
+          <div class="chalk-dot cyan" onclick="setColor('cyan',this)" title="青色"></div>
+          <div class="chalk-dot sage" onclick="setColor('sage',this)" title="鼠尾草綠"></div>
+        </div>
+        <button class="bb-btn" onclick="toggleBold()" id="boldBtn">B 粗體</button>
+        <button class="bb-btn" onclick="increaseFontSize()">A+</button>
+        <button class="bb-btn" onclick="decreaseFontSize()">A-</button>
+      </div>
+      <textarea class="bb-canvas" id="bbCanvas"
+        placeholder="在這裡輸入課堂重點關鍵字…&#10;&#10;例如：&#10;穩定 > 努力&#10;血糖過山車 → 多巴胺低谷 → 失控飲食&#10;聚餐後隔天正常吃，不補償&#10;卵泡期 = 黃金期，現在做重訓！"
+        oninput="saveBB()"></textarea>
+    </div>
+    <div class="bb-footer">
+      <span class="bb-date" id="bbDate"></span>
+      <button class="bb-eraser" onclick="clearBB()">🧹 清除黑板</button>
+    </div>
+    <div class="know-box" style="margin-top:20px;">
+      <div class="kbTitle">💡 黑板使用提示</div>
+      <ul>
+        <li>分享螢幕給學生時切換到這個分頁，直接在上面打字</li>
+        <li>白色：主要概念｜黃色：重點數字｜粉紅：待改善｜青色：學生的話｜綠色：做得好的</li>
+        <li>內容暫存在瀏覽器，關掉前記得截圖</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ NOTES ══════════════ -->
+<div id="tab-notes" class="tab-panel">
+
+  <div class="tn-block">
+    <div class="tn-header">Jade 個性備忘 <span>課程溝通策略</span></div>
+    <div class="tn-body">
+      <h4>這期觀察到的新線索</h4>
+      <ul>
+        <li>她自己說「沒有認真，給自己 5 分」——有自知之明，不需要老師再補刀，直接往解法走</li>
+        <li>聚餐後補償性少吃的模式很明顯（7/18 吃多 → 7/19、7/23 壓低）——這是這期最需要調整的行為模式</li>
+        <li>她問「吃很少為什麼還沒瘦」——這是切入代謝適應和穩定性概念的最好時機</li>
+        <li>對生理期水腫的恐慌反應（體重到 74 馬上聯絡）——說明她對生理週期的體重波動認知不足，這次要讓她真正理解</li>
+      </ul>
+      <h4>本次溝通策略</h4>
+      <ul>
+        <li><strong>先肯定腰圍的進步</strong>——2 cm 是真實的成果，要讓她感受到努力有效</li>
+        <li><strong>穩定性的概念用她自己的例子說</strong>——7/18 聚餐→7/19 補償，這個例子她能直接對應，比抽象說理有效</li>
+        <li><strong>生理週期表要讓她帶走</strong>——這個工具能讓她預測未來的體重波動，減少不必要的焦慮</li>
+        <li><strong>APP 設定的問題要具體說</strong>——1,200 kcal 的目標設定讓她一直在錯誤的框架下努力</li>
+        <li><strong>重訓用「現在是黃金期」來激勵</strong>——卵泡期精力最好，把握這兩週</li>
+      </ul>
+      <div class="tn-caution">
+        <strong>本次最需要注意：</strong>她說「沒有認真」，可能帶著一些自責情緒來。今天開場要先肯定她做到的事（腰圍、蛋白質意識提升、有記錄），讓她帶著正向情緒進入課程，再討論需要調整的地方。
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">飲食數據詳細分析 <span>自用參考</span></div>
+    <div class="tn-body">
+      <h4>APP 數字可信度問題</h4>
+      <ul>
+        <li><strong>7/9 脂肪 14g：</strong>那天吃涮涮鍋套餐＋白飯＋蝦，脂肪不可能這麼低，資料庫低估，實際估算約 30–35g</li>
+        <li><strong>7/13 蛋白質 154.7g：</strong>韓式豬肉兩份，蛋白質應約 80–95g，資料庫嚴重高估</li>
+        <li><strong>7/15 碳水 48.5g：</strong>牛奶火鍋＋蔬菜盤，碳水應約 80–100g，低估</li>
+        <li><strong>7/17 皮蛋豆腐 358 Cal：</strong>偏高，一般份量約 150–200 Cal</li>
+      </ul>
+      <h4>修正後的估算重點</h4>
+      <ul>
+        <li>7/8 這天結構最均衡，可以當作示範案例（熱量約 1,400、蛋白質約 90g）</li>
+        <li>7/18 結構最差：菠蘿包（高糖精製澱粉）＋排骨便當（高油）＋仙草芋圓（高糖）——血糖波動最大，也是造成 7/19、7/23 補償行為的根源</li>
+        <li>脂肪幾天偏高（7/13 約 60g、7/15 約 65g）主要來自韓式烤肉和火鍋湯底，這是外食的合理誤差範圍</li>
+      </ul>
+      <div class="tn-caution">
+        <strong>課堂策略：</strong>不要逐日展示數字，選 7/8（好的示範）和 7/18（需要改善）兩天對比說明，其他天用均值帶過就好。
+      </div>
+    </div>
+  </div>
+
+  <div class="tn-block">
+    <div class="tn-header">血糖與多巴胺學理背景 <span>穩定性概念的依據</span></div>
+    <div class="tn-body">
+      <h4>血糖波動與飲食衝動</h4>
+      <p>精製糖和高升糖指數食物引起血糖快速上升後，胰島素大量分泌導致血糖快速回落（reactive hypoglycemia），這個回落會觸發下丘腦的飢餓訊號，讓人在飽足狀態下仍感到想吃東西。這就是「吃完甜食更想吃」的生理機制。</p>
+      <h4>多巴胺的高峰低谷（Dopamine Peak and Trough）</h4>
+      <p>高刺激食物（高糖、高脂、高鹽的組合）會引起多巴胺大量釋放，帶來短暫的愉悅感。但多巴胺系統有「基線回調」機制——峰值越高，回落後的基線越低。這個低谷狀態讓人情緒低落、容易焦慮、對普通食物的吸引力下降，進而尋求更多高刺激食物。這個機制解釋了為什麼聚餐後 24–48 小時特別難控制飲食。</p>
+      <h4>對 Jade 的應用</h4>
+      <p>7/18 的菠蘿包＋排骨便當＋仙草芋圓，是一個高糖＋高油的組合，血糖和多巴胺雙重波動。7/19 和 7/23 的低熱量補償，可能部分是前一天多巴胺低谷造成的食慾下降，而不純粹是主動節食。這樣解讀給她聽，她比較容易理解這不是意志力問題。</p>
+      <div class="tn-caution">
+        <strong>說法注意：</strong>不要說「你這樣吃讓多巴胺亂掉」，而是「你的大腦在做一個很正常的生理反應，但我們可以學會預測它」。把問題外部化，讓她覺得可以掌控。
+      </div>
+    </div>
+  </div>
+
+</div><!-- end notes -->
+
+<script>
+function switchTab(name, event) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  if (event && event.target) event.target.classList.add('active');
+  if (name === 'blackboard') initBB();
+}
+
+function toggleCheck(el) { el.classList.toggle('checked'); }
+
+let currentColor = 'white';
+let isBold = false;
+let currentFontSize = 22;
+
+function initBB() {
+  const saved = localStorage.getItem('jade_s4_bb');
+  if (saved) document.getElementById('bbCanvas').value = saved;
+  const dateEl = document.getElementById('bbDate');
+  if (dateEl) dateEl.textContent = new Date().toLocaleDateString('zh-TW') + ' — 課堂記錄';
+}
+
+function setColor(color, el) {
+  currentColor = color;
+  document.querySelectorAll('.chalk-dot').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+  const canvas = document.getElementById('bbCanvas');
+  canvas.className = 'bb-canvas ' + (color === 'white' ? '' : color);
+}
+
+function toggleBold() {
+  isBold = !isBold;
+  document.getElementById('boldBtn').classList.toggle('active', isBold);
+  document.getElementById('bbCanvas').style.fontWeight = isBold ? '700' : '400';
+}
+
+function increaseFontSize() {
+  currentFontSize = Math.min(currentFontSize + 2, 40);
+  document.getElementById('bbCanvas').style.fontSize = currentFontSize + 'px';
+}
+
+function decreaseFontSize() {
+  currentFontSize = Math.max(currentFontSize - 2, 14);
+  document.getElementById('bbCanvas').style.fontSize = currentFontSize + 'px';
+}
+
+function saveBB() { localStorage.setItem('jade_s4_bb', document.getElementById('bbCanvas').value); }
+
+function clearBB() {
+  if (confirm('確定要清除黑板嗎？')) {
+    document.getElementById('bbCanvas').value = '';
+    localStorage.removeItem('jade_s4_bb');
+  }
+}
+
+window.addEventListener('load', () => {
+  const dateEl = document.getElementById('bbDate');
+  if (dateEl) dateEl.textContent = new Date().toLocaleDateString('zh-TW') + ' — 課堂記錄';
+});
+</script>
+
+<div class="footer">
+  Abby 營養師 ✦ abbyeatlife.github.io<br>
+  本資料為個人課程使用，請勿轉載
+</div>
+</body>
+</html>
