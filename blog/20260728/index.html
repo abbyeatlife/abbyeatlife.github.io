@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的保養實驗室：像做化學實驗一樣過生活 — Abby營養師</title>
+    <meta name="description" content="快活到40個年頭，我把自己的一天當成一場化學實驗來安排——從起床暖身、早餐第一口的血糖原則、抓緊文思泉湧的創作時間，到重訓、復健和晚上準時關機。這是我這些年一步一步試出來的生活配方。">
+    <meta property="og:title" content="我的保養實驗室：像做化學實驗一樣過生活">
+    <meta property="og:description" content="維持自己的人生狀態，就像在做化學實驗一樣——這是我這些年一步一步試出來的生活配方。">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+            --cream:#FDFBF7;--warm:#F5EDE3;--bark:#3D3229;--bark-light:#6B5E52;
+            --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+            --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+            --radius:12px;--radius-lg:20px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+        nav.scrolled{box-shadow:var(--shadow-md)}
+        .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+        .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+        .nav-logo span{color:var(--sage)}
+        .nav-links{display:flex;gap:8px;align-items:center}
+        .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+        .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+        .nav-links a.cta{background:var(--sage);color:var(--white)}
+        .nav-links a.cta:hover{background:var(--bark)}
+        .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+        .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+        .article-header{padding:100px 24px 40px;max-width:760px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+        .back-link:hover{color:var(--bark)}
+        .series-badge{display:inline-flex;align-items:center;gap:8px;background:var(--sage-pale);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+        .series-badge .tag{font-size:0.75rem;font-weight:600;color:var(--terracotta);letter-spacing:0.05em}
+        .article-header h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;color:var(--bark);line-height:1.35;letter-spacing:-0.02em;margin-bottom:16px}
+        .article-meta{font-size:0.88rem;color:var(--text-light);display:flex;align-items:center;gap:16px}
+        .article-meta .author{font-weight:500;color:var(--bark)}
+        .article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
+        /* Style B — Terracotta 暖橘（生活記事）*/
+        .css-cover{width:100%;height:240px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,#D4A882 0%,#C17F59 50%,#A86840 100%)}
+        .css-cover::before{content:'';position:absolute;top:-30px;right:-30px;width:160px;height:160px;border:2px solid rgba(255,255,255,0.2);border-radius:50%}
+        .css-cover::after{content:'';position:absolute;top:10px;right:10px;width:80px;height:80px;border:1px solid rgba(255,255,255,0.12);border-radius:50%}
+        .css-cover .cover-cat{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:8px}
+        .css-cover .cover-title{font-family:'Playfair Display',serif;font-size:1.3rem;line-height:1.4;font-weight:600;color:var(--white)}
+        .article-content{max-width:760px;margin:0 auto;padding:0 24px 60px}
+        .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:20px}
+        .article-content h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;color:var(--bark);margin:48px 0 20px}
+        .article-content h3{font-size:1.05rem;font-weight:600;color:var(--sage);margin:32px 0 14px;letter-spacing:0.02em}
+        .article-content strong{color:var(--bark);font-weight:600}
+        .article-content em{color:var(--terracotta);font-style:normal;font-weight:500}
+        .highlight-box{background:var(--sage-pale);border-left:4px solid var(--sage);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
+        .highlight-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
+        .highlight-box p{margin-bottom:10px;font-size:1rem;color:var(--bark)}
+        .highlight-box p:last-child{margin-bottom:0}
+        .note-box{background:rgba(193,127,89,0.07);border-left:4px solid var(--terracotta);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
+        .note-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--terracotta);margin-bottom:10px}
+        .note-box p{margin-bottom:8px;font-size:0.95rem;color:var(--bark)}
+        .note-box p:last-child{margin-bottom:0}
+        .pull-quote{border-left:4px solid var(--terracotta);background:rgba(193,127,89,0.06);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:28px 0}
+        .pull-quote p{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--bark);line-height:1.75;margin:0!important}
+        .key-point{background:var(--bark);color:var(--white);border-radius:var(--radius);padding:22px 26px;margin:28px 0}
+        .key-point p{color:rgba(255,255,255,0.92);font-size:1rem;margin-bottom:0;line-height:1.9}
+        .key-point strong{color:var(--sage-light)}
+        .section-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:40px 0}
+        .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--sage-light)}
+        .section-divider .dot{width:5px;height:5px;background:var(--sage-light);border-radius:50%}
+        .article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
+        .article-tags .tag{background:var(--sage-pale);color:var(--sage);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
+        .related-articles{max-width:760px;margin:0 auto;padding:0 24px 48px}
+        .related-articles h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--bark);margin-bottom:16px;text-align:center}
+        .related-grid{display:flex;flex-direction:column;gap:8px}
+        .related-card{background:var(--white);border-radius:var(--radius);padding:13px 20px;text-decoration:none;border:1px solid rgba(139,158,126,0.15);transition:all .2s ease;text-align:center}
+        .related-card:hover{background:var(--sage-pale);border-color:var(--sage-light)}
+        .related-card .rc-h{font-size:.9rem;font-weight:500;color:var(--bark-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .related-card:hover .rc-h{color:var(--bark)}
+        .back-to-top{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px auto 0;height:36px;padding:0 18px;background:var(--sage);color:var(--white);border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:.82rem;font-weight:500;transition:background .2s ease;white-space:nowrap}
+        .back-to-top:hover{background:var(--bark)}
+        .back-to-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+        .article-footer{max-width:760px;margin:0 auto;padding:0 24px 80px}
+        .article-footer-divider{border:none;border-top:1px solid var(--sage-light);margin-bottom:36px}
+        .author-card{display:flex;align-items:center;gap:20px;background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)}
+        .author-avatar{width:64px;height:64px;border-radius:50%;background:var(--sage-pale);flex-shrink:0;overflow:hidden}
+        .author-avatar img{width:100%;height:100%;object-fit:cover}
+        .author-info h4{font-size:1rem;font-weight:500;color:var(--bark);margin-bottom:4px}
+        .author-info p{font-size:.85rem;color:var(--text-light);line-height:1.6}
+        .author-links{display:flex;gap:8px;margin-top:10px}
+        .author-links a{font-size:.8rem;padding:4px 12px;border-radius:50px;text-decoration:none;background:var(--sage-pale);color:var(--sage);font-weight:500;transition:all .2s ease}
+        .author-links a:hover{background:var(--sage);color:var(--white)}
+        footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+            .menu-toggle{display:block}
+            .article-header h1{font-size:1.7rem}
+            .author-card{flex-direction:column;text-align:center}
+            .author-links{justify-content:center}
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="/index.html#podcast">Podcast</a>
+            <a href="/index.html#about">關於我</a>
+            <a href="/blog/index.html">Blog</a>
+            <a href="/qa/index.html">Q&amp;A</a>
+            <a href="/note/index.html">Note</a>
+            <a href="/index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <div class="series-badge"><span class="tag">生活分享</span></div>
+    <h1>我的保養實驗室：像做化學實驗一樣過生活</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 7 月 28 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <div class="css-cover">
+        <div class="cover-cat">生活分享</div>
+        <div class="cover-title">我的保養實驗室：像做化學實驗一樣過生活</div>
+    </div>
+</div>
+
+<div class="article-content">
+
+    <div class="highlight-box">
+        <div class="box-label">身體裡，每天都在發生的化學反應</div>
+        <p>第一口先吃什麼，會牽動胰島素的反應</p>
+        <p>排便不規律，可能干擾荷爾蒙的平衡</p>
+        <p>規律做阻力訓練，能提升生長激素的分泌</p>
+        <p>太常滑手機，可能讓大腦對多巴胺的反應變得遲鈍，削弱原本該有的滿足感</p>
+    </div>
+
+    <p>我越來越覺得，維護每一階段的人生狀態，就像在做化學實驗一樣——因為這是我這些年一步一步試出來的節奏，也讓我越來越清楚，<strong style="color:#8B3A2E;">什麼才是真正的平衡</strong>。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>晨起：緩緩地喚醒身體</h2>
+
+    <p>身體用了快40個年頭，曾經一次又一次太過躁進地操練，也留下不少傷痕——我最有感的是下背。自從2024年那次腰傷之後，<strong style="color:#8B3A2E;">下背的耐受度變差了</strong>，即便某些運動都還做得到，身體的恢復力卻大不如前，特別是某些日子的早晨，腰會酸得特別明顯。</p>
+
+    <p>因此現在我醒來都不會貿然起身，而是<strong style="color:#8B3A2E;">緩緩地喚醒身體</strong>。剛醒時我會先動一動，像是骨盆鐘擺、貓牛式、嬰兒式，讓脊椎稍微活絡開來，這樣起床時會舒服很多。早晨我也一定會先喝一杯溫水，喚醒消化道。</p>
+
+    <p>記得幾年前我根本做不到這些事，因為那時候更想隨心所欲地直接喝咖啡、吃一口甜甜的麵包。但現在我完全知道，為了身體的保養需要這些步驟，而且我做得甘之如飴，因為那讓我覺得很舒服。</p>
+
+    <p>喝完水，腸道會被溫和地叫醒，也就能順利排便，把該排出的東西排出去。這聽起來很籠統，但確實有道理：<strong style="color:#8B3A2E;">沒有規律排便，殘渣停留在腸道裡會被反覆吸收，不只讓排便變得更乾硬困難，一些本該排出的物質也可能重新回到血液循環，影響身體整體的荷爾蒙平衡。</strong></p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>早餐的第一口，決定你一整天的情緒</h2>
+
+    <p>清空腸胃道之後，餓的感覺會更明顯，這時候吃東西也會覺得特別好吃。我現在吃第一餐完全奉行一個大原則：第一口食物絕對不能讓血糖衝太快，所以一定要是天然、非精緻醣類的食物——白話一點，第一口一定是蛋白質、蔬菜纖維，配一點油脂也沒問題。</p>
+
+    <div class="highlight-box">
+        <div class="box-label">我的早餐鐵律</div>
+        <p>第一口，永遠不是麵包、麵條或白飯，而是蛋白質或蔬菜纖維，配一點健康油脂也可以。</p>
+    </div>
+
+    <p>如果第一口是麵包、麵條、白飯，血糖就會像坐雲霄飛車一樣，先衝到很高，再跌到很低的谷底，而<strong style="color:#8B3A2E;">那個谷底才是真正讓人難受的地方</strong>。</p>
+
+    <div class="pull-quote">
+        <p>血糖跌到谷底的瞬間，人會感到焦慮、空虛、欲求不滿，於是忍不住想要快速再得到滿足——身體就這樣一直坐雲霄飛車，沒辦法回到穩定狀態。</p>
+    </div>
+
+    <p>所以近期開始，我吃東西一定秉持這個原則：<strong style="color:#8B3A2E;">第一口食物要能穩住血糖</strong>。這不但讓情緒更平穩，還能確保吃到足夠的蛋白質，讓飽足感延續到下一餐至少四到六小時，不會一直想吃零食，自然就達到一整天的血糖管理。</p>
+
+    <p>吃完早餐，因為這餐不會讓血糖大起大落，心情會一直很平靜。喝完咖啡就能進行創作——你現在看到的文章，幾乎都是我早上吃完早餐後寫出來的。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>創作時間：抓住文思泉湧的空檔</h2>
+
+    <p><strong style="color:#8B3A2E;">在對的時間做事真的事半功倍</strong>，因為一切都會很順暢，就像不是在尖峰時刻塞車；如果你想做的事都擠在傍晚四五點，路上到處都是車，原本半小時的車程會變成兩小時，效率極差。所以一定要知道自己一天當中每個時段的狀態，適合做什麼事。我自己就很適合早上創作，只要抓住文思泉湧的那個時刻，就能在較短時間內完成，品質也還不錯。</p>
+
+    <p>大約創作一小時左右，我就坐不住了，需要起身動一動。這裡順便提醒你：最好的動作就是不斷換動作。身為曾因代償動作而肩頸痠痛過一陣子、加上有腰痛病史的過來人，這是我給你最實在的建議——<strong style="color:#8B3A2E;">真的坐不住的時候，就聽從身體發出的訊號，起來動一動</strong>。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>動起來：不是要練壯，是要抗老配方</h2>
+
+    <p>我會出去散步，或者進行每週至少兩次的重量訓練。上健身房重訓，不是為了要練得多壯或追求運動表現，現在最看重的是維護身體。</p>
+
+    <div class="highlight-box">
+        <div class="box-label">重訓對我來說的意義</div>
+        <p>有足夠的重量刺激神經系統和肌肉的張力收縮，能促進生長激素分泌、提升胰島素敏感度、維持骨密度，也幫助腸道蠕動，讓人提神醒腦。</p>
+    </div>
+
+    <p>各方面來說，運動對我而言就像是幫身體注入一劑青春露——這樣說可能有點誇張，但我想表達的是，<strong style="color:#8B3A2E;">運動對我來說就是在獲得抗老的配方</strong>，每週都需要固定的劑量，才能維持狀態，至少不要退化得太快。</p>
+
+    <div class="key-point">
+        <p>重訓過後，我通常會覺得身體像有了輕功水上飄一般，走路特別輕盈，關節卡卡的地方也有種被鬆開的感覺——這就是身體對抗<strong>足夠重的負荷</strong>之後，激發出來的狀態。</p>
+    </div>
+
+    <p>規律訓練完之後，通常又會有一波靈感，我會一邊散步一邊用語音記錄下來，跟我的AI討論，不知不覺就能<strong style="color:#8B3A2E;">累積一天一萬步</strong>。接著就去找下一餐，原則上跟第一餐差不多，但份量會比較有飽足感，像一個雞腿飯或魚定食之類的。原則一樣：先吃蛋白質和蔬菜，最後才吃一點碳水。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>復健：CP值最高的修復</h2>
+
+    <p>吃飽再走一走路，接著我會去進行復健療程。其實復健不是因為運動能力差、很容易受傷才需要做，也不是老人才會去的地方——我覺得大家對復健有點刻板印象，但我其實蠻享受復健的過程。</p>
+
+    <p>先跟醫生確認自己哪裡的關節肌肉有問題，開了復健療程之後，每次只要付掛號部分負擔就能享受專業的熱療、電療、牽引，關節會有種被撫慰、舒展開來的感覺。比起隨便一間動輒一兩千塊的按摩店，你也不知道師傅按得有沒有根據，<strong style="color:#8B3A2E;">復健可以說是CP值很高的修復方式</strong>。而且現在很多復健場所空調座椅都很舒適，可以一邊做一邊聽Podcast、看書，或者只是在那裡發呆，享受片刻的寧靜。這40分鐘左右的過程，現在也變成我的例行公事了。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>晚餐與睡前：讓身體準時打烊</h2>
+
+    <p>做到這裡差不多接近傍晚，晚上通常不太會餓，因為第二餐吃得比較多。在這裡必須說，晚上真的要吃少一點，對身體比較友善，因為接近睡眠時，消化系統沒辦法處理太龐大的工作量，它們也要打烊了；而且晚上的代謝力會比早上稍差一些，舉例來說<strong style="color:#8B3A2E;">胰島素敏感度晚上就比較差</strong>。如果總是把餐量集中在睡前才吃，真的容易囤積脂肪，還會干擾睡眠品質。</p>
+
+    <div class="highlight-box">
+        <div class="box-label">我的晚餐原則</div>
+        <p>抓個400大卡左右，吃一些比較輕食的內容，像喝一碗牛肉清湯配一點水果，或吃希臘優格燕麥、小地瓜、蒸蛋等等——原則上就是不要餓到睡不著就好。</p>
+    </div>
+
+    <p>知道自己要在11點前躺上床，那9點就會準備去洗漱，讓自己有充分的關機時間。現在我更養成睡前不滑手機的習慣，發現最棒的做法就是把手機放在房間外——<strong style="color:#8B3A2E;">少一點多巴胺刺激，反而會讓人感到更安定</strong>，不會突然覺得空虛難耐。睡覺時我也會確保環境溫度不要太熱，戴上耳塞、眼罩，閉上眼睛，大概10分鐘內就睡著了。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>這是一場沒有終點的實驗</h2>
+
+    <p>以上就是我目前生活保養的分享，呼應一開始說的，這整個過程真的很像在實驗室裡做化學反應——因為<strong style="color:#8B3A2E;">每一個行程安排，我都會去想：我的身體會做出什麼反應？會有什麼荷爾蒙、化學物質的變化？</strong></p>
+
+    <p>我自己是覺得這樣過生活很舒服，寫給你參考看看。你呢？你有什麼個人的保養原則嗎？</p>
+
+    <div class="article-tags">
+        <span class="tag">生活分享</span>
+        <span class="tag">日常作息</span>
+        <span class="tag">血糖穩定</span>
+        <span class="tag">重訓</span>
+        <span class="tag">復健</span>
+        <span class="tag">睡眠衛生</span>
+    </div>
+
+</div>
+
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../20260615/index.html" class="related-card">
+            <div class="rc-h">說少吃多動有害的人，最後卻還是叫你少吃多動？</div>
+        </a>
+        <a href="../20260623woman02/index.html" class="related-card">
+            <div class="rc-h">雌激素、黃體素與情緒——你的心情，荷爾蒙也有份</div>
+        </a>
+        <a href="../20260516/index.html" class="related-card">
+            <div class="rc-h">你是哪種體型？用科學測試破解代謝迷思</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll',()=>{
+        document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+    });
+</script>
+</body>
+</html>
