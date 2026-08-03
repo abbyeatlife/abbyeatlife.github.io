@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>為什麼滑手機一滑就停不下來？跟上癮有關嗎？ — Abby營養師</title>
+    <meta name="description" content="老鼠壓拉桿10次只有7次會掉出食物，這種不確定的獎勵，反而讓牠更瘋狂地一直壓下去。這篇聊聊社群平台如何利用同樣的機制、多巴胺為什麼不是壞東西、以及如何找回穩定與耐心。">
+    <meta property="og:title" content="為什麼滑手機一滑就停不下來？跟上癮有關嗎？">
+    <meta property="og:description" content="從一個經典的心理學實驗說起，聊聊社群平台的演算法、多巴胺與胰島素阻抗的相似之處，以及該如何讓自己重新回到穩定。">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+            --cream:#FDFBF7;--warm:#F5EDE3;--bark:#3D3229;--bark-light:#6B5E52;
+            --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+            --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+            --radius:12px;--radius-lg:20px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+        nav.scrolled{box-shadow:var(--shadow-md)}
+        .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+        .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+        .nav-logo span{color:var(--sage)}
+        .nav-links{display:flex;gap:8px;align-items:center}
+        .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+        .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+        .nav-links a.cta{background:var(--sage);color:var(--white)}
+        .nav-links a.cta:hover{background:var(--bark)}
+        .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+        .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+        .article-header{padding:100px 24px 40px;max-width:760px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+        .back-link:hover{color:var(--bark)}
+        .series-badge{display:inline-flex;align-items:center;gap:8px;background:var(--sage-pale);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+        .series-badge .tag{font-size:0.75rem;font-weight:600;color:var(--terracotta);letter-spacing:0.05em}
+        .article-header h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;color:var(--bark);line-height:1.35;letter-spacing:-0.02em;margin-bottom:16px}
+        .article-meta{font-size:0.88rem;color:var(--text-light);display:flex;align-items:center;gap:16px}
+        .article-meta .author{font-weight:500;color:var(--bark)}
+        .article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
+        /* Style B — Terracotta 暖橘（生活記事）*/
+        .css-cover{width:100%;height:240px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,#D4A882 0%,#C17F59 50%,#A86840 100%)}
+        .css-cover::before{content:'';position:absolute;top:-30px;right:-30px;width:160px;height:160px;border:2px solid rgba(255,255,255,0.2);border-radius:50%}
+        .css-cover::after{content:'';position:absolute;top:10px;right:10px;width:80px;height:80px;border:1px solid rgba(255,255,255,0.12);border-radius:50%}
+        .css-cover .cover-cat{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:8px}
+        .css-cover .cover-title{font-family:'Playfair Display',serif;font-size:1.3rem;line-height:1.4;font-weight:600;color:var(--white)}
+        .article-content{max-width:760px;margin:0 auto;padding:0 24px 60px}
+        .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:20px}
+        .article-content h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;color:var(--bark);margin:48px 0 20px}
+        .article-content h3{font-size:1.05rem;font-weight:600;color:var(--sage);margin:32px 0 14px;letter-spacing:0.02em}
+        .article-content strong{color:var(--bark);font-weight:600}
+        .article-content em{color:var(--terracotta);font-style:normal;font-weight:500}
+        .highlight-box{background:var(--sage-pale);border-left:4px solid var(--sage);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
+        .highlight-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
+        .highlight-box p{margin-bottom:10px;font-size:1rem;color:var(--bark)}
+        .highlight-box p:last-child{margin-bottom:0}
+        .note-box{background:rgba(193,127,89,0.07);border-left:4px solid var(--terracotta);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
+        .note-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--terracotta);margin-bottom:10px}
+        .note-box p{margin-bottom:8px;font-size:0.95rem;color:var(--bark)}
+        .note-box p:last-child{margin-bottom:0}
+        .pull-quote{border-left:4px solid var(--terracotta);background:rgba(193,127,89,0.06);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:28px 0}
+        .pull-quote p{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--bark);line-height:1.75;margin:0!important}
+        .key-point{background:var(--bark);color:var(--white);border-radius:var(--radius);padding:22px 26px;margin:28px 0}
+        .key-point p{color:rgba(255,255,255,0.92);font-size:1rem;margin-bottom:0;line-height:1.9}
+        .key-point strong{color:var(--sage-light)}
+        .section-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:40px 0}
+        .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--sage-light)}
+        .section-divider .dot{width:5px;height:5px;background:var(--sage-light);border-radius:50%}
+        .article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
+        .article-tags .tag{background:var(--sage-pale);color:var(--sage);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
+        .related-articles{max-width:760px;margin:0 auto;padding:0 24px 48px}
+        .related-articles h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--bark);margin-bottom:16px;text-align:center}
+        .related-grid{display:flex;flex-direction:column;gap:8px}
+        .related-card{background:var(--white);border-radius:var(--radius);padding:13px 20px;text-decoration:none;border:1px solid rgba(139,158,126,0.15);transition:all .2s ease;text-align:center}
+        .related-card:hover{background:var(--sage-pale);border-color:var(--sage-light)}
+        .related-card .rc-h{font-size:.9rem;font-weight:500;color:var(--bark-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .related-card:hover .rc-h{color:var(--bark)}
+        .back-to-top{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px auto 0;height:36px;padding:0 18px;background:var(--sage);color:var(--white);border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:.82rem;font-weight:500;transition:background .2s ease;white-space:nowrap}
+        .back-to-top:hover{background:var(--bark)}
+        .back-to-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+        .article-footer{max-width:760px;margin:0 auto;padding:0 24px 80px}
+        .article-footer-divider{border:none;border-top:1px solid var(--sage-light);margin-bottom:36px}
+        .author-card{display:flex;align-items:center;gap:20px;background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)}
+        .author-avatar{width:64px;height:64px;border-radius:50%;background:var(--sage-pale);flex-shrink:0;overflow:hidden}
+        .author-avatar img{width:100%;height:100%;object-fit:cover}
+        .author-info h4{font-size:1rem;font-weight:500;color:var(--bark);margin-bottom:4px}
+        .author-info p{font-size:.85rem;color:var(--text-light);line-height:1.6}
+        .author-links{display:flex;gap:8px;margin-top:10px}
+        .author-links a{font-size:.8rem;padding:4px 12px;border-radius:50px;text-decoration:none;background:var(--sage-pale);color:var(--sage);font-weight:500;transition:all .2s ease}
+        .author-links a:hover{background:var(--sage);color:var(--white)}
+        footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+            .menu-toggle{display:block}
+            .article-header h1{font-size:1.7rem}
+            .author-card{flex-direction:column;text-align:center}
+            .author-links{justify-content:center}
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="/index.html#podcast">Podcast</a>
+            <a href="/index.html#about">關於我</a>
+            <a href="/blog/index.html">Blog</a>
+            <a href="/qa/index.html">Q&amp;A</a>
+            <a href="/note/index.html">Note</a>
+            <a href="/index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <div class="series-badge"><span class="tag">生活分享</span></div>
+    <h1>為什麼滑手機一滑就停不下來？跟上癮有關嗎？</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026年8月3日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <div class="css-cover">
+        <div class="cover-cat">生活分享</div>
+        <div class="cover-title">為什麼滑手機一滑就停不下來？跟上癮有關嗎？</div>
+    </div>
+</div>
+
+<div class="article-content">
+
+    <p>有一個心理學上很有名的實驗：老鼠只要壓一次拉桿，就會掉出食物。但如果把設計改成「壓拉桿10次，只有7次會掉出食物，另外3次什麼都沒有」，會發生一件很有趣的事——這種「有時候有、有時候沒有」的不確定感，反而會讓老鼠更瘋狂地一直壓拉桿。</p>
+
+    <div class="note-box">
+        <div class="box-label">補充說明</div>
+        <p>這是出自心理學家B.F.Skinner提出的操作制約（operant conditioning）理論，這種「不是每次都給獎勵，但獎勵會不定期出現」的設計，被稱為「變動比率增強」（variable-ratio reinforcement）。研究發現，比起每次都給獎勵，這種不可預期的模式，反而會讓行為更難停下來、也更難消退，這正是吃角子老虎機讓人<strong>上癮</strong>的核心原理。</p>
+    </div>
+
+    <p>你有沒有覺得，這個場景很熟悉？</p>
+
+    <p>這就像是我們每天滑手機的樣子。社群平台用<strong>演算法不斷推送「你可能有興趣」的內容</strong>，操作的正是大腦裡同一套機制。我最近看了一支影片在講多巴胺的議題，裡面提到一個很值得思考的觀點：這些平台的服務對象，其實不是我們這些使用者，而是背後下廣告的商業廠商。如果平台能讓大量潛在消費者黏著度非常高、願意長時間停留，廣告就有更多機會被看見、被消費——這正好呼應了前面老鼠的實驗：10次裡面只要有7次被滿足，就足以讓老鼠不斷渴望壓下去。</p>
+
+    <p>我們也是一樣。如果每次滑手機都能看到有趣的內容，很快就會膩；但如果是「偶爾」滑到一兩個真的讓你感興趣的主題，你反而會一直往下滑、重新整理，想看看還有沒有更多。於是，我們花在社群平台上的時間，就這樣一點一滴地被拉長了。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>多巴胺其實是無辜的</h2>
+
+    <p>想更了解這背後的大腦運作機制，我後續又看了一些相關資料。多巴胺這個名字，前陣子被大家講得很正向——覺得它能帶來動力、幫助習慣養成、讓人感到快樂。但最近，它好像又開始被貼上「需要排毒、戒斷」的標籤。</p>
+
+    <p>這讓我想到胰島素。胰島素本身是一個很中性的荷爾蒙，它只是在做它該做的事。但當一個人長期吃比較多精緻醣類、缺乏運動、久坐、壓力大、睡眠不足，久而久之造成<strong>胰島素阻抗</strong>之後，大家就開始覺得「胰島素是不好的」。多巴胺現在似乎也走上了類似的路——大家開始對它感到警惕。</p>
+
+    <p>其實沒有必要那麼害怕，重點是搞清楚到底發生了什麼事。我把自己的理解整理成兩個關鍵：</p>
+
+    <h3>關鍵一：穩定，才是身體真正想要的</h3>
+
+    <p>我們常說希望血糖穩定，是因為當你吃了容易讓血糖劇烈起伏的食物（比如精緻醣類），血糖一旦<strong>短時間飆升太快，接下來也會重重摔下去</strong>。掉到低點的時候，你會覺得難熬，甚至有低血糖的感受，身體會把這當成一種危機，讓你很想立刻補一份能快速回血的食物——手搖飲、甜麵包、炸雞。於是就落入了大起大落的惡性循環。</p>
+
+    <p>多巴胺的邏輯也是一樣的。平常維持在一個基準值，其實完全沒有問題。但在這個充斥著又短又快、隨時能滿足的短影音時代，人只要滑一滑手機，就能得到短暫的快樂——這就像坐在拉霸機前面，不用花什麼錢，一直按壓拉桿，就有機會中一些大大小小的獎。哪怕只中一點點，你都會覺得「好棒」，於是刺激來得又快又急，降下去的時候也一樣又快又深。到了低谷，你就會更想再滑一次，看看還能得到什麼。</p>
+
+    <div class="pull-quote">
+        <p>你會不斷偏離基準值，只在高峰和低谷之間來回擺盪，而且每一次陷入低谷，都會讓你更飢渴、更想追尋下一次刺激，很難真正回到穩定的狀態。</p>
+    </div>
+
+    <p><strong>無論是血糖，還是和情緒相關的多巴胺，身體其實都渴望穩定——一旦讓身體不斷在兩個極端之間徘徊，就等於失去了控制權。</strong></p>
+
+    <h3>關鍵二：接收器會「鈍化」</h3>
+
+    <p>當身體持續接收高濃度的刺激訊號，接收器會啟動自我保護機制，變得越來越遲鈍。這就像你剛走進一間很吵的KTV，一開始覺得吵得受不了，但過一陣子就習慣了——因為<strong>身體會慢慢適應，不再對同樣強度的刺激那麼敏感</strong>。</p>
+
+    <p>血糖是這樣，長期吃容易引發血糖高峰的食物，久了可能造成<strong>胰島素阻抗</strong>；多巴胺的機制目前科學界則傾向認為類似——長期習慣用大量滑手機來排解無聊，也<em>可能</em>讓多巴胺的敏感度下降——也就是說，未來需要更頻繁、更強的刺激，才能感受到同樣程度的快樂。換句話說，小時候跟隔壁同學玩賓果就能玩得很開心，現在卻可能要在一分鐘內連刷好幾支短影音，才會覺得稍微有點意思。<strong>快樂，已經變得越來越難獲得了。</strong></p>
+
+    <p>不僅如此，當你越來越難感到滿足、無法立即得到那份刺激感時，反而容易感覺不安、焦慮，於是又回頭去找社群媒體排解——就這樣，掉進了另一個惡性循環。</p>
+
+    <div class="note-box">
+        <div class="box-label">小提醒</div>
+        <p>受體因為長期高濃度刺激而變遲鈍，這件事在酒精、古柯鹼等藥物成癮的研究裡證據非常一致。但把它套用到「滑手機」或「吃很多糖」上，目前比較準確的說法是科學家觀察到類似現象、進而推測，而不是已經證實的定論——相關研究對象多半是被診斷為病態成癮的族群，也有研究得到相反的結果。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>那該怎麼辦？</h2>
+
+    <div class="highlight-box">
+        <div class="box-label">兩個方向</div>
+        <p>🌿 <strong>讓自己穩定下來</strong>——不要讓身體經常性地接收過度刺激的訊號。</p>
+        <p>🔧 <strong>修復已經鈍化的接收器</strong>——重新練習對「慢」與「小」的感受力。</p>
+    </div>
+
+    <p>比起追求快速方便的樂趣，我們或許更需要練習耐心，好好品嚐生活裡的細節——花半小時專心吃一頓飯，不配影片；拿起筆寫寫日記、隨手塗鴉；或是翻開一本書，哪怕只看幾頁。</p>
+
+    <div class="key-point">
+        <p>這可能就是現代人，想從焦慮裡走出來的一條路。</p>
+    </div>
+
+    <div class="article-tags">
+        <span class="tag">生活分享</span>
+        <span class="tag">多巴胺</span>
+        <span class="tag">社群媒體</span>
+        <span class="tag">行為心理學</span>
+        <span class="tag">大腦科學</span>
+        <span class="tag">習慣養成</span>
+    </div>
+
+</div>
+
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../20260622woman01/index.html" class="related-card">
+            <div class="rc-h">從頭認識生理期｜月經週期第 1–7 天</div>
+        </a>
+        <a href="../20260311book03/index.html" class="related-card">
+            <div class="rc-h">一天到底該吃多少熱量？TDEE 完整計算教學</div>
+        </a>
+        <a href="../../note/20260724note07/index.html" class="related-card">
+            <div class="rc-h">一晚沒滑手機就受不了🙈</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll',()=>{
+        document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+    });
+</script>
+</body>
+</html>
