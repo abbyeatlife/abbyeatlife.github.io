@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>八字命理手把手教學</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: linear-gradient(135deg, #faf7f2 0%, #f0ebe0 100%);
+    color: #3d2b1f;
+    line-height: 1.8;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  .container { max-width: 800px; margin: 0 auto; }
+  .header {
+    text-align: center;
+    margin-bottom: 24px;
+    padding: 20px;
+    background: linear-gradient(135deg, #5c3d2e, #3d2b1f);
+    border-radius: 16px;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(92,61,46,0.3);
+  }
+  .header h1 { font-size: 28px; letter-spacing: 6px; margin-bottom: 8px; }
+  .header p { font-size: 14px; opacity: 0.85; }
+  .nav-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 10px;
+    z-index: 100;
+    background: rgba(250,247,242,0.95);
+    padding: 10px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 12px rgba(92,61,46,0.1);
+  }
+  .nav-btn {
+    background: #d4c4b0;
+    color: #5c3d2e;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.3s;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+  .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(92,61,46,0.2); }
+  .nav-btn.active { background: #5c3d2e; color: #fff; box-shadow: 0 4px 12px rgba(92,61,46,0.3); }
+  .lesson {
+    display: none;
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 16px rgba(92,61,46,0.08);
+    animation: fadeIn 0.4s ease;
+  }
+  .lesson.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .lesson h2 {
+    color: #5c3d2e;
+    font-size: 22px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #d4a574;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .lesson h3 { color: #5c3d2e; font-size: 17px; margin: 20px 0 12px 0; }
+  .lesson h4 { color: #6b5b4f; font-size: 15px; margin: 16px 0 8px 0; }
+  .lesson p { font-size: 14px; color: #5c3d2e; margin-bottom: 10px; }
+  .lesson ul, .lesson ol { margin: 10px 0 10px 24px; font-size: 14px; color: #5c3d2e; }
+  .lesson li { margin-bottom: 6px; }
+  .tip-box {
+    background: #fff8f0;
+    border-left: 4px solid #d4a574;
+    border-radius: 10px;
+    padding: 14px;
+    margin: 14px 0;
+    font-size: 14px;
+  }
+  .tip-box strong { color: #5c3d2e; }
+  .wuxing-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+  }
+  .wuxing-circle {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+  }
+  .wuxing-mu { background: #4a7c59; }
+  .wuxing-huo { background: #c0392b; }
+  .wuxing-tu { background: #b7950b; }
+  .wuxing-jin { background: #7f8c8d; }
+  .wuxing-shui { background: #2471a3; }
+  .arrow { font-size: 24px; color: #8b7355; }
+  .ganzhi-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 12px 0;
+  }
+  .gan-btn, .zhi-btn {
+    width: 48px; height: 48px;
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+  .gan-btn:hover, .zhi-btn:hover { transform: scale(1.15); }
+  .gan-yang { background: #5c3d2e; }
+  .gan-yin { background: #8b7355; }
+  .zhi-btn { background: #6b5b4f; font-size: 16px; }
+  .shishen-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .shishen-card {
+    border-radius: 12px;
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+  }
+  .shishen-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
+  .shishen-card .name { font-size: 20px; font-weight: bold; margin-bottom: 4px; }
+  .shishen-card .desc { font-size: 12px; }
+  .shishen-detail {
+    display: none;
+    background: #f8f5f0;
+    border-radius: 10px;
+    padding: 14px;
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.8;
+    animation: fadeIn 0.3s ease;
+  }
+  .step-box {
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .step-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .step-title { font-weight: bold; font-size: 15px; }
+  .step-content { padding-left: 42px; font-size: 13px; line-height: 1.8; }
+  .conclusion {
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    margin: 16px 0;
+  }
+  .conclusion .title { font-size: 18px; font-weight: bold; margin-bottom: 6px; }
+  .conclusion .text { font-size: 13px; line-height: 1.7; }
+  .xiji-row {
+    display: flex;
+    gap: 12px;
+    margin: 14px 0;
+  }
+  .xiji-box {
+    flex: 1;
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .xiji-box .label { font-size: 13px; font-weight: bold; margin-bottom: 6px; }
+  .xiji-box .element { font-size: 26px; font-weight: bold; }
+  .xiji-box .explain { font-size: 11px; margin-top: 4px; }
+  .canggan-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    margin: 12px 0;
+    font-size: 12px;
+  }
+  .canggan-item {
+    background: #f8f5f0;
+    border-radius: 6px;
+    padding: 8px 4px;
+    text-align: center;
+  }
+  .canggan-item b { font-size: 14px; color: #5c3d2e; }
+  .relation-card {
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+  .relation-card .title { font-weight: bold; font-size: 14px; margin-bottom: 6px; }
+  .relation-card .content { font-size: 13px; line-height: 1.7; }
+  .progress-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+  }
+  .progress-bar .label { width: 30px; font-size: 14px; font-weight: bold; }
+  .progress-bar .bar-bg {
+    flex: 1; height: 18px;
+    background: #eee;
+    border-radius: 9px;
+    overflow: hidden;
+  }
+  .progress-bar .bar-fill {
+    height: 100%;
+    border-radius: 9px;
+    transition: width 0.5s;
+  }
+  .progress-bar .count { width: 40px; font-size: 12px; color: #8b7355; text-align: right; }
+  .bazi-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin: 16px 0;
+  }
+  .bazi-table th { font-size: 12px; color: #8b7355; padding: 8px; font-weight: normal; }
+  .bazi-table td { padding: 10px; }
+  .gan-ball, .zhi-ball {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 auto 4px;
+  }
+  .shishen-label { font-size: 12px; margin-top: 2px; }
+  @media (max-width: 600px) {
+    .shishen-grid { grid-template-columns: 1fr; }
+    .canggan-grid { grid-template-columns: repeat(4, 1fr); }
+    .xiji-row { flex-direction: column; }
+    .nav-btn { padding: 6px 12px; font-size: 12px; }
+    .header h1 { font-size: 22px; }
+  }
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #8b7355;
+    margin-top: 20px;
+  }
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>☯️ 八字命理手把手教學</h1>
+    <p>從零開始學八字 · 互動式圖解指南</p>
+  </div>
+
+  <div class="nav-bar">
+    <button class="nav-btn active" onclick="showLesson(0)">🌿 八字是什麼</button>
+    <button class="nav-btn" onclick="showLesson(1)">📌 天干地支</button>
+    <button class="nav-btn" onclick="showLesson(2)">☯️ 陰陽五行</button>
+    <button class="nav-btn" onclick="showLesson(3)">📅 如何排盤</button>
+    <button class="nav-btn" onclick="showLesson(4)">⭐ 認識日主</button>
+    <button class="nav-btn" onclick="showLesson(5)">📌 十神怎麼來</button>
+    <button class="nav-btn" onclick="showLesson(6)">✨ 十神代表什麼</button>
+    <button class="nav-btn" onclick="showLesson(7)">⚖️ 身強身弱</button>
+    <button class="nav-btn" onclick="showLesson(8)">🔄 大運流年</button>
+    <button class="nav-btn" onclick="showLesson(9)">🔮 地支關係</button>
+  </div>
+
+  <!-- 第一課 -->
+  <div class="lesson active" id="lesson-0">
+    <h2>🌿 第一課：八字是什麼？</h2>
+    <p><strong>八字</strong>，又稱「四柱命理」，就是把一個人出生的<strong>年、月、日、時</strong>，各用一個「天干」和一個「地支」來表示，總共八個字，所以叫「八字」。</p>
+    <div class="tip-box">
+      <strong>舉例：</strong>某人出生於 1987 年 10 月 11 日早上 10:45<br>
+      排出來的八字是：<strong>丁卯 庚戌 癸巳 丁巳</strong>
+    </div>
+    <h3>這八個字分別是：</h3>
+    <table class="bazi-table">
+      <tr><th></th><th>年柱</th><th>月柱</th><th>日柱 ⭐</th><th>時柱</th></tr>
+      <tr>
+        <td style="font-size:12px;color:#8b7355">天干</td>
+        <td><div class="gan-ball" style="background:#c0392b">丁</div></td>
+        <td><div class="gan-ball" style="background:#7f8c8d">庚</div></td>
+        <td><div class="gan-ball" style="background:#2471a3;box-shadow:0 2px 8px rgba(36,113,163,0.4)">癸</div></td>
+        <td><div class="gan-ball" style="background:#c0392b">丁</div></td>
+      </tr>
+      <tr>
+        <td style="font-size:12px;color:#8b7355">地支</td>
+        <td><div class="zhi-ball" style="background:#6b9b7a">卯</div></td>
+        <td><div class="zhi-ball" style="background:#b7950b">戌</div></td>
+        <td><div class="zhi-ball" style="background:#c0392b">巳</div></td>
+        <td><div class="zhi-ball" style="background:#c0392b">巳</div></td>
+      </tr>
+    </table>
+    <div class="tip-box">
+      💡 <strong>小提醒：</strong>日柱的天干（這裡是「癸」）叫做「<strong>日主</strong>」，代表你自己，是整個八字分析的核心！
+    </div>
+  </div>
+
+  <!-- 第二課 -->
+  <div class="lesson" id="lesson-1">
+    <h2>📌 第二課：認識天干與地支</h2>
+    <p>這是八字的「字母表」，一定要先背熟！</p>
+    <h3>十天干（分陰陽、配五行）</h3>
+    <div class="ganzhi-grid">
+      <button class="gan-btn gan-yang" title="甲：陽木">甲</button>
+      <button class="gan-btn gan-yin" title="乙：陰木">乙</button>
+      <button class="gan-btn gan-yang" title="丙：陽火">丙</button>
+      <button class="gan-btn gan-yin" title="丁：陰火">丁</button>
+      <button class="gan-btn gan-yang" title="戊：陽土">戊</button>
+      <button class="gan-btn gan-yin" title="己：陰土">己</button>
+      <button class="gan-btn gan-yang" title="庚：陽金">庚</button>
+      <button class="gan-btn gan-yin" title="辛：陰金">辛</button>
+      <button class="gan-btn gan-yang" title="壬：陽水">壬</button>
+      <button class="gan-btn gan-yin" title="癸：陰水">癸</button>
+    </div>
+    <div class="tip-box">
+      <strong>口訣：</strong>甲乙木、丙丁火、戊己土、庚辛金、壬癸水<br>
+      單數（甲丙戊庚壬）為<strong>陽</strong>，雙數（乙丁己辛癸）為<strong>陰</strong>
+    </div>
+    <h3>十二地支（對應十二生肖）</h3>
+    <div class="ganzhi-grid">
+      <button class="zhi-btn" title="子鼠">子🐭</button>
+      <button class="zhi-btn" title="丑牛">丑🐮</button>
+      <button class="zhi-btn" title="寅虎">寅🐯</button>
+      <button class="zhi-btn" title="卯兔">卯🐰</button>
+      <button class="zhi-btn" title="辰龍">辰🐲</button>
+      <button class="zhi-btn" title="巳蛇">巳🐍</button>
+      <button class="zhi-btn" title="午馬">午🐴</button>
+      <button class="zhi-btn" title="未羊">未🐑</button>
+      <button class="zhi-btn" title="申猴">申🐵</button>
+      <button class="zhi-btn" title="酉雞">酉🐔</button>
+      <button class="zhi-btn" title="戌狗">戌🐶</button>
+      <button class="zhi-btn" title="亥豬">亥🐷</button>
+    </div>
+  </div>
+
+  <!-- 第三課 -->
+  <div class="lesson" id="lesson-2">
+    <h2>☯️ 第三課：陰陽五行——八字的靈魂</h2>
+    <p>五行之間的關係是分析八字的核心：</p>
+    <h3>🔄 相生（循環相生，互相滋養）</h3>
+    <div class="wuxing-row">
+      <div class="wuxing-circle wuxing-mu">木</div>
+      <span class="arrow">→</span>
+      <div class="wuxing-circle wuxing-huo">火</div>
+      <span class="arrow">→</span>
+      <div class="wuxing-circle wuxing-tu">土</div>
+      <span class="arrow">→</span>
+      <div class="wuxing-circle wuxing-jin">金</div>
+      <span class="arrow">→</span>
+      <div class="wuxing-circle wuxing-shui">水</div>
+      <span class="arrow">→</span>
+      <div class="wuxing-circle wuxing-mu">木</div>
+    </div>
+    <p style="text-align:center;font-size:13px;color:#8b7355">木生火 → 火生土 → 土生金 → 金生水 → 水生木</p>
+    <h3>⚔️ 相剋（互相制約，保持平衡）</h3>
+    <div class="wuxing-row">
+      <div class="wuxing-circle wuxing-mu">木</div>
+      <span class="arrow">✕</span>
+      <div class="wuxing-circle wuxing-tu">土</div>
+      <span class="arrow">✕</span>
+      <div class="wuxing-circle wuxing-shui">水</div>
+      <span class="arrow">✕</span>
+      <div class="wuxing-circle wuxing-huo">火</div>
+      <span class="arrow">✕</span>
+      <div class="wuxing-circle wuxing-jin">金</div>
+      <span class="arrow">✕</span>
+      <div class="wuxing-circle wuxing-mu">木</div>
+    </div>
+    <p style="text-align:center;font-size:13px;color:#8b7355">木剋土 → 土剋水 → 水剋火 → 火剋金 → 金剋木</p>
+    <div class="tip-box">
+      💡 <strong>記憶訣竅：</strong><br>
+      • 相生：「木燒成火，火燒成灰（土），土裡挖礦（金），金熔成水，水澆木長」<br>
+      • 相剋：「木扎根土中、土擋水、水滅火、火熔金、金砍木」
+    </div>
+  </div>
+
+  <!-- 第四課 -->
+  <div class="lesson" id="lesson-3">
+    <h2>📅 第四課：如何排出自己的八字？</h2>
+    <p>排八字需要知道你的<strong>農曆出生年月日時</strong>。現在有許多線上排盤工具可以自動計算，但了解原理很重要。</p>
+    <h3>排盤的核心規則：</h3>
+    <h4>1️⃣ 年柱</h4>
+    <ul>
+      <li>以<strong>立春</strong>為分界，不是農曆正月初一！</li>
+      <li>立春前出生，年柱算上一年</li>
+      <li>立春後出生，年柱算當年</li>
+    </ul>
+    <h4>2️⃣ 月柱</h4>
+    <ul>
+      <li>以<strong>節氣</strong>為分界（每月兩個節氣）</li>
+      <li>月柱的地支是固定的：正月→寅、二月→卯、三月→辰、四月→巳、五月→午、六月→未、七月→申、八月→酉、九月→戌、十月→亥、十一月→子、十二月→丑</li>
+      <li>月柱的天干要根據年干來推算（「五虎遁」口訣）</li>
+    </ul>
+    <h4>3️⃣ 日柱</h4>
+    <ul>
+      <li>最複雜，需要查萬年曆或公式計算</li>
+      <li>每一天對應一個干支，60天一循環</li>
+    </ul>
+    <h4>4️⃣ 時柱</h4>
+    <ul>
+      <li>每兩小時一個地支（子時23-1點、丑時1-3點...）</li>
+      <li>時干根據日干推算（「五鼠遁」口訣）</li>
+    </ul>
+    <div class="tip-box">
+      💡 <strong>建議：</strong>初學者直接用線上排盤工具（如「元亨利貞網」），輸入出生時間即可自動排出八字，我們先專注在「看懂八字」。
+    </div>
+  </div>
+
+  <!-- 第五課 -->
+  <div class="lesson" id="lesson-4">
+    <h2>⭐ 第五課：認識「日主」——八字的主角</h2>
+    <p>八字排出來後，最重要的一個字是<strong>日柱的天干</strong>，稱為「<strong>日主</strong>」或「<strong>日元</strong>」。</p>
+    <div class="tip-box">
+      <strong>為什麼日主最重要？</strong><br>
+      因為<strong>整個八字都是圍繞著日主來分析的</strong>——其他七個字與日主的關係，決定了這個人的性格、命運走向。
+    </div>
+    <h3>舉例：你的命盤</h3>
+    <table class="bazi-table">
+      <tr><th></th><th>年柱</th><th>月柱</th><th>日柱 ⭐</th><th>時柱</th></tr>
+      <tr>
+        <td style="font-size:12px;color:#8b7355">天干</td>
+        <td>丁</td><td>庚</td>
+        <td><strong style="color:#2471a3;font-size:20px">癸</strong></td>
+        <td>丁</td>
+      </tr>
+      <tr>
+        <td style="font-size:12px;color:#8b7355">地支</td>
+        <td>卯</td><td>戌</td><td>巳</td><td>巳</td>
+      </tr>
+    </table>
+    <div class="tip-box">
+      • 日柱是 <strong>癸巳</strong><br>
+      • 日主就是 <strong>癸</strong>（陰水）<br>
+      • 你就是「<strong>癸水命</strong>」
+    </div>
+    <h3>癸水的性格特質</h3>
+    <p>癸水是<strong>陰水</strong>，像是夜晚的露水、細雨、泉水。</p>
+    <ul>
+      <li>性格<strong>溫柔、細膩、敏感</strong></li>
+      <li>心思縝密，觀察力敏銳</li>
+      <li>像水一樣能屈能伸，適應力強</li>
+      <li>但也容易因太過柔軟而缺乏主見</li>
+    </ul>
+  </div>
+
+  <!-- 第六課 -->
+  <div class="lesson" id="lesson-5">
+    <h2>📌 第六課：十神系統——八字的分析語言</h2>
+    <p>這是八字最精華的部分。十神描述了八字中其他干支與日主的關係。</p>
+    <div class="tip-box">
+      <strong>一句話搞懂：</strong>十神 = 八字中其他七個字與「日主」的關係。就像一個家庭裡，每個人跟你的關係不同：爸爸、媽媽、兄弟、孩子...
+    </div>
+    <h3>🔄 先看五行關係（以你為中心）</h3>
+    <div style="display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;margin:16px 0">
+      <div style="width:80px;height:80px;background:linear-gradient(135deg,#2471a3,#1a5276);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;font-size:16px;text-align:center;box-shadow:0 3px 10px rgba(36,113,163,0.3)">你<br><span style="font-size:11px">日主</span></div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="background:#e8f5e9;border-radius:8px;padding:6px 12px;font-size:13px;color:#2e7d32">⬅ 生我的人（印星）</div>
+        <div style="background:#fff3e0;border-radius:8px;padding:6px 12px;font-size:13px;color:#e65100">➡ 我生的人（食傷）</div>
+        <div style="background:#ffebee;border-radius:8px;padding:6px 12px;font-size:13px;color:#c62828">➡ 我剋的人（財星）</div>
+        <div style="background:#f3e5f5;border-radius:8px;padding:6px 12px;font-size:13px;color:#7b1fa2">⬅ 剋我的人（官殺）</div>
+        <div style="background:#e3f2fd;border-radius:8px;padding:6px 12px;font-size:13px;color:#1565c0">↔ 同我的人（比劫）</div>
+      </div>
+    </div>
+    <h3>🔍 再分陰陽，就變成十神</h3>
+    <p style="font-size:13px;color:#8b7355;margin-bottom:12px">同樣是「生我的人」，陽生陰叫「正印」，陽生陽叫「偏印」。下面以你的命盤（日主<strong>癸水</strong>）為例：</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="background:#e3f2fd;border-radius:10px;padding:12px;border-left:4px solid #1565c0">
+        <div style="font-weight:bold;color:#1565c0;font-size:14px;margin-bottom:6px">💧 同我者 → 比肩、劫財</div>
+        <div style="font-size:13px;color:#5c3d2e;line-height:1.7">
+          跟你同樣是「水」的人。陽水(壬)見陰水(癸)=<b>劫財</b>；陰水(癸)見陰水(癸)=<b>比肩</b>。<br>
+          <span style="color:#8b7355">→ 代表：兄弟姊妹、朋友、競爭對手、自我意識</span>
+        </div>
+      </div>
+      <div style="background:#e8f5e9;border-radius:10px;padding:12px;border-left:4px solid #2e7d32">
+        <div style="font-weight:bold;color:#2e7d32;font-size:14px;margin-bottom:6px">🏔️ 生我者 → 正印、偏印</div>
+        <div style="font-size:13px;color:#5c3d2e;line-height:1.7">
+          五行中「金生水」，所以金就是你的印星。陽金(庚)生陰水(癸)=<b>正印</b>；陰金(辛)生陰水(癸)=<b>偏印</b>。<br>
+          <span style="color:#8b7355">→ 代表：媽媽、老師、貴人、學歷、保護</span>
+        </div>
+      </div>
+      <div style="background:#fff3e0;border-radius:10px;padding:12px;border-left:4px solid #e65100">
+        <div style="font-weight:bold;color:#e65100;font-size:14px;margin-bottom:6px">🌱 我生者 → 食神、傷官</div>
+        <div style="font-size:13px;color:#5c3d2e;line-height:1.7">
+          水生的五行是「木」，所以木就是你的食傷。陰水(癸)生陽木(甲)=<b>傷官</b>；陰水(癸)生陰木(乙)=<b>食神</b>。<br>
+          <span style="color:#8b7355">→ 代表：才華、創意、孩子、表達、享受</span>
+        </div>
+      </div>
+      <div style="background:#ffebee;border-radius:10px;padding:12px;border-left:4px solid #c62828">
+        <div style="font-weight:bold;color:#c62828;font-size:14px;margin-bottom:6px">💰 我剋者 → 正財、偏財</div>
+        <div style="font-size:13px;color:#5c3d2e;line-height:1.7">
+          水剋的五行是「火」，所以火就是你的財星。陰水(癸)剋陽火(丙)=<b>正財</b>；陰水(癸)剋陰火(丁)=<b>偏財</b>。<br>
+          <span style="color:#8b7355">→ 代表：錢財、妻子(男命)、物質享受、父親</span>
+        </div>
+      </div>
+      <div style="background:#f3e5f5;border-radius:10px;padding:12px;border-left:4px solid #7b1fa2">
+        <div style="font-weight:bold;color:#7b1fa2;font-size:14px;margin-bottom:6px">⚔️ 剋我者 → 正官、七殺</div>
+        <div style="font-size:13px;color:#5c3d2e;line-height:1.7">
+          剋水的五行是「土」，所以土就是你的官殺。陰水(癸)被陽土(戊)剋=<b>正官</b>；被陰土(己)剋=<b>七殺</b>。<br>
+          <span style="color:#8b7355">→ 代表：事業、上司、壓力、丈夫(女命)、法律</span>
+        </div>
+      </div>
+    </div>
+    <div class="tip-box" style="margin-top:14px">
+      💡 <strong>口訣記法：</strong>同我比劫、生我印、我生食傷、我剋財、剋我官殺<br>
+      陰見陰/陽見陽 = 偏（偏印、傷官、偏財、七殺、劫財）<br>
+      陰見陽/陽見陰 = 正（正印、食神、正財、正官、比肩）
+    </div>
+  </div>
+
+  <!-- 第七課 -->
+  <div class="lesson" id="lesson-6">
+    <h2>✨ 第七課：十神代表什麼含義？</h2>
+    <p>點擊下方卡片，查看每個十神的詳細含義：</p>
+    <div class="shishen-grid">
+      <div class="shishen-card" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb)" onclick="toggleShishen('ss-bijie')">
+        <div class="name" style="color:#1565c0">比肩</div>
+        <div class="desc" style="color:#5c3d2e">同我、自我、獨立</div>
+      </div>
+      <div class="shishen-card" style="background:linear-gradient(135deg,#e3f2fd,#90caf9)" onclick="toggleShishen('ss-jiecai')">
+        <div class="name" style="color:#1565c0">劫財</div>
+        <div class="desc" style="color:#5c3d2e">爭奪、冒險、人緣</div>
+      </div>
+      <div class="shishen-card" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2)" onclick="toggleShishen('ss-shishen')">
+        <div class="name" style="color:#e65100">食神</div>
+        <div class="desc" style="color:#5c3d2e">才華、享受、表達</div>
+      </div>
+      <div class="shishen-card" style="background:linear-gradient(135deg,#fff3e0,#ffcc80)" onclick="toggleShishen('ss-shangguan')">
+        <div class="name" style="color:#e65100">傷官</div>
+        <div class="desc" style="color:#5c3d2e">創意、叛逆、才華</div>
+      </div>
+      <div class="shishen-card" style="background:linear-gradient(135deg,#ffebee,#ffcdd2)" onclick="toggleShishen('ss-zhengcai')">
+        <div class="name" style="color:#c62828">正財</div>
+        <div class="desc" style="color:#5c3d2e">穩定收入、務實</div>
+      </div>
+      <div class="shishen-card" style="background:linear-gradient(135deg,#ffebee,#ef9a9a)" onclick="toggleShishen('ss-piancai')">
+        <div class="name" style="color:#c62828">偏財</div>
+        <div class="desc" style="color:#5c3d2e">意外之財、投機</div>
+      </div>
+      <div class="shishen-card" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7)" onclick="toggleShishen('ss-zhengguan')">
+        <div class="name" style="color:#7b1fa2">正官</div>
+        <div class="desc" style="color:#5c3d2e">規矩、責任、地位</div>
+      </div>
+      <div class="shishen-card" style="background:linear-gradient(135deg,#f3e5f5,#ce93d8)" onclick="toggleShishen('ss-qisha')">
+        <div class="name" style="color:#7b1fa2">七殺</div>
+        <div class="desc" style="color:#5c3d2e">壓力、權力、挑戰</div>
+      </div>
+      <div class="shishen-card" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9)" onclick="toggleShishen('ss-zhengyin')">
+        <div class="name" style="color:#2e7d32">正印</div>
+        <div class="desc" style="color:#5c3d2e">學習、保護、貴人</div>
+      </div>
+      <div class="shishen-card" style="background:linear-gradient(135deg,#e8f5e9,#a5d6a7)" onclick="toggleShishen('ss-pianyin')">
+        <div class="name" style="color:#2e7d32">偏印</div>
+        <div class="desc" style="color:#5c3d2e">偏門、靈感、孤獨</div>
+      </div>
+    </div>
+
+    <div class="shishen-detail" id="ss-bijie">
+      <div style="font-weight:bold;color:#1565c0;font-size:15px;margin-bottom:8px">💧 比肩</div>
+      <div style="font-size:13px;color:#5c3d2e;line-height:1.8">
+        <b>核心特質：</b>自我意識強、獨立、自尊心高<br>
+        <b>代表人事：</b>兄弟姊妹、朋友、同事、競爭對手<br>
+        <b>正面：</b>有主見、能獨當一面、人緣好（同類相聚）<br>
+        <b>負面：</b>固執、自我中心、容易與人競爭<br>
+        <b>你的命盤：</b>天干無比肩，地支無水根，說明你比較缺乏「同類」支持
+      </div>
+    </div>
+    <div class="shishen-detail" id="ss-jiecai">
+      <div style="font-weight:bold;color:#1565c0;font-size:15px;margin-bottom:8px">💧 劫財</div>
+      <div style="font-size:13px;color:#5c3d2e;line-height:1.8">
+        <b>核心特質：</b>行動力強、敢冒險、人際手腕好<br>
+        <b>代表人事：</b>損友、合夥人、搶奪你資源的人<br>
+        <b>正面：</b>人緣廣、敢衝敢拼、適合業務類工作<br>
+        <b>負面：</b>容易破財、被騙、與人爭執<br>
+        <b>你的命盤：</b>天干無劫財，說明你不喜歡與人爭奪，但也少了幫手
+      </div>
+    </div>
+    <div class="shishen-detail" id="ss-shishen">
+      <div style="font-weight:bold;color:#e65100;font-size:15px;margin-bottom:8px">🌱 食神</div>
+      <div style="font-size:13px;color:#5c3d2e;line-height:1.8">
+        <b>核心特質：</b>溫和、有才華、懂得享受生活<br>
+        <b>代表人事：</b>子女（女命）、學生、美食、藝術<br>
+        <b>正面：</b>口才好、有藝術天份、樂觀開朗、福氣好<br>
+        <b>負面：</b>懶散、貪吃、缺乏進取心<br>
+        <b>你的命盤：</b>年支卯木是食神，你有藝術細胞和表達能力，也懂得享受生活
+      </div>
+    </div>
+    <div class="shishen-detail" id="ss-shangguan">
+      <div style="font-weight:bold;color:#e65100;font-size:15px;margin-bottom:8px">🌱 傷官</div>
+      <div style="font-size:13px;color:#5c3d2e;line-height:1.8">
+        <b>核心特質：</b>聰明、創意、叛逆、表現欲強<br>
+        <b>代表人事：</b>子女（男命）、下屬、創意工作者<br>
+        <b>正面：</b>創新能力強、才華橫溢、敢於挑戰權威<br>
+        <b>負面：</b>目中無人、口舌是非、女命傷官重不利婚姻<br>
+        <b>你的命盤：</b>天干無傷官，傷官氣不重，性格較為溫和
+      </div>
+    </div>
+    <div class="shishen-detail" id="ss-zhengcai">
+      <div style="font-weight:bold;color:#c62828;font-size:15px;margin-bottom:8px">💰 正財</div>
+      <div style="font-size:13px;color:#5c3d2e;line-height:1.8">
+        <b>核心特質：</b>務實、穩定、勤儉持家<br>
+        <b>代表人事：</b>穩定收入、工資、妻子（男命）、正當財富<br>
+        <b>正面：</b>理財穩健、踏實肯幹、重視家庭<br>
+        <b>負面：</b>保守、斤斤計較、缺乏冒險精神<br>
+        <b>你的命盤：</b>日支、時支巳中都藏丙火正財，你對穩定收入有追求
+      </div>
+    </div>
+    <div class="shishen-detail" id="ss-piancai">
+      <div style="font-weight:bold;color:#c62828;font-size:15px;margin-bottom:8px">💰 偏財</div>
+      <div style="font-size:13px;color:#5c3d2e;line-height:1.8">
+        <b>核心特質：</b>靈活、投機、大方、重視物質<br>
+        <b>代表人事：</b>投資收益、意外之財、父親、情人<br>
+        <b>正面：</b>商業頭腦好、善於理財、出手大方、人緣好<br>
+        <b>負面：</b>貪財、投機心重、感情不專<br>
+        <b>你的命盤：</b>年干、時干都是丁火偏財，你對賺錢機會敏感，但身弱財多難擔
+      </div>
+    </div>
+    <div class="shishen-detail" id="ss-zhengguan">
+      <div style="font-weight:bold;color:#7b1fa2;font-size:15px;margin-bottom:8px">⚔️ 正官</div>
+      <div style="font-size:13px;color:#5c3d2e;line-height:1.8">
+        <b>核心特質：</b>規矩、責任感、重視名譽<br>
+        <b>代表人事：</b>事業、上司、法律、丈夫（女命）<br>
+        <b>正面：</b>正直可靠、事業心強、社會地位高<br>
+        <b>負面：</b>壓力大、過於保守、被規則束縛<br>
+        <b>你的命盤：</b>月支戌中藏戊土正官，日支、時支巳中藏戊土正官，官殺力量不弱
+      </div>
+    </div>
+    <div class="shishen-detail" id="ss-qisha">
+      <div style="font-weight:bold;color:#7b1fa2;font-size:15px;margin-bottom:8px">⚔️ 七殺</div>
+      <div style="font-size:13px;color:#5c3d2e;line-height:1.8">
+        <b>核心特質：</b>魄力、權力、壓力、挑戰<br>
+        <b>代表人事：</b>壓力、小人、權威、武職、兒子（女命）<br>
+        <b>正面：</b>有魄力、敢於承擔、領導力強、能成大事<br>
+        <b>負面：</b>壓力過大、小人多、容易有意外、性格偏激<br>
+        <b>你的命盤：</b>天干無七殺，但地支戌、巳中都有戊土（正官為主），壓力來自責任而非小人
+      </div>
+    </div>
+    <div class="shishen-detail" id="ss-zhengyin">
+      <div style="font-weight:bold;color:#2e7d32;font-size:15px;margin-bottom:8px">🏔️ 正印</div>
+      <div style="font-size:13px;color:#5c3d2e;line-height:1.8">
+        <b>核心特質：</b>仁慈、學習、保護、貴人運<br>
+        <b>代表人事：</b>媽媽、老師、學歷、證書、房產、貴人<br>
+        <b>正面：</b>學習能力強、有貴人相助、心地善良、有保護力<br>
+        <b>負面：</b>依賴心重、懶惰、想太多<br>
+        <b>你的命盤：</b>月干庚金是正印，是你命盤中重要的「生扶」力量，但受丁火剋制（財破印）
+      </div>
+    </div>
+    <div class="shishen-detail" id="ss-pianyin">
+      <div style="font-weight:bold;color:#2e7d32;font-size:15px;margin-bottom:8px">🏔️ 偏印</div>
+      <div style="font-size:13px;color:#5c3d2e;line-height:1.8">
+        <b>核心特質：</b>偏門才華、靈感、孤獨、敏感<br>
+        <b>代表人事：</b>特殊技能、宗教、玄學、繼母、偏門學問<br>
+        <b>正面：</b>直覺敏銳、有特殊才能、適合研究玄學或技術<br>
+        <b>負面：</b>孤僻、多疑、與人疏離<br>
+        <b>你的命盤：</b>月支戌中藏辛金偏印，你有潛在的直覺力或特殊興趣
+      </div>
+    </div>
+  </div>
+
+  <!-- 第八課 -->
+  <div class="lesson" id="lesson-7">
+    <h2>⚖️ 第八課：身強 vs 身弱——判斷八字的關鍵</h2>
+    <div class="tip-box">
+      <strong>「身」= 日主（你自己）</strong><br>
+      判斷你在整個八字裡是「強壯」還是「虛弱」，決定你需要什麼五行來幫你。
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px;margin:16px 0">
+      <div class="step-box" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9)">
+        <div class="step-header">
+          <div class="step-num" style="background:#2e7d32">1</div>
+          <div class="step-title" style="color:#2e7d32">得令 — 出生的月份對你有利嗎？</div>
+        </div>
+        <div class="step-content">
+          看<b>月支</b>（出生的月份）的五行，是不是生你或同你？<br>
+          <span style="color:#8b7355">→ 春天木旺（木命人得令）、夏天火旺（火命人得令）、秋天金旺、冬天水旺</span><br><br>
+          <b>你的例子：</b>你是<b>癸水</b>，生於<b>戌月</b>（九月土旺）。土剋水 → <span style="color:#c62828;font-weight:bold">❌ 不得令</span>
+        </div>
+      </div>
+      <div class="step-box" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb)">
+        <div class="step-header">
+          <div class="step-num" style="background:#1565c0">2</div>
+          <div class="step-title" style="color:#1565c0">得地 — 地支有你的「根」嗎？</div>
+        </div>
+        <div class="step-content">
+          看四個地支裡，有沒有跟你同五行的字？這叫「有根」。<br>
+          <span style="color:#8b7355">→ 木根在寅卯、火根在巳午、土根在辰戌丑未、金根在申酉、水根在子亥</span><br><br>
+          <b>你的例子：</b>你的地支是<b>卯、戌、巳、巳</b>。沒有子或亥 → <span style="color:#c62828;font-weight:bold">❌ 不得地</span>
+        </div>
+      </div>
+      <div class="step-box" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7)">
+        <div class="step-header">
+          <div class="step-num" style="background:#7b1fa2">3</div>
+          <div class="step-title" style="color:#7b1fa2">得勢 — 天干有人幫你嗎？</div>
+        </div>
+        <div class="step-content">
+          看四個天干裡，有沒有跟你同五行（比肩、劫財）或生你的五行（印星）？<br>
+          <span style="color:#8b7355">→ 幫手越多，你越強；孤立無援，你就弱</span><br><br>
+          <b>你的例子：</b>天干是<b>丁、庚、癸、丁</b>。只有一個癸水自己，無其他水來幫 → <span style="color:#c62828;font-weight:bold">❌ 不得勢</span>
+        </div>
+      </div>
+    </div>
+    <div class="conclusion" style="background:linear-gradient(135deg,#ffebee,#ffcdd2)">
+      <div class="title" style="color:#c62828">🎯 結論：三個條件一個都沒佔到 = 身弱</div>
+      <div class="text" style="color:#5c3d2e">
+        你的癸水日主像一滴水掉進火堆裡，周圍全是火（財）和土（官殺），<br>
+        自己太弱，需要<strong>金（印星）來生你、水（比劫）來幫你</strong>
+      </div>
+    </div>
+    <h3 style="text-align:center;margin-top:20px">身弱之人的喜忌</h3>
+    <div class="xiji-row">
+      <div class="xiji-box" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9)">
+        <div class="label" style="color:#2e7d32">✅ 喜用神（需要）</div>
+        <div class="element" style="color:#1b5e20">金、水</div>
+        <div class="explain" style="color:#388e3c">金生水｜水幫水</div>
+      </div>
+      <div class="xiji-box" style="background:linear-gradient(135deg,#ffebee,#ffcdd2)">
+        <div class="label" style="color:#c62828">❌ 忌神（避免）</div>
+        <div class="element" style="color:#b71c1c">火、土</div>
+        <div class="explain" style="color:#d32f2f">火耗水｜土剋水</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      💡 <strong>簡單記法：</strong>身強要「洩耗」，身弱要「生扶」。<br>
+      你是身弱 → 需要<strong>生我（印星）和同我（比劫）</strong>的五行來幫你。
+    </div>
+  </div>
+
+  <!-- 第九課 -->
+  <div class="lesson" id="lesson-8">
+    <h2>🔄 第九課：大運與流年</h2>
+    <p>八字是「命」，大運和流年是「運」。命好不如運好，運勢的起伏會直接影響人生際遇。</p>
+    <h3>📈 大運</h3>
+    <ul>
+      <li>每<strong>十年</strong>一個大運</li>
+      <li>根據出生時間順排或逆排（陽男陰女順排，陰男陽女逆排）</li>
+      <li>大運的天干地支會影響這十年的運勢走向</li>
+      <li>如果大運是喜用神 → 這十年順利、機會多</li>
+      <li>如果大運是忌神 → 這十年阻礙多、挑戰大</li>
+    </ul>
+    <h3>📅 流年</h3>
+    <ul>
+      <li>每年的天干地支（比如 2026 年是丙午年）</li>
+      <li>流年與八字、大運的互動，決定了當年的吉凶</li>
+      <li>流年是喜用神 → 當年順利</li>
+      <li>流年是忌神 → 當年阻礙多</li>
+    </ul>
+    <h3>🔍 怎麼看流年好壞？</h3>
+    <div style="display:flex;flex-direction:column;gap:10px;margin:12px 0">
+      <div style="background:#e8f5e9;border-radius:10px;padding:12px">
+        <div style="font-weight:bold;color:#2e7d32;font-size:14px">✅ 流年是喜用神</div>
+        <div style="font-size:13px;color:#5c3d2e;margin-top:4px">順利、機會多、貴人相助、心情好</div>
+      </div>
+      <div style="background:#ffebee;border-radius:10px;padding:12px">
+        <div style="font-weight:bold;color:#c62828;font-size:14px">❌ 流年是忌神</div>
+        <div style="font-size:13px;color:#5c3d2e;margin-top:4px">阻礙多、挑戰大、容易破財或有壓力</div>
+      </div>
+      <div style="background:#fff3e0;border-radius:10px;padding:12px">
+        <div style="font-weight:bold;color:#e65100;font-size:14px">⚡ 特殊組合</div>
+        <div style="font-size:13px;color:#5c3d2e;margin-top:4px">流年與八字形成三合、六合、沖、刑時，往往會有明顯事件發生</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      💡 <strong>你的例子：</strong>你是身弱癸水，喜金水。所以走<strong>金運或水運</strong>的大運/流年會比較順；走<strong>火運或土運</strong>時要特別注意健康和壓力管理。
+    </div>
+  </div>
+
+  <!-- 第十課 -->
+  <div class="lesson" id="lesson-9">
+    <h2>🔮 第十課：地支的藏干與特殊關係</h2>
+    <h3>📦 什麼是「地支藏干」？</h3>
+    <p>每個地支裡面還藏著 1~3 個天干，就像一個人有多重性格。我們主要看<strong>本氣</strong>（第一個）。</p>
+    <div class="canggan-grid">
+      <div class="canggan-item"><b>子</b><br>癸</div>
+      <div class="canggan-item"><b>丑</b><br>己癸辛</div>
+      <div class="canggan-item"><b>寅</b><br>甲丙戊</div>
+      <div class="canggan-item"><b>卯</b><br>乙</div>
+      <div class="canggan-item"><b>辰</b><br>戊乙癸</div>
+      <div class="canggan-item"><b>巳</b><br>丙庚戊</div>
+      <div class="canggan-item"><b>午</b><br>丁己</div>
+      <div class="canggan-item"><b>未</b><br>己丁乙</div>
+      <div class="canggan-item"><b>申</b><br>庚壬戊</div>
+      <div class="canggan-item"><b>酉</b><br>辛</div>
+      <div class="canggan-item"><b>戌</b><br>戊辛丁</div>
+      <div class="canggan-item"><b>亥</b><br>壬甲</div>
+    </div>
+    <h3>🔗 地支之間的特殊關係</h3>
+    <div class="relation-card" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9)">
+      <div class="title" style="color:#2e7d32">🤝 三合 — 三個地支合成一個五行局</div>
+      <div class="content" style="color:#5c3d2e">
+        <b>申子辰</b> → 合水局　　<b>寅午戌</b> → 合火局<br>
+        <b>巳酉丑</b> → 合金局　　<b>亥卯未</b> → 合木局<br>
+        <span style="color:#8b7355">合代表合作、結合、人緣好。你的命盤無三合。</span>
+      </div>
+    </div>
+    <div class="relation-card" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb)">
+      <div class="title" style="color:#1565c0">💞 六合 — 兩個地支相合</div>
+      <div class="content" style="color:#5c3d2e">
+        子丑合土、寅亥合木、<b>卯戌合火</b>、辰酉合金、巳申合水、午未合土<br>
+        <span style="color:#8b7355">合代表和諧、合作、感情好。你的命盤中<b>卯戌合火</b>（年支卯+月支戌）。</span>
+      </div>
+    </div>
+    <div class="relation-card" style="background:linear-gradient(135deg,#ffebee,#ffcdd2)">
+      <div class="title" style="color:#c62828">💥 六沖 — 兩個地支相沖</div>
+      <div class="content" style="color:#5c3d2e">
+        子午沖、丑未沖、寅申沖、卯酉沖、辰戌沖、巳亥沖<br>
+        <span style="color:#8b7355">沖代表變動、衝突、分離。沖的力量很強，往往帶來人生轉折。</span>
+      </div>
+    </div>
+    <div class="relation-card" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2)">
+      <div class="title" style="color:#e65100">⚡ 三刑 — 三個地支相刑</div>
+      <div class="content" style="color:#5c3d2e">
+        <b>寅巳申</b>（無恩之刑）、<b>丑戌未</b>（恃勢之刑）、<b>子卯</b>（無禮之刑）<br>
+        <span style="color:#8b7355">刑代表糾纏、折磨、官司、身體問題。你的命盤有<b>寅巳申</b>中的兩個（巳巳），注意流年遇到寅或申時。</span>
+      </div>
+    </div>
+    <div class="relation-card" style="background:linear-gradient(135deg,#f3e5f5,#e1bee7)">
+      <div class="title" style="color:#7b1fa2">😔 六害 — 兩個地支相害</div>
+      <div class="content" style="color:#5c3d2e">
+        子未害、丑午害、寅巳害、卯辰害、申亥害、酉戌害<br>
+        <span style="color:#8b7355">害代表暗中的傷害、小人、誤會。力量比沖弱，但持續時間長。</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    八字命理手把手教學 · 互動式學習指南<br>
+    建議搭配線上排盤工具使用（如元亨利貞網）
+  </div>
+
+</div>
+
+<script>
+  function showLesson(n) {
+    var lessons = document.querySelectorAll('.lesson');
+    var buttons = document.querySelectorAll('.nav-btn');
+    lessons.forEach(function(el, i) {
+      el.classList.toggle('active', i === n);
+    });
+    buttons.forEach(function(el, i) {
+      el.classList.toggle('active', i === n);
+    });
+    // 關閉所有十神詳情
+    document.querySelectorAll('.shishen-detail').forEach(function(el) {
+      el.style.display = 'none';
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleShishen(id) {
+    var el = document.getElementById(id);
+    var all = document.querySelectorAll('.shishen-detail');
+    all.forEach(function(d) {
+      if (d.id !== id) d.style.display = 'none';
+    });
+    if (el.style.display === 'none' || el.style.display === '') {
+      el.style.display = 'block';
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else {
+      el.style.display = 'none';
+    }
+  }
+</script>
+
+</body>
+</html>
