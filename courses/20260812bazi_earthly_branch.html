@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>地支關係查詢器</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Noto Sans SC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: #f5f0e8;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    #app {
+      width: 100%;
+      max-width: 480px;
+      padding: 24px;
+      background: #faf8f3;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(93, 64, 55, 0.08);
+    }
+    h2 {
+      text-align: center;
+      color: #5d4037;
+      margin: 0 0 4px 0;
+      font-size: 22px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #8d6e63;
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    .select-row {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .select-group label {
+      display: block;
+      font-size: 12px;
+      color: #8d6e63;
+      margin-bottom: 4px;
+    }
+    select {
+      padding: 10px 16px;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 2px solid #d7ccc8;
+      background: white;
+      color: #5d4037;
+      cursor: pointer;
+      min-width: 80px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    select:focus { border-color: #a1887f; }
+    .connector {
+      padding-bottom: 10px;
+      color: #a1887f;
+      font-size: 20px;
+    }
+    .card {
+      padding: 14px;
+      border-radius: 12px;
+      background: white;
+      border-left: 5px solid;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      margin-bottom: 10px;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .card-icon { font-size: 20px; }
+    .card-type {
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .card-title {
+      color: #5d4037;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .card-detail {
+      color: #6d4c41;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .suggest-box {
+      margin-top: 16px;
+      padding: 14px;
+      background: #fff3e0;
+      border-radius: 12px;
+      border-left: 4px solid #ff9800;
+    }
+    .suggest-label {
+      font-size: 12px;
+      color: #e65100;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    .suggest-text {
+      font-size: 14px;
+      color: #5d4037;
+      line-height: 1.7;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: #bcaaa4;
+      font-size: 14px;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 11px;
+      color: #bcaaa4;
+    }
+  </style>
+<base target="_blank">
+</head>
+<body>
+  <div id="app">
+    <h2>🔮 地支關係查詢器</h2>
+    <p class="subtitle">選兩個地支，自動顯示它們的所有關係</p>
+
+    <div class="select-row">
+      <div class="select-group">
+        <label>第一個地支</label>
+        <select id="z1">
+          <option value="">選擇</option>
+          <option value="子">子</option>
+          <option value="丑">丑</option>
+          <option value="寅">寅</option>
+          <option value="卯">卯</option>
+          <option value="辰">辰</option>
+          <option value="巳">巳</option>
+          <option value="午">午</option>
+          <option value="未">未</option>
+          <option value="申">申</option>
+          <option value="酉">酉</option>
+          <option value="戌">戌</option>
+          <option value="亥">亥</option>
+        </select>
+      </div>
+      <div class="connector">⚡</div>
+      <div class="select-group">
+        <label>第二個地支</label>
+        <select id="z2">
+          <option value="">選擇</option>
+          <option value="子">子</option>
+          <option value="丑">丑</option>
+          <option value="寅">寅</option>
+          <option value="卯">卯</option>
+          <option value="辰">辰</option>
+          <option value="巳">巳</option>
+          <option value="午">午</option>
+          <option value="未">未</option>
+          <option value="申">申</option>
+          <option value="酉">酉</option>
+          <option value="戌">戌</option>
+          <option value="亥">亥</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="result" style="display: none;">
+      <div id="relation-cards"></div>
+      <div id="suggest-section" class="suggest-box" style="display: none;">
+        <div class="suggest-label">💡 想湊成三合 / 三會 / 三刑？</div>
+        <div id="suggest-text" class="suggest-text"></div>
+      </div>
+    </div>
+
+    <div id="empty" class="empty-state">
+      請選擇兩個地支來查看關係
+    </div>
+
+    <div class="footer">純前端靜態頁面，無需後端即可運行</div>
+  </div>
+
+<script>
+const relations = {
+  // 六合
+  '子丑': {type: '六合', color: '#4caf50', icon: '🤝', desc: '子丑合土', detail: '兩個地支互相吸引、黏在一起。合後化為土氣。'},
+  '丑子': {type: '六合', color: '#4caf50', icon: '🤝', desc: '子丑合土', detail: '兩個地支互相吸引、黏在一起。合後化為土氣。'},
+  '寅亥': {type: '六合', color: '#4caf50', icon: '🤝', desc: '寅亥合木', detail: '亥水生寅木，合後化為木氣。'},
+  '亥寅': {type: '六合', color: '#4caf50', icon: '🤝', desc: '寅亥合木', detail: '亥水生寅木，合後化為木氣。'},
+  '卯戌': {type: '六合', color: '#4caf50', icon: '🤝', desc: '卯戌合火', detail: '戌為火庫，卯木點燃其中丁火，合後化為火氣。'},
+  '戌卯': {type: '六合', color: '#4caf50', icon: '🤝', desc: '卯戌合火', detail: '戌為火庫，卯木點燃其中丁火，合後化為火氣。'},
+  '辰酉': {type: '六合', color: '#4caf50', icon: '🤝', desc: '辰酉合金', detail: '辰土生酉金，合後化為金氣。'},
+  '酉辰': {type: '六合', color: '#4caf50', icon: '🤝', desc: '辰酉合金', detail: '辰土生酉金，合後化為金氣。'},
+  '巳申': {type: '六合', color: '#4caf50', icon: '🤝', desc: '巳申合水', detail: '金火相戰化水。同時也是「無恩之刑」！'},
+  '申巳': {type: '六合', color: '#4caf50', icon: '🤝', desc: '巳申合水', detail: '金火相戰化水。同時也是「無恩之刑」！'},
+  '午未': {type: '六合', color: '#4caf50', icon: '🤝', desc: '午未合土', detail: '午火生未土，合後化為土氣。'},
+  '未午': {type: '六合', color: '#4caf50', icon: '🤝', desc: '午未合土', detail: '午火生未土，合後化為土氣。'},
+
+  // 六沖
+  '子午': {type: '六沖', color: '#f44336', icon: '💥', desc: '子午沖', detail: '水火對沖，水火不容。代表變動、對立、不穩定。'},
+  '午子': {type: '六沖', color: '#f44336', icon: '💥', desc: '子午沖', detail: '水火對沖，水火不容。代表變動、對立、不穩定。'},
+  '丑未': {type: '六沖', color: '#f44336', icon: '💥', desc: '丑未沖', detail: '兩土對沖，土氣動盪。代表根基不穩、財庫開啟。'},
+  '未丑': {type: '六沖', color: '#f44336', icon: '💥', desc: '丑未沖', detail: '兩土對沖，土氣動盪。代表根基不穩、財庫開啟。'},
+  '寅申': {type: '六沖', color: '#f44336', icon: '💥', desc: '寅申沖', detail: '金木對沖，驛馬沖動。代表奔波、變動、車馬之災。'},
+  '申寅': {type: '六沖', color: '#f44336', icon: '💥', desc: '寅申沖', detail: '金木對沖，驛馬沖動。代表奔波、變動、車馬之災。'},
+  '卯酉': {type: '六沖', color: '#f44336', icon: '💥', desc: '卯酉沖', detail: '金木對沖，桃花沖動。代表感情變動、人際摩擦。'},
+  '酉卯': {type: '六沖', color: '#f44336', icon: '💥', desc: '卯酉沖', detail: '金木對沖，桃花沖動。代表感情變動、人際摩擦。'},
+  '辰戌': {type: '六沖', color: '#f44336', icon: '💥', desc: '辰戌沖', detail: '兩土對沖，庫門大開。代表財庫、官庫被沖開。'},
+  '戌辰': {type: '六沖', color: '#f44336', icon: '💥', desc: '辰戌沖', detail: '兩土對沖，庫門大開。代表財庫、官庫被沖開。'},
+  '巳亥': {type: '六沖', color: '#f44336', icon: '💥', desc: '巳亥沖', detail: '水火對沖，驛馬沖動。代表變動、情緒起伏。'},
+  '亥巳': {type: '六沖', color: '#f44336', icon: '💥', desc: '巳亥沖', detail: '水火對沖，驛馬沖動。代表變動、情緒起伏。'},
+
+  // 六害
+  '子未': {type: '六害', color: '#ff9800', icon: '🔪', desc: '子未害', detail: '表面無事，暗地裡互相討厭。代表小人、暗損。'},
+  '未子': {type: '六害', color: '#ff9800', icon: '🔪', desc: '子未害', detail: '表面無事，暗地裡互相討厭。代表小人、暗損。'},
+  '丑午': {type: '六害', color: '#ff9800', icon: '🔪', desc: '丑午害', detail: '濕土晦火，暗中破壞。代表暗中受阻、健康小恙。'},
+  '午丑': {type: '六害', color: '#ff9800', icon: '🔪', desc: '丑午害', detail: '濕土晦火，暗中破壞。代表暗中受阻、健康小恙。'},
+  '寅巳': {type: '六害', color: '#ff9800', icon: '🔪', desc: '寅巳害（無恩之刑）', detail: '寅木生巳火，但生得太過變成「無恩」。同時也是無恩之刑！'},
+  '巳寅': {type: '六害', color: '#ff9800', icon: '🔪', desc: '寅巳害（無恩之刑）', detail: '寅木生巳火，但生得太過變成「無恩」。同時也是無恩之刑！'},
+  '卯辰': {type: '六害', color: '#ff9800', icon: '🔪', desc: '卯辰害', detail: '卯木克辰土，暗中相穿。代表暗中損耗、小人是非。'},
+  '辰卯': {type: '六害', color: '#ff9800', icon: '🔪', desc: '卯辰害', detail: '卯木克辰土，暗中相穿。代表暗中損耗、小人是非。'},
+  '申亥': {type: '六害', color: '#ff9800', icon: '🔪', desc: '申亥害', detail: '申金生亥水，但生得過度反成害。代表好心沒好報。'},
+  '亥申': {type: '六害', color: '#ff9800', icon: '🔪', desc: '申亥害', detail: '申金生亥水，但生得過度反成害。代表好心沒好報。'},
+  '酉戌': {type: '六害', color: '#ff9800', icon: '🔪', desc: '酉戌害', detail: '戌土中火克酉金，暗中相穿。代表暗中受傷、口舌。'},
+  '戌酉': {type: '六害', color: '#ff9800', icon: '🔪', desc: '酉戌害', detail: '戌土中火克酉金，暗中相穿。代表暗中受傷、口舌。'},
+
+  // 三刑（兩兩相刑）
+  '巳申': {type: '三刑', color: '#9c27b0', icon: '⛓️', desc: '巳申刑（無恩之刑）', detail: '火克金，同時又合水。糾纏不清、反覆背叛。'},
+  '申巳': {type: '三刑', color: '#9c27b0', icon: '⛓️', desc: '巳申刑（無恩之刑）', detail: '火克金，同時又合水。糾纏不清、反覆背叛。'},
+  '丑戌': {type: '三刑', color: '#9c27b0', icon: '⛓️', desc: '丑戌刑（恃勢之刑）', detail: '兩土互刑，固執霸道、互不相讓。'},
+  '戌丑': {type: '三刑', color: '#9c27b0', icon: '⛓️', desc: '丑戌刑（恃勢之刑）', detail: '兩土互刑，固執霸道、互不相讓。'},
+  '戌未': {type: '三刑', color: '#9c27b0', icon: '⛓️', desc: '戌未刑（恃勢之刑）', detail: '兩土互刑，仗勢欺人、內耗嚴重。'},
+  '未戌': {type: '三刑', color: '#9c27b0', icon: '⛓️', desc: '戌未刑（恃勢之刑）', detail: '兩土互刑，仗勢欺人、內耗嚴重。'},
+  '子卯': {type: '三刑', color: '#9c27b0', icon: '⛓️', desc: '子卯刑（無禮之刑）', detail: '子水生卯木，但陰生陰無調和，變成以下犯上、沒大沒小。'},
+  '卯子': {type: '三刑', color: '#9c27b0', icon: '⛓️', desc: '子卯刑（無禮之刑）', detail: '子水生卯木，但陰生陰無調和，變成以下犯上、沒大沒小。'},
+
+  // 自刑
+  '辰辰': {type: '自刑', color: '#9c27b0', icon: '🔄', desc: '辰辰自刑', detail: '自己跟自己過不去，鑽牛角尖、反覆糾結。'},
+  '午午': {type: '自刑', color: '#9c27b0', icon: '🔄', desc: '午午自刑', detail: '火太旺反傷自己，脾氣暴躁、自我折磨。'},
+  '酉酉': {type: '自刑', color: '#9c27b0', icon: '🔄', desc: '酉酉自刑', detail: '金太旺反傷自己，過於剛硬、自尋煩惱。'},
+  '亥亥': {type: '自刑', color: '#9c27b0', icon: '🔄', desc: '亥亥自刑', detail: '水太旺反傷自己，想太多、情緒氾濫。'},
+
+  // 六破
+  '子酉': {type: '六破', color: '#795548', icon: '🕳️', desc: '子酉破', detail: '小裂痕、小損失。影響較輕微，像杯子裂了條縫。'},
+  '酉子': {type: '六破', color: '#795548', icon: '🕳️', desc: '子酉破', detail: '小裂痕、小損失。影響較輕微，像杯子裂了條縫。'},
+  '卯午': {type: '六破', color: '#795548', icon: '🕳️', desc: '卯午破', detail: '小裂痕、小損失。影響較輕微。'},
+  '午卯': {type: '六破', color: '#795548', icon: '🕳️', desc: '卯午破', detail: '小裂痕、小損失。影響較輕微。'},
+  '丑辰': {type: '六破', color: '#795548', icon: '🕳️', desc: '丑辰破', detail: '小裂痕、小損失。影響較輕微。'},
+  '辰丑': {type: '六破', color: '#795548', icon: '🕳️', desc: '丑辰破', detail: '小裂痕、小損失。影響較輕微。'},
+  '未戌': {type: '六破', color: '#795548', icon: '🕳️', desc: '未戌破', detail: '小裂痕、小損失。影響較輕微。'},
+  '戌未': {type: '六破', color: '#795548', icon: '🕳️', desc: '未戌破', detail: '小裂痕、小損失。影響較輕微。'},
+};
+
+const sanhe = {
+  '水局': ['申','子','辰'],
+  '木局': ['亥','卯','未'],
+  '火局': ['寅','午','戌'],
+  '金局': ['巳','酉','丑']
+};
+
+const sanhui = {
+  '水局': ['亥','子','丑'],
+  '木局': ['寅','卯','辰'],
+  '火局': ['巳','午','未'],
+  '金局': ['申','酉','戌']
+};
+
+function update() {
+  const z1 = document.getElementById('z1').value;
+  const z2 = document.getElementById('z2').value;
+
+  if (!z1 || !z2) {
+    document.getElementById('result').style.display = 'none';
+    document.getElementById('empty').style.display = 'block';
+    return;
+  }
+
+  document.getElementById('empty').style.display = 'none';
+  document.getElementById('result').style.display = 'block';
+
+  const key = z1 + z2;
+  const cardsDiv = document.getElementById('relation-cards');
+  cardsDiv.innerHTML = '';
+
+  const found = [];
+  if (relations[key]) found.push(relations[key]);
+
+  if (found.length === 0) {
+    const sameWuXing = {
+      '子亥': '水', '亥子': '水',
+      '寅卯': '木', '卯寅': '木',
+      '巳午': '火', '午巳': '火',
+      '申酉': '金', '酉申': '金',
+    };
+    const tuPairs = ['辰戌','戌辰','辰丑','丑辰','辰未','未辰','戌丑','丑戌','戌未','未戌','丑未','未丑'];
+
+    const sw = sameWuXing[key];
+    if (sw) {
+      found.push({type: '同五行', color: '#607d8b', icon: '⚪', desc: '同屬' + sw, detail: '兩個地支都屬' + sw + '，沒有特殊的刑沖合害關係，屬於比和。'});
+    } else if (tuPairs.includes(key)) {
+      found.push({type: '同五行', color: '#607d8b', icon: '⚪', desc: '同屬土', detail: '兩個地支都屬土，沒有特殊的刑沖合害關係，屬於比和。'});
+    } else {
+      found.push({type: '無特殊關係', color: '#9e9e9e', icon: '➖', desc: '一般關係', detail: '這兩個地支之間沒有六合、六沖、六害、三刑或六破的特殊關係。'});
+    }
+  }
+
+  const unique = [];
+  const seen = new Set();
+  for (const r of found) {
+    const id = r.type + r.desc;
+    if (!seen.has(id)) {
+      seen.add(id);
+      unique.push(r);
+    }
+  }
+
+  for (const r of unique) {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.borderLeftColor = r.color;
+    card.innerHTML = `
+      <div class="card-header">
+        <span class="card-icon">${r.icon}</span>
+        <span class="card-type" style="color:${r.color}">${r.type}</span>
+        <span class="card-title">${r.desc}</span>
+      </div>
+      <div class="card-detail">${r.detail}</div>
+    `;
+    cardsDiv.appendChild(card);
+  }
+
+  const suggestDiv = document.getElementById('suggest-text');
+  const pair = [z1, z2];
+  let suggestions = [];
+
+  for (const [name, members] of Object.entries(sanhe)) {
+    const has = pair.filter(p => members.includes(p));
+    if (has.length === 2) {
+      const missing = members.find(m => !pair.includes(m));
+      suggestions.push(`你已有<strong>${has.join('、')}</strong>，再來一個<strong>${missing}</strong>就湊成<strong>三合${name}</strong>！`);
+    } else if (has.length === 1) {
+      const missing = members.filter(m => !pair.includes(m));
+      suggestions.push(`你有<strong>${has[0]}</strong>，再湊齊<strong>${missing.join('、')}</strong>可成<strong>三合${name}</strong>。`);
+    }
+  }
+
+  for (const [name, members] of Object.entries(sanhui)) {
+    const has = pair.filter(p => members.includes(p));
+    if (has.length === 2) {
+      const missing = members.find(m => !pair.includes(m));
+      suggestions.push(`你已有<strong>${has.join('、')}</strong>，再來一個<strong>${missing}</strong>就湊成<strong>三會${name}</strong>！`);
+    } else if (has.length === 1) {
+      const missing = members.filter(m => !pair.includes(m));
+      suggestions.push(`你有<strong>${has[0]}</strong>，再湊齊<strong>${missing.join('、')}</strong>可成<strong>三會${name}</strong>。`);
+    }
+  }
+
+  const xingGroups = {
+    '無恩之刑': ['寅','巳','申'],
+    '恃勢之刑': ['丑','戌','未'],
+  };
+  for (const [name, members] of Object.entries(xingGroups)) {
+    const has = pair.filter(p => members.includes(p));
+    if (has.length === 2) {
+      const missing = members.find(m => !pair.includes(m));
+      suggestions.push(`⚠️ 你已有<strong>${has.join('、')}</strong>，再來<strong>${missing}</strong>會引動完整的<strong>${name}</strong>，需多加留意。`);
+    }
+  }
+
+  if (suggestions.length > 0) {
+    suggestDiv.innerHTML = suggestions.join('<br><br>');
+    document.getElementById('suggest-section').style.display = 'block';
+  } else {
+    document.getElementById('suggest-section').style.display = 'none';
+  }
+}
+
+document.getElementById('z1').addEventListener('change', update);
+document.getElementById('z2').addEventListener('change', update);
+</script>
+</body>
+</html>
