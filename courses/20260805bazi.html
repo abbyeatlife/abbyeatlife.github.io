@@ -138,9 +138,29 @@
     font-family: 'Noto Sans TC', sans-serif;
   }
   .gan-btn:hover, .zhi-btn:hover { transform: scale(1.15); }
-  .gan-yang { background: #5c3d2e; }
-  .gan-yin { background: #8b7355; }
-  .zhi-btn { background: #6b5b4f; font-size: 16px; }
+  .zhi-btn { font-size: 16px; }
+  .wx-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin: 14px 0;
+  }
+  .wx-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #5c3d2e;
+    background: #f8f5f0;
+    border-radius: 20px;
+    padding: 4px 10px;
+  }
+  .wx-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+  }
   .shishen-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -351,36 +371,46 @@
     <h2>📌 第二課：認識天干與地支</h2>
     <p>這是八字的「字母表」，一定要先背熟！</p>
     <h3>十天干（分陰陽、配五行）</h3>
+    <div class="wx-legend">
+      <span><i class="wx-dot" style="background:#4a7c59"></i>木</span>
+      <span><i class="wx-dot" style="background:#c0392b"></i>火</span>
+      <span><i class="wx-dot" style="background:#b7950b"></i>土</span>
+      <span><i class="wx-dot" style="background:#7f8c8d"></i>金</span>
+      <span><i class="wx-dot" style="background:#2471a3"></i>水</span>
+    </div>
     <div class="ganzhi-grid">
-      <button class="gan-btn gan-yang" title="甲：陽木">甲</button>
-      <button class="gan-btn gan-yin" title="乙：陰木">乙</button>
-      <button class="gan-btn gan-yang" title="丙：陽火">丙</button>
-      <button class="gan-btn gan-yin" title="丁：陰火">丁</button>
-      <button class="gan-btn gan-yang" title="戊：陽土">戊</button>
-      <button class="gan-btn gan-yin" title="己：陰土">己</button>
-      <button class="gan-btn gan-yang" title="庚：陽金">庚</button>
-      <button class="gan-btn gan-yin" title="辛：陰金">辛</button>
-      <button class="gan-btn gan-yang" title="壬：陽水">壬</button>
-      <button class="gan-btn gan-yin" title="癸：陰水">癸</button>
+      <button class="gan-btn" style="background:#4a7c59" title="甲：陽木">甲</button>
+      <button class="gan-btn" style="background:#4a7c59" title="乙：陰木">乙</button>
+      <button class="gan-btn" style="background:#c0392b" title="丙：陽火">丙</button>
+      <button class="gan-btn" style="background:#c0392b" title="丁：陰火">丁</button>
+      <button class="gan-btn" style="background:#b7950b" title="戊：陽土">戊</button>
+      <button class="gan-btn" style="background:#b7950b" title="己：陰土">己</button>
+      <button class="gan-btn" style="background:#7f8c8d" title="庚：陽金">庚</button>
+      <button class="gan-btn" style="background:#7f8c8d" title="辛：陰金">辛</button>
+      <button class="gan-btn" style="background:#2471a3" title="壬：陽水">壬</button>
+      <button class="gan-btn" style="background:#2471a3" title="癸：陰水">癸</button>
     </div>
     <div class="tip-box">
       <strong>口訣：</strong>甲乙木、丙丁火、戊己土、庚辛金、壬癸水<br>
-      單數（甲丙戊庚壬）為<strong>陽</strong>，雙數（乙丁己辛癸）為<strong>陰</strong>
+      單數（甲丙戊庚壬）為<strong>陽</strong>，雙數（乙丁己辛癸）為<strong>陰</strong>（顏色相同表示同一個五行，深淺不分陰陽，方便你先記五行再記陰陽）
     </div>
-    <h3>十二地支（對應十二生肖）</h3>
+    <h3>十二地支（對應十二生肖，同樣依五行上色）</h3>
     <div class="ganzhi-grid">
-      <button class="zhi-btn" title="子鼠">子🐭</button>
-      <button class="zhi-btn" title="丑牛">丑🐮</button>
-      <button class="zhi-btn" title="寅虎">寅🐯</button>
-      <button class="zhi-btn" title="卯兔">卯🐰</button>
-      <button class="zhi-btn" title="辰龍">辰🐲</button>
-      <button class="zhi-btn" title="巳蛇">巳🐍</button>
-      <button class="zhi-btn" title="午馬">午🐴</button>
-      <button class="zhi-btn" title="未羊">未🐑</button>
-      <button class="zhi-btn" title="申猴">申🐵</button>
-      <button class="zhi-btn" title="酉雞">酉🐔</button>
-      <button class="zhi-btn" title="戌狗">戌🐶</button>
-      <button class="zhi-btn" title="亥豬">亥🐷</button>
+      <button class="zhi-btn" style="background:#2471a3" title="子鼠：水">子🐭</button>
+      <button class="zhi-btn" style="background:#b7950b" title="丑牛：土">丑🐮</button>
+      <button class="zhi-btn" style="background:#4a7c59" title="寅虎：木">寅🐯</button>
+      <button class="zhi-btn" style="background:#4a7c59" title="卯兔：木">卯🐰</button>
+      <button class="zhi-btn" style="background:#b7950b" title="辰龍：土">辰🐲</button>
+      <button class="zhi-btn" style="background:#c0392b" title="巳蛇：火">巳🐍</button>
+      <button class="zhi-btn" style="background:#c0392b" title="午馬：火">午🐴</button>
+      <button class="zhi-btn" style="background:#b7950b" title="未羊：土">未🐑</button>
+      <button class="zhi-btn" style="background:#7f8c8d" title="申猴：金">申🐵</button>
+      <button class="zhi-btn" style="background:#7f8c8d" title="酉雞：金">酉🐔</button>
+      <button class="zhi-btn" style="background:#b7950b" title="戌狗：土">戌🐶</button>
+      <button class="zhi-btn" style="background:#2471a3" title="亥豬：水">亥🐷</button>
+    </div>
+    <div class="tip-box">
+      💡 <strong>地支五行對照：</strong>寅卯木、巳午火、辰戌丑未土、申酉金、子亥水
     </div>
   </div>
 
