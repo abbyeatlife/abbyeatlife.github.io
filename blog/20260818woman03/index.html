@@ -43,7 +43,6 @@
         .article-meta .author{font-weight:500;color:var(--bark)}
         .article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
 
-        /* 女性專題用 sage 深綠封面 */
         .css-cover{width:100%;height:240px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,#4a6741 0%,#6b8f5e 55%,#8B9E7E 100%)}
         .css-cover::before{content:'';position:absolute;top:-30px;right:-30px;width:180px;height:180px;border:1.5px solid rgba(255,255,255,0.12);border-radius:50%}
         .css-cover::after{content:'';position:absolute;top:10px;right:10px;width:100px;height:100px;border:1.5px solid rgba(255,255,255,0.08);border-radius:50%}
@@ -58,23 +57,19 @@
         .article-content strong{color:var(--bark);font-weight:600}
         .article-content em{color:var(--terracotta);font-style:normal;font-weight:500}
 
-        /* 科普重點框 — sage */
         .highlight-box{background:var(--sage-pale);border-left:4px solid var(--sage);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
         .highlight-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
         .highlight-box p{margin-bottom:10px;font-size:1rem;color:var(--bark)}
         .highlight-box p:last-child{margin-bottom:0}
 
-        /* 個人經驗框 — terracotta */
         .note-box{background:rgba(193,127,89,0.07);border-left:4px solid var(--terracotta);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
         .note-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--terracotta);margin-bottom:10px}
         .note-box p{margin-bottom:8px;font-size:0.98rem;color:var(--bark);line-height:1.9}
         .note-box p:last-child{margin-bottom:0}
 
-        /* pull quote */
         .pull-quote{border-left:4px solid var(--terracotta);background:rgba(193,127,89,0.06);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:28px 0}
         .pull-quote p{font-family:'Playfair Display',serif;font-size:1.1rem;font-style:italic;color:var(--bark);line-height:1.75;margin:0!important}
 
-        /* 重點結論框 — dark */
         .key-point{background:var(--bark);color:var(--white);border-radius:var(--radius);padding:22px 26px;margin:28px 0}
         .key-point p{color:rgba(255,255,255,0.92);font-size:1rem;margin-bottom:8px;line-height:1.9}
         .key-point p:last-child{margin-bottom:0}
@@ -83,6 +78,17 @@
         .section-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:44px 0}
         .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--sage-light)}
         .section-divider .dot{width:5px;height:5px;background:var(--sage-light);border-radius:50%}
+
+        .img-zoom-wrap{margin:8px 0 40px;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(61,50,41,0.08);position:relative;cursor:zoom-in}
+        .img-zoom-wrap img{width:100%;display:block;transition:transform 0.3s ease}
+        .img-zoom-wrap:hover img{transform:scale(1.02)}
+        .img-zoom-hint{position:absolute;bottom:14px;right:14px;background:rgba(61,50,41,0.55);color:#fff;font-size:0.75rem;padding:6px 12px;border-radius:50px;display:flex;align-items:center;gap:5px;backdrop-filter:blur(4px);pointer-events:none}
+        .img-zoom-hint svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+        .lightbox-overlay{display:none;position:fixed;inset:0;background:rgba(26,22,18,0.92);z-index:1000;align-items:center;justify-content:center;padding:32px;cursor:zoom-out}
+        .lightbox-overlay.open{display:flex}
+        .lightbox-overlay img{max-width:92vw;max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+        .lightbox-close{position:absolute;top:24px;right:28px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.12);color:#fff;border:none;font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s ease}
+        .lightbox-close:hover{background:rgba(255,255,255,0.22)}
 
         .article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
         .article-tags .tag{background:var(--sage-pale);color:var(--sage);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
@@ -163,8 +169,12 @@
 
     <p>我把一個月大致切成<strong>五個階段</strong>，不是常見的四段。因為我自己的經驗上，排卵那幾天狀況也蠻多的，值得拉出來講講。</p>
 
-    <div style="margin:8px 0 40px;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(61,50,41,0.08);">
-        <img src="../../images/20260818woman03-cycle-map.png" alt="生理週期 × 飲食運動地圖，五階段時間軸與荷爾蒙曲線" style="width:100%;display:block;">
+    <div class="img-zoom-wrap" onclick="openLightbox('../../images/20260818woman03-cycle-map.png')">
+        <img src="../../images/20260818woman03-cycle-map.png" alt="生理週期 × 飲食運動地圖，五階段時間軸與荷爾蒙曲線">
+        <div class="img-zoom-hint">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            點擊放大
+        </div>
     </div>
 
     <div class="section-divider"><span class="dot"></span></div>
@@ -277,9 +287,27 @@
     <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
 </footer>
 
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox(event)">✕</button>
+    <img id="lightbox-img" src="" alt="放大檢視">
+</div>
+
 <script>
     window.addEventListener('scroll',()=>{
         document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+    });
+
+    function openLightbox(src){
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(e){
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLightbox(e);
     });
 </script>
 </body>
