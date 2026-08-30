@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>換一種旅伴，就是一場全新的旅行 — Abby營養師修熄示</title>
+    <meta name="description" content="這次到大阪，旅伴換成了二姊跟兩個正值青春期的外甥。從奈良餵鹿到旁觀二姊的教養方式，這趟旅程讓內向的我體驗了另一種家庭的溫度。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta {
+            background: var(--sage);
+            color: var(--white);
+        }
+        .nav-links a.cta:hover { background: var(--bark); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== ARTICLE ===== */
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author {
+            font-weight: 500;
+            color: var(--bark);
+        }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+
+        .article-content h5 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 36px 0 16px;
+        }
+
+        .article-content strong {
+            color: var(--bark);
+            font-weight: 600;
+        }
+
+        .article-content .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 24px 28px;
+            margin: 28px 0;
+        }
+        .article-content .highlight-box p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: var(--bark);
+            font-weight: 500;
+        }
+        .article-content .highlight-box p:last-child { margin-bottom: 0; }
+
+        .article-content .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 28px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .article-content .discovery-box .discovery-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .article-content .discovery-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+            color: var(--sage-light);
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot {
+            width: 5px;
+            height: 5px;
+            background: var(--sage-light);
+            border-radius: 50%;
+        }
+
+        /* ===== ARTICLE FOOTER ===== */
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--bark);
+            margin-bottom: 4px;
+        }
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .author-links {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+        footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+
+            .article-header h1 { font-size: 1.7rem; }
+            .article-content p { font-size: 1rem; }
+
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    /* ── 相關文章 + 回頂部 ── */
+        .related-articles { max-width: 760px; margin: 0 auto; padding: 0 24px 48px; }
+        .related-articles h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--bark); margin-bottom: 16px; text-align: center; }
+        .related-grid { display: flex; flex-direction: column; gap: 8px; }
+        .related-card { background: var(--white); border-radius: var(--radius); padding: 13px 20px; text-decoration: none; border: 1px solid rgba(139,158,126,0.15); transition: all 0.2s ease; text-align: center; }
+        .related-card:hover { background: var(--sage-pale); border-color: var(--sage-light); }
+        .related-card .rc-h { font-size: 0.9rem; font-weight: 500; color: var(--bark-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .related-card:hover .rc-h { color: var(--bark); }
+        .back-to-top { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 12px auto 0; height: 36px; padding: 0 18px; background: var(--sage); color: var(--white); border: none; border-radius: 8px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; font-size: 0.82rem; font-weight: 500; transition: background 0.2s ease; white-space: nowrap; }
+        .back-to-top:hover { background: var(--bark); }
+        .back-to-top svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="/index.html#podcast">Podcast</a>
+            <a href="/index.html#about">關於我</a>
+            <a href="/blog/index.html">Blog</a>
+            <a href="/qa/index.html">Q&amp;A</a>
+            <a href="/note/index.html">Note</a>
+            <a href="/index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== ARTICLE HEADER ===== -->
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">生活分享</span>
+    <h1>換一種旅伴，就是一場全新的旅行</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 8 月 30 日</span>
+    </div>
+</div>
+
+<!-- ===== ARTICLE COVER ===== -->
+<div class="article-cover">
+    <img src="../../images/20260830osaka01.png" alt="換一種旅伴，就是一場全新的旅行">
+</div>
+
+<!-- ===== ARTICLE CONTENT ===== -->
+<div class="article-content">
+
+    <p>旅行對我來說，是走出去看看別人怎麼生活。所以每次出門，我都會完全放下工作——也許不是每個人都有這樣的幸運，有些人即使人在外地，也還是得隨時待命。但如果可以的話，我很珍惜這種「暫時活在另一個時空節奏裡」的體驗，覺得這是一種很舒服的調節。</p>
+
+    <p>這次到大阪，雖然不是第一次來，但旅伴組合不同，整趟旅程就成了全新的體驗。畢竟人生每個階段的自己都不太一樣，所以就算去了再多次的地方，也總能有新的發現。</p>
+
+    <h2>特別的旅伴組合</h2>
+
+    <p>這次比較特別的是，同行的是我二姊，還有她的兩個兒子——一個高中生、一個國中生，正值青春期。還好兩個孩子配合度都不錯，只是一路上總是低頭打電動，讓我一時有點不適應。不過回頭想想，自己那個年紀不也是一樣嗎？只是我那個年代的電動玩具沒辦法隨身攜帶，換成現在的孩子，手機裡的遊戲永遠玩不完。</p>
+
+    <p>四姊妹中，只有我還沒成家生子，所以「媽媽」這個身分我從未體會過。但透過和姊妹一家人相處，多少能揣摩一點當媽媽的心情。</p>
+
+    <p>其實我很少在暑假這種旺季出國，畢竟工作型態自由，何必花更多錢還跟人擠人。但這次二姊的邀約，讓我有機會近距離觀察她怎麼帶著半大不小的孩子旅行。青春期的孩子獨立性確實比較高，行動力也更好，可以走得更遠；但相對地，也需要更多耐心去溝通——這個年紀的孩子都有自己的想法了，不是哄一哄就能解決的。</p>
+
+    <p>整趟旅程算是相當順利。原本我以為孩子長大後就少了那份可愛，但這趟旅程中，透過對話與觀察，反而發現了他們身上另一種可愛。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>奈良的鹿餅時刻</h2>
+
+    <p>大外甥原本個性溫吞、步調慢，不太喜歡走太多路。但那天他卻主動提議要去奈良看鹿。為了買鹿餅，我們找了好一陣子都找不到店家，眼看已經下午四五點，很擔心店家收攤。就在快到店門口時，他突然跑了起來——原來只要是他真正想要的事，也能瞬間變得積極。</p>
+
+    <p>我們買到鹿餅時，店家隨即打烊，我們是當天最後一組客人，真的很幸運。回頭一看，大外甥滿頭大汗、臉頰通紅——日本的夏天果然一樣炎熱。他小心翼翼地把鹿餅收進包包，每次只拿出一兩片，安靜地坐在那裡餵鹿。有趣的是，那裡的鹿還會對人鞠躬，畫面非常可愛。</p>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">🦌</span>
+        <div>
+            <p>看著已經長到180公分、外表像個小大人的孩子，身上卻還留著一份童心未泯的樣子，我突然覺得很感動。也許這就是當媽媽的某種成就感吧。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>旁觀一種更溫柔的教養</h2>
+
+    <p>整趟旅行走了很多地方，天氣又熱、行程也滿，我在旁邊看著二姊對兩個孩子展現出近乎無限的耐心與包容，總是盡量保持笑容——只要孩子開心，自己累一點也沒關係。我覺得這真的很偉大，而兩個孩子也相對配合。</p>
+
+    <p>這跟我自己的成長經驗有些不同。我們的媽媽同樣支持、也用心教養，但也許是時代文化的差異，小時候更常是被打罵長大的，所以回想起來，那段記憶並不完全愉快，跟媽媽的感情也比較疏離。</p>
+
+    <div class="highlight-box">
+        <p>但看著姊妹家庭裡充滿愛與溝通的相處方式，孩子長大後被當成朋友一樣無話不談，少了一種上對下的階級感，我覺得這樣真的很好——在這樣的關係裡，彼此的距離感會小很多，也是一種更強大的支持力量。</p>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>內向者的旅行體悟</h2>
+
+    <p>雖然還不確定下次是否也會答應——並不是不喜歡這樣的旅程，只是我本來就偏內向，很需要留一些時間給自己充電。但這趟旅程讓我體驗到「當一個大孩子的家人」是什麼感覺，仍然是很難得的一段經歷。</p>
+
+</div>
+
+<!-- ===== ARTICLE FOOTER ===== -->
+<!-- 相關文章 + 回頂部 -->
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../20260310social-hangover/index.html" class="related-card">
+            <div class="rc-h">社交耗能：我需要獨處才能恢復能量</div>
+        </a>
+        <a href="../20260320life02/index.html" class="related-card">
+            <div class="rc-h">你不是嘴饞，是大腦被劫持了</div>
+        </a>
+        <a href="../20260320life03/index.html" class="related-card">
+            <div class="rc-h">為什麼白天都很好，晚上卻守不住？</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
