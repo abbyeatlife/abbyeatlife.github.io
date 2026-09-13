@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>有些事情，本來就有比較適合它的時段 — Abby的Note</title>
+  <meta name="description" content="前兩天一直想把腦中的想法和蒐集到的資料整理成文章，卻總是忙完一整天工作才有空動筆。在適合的時間做適合的事情，真的會事半功倍。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+      --cream:#FDFBF7;--bark:#3D3229;--bark-light:#6B5E52;
+      --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+      --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+      --radius:12px;--radius-lg:20px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+    nav.scrolled{box-shadow:var(--shadow-md)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+    .nav-logo span{color:var(--sage)}
+    .nav-links{display:flex;gap:8px;align-items:center}
+    .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+    .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+    .nav-links a.cta{background:var(--sage);color:var(--white)}
+    .nav-links a.cta:hover{background:var(--bark)}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+    .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+
+    /* ── HEADER ── */
+    .article-header{padding:100px 24px 32px;max-width:680px;margin:0 auto}
+    .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+    .back-link:hover{color:var(--bark)}
+    .note-badge{display:inline-flex;align-items:center;background:var(--sage-pale);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+    .note-badge .tag{font-size:0.75rem;font-weight:600;color:var(--sage);letter-spacing:0.05em}
+    .article-header h1{font-family:'Playfair Display',serif;font-size:2rem;font-weight:600;color:var(--bark);line-height:1.4;letter-spacing:-0.02em;margin-bottom:12px}
+    .article-meta{font-size:0.85rem;color:var(--text-light)}
+
+    /* ── ARTICLE BODY ── */
+    .article-content{max-width:680px;margin:0 auto;padding:32px 24px 60px}
+    .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:24px}
+    .article-content p:last-child{margin-bottom:0}
+    .article-content strong{color:var(--bark);font-weight:700}
+    .article-content h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:600;color:var(--bark);margin:8px 0 20px;line-height:1.5}
+    .article-content ul{list-style:none;margin:0 0 28px;padding:0}
+    .article-content li{position:relative;font-size:1.05rem;line-height:1.9;color:var(--text);margin-bottom:14px;padding-left:22px}
+    .article-content li::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:var(--sage)}
+    .article-content hr{border:none;border-top:1px solid var(--sage-light);margin:44px 0 32px}
+    .article-note{background:var(--sage-pale);border-radius:var(--radius);padding:24px 26px;font-size:0.98rem;line-height:1.9;color:var(--bark-light);margin-top:40px}
+    .article-note h2{font-size:1.2rem;margin:0 0 16px;color:var(--bark)}
+    .article-note p{font-size:0.98rem;line-height:1.95;margin-bottom:18px;color:var(--bark-light)}
+    .article-note p:last-child{margin-bottom:0}
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav{max-width:680px;margin:0 auto;padding:0 24px 80px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--sage-light);padding-top:28px}
+    .btn-back{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--text-light);font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;border:1px solid var(--sage-light);background:var(--white);transition:all 0.2s ease}
+    .btn-back:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top{display:inline-flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--sage-light);cursor:pointer;color:var(--text-light);font-family:'Noto Sans TC',sans-serif;font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;transition:all 0.2s ease}
+    .btn-top:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+    /* ── FOOTER ── */
+    footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+      .menu-toggle{display:block}
+      .article-header h1{font-size:1.6rem}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../../index.html#podcast">Podcast</a>
+      <a href="../../index.html#about">關於我</a>
+      <a href="../../blog/index.html">Blog</a>
+      <a href="/qa/index.html">Q&amp;A</a>
+      <a href="/note/index.html">Note</a>
+      <a href="../../index.html#contact" class="cta">聯絡我</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HEADER ── -->
+<div class="article-header">
+  <a href="../index.html" class="back-link">← 回到 Note</a>
+  <div class="note-badge"><span class="tag">Note</span></div>
+  <h1>有些事情，本來就有比較適合它的時段</h1>
+  <div class="article-meta">2026 年 9 月 13 日</div>
+</div>
+
+<!-- ── ARTICLE ── -->
+<div class="article-content">
+
+  <p>前兩天一直想把腦中的想法和蒐集到的資料整理成文章，卻總是忙完一整天工作才有空動筆，那時候真的是心有餘而力不足。</p>
+
+  <p>明明睡前還有兩三小時可以運用，但不知為何，晚上的我就是靜不下心做文書工作；反倒是早晨喝咖啡的時候文思泉湧、特別坐得住。像今天六點半就醒了，兩小時內就寫出兩篇文章——同樣的兩小時，若換到晚上，恐怕連一句話都擠不出來。</p>
+
+  <p>但我發現自己不只在工作上有著莫名的節律，我的休息模式也有著類似的型態。像是只要太陽還沒下山，我也幾乎不會想打開那種配飯看的消遣影片，總覺得那好像就不該出現在早上的生活裡。它比較像是屬於放鬆時間的配備，而不是白天用來消耗注意力的東西。</p>
+
+  <p>現在越來越覺得，很多時候不是我們不夠自律，也不是時間管理做得不好，而是有些事情，本來就有比較適合它的時段。</p>
+
+  <p>在適合的時間做適合的事情，真的會事半功倍。</p>
+
+  <p>而對我來說，這已經是屢試不爽的事實了。</p>
+
+  <div class="article-note">
+    <h2>為什麼會這樣？（觀念補充）</h2>
+
+    <p><strong>晝夜節律（circadian rhythm）</strong><br>
+    人的警醒程度、注意力、體溫、荷爾蒙分泌等，本來就會隨一天的時間變化。每個人的高峰不完全一樣，有些人是晨型、有些人是夜型。<br>
+    2017年諾貝爾生醫獎得主發現了控制人體生理時鐘的基因，證實每個人天生的最佳清醒／效率時段不同，這是基因決定的，不是意志力問題，也解釋了為什麼強行模仿別人的晨型作息容易失敗又帶來罪惡感。<br>
+    🤔 所以對我這個時鐘型態偏晨型的人來說，我可能不是「晚上比較懶」，而是我的大腦在早上的狀態，本來就比較適合需要高度專注、整合資訊、產生文字的工作。</p>
+
+    <p><strong>意志力／決策疲勞（ego depletion）</strong><br>
+    這是心理學裡另一個常被引用的概念——經過一整天的工作決策，大腦的自制與專注資源會逐漸耗盡，晚上更難進行需要高度專注的創作，也更容易被「省力」的娛樂內容吸引。</p>
+  </div>
+
+</div>
+
+<!-- ── BOTTOM NAV ── -->
+<div class="bottom-nav">
+  <a href="../index.html" class="btn-back">← 回到 Note</a>
+  <button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    回頂部
+  </button>
+</div>
+
+<footer>
+  <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
