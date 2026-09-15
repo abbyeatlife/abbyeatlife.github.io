@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>懶人系微波大阪燒風肉餅 — Abby營養師修熄示</title>
+    <meta name="description" content="用調理機打碎絞肉和蔬菜、微波就能完成的大阪燒風肉餅，免開火免油煙；附上讓肉餡更多汁入味的「打水」醃肉技巧筆記。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta {
+            background: var(--sage);
+            color: var(--white);
+        }
+        .nav-links a.cta:hover { background: var(--bark); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== ARTICLE ===== */
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author {
+            font-weight: 500;
+            color: var(--bark);
+        }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+
+        .article-content h5 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 36px 0 16px;
+        }
+
+        .article-content strong {
+            color: var(--bark);
+            font-weight: 600;
+        }
+
+        .article-content .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 24px 28px;
+            margin: 28px 0;
+        }
+        .article-content .highlight-box p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: var(--bark);
+            font-weight: 500;
+        }
+        .article-content .highlight-box p:last-child { margin-bottom: 0; }
+
+        .article-content .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 28px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .article-content .discovery-box .discovery-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .article-content .discovery-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .article-content .tips-box {
+            background: var(--sage-pale);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 28px 0;
+        }
+        .article-content .tips-box h5 {
+            margin: 0 0 16px;
+            color: var(--sage);
+        }
+        .article-content .tips-box .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .article-content .tips-box .tip-item:last-child { margin-bottom: 0; }
+        .article-content .tips-box .tip-icon {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ===== RECIPE CARD ===== */
+        .recipe-card {
+            background: var(--white);
+            border: 1px solid rgba(139,158,126,0.18);
+            border-radius: var(--radius-lg);
+            padding: 28px 28px 8px;
+            margin: 28px 0;
+            box-shadow: var(--shadow-sm);
+        }
+        .recipe-card h5 {
+            margin: 0 0 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--terracotta);
+            letter-spacing: 0.02em;
+        }
+        .recipe-card ul {
+            list-style: none;
+            margin: 0 0 20px;
+            padding: 0;
+        }
+        .recipe-card li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.98rem;
+            padding: 7px 0;
+            border-bottom: 1px dashed rgba(139,158,126,0.25);
+            color: var(--text);
+        }
+        .recipe-card li:last-child { border-bottom: none; }
+        .recipe-card li span:first-child { color: var(--bark); }
+        .recipe-card li span:last-child { color: var(--text-light); }
+
+        .recipe-steps {
+            counter-reset: step;
+            margin: 28px 0;
+        }
+        .recipe-steps .step {
+            position: relative;
+            padding: 0 0 24px 44px;
+        }
+        .recipe-steps .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0; top: 0;
+            width: 30px; height: 30px;
+            background: var(--sage);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .recipe-steps .step h6 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin-bottom: 6px;
+        }
+        .recipe-steps .step p {
+            margin-bottom: 0;
+            font-size: 0.98rem;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+            color: var(--sage-light);
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot {
+            width: 5px;
+            height: 5px;
+            background: var(--sage-light);
+            border-radius: 50%;
+        }
+
+        /* ===== ARTICLE FOOTER ===== */
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--bark);
+            margin-bottom: 4px;
+        }
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .author-links {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+        footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+
+            .article-header h1 { font-size: 1.7rem; }
+            .article-content p { font-size: 1rem; }
+
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+
+            .recipe-card li { font-size: 0.92rem; }
+        }
+    /* ── 相關文章 + 回頂部 ── */
+        .related-articles { max-width: 760px; margin: 0 auto; padding: 0 24px 48px; }
+        .related-articles h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--bark); margin-bottom: 16px; text-align: center; }
+        .related-grid { display: flex; flex-direction: column; gap: 8px; }
+        .related-card { background: var(--white); border-radius: var(--radius); padding: 13px 20px; text-decoration: none; border: 1px solid rgba(139,158,126,0.15); transition: all 0.2s ease; text-align: center; }
+        .related-card:hover { background: var(--sage-pale); border-color: var(--sage-light); }
+        .related-card .rc-h { font-size: 0.9rem; font-weight: 500; color: var(--bark-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .related-card:hover .rc-h { color: var(--bark); }
+        .back-to-top { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 12px auto 0; height: 36px; padding: 0 18px; background: var(--sage); color: var(--white); border: none; border-radius: 8px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; font-size: 0.82rem; font-weight: 500; transition: background 0.2s ease; white-space: nowrap; }
+        .back-to-top:hover { background: var(--bark); }
+        .back-to-top svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="/index.html#podcast">Podcast</a>
+            <a href="/index.html#about">關於我</a>
+            <a href="/blog/index.html">Blog</a>
+            <a href="/qa/index.html">Q&amp;A</a>
+            <a href="/note/index.html">Note</a>
+            <a href="/index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== ARTICLE HEADER ===== -->
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">食譜筆記</span>
+    <h1>懶人系微波大阪燒風肉餅</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 9 月 15 日</span>
+    </div>
+</div>
+
+<!-- ===== ARTICLE COVER ===== -->
+<div class="article-cover">
+    <img src="../../images/20260915.png" alt="懶人系微波大阪燒風肉餅">
+</div>
+
+<!-- ===== ARTICLE CONTENT ===== -->
+<div class="article-content">
+
+    <h2>手持調理機開箱，先來試個絞肉料理</h2>
+
+    <p>前陣子一直在關注手持調理機，看它攪拌食材方便、料理應用多元，還能切片切絲，看得我好動心，覺得有了它一定會更愛下廚！今天總算到貨，第一次開箱就先來做一道絞肉料理試試手感。</p>
+
+    <p>（雖然不用調理機其實也做得出來，但有它幫忙切碎、拌勻，做起來更省力、口感也更均勻，心情自然美麗，哈！）</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>微波大阪燒風肉餅</h2>
+
+    <p><strong>烹調時間：10 分鐘。</strong>只要把所有食材丟進調理機打碎、鋪平微波即可完成，完全不用開火、省得油煙煩。</p>
+
+    <div class="recipe-card">
+        <h5>主要食材</h5>
+        <ul>
+            <li><span>豬粗瘦絞肉</span><span>適量</span></li>
+            <li><span>胡蘿蔔</span><span>適量</span></li>
+            <li><span>薑</span><span>適量</span></li>
+            <li><span>青蔥</span><span>適量</span></li>
+            <li><span>金針菇</span><span>適量</span></li>
+        </ul>
+    </div>
+
+    <div class="recipe-card">
+        <h5>調味料</h5>
+        <ul>
+            <li><span>米酒</span><span>少許</span></li>
+            <li><span>鹽</span><span>少許</span></li>
+            <li><span>糖</span><span>少許</span></li>
+            <li><span>香油</span><span>少許</span></li>
+        </ul>
+    </div>
+
+    <div class="recipe-card">
+        <h5>擺盤配料（選用）</h5>
+        <ul>
+            <li><span>柴魚片</span><span>適量</span></li>
+            <li><span>溏心蛋</span><span>1 顆，剖半</span></li>
+        </ul>
+    </div>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">🥕</span>
+        <div>
+            <p>基本上就是冰箱現有的蔬菜都能加，調味也很看當天心情——像今天剛好不想吃醬油味，就換成米酒和鹽做基底。</p>
+        </div>
+    </div>
+
+    <h2>製作步驟</h2>
+
+    <div class="recipe-steps">
+        <div class="step">
+            <h6>備料與切碎</h6>
+            <p>將胡蘿蔔、薑、青蔥、金針菇與豬絞肉一起放入調理機的切碎碗中打碎。</p>
+        </div>
+        <div class="step">
+            <h6>調味混合</h6>
+            <p>加入少許米酒、鹽、糖與香油調味，攪拌均勻成肉餡。</p>
+        </div>
+        <div class="step">
+            <h6>微波加熱</h6>
+            <p>將肉餡平鋪在可微波的深盤上，蓋上微波爐專用蓋。</p>
+        </div>
+        <div class="step">
+            <h6>熟化出爐</h6>
+            <p>以中火加熱約<strong>6 分鐘</strong>，至肉餅完全熟透（熟成時間會因肉量、厚度、微波爐功率而異，要依實際狀況斟酌調整）。</p>
+        </div>
+        <div class="step">
+            <h6>擺盤上桌</h6>
+            <p>出爐後撒上柴魚片（柴魚片還會在熱氣中跳舞！），擠上冰箱現成的是拉差美乃滋辣椒醬，最後放上一顆剖半的溏心蛋，完成！</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>營養分析（單人份估算）</h2>
+
+    <p>以這次的比例來估算：<strong>豬粗瘦絞肉 120 克、蔬菜約 50 克（胡蘿蔔、薑、青蔥、金針菇）、香油僅幾滴、溏心蛋一整顆</strong>，全份大約落在以下數值：</p>
+
+    <div class="recipe-card">
+        <h5>營養成分（全份，約 1 人份）</h5>
+        <ul>
+            <li><span>熱量</span><span>約 290 kcal</span></li>
+            <li><span>蛋白質</span><span>約 31 g</span></li>
+            <li><span>脂肪</span><span>約 16 g</span></li>
+            <li><span>碳水化合物</span><span>約 4 g</span></li>
+        </ul>
+    </div>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">📊</span>
+        <div>
+            <p>換算下來，這份肉餅<strong>碳水量非常低、蛋白質占比高</strong>，算是名副其實的低碳高蛋白料理。蔬菜量少、幾乎沒有額外澱粉來源，因此整體碳水偏低。※數值依食材種類的一般營養資料估算，實際會依絞肉肥瘦比例、蔬菜含水量略有差異，僅供參考。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>做菜心得與檢討筆記</h2>
+
+    <h5>試吃結果</h5>
+    <p>老實說，雖然賣相有九成像居酒屋的大阪燒，但肉團本身的味道層次還是偏向清淡（風味較清爽、口感則略乾），比較像是一道「健康版」的大阪燒。</p>
+
+    <h5>問題檢討</h5>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">🥬</span>
+        <div>
+            <p><strong>蔬菜出水，稀釋了調味：</strong>金針菇和胡蘿蔔在微波加熱過程中會釋放大量水分。如果肉底沒有先醃透入味，這些菜水釋出後就會把原本的調味稀釋掉，讓整體風味偏向清蒸健康餐，少了那股濃郁感。</p>
+        </div>
+    </div>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">🥩</span>
+        <div>
+            <p><strong>純瘦肉缺乏保水力，容易顯得乾柴：</strong>純瘦絞肉在微波加熱時，肌肉蛋白質會快速緊縮脫水。如果沒有事先做「打水」處理，或補足油脂做保護，肉餡就容易吃起來乾乾柴柴。</p>
+        </div>
+    </div>
+
+    <h5>下次調整版：先醃肉、後放菜</h5>
+
+    <div class="recipe-steps">
+        <div class="step">
+            <h6>醃肉打水</h6>
+            <p>絞肉先加鹽、醬油、少許糖，順著同一個方向攪拌到出現黏性；接著分次加入<strong>1～2 大匙水</strong>，邊加邊攪，讓肉充分吸收水分，這個步驟就是俗稱的<strong>「打水」</strong>。打水的原理是讓鹽溶出肉裡的鹽溶性蛋白（肌動蛋白、肌凝蛋白），這些蛋白質會形成一層網狀結構，把水分鎖在肉餡裡，加熱時才不容易流失。</p>
+        </div>
+        <div class="step">
+            <h6>鎖水</h6>
+            <p>加入一小匙太白粉，或少量蛋白拌勻，幫助<strong>鎖水定型</strong>；最後再加香油拌勻提香。</p>
+        </div>
+        <div class="step">
+            <h6>蔬菜先擠乾水分，再拌入肉餡</h6>
+            <p>蔬菜切碎後先<strong>擠乾多餘水分</strong>，再與已經打水醃好的肉餡拌勻（絞肉本身不需要過度攪打，以免出筋影響口感）。之後鋪平肉餅，厚度盡量控制在<strong>2 公分以內</strong>，讓微波受熱更均勻，再進微波爐加熱。</p>
+        </div>
+    </div>
+
+    <p>希望下次調整後，能做出更多汁入味的版本～</p>
+
+    <div class="article-cover" style="padding: 0; margin: 0;">
+        <img src="../../images/202609152.png" alt="懶人系微波大阪燒風肉餅實拍照">
+    </div>
+
+</div>
+
+<!-- ===== ARTICLE FOOTER ===== -->
+<!-- 相關文章 + 回頂部 -->
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../20260902recipe01/index.html" class="related-card">
+            <div class="rc-h">味噌奶油鮭魚通心粉</div>
+        </a>
+        <a href="../20260618/index.html" class="related-card">
+            <div class="rc-h">飲食紀錄要記生重還是熟重？</div>
+        </a>
+        <a href="../20260529/index.html" class="related-card">
+            <div class="rc-h">玄米油好不好？我選油時腦子裡跑的那個流程</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
