@@ -91,6 +91,17 @@
     .step-body .step-title{font-weight:600;color:var(--bark);margin-bottom:6px;font-size:1rem}
     .step-body p{font-size:0.93rem;color:var(--text);line-height:1.85;margin:0}
 
+    /* 月餅熱量速查表 */
+    .kcal-table-wrap{margin:24px 0}
+    .kcal-table-header{background:var(--qa-blue);color:var(--white);padding:12px 20px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;border-radius:var(--radius) var(--radius) 0 0}
+    table.kcal-table{width:100%;border-collapse:collapse;background:var(--white);box-shadow:var(--shadow-sm);border-radius:0 0 var(--radius) var(--radius);overflow:hidden;font-size:0.9rem}
+    .kcal-table th{background:var(--qa-blue-lt);color:var(--qa-blue);font-weight:700;padding:10px 16px;text-align:left;font-size:0.8rem;letter-spacing:0.05em}
+    .kcal-table td{padding:10px 16px;border-bottom:1px solid var(--sage-pale);color:var(--text)}
+    .kcal-table tr:last-child td{border-bottom:none}
+    .kcal-table tr:nth-child(even) td{background:#FAFCFE}
+    .kcal-table td.kcal{text-align:right;font-weight:600;color:var(--bark);white-space:nowrap}
+    .kcal-table td.note{color:var(--text-light);font-size:0.8rem}
+
     .disclaimer{background:#F7F5F0;border:1px solid var(--sage-light);border-radius:var(--radius);padding:16px 20px;margin-top:32px}
     .disclaimer p{font-size:0.85rem;color:var(--text-light);line-height:1.7;margin:0}
 
@@ -213,14 +224,14 @@
 
   <h2>回到月餅：先想清楚你怕的是什麼</h2>
 
-  <p>就我個人的觀點而言，如果你沒有特殊目標（比如備賽、減脂期），<strong>吃什麼真的不需要太多焦慮。</strong>但如果你會擔心變胖，那我們就把事情看清楚：</p>
+  <p>就我個人的觀點而言，如果你沒有特殊目標（比如備賽、減重比賽期），<strong>吃什麼真的不需要太多焦慮。</strong>但如果你會擔心變胖，那我們就把事情看清楚：</p>
 
   <div class="data-highlight">
     <div class="dh-label">月餅的熱量真相</div>
     <div class="data-row">
       <div class="data-pill">
-        <div class="dp-num">400–700</div>
-        <div class="dp-label">一顆傳統月餅約 kcal</div>
+        <div class="dp-num">700±</div>
+        <div class="dp-label">一顆傳統大月餅（約 180g）約 kcal</div>
       </div>
       <div class="data-arrow">＝</div>
       <div class="data-pill">
@@ -228,7 +239,23 @@
         <div class="dp-label">本質上是油跟糖的組合</div>
       </div>
     </div>
-    <div class="data-note">每天多吃一兩顆，不管是運動前吃還是運動後吃，只要沒有額外的熱量消耗，多出來的熱量就是會慢慢累積。這跟「時機」無關，跟「總量」有關。</div>
+    <div class="data-note">每天多吃一兩顆，不管是運動前吃還是運動後吃，只要沒有額外的熱量消耗，多出來的熱量就是會慢慢累積。這跟「時機」無關，跟「總量」有關。<br><span style="font-size:0.8rem;color:#9A8E85;">※ 月餅熱量取決於尺寸與餡料：傳統大月餅可達 700 大卡以上，小顆迷你月餅（45–60g）約 130–250 大卡，實際數值因品牌與配方而異。</span></div>
+  </div>
+
+  <div class="kcal-table-wrap">
+    <div class="kcal-table-header">▸ 常見月餅糕餅 熱量速查（每顆）</div>
+    <table class="kcal-table">
+      <tr><th>品項</th><th>單顆重量</th><th style="text-align:right;">熱量（約）</th></tr>
+      <tr><td>雙黃白蓮蓉月餅</td><td>185 g</td><td class="kcal">700–790 大卡</td></tr>
+      <tr><td>五仁金腿月餅</td><td>180 g</td><td class="kcal">800 大卡上下</td></tr>
+      <tr><td>單黃蓮蓉／棗泥月餅</td><td>130–160 g</td><td class="kcal">500–650 大卡</td></tr>
+      <tr><td>綠豆椪</td><td>60–70 g</td><td class="kcal">250–280 大卡</td></tr>
+      <tr><td>蛋黃酥</td><td>60–65 g</td><td class="kcal">230–250 大卡</td></tr>
+      <tr><td>冰皮月餅</td><td>50–60 g</td><td class="kcal">130–200 大卡</td></tr>
+      <tr><td>迷你奶黃／流心月餅</td><td>45–50 g</td><td class="kcal">130–200 大卡</td></tr>
+      <tr><td>鳳梨酥</td><td>40 g</td><td class="kcal">170–190 大卡</td></tr>
+    </table>
+    <p style="font-size:0.8rem;color:var(--text-light);margin-top:10px;">※ 以上為市售常見範圍，實際數值因品牌、配方與大小而異。</p>
   </div>
 
   <p>所以當我反問學生：「那你為什麼會擔心呢？」她笑個半天說不出所以然，最後才承認：「我……是有點怕變胖啦。」</p>
@@ -299,6 +326,7 @@
 
 </div>
 
+
 <!-- 繼續閱讀 -->
 <div class="related-articles">
   <h4>繼續閱讀</h4>
@@ -313,6 +341,7 @@
       <div class="rc-h">一天到底該吃多少熱量？TDEE 完整計算教學</div>
     </a>
   </div>
+  
   <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
     <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
     回頂部
