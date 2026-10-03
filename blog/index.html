@@ -303,6 +303,7 @@
         .back-to-top:hover { background: var(--bark); }
         .back-to-top svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
     </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -1458,6 +1459,36 @@
 
 <!-- ===== SCRIPTS ===== -->
 <script>
+    // ============================================
+    // 前 3 篇固定（最新），後面隨機洗牌
+    // ============================================
+    (function() {
+        const grid = document.querySelector('.blog-grid');
+        if (!grid) return;
+
+        const cards = Array.from(grid.querySelectorAll('.blog-card'));
+        const pinnedCount = 3; // 固定前 3 篇，可調整
+
+        const pinned = cards.slice(0, pinnedCount);
+        const rest = cards.slice(pinnedCount);
+
+        // Fisher-Yates 洗牌演算法
+        for (let i = rest.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [rest[i], rest[j]] = [rest[j], rest[i]];
+        }
+
+        // 重新排列，並重觸發進場動畫
+        [...pinned, ...rest].forEach((card, index) => {
+            grid.appendChild(card);
+            card.classList.remove('visible');
+            setTimeout(() => {
+                card.classList.add('visible');
+            }, 50 + (index * 30)); // 稍微錯開動畫時間，視覺更順
+        });
+    })();
+
+
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
         document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
