@@ -28,6 +28,44 @@ body { max-width: 700px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
 h1 { font-size: 18px; font-weight: 500; margin-bottom: 3px; }
 .subtitle { font-size: 12px; color: var(--bark-light); margin-bottom: 1.5rem; }
 
+/* ── 全區搜尋區塊 ── */
+.global-search-card {
+  background: #fff;
+  border: 1.5px solid var(--sage);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(139,158,126,0.12);
+}
+.global-search-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--bark);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.global-search-wrap {
+  position: relative;
+}
+.global-search-input {
+  width: 100%;
+  font-size: 14px;
+  padding: 8px 12px;
+  border: 1px solid var(--border-med);
+  border-radius: var(--radius-md);
+  background: var(--cream);
+  color: var(--bark);
+  height: 40px;
+  font-family: inherit;
+}
+.global-search-input:focus {
+  outline: none;
+  border-color: var(--sage);
+  background: #fff;
+}
+
 .section-card { background: #fff; border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1rem 1.25rem; margin-bottom: 10px; }
 .section-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
 .section-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -51,6 +89,8 @@ h1 { font-size: 18px; font-weight: 500; margin-bottom: 3px; }
   background: #fff; border: 0.5px solid var(--border-med); border-radius: var(--radius-md);
   box-shadow: 0 4px 16px rgba(0,0,0,0.08); max-height: 200px; overflow-y: auto;
 }
+.global-search-wrap .autocomplete-list { top: 42px; }
+
 .autocomplete-item {
   padding: 7px 12px; cursor: pointer; font-size: 12px; display: flex; justify-content: space-between; align-items: center; gap: 8px;
 }
@@ -133,6 +173,15 @@ h1 { font-size: 18px; font-weight: 500; margin-bottom: 3px; }
 <h1>這餐吃了什麼？<span class="db-badge">離線版</span></h1>
 <p class="subtitle">輸入食物名稱（支援自動補全）與克數，計算這餐的熱量與三大營養素</p>
 
+<!-- 全區快速搜尋區塊 -->
+<div class="global-search-card">
+  <div class="global-search-title">🔍 快速搜尋全庫食物（選擇後自動歸類）</div>
+  <div class="global-search-wrap">
+    <input type="text" id="global-search-input" class="global-search-input" placeholder="輸入食物名稱，例如：無糖豆漿、雞胸肉..." autocomplete="off" oninput="onGlobalSearchInput(this)" onblur="onNameBlur(this)">
+    <div class="autocomplete-list" id="global-ac" style="display:none"></div>
+  </div>
+</div>
+
 <details style="margin-bottom:1rem;border:0.5px solid rgba(61,50,41,0.15);border-radius:8px;overflow:hidden;">
   <summary style="padding:10px 14px;cursor:pointer;font-size:13px;font-weight:500;color:#6B5A4E;list-style:none;display:flex;align-items:center;gap:6px;background:rgba(61,50,41,0.03);">
     <span style="font-size:12px;">▸</span> 不知道幾克？點這裡參考
@@ -166,151 +215,149 @@ h1 { font-size: 18px; font-weight: 500; margin-bottom: 3px; }
 
 <script>
 // ── 食物資料庫 per 100g ──────────────────────────────────
-// { name, aliases[], cal, pro, fat, carb }
+// { name, aliases[], cal, pro, fat, carb, category }
 const DB = [
   // 主食類
-  {name:'白飯',        aliases:['米飯','飯'],                          cal:132, pro:3,  fat:0,  carb:30},
-  {name:'糙米飯',      aliases:['糙米'],                               cal:165, pro:4,  fat:1,  carb:35},
-  {name:'白粥',        aliases:['稀飯','粥'],                          cal:65,  pro:1,  fat:0,  carb:14},
-  {name:'白吐司',      aliases:['吐司','土司','白麵包'],               cal:265, pro:9,  fat:4,  carb:49},
-  {name:'全麥吐司',    aliases:['全麥麵包','全麥'],                    cal:247, pro:10, fat:3,  carb:45},
-  {name:'白麵條（熟）',aliases:['麵條','熟麵','烏龍麵'],               cal:138, pro:4,  fat:1,  carb:28},
-  {name:'義大利麵（熟）',aliases:['義麵','pasta'],                    cal:158, pro:6,  fat:1,  carb:31},
-  {name:'冬粉（熟）',  aliases:['冬粉'],                               cal:84,  pro:0,  fat:0,  carb:21},
-  {name:'米粉（熟）',  aliases:['米粉'],                               cal:109, pro:2,  fat:0,  carb:25},
-  {name:'地瓜',        aliases:['番薯','甘薯','地瓜（蒸）'],           cal:114, pro:2,  fat:0,  carb:27},
-  {name:'馬鈴薯',      aliases:['洋芋','土豆','馬鈴薯（蒸）'],        cal:81,  pro:2,  fat:0,  carb:19},
-  {name:'南瓜',        aliases:['金瓜'],                               cal:41,  pro:1,  fat:0,  carb:10},
-  {name:'玉米',        aliases:['玉米（熟）','甜玉米'],                cal:96,  pro:3,  fat:1,  carb:21},
-  {name:'饅頭',        aliases:['白饅頭'],                             cal:236, pro:8,  fat:1,  carb:49},
-  {name:'水餃皮',      aliases:['餃子皮'],                             cal:274, pro:8,  fat:1,  carb:57},
-  {name:'燕麥片',      aliases:['大燕麥片','即食燕麥'],               cal:389, pro:17, fat:7,  carb:66},
+  {category:'grain', name:'白飯',        aliases:['米飯','飯'],                         cal:132, pro:3,   fat:0,   carb:30},
+  {category:'grain', name:'糙米飯',      aliases:['糙米'],                              cal:165, pro:4,   fat:1,   carb:35},
+  {category:'grain', name:'白粥',        aliases:['稀飯','粥'],                         cal:65,  pro:1,   fat:0,   carb:14},
+  {category:'grain', name:'白吐司',      aliases:['吐司','土司','白麵包'],               cal:265, pro:9,   fat:4,   carb:49},
+  {category:'grain', name:'全麥吐司',    aliases:['全麥麵包','全麥'],                    cal:247, pro:10,  fat:3,   carb:45},
+  {category:'grain', name:'白麵條（熟）',aliases:['麵條','熟麵','烏龍麵'],               cal:138, pro:4,   fat:1,   carb:28},
+  {category:'grain', name:'義大利麵（熟）',aliases:['義麵','pasta'],                    cal:158, pro:6,   fat:1,   carb:31},
+  {category:'grain', name:'冬粉（熟）',  aliases:['冬粉'],                              cal:84,  pro:0,   fat:0,   carb:21},
+  {category:'grain', name:'米粉（熟）',  aliases:['米粉'],                              cal:109, pro:2,   fat:0,   carb:25},
+  {category:'grain', name:'地瓜',        aliases:['番薯','甘薯','地瓜（蒸）'],           cal:114, pro:2,   fat:0,   carb:27},
+  {category:'grain', name:'馬鈴薯',      aliases:['洋芋','土豆','馬鈴薯（蒸）'],        cal:81,  pro:2,   fat:0,   carb:19},
+  {category:'grain', name:'南瓜',        aliases:['金瓜'],                              cal:41,  pro:1,   fat:0,   carb:10},
+  {category:'grain', name:'玉米',        aliases:['玉米（熟）','甜玉米'],                cal:96,  pro:3,   fat:1,   carb:21},
+  {category:'grain', name:'饅頭',        aliases:['白饅頭'],                            cal:236, pro:8,   fat:1,   carb:49},
+  {category:'grain', name:'水餃皮',      aliases:['餃子皮'],                            cal:274, pro:8,   fat:1,   carb:57},
+  {category:'grain', name:'燕麥片',      aliases:['大燕麥片','即食燕麥'],               cal:389, pro:17,  fat:7,   carb:66},
 
   // 豆魚蛋肉類
-  {name:'雞胸肉（去皮）',aliases:['雞胸','雞胸肉'],                   cal:113, pro:24, fat:2,  carb:0},
-  {name:'雞腿肉（去皮）',aliases:['雞腿','去皮雞腿'],                 cal:153, pro:21, fat:7,  carb:0},
-  {name:'雞腿肉（帶皮）',aliases:['帶皮雞腿'],                        cal:215, pro:19, fat:15, carb:0},
-  {name:'雞里肌',       aliases:['雞柳','小雞胸'],                    cal:107, pro:23, fat:1,  carb:0},
-  {name:'雞翅',         aliases:['雞翅膀','二節翅'],                   cal:222, pro:18, fat:16, carb:0},
-  {name:'豬里肌肉',     aliases:['里肌','豬里肌'],                    cal:143, pro:21, fat:6,  carb:0},
-  {name:'豬五花肉',     aliases:['五花肉','三層肉'],                   cal:395, pro:14, fat:37, carb:0},
-  {name:'豬梅花肉',     aliases:['梅花肉','豬肩肉'],                   cal:215, pro:18, fat:16, carb:0},
-  {name:'豬後腿肉',     aliases:['瘦豬肉','豬腿肉'],                   cal:135, pro:21, fat:5,  carb:0},
-  {name:'豬絞肉',       aliases:['絞肉','豬肉末'],                     cal:260, pro:17, fat:21, carb:0},
-  {name:'豬小里肌',     aliases:['豬菲力'],                            cal:119, pro:22, fat:3,  carb:0},
-  {name:'牛腱',         aliases:['牛腱子','牛腱肉'],                   cal:148, pro:22, fat:6,  carb:0},
-  {name:'牛菲力',       aliases:['嫩腰','牛里肌'],                     cal:158, pro:22, fat:7,  carb:0},
-  {name:'牛肋眼',       aliases:['霜降牛','肋眼牛排'],                 cal:290, pro:17, fat:24, carb:0},
-  {name:'牛絞肉',       aliases:['牛肉末','漢堡肉'],                   cal:215, pro:20, fat:15, carb:0},
-  {name:'牛五花',       aliases:['牛肋條','火鍋牛肉片'],              cal:294, pro:17, fat:25, carb:0},
-  {name:'鮭魚',         aliases:['salmon','三文魚'],                   cal:208, pro:20, fat:13, carb:0},
-  {name:'鯖魚',         aliases:['青花魚','鯖'],                       cal:205, pro:19, fat:13, carb:0},
-  {name:'鱸魚',         aliases:['海鱸','七星鱸'],                     cal:105, pro:19, fat:3,  carb:0},
-  {name:'虱目魚',       aliases:['麻虱目'],                            cal:148, pro:20, fat:7,  carb:0},
-  {name:'吳郭魚',       aliases:['台灣鯛','吳郭'],                     cal:96,  pro:20, fat:2,  carb:0},
-  {name:'蝦子',         aliases:['白蝦','草蝦','蝦仁'],               cal:99,  pro:21, fat:1,  carb:0},
-  {name:'花枝',         aliases:['墨魚','烏賊'],                       cal:92,  pro:16, fat:1,  carb:3},
-  {name:'雞蛋',         aliases:['蛋','全蛋'],                         cal:147, pro:13, fat:10, carb:1},
-  {name:'水煮蛋',       aliases:['白煮蛋'],                            cal:147, pro:13, fat:10, carb:1},
-  {name:'荷包蛋',       aliases:['煎蛋','太陽蛋'],                     cal:196, pro:13, fat:15, carb:1},
-  {name:'豆腐（板豆腐）',aliases:['豆腐','板豆腐'],                   cal:76,  pro:8,  fat:4,  carb:2},
-  {name: '無糖豆漿',    aliases: ['無糖豆漿', '豆漿'],        cal: 35, pro: 3.6, fat: 1.8, carb: 0.7 },
-  {name:'嫩豆腐',       aliases:['軟豆腐','絹豆腐'],                   cal:55,  pro:5,  fat:3,  carb:2},
-  {name:'豆干',         aliases:['豆乾','五香豆干'],                   cal:160, pro:16, fat:9,  carb:4},
-  {name:'毛豆',         aliases:['枝豆','毛豆仁'],                     cal:147, pro:13, fat:7,  carb:10},
-  {name:'黑豆',         aliases:['黑豆（熟）'],                        cal:132, pro:9,  fat:5,  carb:14},
-  {name:'納豆',         aliases:['日式納豆'],                          cal:200, pro:17, fat:10, carb:12},
-  {name:'蛋白',         aliases:['雞蛋白','蛋清'],                     cal:48, pro:11.3, fat:0.1, carb:0.7},
-  {name:'蛋黃',          aliases:['雞蛋黃'],                          cal:330, pro:15.8, fat:28.2, carb:3.1},
-  {name:'綜合內臟 - 高脂', aliases:['內臟','豬大腸','大腸','豬粉腸','粉腸','雞屁股'], cal:200, pro:11, fat:17, carb:0.5},
-  {name:'綜合內臟 - 中脂', aliases:['內臟','豬心','豬舌','肝連','雞心'],   cal:140, pro:16, fat:8, carb:0.5},
-  {name:'綜合內臟 - 低脂', aliases:['內臟','鴨血','豬肝','雞胗','腰子','豬腎','豬血'], cal:90, pro:15, fat:2.5, carb:1},
+  {category:'protein', name:'雞胸肉（去皮）',aliases:['雞胸','雞胸肉'],                    cal:113, pro:24,  fat:2,   carb:0},
+  {category:'protein', name:'雞腿肉（去皮）',aliases:['雞腿','去皮雞腿'],                  cal:153, pro:21,  fat:7,   carb:0},
+  {category:'protein', name:'雞腿肉（帶皮）',aliases:['帶皮雞腿'],                        cal:215, pro:19,  fat:15,  carb:0},
+  {category:'protein', name:'雞里肌',       aliases:['雞柳','小雞胸'],                    cal:107, pro:23,  fat:1,   carb:0},
+  {category:'protein', name:'雞翅',         aliases:['雞翅膀','二節翅'],                   cal:222, pro:18,  fat:16,  carb:0},
+  {category:'protein', name:'豬里肌肉',     aliases:['里肌','豬里肌'],                    cal:143, pro:21,  fat:6,   carb:0},
+  {category:'protein', name:'豬五花肉',     aliases:['五花肉','三層肉'],                   cal:395, pro:14,  fat:37,  carb:0},
+  {category:'protein', name:'豬梅花肉',     aliases:['梅花肉','豬肩肉'],                   cal:215, pro:18,  fat:16,  carb:0},
+  {category:'protein', name:'豬後腿肉',     aliases:['瘦豬肉','豬腿肉'],                   cal:135, pro:21,  fat:5,   carb:0},
+  {category:'protein', name:'豬絞肉',       aliases:['絞肉','豬肉末'],                    cal:260, pro:17,  fat:21,  carb:0},
+  {category:'protein', name:'豬小里肌',     aliases:['豬菲力'],                           cal:119, pro:22,  fat:3,   carb:0},
+  {category:'protein', name:'牛腱',         aliases:['牛腱子','牛腱肉'],                   cal:148, pro:22,  fat:6,   carb:0},
+  {category:'protein', name:'牛菲力',       aliases:['嫩腰','牛里肌'],                     cal:158, pro:22,  fat:7,   carb:0},
+  {category:'protein', name:'牛肋眼',       aliases:['霜降牛','肋眼牛排'],                 cal:290, pro:17,  fat:24,  carb:0},
+  {category:'protein', name:'牛絞肉',       aliases:['牛肉末','漢堡肉'],                   cal:215, pro:20,  fat:15,  carb:0},
+  {category:'protein', name:'牛五花',       aliases:['牛肋條','火鍋牛肉片'],               cal:294, pro:17,  fat:25,  carb:0},
+  {category:'protein', name:'鮭魚',         aliases:['salmon','三文魚'],                   cal:208, pro:20,  fat:13,  carb:0},
+  {category:'protein', name:'鯖魚',         aliases:['青花魚','鯖'],                       cal:205, pro:19,  fat:13,  carb:0},
+  {category:'protein', name:'鱸魚',         aliases:['海鱸','七星鱸'],                     cal:105, pro:19,  fat:3,   carb:0},
+  {category:'protein', name:'虱目魚',       aliases:['麻虱目'],                           cal:148, pro:20,  fat:7,   carb:0},
+  {category:'protein', name:'吳郭魚',       aliases:['台灣鯛','吳郭'],                     cal:96,  pro:20,  fat:2,   carb:0},
+  {category:'protein', name:'蝦子',         aliases:['白蝦','草蝦','蝦仁'],               cal:99,  pro:21,  fat:1,   carb:0},
+  {category:'protein', name:'花枝',         aliases:['墨魚','烏賊'],                       cal:92,  pro:16,  fat:1,   carb:3},
+  {category:'protein', name:'雞蛋',         aliases:['蛋','全蛋'],                         cal:147, pro:13,  fat:10,  carb:1},
+  {category:'protein', name:'水煮蛋',       aliases:['白煮蛋'],                           cal:147, pro:13,  fat:10,  carb:1},
+  {category:'protein', name:'荷包蛋',       aliases:['煎蛋','太陽蛋'],                     cal:196, pro:13,  fat:15,  carb:1},
+  {category:'protein', name:'豆腐（板豆腐）',aliases:['豆腐','板豆腐'],                   cal:76,  pro:8,   fat:4,   carb:2},
+  {category:'protein', name:'無糖豆漿',     aliases:['無糖豆漿', '豆漿'],                 cal:35,  pro:3.6, fat:1.8, carb:0.7},
+  {category:'protein', name:'嫩豆腐',       aliases:['軟豆腐','絹豆腐'],                   cal:55,  pro:5,   fat:3,   carb:2},
+  {category:'protein', name:'豆干',         aliases:['豆乾','五香豆干'],                   cal:160, pro:16,  fat:9,   carb:4},
+  {category:'protein', name:'毛豆',         aliases:['枝豆','毛豆仁'],                     cal:147, pro:13,  fat:7,   carb:10},
+  {category:'protein', name:'黑豆',         aliases:['黑豆（熟）'],                        cal:132, pro:9,   fat:5,   carb:14},
+  {category:'protein', name:'納豆',         aliases:['日式納豆'],                         cal:200, pro:17,  fat:10,  carb:12},
+  {category:'protein', name:'蛋白',         aliases:['雞蛋白','蛋清'],                     cal:48,  pro:11.3,fat:0.1, carb:0.7},
+  {category:'protein', name:'蛋黃',         aliases:['雞蛋黃'],                           cal:330, pro:15.8,fat:28.2,carb:3.1},
+  {category:'protein', name:'綜合內臟 - 高脂', aliases:['內臟','豬大腸','大腸','豬粉腸','粉腸','雞屁股'], cal:200, pro:11, fat:17, carb:0.5},
+  {category:'protein', name:'綜合內臟 - 中脂', aliases:['內臟','豬心','豬舌','肝連','雞心'],   cal:140, pro:16, fat:8, carb:0.5},
+  {category:'protein', name:'綜合內臟 - 低脂', aliases:['內臟','鴨血','豬肝','雞胗','腰子','豬腎','豬血'], cal:90, pro:15, fat:2.5, carb:1},
 
   // 蔬菜類
-  {name:'蔬菜（混合）', aliases:['蔬菜','青菜','炒青菜'],              cal:30,  pro:2,  fat:0,  carb:5},
-  {name:'高麗菜',       aliases:['甘藍','包菜'],                       cal:25,  pro:1,  fat:0,  carb:5},
-  {name:'菠菜',         aliases:['菠薐草'],                            cal:23,  pro:3,  fat:0,  carb:4},
-  {name:'地瓜葉',       aliases:['番薯葉','甘藷葉'],                   cal:35,  pro:3,  fat:0,  carb:6},
-  {name:'空心菜',       aliases:['蕹菜','通菜'],                       cal:24,  pro:2,  fat:0,  carb:4},
-  {name:'青花菜',       aliases:['綠花椰','花椰菜（綠）','broccoli'],  cal:34,  pro:3,  fat:0,  carb:7},
-  {name:'花椰菜',       aliases:['白花椰','cauliflower'],              cal:25,  pro:2,  fat:0,  carb:5},
-  {name:'番茄',         aliases:['西紅柿','牛番茄'],                   cal:18,  pro:1,  fat:0,  carb:4},
-  {name:'小黃瓜',       aliases:['黃瓜','胡瓜'],                       cal:15,  pro:1,  fat:0,  carb:3},
-  {name:'紅蘿蔔',       aliases:['胡蘿蔔','紅蘿蔔'],                   cal:41,  pro:1,  fat:0,  carb:10},
-  {name:'洋蔥',         aliases:['蔥頭'],                              cal:40,  pro:1,  fat:0,  carb:9},
-  {name:'香菇',         aliases:['冬菇','鮮香菇'],                     cal:34,  pro:2,  fat:0,  carb:6},
-  {name:'金針菇',       aliases:['金菇'],                              cal:37,  pro:3,  fat:0,  carb:7},
-  {name:'杏鮑菇',       aliases:['杏鮑'],                              cal:35,  pro:2,  fat:0,  carb:7},
-  {name:'木耳',         aliases:['黑木耳','白木耳'],                   cal:25,  pro:1,  fat:0,  carb:6},
-  {name:'茄子',         aliases:['矮瓜'],                              cal:25,  pro:1,  fat:0,  carb:6},
-  {name:'苦瓜',         aliases:['涼瓜'],                              cal:19,  pro:1,  fat:0,  carb:4},
-  {name:'豆芽菜',       aliases:['綠豆芽','黃豆芽'],                   cal:30,  pro:3,  fat:0,  carb:4},
-  {name:'玉米筍',       aliases:['小玉米','迷你玉米'],                 cal:35,  pro:2,  fat:0,  carb:7},
-  {name:'秋葵',         aliases:['okra'],                              cal:33,  pro:2,  fat:0,  carb:7},
-  {name:'蒜頭',         aliases:['大蒜'],                              cal:149, pro:6,  fat:1,  carb:33},
+  {category:'veg', name:'蔬菜（混合）', aliases:['蔬菜','青菜','炒青菜'],              cal:30,  pro:2,   fat:0,   carb:5},
+  {category:'veg', name:'高麗菜',       aliases:['甘藍','包菜'],                       cal:25,  pro:1,   fat:0,   carb:5},
+  {category:'veg', name:'菠菜',         aliases:['菠薐草'],                            cal:23,  pro:3,   fat:0,   carb:4},
+  {category:'veg', name:'地瓜葉',       aliases:['番薯葉','甘藷葉'],                   cal:35,  pro:3,   fat:0,   carb:6},
+  {category:'veg', name:'空心菜',       aliases:['蕹菜','通菜'],                       cal:24,  pro:2,   fat:0,   carb:4},
+  {category:'veg', name:'青花菜',       aliases:['綠花椰','花椰菜（綠）','broccoli'],  cal:34,  pro:3,   fat:0,   carb:7},
+  {category:'veg', name:'花椰菜',       aliases:['白花椰','cauliflower'],              cal:25,  pro:2,   fat:0,   carb:5},
+  {category:'veg', name:'番茄',         aliases:['西紅柿','牛番茄'],                   cal:18,  pro:1,   fat:0,   carb:4},
+  {category:'veg', name:'小黃瓜',       aliases:['黃瓜','胡瓜'],                       cal:15,  pro:1,   fat:0,   carb:3},
+  {category:'veg', name:'紅蘿蔔',       aliases:['胡蘿蔔','紅蘿蔔'],                   cal:41,  pro:1,   fat:0,   carb:10},
+  {category:'veg', name:'洋蔥',         aliases:['蔥頭'],                              cal:40,  pro:1,   fat:0,   carb:9},
+  {category:'veg', name:'香菇',         aliases:['冬菇','鮮香菇'],                     cal:34,  pro:2,   fat:0,   carb:6},
+  {category:'veg', name:'金針菇',       aliases:['金菇'],                              cal:37,  pro:3,   fat:0,   carb:7},
+  {category:'veg', name:'杏鮑菇',       aliases:['杏鮑'],                              cal:35,  pro:2,   fat:0,   carb:7},
+  {category:'veg', name:'木耳',         aliases:['黑木耳','白木耳'],                   cal:25,  pro:1,   fat:0,   carb:6},
+  {category:'veg', name:'茄子',         aliases:['矮瓜'],                              cal:25,  pro:1,   fat:0,   carb:6},
+  {category:'veg', name:'苦瓜',         aliases:['涼瓜'],                              cal:19,  pro:1,   fat:0,   carb:4},
+  {category:'veg', name:'豆芽菜',       aliases:['綠豆芽','黃豆芽'],                   cal:30,  pro:3,   fat:0,   carb:4},
+  {category:'veg', name:'玉米筍',       aliases:['小玉米','迷你玉米'],                 cal:35,  pro:2,   fat:0,   carb:7},
+  {category:'veg', name:'秋葵',         aliases:['okra'],                              cal:33,  pro:2,   fat:0,   carb:7},
+  {category:'veg', name:'蒜頭',         aliases:['大蒜'],                              cal:149, pro:6,   fat:1,   carb:33},
 
   // 水果類
-  {name:'蘋果',         aliases:['apple'],                             cal:52,  pro:0,  fat:0,  carb:14},
-  {name:'香蕉',         aliases:['banana'],                            cal:89,  pro:1,  fat:0,  carb:23},
-  {name:'芭樂',         aliases:['番石榴','guava'],                    cal:38,  pro:1,  fat:0,  carb:9},
-  {name:'橘子',         aliases:['柳丁','橙子','柑橘'],               cal:47,  pro:1,  fat:0,  carb:12},
-  {name:'葡萄',         aliases:['grape'],                             cal:69,  pro:1,  fat:0,  carb:18},
-  {name:'西瓜',         aliases:['watermelon'],                        cal:30,  pro:1,  fat:0,  carb:8},
-  {name:'鳳梨',         aliases:['菠蘿','pineapple'],                  cal:50,  pro:1,  fat:0,  carb:13},
-  {name:'芒果',         aliases:['mango'],                             cal:60,  pro:1,  fat:0,  carb:15},
-  {name:'木瓜',         aliases:['papaya'],                            cal:43,  pro:1,  fat:0,  carb:11},
-  {name:'奇異果',       aliases:['kiwi','奇異果'],                     cal:61,  pro:1,  fat:1,  carb:15},
-  {name:'草莓',         aliases:['strawberry'],                        cal:32,  pro:1,  fat:0,  carb:8},
-  {name:'藍莓',         aliases:['blueberry'],                         cal:57,  pro:1,  fat:0,  carb:14},
-  {name:'水蜜桃',       aliases:['桃子','peach'],                      cal:39,  pro:1,  fat:0,  carb:10},
-  {name:'小番茄',       aliases:['小蕃茄','聖女番茄','小番茄','cherry tomato'], cal:18, pro:1, fat:0, carb:4},
-  {name:'綜合水果',     aliases:['水果拼盤','mixed fruit','什錦水果'],          cal:55,  pro:1,  fat:0,  carb:14},
+  {category:'fruit', name:'蘋果',         aliases:['apple'],                             cal:52,  pro:0,   fat:0,   carb:14},
+  {category:'fruit', name:'香蕉',         aliases:['banana'],                            cal:89,  pro:1,   fat:0,   carb:23},
+  {category:'fruit', name:'芭樂',         aliases:['番石榴','guava'],                    cal:38,  pro:1,   fat:0,   carb:9},
+  {category:'fruit', name:'橘子',         aliases:['柳丁','橙子','柑橘'],               cal:47,  pro:1,   fat:0,   carb:12},
+  {category:'fruit', name:'葡萄',         aliases:['grape'],                             cal:69,  pro:1,   fat:0,   carb:18},
+  {category:'fruit', name:'西瓜',         aliases:['watermelon'],                        cal:30,  pro:1,   fat:0,   carb:8},
+  {category:'fruit', name:'鳳梨',         aliases:['菠蘿','pineapple'],                  cal:50,  pro:1,   fat:0,   carb:13},
+  {category:'fruit', name:'芒果',         aliases:['mango'],                             cal:60,  pro:1,   fat:0,   carb:15},
+  {category:'fruit', name:'木瓜',         aliases:['papaya'],                            cal:43,  pro:1,   fat:0,   carb:11},
+  {category:'fruit', name:'奇異果',       aliases:['kiwi','奇異果'],                     cal:61,  pro:1,   fat:1,   carb:15},
+  {category:'fruit', name:'草莓',         aliases:['strawberry'],                        cal:32,  pro:1,   fat:0,   carb:8},
+  {category:'fruit', name:'藍莓',         aliases:['blueberry'],                         cal:57,  pro:1,   fat:0,   carb:14},
+  {category:'fruit', name:'水蜜桃',       aliases:['桃子','peach'],                      cal:39,  pro:1,   fat:0,   carb:10},
+  {category:'fruit', name:'小番茄',       aliases:['小蕃茄','聖女番茄','小番茄','cherry tomato'], cal:18, pro:1, fat:0, carb:4},
+  {category:'fruit', name:'綜合水果',     aliases:['水果拼盤','mixed fruit','什錦水果'],          cal:55,  pro:1,   fat:0,   carb:14},
 
   // 油脂類
-  {name:'烹調油',       aliases:['食用油','沙拉油','葵花油','玄米油','油'],  cal:884, pro:0, fat:100, carb:0},
-  {name:'橄欖油',       aliases:['olive oil'],                         cal:884, pro:0,  fat:100, carb:0},
-  {name:'奶油',         aliases:['butter','牛油'],                     cal:717, pro:1,  fat:81, carb:1},
-  {name:'花生醬',       aliases:['peanut butter'],                     cal:598, pro:25, fat:51, carb:20},
-  {name:'花生',         aliases:['土豆仁','花生米'],                   cal:567, pro:26, fat:49, carb:16},
-  {name:'腰果',         aliases:['cashew'],                            cal:553, pro:18, fat:44, carb:30},
-  {name:'核桃',         aliases:['walnut'],                            cal:654, pro:15, fat:65, carb:14},
-  {name:'杏仁',         aliases:['almond','杏仁果'],                   cal:579, pro:21, fat:50, carb:22},
-  {name:'芝麻',         aliases:['白芝麻','黑芝麻'],                   cal:573, pro:18, fat:50, carb:23},
-  {name:'酪梨',         aliases:['牛油果','avocado'],                  cal:160, pro:2,  fat:15, carb:9},
-  {name:'綜合堅果',     aliases:['堅果','混合堅果','nuts'],                  cal:607, pro:16, fat:54, carb:22},
+  {category:'fat', name:'烹調油',       aliases:['食用油','沙拉油','葵花油','玄米油','油'],  cal:884, pro:0,   fat:100, carb:0},
+  {category:'fat', name:'橄欖油',       aliases:['olive oil'],                         cal:884, pro:0,   fat:100, carb:0},
+  {category:'fat', name:'奶油',         aliases:['butter','牛油'],                     cal:717, pro:1,   fat:81,  carb:1},
+  {category:'fat', name:'花生醬',       aliases:['peanut butter'],                     cal:598, pro:25,  fat:51,  carb:20},
+  {category:'fat', name:'花生',         aliases:['土豆仁','花生米'],                   cal:567, pro:26,  fat:49,  carb:16},
+  {category:'fat', name:'腰果',         aliases:['cashew'],                            cal:553, pro:18,  fat:44,  carb:30},
+  {category:'fat', name:'核桃',         aliases:['walnut'],                            cal:654, pro:15,  fat:65,  carb:14},
+  {category:'fat', name:'杏仁',         aliases:['almond','杏仁果'],                   cal:579, pro:21,  fat:50,  carb:22},
+  {category:'fat', name:'芝麻',         aliases:['白芝麻','黑芝麻'],                   cal:573, pro:18,  fat:50,  carb:23},
+  {category:'fat', name:'酪梨',         aliases:['牛油果','avocado'],                  cal:160, pro:2,   fat:15,  carb:9},
+  {category:'fat', name:'綜合堅果',     aliases:['堅果','混合堅果','nuts'],                   cal:607, pro:16,  fat:54,  carb:22},
 
-  // 乳製品
-  {name:'全脂牛奶',     aliases:['牛奶','鮮奶','全脂奶'],              cal:61,  pro:3,  fat:3,  carb:5},
-  {name:'脫脂牛奶',     aliases:['脫脂奶'],                            cal:35,  pro:3,  fat:0,  carb:5},
-  {name:'無糖優格',     aliases:['希臘優格','原味優格'],               cal:59,  pro:10, fat:1,  carb:4},
-  {name:'全脂優格',     aliases:['原味全脂優格'],                      cal:61,  pro:3,  fat:3,  carb:5},
-  {name:'起司片',       aliases:['乳酪片','cheese'],                   cal:337, pro:25, fat:26, carb:2},
-  {name:'帕瑪森起司',   aliases:['parmesan'],                          cal:431, pro:38, fat:29, carb:4},
-
-  // 點心 & 加工食品
-  {name:'蛋糕',         aliases:['海綿蛋糕','戚風蛋糕'],               cal:297, pro:5,  fat:11, carb:45},
-  {name:'巧克力蛋糕',   aliases:['chocolate cake'],                    cal:371, pro:5,  fat:18, carb:50},
-  {name:'黑巧克力',     aliases:['巧克力','dark chocolate'],           cal:546, pro:5,  fat:31, carb:60},
-  {name:'牛奶巧克力',   aliases:['milk chocolate'],                    cal:535, pro:8,  fat:30, carb:59},
-  {name:'餅乾',         aliases:['cookie','曲奇'],                     cal:480, pro:6,  fat:22, carb:65},
-  {name:'洋芋片',       aliases:['薯片','potato chips'],               cal:536, pro:7,  fat:35, carb:53},
-  {name:'冰淇淋',       aliases:['ice cream','霜淇淋'],                cal:207, pro:4,  fat:11, carb:24},
-  {name:'珍珠奶茶',     aliases:['手搖飲','珍奶'],                     cal:140, pro:2,  fat:3,  carb:27},
-  {name:'可樂',         aliases:['coca cola','碳酸飲料'],              cal:42,  pro:0,  fat:0,  carb:11},
-  {name:'柳橙汁',       aliases:['柳丁汁','orange juice'],             cal:45,  pro:1,  fat:0,  carb:11},
-  {name:'白糖',         aliases:['砂糖','糖'],                         cal:387, pro:0,  fat:0,  carb:100},
-  {name:'蜂蜜',         aliases:['honey'],                             cal:304, pro:0,  fat:0,  carb:82},
-  {name:'豬血糕',       aliases:['豬血'],                              cal:166, pro:9,  fat:2,  carb:30},
-  {name:'甜不辣',       aliases:['關東煮甜不辣'],                      cal:140, pro:10, fat:4,  carb:17},
-  {name:'貢丸',         aliases:['豬肉貢丸'],                          cal:240, pro:13, fat:17, carb:8},
-  {name:'熱狗',         aliases:['香腸（熱狗）'],                      cal:290, pro:12, fat:25, carb:5},
-  {name:'台式香腸',     aliases:['香腸'],                              cal:345, pro:16, fat:28, carb:7},
-  {name:'培根',         aliases:['bacon'],                             cal:417, pro:12, fat:42, carb:1},
-  {name:'水餃',         aliases:['水餃（熟）'],                        cal:200, pro:9,  fat:7,  carb:26},
-  {name:'鍋貼',         aliases:['煎餃'],                              cal:230, pro:8,  fat:9,  carb:30},
-  {name:'滷蛋',         aliases:['滷雞蛋'],                            cal:155, pro:13, fat:10, carb:3},
-  {name:'甜麵包',       aliases:['菠蘿麵包','奶酥麵包','紅豆麵包','克林姆麵包'], cal:320, pro:8, fat:10, carb:52},
-  {name:'無糖拿鐵',     aliases:['拿鐵','latte','黑咖啡拿鐵'],               cal:40,  pro:3,  fat:2,  carb:3},
+  // 乳製品 & 點心 (設為 snack)
+  {category:'snack', name:'全脂牛奶',     aliases:['牛奶','鮮奶','全脂奶'],              cal:61,  pro:3,   fat:3,   carb:5},
+  {category:'snack', name:'脫脂牛奶',     aliases:['脫脂奶'],                            cal:35,  pro:3,   fat:0,   carb:5},
+  {category:'snack', name:'無糖優格',     aliases:['希臘優格','原味優格'],               cal:59,  pro:10,  fat:1,   carb:4},
+  {category:'snack', name:'全脂優格',     aliases:['原味全脂優格'],                      cal:61,  pro:3,   fat:3,   carb:5},
+  {category:'snack', name:'起司片',       aliases:['乳酪片','cheese'],                   cal:337, pro:25,  fat:26,  carb:2},
+  {category:'snack', name:'帕瑪森起司',   aliases:['parmesan'],                          cal:431, pro:38,  fat:29,  carb:4},
+  {category:'snack', name:'蛋糕',         aliases:['海綿蛋糕','戚風蛋糕'],               cal:297, pro:5,   fat:11,  carb:45},
+  {category:'snack', name:'巧克力蛋糕',   aliases:['chocolate cake'],                    cal:371, pro:5,   fat:18,  carb:50},
+  {category:'snack', name:'黑巧克力',     aliases:['巧克力','dark chocolate'],           cal:546, pro:5,   fat:31,  carb:60},
+  {category:'snack', name:'牛奶巧克力',   aliases:['milk chocolate'],                    cal:535, pro:8,   fat:30,  carb:59},
+  {category:'snack', name:'餅乾',         aliases:['cookie','曲奇'],                     cal:480, pro:6,   fat:22,  carb:65},
+  {category:'snack', name:'洋芋片',       aliases:['薯片','potato chips'],               cal:536, pro:7,   fat:35,  carb:53},
+  {category:'snack', name:'冰淇淋',       aliases:['ice cream','霜淇淋'],                cal:207, pro:4,   fat:11,  carb:24},
+  {category:'snack', name:'珍珠奶茶',     aliases:['手搖飲','珍奶'],                     cal:140, pro:2,   fat:3,   carb:27},
+  {category:'snack', name:'可樂',         aliases:['coca cola','碳酸飲料'],              cal:42,  pro:0,   fat:0,   carb:11},
+  {category:'snack', name:'柳橙汁',       aliases:['柳丁汁','orange juice'],             cal:45,  pro:1,   fat:0,   carb:11},
+  {category:'snack', name:'白糖',         aliases:['砂糖','糖'],                         cal:387, pro:0,   fat:0,   carb:100},
+  {category:'snack', name:'蜂蜜',         aliases:['honey'],                             cal:304, pro:0,   fat:0,   carb:82},
+  {category:'snack', name:'豬血糕',       aliases:['豬血'],                              cal:166, pro:9,   fat:2,   carb:30},
+  {category:'snack', name:'甜不辣',       aliases:['關東煮甜不辣'],                      cal:140, pro:10,  fat:4,   carb:17},
+  {category:'snack', name:'貢丸',         aliases:['豬肉貢丸'],                          cal:240, pro:13,  fat:17,  carb:8},
+  {category:'snack', name:'熱狗',         aliases:['香腸（熱狗）'],                      cal:290, pro:12,  fat:25,  carb:5},
+  {category:'snack', name:'台式香腸',     aliases:['香腸'],                              cal:345, pro:16,  fat:28,  carb:7},
+  {category:'snack', name:'培根',         aliases:['bacon'],                             cal:417, pro:12,  fat:42,  carb:1},
+  {category:'snack', name:'水餃',         aliases:['水餃（熟）'],                        cal:200, pro:9,   fat:7,   carb:26},
+  {category:'snack', name:'鍋貼',         aliases:['煎餃'],                              cal:230, pro:8,   fat:9,   carb:30},
+  {category:'snack', name:'滷蛋',         aliases:['滷雞蛋'],                            cal:155, pro:13,  fat:10,  carb:3},
+  {category:'snack', name:'甜麵包',       aliases:['菠蘿麵包','奶酥麵包','紅豆麵包','克林姆麵包'], cal:320, pro:8, fat:10, carb:52},
+  {category:'snack', name:'無糖拿鐵',     aliases:['拿鐵','latte','黑咖啡拿鐵'],               cal:40,  pro:3,   fat:2,   carb:3},
 ];
 
 // ── Build search index ──────────────────────────────────
@@ -349,9 +396,39 @@ function lookupExact(name) {
   return null;
 }
 
+// ── 全區搜尋邏輯 ─────────────────────────────────────
+function onGlobalSearchInput(el) {
+  const q = el.value.trim();
+  const results = search(q);
+  const ac = document.getElementById('global-ac');
+  if (!q || results.length === 0) { ac.style.display = 'none'; return; }
+  ac.innerHTML = results.map((item) =>
+    `<div class="autocomplete-item" onmousedown="selectGlobalItem(event, '${item.name}', '${item.category}')">
+      <span class="food-label">${item.name}</span>
+      <span class="food-meta">${item.cal} kcal／蛋白${item.pro}g／脂${item.fat}g</span>
+    </div>`).join('');
+  ac.style.display = 'block';
+}
+
+function selectGlobalItem(e, name, category) {
+  e.preventDefault();
+  const secId = category || 'snack';
+  const rowId = addRowWithValue(secId, name, '');
+  document.getElementById('global-search-input').value = '';
+  document.getElementById('global-ac').style.display = 'none';
+  
+  // 聚焦到剛新增的那一列的克數輸入框
+  const newRow = document.getElementById(rowId);
+  if (newRow) {
+    const gInput = newRow.querySelector('.g-input');
+    if (gInput) gInput.focus();
+    newRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
 // ── Sections config ─────────────────────────────────────
 const SECTIONS = [
-  {id:'grain',   label:'主食類',     dot:'#EF9F27', hint:'白飯、麵條、地瓜…',         rows:[{name:'白飯',g:200}]},
+  {id:'grain',   label:'主食類',     dot:'#EF9F27', hint:'白飯、麵條、地瓜…',        rows:[{name:'白飯',g:200}]},
   {id:'protein', label:'豆魚蛋肉類', dot:'#F0997B', hint:'雞胸、豆腐、蛋、魚…',       rows:[]},
   {id:'fat',     label:'油脂類',     dot:'#FAC775', hint:'烹調油、堅果、酪梨…',        rows:[]},
   {id:'veg',     label:'蔬菜類',     dot:'#97C459', hint:'各式蔬菜、菇類…',            rows:[]},
@@ -381,7 +458,7 @@ function renderSections() {
 }
 
 function addRow(secId, name='', g='') {
-  addRowWithValue(secId, name, g);
+  return addRowWithValue(secId, name, g);
 }
 
 function addRowWithValue(secId, name, g) {
@@ -404,6 +481,7 @@ function addRowWithValue(secId, name, g) {
     <button class="del-btn" onclick="document.getElementById('${id}').remove()">×</button>`;
   container.appendChild(div);
   if (name) validateName(div.querySelector('.food-name-input'), id);
+  return id;
 }
 
 let acActive = -1;
