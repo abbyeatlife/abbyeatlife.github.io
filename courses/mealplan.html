@@ -175,7 +175,7 @@ h1 { font-size: 18px; font-weight: 500; margin-bottom: 3px; }
 
 <!-- 全區快速搜尋區塊 -->
 <div class="global-search-card">
-  <div class="global-search-title">🔍 快速搜尋全庫食物（選擇後自動歸類）</div>
+  <div class="global-search-title">🔍 快速搜尋全庫食物（數值為每 100g 含量，選擇後自動歸類）</div>
   <div class="global-search-wrap">
     <input type="text" id="global-search-input" class="global-search-input" placeholder="輸入食物名稱，例如：無糖豆漿、雞胸肉..." autocomplete="off" oninput="onGlobalSearchInput(this)" onblur="onNameBlur(this)">
     <div class="autocomplete-list" id="global-ac" style="display:none"></div>
@@ -528,7 +528,7 @@ function onGlobalSearchInput(el) {
   ac.innerHTML = results.map((item) =>
     `<div class="autocomplete-item" onmousedown="selectGlobalItem(event, '${item.name}', '${item.category}')">
       <span class="food-label">${item.name}</span>
-      <span class="food-meta">${item.cal} kcal／蛋白${item.pro}g／脂${item.fat}g</span>
+      <span class="food-meta">每100g：${item.cal} kcal／蛋白${item.pro}g／脂${item.fat}g</span>
     </div>`).join('');
   ac.style.display = 'block';
 }
@@ -619,7 +619,7 @@ function onNameInput(el, rowId) {
     `<div class="autocomplete-item" data-idx="${i}" onmousedown="selectItem(event,'${rowId}','${item.name}')"
       ontouchstart="selectItem(event,'${rowId}','${item.name}')">
       <span class="food-label">${item.name}</span>
-      <span class="food-meta">${item.cal} kcal／蛋白${item.pro}g／脂${item.fat}g</span>
+      <span class="food-meta">每100g：${item.cal} kcal／蛋白${item.pro}g／脂${item.fat}g</span>
     </div>`).join('');
   ac.style.display = 'block';
   validateName(el, rowId);
