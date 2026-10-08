@@ -528,7 +528,7 @@ function onGlobalSearchInput(el) {
   ac.innerHTML = results.map((item) =>
     `<div class="autocomplete-item" onmousedown="selectGlobalItem(event, '${item.name}', '${item.category}')">
       <span class="food-label">${item.name}</span>
-      <span class="food-meta">每100g：${item.cal} kcal／蛋白${item.pro}g／脂${item.fat}g</span>
+      <span class="food-meta">100g: ${item.cal}k/蛋${item.pro}/脂${item.fat}/碳${item.carb}g</span>
     </div>`).join('');
   ac.style.display = 'block';
 }
@@ -619,7 +619,7 @@ function onNameInput(el, rowId) {
     `<div class="autocomplete-item" data-idx="${i}" onmousedown="selectItem(event,'${rowId}','${item.name}')"
       ontouchstart="selectItem(event,'${rowId}','${item.name}')">
       <span class="food-label">${item.name}</span>
-      <span class="food-meta">每100g：${item.cal} kcal／蛋白${item.pro}g／脂${item.fat}g</span>
+      <span class="food-meta">100g: ${item.cal}k/蛋${item.pro}/脂${item.fat}/碳${item.carb}g</span>
     </div>`).join('');
   ac.style.display = 'block';
   validateName(el, rowId);
