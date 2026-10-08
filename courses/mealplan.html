@@ -301,6 +301,7 @@ const DB = [
   {category:'veg', name:'玉米筍',       aliases:['小玉米','迷你玉米'],                 cal:35,  pro:2,   fat:0,   carb:7},
   {category:'veg', name:'秋葵',         aliases:['okra'],                              cal:33,  pro:2,   fat:0,   carb:7},
   {category:'veg', name:'蒜頭',         aliases:['大蒜'],                              cal:149, pro:6,   fat:1,   carb:33},
+  {category:'veg',   name:'海帶芽',         aliases:['海帶','裙帶菜'],                 cal:15,  pro:1.5, fat:0.2, carb:3},
 
   // 水果類
   {category:'fruit', name:'蘋果',         aliases:['apple'],                             cal:52,  pro:0,   fat:0,   carb:14},
@@ -331,6 +332,12 @@ const DB = [
   {category:'fat', name:'芝麻',         aliases:['白芝麻','黑芝麻'],                   cal:573, pro:18,  fat:50,  carb:23},
   {category:'fat', name:'酪梨',         aliases:['牛油果','avocado'],                  cal:160, pro:2,   fat:15,  carb:9},
   {category:'fat', name:'綜合堅果',     aliases:['堅果','混合堅果','nuts'],                   cal:607, pro:16,  fat:54,  carb:22},
+　{category:'fat', name:'南瓜子',           aliases:['葵瓜子','南瓜籽'],               cal:560, pro:30,  fat:49,  carb:15},
+  {category:'fat', name:'無調味綜合堅果',   aliases:['綜合堅果','堅果'],               cal:600, pro:18,  fat:54,  carb:20},
+  {category:'fat', name:'核桃',             aliases:['Walnut'],                       cal:654, pro:15,  fat:65,  carb:14},
+  {category:'fat', name:'奇亞籽',           aliases:['奇亞籽','Chia seeds'],           cal:486, pro:17,  fat:31,  carb:42},
+  {category:'fat', name:'黑芝麻/白芝麻',    aliases:['芝麻粒','芝麻'],                 cal:570, pro:18,  fat:50,  carb:23},
+  
    // 高脂 / 油基醬料
   {category:'fat', name:'沙茶醬',       aliases:['牛頭牌沙茶醬', '沙茶'],               cal:720, pro:3,   fat:72,  carb:12},
   {category:'fat', name:'芝麻醬',       aliases:['麻醬', '純芝麻醬'],                   cal:630, pro:20,  fat:54,  carb:18},
@@ -340,6 +347,9 @@ const DB = [
   {category:'fat', name:'辣椒醬（油潑）',aliases:['油潑辣子', '老干媽', '香辣醬'],       cal:600, pro:5,   fat:58,  carb:15},
 
   // 乳製品 & 點心 (設為 snack)
+  {category:'snack', name:'低脂起司片',   aliases:['低脂起司','低脂起司片','低脂黃起司'], cal:200, pro:25, fat:9,  carb:5},
+  {category:'snack', name:'全脂起司片',   aliases:['起司片','切達起司','黃起司'],     cal:340, pro:21,  fat:27,  carb:3},
+  {category:'snack', name:'馬蘇里拉起司', aliases:['莫札瑞拉起司','Mozzarella'],     cal:280, pro:22,  fat:20,  carb:3},
   {category:'snack', name:'全脂牛奶',     aliases:['牛奶','鮮奶','全脂奶'],              cal:61,  pro:3,   fat:3,   carb:5},
   {category:'snack', name:'脫脂牛奶',     aliases:['脫脂奶'],                            cal:35,  pro:3,   fat:0,   carb:5},
   {category:'snack', name:'無糖優格',     aliases:['希臘優格','原味優格'],               cal:59,  pro:10,  fat:1,   carb:4},
@@ -367,6 +377,8 @@ const DB = [
   {category:'snack', name:'水餃',         aliases:['水餃（熟）'],                        cal:200, pro:9,   fat:7,   carb:26},
   {category:'snack', name:'鍋貼',         aliases:['煎餃'],                              cal:230, pro:8,   fat:9,   carb:30},
   {category:'snack', name:'滷蛋',         aliases:['滷雞蛋'],                            cal:155, pro:13,  fat:10,  carb:3},
+  {category:'snack', name:'海苔（味付/韓式）', aliases:['味付海苔','韓式海苔','海苔片'], cal:320, pro:30,  fat:12,  carb:40},
+  {category:'snack', name:'無調味烤海苔',    aliases:['海苔皮','壽司海苔','紫菜'],        cal:180, pro:38,  fat:2,   carb:40},
   {category:'snack', name:'甜麵包',       aliases:['菠蘿麵包','奶酥麵包','紅豆麵包','克林姆麵包'], cal:320, pro:8, fat:10, carb:52},
   {category:'snack', name:'無糖拿鐵',     aliases:['拿鐵','latte','黑咖啡拿鐵'],               cal:40,  pro:3,   fat:2,   carb:3},
   {category:'snack', name:'希臘優格',     aliases:['希臘式優格','Skyr','濃縮優格'],        cal:73,  pro:10,  fat:0.2, carb:4},
@@ -427,6 +439,12 @@ const DB = [
   {category:'snack', name:'吉事漢堡',     aliases:['起司牛肉堡', 'cheeseburger'],          cal:270, pro:14,  fat:14,  carb:22},
   {category:'snack', name:'咔啦雞腿堡',   aliases:['炸雞堡', '香雞堡'],                    cal:260, pro:12,  fat:13,  carb:24},
   {category:'snack', name:'美式熱狗堡',   aliases:['熱狗堡', 'hot dog'],                  cal:270, pro:10,  fat:15,  carb:23},
+
+  // ── 火鍋丸類 & 加工火鍋料 ───────────────────────
+  {category:'snack', name:'花枝丸',       aliases:['墨魚丸'],                       cal:160, pro:11,  fat:7,   carb:13},
+  {category:'snack', name:'貢丸',         aliases:['豬肉丸','香菇貢丸'],             cal:290, pro:13,  fat:24,  carb:5},
+  {category:'snack', name:'魚包蛋',       aliases:['魚卵丸','魚子丸'],               cal:210, pro:10,  fat:12,  carb:15},
+  {category:'snack', name:'蟹肉棒',       aliases:['蟹味棒','蟳味棒'],               cal:90,  pro:8,   fat:0.5, carb:13},
 
   // 披薩 & 義式料理
   {category:'snack', name:'總匯披薩',     aliases:['披薩', '比薩', 'pizza'],              cal:260, pro:11,  fat:10,  carb:30},
