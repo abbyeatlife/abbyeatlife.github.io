@@ -155,7 +155,54 @@ h1 { font-size: 18px; font-weight: 500; margin-bottom: 3px; }
   .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .section-hint { display: none; }
 }
+/* ── 分頁切換 ── */
+.tab-bar { display:flex; gap:4px; margin-bottom:1.25rem; background:#fff; border:0.5px solid var(--border); border-radius:var(--radius-lg); padding:4px; }
+.tab-btn { flex:1; padding:9px 10px; border:none; background:transparent; border-radius:var(--radius-md); font-size:13px; font-weight:500; color:var(--bark-light); cursor:pointer; font-family:inherit; letter-spacing:0.02em; }
+.tab-btn.active { background:var(--bark); color:var(--cream); }
+.tab-btn:not(.active):hover { background:var(--bg-secondary); }
+
+/* ── 營養素查詢 ── */
+.nutrient-card { background:#fff; border:0.5px solid var(--border); border-radius:var(--radius-lg); padding:1rem 1.25rem; margin-bottom:10px; }
+.nutrient-title { font-weight:500; font-size:14px; margin-bottom:10px; display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
+.nutrient-chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+.n-chip { font-size:12px; padding:6px 12px; border-radius:999px; border:0.5px solid var(--border-med); background:var(--cream); color:var(--bark); cursor:pointer; font-family:inherit; }
+.n-chip:hover { background:var(--bg-secondary); }
+.n-chip.active { background:var(--sage); border-color:var(--sage); color:#fff; }
+.nutrient-why { font-size:12px; color:var(--bark-light); margin-bottom:12px; line-height:1.6; border-left:3px solid var(--sage); padding-left:10px; }
+.rank-filter { font-size:12px; padding:6px 10px; border:0.5px solid var(--border-med); border-radius:var(--radius-md); background:var(--cream); color:var(--bark); font-family:inherit; }
+.rank-list { display:flex; flex-direction:column; gap:4px; }
+.rank-row { display:flex; align-items:center; gap:8px; font-size:12px; padding:6px 8px; border-radius:var(--radius-md); }
+.rank-row:nth-child(odd) { background:var(--bg-secondary); }
+.rank-no { width:22px; text-align:right; flex-shrink:0; font-variant-numeric:tabular-nums; color:var(--bark-light); }
+.rank-name { width:96px; flex-shrink:0; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.rank-cat { width:72px; font-size:10px; color:var(--bark-light); flex-shrink:0; }
+.rank-track { flex:1; height:10px; background:var(--border); border-radius:5px; overflow:hidden; min-width:40px; }
+.rank-fill { height:100%; border-radius:5px; transition:width .4s ease; }
+.rank-val { width:70px; text-align:right; font-variant-numeric:tabular-nums; font-weight:500; flex-shrink:0; }
+@media (max-width: 480px) { .rank-cat { display:none; } .rank-name { width:80px; } }
+
+/* ── v3：每份排名 / 每日參考量 ── */
+.rank-toolbar { display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+.rank-mode-seg { display:inline-flex; background:var(--cream); border:0.5px solid var(--border-med); border-radius:999px; padding:3px; gap:2px; }
+.seg-btn { font-size:12px; padding:4px 12px; border:none; border-radius:999px; background:transparent; color:var(--bark-light); cursor:pointer; font-family:inherit; }
+.seg-btn.active { background:var(--bark); color:var(--cream); }
+.rank-entry { border-radius:var(--radius-md); }
+.rank-entry:nth-child(odd) { background:var(--bg-secondary); }
+.rank-entry .rank-row { background:none; padding:6px 8px 2px; }
+.rank-meta { display:flex; align-items:center; gap:5px; font-size:11px; color:var(--bark-light); padding:0 8px 7px 38px; flex-wrap:wrap; }
+.rank-meta-sep { color:var(--border-med); }
+.hot-tag { color:#C0451F; font-weight:500; }
+.dv-track { flex:1; min-width:50px; max-width:160px; height:5px; background:var(--border); border-radius:3px; overflow:hidden; }
+.dv-fill { display:block; height:100%; border-radius:3px; }
+
+/* ── 溫馨提示標語 ── */
+.disclaimer-banner { display:flex; gap:10px; align-items:flex-start; background:#F0F4EA; border:0.5px solid rgba(139,158,126,0.35); border-radius:var(--radius-lg); padding:12px 14px; }
+.disclaimer-banner .disclaimer-icon { flex-shrink:0; font-size:15px; line-height:1.7; }
+.disclaimer-banner p { font-size:12px; color:var(--bark-light); line-height:1.8; }
+.disclaimer-banner b { color:var(--bark); font-weight:500; }
+
 </style>
+
 </head>
 <body>
 
@@ -171,7 +218,13 @@ h1 { font-size: 18px; font-weight: 500; margin-bottom: 3px; }
 </div>
 
 <h1>這餐吃了什麼？<span class="db-badge">離線版</span></h1>
-<p class="subtitle">輸入食物名稱（支援自動補全）與克數，計算這餐的熱量與三大營養素</p>
+<p class="subtitle">輸入食物名稱與克數，計算這餐的熱量與三大營養素</p>
+
+<div class="tab-bar">
+  <button class="tab-btn active" data-view="calc" onclick="switchTab('calc')">🍚 餐點計算</button>
+  <button class="tab-btn" data-view="nutrient" onclick="switchTab('nutrient')">🥗 營養素查詢</button>
+</div>
+<div id="view-calc">
 
 <!-- 全區快速搜尋區塊 -->
 <div class="global-search-card">
@@ -212,6 +265,38 @@ h1 { font-size: 18px; font-weight: 500; margin-bottom: 3px; }
 <div id="sections-container"></div>
 <button class="calc-btn" onclick="calculate()">計算這餐的營養 →</button>
 <div id="result-area"></div>
+
+</div><!-- /view-calc -->
+
+<div id="view-nutrient" style="display:none">
+  <div class="nutrient-card">
+    <div class="nutrient-title">🎯 想找特定營養素？
+     <span style="font-size:11px;color:var(--bark-light);font-weight:400">排名以「常見一份量」計算，更貼近實際吃法</span>
+    </div>
+    <div class="nutrient-chips" id="nutrient-chips"></div>
+    <div class="nutrient-why" id="nutrient-why"></div>
+      <div class="rank-toolbar">
+      <div class="rank-mode-seg">
+        <button class="seg-btn active" data-mode="serving" onclick="setRankMode('serving')">依每份</button>
+        <button class="seg-btn" data-mode="100g" onclick="setRankMode('100g')">依每 100g</button>
+      </div>
+      <select class="rank-filter" id="rank-filter" onchange="renderRank()">
+        <option value="">全部類別</option>
+      </select>
+    
+    </div>
+  </div>
+  <div class="nutrient-card">
+    <div id="rank-list" class="rank-list"></div>
+    <p class="result-note" style="margin-top:10px">微量營養素資料僅收錄常見食物，數值為參考估算，不代表特定品牌或烹調方式。「一份」為常見食用量，每日參考量為成人參考值。排名目的是幫助你認識「哪些日常食物富含某種營養素」——沒有需要大量單吃的超級食物，均衡多樣最重要。</p>
+  </div>
+
+    <div class="disclaimer-banner">
+    <span class="disclaimer-icon">🌿</span>
+    <p>這份排名是一個<b>大概的參考方向</b>：資料庫只收錄常見食物，數值為估算值，並未囊括所有食物。每個人的身體狀況和需求都不同，如有個別的營養或健康管理需求，建議諮詢專業營養師。</p>
+  </div>
+  
+</div><!-- /view-nutrient -->
 
 <script>
 // ── 食物資料庫 per 100g ──────────────────────────────────
@@ -285,12 +370,19 @@ const DB = [
   {category:'protein', name:'蛋黃',         aliases:['雞蛋黃'],                           cal:330, pro:15.8,fat:28.2,carb:3.1},
   {category:'protein', name:'綜合內臟 - 高脂', aliases:['內臟','豬大腸','大腸','豬粉腸','粉腸','雞屁股'], cal:200, pro:11, fat:17, carb:0.5},
   {category:'protein', name:'綜合內臟 - 中脂', aliases:['內臟','豬心','豬舌','肝連','雞心'],   cal:140, pro:16, fat:8, carb:0.5},
-  {category:'protein', name:'綜合內臟 - 低脂', aliases:['內臟','鴨血','豬肝','雞胗','腰子','豬腎','豬血'], cal:90, pro:15, fat:2.5, carb:1},
+  {category:'protein', name:'綜合內臟 - 低脂', aliases:['內臟','雞胗','腰子','豬腎'], cal:90, pro:15, fat:2.5, carb:1},
   {category:'protein', name:'茶葉蛋',     aliases:['超商茶葉蛋'],                         cal:140, pro:13,  fat:9,   carb:1.5},
   {category:'protein', name:'水煮鮪魚罐頭',aliases:['水煮鮪魚','鮪魚罐頭'],                cal:85,  pro:19,  fat:0.8, carb:0},
   {category:'protein', name:'油漬鮪魚罐頭',aliases:['油漬鮪魚'],                           cal:198, pro:16,  fat:14,  carb:0},
+  {category:'protein', name:'蛤蜊',         aliases:['蛤仔','clams'],                    cal:74,  pro:13,  fat:1,   carb:2},
+  {category:'protein', name:'牡蠣（蚵仔）', aliases:['牡蠣','蚵仔','蚵','生蠔','oyster'], cal:60,  pro:8,   fat:2,   carb:5},
+  {category:'protein', name:'豬血',         aliases:['豬血湯'],                            cal:30,  pro:4,   fat:0.2, carb:0},
+  {category:'protein', name:'鴨血',         aliases:['麻辣鴨血','鴨血豆腐'],               cal:40,  pro:5,   fat:0.5, carb:0},
+  {category:'protein', name:'豬肝',         aliases:['猪肝','粉肝'],                      cal:129, pro:21,  fat:4,   carb:1},
+  {category:'protein', name:'小魚乾',       aliases:['小魚干','丁香魚乾'],                 cal:320, pro:60,  fat:8,   carb:2},
 
   // 蔬菜類
+  {category:'veg', name:'莧菜',         aliases:['紅莧菜','白莧菜','杏菜'],              cal:23,  pro:2,   fat:0,   carb:3},
   {category:'veg', name:'蔬菜（混合）', aliases:['蔬菜','青菜','炒青菜'],              cal:30,  pro:2,   fat:0,   carb:5},
   {category:'veg', name:'高麗菜',       aliases:['甘藍','包菜'],                       cal:25,  pro:1,   fat:0,   carb:5},
   {category:'veg', name:'菠菜',         aliases:['菠薐草'],                            cal:23,  pro:3,   fat:0,   carb:4},
@@ -776,7 +868,174 @@ function calculate() {
   resultArea.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 
+// ── 微量營養素資料 per 100g ─────────────────────────────
+// 僅收錄常見食物，參考 USDA / 台灣食品成分資料庫之估算值
+const MICRO = {"白飯":{"k":35,"mg":12,"folate":5,"iron":0.8,"zn":0.6,"ca":10,"fiber":0.3,"va":0,"vc":0,"vk":0},"糙米飯":{"k":75,"mg":44,"folate":9,"iron":0.5,"zn":1.1,"ca":10,"fiber":1.8,"va":0,"vc":0,"vk":0.6},"白粥":{"k":10,"mg":4,"folate":2,"iron":0.3,"zn":0.2,"ca":4,"fiber":0.1,"va":0,"vc":0,"vk":0},"白吐司":{"k":130,"mg":25,"folate":40,"iron":1.5,"zn":0.6,"ca":80,"fiber":2.4,"va":0,"vc":0,"vk":1},"全麥吐司":{"k":150,"mg":50,"folate":40,"iron":1.9,"zn":1,"ca":90,"fiber":6,"va":0,"vc":0,"vk":3},"地瓜":{"va":709,"k":337,"mg":25,"fiber":3,"vc":2.4,"iron":0.7,"folate":11,"ca":30,"zn":0.3,"vk":1.6},"馬鈴薯":{"k":379,"mg":21,"vc":13,"fiber":1.8,"iron":0.3,"folate":14,"ca":5,"va":0,"vk":1.6,"zn":0.3},"南瓜":{"va":851,"k":340,"mg":12,"fiber":1.1,"vc":9,"iron":0.8,"folate":16,"ca":21,"zn":0.3,"vk":1.1},"玉米":{"k":218,"mg":32,"folate":42,"iron":0.5,"fiber":2.4,"va":9,"vc":5,"ca":3,"zn":0.7,"vk":0.3},"燕麥片":{"fiber":10,"mg":177,"k":350,"iron":4.7,"zn":3.6,"folate":32,"ca":52,"va":0,"vc":0,"vk":2},"紫米飯":{"k":110,"mg":40,"folate":15,"iron":1.2,"zn":1.5,"ca":12,"fiber":2,"va":0,"vc":0,"vk":1},"芋頭":{"k":591,"mg":33,"fiber":4.1,"vc":5,"iron":0.6,"folate":17,"ca":43,"va":2,"zn":0.3,"vk":1},"山藥":{"k":533,"mg":21,"vc":5,"fiber":4.1,"ca":20,"iron":0.5,"folate":23,"va":2,"zn":0.3,"vk":0.4},"蓮藕":{"k":292,"mg":19,"vc":25,"fiber":4.9,"iron":0.9,"folate":8,"ca":45,"va":1,"zn":0.3,"vk":0.4},"紅豆（熟）":{"k":405,"mg":48,"fiber":7,"iron":2.7,"folate":130,"ca":27,"zn":1.8,"va":0,"vc":0,"vk":3},"綠豆（熟）":{"k":532,"mg":48,"fiber":6.4,"iron":2.5,"folate":120,"ca":35,"zn":1.8,"va":1,"vc":1,"vk":2},"藜麥（熟）":{"k":172,"mg":64,"fiber":2.8,"iron":1.5,"folate":42,"ca":17,"zn":1.1,"va":0,"vc":0,"vk":0},"薏仁（熟）":{"k":140,"mg":30,"fiber":2,"iron":0.9,"folate":20,"ca":15,"zn":1,"va":0,"vc":0,"vk":0},"花豆/大紅豆":{"k":520,"mg":90,"fiber":7,"iron":4,"folate":90,"ca":100,"zn":2,"va":0,"vc":0,"vk":3},"皇帝豆":{"k":400,"mg":50,"fiber":4.5,"iron":2.5,"folate":70,"ca":50,"va":5,"vc":6,"zn":1,"vk":4},"雞胸肉（去皮）":{"k":330,"mg":33,"iron":0.9,"zn":1,"ca":15,"folate":4,"va":7,"vc":0,"fiber":0,"vk":0.3},"雞腿肉（去皮）":{"k":280,"mg":25,"iron":0.9,"zn":1.4,"ca":12,"folate":4,"va":7,"vc":0,"fiber":0,"vk":0.3},"雞蛋":{"va":160,"folate":47,"iron":1.8,"k":138,"mg":12,"zn":1.3,"ca":66,"vc":0,"fiber":0,"vk":0.3},"水煮蛋":{"va":160,"folate":47,"iron":1.8,"k":138,"mg":12,"zn":1.3,"ca":66,"vc":0,"fiber":0,"vk":0.3},"荷包蛋":{"va":160,"folate":47,"iron":1.8,"k":138,"mg":12,"zn":1.3,"ca":66,"vc":0,"fiber":0,"vk":0.3},"茶葉蛋":{"va":160,"folate":47,"iron":1.8,"k":138,"mg":12,"zn":1.3,"ca":66,"vc":0,"fiber":0,"vk":0.3},"滷蛋":{"va":160,"folate":47,"iron":1.8,"k":138,"mg":12,"zn":1.3,"ca":66,"vc":0,"fiber":0,"vk":0.3},"蛋白":{"k":163,"mg":11,"iron":0.1,"folate":4,"ca":7,"va":0,"vc":0,"fiber":0,"zn":0,"vk":0},"蛋黃":{"va":385,"folate":146,"iron":2.7,"k":275,"mg":5,"ca":66,"zn":2.3,"vc":0,"fiber":0,"vk":0.3},"豆腐（板豆腐）":{"ca":105,"iron":1.5,"mg":40,"k":148,"folate":29,"zn":1,"va":1,"vc":0,"fiber":0.5,"vk":2.4},"嫩豆腐":{"ca":36,"mg":7,"k":89,"iron":0.4,"folate":20,"zn":0.5,"va":1,"vc":0,"fiber":0.2,"vk":1.8},"凍豆腐":{"ca":200,"iron":3,"mg":60,"k":120,"folate":30,"zn":1.5,"va":0,"vc":0,"fiber":1,"vk":2},"百頁豆腐":{"ca":100,"iron":2,"mg":40,"k":150,"folate":20,"zn":1.2,"va":0,"vc":0,"fiber":0.5,"vk":2},"豆干":{"ca":145,"iron":3.6,"mg":60,"k":130,"folate":35,"zn":1.7,"va":0,"vc":0,"fiber":1,"vk":3},"無糖豆漿":{"ca":15,"k":150,"mg":25,"iron":0.5,"folate":30,"zn":0.4,"va":0,"vc":0,"fiber":1.3,"vk":2.2},"毛豆":{"k":620,"mg":70,"fiber":5,"iron":2.7,"folate":165,"ca":60,"zn":1.3,"va":5,"vc":16,"vk":21.6},"黑豆":{"k":450,"mg":70,"fiber":7,"iron":2.5,"folate":149,"ca":35,"zn":1.7,"va":0,"vc":0,"vk":3},"納豆":{"k":660,"mg":115,"fiber":5.4,"iron":8.6,"folate":60,"ca":217,"zn":3,"va":0,"vc":0,"vk":900},"牛腱":{"k":350,"mg":21,"iron":2.6,"zn":4.2,"ca":5,"folate":6,"va":0,"vc":0,"fiber":0,"vk":1.1},"牛菲力":{"k":380,"mg":22,"iron":2.4,"zn":4,"ca":5,"folate":5,"va":0,"vc":0,"fiber":0,"vk":1.1},"鮭魚":{"k":360,"mg":30,"iron":0.3,"zn":0.4,"folate":25,"ca":9,"va":44,"vc":0,"fiber":0,"vk":0.1},"鯖魚":{"k":314,"mg":76,"iron":1.6,"zn":0.6,"folate":1,"ca":12,"va":50,"vc":0,"fiber":0,"vk":5.8},"鱸魚":{"k":350,"mg":30,"iron":0.5,"zn":0.4,"ca":30,"folate":5,"va":5,"vc":0,"fiber":0,"vk":0.3},"虱目魚":{"k":350,"mg":30,"iron":0.5,"zn":0.5,"ca":40,"folate":8,"va":30,"vc":0,"fiber":0,"vk":0.3},"吳郭魚":{"k":330,"mg":30,"iron":0.6,"zn":0.4,"ca":10,"folate":6,"va":5,"vc":0,"fiber":0,"vk":0.3},"蝦子":{"k":259,"mg":39,"iron":1.6,"zn":1.3,"ca":70,"folate":11,"va":3,"vc":0,"fiber":0,"vk":0.1},"花枝":{"k":355,"mg":60,"iron":1,"zn":1.7,"ca":50,"folate":12,"va":20,"vc":0,"fiber":0,"vk":0.1},"水煮鮪魚罐頭":{"k":250,"mg":30,"iron":1.5,"zn":0.9,"folate":5,"ca":10,"va":15,"vc":0,"fiber":0,"vk":0.3},"油漬鮪魚罐頭":{"k":220,"mg":30,"iron":1.5,"zn":0.9,"folate":5,"ca":10,"va":15,"vc":0,"fiber":0,"vk":0.3},"綜合內臟 - 低脂":{"va":3000,"iron":15,"folate":200,"k":250,"mg":20,"ca":15,"zn":4,"vc":0,"fiber":0,"vk":0.5},"綜合內臟 - 中脂":{"va":300,"iron":4,"folate":40,"k":250,"mg":20,"ca":12,"zn":3,"vc":0,"fiber":0,"vk":0.5},"綜合內臟 - 高脂":{"va":5,"iron":2.3,"folate":10,"k":100,"mg":15,"ca":15,"zn":1.8,"vc":0,"fiber":0,"vk":0.5},"豬里肌肉":{"k":420,"mg":26,"iron":0.9,"zn":2.5,"ca":6,"folate":5,"va":2,"vc":0,"fiber":0,"vk":0.1},"豬後腿肉":{"k":350,"mg":25,"iron":0.9,"zn":2.2,"ca":6,"folate":5,"va":2,"vc":0,"fiber":0,"vk":0.1},"蔬菜（混合）":{"k":250,"vc":30,"vk":120,"folate":80,"fiber":3,"iron":1.5,"mg":25,"ca":60,"va":150,"zn":0.3},"高麗菜":{"k":170,"vc":36,"vk":76,"folate":43,"fiber":2.5,"iron":0.5,"mg":12,"ca":40,"va":5,"zn":0.2},"菠菜":{"k":558,"vk":483,"iron":2.7,"mg":79,"folate":194,"va":469,"vc":9.8,"ca":99,"fiber":2.2,"zn":0.5},"地瓜葉":{"k":478,"vk":302,"va":315,"folate":114,"vc":11,"iron":2.2,"mg":66,"ca":117,"fiber":3.3,"zn":0.4},"空心菜":{"k":284,"vc":34,"vk":300,"folate":57,"va":157,"iron":1.9,"mg":52,"ca":77,"fiber":2.1,"zn":0.2},"青花菜":{"k":293,"vc":89,"vk":141,"folate":108,"fiber":2.6,"iron":0.7,"ca":40,"mg":21,"va":77,"zn":0.4},"花椰菜":{"k":142,"vc":48,"vk":13,"folate":44,"fiber":2,"ca":16,"mg":9,"va":1,"zn":0.2},"番茄":{"k":237,"vc":14,"vk":7.9,"folate":15,"fiber":1.2,"iron":0.3,"mg":11,"ca":10,"va":42,"zn":0.2},"小黃瓜":{"k":147,"vc":2.8,"vk":16.4,"folate":7,"fiber":0.5,"iron":0.3,"mg":13,"ca":16,"va":2,"zn":0.2},"紅蘿蔔":{"va":835,"k":320,"vc":5.9,"vk":13.2,"folate":19,"fiber":2.8,"iron":0.3,"mg":12,"ca":33,"zn":0.24},"洋蔥":{"k":146,"vc":7.4,"vk":0.4,"folate":19,"fiber":1.7,"iron":0.2,"mg":10,"ca":23,"va":0,"zn":0.2},"香菇":{"k":250,"iron":0.5,"mg":20,"fiber":2.5,"folate":21,"ca":2,"va":0,"vc":2,"zn":0.9,"vk":0},"金針菇":{"k":330,"iron":1.2,"mg":16,"fiber":2.7,"folate":35,"ca":1,"va":0,"vc":2,"zn":0.6,"vk":0},"杏鮑菇":{"k":350,"iron":0.3,"mg":13,"fiber":2.3,"folate":28,"ca":3,"va":0,"vc":0,"zn":0.6,"vk":0},"木耳":{"k":250,"iron":3,"mg":15,"fiber":2.6,"folate":16,"ca":30,"va":0,"vc":0,"zn":0.4,"vk":0},"茄子":{"k":229,"vc":2.2,"vk":3.5,"folate":22,"fiber":3,"iron":0.2,"mg":14,"ca":9,"va":1,"zn":0.2},"苦瓜":{"k":296,"vc":56,"vk":4.9,"folate":51,"va":6,"iron":0.4,"mg":16,"ca":9,"fiber":2,"zn":0.7},"豆芽菜":{"k":160,"vc":13,"vk":23,"folate":61,"iron":0.9,"mg":21,"ca":13,"va":1,"fiber":1.8,"zn":0.5},"玉米筍":{"k":196,"vc":6.8,"vk":1,"folate":25,"iron":0.5,"mg":14,"ca":4,"va":4,"fiber":3.2,"zn":0.5},"秋葵":{"k":303,"vc":21,"vk":31,"folate":88,"fiber":3.2,"iron":0.8,"mg":57,"ca":81,"va":19,"zn":0.6},"蒜頭":{"k":401,"vc":31,"vk":1.7,"folate":3,"iron":1.7,"mg":25,"ca":181,"fiber":2.1,"va":0,"zn":1.16},"海帶芽":{"k":284,"iron":2.2,"ca":150,"mg":107,"folate":35,"fiber":0.5,"va":20,"vc":3,"zn":0.4,"vk":2},"海帶（海帶結/海帶絲）":{"k":89,"iron":0.9,"ca":46,"mg":30,"folate":13,"fiber":3,"va":0,"vc":0,"zn":0.3,"vk":0.5},"蘋果":{"k":107,"vc":4.6,"fiber":2.4,"folate":3,"iron":0.1,"mg":5,"ca":6,"va":3,"zn":0.04,"vk":2.2},"香蕉":{"k":358,"mg":27,"vc":8.7,"fiber":2.6,"folate":20,"iron":0.3,"ca":5,"va":3,"zn":0.15,"vk":0.5},"芭樂":{"k":417,"vc":228,"fiber":5.4,"folate":49,"va":31,"iron":0.3,"mg":22,"ca":18,"zn":0.2,"vk":5},"橘子":{"k":166,"vc":53,"fiber":2.4,"folate":39,"va":34,"iron":0.1,"mg":10,"ca":43,"zn":0.07,"vk":0},"葡萄":{"k":191,"vc":3.2,"fiber":0.9,"folate":2,"iron":0.4,"mg":7,"ca":10,"va":3,"zn":0.04,"vk":14.6},"西瓜":{"k":112,"vc":8.1,"fiber":0.4,"folate":3,"va":28,"iron":0.2,"mg":10,"ca":7,"zn":0.1,"vk":0.1},"鳳梨":{"k":109,"vc":25,"fiber":1.4,"folate":15,"iron":0.3,"mg":12,"ca":13,"va":3,"zn":0.1,"vk":0.7},"芒果":{"k":156,"vc":36,"va":54,"folate":43,"fiber":1.6,"iron":0.16,"mg":10,"ca":11,"zn":0.04,"vk":4.2},"木瓜":{"k":182,"vc":60,"va":47,"folate":37,"fiber":1.7,"iron":0.25,"mg":21,"ca":20,"zn":0.04,"vk":2.6},"奇異果":{"k":312,"vc":93,"fiber":3,"folate":25,"iron":0.3,"mg":17,"ca":34,"va":4,"zn":0.1,"vk":40.3},"草莓":{"k":153,"vc":59,"fiber":2,"folate":24,"iron":0.4,"mg":13,"ca":16,"va":1,"zn":0.14,"vk":2.2},"藍莓":{"k":77,"vc":9.7,"fiber":2.4,"folate":6,"iron":0.3,"mg":6,"ca":6,"va":3,"zn":0.16,"vk":19.3},"水蜜桃":{"k":190,"vc":6.6,"fiber":1.5,"folate":4,"iron":0.25,"mg":9,"ca":6,"va":16,"zn":0.17,"vk":2.6},"小番茄":{"k":237,"vc":14,"va":42,"folate":15,"iron":0.3,"mg":11,"ca":10,"fiber":1.2,"zn":0.2,"vk":7.9},"酪梨":{"k":485,"fiber":6.7,"vc":10,"folate":81,"mg":29,"iron":0.55,"ca":12,"va":7,"zn":0.64,"vk":21},"花生":{"k":705,"mg":168,"fiber":8.5,"iron":4.6,"folate":240,"ca":92,"va":0,"vc":0,"zn":3.3,"vk":0},"腰果":{"k":660,"mg":292,"iron":6.7,"fiber":3.3,"folate":25,"ca":37,"va":0,"vc":0.5,"zn":5.8,"vk":34.1},"核桃":{"k":441,"mg":158,"fiber":6.7,"iron":2.9,"folate":98,"ca":98,"va":1,"vc":1.3,"zn":3.1,"vk":2.7},"杏仁":{"k":733,"mg":270,"fiber":12.5,"iron":3.7,"folate":44,"ca":264,"va":0,"vc":0,"zn":3.1,"vk":0},"芝麻":{"k":516,"mg":351,"fiber":11.8,"iron":14.6,"folate":97,"ca":975,"va":0,"vc":0,"zn":7.8,"vk":0},"黑芝麻/白芝麻":{"k":516,"mg":351,"fiber":11.8,"iron":14.6,"folate":97,"ca":975,"va":0,"vc":0,"zn":7.8,"vk":0},"南瓜子":{"k":809,"mg":592,"fiber":6,"iron":8.8,"folate":58,"ca":46,"va":1,"vc":0.3,"zn":7.6,"vk":7.3},"奇亞籽":{"k":407,"mg":335,"fiber":34.4,"iron":7.7,"folate":49,"ca":631,"va":0,"vc":1.6,"zn":4.6,"vk":0},"綜合堅果":{"k":650,"mg":270,"fiber":8,"iron":4,"folate":60,"ca":100,"va":0,"vc":0,"zn":4,"vk":4},"全脂牛奶":{"k":150,"ca":113,"mg":10,"zn":0.4,"iron":0.03,"va":28,"folate":5,"vc":0,"fiber":0,"vk":0.2},"脫脂牛奶":{"k":150,"ca":120,"mg":11,"va":2,"folate":5,"iron":0,"fiber":0,"vc":0,"zn":0.4,"vk":0.2},"無糖優格":{"k":155,"ca":110,"mg":11,"iron":0.1,"va":2,"folate":7,"vc":0.6,"fiber":0,"zn":0.5,"vk":0.2},"全脂優格":{"k":155,"ca":110,"mg":11,"iron":0.1,"va":2,"folate":7,"vc":0.6,"fiber":0,"zn":0.5,"vk":0.2},"希臘優格":{"k":141,"ca":115,"mg":11,"iron":0.1,"va":2,"folate":7,"fiber":0,"vc":0.4,"zn":0.5,"vk":0.2},"無糖拿鐵":{"k":150,"ca":110,"mg":10,"va":15,"folate":5,"iron":0,"fiber":0,"vc":0,"zn":0.4,"vk":0.2},"燕麥奶":{"k":150,"mg":20,"fiber":0.8,"iron":0.3,"ca":120,"folate":10,"va":0,"vc":0,"zn":0.2,"vk":1.5},"起司片":{"k":98,"ca":710,"mg":27,"iron":0.7,"va":85,"folate":18,"fiber":0,"vc":0,"zn":3.6,"vk":2.4},"全脂起司片":{"k":98,"ca":710,"mg":27,"iron":0.7,"va":85,"folate":18,"fiber":0,"vc":0,"zn":3.6,"vk":2.4},"低脂起司片":{"k":98,"ca":700,"mg":27,"iron":0.7,"va":60,"folate":18,"fiber":0,"vc":0,"zn":3.6,"vk":2.4},"帕瑪森起司":{"k":92,"ca":1184,"mg":44,"iron":0.8,"va":20,"folate":10,"fiber":0,"vc":0,"zn":2.7,"vk":1.6},"馬蘇里拉起司":{"k":95,"ca":731,"mg":26,"iron":0.2,"va":37,"folate":9,"fiber":0,"vc":0,"zn":2.5,"vk":2.3},"豬血糕":{"iron":6.5,"ca":35,"k":250,"mg":15,"folate":25,"va":0,"vc":0,"fiber":0.5,"zn":1.5,"vk":0},"海苔（味付/韓式）":{"va":2600,"folate":146,"iron":2.3,"ca":70,"k":180,"mg":30,"fiber":4,"vc":0,"zn":1,"vk":4},"無調味烤海苔":{"va":3600,"folate":180,"iron":1.8,"ca":70,"k":300,"mg":90,"fiber":8,"vc":0,"zn":1,"vk":4},'蛤蜊':{'iron':28,'zn':2.5,'k':300,'mg':25,'ca':60,'folate':20,'va':100,'vc':0,'fiber':0,'vk':0.2},'牡蠣（蚵仔）':{'iron':7,'zn':40,'k':150,'mg':50,'ca':60,'folate':10,'va':30,'vc':0,'fiber':0,'vk':0.4},'豬血':{'iron':13,'k':120,'mg':10,'ca':15,'folate':10,'zn':0.3,'va':0,'vc':0,'fiber':0,'vk':0},'鴨血':{'iron':30,'k':150,'mg':10,'ca':20,'folate':15,'zn':0.5,'va':0,'vc':0,'fiber':0,'vk':0},'豬肝':{'va':5000,'iron':18,'folate':300,'k':300,'mg':22,'ca':10,'vc':15,'zn':4,'fiber':0,'vk':0.3},'小魚乾':{'ca':1500,'iron':5,'k':300,'mg':100,'folate':20,'va':20,'vc':0,'fiber':0,'zn':3,'vk':0.3},'莧菜':{'ca':180,'iron':2.5,'k':300,'mg':40,'folate':80,'va':250,'vc':15,'fiber':2.2,'zn':0.4,'vk':150}};
+
+const NUTRIENTS = [
+  {id:'vk',    label:'維生素 K', unit:'µg', color:'#3D6B35', why:'幫助血液正常凝固、維持骨骼健康。深綠色蔬菜是主要來源，綠茶、納豆也含有。', tip:'服用抗凝血藥物者，維生素 K 攝取量請保持穩定，不要突然大量增加或減少。'},
+  {id:'vc',    label:'維生素 C', unit:'mg',  color:'#5B8E3E', why:'抗氧化、幫助膠原蛋白合成，也能促進植物性食物的鐵吸收。芭樂、奇異果含量特別高。', tip:'蔬菜快速水炒或涼拌能保留較多維生素 C，久煮會流失；飯後一份水果最簡單。'},
+  {id:'folate',label:'葉酸',     unit:'µg',  color:'#8B9E7E', why:'參與紅血球形成與細胞分裂，備孕與孕期需求較高。深綠蔬菜、豆類、肝臟含量豐富。', tip:'日常以深綠蔬菜和豆類為主即可；備孕與孕期需求較高，補充劑請與醫師或營養師討論。'},
+  {id:'iron',  label:'鐵',       unit:'mg',  color:'#A94A2E', why:'構成血紅素，長期不足容易疲倦、貧血。動物性來源（紅肉、內臟、血製品）吸收率較好。', tip:'動物性鐵（血基質鐵）吸收率較好；植物性鐵建議搭配維生素 C（如餐後水果）提高吸收，茶和咖啡會抑制吸收，避開隨餐時段。'},
+  {id:'ca',    label:'鈣',       unit:'mg',  color:'#7A6A5A', why:'骨骼牙齒的主要成分，也參與肌肉收縮與神經傳導。乳製品、板豆腐、芝麻都是好來源。', tip:'不吃乳製品也能補鈣：板豆腐、凍豆腐、豆干、芝麻、深綠蔬菜、小魚乾都是好來源，分散到三餐吃更好；鈣與鐵補充劑請錯開時間。'},
+  {id:'k',     label:'鉀',       unit:'mg',  color:'#C17F59', why:'幫助維持血壓與體液平衡，外食族容易攝取不足。蔬菜、水果、豆類普遍含量高。', tip:'蔬菜、水果、豆類都有鉀，外食族特別容易不夠；但腎功能不佳者需限制鉀攝取，請依醫囑。'},
+  {id:'mg',    label:'鎂',       unit:'mg',  color:'#8C6D4F', why:'參與能量代謝與肌肉神經功能。堅果、種子、全穀類含量特別豐富。', tip:'堅果種子份量小但含量高，每天一小把即可；深綠蔬菜、全穀也有貢獻。'},
+  {id:'zn',    label:'鋅',       unit:'mg',  color:'#B0803B', why:'與免疫功能、傷口癒合、味覺有關。牡蠣、紅肉、堅果種子、蛋都是來源。', tip:'蚵仔是鋅的王者；日常則靠紅肉、蛋、堅果種子穩定補充。'},
+  {id:'va',    label:'維生素 A', unit:'µg',  color:'#D89B3D', why:'維持視力、皮膚與黏膜健康。動物肝臟含量極高；紅蘿蔔、南瓜等橙黃色蔬菜則提供 β-胡蘿蔔素。', tip:'肝臟含量極高但不宜常吃，每週少量即可；日常以深綠蔬菜和橙黃色蔬菜為主，身體會依需求轉換。'},
+  {id:'fiber', label:'膳食纖維', unit:'g',   color:'#97C459', why:'幫助腸道蠕動、增加飽足感、穩定餐後血糖。全穀、豆類、蔬菜、奇亞籽含量突出。', tip:'蔬菜單份的纖維看似不多，但每天 3 碟、每餐累積，就是纖維的穩定主力；再搭配豆類、全穀和水果更容易達標，而且整體熱量低。'},
+];
+
+// ── 每日參考量（成人）──────────────────────────────────
+// ⚠️ Abby 請依最新版 DRI 確認後定稿，改這裡的數字即可
+const NUTRIENT_DV = {
+  vk:    {dv: 90,   note: '成人 AI'},
+  vc:    {dv: 100,  note: '成人 RDA'},
+  folate:{dv: 400,  note: '成人 RDA'},
+  iron:  {dv: 15,   note: '成年女性 RDA（男性 10 mg）'},
+  ca:    {dv: 1000, note: '成人 RDA'},
+  k:     {dv: 2500, note: '成人 AI'},
+  mg:    {dv: 350,  note: '約男 380／女 320 中間值'},
+  zn:    {dv: 15,   note: '成年男性 RDA（女性 12 mg）'},
+  va:    {dv: 600,  note: '成年男性 RDA（女性 500 µg）'},
+  fiber: {dv: 25,   note: '建議 25–35 g，此用下限'},
+};
+
+// ── 一份的定義（g + 口語描述）──────────────────────────
+// 沒列出的食物依類別預設（SERVING_DEFAULT），兩張表都可直接調整
+const SERVING = {
+  '花生':{g:10,label:'一小把'}, '綜合堅果':{g:10,label:'一小把'}, '無調味綜合堅果':{g:10,label:'一小把'},
+  '腰果':{g:10,label:'一小把'}, '核桃':{g:10,label:'一小把'}, '杏仁':{g:10,label:'一小把'},
+  '南瓜子':{g:10,label:'一小把'}, '奇亞籽':{g:10,label:'1 大匙'},
+  '芝麻':{g:5,label:'1 小匙'}, '黑芝麻/白芝麻':{g:5,label:'1 小匙'},
+  '酪梨':{g:50,label:'1/4 顆'},
+  '起司片':{g:20,label:'1 片'}, '全脂起司片':{g:20,label:'1 片'}, '低脂起司片':{g:20,label:'1 片'},
+  '帕瑪森起司':{g:20,label:'約 2 大匙'}, '馬蘇里拉起司':{g:30,label:'約 1/3 杯'},
+  '雞蛋':{g:55,label:'1 顆'}, '水煮蛋':{g:55,label:'1 顆'}, '荷包蛋':{g:55,label:'1 顆'},
+  '茶葉蛋':{g:55,label:'1 顆'}, '滷蛋':{g:55,label:'1 顆'},
+  '蛋白':{g:33,label:'1 顆的蛋白'}, '蛋黃':{g:18,label:'1 顆的蛋黃'},
+  '無糖豆漿':{g:240,label:'1 杯'}, '全脂牛奶':{g:240,label:'1 杯 240 ml'},
+  '脫脂牛奶':{g:240,label:'1 杯 240 ml'}, '無糖拿鐵':{g:240,label:'1 杯'}, '燕麥奶':{g:240,label:'1 杯'},
+  '無糖優格':{g:100,label:'1 小盒'}, '全脂優格':{g:100,label:'1 小盒'}, '希臘優格':{g:100,label:'1 小盒'},
+  '納豆':{g:50,label:'1 盒'},
+  '豆腐（板豆腐）':{g:100,label:'約 1/2 盒'}, '嫩豆腐':{g:100,label:'約 1/2 盒'},
+  '凍豆腐':{g:100,label:'約 4 塊'}, '百頁豆腐':{g:100,label:'約 1/2 盒'},
+  '豆干':{g:30,label:'約 2 塊'},
+  '海苔（味付/韓式）':{g:3,label:'1 小包'}, '無調味烤海苔':{g:3,label:'約 6 片'},
+  '豬血糕':{g:50,label:'1 片'}, '甜不辣':{g:30,label:'約 2 片'},
+  '黑巧克力':{g:10,label:'2 小片'}, '牛奶巧克力':{g:10,label:'2 小片'},
+  '蜂蜜':{g:15,label:'1 大匙'}, '白糖':{g:5,label:'1 小匙'},
+  '烹調油':{g:5,label:'1 小匙'}, '橄欖油':{g:5,label:'1 小匙'}, '辣油':{g:5,label:'1 小匙'},
+  '花生醬':{g:15,label:'1 大匙'}, '芝麻醬':{g:15,label:'1 大匙'},
+  '美乃滋':{g:15,label:'1 大匙'}, '日式美乃滋':{g:15,label:'1 大匙'},
+  '沙茶醬':{g:10,label:'1 大匙'}, '奶油':{g:10,label:'約 2 小匙'},
+  '冰淇淋':{g:80,label:'1 球'},
+  '蛤蜊':{g:80,label:'約 1 碗（去殼）'}, '牡蠣（蚵仔）':{g:50,label:'約 8–10 顆'},
+  '豬血':{g:100,label:'約 1 碗'}, '鴨血':{g:100,label:'約 2–3 塊'},
+  '豬肝':{g:30,label:'約 2–3 片'},
+  '小魚乾':{g:10,label:'約 1 大匙'},
+  '蒜頭':{g:5,label:'約 2 瓣'},
+};
+const SERVING_DEFAULT = {
+  grain:  {g:100, label:'約 1/2 碗飯'},
+  protein:{g:50,  label:'約掌心大小'},
+  fat:    {g:10,  label:'約 1 大匙'},
+  veg:    {g:100, label:'約 1 碗'},
+  fruit:  {g:100, label:'約 1 碗切塊'},
+  snack:  {g:50,  label:'約 1 份'},
+};
+
+let curNutrient = 'vk';
+let rankMode = 'serving';   // 'serving' | '100g'
+
+function getServing(item) {
+  return SERVING[item.name] || SERVING_DEFAULT[item.category] || {g:100, label:''};
+}
+
+function switchTab(view) {
+  document.getElementById('view-calc').style.display = view === 'calc' ? 'block' : 'none';
+  document.getElementById('view-nutrient').style.display = view === 'nutrient' ? 'block' : 'none';
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.view === view));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function initNutrientView() {
+  const chips = document.getElementById('nutrient-chips');
+  chips.innerHTML = NUTRIENTS.map(n =>
+    `<button class="n-chip" data-n="${n.id}" onclick="selectNutrient('${n.id}')">${n.label}</button>`).join('');
+  const sel = document.getElementById('rank-filter');
+  SECTIONS.forEach(s => { sel.innerHTML += `<option value="${s.id}">${s.label}</option>`; });
+  selectNutrient('vk');
+}
+
+function selectNutrient(id) {
+  curNutrient = id;
+  document.querySelectorAll('.n-chip').forEach(c => c.classList.toggle('active', c.dataset.n === id));
+  const n = NUTRIENTS.find(x => x.id === id);
+    document.getElementById('nutrient-why').innerHTML = '💡 ' + n.why + (n.tip ? '<br><span style="color:var(--bark)">👉 ' + n.tip + '</span>' : '');
+  renderRank();
+}
+
+function setRankMode(mode) {
+  rankMode = mode;
+  document.querySelectorAll('.seg-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+  renderRank();
+}
+
+function fmtVal(v) {
+  return v >= 100 ? Math.round(v) : Math.round(v * 10) / 10;
+}
+
+function renderRank() {
+  const n = NUTRIENTS.find(x => x.id === curNutrient);
+  const dvInfo = NUTRIENT_DV[n.id];
+  const cat = document.getElementById('rank-filter').value;
+  const seen = new Set();
+  const items = [];
+  DB.forEach(item => {
+    if (seen.has(item.name)) return;
+    const m = MICRO[item.name];
+    if (!m || m[n.id] == null) return;
+    if (cat && item.category !== cat) return;
+    const serving = getServing(item);
+    const factor = rankMode === 'serving' ? serving.g / 100 : 1;
+    const val = m[n.id] * factor;
+    if (val <= 0) return;
+    seen.add(item.name);
+    const kcal = rankMode === 'serving' ? Math.round(item.cal * serving.g / 100) : item.cal;
+    const pct = dvInfo ? val / dvInfo.dv * 100 : 0;
+    items.push({
+      name: item.name, cat: item.category, val, kcal, pct,
+      servingText: rankMode === 'serving' ? `一份 ${serving.g}g・${serving.label}` : '每 100g',
+    });
+  });
+  items.sort((a, b) => b.val - a.val);
+  const top = items.slice(0, 12);
+  const max = top.length ? top[0].val : 1;
+  const catLabel = c => ((SECTIONS.find(s => s.id === c) || {}).label) || '';
+  const noColor = i => i === 0 ? '#B8860B' : i === 1 ? '#8C8C8C' : i === 2 ? '#A06A3B' : 'var(--bark-light)';
+  const pctText = p => (p >= 10 ? Math.round(p) : Math.round(p * 10) / 10) + '%';
+  document.getElementById('rank-list').innerHTML = top.map((it, i) => `
+    <div class="rank-entry">
+      <div class="rank-row">
+        <span class="rank-no" style="color:${noColor(i)};font-weight:${i < 3 ? 700 : 400}">${i + 1}</span>
+        <span class="rank-name" title="${it.name}">${it.name}</span>
+        <span class="rank-cat">${catLabel(it.cat)}</span>
+        <div class="rank-track"><div class="rank-fill" style="width:${Math.max(3, Math.round(it.val / max * 100))}%;background:${n.color}"></div></div>
+        <span class="rank-val">${fmtVal(it.val)}<span style="font-size:10px;color:var(--bark-light)">${n.unit}</span></span>
+      </div>
+      <div class="rank-meta">
+        <span>${it.servingText}</span><span class="rank-meta-sep">｜</span>
+        <span>約 ${it.kcal} kcal${it.kcal >= 250 ? ' <span class="hot-tag">🔥 高熱量</span>' : ''}</span><span class="rank-meta-sep">｜</span>
+        <span>佔每日參考量 ${pctText(it.pct)}</span>
+        <span class="dv-track"><span class="dv-fill" style="width:${Math.min(100, it.pct)}%;background:${n.color}"></span></span>
+      </div>
+    </div>`).join('') ||
+    '<div style="font-size:12px;color:var(--bark-light);padding:8px">此類別暫無資料</div>';
+}
+
 renderSections();
+initNutrientView();
+
 </script>
 
 <div style="margin-top:2.5rem;padding-top:1rem;border-top:0.5px solid rgba(61,50,41,0.12);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
