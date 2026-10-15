@@ -70,6 +70,18 @@
   </url>
 
   <!-- ── BLOG ── -->
+   <url>
+    <loc>https://abbyeatlife.github.io/blog/20261015qa12/index.html</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>  
+     <url>
+    <loc>https://abbyeatlife.github.io/blog/20261015qa11/index.html</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url> 
   <url>
     <loc>https://abbyeatlife.github.io/blog/20261011HBD/index.html</loc>
     <lastmod>2026-10-11</lastmod>
