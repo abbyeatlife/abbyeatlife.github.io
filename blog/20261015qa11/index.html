@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>水果要在飯前吃還是飯後吃？— Abby營養師</title>
+<meta name="description" content="水果飯前吃還是飯後吃？沒有單一答案。從蛋白質優先與血糖穩定出發，教你怎麼選，並附常見水果 GI 值與份量速查表。">
+<meta property="og:title" content="水果要在飯前吃還是飯後吃？— Abby營養師">
+<meta property="og:description" content="水果飯前吃還是飯後吃？沒有單一答案。從蛋白質優先與血糖穩定出發，教你怎麼選，並附常見水果 GI 值與份量速查表。">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://abbyeatlife.github.io/images/og-default.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;--cream:#FDFBF7;--bark:#3D3229;--bark-light:#6B5E52;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;--qa-blue:#4A7FA5;--qa-blue-lt:#EBF2F7;--shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);--radius:12px;--radius-lg:20px}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow .3s ease}
+nav.scrolled{box-shadow:var(--shadow-md)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+.nav-logo span{color:var(--sage)}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-links a{text-decoration:none;color:var(--text-light);font-size:.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all .2s ease}
+.nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+.nav-links a.cta{background:var(--sage);color:var(--white)}
+.nav-links a.cta:hover{background:var(--bark)}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+.article-header{padding:100px 24px 40px;max-width:760px;margin:0 auto}
+.back-link{display:inline-flex;gap:6px;text-decoration:none;color:var(--sage);font-size:.88rem;font-weight:500;margin-bottom:28px}
+.back-link:hover{color:var(--bark)}
+.series-badge{display:inline-flex;background:var(--qa-blue-lt);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+.series-badge .tag{font-size:.75rem;font-weight:600;color:var(--qa-blue);letter-spacing:.05em}
+.article-header h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;color:var(--bark);line-height:1.35;letter-spacing:-.02em;margin-bottom:16px}
+.article-meta{font-size:.88rem;color:var(--text-light);display:flex;gap:16px}
+.article-meta .author{font-weight:500;color:var(--bark)}
+.article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
+.css-cover-g{width:100%;height:200px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);background:var(--cream);border:1px solid rgba(74,127,165,.2);border-left:6px solid var(--qa-blue);display:flex;flex-direction:column;justify-content:center;padding:28px 32px;position:relative;overflow:hidden}
+.css-cover-g::after{content:'Q';position:absolute;right:-8px;bottom:-20px;font-family:'Playfair Display',serif;font-size:140px;font-weight:600;color:var(--qa-blue);opacity:.07;line-height:1;pointer-events:none}
+.cover-badge{display:inline-block;background:var(--qa-blue);color:var(--white);font-size:.68rem;font-weight:600;letter-spacing:.12em;padding:3px 10px;border-radius:20px;margin-bottom:10px;width:fit-content}
+.cover-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:var(--bark);line-height:1.35;position:relative;z-index:1}
+.cover-sub{font-size:.8rem;color:var(--qa-blue);margin-top:8px;font-weight:500;position:relative;z-index:1}
+.article-content{max-width:760px;margin:0 auto;padding:0 24px 60px}
+.article-content p{font-size:1.05rem;line-height:2;margin-bottom:20px}
+.article-content h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:var(--bark);margin:48px 0 20px;padding:10px 16px;background:var(--qa-blue-lt);border-radius:8px;display:inline-block}
+.article-content strong{color:var(--bark);font-weight:700}
+.qa-question{background:var(--qa-blue-lt);border-left:4px solid var(--qa-blue);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin-bottom:28px;font-size:1.05rem;font-weight:500;color:var(--bark);line-height:1.7}
+.qa-question::before{content:'Q｜';color:var(--qa-blue);font-weight:700}
+.info-box{background:rgba(74,127,165,.06);border:1px solid rgba(74,127,165,.2);border-radius:var(--radius);padding:16px 20px;margin:20px 0}
+.box-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--qa-blue);margin-bottom:8px}
+.info-box p{font-size:.95rem;color:var(--bark);line-height:1.8;margin:0 0 8px}
+.info-box p:last-child{margin:0}
+.steps{display:flex;flex-direction:column;gap:16px;margin:24px 0}
+.step-card{background:var(--white);border:1px solid rgba(74,127,165,.15);border-radius:var(--radius);padding:20px 24px;display:flex;gap:16px;align-items:flex-start}
+.step-num{flex-shrink:0;width:36px;height:36px;background:var(--qa-blue);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:600}
+.step-title{font-weight:600;color:var(--bark);margin-bottom:6px}
+.step-body p{font-size:.93rem;line-height:1.85;margin:0}
+.tbl-wrap{margin:24px 0}
+.tbl-header{background:var(--qa-blue);color:var(--white);padding:12px 20px;font-size:.85rem;font-weight:600;letter-spacing:.04em;border-radius:var(--radius) var(--radius) 0 0}
+.scroll{overflow-x:auto;background:var(--white);box-shadow:var(--shadow-sm);border-radius:0 0 var(--radius) var(--radius)}
+table{width:100%;border-collapse:collapse;font-size:.9rem;min-width:520px}
+th{background:var(--qa-blue-lt);color:var(--qa-blue);font-weight:700;padding:10px 14px;text-align:left;font-size:.8rem;white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid var(--sage-pale)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#FAFCFE}
+td.n{text-align:right;white-space:nowrap}
+td.n.b{font-weight:600;color:var(--bark)}
+.tbl-note{font-size:.8rem;color:var(--text-light);margin-top:10px;line-height:1.7}
+.disclaimer{background:#F7F5F0;border:1px solid var(--sage-light);border-radius:var(--radius);padding:16px 20px;margin-top:32px}
+.disclaimer p{font-size:.85rem;color:var(--text-light);line-height:1.7;margin:0}
+.article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
+.article-tags .tag{background:var(--sage-pale);color:var(--sage);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
+.related-articles{max-width:760px;margin:0 auto;padding:0 24px 48px}
+.related-articles h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--bark);margin-bottom:16px;text-align:center}
+.related-grid{display:flex;flex-direction:column;gap:8px}
+.related-card{background:var(--white);border-radius:var(--radius);padding:13px 20px;text-decoration:none;border:1px solid rgba(139,158,126,.15);transition:all .2s ease;text-align:center}
+.related-card:hover{background:var(--sage-pale);border-color:var(--sage-light)}
+.rc-h{font-size:.9rem;font-weight:500;color:var(--bark-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.back-to-top{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px auto 0;height:36px;padding:0 18px;background:var(--sage);color:var(--white);border:none;border-radius:8px;cursor:pointer;font-family:inherit;font-size:.82rem;font-weight:500}
+.back-to-top:hover{background:var(--bark)}
+.back-to-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.article-footer{max-width:760px;margin:0 auto;padding:0 24px 80px}
+.article-footer-divider{border:none;border-top:1px solid var(--sage-light);margin-bottom:36px}
+.author-card{display:flex;align-items:center;gap:20px;background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)}
+.author-avatar{width:64px;height:64px;border-radius:50%;background:var(--sage-pale);flex-shrink:0;overflow:hidden}
+.author-avatar img{width:100%;height:100%;object-fit:cover}
+.author-info h4{font-size:1rem;font-weight:500;color:var(--bark);margin-bottom:4px}
+.author-info p{font-size:.85rem;color:var(--text-light);line-height:1.6}
+.author-links{display:flex;gap:8px;margin-top:10px}
+.author-links a{font-size:.8rem;padding:4px 12px;border-radius:50px;text-decoration:none;background:var(--sage-pale);color:var(--sage);font-weight:500}
+.author-links a:hover{background:var(--sage);color:var(--white)}
+footer{background:var(--bark);color:rgba(255,255,255,.6);text-align:center;padding:32px 24px;font-size:.82rem}
+@media(max-width:768px){.nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}.menu-toggle{display:block}.article-header h1{font-size:1.7rem}.author-card{flex-direction:column;text-align:center}.author-links{justify-content:center}.article-content h2{font-size:1.2rem}}
+</style>
+<base target="_blank">
+</head>
+<body>
+<nav id="navbar">
+<div class="nav-inner">
+<a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+<button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單"><span></span><span></span><span></span></button>
+<div class="nav-links">
+<a href="../../index.html#podcast">Podcast</a>
+<a href="../../index.html#about">關於我</a>
+<a href="/blog/index.html">Blog</a>
+<a href="/qa/index.html">Q&amp;A</a>
+<a href="/note/index.html">Note</a>
+<a href="../../index.html#contact" class="cta">聯絡我</a>
+</div>
+</div>
+</nav>
+
+<div class="article-header">
+<a href="../index.html" class="back-link">← 回到所有文章</a>
+<div class="series-badge"><span class="tag">飲食筆記</span></div>
+<h1>水果要在飯前吃，<br>還是飯後吃？</h1>
+<div class="article-meta"><span class="author">Abby營養師</span><span>2026 年 10 月 15 日</span></div>
+</div>
+
+<div class="article-cover">
+<div class="css-cover-g">
+<div class="cover-badge">飲食筆記</div>
+<div class="cover-title">水果要在飯前吃，<br>還是飯後吃？</div>
+<div class="cover-sub">水果吃法 · 血糖穩定 · 低 GI 水果 · 飲食觀念</div>
+</div>
+</div>
+
+<div class="article-content">
+
+<div class="qa-question">水果要在飯前吃，還是飯後吃？</div>
+
+<p>這個問題很難有單一答案，<strong>通常要看情況</strong>。但以我自己的觀點，對大多數人來說，我會抓兩個重點。</p>
+
+<h2>兩個重點：蛋白質與血糖</h2>
+
+<p><strong>第一，先吃到相對重要、又不容易吃足的營養，也就是蛋白質。</strong></p>
+
+<p><strong>第二，血糖的穩定度。</strong>對大多數成人來說，這是關鍵，因為血糖上升的幅度會影響<strong>飽足感、食慾的穩定</strong>，甚至影響胰島素與脂肪代謝。我們大多不希望血糖曲線像坐雲霄飛車一樣忽高忽低，對長期健康管理來說，<strong>血糖平穩</strong>是比較理想的狀態。</p>
+
+<p>所以空腹時的第一口，我會建議先從<strong>蛋白質、脂肪、膳食纖維</strong>這類對血糖影響較小的食物開始，因此我不建議把水果當作飯前先吃的選項。</p>
+
+<div class="info-box">
+<div class="box-label">一個常見的小迷思</div>
+<p>有人會說，水果裡的酵素遇到胃酸可能被破壞，所以不適合空腹吃。這個說法有它的根據，不過胃酸在飯前飯後都存在，而且水果帶給我們的好處，主要來自<strong>纖維、維生素與植化素</strong>，不太需要靠酵素。所以我覺得不用太糾結在這一點上。</p>
+</div>
+
+<h2>水果比較適合放在「飯後」或「兩餐之間」</h2>
+
+<p>水果建議放在<strong>飯後，或是正餐之間</strong>。但這不代表吃飽飯就一定要再塞一份水果。其實水果更適合在兩餐之間：<strong>飯後大約 2 到 3 小時</strong>，你有點餓、想吃點東西，但又沒有餓到不行的時候，吃個水果就很合適。</p>
+
+<p>可以優先選擇相對<strong>低 GI</strong> 的水果，例如<strong>芭樂、小番茄、草莓、奇異果、梨子、柳丁、桃子</strong>。不過<strong>低 GI 不代表可以無限量吃，份量還是要抓</strong>。</p>
+
+<div class="tbl-wrap">
+<div class="tbl-header">▸ 常見水果 GI 值與每份建議量速查</div>
+<div class="scroll">
+<table>
+<tr><th>水果</th><th>GI 值（約）</th><th>分級</th><th style="text-align:right">每份量</th><th style="text-align:right">熱量</th><th style="text-align:right">醣量</th></tr>
+<tr><td>芭樂</td><td>12–24</td><td>低</td><td class="n">約 155 g</td><td class="n b">約 60 大卡</td><td class="n b">約 15 g</td></tr>
+<tr><td>小番茄</td><td>約 30</td><td>低</td><td class="n">約 220 g</td><td class="n b">約 60 大卡</td><td class="n b">約 15 g</td></tr>
+<tr><td>草莓</td><td>約 40</td><td>低</td><td class="n">約 170 g</td><td class="n b">約 60 大卡</td><td class="n b">約 15 g</td></tr>
+<tr><td>奇異果</td><td>40–50</td><td>低</td><td class="n">約 110 g</td><td class="n b">約 60 大卡</td><td class="n b">約 15 g</td></tr>
+<tr><td>梨子</td><td>約 38</td><td>低</td><td class="n">約 135 g</td><td class="n b">約 60 大卡</td><td class="n b">約 15 g</td></tr>
+<tr><td>柳丁</td><td>約 40–45</td><td>低</td><td class="n">約 130 g</td><td class="n b">約 60 大卡</td><td class="n b">約 15 g</td></tr>
+<tr><td>桃子</td><td>約 42</td><td>低</td><td class="n">約 150 g</td><td class="n b">約 60 大卡</td><td class="n b">約 15 g</td></tr>
+<tr><td>香蕉</td><td>約 52</td><td>中</td><td class="n">約 70 g</td><td class="n b">約 60 大卡</td><td class="n b">約 15 g</td></tr>
+<tr><td>西瓜</td><td>約 72</td><td>高</td><td class="n">約 350 g</td><td class="n b">約 60 大卡</td><td class="n b">約 15 g</td></tr>
+</table>
+</div>
+<p class="tbl-note">※ 份量以「水果類一份約 60 大卡、醣類 15 g」為基準，克數為可食部分的約略值；GI 值因品種、成熟度與研究來源而異，僅供參考。GI 分級：低 ≤ 55、中 56–69、高 ≥ 70。西瓜 GI 雖高，但含水量大，一般份量下對血糖的實際影響不一定大，重點仍是份量。</p>
+</div>
+
+<h2>那為什麼有人建議飯前吃水果？</h2>
+
+<p>有些人建議水果在飯前吃，主要是因為水果<strong>水分含量高、熱量不高，卻能帶來一定的飽足感</strong>。先吃水果、有了飽足感之後再吃正餐，正餐的份量自然會減少，達到<strong>總量控制</strong>的目的，這在某些減重方法中是有被採用的。</p>
+
+<h2>總結：看你的情況與目標</h2>
+
+<p>所以我想說的是，這個問題<strong>沒有哪一個答案才是絕對正確</strong>，而是要看你自己的情況與目標來選擇，飯前吃或飯後吃，各自都有它的目的性。</p>
+
+<div class="steps">
+<div class="step-card"><div class="step-num">1</div><div class="step-body"><div class="step-title">想穩定血糖、吃足蛋白質</div><p>先吃<strong>蛋白質、蔬菜</strong>，水果放<strong>飯後</strong>或<strong>兩餐之間</strong>。</p></div></div>
+<div class="step-card"><div class="step-num">2</div><div class="step-body"><div class="step-title">兩餐之間有點餓</div><p>飯後 <strong>2–3 小時</strong>，挑一份<strong>低 GI 水果</strong>當點心。</p></div></div>
+<div class="step-card"><div class="step-num">3</div><div class="step-body"><div class="step-title">想靠飽足感控制總量</div><p>可以<strong>飯前先吃一份水果</strong>，但要留意<strong>份量</strong>，也別讓正餐的蛋白質不足。</p></div></div>
+</div>
+
+<div class="disclaimer">
+<p>本文所分享的內容為一般性飲食觀念與原則，並非針對個人的醫療或營養處方。每個人的健康狀況與代謝條件不同，如有糖尿病、血糖控制問題、特殊疾病或減重需求，建議諮詢具備相關資格的營養師，在符合個人需求的前提下進行。</p>
+</div>
+
+<div class="article-tags">
+<span class="tag">水果</span><span class="tag">血糖穩定</span><span class="tag">低GI</span><span class="tag">飲食觀念</span><span class="tag">Q&amp;A</span>
+</div>
+
+</div>
+
+<div class="related-articles">
+<h4>繼續閱讀</h4>
+<div class="related-grid">
+<a href="../20260316book17/index.html" class="related-card"><div class="rc-h">運動前後怎麼吃？</div></a>
+<a href="../20260315book12/index.html" class="related-card"><div class="rc-h">吃完飯很快就餓，怎麼辦？</div></a>
+<a href="../20260311book03/index.html" class="related-card"><div class="rc-h">一天到底該吃多少熱量？TDEE 完整計算教學</div></a>
+</div>
+<button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>回頂部</button>
+</div>
+
+<div class="article-footer">
+<hr class="article-footer-divider">
+<div class="author-card">
+<div class="author-avatar"><img src="../../images/abby01.png" alt="Abby"></div>
+<div class="author-info">
+<h4>Abby 營養師</h4>
+<p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+<div class="author-links">
+<a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms">🎙️ Podcast</a>
+<a href="https://www.instagram.com/abby.eat.life/">📷 Instagram</a>
+</div>
+</div>
+</div>
+</div>
+
+<footer><p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p></footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20)});
+</script>
+</body>
+</html>
