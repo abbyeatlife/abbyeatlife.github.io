@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>市售一顆手撕包，逼近 1000 大卡？ — Abby營養師修熄示</title>
+    <meta name="description" content="只是記錄一次早餐，卻被一個手掌大的手撕包嚇到。一查市售整顆的營養標示，竟然逼近 1000 大卡。從飲食紀錄看見熱量密度的重要，並附上常見麵包熱量表。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta {
+            background: var(--sage);
+            color: var(--white);
+        }
+        .nav-links a.cta:hover { background: var(--bark); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== ARTICLE ===== */
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author {
+            font-weight: 500;
+            color: var(--bark);
+        }
+
+        /* 純 CSS 封面（Style B：赤陶暖橘） */
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .css-cover {
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            background: linear-gradient(135deg, #C17F59 0%, #D9A27C 100%);
+            color: var(--white);
+            padding: 56px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .css-cover::before {
+            content: '';
+            position: absolute;
+            width: 260px; height: 260px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.10);
+            top: -90px; right: -70px;
+        }
+        .css-cover::after {
+            content: '';
+            position: absolute;
+            width: 180px; height: 180px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            bottom: -70px; left: -50px;
+        }
+        .css-cover .cover-kicker {
+            position: relative;
+            z-index: 1;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            opacity: 0.9;
+            margin-bottom: 14px;
+        }
+        .css-cover .cover-title {
+            position: relative;
+            z-index: 1;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            font-weight: 600;
+            line-height: 1.45;
+        }
+        .css-cover .cover-num {
+            position: relative;
+            z-index: 1;
+            font-size: 1rem;
+            margin-top: 18px;
+            opacity: 0.95;
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+
+        .article-content h5 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 36px 0 16px;
+        }
+
+        .article-content strong {
+            color: var(--bark);
+            font-weight: 600;
+        }
+
+        .article-content .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 24px 28px;
+            margin: 28px 0;
+        }
+        .article-content .highlight-box p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: var(--bark);
+            font-weight: 500;
+        }
+        .article-content .highlight-box p:last-child { margin-bottom: 0; }
+
+        .article-content .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 28px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .article-content .discovery-box .discovery-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .article-content .discovery-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .article-content .tips-box {
+            background: var(--sage-pale);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            margin: 28px 0;
+        }
+        .article-content .tips-box h5 {
+            margin: 0 0 16px;
+            color: var(--sage);
+        }
+        .article-content .tips-box .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .article-content .tips-box .tip-item:last-child { margin-bottom: 0; }
+        .article-content .tips-box .tip-icon {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            margin: 28px 0 12px;
+        }
+        .bmi-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        .bmi-table th {
+            background: var(--sage);
+            color: var(--white);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .bmi-table th:first-child { border-radius: var(--radius) 0 0 0; }
+        .bmi-table th:last-child { border-radius: 0 var(--radius) 0 0; }
+        .bmi-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--sage-light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        .bmi-table tr:last-child td { border-bottom: none; }
+        .bmi-table tr:nth-child(even) td { background: var(--sage-pale); }
+        .bmi-table tr.group-row td {
+            background: var(--warm);
+            color: var(--terracotta);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            padding: 8px 16px;
+        }
+        .table-note {
+            font-size: 0.88rem !important;
+            color: var(--text-light) !important;
+            line-height: 1.8 !important;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+            color: var(--sage-light);
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot {
+            width: 5px;
+            height: 5px;
+            background: var(--sage-light);
+            border-radius: 50%;
+        }
+
+        /* ===== ARTICLE FOOTER ===== */
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--bark);
+            margin-bottom: 4px;
+        }
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .author-links {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+        footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+
+            .article-header h1 { font-size: 1.7rem; }
+            .article-content p { font-size: 1rem; }
+
+            .css-cover { padding: 40px 24px; }
+            .css-cover .cover-title { font-size: 1.5rem; }
+
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+
+            .bmi-table { font-size: 0.88rem; }
+            .bmi-table th, .bmi-table td { padding: 10px 12px; }
+        }
+    /* ── 相關文章 + 回頂部 ── */
+        .related-articles { max-width: 760px; margin: 0 auto; padding: 0 24px 48px; }
+        .related-articles h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--bark); margin-bottom: 16px; text-align: center; }
+        .related-grid { display: flex; flex-direction: column; gap: 8px; }
+        .related-card { background: var(--white); border-radius: var(--radius); padding: 13px 20px; text-decoration: none; border: 1px solid rgba(139,158,126,0.15); transition: all 0.2s ease; text-align: center; }
+        .related-card:hover { background: var(--sage-pale); border-color: var(--sage-light); }
+        .related-card .rc-h { font-size: 0.9rem; font-weight: 500; color: var(--bark-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .related-card:hover .rc-h { color: var(--bark); }
+        .back-to-top { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 12px auto 0; height: 36px; padding: 0 18px; background: var(--sage); color: var(--white); border: none; border-radius: 8px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; font-size: 0.82rem; font-weight: 500; transition: background 0.2s ease; white-space: nowrap; }
+        .back-to-top:hover { background: var(--bark); }
+        .back-to-top svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="/index.html#podcast">Podcast</a>
+            <a href="/index.html#about">關於我</a>
+            <a href="/blog/index.html">Blog</a>
+            <a href="/qa/index.html">Q&amp;A</a>
+            <a href="/note/index.html">Note</a>
+            <a href="/index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== ARTICLE HEADER ===== -->
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">飲食筆記</span>
+    <h1>市售一顆手撕包，逼近 1000 大卡？</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 10 月 21 日</span>
+    </div>
+</div>
+
+<!-- ===== ARTICLE COVER（純 CSS） ===== -->
+<div class="article-cover">
+    <div class="css-cover">
+        <div class="cover-kicker">飲食筆記 ・ 熱量密度</div>
+        <div class="cover-title">市售一顆手撕包<br>逼近 1000 大卡？</div>
+        <div class="cover-num">235 g ＝ 934 kcal</div>
+    </div>
+</div>
+
+<!-- ===== ARTICLE CONTENT ===== -->
+<div class="article-content">
+
+    <p>我每隔一陣子，就會把飲食紀錄拿出來記一下。</p>
+
+    <p>我並沒有什麼明確的體態目標，主要是把它當作<strong>飲食的校正</strong>，同時也是<strong>陪伴學員的方式</strong>——親自體驗一次正在飲控的狀態，才能更感同身受。</p>
+
+    <p>這陣子剛好是我的生日月，聚餐比較多，也收到不少糕點。所以我就挑在這個特別的時期來記錄，看看平常的飲食遇上特別的日子，會有什麼不一樣。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>一個手掌大的麵包，居然 300 多大卡</h2>
+
+    <p>今天的第一餐，一樣是 <strong>2 顆水煮蛋、一杯黑咖啡</strong>，再加上學生送我的愛心麵包：奶香手撕包。</p>
+
+    <p>我撕了一塊目測自己大概會吃的份量，差不多<strong>一個手掌大</strong>。進烤箱前順手秤了一下：<strong>60 公克</strong>。</p>
+
+    <p>等麵包烤好的空檔，我打開飲食 App 開始記錄。沒想到手撕包這麼冷門的品項，資料庫裡居然搜得到。輸入 60 克……<strong>👀 300 多大卡</strong>。</p>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">😲</span>
+        <div>
+            <p>這不就只是一個手掌大嗎？如果整份吃完，這一餐<strong>將近 500 大卡</strong>，比我平常 300～400 大卡的早餐，<strong>多了一大截</strong>。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>市售 1 顆 → 逼近千大卡</h2>
+
+    <p>我吃的，只是自己分出來的一小塊。但你知道市售一顆完整的手撕包，熱量又是多少？</p>
+
+    <p>我找到聖瑪莉的「玫瑰丹麥手撕」，營養標示上寫著：<strong>一份 235 公克，本包裝含 1 份</strong>。熱量 <strong>934 大卡</strong>，其中脂肪 56 克，光脂肪就占了一半以上的熱量，碳水化合物則是 90 克。碳水量相當於 1.5 碗的飯(但飽足感不能相提並論) </p>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">🤯</span>
+        <div>
+            <p>一顆就<strong>逼近 1000 大卡</strong>，常見的一份便當、牛肉麵也就 800-900 大卡，一顆輕輕的麵包熱量秒殺。</p>
+        </div>
+    </div>
+
+    <p><strong>手撕包看起來鬆鬆軟軟、一片一片很輕巧，實際上是熱量密度很高的食物</strong>。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>同樣是主食，差在熱量密度</h2>
+
+    <p>我平常的早餐，會配一個小地瓜。相比之下，今天吃含有油脂和糖的麵包糕點類，<strong>熱量直接高出約兩倍，飽足感卻只有一半</strong>。</p>
+
+    <p>手撕包是一層層刷上奶油和糖，所以才容易撕開、口感軟綿。<strong>任何好吃、涮嘴的食物，都需要提高僅絕，因為他們經常這同時代表著高熱量</strong>。</p>
+
+    <p>只能說，減肥的人真的很辛苦呢！</p>
+
+    <h2>常見麵包的熱量，大概是多少？</h2>
+
+    <p>這邊順手整理一份常見麵包的熱量參考。可以看到一個趨勢：<strong>奶油、糖、蛋越多，熱量密度越高</strong>。吐司和貝果比較接近一般主食，油酥類和甜麵包的熱量密度比較高，會到 1.5 倍以上喔。</p>
+
+    <div class="table-wrap">
+        <table class="bmi-table">
+            <thead>
+                <tr>
+                    <th>品項</th>
+                    <th>每 100 g（大卡）</th>
+                    <th>常見單份熱量</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="group-row"><td colspan="3">低密度</td></tr>
+                <tr><td>全麥吐司</td><td>250～260</td><td>1 片（約 30 g）約 80</td></tr>
+                <tr><td>白吐司</td><td>265～280</td><td>1 片（約 30 g）約 85</td></tr>
+                <tr><td>歐式／德式麵包</td><td>250～280</td><td>1 片（約 40 g）約 105</td></tr>
+                <tr><td>法國麵包</td><td>270～280</td><td>約 50 g 約 140</td></tr>
+                <tr><td>貝果</td><td>270～290</td><td>1 個（約 100 g）約 280</td></tr>
+                <tr class="group-row"><td colspan="3">中密度</td></tr>
+                <tr><td>餐包／紅豆麵包</td><td>280～320</td><td>1 個（約 50 g）約 150</td></tr>
+                <tr><td>鹹麵包（蔥花、肉鬆）</td><td>300～380</td><td>1 個（約 80 g）約 270</td></tr>
+                <tr><td>菠蘿麵包</td><td>370～400</td><td>1 個（約 80 g）約 310</td></tr>
+                <tr class="group-row"><td colspan="3">高密度</td></tr>
+                <tr><td>奶油／起司手撕包</td><td>350～450</td><td>60 g 約 210～270</td></tr>
+                <tr><td>布里歐修</td><td>370～400</td><td>1 個（約 60 g）約 230</td></tr>
+                <tr><td>可頌</td><td>400～450</td><td>1 個（約 60 g）約 260</td></tr>
+                <tr><td>丹麥酥</td><td>400～430</td><td>1 個（約 80 g）約 330</td></tr>
+                <tr><td>甜甜圈</td><td>400～430</td><td>1 個（約 70 g）約 290</td></tr>
+                <tr class="group-row"><td colspan="3">對照組</td></tr>
+                <tr><td>烤地瓜</td><td>120～130</td><td>1 小條（約 150 g）約 190</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="table-note">＊以上為一般營養資料的估算範圍，不同店家的配方可能差到 20～30%。我在 App 裡查到的手撕包，60 克約 300 多大卡；而聖瑪莉玫瑰丹麥手撕的標示是每 100 克約 397 大卡，換算 60 克約 240 大卡。同一種麵包，數字會因來源和配方而不同。實際份量請以包裝標示為主，也可以參考衛福部食藥署的「食品營養成分資料庫」。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>覺得夠了，就停下來。</h2>
+
+    <p>吃的時候，我的順序是<strong>先吃 2 顆蛋、喝一些咖啡</strong>，再如同手撕包的名字一樣，一片片撕下來，慢慢吃。</p>
+
+    <p>不知道是不是知道了這個麵包熱量高得驚人，我吃到一半就覺得夠了，不太想繼續塞。把剩下的拿去秤，發現我<strong>只吃了 30 克</strong>，另一半我就等下午活動之後，再看看需不需要吃。</p>
+
+    <p>所以這餐實際吃下肚的，大約是 <strong>300 大卡</strong>，結果和我平常早餐的分量差不多。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>熱量密度，是減脂路上很實用的觀念</h2>
+
+    <p>透過這一餐的紀錄，我又再度感覺到<strong>熱量密度</strong>的重要。</p>
+
+    <p>如果你也常吃麵包，又覺得體態管理很困難，不妨<strong>從這種「高熱量、體積小」的食物開始減少用量</strong>。</p>
+
+    <div class="highlight-box">
+        <p><strong>這就像發現自己每個月存不了錢，那就攤開帳本，先對那些單筆花費特別高的項目開刀，改善肯定會很明顯。</strong></p>
+    </div>
+
+    <div class="tips-box">
+        <h5>下次吃麵包，可以先試試</h5>
+        <div class="tip-item">
+            <span class="tip-icon">🔍</span>
+            <span><strong>先找出「高熱量、體積小」的食物</strong>，優先從這裡調整用量</span>
+        </div>
+        <div class="tip-item">
+            <span class="tip-icon">⚖️</span>
+            <span><strong>先秤一次</strong>，用眼睛記住自己平常吃的份量大概是多少</span>
+        </div>
+        <div class="tip-item">
+            <span class="tip-icon">🥚</span>
+            <span><strong>先吃蛋白質，再慢慢吃麵包</strong>，吃到夠了就停下來</span>
+        </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 40px; font-size: 1.05rem; color: var(--bark); font-weight: 500;">你有沒有哪一樣食物，秤完才嚇一跳呢？歡迎留言告訴我 🌿</p>
+
+</div>
+
+<!-- ===== ARTICLE FOOTER ===== -->
+<!-- 相關文章 + 回頂部 -->
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../20260618/index.html" class="related-card">
+            <div class="rc-h">飲食紀錄要記生重還是熟重？</div>
+        </a>
+        <a href="../20260519/index.html" class="related-card">
+            <div class="rc-h">老師你有在算熱量嗎？</div>
+        </a>
+        <a href="../20260420qa05/index.html" class="related-card">
+            <div class="rc-h">減脂期間遇到蛋糕，該怎麼吃？</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師修熄示 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
