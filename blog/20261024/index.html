@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>颱風假之後的「滿電」早晨：好眠背後的五個可能原因 — Abby營養師休息室</title>
+    <meta name="description" content="颱風假一覺醒來像充滿電到 100%。回頭盤點壓力、飲食、活動與生理期，整理出五個可能讓睡眠修復更完整的原因。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage: #8B9E7E;
+            --sage-light: #C2D1B3;
+            --sage-pale: #EFF3EB;
+            --cream: #FDFBF7;
+            --warm: #F5EDE3;
+            --bark: #3D3229;
+            --bark-light: #6B5E52;
+            --terracotta: #C17F59;
+            --white: #FFFFFF;
+            --text: #2C2521;
+            --text-light: #7A6E66;
+            --shadow-sm: 0 1px 3px rgba(61,50,41,0.06);
+            --shadow-md: 0 4px 20px rgba(61,50,41,0.08);
+            --radius: 12px;
+            --radius-lg: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.8;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(253,251,247,0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139,158,126,0.12);
+            transition: box-shadow 0.3s ease;
+        }
+        nav.scrolled { box-shadow: var(--shadow-md); }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--bark);
+            text-decoration: none;
+        }
+        .nav-logo span { color: var(--sage); }
+
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--bark); background: var(--sage-pale); }
+        .nav-links a.cta {
+            background: var(--sage);
+            color: var(--white);
+        }
+        .nav-links a.cta:hover { background: var(--bark); }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--bark);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* ===== ARTICLE ===== */
+        .article-header {
+            padding: 100px 24px 40px;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            color: var(--sage);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin-bottom: 28px;
+            transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--bark); }
+
+        .article-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .article-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: var(--bark);
+            line-height: 1.35;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .article-meta {
+            font-size: 0.88rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .article-meta .author {
+            font-weight: 500;
+            color: var(--bark);
+        }
+
+        .article-cover {
+            max-width: 760px;
+            margin: 0 auto 40px;
+            padding: 0 24px;
+        }
+        .article-cover img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== ARTICLE CONTENT ===== */
+        .article-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .article-content p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .article-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 48px 0 20px;
+        }
+
+        .article-content h5 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--bark);
+            margin: 36px 0 16px;
+        }
+
+        .article-content strong {
+            color: var(--bark);
+            font-weight: 600;
+        }
+
+        .article-content ul {
+            margin: 0 0 20px 1.4em;
+        }
+        .article-content li {
+            font-size: 1.05rem;
+            line-height: 2;
+            margin-bottom: 4px;
+        }
+
+        .article-content .highlight-box {
+            background: var(--sage-pale);
+            border-left: 4px solid var(--sage);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 24px 28px;
+            margin: 28px 0;
+        }
+        .article-content .highlight-box p {
+            margin-bottom: 8px;
+            font-size: 1rem;
+            color: var(--bark);
+            font-weight: 500;
+        }
+        .article-content .highlight-box p:last-child { margin-bottom: 0; }
+
+        .article-content .discovery-box {
+            background: var(--warm);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            margin: 28px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .article-content .discovery-box .discovery-icon {
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+        .article-content .discovery-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .section-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px 0;
+            color: var(--sage-light);
+        }
+        .section-divider::before,
+        .section-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--sage-light);
+        }
+        .section-divider .dot {
+            width: 5px;
+            height: 5px;
+            background: var(--sage-light);
+            border-radius: 50%;
+        }
+
+        /* ===== ARTICLE FOOTER ===== */
+        .article-footer {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px 80px;
+        }
+
+        .article-footer-divider {
+            border: none;
+            border-top: 1px solid var(--sage-light);
+            margin-bottom: 36px;
+        }
+
+        .author-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            box-shadow: var(--shadow-sm);
+        }
+        .author-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--sage-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .author-info h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--bark);
+            margin-bottom: 4px;
+        }
+        .author-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .author-links {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .author-links a {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-decoration: none;
+            background: var(--sage-pale);
+            color: var(--sage);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .author-links a:hover { background: var(--sage); color: var(--white); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--bark);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.82rem;
+        }
+        footer a { color: rgba(255,255,255,0.8); text-decoration: none; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px; left: 0; right: 0;
+                background: var(--cream);
+                padding: 16px 24px;
+                box-shadow: var(--shadow-md);
+            }
+            .menu-toggle { display: block; }
+
+            .article-header h1 { font-size: 1.7rem; }
+            .article-content p { font-size: 1rem; }
+
+            .author-card { flex-direction: column; text-align: center; }
+            .author-links { justify-content: center; }
+        }
+    /* ── 相關文章 + 回頂部 ── */
+        .related-articles { max-width: 760px; margin: 0 auto; padding: 0 24px 48px; }
+        .related-articles h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--bark); margin-bottom: 16px; text-align: center; }
+        .related-grid { display: flex; flex-direction: column; gap: 8px; }
+        .related-card { background: var(--white); border-radius: var(--radius); padding: 13px 20px; text-decoration: none; border: 1px solid rgba(139,158,126,0.15); transition: all 0.2s ease; text-align: center; }
+        .related-card:hover { background: var(--sage-pale); border-color: var(--sage-light); }
+        .related-card .rc-h { font-size: 0.9rem; font-weight: 500; color: var(--bark-light); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .related-card:hover .rc-h { color: var(--bark); }
+        .back-to-top { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 12px auto 0; height: 36px; padding: 0 18px; background: var(--sage); color: var(--white); border: none; border-radius: 8px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; font-size: 0.82rem; font-weight: 500; transition: background 0.2s ease; white-space: nowrap; }
+        .back-to-top:hover { background: var(--bark); }
+        .back-to-top svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="/index.html#podcast">Podcast</a>
+            <a href="/index.html#about">關於我</a>
+            <a href="/blog/index.html">Blog</a>
+            <a href="/qa/index.html">Q&amp;A</a>
+            <a href="/note/index.html">Note</a>
+            <a href="/index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== ARTICLE HEADER ===== -->
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <span class="article-tag">生活分享</span>
+    <h1>颱風假之後的「滿電」早晨：好眠背後的五個可能原因</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 10 月 24 日</span>
+    </div>
+</div>
+
+<!-- ===== ARTICLE COVER ===== -->
+<div class="article-cover">
+    <img src="../../images/20261024.JPG" alt="颱風假之後的「滿電」早晨：好眠背後的五個可能原因">
+</div>
+
+<!-- ===== ARTICLE CONTENT ===== -->
+<div class="article-content">
+
+    <p>今天睡得好飽。醒來的感覺是<strong>全身那些微小的痠痛都被解除了</strong>，很少有這麼飽滿的狀態。就像手機電池，平常最多只充到九成，今天居然是 <strong>100% 滿電</strong>。</p>
+
+    <p>這讓我不禁回想：昨天到底做了什麼，才換來這樣一場<strong>不只睡得久、而且是高品質修復</strong>的好眠？</p>
+
+    <h2>昨天是颱風假</h2>
+
+    <p>薔琵颱風的威力真是驚人。在家裡一直聽到外面強風呼嘯，門窗被吹得瑟瑟發抖，尤其是浴室。窗戶故障關不緊，只剩紗窗和百葉窗簾，結果百葉窗簾被風吹得整夜在跳雲門舞集。</p>
+
+    <p>這次真的讓人不敢偷偷跑出門，不像以往的颱風假，老實說出去買個飯都不成問題。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>回頭盤點：昨天的我</h2>
+
+    <h5>1. 沒有工作，心裡沒有懸著的事</h5>
+
+    <p>因為颱風，昨天沒有工作，整天待在家裡。我想這是第一個原因：<strong>心裡沒有任何代辦事項，背景壓力比平常還低</strong>，身體因此能更好地放鬆。</p>
+
+    <h5>2. 吃得簡單，份量不多</h5>
+
+    <p>家裡存糧不多，由於沒工作、活動量少，所以並不太餓。早餐 9 點左右，吃了 2 顆蛋、一杯咖啡，還有一片烤得薄薄的餅沾優格。一路到下午 3 點半，還不是因為餓的關係，而是覺得好像該吃點東西，就吃了前天剩的兩片牛肉和半碗飯，另外煮了味噌豆腐湯，也只是喝一點。</p>
+
+    <p>晚上 7 點左右，我把剩下的豆腐吃完，接著覺得無聊，就拿出冰箱的冰淇淋配影片，<strong>吃得很開心，沒有刻意限制份量，吃到舒服就停了</strong>。回頭看，昨天的飲食量真的不多，不知道和今天精神很好有沒有關係。</p>
+
+    <h5>3. 剛好是生理期第一天</h5>
+
+    <p>昨天是生理期的第一天，經血流得很順暢。這個時期<strong>雌激素和黃體素其實都在低點</strong>，之後雌激素才會逐步回升。所以今天的輕盈感，也許和黃體素下降後水腫、悶脹減輕有關，也可能是經期開始後身體整體進入「重啟」狀態。</p>
+
+    <h5>4. 在家也有動一動</h5>
+
+    <p>知道颱風天出不了門，我在家裡走了約<strong>一萬四千步</strong>，做了一些伏地挺身和引體向上，還跳了半小時的舞（完全閒不下來的人）。</p>
+
+    <h5>5. 順便做了幾件「正經事」</h5>
+
+    <p>早上看了一本財務相關的書，整理了資產表格，在這方面覺得安心許多，<strong>也提升了內在的安全感</strong>。接著為即將到來的美國行做了一些旅遊規劃，還幫自己補染了開始變白的髮根🥲。盤點下來，我也做了不少事嘛！</p>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">🔋</span>
+        <div>
+            <p>這個天上掉下來的颱風假，無意間給了我一段<strong>沉澱與修復</strong>的時間。到了這個年紀，早上起來常有些地方痠痛或卡卡的，但今天全身關節像被上了潤滑油，好舒服。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>為什麼這天醒來像「滿電」？五個可能的原因</h2>
+
+    <p>以下是我把自己的經驗，再加上一些睡眠跟營養知識整理出來的小推測，<strong>只是一種角度，不代表絕對的因果關係</strong>。</p>
+
+    <h5>① 心理壓力降低，睡眠更深</h5>
+
+    <p>不用工作、沒有懸而未決的事，背景壓力荷爾蒙（如皮質醇）較低，入睡後更容易進入深層睡眠。<strong>壓力是影響睡眠品質最明確的因素之一</strong>。</p>
+
+    <h5>② 飲食輕盈、份量適中</h5>
+
+    <ul>
+        <li>整天小份量進食，<strong>餐後昏沉感較少</strong>，白天清醒度較穩定</li>
+        <li>最後一餐離睡覺有段距離（約 3 小時），且份量不多，<strong>消化負擔小</strong>，夜間睡眠比較不會被打擾</li>
+        <li>蛋白質來源（蛋、優格、牛肉、豆腐）仍有顧到，<strong>不是單純吃少</strong></li>
+    </ul>
+
+    <h5>③ 適度活動，累積「睡眠壓力」</h5>
+
+    <p>走路、肌力訓練、跳舞，這種<strong>「動得剛好」</strong>的日常活動，有助於白天累積睡眠驅動力，讓夜間睡得更沉，又不至於因為過度訓練造成負擔。</p>
+
+    <h5>④ 經期第一天的生理狀態</h5>
+
+    <p>經期開始時雌激素與黃體素都處於低點，部分人會覺得身體的悶脹、水腫感減輕，睡眠也比黃體期更好。<strong>個體差異很大，不是每個人都如此</strong>。</p>
+
+    <h5>⑤ 睡眠債一次補回</h5>
+
+    <p>前幾天若有累積的睡眠不足，在壓力低、環境允許的一天，<strong>身體會把睡眠債補回來</strong>，醒來自然特別有感。</p>
+
+    <div class="highlight-box">
+        <p>小結：這次的好眠不是單一因素，而是「低壓力、輕鬆的飲食、剛好的活動量、身體處於低荷爾蒙期」湊在一起的結果。</p>
+    </div>
+
+    <div class="discovery-box">
+        <span class="discovery-icon">⚠️</span>
+        <div>
+            <p><strong>單日經驗不能推論成「少吃比較好」。</strong>對於本來就有高訓練量的人，長期能量攝取不足反而可能影響恢復、荷爾蒙與睡眠。比較實用的做法是：在低壓力日記錄飲食時間與睡眠品質，觀察是否有重複出現的模式。</p>
+        </div>
+    </div>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>給自己的提醒</h2>
+
+    <p>我要趁著這份精神飽滿、動力十足的狀態，繼續把手邊的事一件一件穩穩做好。也提醒自己：原來<strong>「少一點壓力、吃得簡單、好好動一動、讓身體休息」</strong>，就是我最好的充電方式。</p>
+
+</div>
+
+<!-- ===== ARTICLE FOOTER ===== -->
+<!-- 相關文章 + 回頂部 -->
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../20260622woman01/index.html" class="related-card">
+            <div class="rc-h">月經週期與荷爾蒙：身體每個階段在做什麼？</div>
+        </a>
+        <a href="../20260623woman02/index.html" class="related-card">
+            <div class="rc-h">荷爾蒙如何影響情緒與睡眠？</div>
+        </a>
+        <a href="../20260728/index.html" class="related-card">
+            <div class="rc-h">保養人生：像做化學實驗一樣過生活</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <p>© 2025 Abby Eat Life — Abby營養師休息室 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+</script>
+
+</body>
+</html>
