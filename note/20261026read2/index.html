@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>不要等待對的時機，而是主動創造時機 — Abby的Note</title>
+  <meta name="description" content="「Don’t wait for the right time, create the right timing.」與「三思而後行」看似衝突，其實並不矛盾。名言沒有對錯，只有適不適合現在的自己。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+      --cream:#FDFBF7;--bark:#3D3229;--bark-light:#6B5E52;
+      --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+      --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+      --radius:12px;--radius-lg:20px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+    nav.scrolled{box-shadow:var(--shadow-md)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+    .nav-logo span{color:var(--sage)}
+    .nav-links{display:flex;gap:8px;align-items:center}
+    .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+    .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+    .nav-links a.cta{background:var(--sage);color:var(--white)}
+    .nav-links a.cta:hover{background:var(--bark)}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+    .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+
+    /* ── HEADER ── */
+    .article-header{padding:100px 24px 32px;max-width:680px;margin:0 auto}
+    .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+    .back-link:hover{color:var(--bark)}
+    .note-badge{display:inline-flex;align-items:center;background:var(--sage-pale);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+    .note-badge .tag{font-size:0.75rem;font-weight:600;color:var(--sage);letter-spacing:0.05em}
+    .article-header h1{font-family:'Playfair Display',serif;font-size:2rem;font-weight:600;color:var(--bark);line-height:1.4;letter-spacing:-0.02em;margin-bottom:12px}
+    .article-meta{font-size:0.85rem;color:var(--text-light)}
+
+    /* ── ARTICLE BODY ── */
+    .article-content{max-width:680px;margin:0 auto;padding:32px 24px 60px}
+    .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:24px}
+    .article-content p:last-child{margin-bottom:0}
+    .article-content strong{color:var(--bark);font-weight:700}
+
+    /* ── QUOTE ── */
+    .article-content blockquote{border-left:4px solid var(--sage);background:var(--sage-pale);border-radius:0 var(--radius) var(--radius) 0;padding:28px 30px;margin:8px 0 12px;font-size:1.2rem;line-height:2;color:var(--bark);font-weight:500}
+    .quote-source{font-size:0.85rem;color:var(--text-light);text-align:right;margin-bottom:36px !important}
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav{max-width:680px;margin:0 auto;padding:0 24px 80px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--sage-light);padding-top:28px}
+    .btn-back{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--text-light);font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;border:1px solid var(--sage-light);background:var(--white);transition:all 0.2s ease}
+    .btn-back:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top{display:inline-flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--sage-light);cursor:pointer;color:var(--text-light);font-family:'Noto Sans TC',sans-serif;font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;transition:all 0.2s ease}
+    .btn-top:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+    /* ── FOOTER ── */
+    footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+      .menu-toggle{display:block}
+      .article-header h1{font-size:1.6rem}
+      .article-content blockquote{font-size:1.1rem;padding:22px 22px}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../../index.html#podcast">Podcast</a>
+      <a href="../../index.html#about">關於我</a>
+      <a href="../../blog/index.html">Blog</a>
+      <a href="/qa/index.html">Q&amp;A</a>
+      <a href="/note/index.html">Note</a>
+      <a href="../../index.html#contact" class="cta">聯絡我</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HEADER ── -->
+<div class="article-header">
+  <a href="../index.html" class="back-link">← 回到 Note</a>
+  <div class="note-badge"><span class="tag">Note</span></div>
+  <h1>不要等待對的時機，而是主動創造時機</h1>
+  <div class="article-meta">2026 年 10 月 26 日</div>
+</div>
+
+<!-- ── ARTICLE ── -->
+<div class="article-content">
+
+  <blockquote>Don’t wait for the right time, create the right timing.</blockquote>
+  <p class="quote-source">（不要等待對的時機，而是主動創造時機。）</p>
+
+  <p>與其等待最低的價格才進場，不如<strong>及早加入市場</strong>，跟著大盤一起走上去。</p>
+
+  <p>減肥的人總是說明天再開始，或是等忙完這陣子，才能專心執行。但經驗告訴我們，與其一再拖延，不如<strong>先採取行動</strong>。只要開始做了，就有機會逐漸進入狀況。</p>
+
+  <p>不過，每次看到這些名言佳句，覺得它們似乎很有道理時，我還是會試著想想：<strong>有沒有可能存在相反的例子？</strong>🤔</p>
+
+  <p>答案肯定是有的。</p>
+
+  <p>比方說，從小就聽過<strong>「欲速則不達」、「三思而後行」</strong>，這些句子都引導我們凡事不急躁、別太衝動。對比上面說的「不要等待、要主動創造時機」，乍看之下好像有點衝突，但其實<strong>兩者不一定互相矛盾</strong>。</p>
+
+  <p>因為<strong>「主動創造時機」不代表不思考，「三思而後行」也不代表一直等待。</strong>一個人完全可以先想清楚，再主動創造機會。名言是被壓縮過的經驗，省略了適用的條件：「馬上行動」是對拖延的人說的，「三思而後行」是對衝動的人說的，針對的是相反的問題。<strong>名言沒有對錯，只有適不適合現在的自己。</strong></p>
+
+  <p>所以，真正值得我們反思的，不是「立即行動」與「三思而後行」哪一個才對，而是：</p>
+
+  <p><strong>我們究竟是在等待更好的時機，還是在等待一個讓自己完全不必承擔風險的時機？</strong></p>
+
+  <p>這兩者看似相似，卻有很大的不同。</p>
+
+  <p>又比方說，當你遇到推銷員向你推銷商品，或是銀行邀請你借錢時，他們也可能告訴你：「現在不做，以後就沒機會了！」或是「要懂得把握良機！」這個例子則提醒我們，有些人會利用「把握時機」的說法，促使你在資訊不足的情況下做決定。這其實是<strong>在利用緊迫感，讓人跳過思考</strong>。如果在衝動又不了解狀況的情況下套用這句名言，後果可能就不那麼理想了。</p>
+
+  <p>所以我認為，終究要<strong>隨時掌握自己的狀態，清楚自己想去哪裡，並保持前進的速度感</strong>。這裡的速度感，指的是要察覺自己是否只是因為害怕承擔不成功、不完美的後果而停在原地。如果是，那麼你不前進，時間也還是會走，要趕快做出決定，<strong>把握時間，採取行動</strong>。</p>
+
+</div>
+
+<!-- ── BOTTOM NAV ── -->
+<div class="bottom-nav">
+  <a href="../index.html" class="btn-back">← 回到 Note</a>
+  <button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    回頂部
+  </button>
+</div>
+
+<footer>
+  <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
