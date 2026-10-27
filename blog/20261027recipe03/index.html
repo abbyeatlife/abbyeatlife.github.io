@@ -458,6 +458,14 @@
         .back-to-top { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 12px auto 0; height: 36px; padding: 0 18px; background: var(--sage); color: var(--white); border: none; border-radius: 8px; cursor: pointer; font-family: 'Noto Sans TC', sans-serif; font-size: 0.82rem; font-weight: 500; transition: background 0.2s ease; white-space: nowrap; }
         .back-to-top:hover { background: var(--bark); }
         .back-to-top svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    
+    .video-ref { display: flex; align-items: center; gap: 16px; background: var(--white); border: 1px solid rgba(193,127,89,0.25); border-radius: var(--radius); padding: 16px 20px; margin: 24px 0; text-decoration: none; transition: all 0.2s ease; box-shadow: var(--shadow-sm); }
+.video-ref:hover { background: var(--warm); border-color: var(--terracotta); }
+.video-icon { width: 44px; height: 44px; background: var(--terracotta); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.video-icon svg { width: 16px; height: 16px; fill: white; margin-left: 3px; }
+.video-info strong { display: block; font-size: 0.9rem; color: var(--bark); font-weight: 600; margin-bottom: 3px; }
+.video-info span { font-size: 0.78rem; color: var(--text-light); }
+        
     </style>
 </head>
 <body>
@@ -503,8 +511,18 @@
 
     <p>最近迷上日本飲食的「<strong>一汁三菜</strong>」。</p>
 
-    <p>起因是 YT 推播了一支影片，一位住在日本的英國人介紹這種吃法：一碗飯、一碗湯，再搭配主菜跟副菜。聽說它的雛形是日本傳統的本膳料理，也受到禪寺那種節制、惜物的精神影響，以春夏秋冬的當令食材順應自然，在有限中吃出精緻，不浪費食材，營養還能平衡，<strong>養生又養身</strong>。</p>
+    <p>起因是 YT 推播了一支影片，一位住在日本的廚師兼營養師介紹這種吃法：一碗飯、一碗湯，再搭配主菜跟副菜。聽說它的雛形是日本傳統的本膳料理，也受到禪寺那種節制、惜物的精神影響，以春夏秋冬的當令食材順應自然，在有限中吃出精緻，不浪費食材，營養還能平衡，<strong>養生又養身</strong>。</p>
 
+        <a href="https://youtu.be/OFmrd_warpQ?si=lBLUwREfpdq1gFQI" target="_blank" rel="noopener" class="video-ref">
+        <div class="video-icon">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="video-info">
+            <strong>How This One Japanese Meal Structure Solved My Biggest Problem With Food</strong>
+            <span>Dan Martin · YouTube（英文）</span>
+        </div>
+    </a>
+   
     <p>最吸引我的，除了我本來就喜歡日料，更是它<strong>超簡單的備料原則</strong>：這餐吃不完的留給下一餐，哪些食材可以提前準備，整個化繁為簡。</p>
 
     <div class="section-divider"><span class="dot"></span></div>
