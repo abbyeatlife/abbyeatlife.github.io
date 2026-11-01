@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>運動中可以吃東西嗎？ — Abby營養師</title>
+  <meta name="description" content="學生在訓練快沒力時吃一小塊無花果乾，問我這樣可以嗎？答案是可以，但更值得想的是：為什麼會練到快沒力？從訓練時間、飲食到修復，一次整理給想增肌的你。">
+  <meta property="og:title" content="運動中可以吃東西嗎？ — Abby營養師">
+  <meta property="og:description" content="學生在訓練快沒力時吃一小塊無花果乾，問我這樣可以嗎？答案是可以，但更值得想的是：為什麼會練到快沒力？從訓練時間、飲食到修復，一次整理給想增肌的你。">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://abbyeatlife.github.io/blog/20261101qa13/">
+  <meta property="og:image" content="https://abbyeatlife.github.io/images/og-default.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+      --cream:#FDFBF7;--bark:#3D3229;--bark-light:#6B5E52;
+      --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+      --qa-blue:#4A7FA5;--qa-blue-lt:#EBF2F7;
+      --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+      --radius:12px;--radius-lg:20px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+    nav.scrolled{box-shadow:var(--shadow-md)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+    .nav-logo span{color:var(--sage)}
+    .nav-links{display:flex;gap:8px;align-items:center}
+    .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+    .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+    .nav-links a.cta{background:var(--sage);color:var(--white)}
+    .nav-links a.cta:hover{background:var(--bark)}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+    .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+
+    /* HEADER */
+    .article-header{padding:100px 24px 40px;max-width:760px;margin:0 auto}
+    .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+    .back-link:hover{color:var(--bark)}
+    .series-badge{display:inline-flex;align-items:center;gap:8px;background:var(--qa-blue-lt);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+    .series-badge .tag{font-size:0.75rem;font-weight:600;color:var(--qa-blue);letter-spacing:0.05em}
+    .article-header h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;color:var(--bark);line-height:1.35;letter-spacing:-0.02em;margin-bottom:16px}
+    .article-meta{font-size:0.88rem;color:var(--text-light);display:flex;align-items:center;gap:16px}
+    .article-meta .author{font-weight:500;color:var(--bark)}
+
+    /* COVER */
+    .article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
+    .css-cover-g{width:100%;height:200px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);background:var(--cream);border:1px solid rgba(74,127,165,0.2);border-left:6px solid var(--qa-blue);display:flex;flex-direction:column;justify-content:center;padding:28px 32px;position:relative;overflow:hidden}
+    .css-cover-g::after{content:'Q';position:absolute;right:-8px;bottom:-20px;font-family:'Playfair Display',serif;font-size:140px;font-weight:600;color:var(--qa-blue);opacity:0.07;line-height:1;pointer-events:none;user-select:none}
+    .css-cover-g .cover-badge{display:inline-block;background:var(--qa-blue);color:var(--white);font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:10px;width:fit-content}
+    .css-cover-g .cover-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:600;color:var(--bark);line-height:1.35;position:relative;z-index:1}
+    .css-cover-g .cover-sub{font-size:0.8rem;color:var(--qa-blue);margin-top:8px;font-weight:500;position:relative;z-index:1}
+
+    /* ARTICLE */
+    .article-content{max-width:760px;margin:0 auto;padding:0 24px 60px}
+    .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:20px}
+    .article-content h2{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:600;color:var(--bark);margin:48px 0 20px;padding:10px 16px;background:var(--qa-blue-lt);border-radius:8px;display:inline-block}
+    .article-content strong{color:var(--bark);font-weight:600}
+
+    .qa-question{background:var(--qa-blue-lt);border-left:4px solid var(--qa-blue);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin-bottom:28px;font-size:1.05rem;font-weight:500;color:var(--bark);line-height:1.7}
+    .qa-question::before{content:'Q｜';color:var(--qa-blue);font-weight:700}
+
+    /* 數據卡片 */
+    .data-highlight{background:var(--white);border:1px solid rgba(74,127,165,0.2);border-radius:var(--radius);padding:24px 28px;margin:24px 0;display:flex;flex-direction:column;gap:12px}
+    .data-highlight .dh-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--qa-blue);margin-bottom:4px}
+    .data-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .data-pill{background:var(--qa-blue-lt);border-radius:8px;padding:10px 18px;text-align:center;min-width:120px}
+    .data-pill .dp-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;color:var(--qa-blue);line-height:1.2}
+    .data-pill .dp-label{font-size:0.75rem;color:var(--text-light);margin-top:2px}
+    .data-arrow{font-size:1.2rem;color:var(--text-light)}
+    .data-note{font-size:0.88rem;color:var(--text-light);line-height:1.7;border-top:1px dashed rgba(74,127,165,0.2);padding-top:12px;margin-top:4px}
+
+    .info-box{background:rgba(74,127,165,0.06);border:1px solid rgba(74,127,165,0.2);border-radius:var(--radius);padding:16px 20px;margin:20px 0}
+    .info-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--qa-blue);margin-bottom:8px}
+    .info-box p{font-size:0.95rem;color:var(--bark);line-height:1.8;margin:0 0 8px}
+    .info-box p:last-child{margin:0}
+
+    /* 三步驟建議 */
+    .steps{display:flex;flex-direction:column;gap:16px;margin:24px 0}
+    .step-card{background:var(--white);border:1px solid rgba(74,127,165,0.15);border-radius:var(--radius);padding:20px 24px;display:flex;gap:16px;align-items:flex-start}
+    .step-num{flex-shrink:0;width:36px;height:36px;background:var(--qa-blue);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1rem;font-weight:600}
+    .step-body .step-title{font-weight:600;color:var(--bark);margin-bottom:6px;font-size:1rem}
+    .step-body p{font-size:0.93rem;color:var(--text);line-height:1.85;margin:0}
+
+    /* 熱量速查表（本篇未使用） */
+    .kcal-table-wrap{margin:24px 0}
+    .kcal-table-header{background:var(--qa-blue);color:var(--white);padding:12px 20px;font-size:0.85rem;font-weight:600;letter-spacing:0.04em;border-radius:var(--radius) var(--radius) 0 0}
+    table.kcal-table{width:100%;border-collapse:collapse;background:var(--white);box-shadow:var(--shadow-sm);border-radius:0 0 var(--radius) var(--radius);overflow:hidden;font-size:0.9rem}
+    .kcal-table th{background:var(--qa-blue-lt);color:var(--qa-blue);font-weight:700;padding:10px 16px;text-align:left;font-size:0.8rem;letter-spacing:0.05em}
+    .kcal-table td{padding:10px 16px;border-bottom:1px solid var(--sage-pale);color:var(--text)}
+    .kcal-table tr:last-child td{border-bottom:none}
+    .kcal-table tr:nth-child(even) td{background:#FAFCFE}
+    .kcal-table td.kcal{text-align:right;font-weight:600;color:var(--bark);white-space:nowrap}
+    .kcal-table td.note{color:var(--text-light);font-size:0.8rem}
+
+    .disclaimer{background:#F7F5F0;border:1px solid var(--sage-light);border-radius:var(--radius);padding:16px 20px;margin-top:32px}
+    .disclaimer p{font-size:0.85rem;color:var(--text-light);line-height:1.7;margin:0}
+
+    .article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
+    .article-tags .tag{background:var(--sage-pale);color:var(--sage);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
+
+    /* 繼續閱讀 */
+    .related-articles{max-width:760px;margin:0 auto;padding:0 24px 48px}
+    .related-articles h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--bark);margin-bottom:16px;text-align:center}
+    .related-grid{display:flex;flex-direction:column;gap:8px}
+    .related-card{background:var(--white);border-radius:var(--radius);padding:13px 20px;text-decoration:none;border:1px solid rgba(139,158,126,0.15);transition:all .2s ease;text-align:center}
+    .related-card:hover{background:var(--sage-pale);border-color:var(--sage-light)}
+    .related-card .rc-h{font-size:.9rem;font-weight:500;color:var(--bark-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .related-card:hover .rc-h{color:var(--bark)}
+    .back-to-top{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px auto 0;height:36px;padding:0 18px;background:var(--sage);color:var(--white);border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:.82rem;font-weight:500;transition:background .2s ease;white-space:nowrap}
+    .back-to-top:hover{background:var(--bark)}
+    .back-to-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+    /* 作者卡片 */
+    .article-footer{max-width:760px;margin:0 auto;padding:0 24px 80px}
+    .article-footer-divider{border:none;border-top:1px solid var(--sage-light);margin-bottom:36px}
+    .author-card{display:flex;align-items:center;gap:20px;background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)}
+    .author-avatar{width:64px;height:64px;border-radius:50%;background:var(--sage-pale);flex-shrink:0;overflow:hidden}
+    .author-avatar img{width:100%;height:100%;object-fit:cover}
+    .author-info h4{font-size:1rem;font-weight:500;color:var(--bark);margin-bottom:4px}
+    .author-info p{font-size:.85rem;color:var(--text-light);line-height:1.6}
+    .author-links{display:flex;gap:8px;margin-top:10px}
+    .author-links a{font-size:.8rem;padding:4px 12px;border-radius:50px;text-decoration:none;background:var(--sage-pale);color:var(--sage);font-weight:500;transition:all .2s ease}
+    .author-links a:hover{background:var(--sage);color:var(--white)}
+
+    footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+
+    /* 重點摘錄 */
+    .takeaway{background:var(--white);border:1px solid rgba(74,127,165,0.2);border-radius:var(--radius);padding:22px 26px;margin:24px 0}
+    .takeaway .dh-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--qa-blue);margin-bottom:6px}
+    .takeaway .tk-sub{font-size:0.88rem;color:var(--text-light);margin-bottom:14px;line-height:1.7}
+    .takeaway ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+    .takeaway li{position:relative;padding-left:28px;font-size:0.96rem;line-height:1.85;color:var(--text)}
+    .takeaway li::before{content:'✓';position:absolute;left:0;top:0;color:var(--qa-blue);font-weight:700}
+    .step-body .info-box{margin:14px 0 0}
+    .info-box ul{list-style:none;margin:4px 0 10px;display:flex;flex-direction:column;gap:6px}
+    .info-box li{position:relative;padding-left:18px;font-size:0.93rem;color:var(--bark);line-height:1.75}
+    .info-box li::before{content:'•';position:absolute;left:4px;color:var(--qa-blue);font-weight:700}
+    .info-box .box-label.sp{text-transform:none;font-size:0.8rem;letter-spacing:0.04em}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+      .menu-toggle{display:block}
+      .article-header h1{font-size:1.7rem}
+      .author-card{flex-direction:column;text-align:center}
+      .author-links{justify-content:center}
+      .article-content h2{font-size:1.2rem}
+      .data-row{flex-direction:column;gap:8px}
+      .data-arrow{transform:rotate(90deg)}
+    }
+  </style>
+<base target="_blank">
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../../index.html#podcast">Podcast</a>
+      <a href="../../index.html#about">關於我</a>
+      <a href="/blog/index.html">Blog</a>
+      <a href="/qa/index.html">Q&amp;A</a>
+      <a href="/note/index.html">Note</a>
+      <a href="../../index.html#contact" class="cta">聯絡我</a>
+    </div>
+  </div>
+</nav>
+
+<div class="article-header">
+  <a href="../index.html" class="back-link">← 回到所有文章</a>
+  <div class="series-badge"><span class="tag">飲食筆記</span></div>
+  <h1>運動中<br>可以吃東西嗎？</h1>
+  <div class="article-meta">
+    <span class="author">Abby營養師</span>
+    <span>2026 年 11 月 1 日</span>
+  </div>
+</div>
+
+<div class="article-cover">
+  <div class="css-cover-g">
+    <div class="cover-badge">飲食筆記</div>
+    <div class="cover-title">運動中<br>可以吃東西嗎？</div>
+    <div class="cover-sub">運動營養 · 增肌 · 訓練補給 · 熟齡運動</div>
+  </div>
+</div>
+
+<div class="article-content">
+
+  <div class="qa-question">
+    運動到一半快沒力的時候，吃一小塊果乾可以嗎？
+  </div>
+
+  <p>上次有氧課下課，一位學生的媽媽拿了一顆無花果乾給我，笑著說：「老師辛苦了！」</p>
+
+  <p>老實說，我不太習慣一運動完馬上吃東西，但學生的好意實在盛情難卻啊～還好不是蛋糕、珍珠奶茶，只是一小塊果乾而已，🙂我就欣然地吃下去了。</p>
+
+  <p>她一邊看我吃，一邊說她現在都會在訓練快要沒力的時候吃這個，是教練說沒關係的。我說：「很好啊，你現在有在上重訓喔？」她說對呀，<strong>每個禮拜兩次</strong>，上完我的課還會繼續訓練。</p>
+
+  <p>因為她知道我也是營養師，所以順便問我：「請問我在運動途中吃這個，應該沒關係吧？」看得出來她蠻在意的。畢竟她前面都先說了教練說 OK，但還是想再找一個人確認。</p>
+
+  <p>不過我比較龜毛，所以多追問了幾句，因為這種問題的答案<strong>真的要看情境，而且很個人化</strong>。我問：「那你一次訓練都多久啊？」她說大概 <strong>2 個小時</strong>，所以覺得快沒力氣的時候，就趕快吃一小口。</p>
+
+  <p>其實這時候我的腦子裡有超多想法（又是我個人的執念啊）。我一邊想，眼前這位太太是熟齡族，大概 50 到 60 歲，身形很瘦，尤其四肢纖細，給我的感覺是肌肉量偏少的那種。我不曉得她運動的目的是什麼，可能就是想維持活動的生活吧？但她又說有請教練，聽她描述的訓練方式，應該是想增肌；也有可能她自己其實也不太清楚，就是純粹在運動。</p>
+
+  <p>反正她都問了，我就來講講我的看法。</p>
+
+  <h2>我跟她分享的幾個原則</h2>
+
+  <div class="steps">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">先回答她的問題：這一小口果乾，沒有問題</div>
+        <p>訓練時間比較長的時候，補充一點<strong>快速吸收的碳水</strong>很合理，果乾方便又好帶，是不錯的選擇。所以重點不是「能不能吃」，而是「<strong>為什麼會練到快沒力</strong>」。</p>
+        <div class="info-box">
+          <div class="box-label sp">如果運動中真的需要補充一點，可以怎麼選？</div>
+          <p><strong>先檢討整天，再考慮中途補充。</strong>如果常常練到一半沒力，先回頭看看運動前一兩個小時有沒有吃東西，還有這一整天吃得夠不夠。把這些補好，很多時候就不需要在運動中途吃東西了。一般來說，運動時間不到一個小時，通常也不太需要特別補充。</p>
+          <p>如果真的練到一半覺得需要補一點，可以記住三個簡單原則：</p>
+          <ul>
+            <li><strong>份量小：</strong>一次大約 <strong>10–20 公克碳水</strong>就好（約半根香蕉，或一小把 15–25 g 的果乾），目的是撐過接下來的訓練，不是吃一餐。</li>
+            <li><strong>好消化：</strong>以碳水為主，不要太油、纖維太多。油脂和大量纖維在運動中會讓胃不舒服。</li>
+            <li><strong>配水慢慢吃：</strong>小口吃，搭配一點水，不要一次吃很多。</li>
+          </ul>
+          <p><strong>常見的選擇：</strong></p>
+          <ul>
+            <li>香蕉</li>
+            <li>果乾（無花果乾、葡萄乾、椰棗這一類）</li>
+            <li>一小塊地瓜、半個小飯糰、半片吐司</li>
+            <li>運動飲料小口喝</li>
+          </ul>
+          <p><strong>這個時候不太適合：</strong>炸物、蛋糕、巧克力、大把堅果，或是一大盤生菜這種高油、高纖、份量大的食物。</p>
+        </div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">「快要沒力氣」不一定等於身體缺乏糖分</div>
+        <p>可能是運動前吃得不夠、訓練時間太長、休息不足、訓練強度超出當下能力，甚至只是局部肌肉疲勞。所以無花果乾可以吃，但如果<strong>每次都必須靠運動中途補充食物才能撐完訓練</strong>，也值得回頭檢視整體的飲食與訓練安排。</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">運動 2 個小時，時間真的有點長</div>
+        <p>時間拉長之後，強度和動作品質比較難維持，疲勞累積了，不代表有效的訓練量就更多，<strong>對增肌的目的性也就沒那麼明確</strong>。很多人以為練越久越有效，其實不一定喔。（這部分我在文末的<a href="#extend" target="_self" style="color:var(--qa-blue);text-decoration:underline;text-underline-offset:3px;">延伸聊聊</a>再多說一點）</p>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">增肌的關鍵在「修復」，不只是「練」</div>
+        <p>肌肉是在<strong>休息，加上吃進去的營養</strong>之後才長出來的。訓練量和頻率要抓得剛剛好，既要給身體訓練，也要給身體修復的時間，所以吃的部分，真的不要太壓榨自己。</p>
+        <div class="info-box">
+          <div class="box-label">用車子來想像</div>
+          <p>你可以想像自己就像一台車，如果現在的油箱還不夠大，能量儲備也不充足，就不一定能夠支撐長時間、高強度的訓練。不能一邊要求身體狂操猛練，卻又不給它足夠的燃料（吃得太少，或是運動前空腹太久）。</p>
+        </div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <div class="step-title">想增肌，先把「吃夠」當作基本盤</div>
+        <p>總熱量要夠，蛋白質也要夠，而且最好<strong>平均分配在每一餐</strong>，而不是一餐吃很多、其他餐幾乎沒有。有些人身形很瘦，又很在意自己吃進去的東西，反而會不知不覺吃得比身體需要的還少。這樣就算再認真訓練，身體也沒有足夠的材料可以長肌肉。</p>
+      </div>
+    </div>
+  </div>
+
+  <p>（澄清一下：當然我在現場沒有這麼嘮叨😆 是寫文章的時候，才會花這麼多功夫把細節寫出來啦！）</p>
+
+  <p>現場我說這些的時候，看她頻頻點頭，一直說「我知道我知道」，我也就適可而止了。畢竟每個人的階段和目標都不太一樣，我不想把自己的觀點強加在別人身上。</p>
+
+  <p>最後我只叮嚀了一句：「<strong>反正不要受傷就好啦！</strong>怕你沒力氣、動作做不穩，受傷就得不償失囉！」</p>
+
+  <h2 id="extend">延伸聊聊：重訓練太久，會變成有氧嗎？</h2>
+
+  <p>常聽到一種說法：重訓的時間拉長，身體用的能量系統就會變成有氧，所以練太久就像在做有氧。</p>
+
+  <p>這個理解<strong>有一部分是對的，但不完全</strong>。</p>
+
+  <p>簡單說，重訓每一組用力的時間很短，主要靠身體的<strong>快速供能系統</strong>；組與組之間休息的時候，則是靠<strong>有氧系統</strong>在幫忙恢復。所以訓練拉得越長，有氧系統參與的比例確實會變多，但這不代表重訓就「變成」有氧運動了。坊間會這樣說，是因為這樣比較容易讓大家理解，但這其實是一個<strong>簡化的說法</strong>。</p>
+
+  <p>真正需要留意的是：<strong>時間拉太長，後面幾組的重量和動作品質往往已經下滑</strong>。這時候再繼續練，得到的刺激不一定比前面更好，卻要付出更多恢復的代價。對想增肌的人來說，與其把時間拉長，不如把每一組練得紮實一點。</p>
+
+  <h2>重點摘錄</h2>
+
+  <div class="takeaway">
+    <div class="dh-label">Key Takeaways</div>
+    <div class="tk-sub">給「瘦瘦的、很在意吃、想增肌但做法不太像增肌」的人</div>
+    <ul>
+      <li><strong>訓練中吃一小口碳水（像果乾）是可以的</strong>，不用有罪惡感。真正該問的是：為什麼會練到快沒力？</li>
+      <li><strong>「快沒力氣」不一定是缺糖</strong>，也可能是運動前吃不夠、訓練太久、休息不足、強度超出當下能力，或只是局部肌肉疲勞。</li>
+      <li><strong>如果每次都要靠中途吃東西才撐得完</strong>，就值得回頭檢視整體的飲食與訓練安排。</li>
+      <li><strong>別忘了給身體足夠的營養</strong>，瘦的人肌肉量也可能偏少，吃得少反而更難增肌。</li>
+      <li><strong>增肌三要素缺一不可</strong>：足夠的訓練刺激、足夠的營養（熱量和蛋白質）、足夠的恢復（睡眠和休息日）。</li>
+      <li><strong>練越久不等於越有效</strong>，時間太長，動作品質會下滑，不一定比短而紮實的訓練更好。</li>
+      <li><strong>蛋白質平均分配在每一餐</strong>，不要集中在一餐，也不要只靠訓練後補一次。</li>
+      <li><strong>別為了「不想吃太多」而壓榨自己</strong>，身體沒有足夠的燃料，動作容易走樣，受傷風險也會上升。</li>
+      <li><strong>目標不同，做法也不同</strong>：只是想維持活動的生活，和想增肌，訓練與飲食的安排並不一樣，先釐清目的再來調整。</li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">
+    <p>運動與飲食的安排，需要考量每個人的健康史、所處階段與個人目標。本文僅為個人的經驗分享與觀點，並非針對特定對象的建議。如有個別需求，建議尋求合格的專業人員（如營養師、教練或醫師）進行評估與規劃。</p>
+  </div>
+
+  <div class="article-tags">
+    <span class="tag">運動營養</span>
+    <span class="tag">增肌</span>
+    <span class="tag">訓練補給</span>
+    <span class="tag">熟齡運動</span>
+    <span class="tag">蛋白質</span>
+    <span class="tag">Q&amp;A</span>
+  </div>
+
+</div>
+
+
+<!-- 繼續閱讀 -->
+<div class="related-articles">
+  <h4>繼續閱讀</h4>
+  <div class="related-grid">
+    <a href="../20260316book17/index.html" class="related-card">
+      <div class="rc-h">運動前後怎麼吃？</div>
+    </a>
+    <a href="../20260316book16/index.html" class="related-card">
+      <div class="rc-h">減脂要做有氧還是重訓？</div>
+    </a>
+    <a href="../20260317podcast05/index.html" class="related-card">
+      <div class="rc-h">更年期前最值得投資的事：重訓與骨密度保養</div>
+    </a>
+  </div>
+  
+  <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    回頂部
+  </button>
+</div>
+
+<!-- 作者卡片 -->
+<div class="article-footer">
+  <hr class="article-footer-divider">
+  <div class="author-card">
+    <div class="author-avatar">
+      <img src="../../images/abby01.png" alt="Abby">
+    </div>
+    <div class="author-info">
+      <h4>Abby 營養師</h4>
+      <p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+      <div class="author-links">
+        <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms">🎙️ Podcast</a>
+        <a href="https://www.instagram.com/abby.eat.life/">📷 Instagram</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Abby Eat Life — Abby營養師休息室 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
