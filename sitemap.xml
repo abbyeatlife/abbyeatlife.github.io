@@ -94,6 +94,12 @@
   </url>
 
   <!-- ── BLOG ── -->
+  <url>
+    <loc>https://abbyeatlife.github.io/blog/20261104/index.html</loc>
+    <lastmod>2026-11-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url> 
    <url>
     <loc>https://abbyeatlife.github.io/blog/20261101qa13/index.html</loc>
     <lastmod>2026-11-01</lastmod>
