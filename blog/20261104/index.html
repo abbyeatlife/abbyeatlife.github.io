@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我算的跟 AI 算的差好多，到底該信誰？ — Abby營養師</title>
+    <meta name="description" content="AI 看照片算熱量、App 記錄飲食，數字有落差時該相信誰？用兩位學生的真實例子，聊聊如何讓工具為我所用，而不是被數字牽著走。">
+    <meta property="og:title" content="我算的跟 AI 算的差好多，到底該信誰？">
+    <meta property="og:description" content="當數字開始讓人焦慮，也許是時候回頭看看自己怎麼使用工具。">
+    <meta property="og:type" content="article">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        /* 內文圖片 */
+.article-cover img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+        :root {
+            --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+            --cream:#FDFBF7;--warm:#F5EDE3;--bark:#3D3229;--bark-light:#6B5E52;
+            --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+            --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+            --radius:12px;--radius-lg:20px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+        body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+        nav.scrolled{box-shadow:var(--shadow-md)}
+        .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+        .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+        .nav-logo span{color:var(--sage)}
+        .nav-links{display:flex;gap:8px;align-items:center}
+        .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+        .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+        .nav-links a.cta{background:var(--sage);color:var(--white)}
+        .nav-links a.cta:hover{background:var(--bark)}
+        .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+        .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+        .article-header{padding:100px 24px 40px;max-width:760px;margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+        .back-link:hover{color:var(--bark)}
+        .series-badge{display:inline-flex;align-items:center;gap:8px;background:var(--sage-pale);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+        .series-badge .tag{font-size:0.75rem;font-weight:600;color:var(--terracotta);letter-spacing:0.05em}
+        .article-header h1{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:600;color:var(--bark);line-height:1.35;letter-spacing:-0.02em;margin-bottom:16px}
+        .article-meta{font-size:0.88rem;color:var(--text-light);display:flex;align-items:center;gap:16px}
+        .article-meta .author{font-weight:500;color:var(--bark)}
+        .article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
+        .css-cover{width:100%;height:240px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,#6B8560 0%,#8B9E7E 50%,#4A6B3F 100%)}
+        .css-cover::before{content:'';position:absolute;top:-30px;right:-30px;width:160px;height:160px;border:2px solid rgba(255,255,255,0.2);border-radius:50%}
+        .css-cover::after{content:'';position:absolute;top:10px;right:10px;width:80px;height:80px;border:1px solid rgba(255,255,255,0.12);border-radius:50%}
+        .css-cover .cover-cat{font-size:0.7rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-bottom:8px}
+        .css-cover .cover-title{font-family:'Playfair Display',serif;font-size:1.3rem;line-height:1.4;font-weight:600;color:var(--white)}
+        .article-content{max-width:760px;margin:0 auto;padding:0 24px 60px}
+        .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:20px}
+        .article-content h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:600;color:var(--bark);margin:48px 0 20px}
+        .article-content h3{font-size:1.05rem;font-weight:600;color:var(--terracotta);margin:32px 0 14px;letter-spacing:0.02em}
+        .article-content strong{color:var(--bark);font-weight:600}
+        .article-content a{color:var(--terracotta);text-underline-offset:3px}
+        .highlight-box{background:var(--sage-pale);border-left:4px solid var(--sage);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
+        .highlight-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
+        .highlight-box p{margin-bottom:10px;font-size:1rem;color:var(--bark)}
+        .highlight-box p:last-child{margin-bottom:0}
+        .note-box{background:rgba(193,127,89,0.07);border-left:4px solid var(--terracotta);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
+        .note-box .box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--terracotta);margin-bottom:10px}
+        .note-box p{margin-bottom:8px;font-size:0.95rem;color:var(--bark)}
+        .note-box p:last-child{margin-bottom:0}
+        .pull-quote{border-left:4px solid var(--terracotta);background:rgba(193,127,89,0.06);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:28px 0}
+        .pull-quote p{font-family:'Playfair Display','Noto Sans TC',serif;font-size:1.1rem;font-style:italic;color:var(--bark);line-height:1.75;margin:0!important}
+        .key-point{background:var(--bark);color:var(--white);border-radius:var(--radius);padding:22px 26px;margin:28px 0}
+        .key-point p{color:rgba(255,255,255,0.92);font-size:1rem;margin-bottom:0;line-height:1.9}
+        .key-point strong{color:var(--sage-light)}
+        .section-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:40px 0}
+        .section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--sage-light)}
+        .section-divider .dot{width:5px;height:5px;background:var(--sage-light);border-radius:50%}
+        /* LINE 對話泡泡 */
+        .chat{display:flex;flex-direction:column;gap:12px;margin:26px 0 28px}
+        .bubble{max-width:88%;padding:12px 18px;border-radius:18px;font-size:0.97rem;line-height:1.85;color:var(--text)}
+        .bubble small{display:block;font-size:0.75rem;color:var(--text-light);margin-bottom:2px}
+        .bubble.stu{align-self:flex-start;background:var(--white);border:1px solid rgba(139,158,126,0.22);border-bottom-left-radius:4px;box-shadow:var(--shadow-sm)}
+        .bubble.me{align-self:flex-end;background:var(--sage-pale);border:1px solid var(--sage-light);border-bottom-right-radius:4px}
+        .bubble.me p{font-size:0.97rem;line-height:1.85;margin-bottom:10px}
+        .bubble.me p:last-child{margin-bottom:0}
+        .sticker-note{align-self:flex-start;font-size:0.82rem;color:var(--text-light);padding:0 6px}
+        .case-label{display:inline-block;background:var(--terracotta);color:var(--white);font-family:'Noto Sans TC',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.06em;padding:2px 12px;border-radius:50px;margin-bottom:10px}
+        .article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
+        .article-tags .tag{background:var(--sage-pale);color:var(--sage);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
+        .related-articles{max-width:760px;margin:0 auto;padding:0 24px 48px}
+        .related-articles h4{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--bark);margin-bottom:16px;text-align:center}
+        .related-grid{display:flex;flex-direction:column;gap:8px}
+        .related-card{background:var(--white);border-radius:var(--radius);padding:13px 20px;text-decoration:none;border:1px solid rgba(139,158,126,0.15);transition:all .2s ease;text-align:center}
+        .related-card:hover{background:var(--sage-pale);border-color:var(--sage-light)}
+        .related-card .rc-h{font-size:.9rem;font-weight:500;color:var(--bark-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .related-card:hover .rc-h{color:var(--bark)}
+        .back-to-top{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px auto 0;height:36px;padding:0 18px;background:var(--sage);color:var(--white);border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:.82rem;font-weight:500;transition:background .2s ease;white-space:nowrap}
+        .back-to-top:hover{background:var(--bark)}
+        .back-to-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+        .article-footer{max-width:760px;margin:0 auto;padding:0 24px 80px}
+        .article-footer-divider{border:none;border-top:1px solid var(--sage-light);margin-bottom:36px}
+        .author-card{display:flex;align-items:center;gap:20px;background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)}
+        .author-avatar{width:64px;height:64px;border-radius:50%;background:var(--sage-pale);flex-shrink:0;overflow:hidden}
+        .author-avatar img{width:100%;height:100%;object-fit:cover}
+        .author-info h4{font-size:1rem;font-weight:500;color:var(--bark);margin-bottom:4px}
+        .author-info p{font-size:.85rem;color:var(--text-light);line-height:1.6}
+        .author-links{display:flex;gap:8px;margin-top:10px}
+        .author-links a{font-size:.8rem;padding:4px 12px;border-radius:50px;text-decoration:none;background:var(--sage-pale);color:var(--sage);font-weight:500;transition:all .2s ease}
+        .author-links a:hover{background:var(--sage);color:var(--white)}
+        footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+        @media(max-width:768px){
+            .nav-links{display:none}
+            .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+            .menu-toggle{display:block}
+            .article-header h1{font-size:1.7rem}
+            .author-card{flex-direction:column;text-align:center}
+            .author-links{justify-content:center}
+            .bubble{max-width:96%}
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+        <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+            <a href="/index.html#podcast">Podcast</a>
+            <a href="/index.html#about">關於我</a>
+            <a href="/blog/index.html">Blog</a>
+            <a href="/qa/index.html">Q&amp;A</a>
+            <a href="/note/index.html">Note</a>
+            <a href="/index.html#contact" class="cta">聯絡我</a>
+        </div>
+    </div>
+</nav>
+
+<div class="article-header">
+    <a href="../index.html" class="back-link">← 回到所有文章</a>
+    <div class="series-badge"><span class="tag">減脂觀念</span></div>
+    <h1>我算的跟 AI 算的差好多，到底該信誰？</h1>
+    <div class="article-meta">
+        <span class="author">Abby營養師</span>
+        <span>2026 年 11 月 4 日</span>
+    </div>
+</div>
+
+<div class="article-cover">
+    <div class="css-cover">
+        <div class="cover-cat">減脂觀念</div>
+        <div class="cover-title">我算的跟 AI 算的差好多，到底該信誰？</div>
+    </div>
+</div>
+
+<div class="article-content">
+
+    <p>越來越多學生會用 <strong>AI 看照片算熱量</strong>，或是用 App 記錄每天吃了什麼。方便是真的方便，不過我也開始收到一種新的問題：</p>
+
+    <div class="pull-quote">
+        <p>「老師，我自己算的跟 AI 算的差很多，到底該相信誰？」</p>
+    </div>
+
+    <p>這篇想用兩個學生的真實例子，聊聊我怎麼看這件事。如果你也對 AI 輔助飲食管理有點困惑，或許可以一起想想看。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2><span class="case-label">案例一</span><br>兩個數字，不知道信誰</h2>
+
+    <p>有天學生傳來她的午餐照片，包含飯及配菜等，她自己概估食物重量去查資料庫，算出了一個熱量，但跟 Gemini 看照片估的結果差了不少。</p>
+
+    <div class="chat">
+        <div class="bubble stu"><small>學生</small>老師～這是我今天的午餐還有估算的熱量，跟 Gemini 幫我算的差很多，不知道差在哪裡。</div>
+    </div>
+
+    <p>我把 AI 的回覆看了一遍。它很有禮貌，先稱讚這餐「豐盛又均衡」，接著把每樣食材拆開，各給一段蛋白質、脂質、碳水的範圍，最後加總成大約 350～430 大卡，還稱讚是「完美的便當」。</p>
+
+    <p>看到這裡，我注意到幾件事：</p>
+
+    <div class="note-box">
+        <div class="box-label">我的觀察</div>
+        <p>每一項的描述都是「約半碗飯」「約 2 小片」「約一口大小」，這些全部都是<strong>用眼睛猜的</strong>。照片看不到秤重，也看不到肉燥裡的油。最後給的也不是一個數字，而是<strong>一個範圍</strong>。</p>
+    </div>
+
+    <p>所以我個人的判斷是：<strong>她自己算的，應該比 AI 準</strong>。針對這件事，我覺得更值得提醒學生的兩個重點：<strong>（1）營養數字本來就無法算精準，（2）不要讓自己被數字牽著走。</strong></p>
+
+    <p>我給她的回覆是這樣：</p>
+
+    <div class="chat">
+        <div class="bubble me">
+            <p>妳問差在哪裡，我簡單整理一下：</p>
+            <p>1️⃣　兩邊的假設不一樣：AI 只能看照片猜，看不到重量也看不到油。像是肉燥有多少、飯有多少，它都是用「看起來」去估，所以才會差這麼多。妳自己用重量去查資料庫算的，會比較貼近實際。</p>
+            <p>2️⃣　營養數字本來就是估計值：食材的品種、烹調方式、油量都會有差異，一般抓 10 到 20% 的誤差都很正常。而且吃下去之後，身體實際吸收多少也因人而異，所以數字再精準也不等於真實的熱量。</p>
+            <p>3️⃣　真正要看的是趨勢：體重的一週走勢、腰圍、體力和精神狀態，這些搭配起來看，比單一餐的數字可靠很多。吃是一回事，身體怎麼反應才是關鍵，所以飲食調整過程不是只把焦點放在計算多準、紀錄寫得多完整，終究要同步觀察身體怎麼反應，有沒有朝著目標有趨勢地前進，這是一邊驗證著妳的做法方向是否沒有太多偏差。</p>
+            <p>4️⃣　開始記錄熱量、學會看營養成分，這很棒。但如果發現自己開始「為了數字焦慮」、「AI 算一個數字、自己算一個數字，不知道信誰」，那就是工具在控制你，而不是你在使用工具。</p>
+            <p>這餐妳算得很好，最近的趨勢也不錯，繼續保持這樣的覺察力就好 👍</p>
+        </div>
+    </div>
+
+    <h3>後來她說：這兩天體重又停下來了（體重沒有持續下降）</h3>
+
+    <div class="chat">
+        <div class="bubble stu"><small>學生</small>這兩天體重又停下來了 😭</div>
+        <div class="bubble me">
+            <p>你要看平均值，</p>
+            <p>還有合理的改變時間，</p>
+            <p>以及你的起跑點。</p>
+            <p>基本觀念跟心態，還需要再給自己多熟悉一下唷，加油！</p>
+        </div>
+        <div class="sticker-note">（學生回了一個 OK 的貼圖）</div>
+    </div>
+
+    <p><strong>體態改變的速度，在短時間（3-5 天甚至一週內）都還是不穩定的變化，也就是不能用這短短幾天來定奪成敗。</strong>單日的數字會跳，體重會跳，心情也會跳，所以我才會一直提醒要看「平均值」。至於「起跑點」，每個人的身體狀態、生活型態都不同，拿自己跟別人比、或拿今天跟昨天比，都容易讓人誤會自己「沒進步」。</p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2><span class="case-label">案例二</span><br>App 說我吃太多，但其實……</h2>
+
+    <p>另一位學生使用的 App 有個功能：加好友之後，可以看到對方吃了什麼。我們設定的目標是每天 <strong>1500 大卡</strong>左右，但她連續兩天記錄的是 <strong>1800～1900 大卡</strong>，其中有一天蛋白質還吃到 <strong>170 公克</strong>。</p>
+
+    <p>我平常不會給學生壓力，也不會責怪，那天純粹是好奇，傳訊息問她：</p>
+
+    <div class="chat">
+        <div class="bubble me">這天這樣吃，會不會覺得很飽呀？（畢竟蛋白質這麼多）</div>
+        <div class="bubble stu"><small>學生</small>我覺得 App 會高估啦 😂</div>
+        <div class="bubble me">App 有時會高估，有時也會低估，重點還是要看體態發展的趨勢啦。不過妳到底有沒有覺得很飽呢？蛋白質的量還不少耶。</div>
+        <div class="bubble stu"><small>學生</small>可能最近生理期快到了，所以蠻容易想吃東西……其實昨天的記錄還少記了半碗飯跟一碗湯。</div>
+    </div>
+
+    <p>接下來應該就不用多說了，哈哈。</p>
+
+    <p>我很喜歡這個小插曲，因為它剛好示範了兩件事。第一，<strong>工具確實有誤差，但在我的經驗裡，最大的誤差來源常常是「記錄的人」</strong>：忘了記、少記、憑印象記。第二，<strong>我只是問了一句「會不會很飽」，學生就願意說出生理期前食慾變好、還有漏記的事</strong>。比起指出「你超標了」，好奇的提問更能讓人把真實的狀況說出來。</p>
+
+    <p><strong>延伸閱讀：</strong><a href="https://abbyeatlife.github.io/blog/20260316book19/index.html">月經前多吃點，真的不會胖嗎？</a></p>
+
+    <div class="section-divider"><span class="dot"></span></div>
+
+    <h2>所以，AI 和 App 該怎麼用？</h2>
+
+    <p>回到最開始的問題：兩個數字差很多，該相信誰？我的答案是，<strong>兩個都不用當成真理</strong>。把它們當成參考，而不是判決。</p>
+
+    <h3>1. 數字是估計值，不是判決</h3>
+
+    <p>食材品種、烹調方式、油量都會造成差異，<strong>10～20% 的誤差很正常</strong>。就算算得再準，身體吸收利用多少，又是另一回事。更何況，最容易被忽略的誤差往往來自記錄本身，像是<a href="https://abbyeatlife.github.io/blog/20260313book06/index.html">七成人都低估了自己吃多少</a>（出自〈外食族減脂實戰：超商、便當店、餐廳都能吃〉）。</p>
+
+    <h3>2. 用趨勢取代單點</h3>
+
+    <p>單一餐、單一天的數字參考價值有限。把<strong>體重的週平均、腰圍、體力、精神狀態</strong>一起看，才是比較完整的樣子。</p>
+
+    <h3>3. 想要比較準，就用重量加資料庫</h3>
+
+    <p>AI 看不到重量和油，這是它的限制，不是你的問題。<strong>AI 拍照估算適合當作快速參考</strong>；想要精準一點的時候，秤重加上查資料庫仍然比較可靠。</p>
+
+    <h3>4. 記錄要誠實，但不需要完美</h3>
+
+    <p>漏記一碗湯，不是罪過，只是讓數據失真一點。重點不是記得完美，而是<strong>知道這份紀錄大概偏在哪裡</strong>。例如「那天有漏記一碗湯，實際應該更高」，這樣的紀錄就已經很有用了。</p>
+
+    <h3>5. 讓工具為你所用，而不是被工具擺布</h3>
+
+    <p>如果你發現自己開始為數字焦慮、不知道該相信誰、甚至因此停下來不想記錄，<strong>這是個訊號：該放鬆一點，回頭看看大方向。</strong></p>
+
+    <div class="key-point">
+        <p>飲食管理最終要的是一種<strong>可以長期維持的平衡</strong>。數字只是幫助我們看見自己的工具，它不該讓我們更不安心。</p>
+    </div>
+
+    <p>如果你最近也正為「這個數字到底準不準」而煩惱，希望這篇能讓你稍微鬆一口氣。先把工具放回該放的位置，然後好好吃飯、好好觀察自己的身體。</p>
+
+    <div class="article-tags">
+        <span class="tag">減脂觀念</span>
+        <span class="tag">AI 算熱量</span>
+        <span class="tag">飲食記錄</span>
+        <span class="tag">熱量估算</span>
+        <span class="tag">體態管理</span>
+        <span class="tag">心態</span>
+    </div>
+
+</div>
+
+<div class="related-articles">
+    <h4>繼續閱讀</h4>
+    <div class="related-grid">
+        <a href="../20260519/index.html" class="related-card">
+            <div class="rc-h">老師你有在算熱量嗎？</div>
+        </a>
+        <a href="../20260618/index.html" class="related-card">
+            <div class="rc-h">飲食紀錄要記生重還是熟重？</div>
+        </a>
+        <a href="../20260628/index.html" class="related-card">
+            <div class="rc-h">體重好幾天沒動，是卡關了還是身體在留水？</div>
+        </a>
+    </div>
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+        回頂部
+    </button>
+</div>
+
+<div class="article-footer">
+    <hr class="article-footer-divider">
+    <div class="author-card">
+        <div class="author-avatar">
+            <img src="../../images/abby01.png" alt="Abby">
+        </div>
+        <div class="author-info">
+            <h4>Abby 營養師</h4>
+            <p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+            <div class="author-links">
+                <a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+                <a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll',()=>{
+        document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20);
+    });
+</script>
+</body>
+</html>
