@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>意志力是高耗能資源 — Abby的Note</title>
+  <meta name="description" content="生病時為什麼無法專注、寫不出文字？意志力或許是一種高耗能的有限資源，與其凡事靠硬撐，不如創造一個不太需要動用意志力的環境。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+      --cream:#FDFBF7;--bark:#3D3229;--bark-light:#6B5E52;
+      --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+      --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+      --radius:12px;--radius-lg:20px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+    nav.scrolled{box-shadow:var(--shadow-md)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+    .nav-logo span{color:var(--sage)}
+    .nav-links{display:flex;gap:8px;align-items:center}
+    .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+    .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+    .nav-links a.cta{background:var(--sage);color:var(--white)}
+    .nav-links a.cta:hover{background:var(--bark)}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+    .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+
+    /* ── HEADER ── */
+    .article-header{padding:100px 24px 32px;max-width:680px;margin:0 auto}
+    .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+    .back-link:hover{color:var(--bark)}
+    .note-badge{display:inline-flex;align-items:center;background:var(--sage-pale);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+    .note-badge .tag{font-size:0.75rem;font-weight:600;color:var(--sage);letter-spacing:0.05em}
+    .article-header h1{font-family:'Playfair Display','Noto Sans TC',serif;font-size:2rem;font-weight:600;color:var(--bark);line-height:1.4;letter-spacing:-0.02em;margin-bottom:12px}
+    .article-meta{font-size:0.85rem;color:var(--text-light)}
+
+    /* ── ARTICLE BODY ── */
+    .article-content{max-width:680px;margin:0 auto;padding:32px 24px 60px}
+    .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:24px}
+    .article-content p:last-child{margin-bottom:0}
+    .article-content strong{color:var(--bark);font-weight:700}
+
+    /* ── 引用 ── */
+    .quote-box{border-left:5px solid var(--sage);background:var(--sage-pale);border-radius:0 var(--radius-lg) var(--radius-lg) 0;padding:26px 32px;margin:8px 0 14px}
+    .article-content .quote-box p{font-size:1.1rem;font-weight:500;line-height:1.9;color:var(--bark);margin-bottom:0}
+    .article-content .quote-note{font-size:0.92rem;line-height:1.8;color:var(--text-light);text-align:right;margin-bottom:32px}
+
+    /* ── 小知識 ── */
+    .tip-box{border-left:4px solid var(--terracotta);background:var(--sage-pale);border-radius:0 var(--radius) var(--radius) 0;padding:22px 26px;margin:8px 0 28px}
+    .tip-box .tip-title{font-size:0.95rem;font-weight:700;color:var(--terracotta);margin-bottom:8px;letter-spacing:0.03em}
+    .article-content .tip-box p{font-size:0.98rem;line-height:1.9;margin-bottom:12px}
+    .article-content .tip-box p:last-child{margin-bottom:0}
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav{max-width:680px;margin:0 auto;padding:0 24px 80px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--sage-light);padding-top:28px}
+    .btn-back{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--text-light);font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;border:1px solid var(--sage-light);background:var(--white);transition:all 0.2s ease}
+    .btn-back:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top{display:inline-flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--sage-light);cursor:pointer;color:var(--text-light);font-family:'Noto Sans TC',sans-serif;font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;transition:all 0.2s ease}
+    .btn-top:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+    /* ── FOOTER ── */
+    footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+      .menu-toggle{display:block}
+      .article-header h1{font-size:1.6rem}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../../index.html#podcast">Podcast</a>
+      <a href="../../index.html#about">關於我</a>
+      <a href="../../blog/index.html">Blog</a>
+      <a href="/qa/index.html">Q&amp;A</a>
+      <a href="/note/index.html">Note</a>
+      <a href="../../index.html#contact" class="cta">聯絡我</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HEADER ── -->
+<div class="article-header">
+  <a href="../index.html" class="back-link">← 回到 Note</a>
+  <div class="note-badge"><span class="tag">Note</span></div>
+  <h1>意志力是高耗能資源</h1>
+  <div class="article-meta">2026 年 11 月 7 日</div>
+</div>
+
+<!-- ── ARTICLE ── -->
+<div class="article-content">
+
+  <div class="quote-box">
+    <p>意志力就像肌肉一樣，用多了會疲乏，是一種有限的資源。</p>
+  </div>
+  <p class="quote-note">心理學家羅伊・鮑邁斯特 Roy Baumeister 提出的「自我耗損」理論（Ego Depletion）</p>
+
+  <p>我在發燒感冒的那幾天特別有感。平時我在早晨總能做點<strong>閱讀寫作</strong>的事，生病的那幾天即便有著大把時間，卻連一分鐘都<strong>無法專注</strong>：看著文字，不是很快閉上眼想睡，就是有看沒有懂，寫作更不用說，一點靈感都沒有，是要怎麼敲鍵盤。</p>
+
+  <p>我查了相關資料來解釋自己的狀況，原來是這樣的：大腦<strong>前額葉皮質</strong>（Prefrontal Cortex，負責邏輯、專注、抵抗誘惑與寫作思考）是最需要耗費心力運作的區域，而生病時，身體的資源配置完全不同。</p>
+
+  <p><strong>免疫系統全力運轉。</strong>發炎時，活化的免疫細胞與細胞激素（Cytokines）的大量合成需要很高的能量，身體的資源會<strong>優先調度給免疫戰場</strong>。</p>
+
+  <div class="tip-box">
+    <div class="tip-title">💡 小知識：發炎因子如何影響大腦</div>
+    <p>病毒感染時，免疫系統會釋放<strong>白介素-1（IL-1）、白介素-6（IL-6）與腫瘤壞死因子（TNF-α）</strong>。這些發炎因子會透過血腦障壁或迷走神經傳遞訊號給大腦，影響<strong>多巴胺與血清素</strong>等神經傳導系統。</p>
+  </div>
+
+  <p><strong>這是演化出來的防禦機制。</strong>彷彿大腦「故意」讓你感到<strong>疲憊、低落、缺乏動機與注意力渙散</strong>，強迫你停下高耗能的社交、工作與創作，<strong>把能量留給身體抗病</strong>。</p>
+
+  <p>所以在疾病或身體狀態不佳時，難以聚精會神是很自然的事。不過我倒想到，有些人似乎<strong>天生有著過人的意志力</strong>，生病不舒服也擊倒不了他們，這又要怎麼解釋呢？</p>
+
+  <p>有些人能在生病時硬撐工作，可能是因為強大的外部壓力讓<strong>交感神經高度興奮</strong>，分泌出腎上腺素與高濃度的皮質醇（Cortisol）。腎上腺素會暫時<strong>掩蓋疼痛與疲憊感</strong>，並把血糖拉高。</p>
+
+  <p>代價是，這相當於<strong>「賒借未來的健康」</strong>：長期處在高壓、高皮質醇的狀態會抑制免疫功能，可能讓恢復變慢，也更容易再次生病。而且「感覺撐得住」不代表表現真的沒打折，只是<strong>身體的警訊被暫時蓋過去了</strong>。</p>
+
+  <p>另一種可能是<strong>「習慣化的自動駕駛」</strong>。例行公事、回覆簡單訊息、填寫表格這類重複性高的工作，對大腦的耗能相對低，即使生病也能勉強完成。</p>
+
+  <p>總之，不管意志力是不是真如肌肉般會耗盡，專注力與自制力在身體狀態不佳時確實會大打折扣。所以<strong>不要凡事都想著靠意志力硬撐</strong>，反而是要<strong>創造一個不太需要動用意志力的環境與條件</strong>，生活才更容易順利運作。</p>
+
+</div>
+
+<!-- ── BOTTOM NAV ── -->
+<div class="bottom-nav">
+  <a href="../index.html" class="btn-back">← 回到 Note</a>
+  <button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    回頂部
+  </button>
+</div>
+
+<footer>
+  <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
