@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>熱量赤字會造成基礎代謝下降？ — Abby營養師</title>
+<meta name="description" content="熱量赤字會讓基礎代謝一路掉嗎？熱量赤字就是吃不到基礎代謝嗎？從一則臉書分享出發，聊聊代謝適應、TDEE，以及網路迷思是怎麼被『圓融結尾』合理化的。">
+<meta property="og:title" content="熱量赤字會造成基礎代謝下降？">
+<meta property="og:description" content="代謝適應是真的，但被說得太誇張了。">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<style>
+:root{--sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;--cream:#FDFBF7;--warm:#F5EDE3;--bark:#3D3229;--bark-light:#6B5E52;--terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;--shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);--radius:12px;--radius-lg:20px}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow .3s ease}
+nav.scrolled{box-shadow:var(--shadow-md)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+.nav-logo span{color:var(--sage)}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-links a{text-decoration:none;color:var(--text-light);font-size:.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all .2s ease}
+.nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+.nav-links a.cta{background:var(--sage);color:var(--white)}
+.nav-links a.cta:hover{background:var(--bark)}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+.article-header{padding:100px 24px 40px;max-width:760px;margin:0 auto}
+.back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:.88rem;font-weight:500;margin-bottom:28px;transition:color .2s ease}
+.back-link:hover{color:var(--bark)}
+.series-badge{display:inline-flex;align-items:center;gap:8px;background:var(--sage-pale);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+.series-badge .tag{font-size:.75rem;font-weight:600;color:var(--terracotta);letter-spacing:.05em}
+.article-header h1{font-family:'Playfair Display','Noto Sans TC',serif;font-size:2.4rem;font-weight:600;color:var(--bark);line-height:1.35;letter-spacing:-.02em;margin-bottom:16px}
+.article-meta{font-size:.88rem;color:var(--text-light);display:flex;align-items:center;gap:16px}
+.article-meta .author{font-weight:500;color:var(--bark)}
+.article-cover{max-width:760px;margin:0 auto 40px;padding:0 24px}
+.css-cover{width:100%;height:240px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);display:flex;flex-direction:column;justify-content:flex-end;padding:32px;position:relative;overflow:hidden;background:linear-gradient(135deg,#6B8560 0%,#8B9E7E 50%,#4A6B3F 100%)}
+.css-cover::before{content:'';position:absolute;top:-30px;right:-30px;width:160px;height:160px;border:2px solid rgba(255,255,255,.2);border-radius:50%}
+.css-cover::after{content:'';position:absolute;top:10px;right:10px;width:80px;height:80px;border:1px solid rgba(255,255,255,.12);border-radius:50%}
+.css-cover .cover-cat{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:8px}
+.css-cover .cover-title{font-family:'Playfair Display','Noto Sans TC',serif;font-size:1.3rem;line-height:1.4;font-weight:600;color:var(--white)}
+.article-content{max-width:760px;margin:0 auto;padding:0 24px 60px}
+.article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:20px}
+.article-content h2{font-family:'Playfair Display','Noto Sans TC',serif;font-size:1.6rem;font-weight:600;color:var(--bark);margin:48px 0 20px}
+.article-content strong{color:var(--bark);font-weight:600}
+.article-content a{color:var(--terracotta);text-underline-offset:3px}
+.highlight-box{background:var(--sage-pale);border-left:4px solid var(--sage);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
+.highlight-box .box-label,.note-box .box-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--sage);margin-bottom:10px}
+.highlight-box p{margin-bottom:10px;font-size:1rem;color:var(--bark)}
+.highlight-box p:last-child,.note-box p:last-child{margin-bottom:0}
+.note-box{background:rgba(193,127,89,.07);border-left:4px solid var(--terracotta);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:24px 0}
+.note-box .box-label{color:var(--terracotta)}
+.note-box p{margin-bottom:8px;font-size:.95rem;color:var(--bark)}
+.pull-quote{border-left:4px solid var(--terracotta);background:rgba(193,127,89,.06);border-radius:0 var(--radius) var(--radius) 0;padding:20px 24px;margin:28px 0}
+.pull-quote p{font-family:'Playfair Display','Noto Sans TC',serif;font-size:1.1rem;font-style:italic;color:var(--bark);line-height:1.75;margin:0!important}
+.key-point{background:var(--bark);color:var(--white);border-radius:var(--radius);padding:22px 26px;margin:28px 0}
+.key-point p{color:rgba(255,255,255,.92);font-size:1rem;margin-bottom:0;line-height:1.9}
+.key-point strong{color:var(--sage-light)}
+.section-divider{display:flex;align-items:center;justify-content:center;gap:12px;margin:40px 0}
+.section-divider::before,.section-divider::after{content:'';flex:1;height:1px;background:var(--sage-light)}
+.section-divider .dot{width:5px;height:5px;background:var(--sage-light);border-radius:50%}
+/* 臉書貼文卡片 */
+.fb-card{background:var(--white);border:1px solid rgba(139,158,126,.22);border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:20px 22px;margin:28px 0}
+.fb-head{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.fb-av{width:42px;height:42px;border-radius:50%;background:var(--sage-light);color:var(--bark);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0}
+.fb-av.dr{background:var(--warm)}
+.fb-name{font-weight:600;font-size:.95rem;color:var(--bark);line-height:1.3}
+.fb-sub{font-size:.75rem;color:var(--text-light)}
+.article-content .fb-card p{font-size:.97rem;line-height:1.9;margin-bottom:10px}
+.fb-inner{background:var(--cream);border:1px solid rgba(139,158,126,.28);border-radius:var(--radius);padding:16px 18px;margin-top:14px}
+.fb-inner .fb-head{margin-bottom:8px}
+.fb-inner .fb-av{width:34px;height:34px;font-size:.85rem}
+.fb-react{display:flex;gap:18px;font-size:.82rem;color:var(--text-light);border-top:1px solid rgba(139,158,126,.18);margin-top:16px;padding-top:10px}
+.fb-cm{display:flex;gap:8px;margin-top:10px;align-items:flex-start}
+.fb-cm .fb-av{width:30px;height:30px;font-size:.72rem;background:var(--warm)}
+.fb-cm .b{background:var(--warm);border-radius:16px;padding:6px 14px;font-size:.88rem;color:var(--bark)}
+.fb-cap{text-align:center;font-size:.78rem;color:var(--text-light);margin:-14px 0 28px}
+.article-tags{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--sage-light);display:flex;flex-wrap:wrap;gap:.5rem}
+.article-tags .tag{background:var(--sage-pale);color:var(--sage);font-size:12px;padding:.3rem .9rem;border-radius:999px;letter-spacing:.05em}
+.related-articles{max-width:760px;margin:0 auto;padding:0 24px 48px}
+.related-articles h4{font-family:'Playfair Display','Noto Sans TC',serif;font-size:1.1rem;font-weight:600;color:var(--bark);margin-bottom:16px;text-align:center}
+.related-grid{display:flex;flex-direction:column;gap:8px}
+.related-card{background:var(--white);border-radius:var(--radius);padding:13px 20px;text-decoration:none;border:1px solid rgba(139,158,126,.15);transition:all .2s ease;text-align:center}
+.related-card:hover{background:var(--sage-pale);border-color:var(--sage-light)}
+.related-card .rc-h{font-size:.9rem;font-weight:500;color:var(--bark-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.related-card:hover .rc-h{color:var(--bark)}
+.back-to-top{display:flex;align-items:center;justify-content:center;gap:6px;margin:12px auto 0;height:36px;padding:0 18px;background:var(--sage);color:var(--white);border:none;border-radius:8px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;font-size:.82rem;font-weight:500;transition:background .2s ease;white-space:nowrap}
+.back-to-top:hover{background:var(--bark)}
+.back-to-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.article-footer{max-width:760px;margin:0 auto;padding:0 24px 80px}
+.article-footer-divider{border:none;border-top:1px solid var(--sage-light);margin-bottom:36px}
+.author-card{display:flex;align-items:center;gap:20px;background:var(--white);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-sm)}
+.author-avatar{width:64px;height:64px;border-radius:50%;background:var(--sage-pale);flex-shrink:0;overflow:hidden}
+.author-avatar img{width:100%;height:100%;object-fit:cover}
+.author-info h4{font-size:1rem;font-weight:500;color:var(--bark);margin-bottom:4px}
+.author-info p{font-size:.85rem;color:var(--text-light);line-height:1.6}
+.author-links{display:flex;gap:8px;margin-top:10px}
+.author-links a{font-size:.8rem;padding:4px 12px;border-radius:50px;text-decoration:none;background:var(--sage-pale);color:var(--sage);font-weight:500;transition:all .2s ease}
+.author-links a:hover{background:var(--sage);color:var(--white)}
+footer{background:var(--bark);color:rgba(255,255,255,.6);text-align:center;padding:32px 24px;font-size:.82rem}
+@media(max-width:768px){.nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}.menu-toggle{display:block}.article-header h1{font-size:1.7rem}.author-card{flex-direction:column;text-align:center}.author-links{justify-content:center}.fb-card{padding:16px}}
+.case-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:8px 0 28px}
+.case-card{background:var(--white);border-top:4px solid var(--sage);border-radius:var(--radius);box-shadow:var(--shadow-md);padding:22px 18px 20px;text-align:center}
+.case-card .ic{font-size:1.9rem;line-height:1;margin-bottom:10px}
+.case-card .t{font-weight:600;color:var(--bark);font-size:1rem;margin-bottom:6px}
+.case-card .d{font-size:.85rem;line-height:1.7;color:var(--text-light)}
+.ext-read{background:var(--sage-pale);border-radius:var(--radius);padding:12px 18px;margin:-4px 0 24px;font-size:.92rem}
+.article-content .ext-read p{font-size:.92rem;line-height:1.8;margin:0}
+.takeaways{background:var(--white);border:1px solid rgba(139,158,126,.3);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:28px 28px 20px;margin:20px 0 8px}
+.takeaways .kt{font-size:.75rem;font-weight:700;letter-spacing:.12em;color:var(--sage);margin-bottom:4px}
+.takeaways .ks{font-size:.88rem;color:var(--text-light);margin-bottom:16px}
+.takeaways ul{list-style:none}
+.takeaways li{position:relative;padding-left:30px;margin-bottom:14px;font-size:.98rem;line-height:1.85;color:var(--text)}
+.takeaways li::before{content:'✓';position:absolute;left:0;top:0;color:var(--terracotta);font-weight:700}
+@media(max-width:560px){.case-grid{grid-template-columns:1fr}.takeaways{padding:22px 20px 14px}}
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<nav id="navbar">
+<div class="nav-inner">
+<a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+<button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單"><span></span><span></span><span></span></button>
+<div class="nav-links">
+<a href="/index.html#podcast">Podcast</a>
+<a href="/index.html#about">關於我</a>
+<a href="/blog/index.html">Blog</a>
+<a href="/qa/index.html">Q&amp;A</a>
+<a href="/note/index.html">Note</a>
+<a href="/index.html#contact" class="cta">聯絡我</a>
+</div>
+</div>
+</nav>
+
+<div class="article-header">
+<a href="../index.html" class="back-link">← 回到所有文章</a>
+<div class="series-badge"><span class="tag">減脂觀念</span></div>
+<h1>熱量赤字會造成基礎代謝下降？</h1>
+<div class="article-meta"><span class="author">Abby營養師</span><span>2026 年 11 月 12 日</span></div>
+</div>
+
+<div class="article-cover">
+<div class="css-cover">
+<div class="cover-cat">減脂觀念</div>
+<div class="cover-title">熱量赤字會造成基礎代謝下降？</div>
+</div>
+</div>
+
+<div class="article-content">
+
+<p>前幾天看到臉友分享一篇醫師網紅的貼文，大意是：會在公開場合強烈反駁、貶低<strong>熱量赤字</strong>的人，有 <strong>95% 以上</strong>都跟商業利益有關。</p>
+
+<div class="fb-card">
+<div class="fb-head">
+<div class="fb-av">友</div>
+<div><div class="fb-name">臉友</div><div class="fb-sub">分享了貼文 · 🌐 公開</div></div>
+</div>
+<p>我公開反對用熱量赤字來減重啊</p>
+<p><strong>第一</strong>　當你進行一段時間的熱量赤字後，身體會以為你只需要這些就能活，於是就降低你的基礎代謝，此後你的熱量赤字只能越來越低，是要做鬼喔</p>
+<p><strong>第二</strong>　長期觀察下來，中年之後的人，每天吃不到基代的話，瘦下來看起來會老五歲以上，皮垂掉頭髮，氣色不佳，但還是有解方，就是去做醫美</p>
+<p>為了健康的活著，減重是必須的，但至少每天要吃到基代，然後搭配有氧加重訓，才能有結實而挺拔的身材</p>
+<div class="fb-inner">
+<div class="fb-head">
+<div class="fb-av dr">醫</div>
+<div><div class="fb-name">某位醫師網紅</div><div class="fb-sub">🌐 公開</div></div>
+</div>
+<p>我必須很誠實也很直白的去揭露一個殘酷的事實：任何經常在公開場合去強烈反駁，甚至試圖貶低熱量赤字論點的人，通常都另有目的，百分之 95 以上都跟商業利益有關。</p>
+</div>
+<div class="fb-react"><span>👍 ❤️ 讚</span><span>💬 留言</span><span>↪ 分享</span></div>
+<div class="fb-cm"><div class="fb-av">網</div><div class="b">講得真好</div></div>
+<div class="fb-cm"><div class="fb-av">網</div><div class="b">我也同意！</div></div>
+</div>
+<div class="fb-cap">▲ 臉友的分享（已匿名處理）</div>
+
+<p>白話來說，我理解到的大概是這位醫師認為，攻擊熱量赤字的人，不一定真的有不同的科學看法，更有可能是因為他們在賣別的東西、推銷其他概念（以下舉例是我自己的延伸），例如特定飲食法（生酮、斷食、低碳）、保健品、課程、減重產品或諮詢服務。先否定熱量赤字，才有空間推銷「我的方法比較特別」。</p>
+
+<p>而這位臉友在分享上方寫下，她自己就是那個<strong>公開反對用熱量赤字減重</strong>的人，認為熱量赤字會拉低基礎代謝率，而且吃不到基代就瘦下來的樣子會顯老。看完之後，我會心一笑，這兩點都是很多人<strong>在資訊不夠完整時，很容易出現的誤解</strong>。對此，我分享自己現在的觀點。</p>
+
+<div class="section-divider"><span class="dot"></span></div>
+
+<h2>熱量赤字會讓基礎代謝一路掉嗎？</h2>
+
+<p>當人為追求特定體態目標而進行較長時間的熱量赤字時，<strong>代謝適應是真的存在</strong>。過去很多減重實驗都發現（像是《明尼蘇達飢餓實驗》和減肥實境秀《超級減肥王》（The Biggest Loser）的追蹤），節食變瘦後，身體為了自保會偷偷「降速」，基礎代謝率掉得比預期還要多。這也是為什麼瘦下來之後，明明吃得跟以前一樣少，卻還是很容易復胖的原因之一。這兩個研究其實都是相當極端的情境：前者是熱量大幅腰斬的飢餓狀態，後者是大幅限制飲食，再加上每天大量運動。</p>
+
+<p>所以說熱量赤字一段時間後會影響基礎代謝率，這個概念是有根據的。但她說的那種「吃到代謝掉下去」的程度，多半出現在<strong>吃得太少、又沒有隨時調整</strong>的極端做法。比方說：</p>
+
+<div class="case-grid">
+<div class="case-card"><div class="ic">🍽️</div><div class="t">吃得遠低於基代</div><div class="d">例如一天只吃 800 大卡上下，身體會被迫「省電」</div></div>
+<div class="case-card"><div class="ic">🍚</div><div class="t">完全不吃澱粉</div><div class="d">能量來源砍掉一大塊，通常很難撐得久</div></div>
+<div class="case-card"><div class="ic">🥗</div><div class="t">只靠水煮餐</div><div class="d">蛋白質、油脂與微量營養素容易不足</div></div>
+<div class="case-card"><div class="ic">🏃</div><div class="t">大量有氧硬撐</div><div class="d">吃得少又動得多，肌肉更容易跟著流失</div></div>
+</div>
+
+<p>缺乏營養與肌力保護的做法，減掉的除了脂肪，還有不少肌肉，代謝才會掉得特別明顯，也特別難回升。</p>
+
+<p>關鍵在於找到<strong>適合身體能穩定執行的方式</strong>，循序漸進地製造熱量赤字，身體其實沒那麼容易進入「死命省電」的狀態。</p>
+
+<div class="pull-quote">
+<p>正確的熱量赤字應該是「活」的，而不是「死」的。</p>
+</div>
+
+<p>我們要隨時根據<strong>瘦身進度、是否遇到平台期，以及每天的活動量</strong>來做滾動式調整，絕對不是一開始設好數字就一路硬扣到底。</p>
+
+<h2>熱量赤字＝吃不到基礎代謝？</h2>
+
+<p>這個真的很容易被搞混。</p>
+
+<div class="key-point">
+<p>熱量赤字是用你一整天的<strong>總消耗熱量（TDEE）</strong>往下扣，絕對不是拿「基礎代謝率（BMR）」來砍。</p>
+</div>
+
+<div class="ext-read"><p><strong>延伸閱讀：</strong><a href="https://abbyeatlife.github.io/blog/20260311book03/index.html">一天到底該吃多少熱量？TDEE 完整計算教學</a></p></div>
+
+<p>我自己是營養師也是教練，帶學員減脂時，一定會運用熱量赤字，但前提是<strong>「必須吃超過基礎代謝」</strong>，在這個安全範圍內製造赤字。</p>
+
+<p>至於很多人擔心的瘦下來變老、皮鬆、掉髮，那通常是因為<strong>「熱量砍太兇」</strong>，加上蛋白質吃不夠、缺乏重訓、微量營養素不足等「配套沒做好」所引發的連鎖反應，並不是熱量赤字本身的錯。（直接把這些問題全部推給熱量赤字，其實是一種太過簡化的解釋吧。😌）</p>
+
+<h2>她的結論我也同意，不過……</h2>
+
+<p>吃到基礎代謝，搭配有氧和重訓，這個結論我完全同意。但經過我職業病對前面兩點的挑剔後，再回頭看這個圓融的結尾，不禁讓我想到：<strong>很多網路迷思不就是這樣來的嗎？</strong></p>
+
+<div class="note-box">
+<div class="box-label">迷思的生成方式</div>
+<p>先丟出幾個似是而非的論點，最後用一個大家都會同意的正確結論包起來，前面那些有爭議的觀念就這樣<strong>順理成章地被合理化</strong>了。</p>
+</div>
+
+<p>這篇還真就引來共鳴，底下有人留言「講得真好」、「我也同意！」，可以想像後面看到的人也很容易跟著附和，畢竟<strong>從眾是人性使然</strong>。就這樣，網路迷思的種子又被悄悄播下了一顆。</p>
+
+<p>當然，我因為在這個領域累積的經驗比較多，平常工作常接觸這類資訊，看事情的角度難免比較挑剔。不過我並不是想針對誰，這位臉友應該也是根據自身經驗很有感、很自然地分享，這本身沒有對錯；我只是單純想聊聊，<strong>這種常見的網路表達結構，無意間可能會怎麼影響我們看待事情的方式</strong>。</p>
+
+<h2>重點摘錄</h2>
+
+<div class="takeaways">
+<div class="kt">KEY TAKEAWAYS</div>
+<div class="ks">給「想減脂，又怕代謝越減越差」的人</div>
+<ul>
+<li><strong>代謝適應確實會發生，但不用過度焦慮。</strong>確保吃夠營養、循序漸進，避開「吃太少、盲目硬撐」這兩個地雷。</li>
+<li><strong>熱量赤字不等於吃得比基礎代謝還少。</strong>赤字是從 TDEE 往下扣，不是用 BMR 往下砍，吃在基代之上一樣可以有赤字。</li>
+<li><strong>好的熱量赤字是「活」的，不是一張寫死的菜單。</strong>依照你的減脂進度、是否遇到平台期，還有每天的活動量去做滾動式調整，而不是一開始訂好數字就盲目硬撐。</li>
+<li><strong>瘦下來變老、皮鬆、掉髮，多半是「配套沒做好」。</strong>常見原因是熱量砍太兇、蛋白質不足、缺乏重訓、微量營養素不足，不是赤字本身的錯。</li>
+<li><strong>結論正確，不等於過程沒問題。</strong>看到一個大家都同意的圓融結尾時，不妨先緩一下，回頭提出疑問，檢查論點是不是被順勢合理化了。特別是想親自在自己身上嘗試的方法，更值得花心思建立自己的見解。</li>
+</ul>
+</div>
+
+<div class="article-tags">
+<span class="tag">減脂觀念</span>
+<span class="tag">熱量赤字</span>
+<span class="tag">基礎代謝</span>
+<span class="tag">代謝適應</span>
+<span class="tag">TDEE</span>
+<span class="tag">網路迷思</span>
+</div>
+
+</div>
+
+<div class="related-articles">
+<h4>繼續閱讀</h4>
+<div class="related-grid">
+<a href="../20260313book08/index.html" class="related-card"><div class="rc-h">停滯期對策（上）：從吃的調整開始</div></a>
+<a href="../20260615/index.html" class="related-card"><div class="rc-h">說少吃多動有害的人，最後卻還是叫你少吃多動？</div></a>
+<a href="../20260315book15/index.html" class="related-card"><div class="rc-h">肌肉真的消耗更多熱量嗎？</div></a>
+</div>
+<button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+<svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>回頂部
+</button>
+</div>
+
+<div class="article-footer">
+<hr class="article-footer-divider">
+<div class="author-card">
+<div class="author-avatar"><img src="../../images/abby01.png" alt="Abby"></div>
+<div class="author-info">
+<h4>Abby 營養師</h4>
+<p>營養師、健身教練、Podcaster。分享日常觀察、體驗與感悟，給有緣的人。</p>
+<div class="author-links">
+<a href="https://open.firstory.me/user/ckozpivfd62q20873ef19znib/platforms" target="_blank">🎙️ Podcast</a>
+<a href="https://www.instagram.com/abby.eat.life/" target="_blank">📷 Instagram</a>
+</div>
+</div>
+</div>
+</div>
+
+<footer><p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p></footer>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20)});
+</script>
+</body>
+</html>
