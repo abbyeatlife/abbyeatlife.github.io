@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>跑步機上的接龍 — Abby的Note</title>
+  <meta name="description" content="在美國吃飽飯想散步卻只能走跑步機，意外在跑步機上玩起小時候的接龍，卡關、求助 AI、恍然大悟，也重溫了純粹專注的感覺。">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --sage:#8B9E7E;--sage-light:#C2D1B3;--sage-pale:#EFF3EB;
+      --cream:#FDFBF7;--bark:#3D3229;--bark-light:#6B5E52;
+      --terracotta:#C17F59;--white:#FFFFFF;--text:#2C2521;--text-light:#7A6E66;
+      --shadow-sm:0 1px 3px rgba(61,50,41,0.06);--shadow-md:0 4px 20px rgba(61,50,41,0.08);
+      --radius:12px;--radius-lg:20px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Noto Sans TC',sans-serif;color:var(--text);background:var(--cream);line-height:1.8;-webkit-font-smoothing:antialiased}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,247,0.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,158,126,0.12);transition:box-shadow 0.3s ease}
+    nav.scrolled{box-shadow:var(--shadow-md)}
+    .nav-inner{max-width:1100px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--bark);text-decoration:none}
+    .nav-logo span{color:var(--sage)}
+    .nav-links{display:flex;gap:8px;align-items:center}
+    .nav-links a{text-decoration:none;color:var(--text-light);font-size:0.9rem;font-weight:500;padding:6px 14px;border-radius:8px;transition:all 0.2s ease}
+    .nav-links a:hover{color:var(--bark);background:var(--sage-pale)}
+    .nav-links a.cta{background:var(--sage);color:var(--white)}
+    .nav-links a.cta:hover{background:var(--bark)}
+    .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+    .menu-toggle span{display:block;width:22px;height:2px;background:var(--bark);margin:5px 0;border-radius:2px}
+
+    /* ── HEADER ── */
+    .article-header{padding:100px 24px 32px;max-width:680px;margin:0 auto}
+    .back-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--sage);font-size:0.88rem;font-weight:500;margin-bottom:28px;transition:color 0.2s ease}
+    .back-link:hover{color:var(--bark)}
+    .note-badge{display:inline-flex;align-items:center;background:var(--sage-pale);border-radius:50px;padding:5px 14px;margin-bottom:16px}
+    .note-badge .tag{font-size:0.75rem;font-weight:600;color:var(--sage);letter-spacing:0.05em}
+    .article-header h1{font-family:'Playfair Display','Noto Sans TC',serif;font-size:2rem;font-weight:600;color:var(--bark);line-height:1.4;letter-spacing:-0.02em;margin-bottom:12px}
+    .article-meta{font-size:0.85rem;color:var(--text-light)}
+
+    /* ── ARTICLE BODY ── */
+    .article-content{max-width:680px;margin:0 auto;padding:32px 24px 60px}
+    .article-content p{font-size:1.05rem;line-height:2;color:var(--text);margin-bottom:24px}
+    .article-content p:last-child{margin-bottom:0}
+    .article-content strong{color:var(--bark);font-weight:700}
+
+    /* ── 結尾感想框 ── */
+    .reflection-box{border-left:5px solid var(--sage);background:var(--sage-pale);border-radius:0 var(--radius-lg) var(--radius-lg) 0;padding:28px 32px;margin:36px 0 0}
+    .article-content .reflection-box p{font-size:1.03rem;line-height:2;color:var(--bark);margin-bottom:0}
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav{max-width:680px;margin:0 auto;padding:0 24px 80px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--sage-light);padding-top:28px}
+    .btn-back{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--text-light);font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;border:1px solid var(--sage-light);background:var(--white);transition:all 0.2s ease}
+    .btn-back:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top{display:inline-flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--sage-light);cursor:pointer;color:var(--text-light);font-family:'Noto Sans TC',sans-serif;font-size:0.88rem;font-weight:500;padding:8px 16px;border-radius:8px;transition:all 0.2s ease}
+    .btn-top:hover{color:var(--bark);border-color:var(--sage);background:var(--sage-pale)}
+    .btn-top svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+
+    /* ── FOOTER ── */
+    footer{background:var(--bark);color:rgba(255,255,255,0.6);text-align:center;padding:32px 24px;font-size:.82rem}
+
+    @media(max-width:768px){
+      .nav-links{display:none}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:var(--cream);padding:16px 24px;box-shadow:var(--shadow-md)}
+      .menu-toggle{display:block}
+      .article-header h1{font-size:1.6rem}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="../../index.html" class="nav-logo">Abby<span>.</span></a>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="../../index.html#podcast">Podcast</a>
+      <a href="../../index.html#about">關於我</a>
+      <a href="../../blog/index.html">Blog</a>
+      <a href="/qa/index.html">Q&amp;A</a>
+      <a href="/note/index.html">Note</a>
+      <a href="../../index.html#contact" class="cta">聯絡我</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HEADER ── -->
+<div class="article-header">
+  <a href="../index.html" class="back-link">← 回到 Note</a>
+  <div class="note-badge"><span class="tag">Note</span></div>
+  <h1>跑步機上的接龍</h1>
+  <div class="article-meta">2026 年 11 月 13 日</div>
+</div>
+
+<!-- ── ARTICLE ── -->
+<div class="article-content">
+
+  <p>美國跟台灣很不同的一點，就是<strong>吃飽飯後想散步的路線好像不是太有趣</strong>。怎麼說呢？除非住在 downtown，不然通常一走出去就是<strong>一整片大馬路</strong>。但在亞洲多數國家，<strong>城市街道密集，出去散步一路上都燈火通明</strong>，還有許多店家可以邊走邊看。哎～總之，習慣吃飽散步的我，每次來美國也只好去<strong>健身房的跑步機</strong>上走（也比較安全😬）。</p>
+
+  <p>今天看到這台跑步機上有<strong>接龍</strong>可以玩。天哪，我上次玩接龍會不會是國小的時候？我開了一場新遊戲，用手觸控玩起來。印象中要依照撲克牌的黑、紅相接，由大到小按數字順序排下來，嗯嗯，就這樣，我邊走跑步機邊玩，<strong>時間不知不覺過得很快</strong>。玩到一半，整個畫面都是牌，但就是有種「<strong>怎麼可能這樣還不能過關</strong>」的感覺，我記得這個遊戲沒那麼難啊！我有點怕丟臉地左右觀望，還好健身房只有我一個人。於是我把畫面拍下來丟給 Gemini，問它：「我遊戲卡住了怎麼辦？」它回我：「這盤局幾乎要贏了，你可以開始把畫面中的 A 移到右上方的空格……」😳❗️</p>
+
+  <p>這下我才恍然大悟：對齁！我居然<strong>完全忘了這個規則</strong>，<strong>右上角的四個空格是讓四種花色的牌由小到大依序收納的</strong>，哈哈哈！</p>
+
+  <p>就這短短片刻，我的<strong>內心歷經了好幾個轉折</strong>：先是面對最熟悉的陌生遊戲，專注投入；接著開始有點絞盡腦汁；實在不行了，只好求助 AI；然後答案才看到第一行就突然被敲醒，記憶一下子全部湧上來。我對自己這整齣<strong>內心劇場</strong>感到好笑，這個笑裡有<strong>感嘆歲月的洗禮</strong>，也有很高興能<strong>重溫兒時那種投入遊戲的專注，以及破關的滿足感</strong>。視線移到跑步機的時間顯示，<strong>不知不覺，半個小時就這樣過去了</strong>。</p>
+
+  <p>能傾心投入一件事，<strong>沒有背景壓力、沒有干擾，純粹專注在當下的感受</strong>，真的很棒。不得不說，這種經驗在長大後<strong>越來越少</strong>。也許是活久了，許多事的<strong>新鮮感退潮</strong>；也許是成人世界的生活備受各方壓力，以至於真有空檔時，也只想耍廢，而<strong>疏於照顧內心世界</strong>。無論如何，我很感激每次有這種事情出現，讓我覺得<strong>人生挺有趣的</strong>。</p>
+
+  <div class="reflection-box">
+    <p>仔細想想，長大後這樣<strong>單純投身其中、不為任何目的</strong>的事，好像真的不多了。很多時候我們想著要放鬆、要紓壓，於是去吃美食、去購物、無意識地狂滑手機，甚至安排旅行來尋找出口；但這些帶著「<strong>我要休息</strong>」或「<strong>我要消費</strong>」目的的形式，有時<strong>未必真的能洗滌深層的疲憊</strong>。或許真正能療癒大人的，不是某種刻意的放鬆行程，而是像這樣，在某個不經意的片刻裡，重新找回「<strong>只是單純玩一場遊戲</strong>」的專注與快樂。</p>
+  </div>
+
+</div>
+
+<!-- ── BOTTOM NAV ── -->
+<div class="bottom-nav">
+  <a href="../index.html" class="btn-back">← 回到 Note</a>
+  <button class="btn-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    回頂部
+  </button>
+</div>
+
+<footer>
+  <p>© 2026 Abby Eat Life — Abby營養師 ✦ 用心生活，好好吃飯</p>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+
+</body>
+</html>
