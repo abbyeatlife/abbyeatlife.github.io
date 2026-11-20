@@ -66,6 +66,17 @@
         .mech-list{list-style:none;margin:24px 0}
         .mech-list li{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:18px 22px;margin-bottom:12px;font-size:1rem;line-height:1.9;border-left:4px solid var(--yellow)}
         .mech-list li .num{display:inline-block;color:var(--yellow-deep);font-weight:700;margin-right:6px}
+        .chain-label{text-align:center;font-size:.8rem;font-weight:700;letter-spacing:.1em;color:var(--yellow-deep);margin:28px 0 12px}
+        .chain-label.good{color:var(--sage)}
+        .chain{display:flex;align-items:stretch;justify-content:center;gap:6px;margin:0 0 8px}
+        .chain-step{flex:1 1 0;min-width:0;background:var(--white);border:1.5px solid var(--yellow-light);border-radius:var(--radius);padding:14px 8px;text-align:center;box-shadow:var(--shadow-sm)}
+        .chain-step .em{font-size:1.8rem;display:block;line-height:1.3}
+        .chain-step .tx{font-size:.85rem;font-weight:500;color:var(--bark);line-height:1.5;margin-top:4px}
+        .chain-arrow{align-self:center;flex:0 0 auto;color:var(--yellow-deep);font-weight:700;font-size:1.2rem}
+        .chain-loop{text-align:center;font-size:.9rem;font-weight:600;color:var(--terracotta);background:rgba(193,127,89,0.07);border-radius:var(--radius);padding:10px 14px;margin:10px 0 8px}
+        .chain.good .chain-step{border-color:var(--sage-light);background:var(--sage-pale)}
+        .chain.good .chain-arrow{color:var(--sage)}
+        @media(max-width:600px){.chain{flex-direction:column}.chain-arrow{transform:rotate(90deg)}}
         .takeaway-card{background:var(--white);border:1px solid rgba(139,158,126,0.18);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);padding:32px 34px;margin:20px 0 28px}
         .takeaway-card .tk-label{font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--sage);margin-bottom:4px}
         .takeaway-card .tk-sub{font-size:0.92rem;color:var(--text-light);margin-bottom:20px}
@@ -173,6 +184,27 @@
     <p>其實這是對身體保養的正向循環：長期血糖大起大落與慢性發炎密切相關，而當我們打破了這個循環，身體會以更高效的方式運作，感到身心滿足、輕盈自在，不再被食物綑綁。</p>
 
     <p>這樣的惡性循環，我也常在學員身上看到。很多人來找我上課時，體重已經超標不少，目標是減重。但其實更需要關注的，是造成體重上升背後的元兇。飲食過量當然是原因之一，但<strong>「怎麼吃」會讓身體代謝效率衰退</strong>，並引發你怎麼吃都吃不飽、吃不滿足，或是很容易飢餓。這就跟「第一口不吃讓血糖劇烈上升的食物」這項原則很有關係。</p>
+
+    <div class="chain-label">⚠️ 先吃醣的連鎖反應</div>
+    <div class="chain">
+        <div class="chain-step"><span class="em">🍞</span><div class="tx">第一口先吃醣<br>（麵包、飲料）</div></div>
+        <div class="chain-arrow">➜</div>
+        <div class="chain-step"><span class="em">📈</span><div class="tx">血糖快速飆升</div></div>
+        <div class="chain-arrow">➜</div>
+        <div class="chain-step"><span class="em">📉</span><div class="tx">隨後快速下降</div></div>
+        <div class="chain-arrow">➜</div>
+        <div class="chain-step"><span class="em">😵</span><div class="tx">吃不飽、很快又餓</div></div>
+    </div>
+    <div class="chain-loop">🔁 於是又伸手去拿甜的、澱粉的……循環繼續</div>
+
+    <div class="chain-label good">✨ 換個順序，連鎖反應也跟著改變</div>
+    <div class="chain good">
+        <div class="chain-step"><span class="em">🥗</span><div class="tx">第一口先吃<br>蔬菜與蛋白質</div></div>
+        <div class="chain-arrow">➜</div>
+        <div class="chain-step"><span class="em">📊</span><div class="tx">血糖起伏較平緩</div></div>
+        <div class="chain-arrow">➜</div>
+        <div class="chain-step"><span class="em">😌</span><div class="tx">飽足感更持久</div></div>
+    </div>
 
     <div class="section-divider"><span class="dot"></span></div>
 
